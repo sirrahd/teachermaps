@@ -1,0 +1,13 @@
+<footer class="footer">
+  <small>
+    <%= t 'global.copyright' %>
+    <%=link_to( t('global.app_name'), root_path ) %>
+  </small>
+  <nav>
+    <ul>
+      <li><%= link_to t('about.link'),    about_path %></li>
+      <li><%= link_to t('contact.link'),  contact_path %></li>
+      <li><%= link_to t('news.link'),     '#' %></li>
+    </ul>
+  </nav>
+</footer>

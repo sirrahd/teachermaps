@@ -2,5 +2,30 @@
 # See https://github.com/svenfuchs/rails-i18n/tree/master/rails%2Flocale for starting points.
 
 en:
-  app_name: "TeacherMaps"
-  home_intro_text: "Some catchy welcome should probably go here"
+  global:
+    app_name:     "TeacherMaps"
+    copyright:    "Copyright 2012"
+  home:
+    title:        "Welcome to %{app_name}"
+    link:         "Home"
+    text:         "We make lesson planning easy."
+  help:
+    title:        "Help"
+    link:         "Help"
+    text:         "Something helpful should go here."
+  about:
+    title:        "About"
+    link:         "About"
+    text:         "This is us."
+  contact:
+    title:        "Contact"
+    link:         "Contact"
+    text:         "Contact information goes here."
+  news:
+    title:        "News"
+    link:         "News"
+    text:         "This is news."
+  signin:
+    link:         "Sign in"
+  signup:
+    link:         "Sign up"

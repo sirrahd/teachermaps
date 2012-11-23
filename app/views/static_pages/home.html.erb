@@ -1,2 +1,7 @@
-<h1><%= t(:app_name) %></h1>
-<p><%= t(:home_intro_text) %></p>
+<div class="center hero-unit">
+  <h1><%= t('home.title', app_name: t('global.app_name')) %></h1>
+
+  <h2><%= t 'home.text' %></h2>
+
+  <%= link_to t('signup.link'), '#', class: "btn btn-large btn-primary" %>
+</div>
