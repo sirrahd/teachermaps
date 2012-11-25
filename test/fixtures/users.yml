@@ -16,8 +16,10 @@ one:
   name: "User One"
   email: "user.one@example.org"
   alias: "userOne"
+  password_digest: "$2a$10$zoSqiLj6Xc9Fx9RuKCz.BOZYSgRinUVnwfFamLF25jYVXygspwBEK"
 
 two:
   name: "User Two"
   email: "user.two@example.org"
   alias: "userTwo"
+  password_digest: "$2a$10$zoSqiLj6Xc9Fx9RuKCz.BOZYSgRinUVnwfFamLF25jYVXygspwBEK"

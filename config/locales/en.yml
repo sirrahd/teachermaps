@@ -2,30 +2,46 @@
 # See https://github.com/svenfuchs/rails-i18n/tree/master/rails%2Flocale for starting points.
 
 en:
+  activerecord:
+    attributes:
+      user:
+        password_digest:        "Password"
   global:
-    app_name:     "TeacherMaps"
-    copyright:    "Copyright 2012"
+    app_name:                   "TeacherMaps"
+    copyright:                  "Copyright 2012"
+  shared:
+    errors:                     "The form contains %{count}."
+    error_noun:                 "error"
   home:
-    title:        "Welcome to %{app_name}"
-    link:         "Home"
-    text:         "We make lesson planning easy."
+    title:                      "Welcome to %{app_name}"
+    link:                       "Home"
+    text:                       "We make lesson planning easy."
   help:
-    title:        "Help"
-    link:         "Help"
-    text:         "Something helpful should go here."
+    title:                      "Help"
+    link:                       "Help"
+    text:                       "Something helpful should go here."
   about:
-    title:        "About"
-    link:         "About"
-    text:         "This is us."
+    title:                      "About"
+    link:                       "About"
+    text:                       "This is us."
   contact:
-    title:        "Contact"
-    link:         "Contact"
-    text:         "Contact information goes here."
+    title:                      "Contact"
+    link:                       "Contact"
+    text:                       "Contact information goes here."
   news:
-    title:        "News"
-    link:         "News"
-    text:         "This is news."
+    title:                      "News"
+    link:                       "News"
+    text:                       "This is news."
   signin:
-    link:         "Sign in"
+    title:                      "Sign in"
+    link:                       "Sign in"
   signup:
-    link:         "Sign up"
+    title:                      "Sign up"
+    link:                       "Sign up"
+    name_label:                 "What's your real name?"
+    email_label:                "An email address we can use to notify you of things."
+    pwd_label:                  "Password"
+    pwdconf_label:              "One more time..."
+    alias_label:                "An alias we can use to identify you."
+    button:                     "Create my account!"
+    welcome:                    "Welcome to %{app_name}"

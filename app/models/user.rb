@@ -14,8 +14,11 @@ class User < ActiveRecord::Base
   attr_accessible :email, :name, :alias, :password, :password_confirmation
   has_secure_password
   
-  before_save { |user| user.email = email.downcase }
-
+  before_save do |user|
+    user.email = user.email.downcase
+    user.alias = user.alias.downcase
+  end
+  
   validates :name, presence: true, length: { maximum: 50 }
   
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
@@ -32,4 +35,9 @@ class User < ActiveRecord::Base
   
   validates :password, presence: true, length: { minimum: 6 }
   validates :password_confirmation, presence: true
+  
+  def friendly_link
+    Rails.application.routes.url_helpers.users_path + '/' + self.alias
+  end
+  
 end
