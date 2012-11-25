@@ -1,0 +1,23 @@
+# == Schema Information
+#
+# Table name: users
+#
+#  id         :integer          not null, primary key
+#  name       :string(255)
+#  email      :string(255)
+#  created_at :datetime         not null
+#  updated_at :datetime         not null
+#  alias      :string(255)
+#
+
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  name: "User One"
+  email: "user.one@example.org"
+  alias: "userOne"
+
+two:
+  name: "User Two"
+  email: "user.two@example.org"
+  alias: "userTwo"
