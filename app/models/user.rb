@@ -18,6 +18,7 @@ class User < ActiveRecord::Base
     user.email = user.email.downcase
     user.alias = user.alias.downcase
   end
+  before_save :create_remember_token
   
   validates :name, presence: true, length: { maximum: 50 }
   
