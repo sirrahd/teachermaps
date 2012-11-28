@@ -35,6 +35,14 @@ en:
   signin:
     title:                      "Sign in"
     link:                       "Sign in"
+    name_label:                 "Alias or Email"
+    password_label:             "Password"
+    new_user:                   "New user? %{signup} now!"
+    error:                      "We couldn't find anyone with that name and password."
+    account:                    "Account"
+    profile:                    "Profile"
+    settings:                   "Settings"
+    signout:                    "Sign out"
   signup:
     title:                      "Sign up"
     link:                       "Sign up"

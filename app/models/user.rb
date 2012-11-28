@@ -35,9 +35,14 @@ class User < ActiveRecord::Base
   
   validates :password, presence: true, length: { minimum: 6 }
   validates :password_confirmation, presence: true
-  
+
   def friendly_link
     Rails.application.routes.url_helpers.users_path + '/' + self.alias
-  end
+  end # Should we cache or DB this?
+
+  private
   
+  def create_remember_token
+    self.remember_token = SecureRandom.urlsafe_base64
+  end
 end

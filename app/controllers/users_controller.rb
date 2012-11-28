@@ -1,9 +1,7 @@
 class UsersController < ApplicationController
   def show
-    if !(@user = User.find_by_alias(params[:id]))
-      @user = User.find(params[:id])
-    end
-  end
+    @user = User.find_by_alias(params[:id]) || User.find(params[:id])
+  end # More efficient look for int
   
   def new
     @user = User.new
@@ -12,6 +10,7 @@ class UsersController < ApplicationController
   def create
     @user = User.new(params[:user])
     if @user.save
+      sign_in @user
       flash[:success] = t('signup.welcome', app_name: t('global.app_name'))
       redirect_to @user.friendly_link
     else
