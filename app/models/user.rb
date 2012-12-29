@@ -12,6 +12,7 @@
 
 class User < ActiveRecord::Base
   attr_accessible :email, :name, :alias, :password, :password_confirmation
+  # Not sure if we need to store password_confirmation
   has_secure_password
   
   before_save do |user|
@@ -38,12 +39,16 @@ class User < ActiveRecord::Base
   validates :password_confirmation, presence: true
 
   def friendly_link
+    # Should we cache or DB this? 
+    # No need to store in db if it is repeat of alias
     Rails.application.routes.url_helpers.users_path + '/' + self.alias
-  end # Should we cache or DB this?
+  end 
 
   private
   
   def create_remember_token
-    self.remember_token = SecureRandom.urlsafe_base64
+    #self.remember_token = SecureRandom.urlsafe_base64
+    seed = "--#{rand(10000)}--#{Time.now}--"
+    self.remember_token = Digest::SHA1.hexdigest(seed)
   end
 end
