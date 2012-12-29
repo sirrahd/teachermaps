@@ -171,7 +171,7 @@ DEPENDENCIES
   bootstrap-sass (= 2.1)
   capybara (= 1.1.2)
   coffee-rails (= 3.2.2)
-  google-api-client
+  google-api-client (= 0.5.0)
   jquery-rails (= 2.0.2)
   pg (= 0.12.2)
   rails (= 3.2.9)
