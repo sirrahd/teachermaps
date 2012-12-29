@@ -1,4 +1,10 @@
 Teachermaps::Application.routes.draw do
+  resources :resource_types
+
+
+  resources :resources
+
+
   resources :users
   resources :sessions, only: [:new, :create, :destroy]
   

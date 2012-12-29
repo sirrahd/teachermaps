@@ -38,6 +38,8 @@ class User < ActiveRecord::Base
   validates :password, presence: true, length: { minimum: 6 }
   validates :password_confirmation, presence: true
 
+  has_many :resources
+
   def friendly_link
     # Should we cache or DB this? 
     # No need to store in db if it is repeat of alias
