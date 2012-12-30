@@ -5,7 +5,7 @@ class Resource < ActiveRecord::Base
   belongs_to :resource_type
   # has_one or belongs_to??
 
-  # belongs_to :user
+  belongs_to :user
     
   before_save do |resource|
     # Do some edits

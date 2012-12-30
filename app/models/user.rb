@@ -13,12 +13,17 @@
 class User < ActiveRecord::Base
   attr_accessible :email, :name, :alias, :password, :password_confirmation
   # Not sure if we need to store password_confirmation
+  has_many :resources
+
+
   has_secure_password
   
   before_save do |user|
     user.email = user.email.downcase
     user.alias = user.alias.downcase
   end
+
+  # Does this create new cookie every save call?
   before_save :create_remember_token
   
   validates :name, presence: true, length: { maximum: 50 }
@@ -35,10 +40,10 @@ class User < ActiveRecord::Base
                     format: { with: VALID_ALIAS_REGEX },
                     uniqueness: { case_sensitive: false }
   
-  validates :password, presence: true, length: { minimum: 6 }
+  validates :password, presence: true,  length: { minimum: 6 }
   validates :password_confirmation, presence: true
 
-  has_many :resources
+
 
   def friendly_link
     # Should we cache or DB this? 
