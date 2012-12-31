@@ -18,6 +18,9 @@ Teachermaps::Application.routes.draw do
   match '/about',   to: 'static_pages#about'
   match '/contact', to: 'static_pages#contact'
 
+  # Google Drive
+  match '/resources/google-drive/callback' => 'resources#google_drive_oauth_callback'
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

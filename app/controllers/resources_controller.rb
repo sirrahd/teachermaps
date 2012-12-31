@@ -1,12 +1,28 @@
+require 'google/api_client'
+
+
 class ResourcesController < ApplicationController
   # GET /resources
   # GET /resources.json
   def index
     @resources = Resource.all
 
+    client = Google::APIClient.new
+    drive = client.discovered_api('drive')
+
+    # # Initialize OAuth 2.0 client    
+    client.authorization.client_id = Rails.application.config.CLIENT_ID
+    client.authorization.client_secret = Rails.application.config.CLIENT_SECRET
+    client.authorization.redirect_uri = Rails.application.config.REDIRECT_URI
+    client.authorization.scope = Rails.application.config.SCOPES
+    
+    # authorization_uri is not an string, need to convert
+    redirect_uri = client.authorization.authorization_uri.to_s
+
+    Rails.logger.info("REDIRECT_URI: #{redirect_uri}")  
+    
     respond_to do |format|
-      format.html # index.html.erb
-      format.json { render json: @resources }
+      format.html { redirect_to redirect_uri }
     end
   end
 
@@ -80,4 +96,18 @@ class ResourcesController < ApplicationController
       format.json { head :no_content }
     end
   end
+
+
+  def google_drive_oauth_callback
+    #@resource = Resource.find(params[:id])
+
+    Rails.logger.info("Callback success")  
+
+    Rails.logger.info("REDIRECT_URI: #{params}")  
+
+    respond_to do |format|
+      format.html { redirect_to '' }
+      format.json { head :no_content }
+    end
+  end 
 end
