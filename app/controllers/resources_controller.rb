@@ -12,7 +12,7 @@ class ResourcesController < ApplicationController
 
    
     client = GoogleApi.new.get_client
-    # drive = client.discovered_api('drive')
+    drive = client.discovered_api('drive', 'v2')
     plus = client.discovered_api('plus')
 
     Rails.logger.info("INDEX - GOOGLE API CODE: #{session[:google_drive_code]}")  
@@ -21,28 +21,29 @@ class ResourcesController < ApplicationController
 
     # Rails.logger.info("GOOGLE ACCESS TOKEN: #{client.access_token}")  
 
-    
-
+    # plus = client.discovered_api('plus')
+    #set :oauth2, client.discovered_api('oauth2', 'v2')
     result = Array.new
     page_token = nil
     begin
       parameters = {}
       api_result = client.execute(
-        :api_method => plus.activities.list,
-        :parameters => {'collection' => 'public', 'userId' => 'me'}
+        :api_method => drive.files.list,
+        # :parameters => {'collection' => 'public', 'userId' => 'me'}
       )
     if api_result.status == 200
       files = api_result.data
       result.concat(files.items)
     else
+
       # puts "An error occurred: #{result.data['error']['message']}"
-      Rails.logger.info("An error occurred pulling data from Google API"
+      Rails.logger.info("An error occurred pulling data from Google API #{api_result.status}")
       page_token = nil
     end
-    end while page_token.to_s != ''
+    end #while page_token.to_s != ''
     #result
 
-    Rails.logger.info("GDRIVE FILES: #{result.data}")  
+    Rails.logger.info("GDRIVE FILES: #{api_result.data} #{result}")  
 
     
     respond_to do |format|

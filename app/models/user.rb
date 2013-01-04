@@ -15,7 +15,6 @@ class User < ActiveRecord::Base
   # Not sure if we need to store password_confirmation
   has_many :resources
 
-
   has_secure_password
   
   before_save do |user|
