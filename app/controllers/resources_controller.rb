@@ -10,31 +10,6 @@ class ResourcesController < ApplicationController
   def index
     @resources = Resource.all
 
-   
-    client = GoogleApi.new.get_client
-    drive = client.discovered_api('drive', 'v2')
-    # plus = client.discovered_api('plus')
-
-    Rails.logger.info("INDEX - GOOGLE API CODE: #{session[:google_drive_code]}")  
-    client.authorization.code = session[:google_drive_code]
-    client.authorization.fetch_access_token!
-
-    result = Array.new
-    page_token = nil
-    
-    api_result = client.execute(
-      :api_method => drive.files.list
-    )
-    if api_result.status == 200
-      files = api_result.data
-      result.concat(files.items)
-    else
-
-      Rails.logger.info("An error occurred pulling data from Google API HTTP Error #{api_result.status}")
-      page_token = nil
-    end
-
-    Rails.logger.info("GDRIVE FILES: #{api_result.data} #{result}")  
     
     respond_to do |format|
       format.html # index.html.erb
@@ -121,14 +96,12 @@ class ResourcesController < ApplicationController
     Rails.logger.info("Callback success")  
     Rails.logger.info("AUTHENTICATED CODE: #{params[:code]}")  
 
-    # Rails.logger.info("Access Token: #{client.authorization.access_token}")
-    # client.authorization.fetch_access_token
-    # Rails.logger.info("Access Token: #{client.authorization.access_token}")
-
+    #Save code to user's session
     session[:google_drive_code] = params[:code]
-    #Rails.logger.info("REDIRECT_URI: #{client}")  
-    #Rails.logger.info("REDIRECT_URI: #{client.authorization.authorization_uri.to_s}")  
 
+    client = GoogleApi.new
+    files = client.fetch_documents( session[:google_drive_code] )
+    Rails.logger.info("GDRIVE FILES: #{client.documents}")  
 
     respond_to do |format|
       format.html { redirect_to resources_url }
@@ -140,8 +113,10 @@ class ResourcesController < ApplicationController
 
     # @resources = Resource.all
     
-    client = GoogleApi.new.get_client
-    drive = client.discovered_api('drive')
+    #client = GoogleApi.new.get_client
+    client = GoogleApi.new
+
+    # drive = client.discovered_api('drive')
 
     # # Initialize OAuth 2.0 client    
     # client.authorization.client_id = Rails.application.config.CLIENT_ID
@@ -150,7 +125,9 @@ class ResourcesController < ApplicationController
     # client.authorization.scope = Rails.application.config.SCOPES
     
     # authorization_uri is not an string, need to convert
-    redirect_uri = client.authorization.authorization_uri.to_s
+    #redirect_uri = client.authorization.authorization_uri.to_s
+    redirect_uri = client.authorization_uri
+
 
     Rails.logger.info("REDIRECT_URI: #{redirect_uri}")  
     

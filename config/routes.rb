@@ -20,7 +20,7 @@ Teachermaps::Application.routes.draw do
 
   # Google Drive
   match '/resources/google-drive/callback' => 'resources#google_drive_oauth_callback'
-  match '/resources/google-drive/sync' => 'resources#google_drive_sync'
+  match '/resources/google-drive/sync'     => 'resources#google_drive_sync'
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
