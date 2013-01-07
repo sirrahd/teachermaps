@@ -22,8 +22,8 @@ Teachermaps::Application.routes.draw do
   match '/contact', to: 'static_pages#contact'
 
   # Google Drive
-  match '/resources/google-drive/callback' => 'resources#google_drive_oauth_callback'
-  match '/resources/google-drive/sync'     => 'resources#google_drive_sync'
+  match 'resources/google-api/callback' => 'resources#google_api_oauth_callback', :as => 'google_oauth_callback'
+  match 'resources/google-api/drive/sync' => 'resources#google_drive_sync', :as => 'google_drive_sync'
 
 
   # The priority is based upon order of creation:

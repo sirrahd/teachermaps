@@ -91,7 +91,7 @@ class ResourcesController < ApplicationController
   ##
   # Google Drive
   ## 
-  def google_drive_oauth_callback
+  def google_api_oauth_callback
     
     Rails.logger.info("Callback success")  
     Rails.logger.info("AUTHENTICATED CODE: #{params[:code]}")  
@@ -110,23 +110,11 @@ class ResourcesController < ApplicationController
   end 
 
   def google_drive_sync
-
-    # @resources = Resource.all
-    
-    #client = GoogleApi.new.get_client
+  
+  
     client = GoogleApi.new
-
-    # drive = client.discovered_api('drive')
-
-    # # Initialize OAuth 2.0 client    
-    # client.authorization.client_id = Rails.application.config.CLIENT_ID
-    # client.authorization.client_secret = Rails.application.config.CLIENT_SECRET
-    # client.authorization.redirect_uri = Rails.application.config.REDIRECT_URI
-    # client.authorization.scope = Rails.application.config.SCOPES
-    
-    # authorization_uri is not an string, need to convert
-    #redirect_uri = client.authorization.authorization_uri.to_s
     redirect_uri = client.authorization_uri
+
 
 
     Rails.logger.info("REDIRECT_URI: #{redirect_uri}")  

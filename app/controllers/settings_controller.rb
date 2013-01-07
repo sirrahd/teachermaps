@@ -2,16 +2,16 @@ class SettingsController < ApplicationController
   # GET /settings
   # GET /settings.json
   def index
-    @settings = Setting.all
+    @setting = Setting
 
     Rails.logger.info("Valid session: #{signed_in?}") 
 
+    # Re-directs users if not logged in
     if !signed_in?
       return respond_to do |format|
         format.html { redirect_to  root_url }
       end
     end
-
 
     respond_to do |format|
       format.html # index.html.erb
