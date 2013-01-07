@@ -100,7 +100,7 @@ class ResourcesController < ApplicationController
     session[:google_drive_code] = params[:code]
 
     client = GoogleApi.new
-    files = client.fetch_documents( session[:google_drive_code] )
+    @files = client.fetch_documents( session[:google_drive_code] )
     Rails.logger.info("GDRIVE FILES: #{client.documents}")  
 
     respond_to do |format|
