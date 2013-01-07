@@ -8,8 +8,14 @@ class ResourcesController < ApplicationController
   # GET /resources
   # GET /resources.json
   def index
-    @resources = Resource.all
+    # @resources = Resource.all
 
+    Rails.logger.info("AUTHENTICATED CODE: #{session[:auth_code]}")  
+    
+    client = GoogleApi.new
+    client.refresh_token( session[:auth_code] )
+    @resources = client.fetch_documents
+    Rails.logger.info("GDRIVE FILES: #{client.documents}")  
     
     respond_to do |format|
       format.html # index.html.erb
@@ -97,11 +103,13 @@ class ResourcesController < ApplicationController
     Rails.logger.info("AUTHENTICATED CODE: #{params[:code]}")  
 
     #Save code to user's session
-    session[:google_drive_code] = params[:code]
+    session[:auth_code] = params[:code]
 
-    client = GoogleApi.new
-    @files = client.fetch_documents( session[:google_drive_code] )
-    Rails.logger.info("GDRIVE FILES: #{client.documents}")  
+    # client = GoogleApi.new
+    # state = client.refresh_token( session[:auth_code] )
+
+
+
 
     respond_to do |format|
       format.html { redirect_to resources_url }

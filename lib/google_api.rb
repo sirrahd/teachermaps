@@ -2,7 +2,7 @@ require 'google/api_client'
 
 class GoogleApi
 
-	attr_accessor :documents, :authorization_uri
+	attr_accessor :documents, :authorization_uri, 
 
 	def initialize
 		@client = client()
@@ -18,13 +18,22 @@ class GoogleApi
 		@client.authorization.authorization_uri.to_s
 	end 
 
-	def fetch_documents(auth_code)
-		@documents = (begin
-			drive = @client.discovered_api('drive', 'v2')
+	def refresh_token (auth_code)
 
-		    Rails.logger.info("GOOGLE ACCESS CODE: #{auth_code}")  
+		@client ||= client()
+
+		if @client.authorization.access_token.nil
+			# Rails.logger.info("Google Auth Code: #{auth_code}")  
 		    @client.authorization.code = auth_code
 		    @client.authorization.fetch_access_token!
+		end
+	  
+	end
+
+	def fetch_documents
+
+		@documents = (begin
+			drive = @client.discovered_api('drive', 'v2')
 
 		    result = Array.new
 		    
@@ -43,9 +52,6 @@ class GoogleApi
 		end)
 	end
 
-	
-
-	private
 
 	def client()
 		@client ||= (begin
@@ -55,6 +61,7 @@ class GoogleApi
 			client.authorization.redirect_uri  = Rails.application.config.REDIRECT_URI
 			client.authorization.client_id     = Rails.application.config.CLIENT_ID
 			client.authorization.scope         = Rails.application.config.SCOPES
+
 			client
 		end)
 	end

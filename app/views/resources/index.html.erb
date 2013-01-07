@@ -2,22 +2,21 @@
 
 <table>
   <tr>
-    <th>Slug</th>
-    <th>Url</th>
     <th>Title</th>
+    <th>Created</th>
+    <th>Owner</th>
     <th></th>
     <th></th>
-    <th></th>
+    
   </tr>
 
 <% @resources.each do |resource| %>
   <tr>
-    <td><%= resource.slug %></td>
-    <td><%= resource.url %></td>
-    <td><%= resource.title %></td>
-    <td><%= link_to 'Show', resource %></td>
-    <td><%= link_to 'Edit', edit_resource_path(resource) %></td>
-    <td><%= link_to 'Destroy', resource, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    <td><%= link_to resource.title, "https://docs.google.com/document/d/#{resource.id}/preview", :target => "_blank" %></td>
+    <td><%= resource.createdDate %></td>
+    <td><%= resource.ownerNames[0] %></td>
+    <td><%= link_to 'Download', "https://docs.google.com/feeds/download/documents/export/Export?id=#{resource.id}&exportFormat=pdf", :target => "_blank"%></td>
+    <td><%= link_to 'Edit', resource.alternateLink, :target => "_blank" %></td>
   </tr>
 <% end %>
 </table>
