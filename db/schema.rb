@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121230165349) do
+ActiveRecord::Schema.define(:version => 20130105174729) do
 
   create_table "resource_types", :force => true do |t|
     t.string "name"
@@ -19,6 +19,11 @@ ActiveRecord::Schema.define(:version => 20121230165349) do
 
 # Could not dump table "resources" because of following StandardError
 #   Unknown type 'belongs_to' for column 'resource_type'
+
+  create_table "settings", :force => true do |t|
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
 
 # Could not dump table "users" because of following StandardError
 #   Unknown type 'has_many' for column 'resources'

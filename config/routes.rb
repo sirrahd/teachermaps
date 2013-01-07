@@ -1,4 +1,7 @@
 Teachermaps::Application.routes.draw do
+  resources :settings
+  resources :sessions, only: [:show, :edit]
+
   resources :resource_types
 
 
@@ -21,6 +24,7 @@ Teachermaps::Application.routes.draw do
   # Google Drive
   match '/resources/google-drive/callback' => 'resources#google_drive_oauth_callback'
   match '/resources/google-drive/sync'     => 'resources#google_drive_sync'
+
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
