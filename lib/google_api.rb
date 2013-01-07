@@ -2,7 +2,7 @@ require 'google/api_client'
 
 class GoogleApi
 
-	attr_accessor :documents, :authorization_uri, 
+	attr_accessor :documents, :authorization_uri, :session
 
 	def initialize
 		@client = client()
@@ -18,15 +18,28 @@ class GoogleApi
 		@client.authorization.authorization_uri.to_s
 	end 
 
+	def session
+		@client ||= client()
+		@client.authorization
+	end 
+
+	def load_session(session)
+		@client.authorization.access_token  = session[:access_token]
+	    @client.authorization.refresh_token = session[:refresh_token]
+	    @client.authorization.expires_in    = session[:expires_in]
+	    @client.authorization.issued_at     = session[:issued_at]
+	end
+	
+
 	def refresh_token (auth_code)
 
 		@client ||= client()
 
-		if @client.authorization.access_token.nil
-			# Rails.logger.info("Google Auth Code: #{auth_code}")  
-		    @client.authorization.code = auth_code
-		    @client.authorization.fetch_access_token!
-		end
+	
+		# Rails.logger.info("Google Auth Code: #{auth_code}")  
+	    @client.authorization.code = auth_code
+	    @client.authorization.fetch_access_token!
+		
 	  
 	end
 

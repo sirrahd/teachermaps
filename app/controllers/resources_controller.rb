@@ -10,10 +10,11 @@ class ResourcesController < ApplicationController
   def index
     # @resources = Resource.all
 
-    Rails.logger.info("AUTHENTICATED CODE: #{session[:auth_code]}")  
+    Rails.logger.info("AUTHENTICATED CODE: #{session}")  
     
     client = GoogleApi.new
-    client.refresh_token( session[:auth_code] )
+    client.load_session( session )
+   
     @resources = client.fetch_documents
     Rails.logger.info("GDRIVE FILES: #{client.documents}")  
     
@@ -105,10 +106,13 @@ class ResourcesController < ApplicationController
     #Save code to user's session
     session[:auth_code] = params[:code]
 
-    # client = GoogleApi.new
-    # state = client.refresh_token( session[:auth_code] )
-
-
+    client = GoogleApi.new
+    client.refresh_token( session[:auth_code] )
+    
+    session[:access_token] = client.session.access_token
+    session[:refresh_token] = client.session.refresh_token
+    session[:expires_in] = client.session.expires_in
+    session[:issued_at] = client.session.issued_at
 
 
     respond_to do |format|
