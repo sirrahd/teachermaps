@@ -1,4 +1,7 @@
 Teachermaps::Application.routes.draw do
+  resources :google_apis
+
+
   resources :settings
   resources :sessions, only: [:show, :edit]
 

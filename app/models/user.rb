@@ -43,6 +43,9 @@ class User < ActiveRecord::Base
   validates :password_confirmation, presence: true
 
 
+  def has_google_account?
+    !self.google_api_id.nil?
+    
 
   def friendly_link
     # Should we cache or DB this? 

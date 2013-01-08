@@ -109,10 +109,10 @@ class ResourcesController < ApplicationController
     client = GoogleApi.new
     client.refresh_token( session[:auth_code] )
     
-    session[:access_token] = client.session.access_token
     session[:refresh_token] = client.session.refresh_token
-    session[:expires_in] = client.session.expires_in
-    session[:issued_at] = client.session.issued_at
+    session[:access_token]  = client.session.access_token
+    session[:expires_in]    = client.session.expires_in
+    session[:issued_at]     = client.session.issued_at
 
 
     respond_to do |format|
