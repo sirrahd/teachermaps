@@ -7,7 +7,7 @@
 #  email      :string(255)
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
-#  alias      :string(255)
+#  account_name      :string(255)
 #
 
 require 'test_helper'
@@ -19,7 +19,7 @@ class UserTest < ActiveSupport::TestCase
   test "should respond to attributes" do
     assert_respond_to @user, :name,  "User missing name."
     assert_respond_to @user, :email, "User missing email."
-    assert_respond_to @user, :alias, "User missing alias."
+    assert_respond_to @user, :account_name, "User missing account_name."
     assert_respond_to @user, :password_digest, "User missing password digest."
     assert_respond_to @user, :password, "User missing password."
     assert_respond_to @user, :password_confirmation, "User missing confirmation."
@@ -74,14 +74,14 @@ class UserTest < ActiveSupport::TestCase
   end
 
   # Basic checks for email existence and format
-  test "alias must have valid format" do
-    @user.alias = " "
-    assert !(@user.valid?), "User created without alias."
+  test "account_name must have valid format" do
+    @user.account_name = " "
+    assert !(@user.valid?), "User created without account_name."
     
-    @user.alias = "a" * 51
-    assert !(@user.valid?), "User created with too long alias."
+    @user.account_name = "a" * 51
+    assert !(@user.valid?), "User created with too long account_name."
     
-    invalid_aliases =   %w[
+    invalid_account_names =   %w[
                           abc
                           user@foo,com
                           user_at_foo.org
@@ -90,30 +90,30 @@ class UserTest < ActiveSupport::TestCase
                           foo@bar+baz.com
                           32r08FDSj
                         ]
-    invalid_aliases.each do |invalid_alias|
-      @user.alias = invalid_alias
-      assert !(@user.valid?), "User created with invalid alias #{invalid_alias}."
+    invalid_account_names.each do |invalid_account_name|
+      @user.account_name = invalid_account_name
+      assert !(@user.valid?), "User created with invalid account_name #{invalid_account_name}."
     end
     
-    valid_aliases =  %w[
+    valid_account_names =  %w[
                         oisfoaisf
                         fadsFD24398
                         fOIoiahfd8923
                         sof92837hiuUFDS
                       ]
-    valid_aliases.each do |valid_alias|
-      @user.alias = valid_alias
-      assert @user.valid?, "User creation failed for valid alias #{valid_alias}."
+    valid_account_names.each do |valid_account_name|
+      @user.account_name = valid_account_name
+      assert @user.valid?, "User creation failed for valid account_name #{valid_account_name}."
     end
   end
 
   # We use email address as an identifier, so they must be unique
-  test "aliases must be unique" do
+  test "account_names must be unique" do
     assert @user.save, "Unable to save valid user."
     
-    user_with_same_alias = @user.dup
-    user_with_same_alias.alias = @user.alias.upcase
-    assert !(user_with_same_alias.valid?), "User with duplicate alias created."
+    user_with_same_account_name = @user.dup
+    user_with_same_account_name.account_name = @user.account_name.upcase
+    assert !(user_with_same_account_name.valid?), "User with duplicate account_name created."
   end
   
   # Password checks for existence and matching
@@ -145,9 +145,9 @@ class UserTest < ActiveSupport::TestCase
     assert !found_user.authenticate(nil), "Authenticated with nil."
   end
 
-  # Can I authenticate by alias address?
-  test "authenticate by alias" do
-    found_user = User.find_by_alias(@user.alias)
+  # Can I authenticate by account_name address?
+  test "authenticate by account_name" do
+    found_user = User.find_by_account_name(@user.account_name)
     
     assert found_user.authenticate(@user.password), "Can't authenticate."
     assert !found_user.authenticate(@user.password.upcase),
@@ -160,7 +160,7 @@ class UserTest < ActiveSupport::TestCase
   def initialize_user
     @user = User.new  name: "Example User", 
                       email: "user@example.org",
-                      alias: "example",
+                      account_name: "example",
                       password: "foobar",
                       password_confirmation: "foobar"
                       
