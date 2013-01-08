@@ -12,6 +12,6 @@
       
       <%= f.submit t('signin.link'), class: "btn btn-large btn-primary" %>
     <% end %>
-    <p><%= t('signin.new_user', signup: link_to(t('signup.link'), signup_path,)) %></p>
+    <p><%= raw t('signin.new_user', signup: link_to(t('signup.link'), signup_path,)) %></p>
   </div>
 </div>
