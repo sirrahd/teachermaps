@@ -15,6 +15,8 @@
 class User < ActiveRecord::Base
   attr_accessible :email, :name, :account_name, :password, :password_confirmation
   has_secure_password
+
+  has_one :google_api
   
   before_save do |user|
     user.email = user.email.downcase
@@ -38,6 +40,11 @@ class User < ActiveRecord::Base
   
   validates :password, presence: true, length: { minimum: 6 }
   validates :password_confirmation, presence: true
+
+  def has_google_account?
+
+    !google_api.nil?
+  end 
 
   def friendly_link
     Rails.application.routes.url_helpers.users_path + '/' + self.account_name

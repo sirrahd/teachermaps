@@ -6,6 +6,7 @@ class CreateGoogleApis < ActiveRecord::Migration
       t.string :expires_in
       t.string :issued_at
       t.string :folder_id
+      t.integer :user_id
 
       t.timestamps
     end

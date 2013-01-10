@@ -53,10 +53,10 @@ module GoogleApisHelper
 
 		    result = Array.new
 		    parameters = {}
-		    parameters['title'] = 'TeacherMaps'
+		    # parameters['title'] = 'TeacherMaps'
 		    # parameters['q'] = 'TeacherMaps'
-		    parameters['mimeType'] = 'application/vnd.google-apps.folder'
-		    parameters['maxResults'] = '5'
+		    # parameters['mimeType'] = 'application/vnd.google-apps.folder'
+		    parameters['maxResults'] = '10'
 
 		    api_result = @client.execute(
 		      :api_method => drive.files.list,

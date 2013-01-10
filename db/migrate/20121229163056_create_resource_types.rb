@@ -1,4 +1,4 @@
-class AddResourceTypes < ActiveRecord::Migration
+class CreateResourceTypes < ActiveRecord::Migration
 
   def up
   	create_table :resource_types do |t|
