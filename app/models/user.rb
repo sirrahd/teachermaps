@@ -45,7 +45,7 @@ class User < ActiveRecord::Base
 
   def has_google_account?
     !self.google_api_id.nil?
-    
+  end
 
   def friendly_link
     # Should we cache or DB this? 

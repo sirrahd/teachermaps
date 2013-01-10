@@ -1,2 +1,4 @@
 class GoogleApisController < ApplicationController
+
+	
 end

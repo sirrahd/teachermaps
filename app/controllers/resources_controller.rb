@@ -1,8 +1,9 @@
 require 'google/api_client'
-require 'google_api.rb'
+# require 'google_api.rb'
 
 class ResourcesController < ApplicationController
-
+include GoogleApisHelper
+include SessionsHelper
 
 
   # GET /resources
@@ -12,11 +13,10 @@ class ResourcesController < ApplicationController
 
     Rails.logger.info("AUTHENTICATED CODE: #{session}")  
     
-    client = GoogleApi.new
-    client.load_session( session )
+    google_load_session( session )
    
-    @resources = client.fetch_documents
-    Rails.logger.info("GDRIVE FILES: #{client.documents}")  
+    @resources = google_fetch_documents
+    Rails.logger.info("GDRIVE FILES: #{google_documents}")  
     
     respond_to do |format|
       format.html # index.html.erb
@@ -106,13 +106,18 @@ class ResourcesController < ApplicationController
     #Save code to user's session
     session[:auth_code] = params[:code]
 
-    client = GoogleApi.new
-    client.refresh_token( session[:auth_code] )
+    google_refresh_token( session[:auth_code] )
+
+    if signed_in? and @current_user.has_google_account?
+      Rails.logger.info("Valid Google Session")  
+    else
+      Rails.logger.info("Inalid Google Session")  
+    end
     
-    session[:refresh_token] = client.session.refresh_token
-    session[:access_token]  = client.session.access_token
-    session[:expires_in]    = client.session.expires_in
-    session[:issued_at]     = client.session.issued_at
+    session[:refresh_token] = google_session.refresh_token
+    session[:access_token]  = google_session.access_token
+    session[:expires_in]    = google_session.expires_in
+    session[:issued_at]     = google_session.issued_at
 
 
     respond_to do |format|
@@ -124,8 +129,8 @@ class ResourcesController < ApplicationController
   def google_drive_sync
   
   
-    client = GoogleApi.new
-    redirect_uri = client.authorization_uri
+    
+    redirect_uri = google_authorization_uri
 
 
 
