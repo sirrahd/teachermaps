@@ -5,6 +5,7 @@ class CreateGoogleApis < ActiveRecord::Migration
       t.string :refresh_token
       t.string :expires_in
       t.string :issued_at
+      t.string :folder_id
 
       t.timestamps
     end

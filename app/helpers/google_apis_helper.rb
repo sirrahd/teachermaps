@@ -52,16 +52,22 @@ module GoogleApisHelper
 			drive = @client.discovered_api('drive', 'v2')
 
 		    result = Array.new
-		    
+		    parameters = {}
+		    parameters['title'] = 'TeacherMaps'
+		    # parameters['q'] = 'TeacherMaps'
+		    parameters['mimeType'] = 'application/vnd.google-apps.folder'
+		    parameters['maxResults'] = '5'
+
 		    api_result = @client.execute(
-		      :api_method => drive.files.list
+		      :api_method => drive.files.list,
+		      :parameters => parameters
 		    )
 
 		    if api_result.status == 200
 		      files = api_result.data
 		      result.concat(files.items)
 		    else
-		      Rails.logger.info("An error occurred pulling data from Google API HTTP Error #{api_result.status}")
+		      Rails.logger.info("An error occurred from Google API HTTP Error #{api_result.status}: #{api_result.data[:error]}")
 		    end
 
 		    result

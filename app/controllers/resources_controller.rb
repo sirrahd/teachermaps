@@ -2,8 +2,11 @@ require 'google/api_client'
 # require 'google_api.rb'
 
 class ResourcesController < ApplicationController
-include GoogleApisHelper
-include SessionsHelper
+  include GoogleApisHelper
+  include SessionsHelper
+
+  before_filter :require_session
+
 
 
   # GET /resources
@@ -103,15 +106,18 @@ include SessionsHelper
     Rails.logger.info("Callback success")  
     Rails.logger.info("AUTHENTICATED CODE: #{params[:code]}")  
 
+    
+
     #Save code to user's session
     session[:auth_code] = params[:code]
 
     google_refresh_token( session[:auth_code] )
 
-    if signed_in? and @current_user.has_google_account?
+
+    if @current_user.has_google_account?
       Rails.logger.info("Valid Google Session")  
     else
-      Rails.logger.info("Inalid Google Session")  
+      Rails.logger.info("Invalid Google Session")  
     end
     
     session[:refresh_token] = google_session.refresh_token
@@ -138,6 +144,16 @@ include SessionsHelper
     
     respond_to do |format|
       format.html { redirect_to redirect_uri }
+    end
+  end
+
+
+  private
+
+  # Requires user session
+  def require_session
+    unless current_user
+      redirect_to sign_in_path
     end
   end
 end

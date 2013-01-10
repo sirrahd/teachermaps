@@ -17,7 +17,7 @@ Teachermaps::Application.routes.draw do
   root to: 'static_pages#home'
 
   match '/signup',  to: 'users#new'
-  match '/signin',  to: 'sessions#new'
+  match '/signin',  to: 'sessions#new', :as => 'sign_in'
   match '/signout', to: 'sessions#destroy', via: :delete
   
   match '/help',    to: 'static_pages#help'
