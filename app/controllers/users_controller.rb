@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   def show
-    @user = User.find_by_alias(params[:id]) || User.find(params[:id])
+    @user = User.find_by_account_name(params[:id]) || User.find(params[:id])
   end # More efficient look for int
   
   def new

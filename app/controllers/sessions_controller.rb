@@ -5,7 +5,7 @@ class SessionsController < ApplicationController
   def create
     # more efficient--string search for @
     user = User.find_by_email(params[:session][:name].downcase) ||
-           User.find_by_alias(params[:session][:name].downcase)
+           User.find_by_account_name(params[:session][:name].downcase)
     
     if user && user.authenticate(params[:session][:password])
       sign_in user

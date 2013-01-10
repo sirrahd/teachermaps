@@ -35,7 +35,7 @@ en:
   signin:
     title:                      "Sign in"
     link:                       "Sign in"
-    name_label:                 "Alias or Email"
+    name_label:                 "Account name or Email"
     password_label:             "Password"
     new_user:                   "New user? %{signup} now!"
     error:                      "We couldn't find anyone with that name and password."
@@ -46,10 +46,10 @@ en:
   signup:
     title:                      "Sign up"
     link:                       "Sign up"
-    name_label:                 "What's your real name?"
-    email_label:                "An email address we can use to notify you of things."
+    name_label:                 "Name"
+    email_label:                "Email address"
     pwd_label:                  "Password"
     pwdconf_label:              "One more time..."
-    alias_label:                "An alias we can use to identify you."
+    account_name_label:         "Account name"
     button:                     "Create my account!"
     welcome:                    "Welcome to %{app_name}"
