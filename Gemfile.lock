@@ -56,6 +56,8 @@ GEM
       coffee-script-source
       execjs
     coffee-script-source (1.4.0)
+    dropbox-sdk (1.5.1)
+      json
     erubis (2.7.0)
     execjs (1.4.0)
       multi_json (~> 1.0)
@@ -172,6 +174,7 @@ DEPENDENCIES
   bootstrap-sass (= 2.1)
   capybara (= 1.1.2)
   coffee-rails (= 3.2.2)
+  dropbox-sdk (= 1.5.1)
   google-api-client (= 0.5.0)
   jquery-rails (= 2.0.2)
   pg (= 0.12.2)

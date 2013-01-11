@@ -6,6 +6,7 @@ gem 'jquery-rails', '2.0.2'
 gem 'bcrypt-ruby', '3.0.1'
 
 gem 'google-api-client', '0.5.0'
+gem 'dropbox-sdk', '1.5.1'
 
 group :development, :test do
 	gem 'sqlite3', '1.3.5'

@@ -1,4 +1,7 @@
 Teachermaps::Application.routes.draw do
+  resources :drop_box_accounts
+
+
   resources :google_accounts
 
 

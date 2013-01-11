@@ -113,11 +113,6 @@ class ResourcesController < ApplicationController
     Rails.logger.info("Callback success")  
     Rails.logger.info("AUTHENTICATED CODE: #{params[:code]}")  
 
-    
-    #Save code to user's session
-    # session[:auth_code] = params[:code]
-
-    # google_refresh_token( session[:auth_code] )
     google_refresh_token( params[:code] )
 
     if @current_user.has_google_account?
@@ -128,16 +123,11 @@ class ResourcesController < ApplicationController
       google_account = GoogleAccount.new
       google_account.user_id = @current_user.id
     end
-    
-    # session[:refresh_token] = google_session.refresh_token
-    # session[:access_token]  = google_session.access_token
-    # session[:expires_in]    = google_session.expires_in
-    # session[:issued_at]     = google_session.issued_at
-    
+
     google_account.refresh_token = google_session.refresh_token
-    google_account.access_token = google_session.access_token
-    google_account.expires_in = google_session.expires_in
-    google_account.issued_at = google_session.issued_at
+    google_account.access_token  = google_session.access_token
+    google_account.expires_in    = google_session.expires_in
+    google_account.issued_at     = google_session.issued_at
 
     google_account.save( )
 
@@ -149,12 +139,8 @@ class ResourcesController < ApplicationController
   end 
 
   def google_drive_sync
-  
-  
     
     redirect_uri = google_authorization_uri
-
-
 
     Rails.logger.info("REDIRECT_URI: #{redirect_uri}")  
     
