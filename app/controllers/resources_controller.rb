@@ -2,7 +2,7 @@ require 'google/api_client'
 # require 'google_api.rb'
 
 class ResourcesController < ApplicationController
-  include GoogleApisHelper
+  include GoogleAccountsHelper
   include SessionsHelper
 
   before_filter :require_session
@@ -153,7 +153,7 @@ class ResourcesController < ApplicationController
   # Requires user session
   def require_session
     unless current_user
-      redirect_to sign_in_path
+      redirect_to signin_path
     end
   end
 end

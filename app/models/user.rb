@@ -16,7 +16,7 @@ class User < ActiveRecord::Base
   attr_accessible :email, :name, :account_name, :password, :password_confirmation
   has_secure_password
 
-  has_one :google_api
+  has_one :google_account
   
   before_save do |user|
     user.email = user.email.downcase
@@ -43,7 +43,7 @@ class User < ActiveRecord::Base
 
   def has_google_account?
 
-    !google_api.nil?
+    !google_account.nil?
   end 
 
   def friendly_link

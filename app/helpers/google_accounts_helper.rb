@@ -1,7 +1,6 @@
 require 'google/api_client'
 
-module GoogleApisHelper
-
+module GoogleAccountsHelper
 
 	attr_accessor :google_documents, :google_authorization_uri, :google_session
 

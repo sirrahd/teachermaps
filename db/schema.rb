@@ -11,9 +11,9 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130108074304) do
+ActiveRecord::Schema.define(:version => 20130111004937) do
 
-  create_table "google_apis", :force => true do |t|
+  create_table "google_accounts", :force => true do |t|
     t.string   "access_token"
     t.string   "refresh_token"
     t.string   "expires_in"

@@ -1,6 +1,6 @@
-class CreateGoogleApis < ActiveRecord::Migration
+class CreateGoogleAccounts < ActiveRecord::Migration
   def up
-  	create_table :google_apis do |t|
+  	create_table :google_accounts do |t|
       t.string :access_token
       t.string :refresh_token
       t.string :expires_in
@@ -13,6 +13,6 @@ class CreateGoogleApis < ActiveRecord::Migration
   end
 
   def down
-  	drop_table :google_apis
+  	drop_table :google_accounts
   end
 end
