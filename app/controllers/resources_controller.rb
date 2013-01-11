@@ -8,18 +8,25 @@ class ResourcesController < ApplicationController
   before_filter :require_session
 
 
-
   # GET /resources
   # GET /resources.json
   def index
     # @resources = Resource.all
+    @resources = []
 
     Rails.logger.info("AUTHENTICATED CODE: #{session}")  
-    
-    google_load_session( session )
+
+    if @current_user.has_google_account?
+      google_account = @current_user.google_account 
+      Rails.logger.info("Valid Google Session") 
+      google_load_session( google_account )
    
-    @resources = google_fetch_documents
-    Rails.logger.info("GDRIVE FILES: #{google_documents}")  
+      @resources = google_fetch_documents
+      Rails.logger.info("GDRIVE FILES: #{google_documents}")  
+    else
+      Rails.logger.info("User does not have a synced Google Account") 
+    end
+    
     
     respond_to do |format|
       format.html # index.html.erb
@@ -107,23 +114,32 @@ class ResourcesController < ApplicationController
     Rails.logger.info("AUTHENTICATED CODE: #{params[:code]}")  
 
     
-
     #Save code to user's session
-    session[:auth_code] = params[:code]
+    # session[:auth_code] = params[:code]
 
-    google_refresh_token( session[:auth_code] )
-
+    # google_refresh_token( session[:auth_code] )
+    google_refresh_token( params[:code] )
 
     if @current_user.has_google_account?
-      Rails.logger.info("Valid Google Session")  
+      google_account = @current_user.google_account 
+      Rails.logger.info("Valid Google Session") 
     else
-      Rails.logger.info("Invalid Google Session")  
+      Rails.logger.info("Invalid Google Session, Creating one") 
+      google_account = GoogleAccount.new
+      google_account.user_id = @current_user.id
     end
     
-    session[:refresh_token] = google_session.refresh_token
-    session[:access_token]  = google_session.access_token
-    session[:expires_in]    = google_session.expires_in
-    session[:issued_at]     = google_session.issued_at
+    # session[:refresh_token] = google_session.refresh_token
+    # session[:access_token]  = google_session.access_token
+    # session[:expires_in]    = google_session.expires_in
+    # session[:issued_at]     = google_session.issued_at
+    
+    google_account.refresh_token = google_session.refresh_token
+    google_account.access_token = google_session.access_token
+    google_account.expires_in = google_session.expires_in
+    google_account.issued_at = google_session.issued_at
+
+    google_account.save( )
 
 
     respond_to do |format|

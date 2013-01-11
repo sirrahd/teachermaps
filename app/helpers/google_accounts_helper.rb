@@ -24,12 +24,12 @@ module GoogleAccountsHelper
 		@client.authorization
 	end 
 
-	def google_load_session(session)
+	def google_load_session(account)
 		@client ||= google_client()
-		@client.authorization.access_token  = session[:access_token]
-	    @client.authorization.refresh_token = session[:refresh_token]
-	    @client.authorization.expires_in    = session[:expires_in]
-	    @client.authorization.issued_at     = session[:issued_at]
+		@client.authorization.access_token  = account.access_token
+	    @client.authorization.refresh_token = account.refresh_token
+	    @client.authorization.expires_in    = account.expires_in
+	    @client.authorization.issued_at     = account.issued_at
 	end
 	
 
