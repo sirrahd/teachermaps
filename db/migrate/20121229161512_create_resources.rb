@@ -4,6 +4,7 @@ class CreateResources < ActiveRecord::Migration
       t.string  :slug
       t.string  :title
       t.string  :url
+      
       t.timestamps
     end
 
