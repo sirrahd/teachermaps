@@ -1,5 +1,4 @@
 require 'google/api_client'
-# require 'google_api.rb'
 
 class ResourcesController < ApplicationController
   include GoogleAccountsHelper
@@ -147,6 +146,24 @@ class ResourcesController < ApplicationController
     respond_to do |format|
       format.html { redirect_to redirect_uri }
     end
+  end
+
+  # DropBox
+
+  def drop_box_oauth_request
+
+    db_session = DropboxSession.new(APP_KEY, APP_SECRET)
+    begin
+        db_session.get_request_token
+    rescue DropboxError => e
+       Rails.logger.info("Oh..no.. DropBox session request broke")   
+    end
+
+    session[:request_db_session] = db_session.serialize
+
+    auth_url = db_session.get_authorize_url url('/oauth-callback')
+    redirect auth_url 
+
   end
 
 

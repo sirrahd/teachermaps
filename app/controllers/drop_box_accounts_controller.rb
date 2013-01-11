@@ -24,11 +24,27 @@ class DropBoxAccountsController < ApplicationController
   # GET /drop_box_accounts/new
   # GET /drop_box_accounts/new.json
   def new
-    @drop_box_account = DropBoxAccount.new
+    #@drop_box_account = DropBoxAccount.new
 
+    # respond_to do |format|
+    #   format.html # new.html.erb
+    #   format.json { render json: @drop_box_account }
+    # end
+
+    db_session = DropboxSession.new(APP_KEY, APP_SECRET)
+    begin
+        db_session.get_request_token
+    rescue DropboxError => e
+       Rails.logger.info("Oh..no.. DropBox session request broke")   
+    end
+
+    session[:request_db_session] = db_session.serialize
+
+    auth_url = db_session.get_authorize_url url('/oauth-callback')
+    
     respond_to do |format|
-      format.html # new.html.erb
-      format.json { render json: @drop_box_account }
+      format.html { redirect auth_url  }
+      format.json { head :no_content }
     end
   end
 

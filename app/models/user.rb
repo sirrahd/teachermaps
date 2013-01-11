@@ -17,6 +17,7 @@ class User < ActiveRecord::Base
   has_secure_password
 
   has_one :google_account
+  has_one :drop_box_account
   
   before_save do |user|
     user.email = user.email.downcase

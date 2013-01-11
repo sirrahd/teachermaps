@@ -4,11 +4,6 @@ module GoogleAccountsHelper
 
 	attr_accessor :google_documents, :google_authorization_uri, :google_session
 
-	# def initialize
-	# 	@client = client()
-	# 	@documents = Array.new
-	# end     
-
 	def google_documents
 		@documents ||= Array.new
 		@documents

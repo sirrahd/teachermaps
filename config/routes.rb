@@ -34,6 +34,10 @@ Teachermaps::Application.routes.draw do
   match 'resources/google-api/callback' => 'resources#google_api_oauth_callback', :as => 'google_oauth_callback'
   match 'resources/google-api/drive/sync' => 'resources#google_drive_sync', :as => 'google_drive_sync'
 
+
+  # DropBox API
+  match 'dropbox/new' => 'drop_box_accounts#new', :as => 'new_drop_box_accounts'
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
