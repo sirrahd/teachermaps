@@ -1,4 +1,10 @@
+require 'dropbox_sdk'
+
 class DropBoxAccountsController < ApplicationController
+
+  APP_KEY    = Rails.application.config.APP_KEY
+  APP_SECRET = Rails.application.config.APP_SECRET
+
   # GET /drop_box_accounts
   # GET /drop_box_accounts.json
   def index
@@ -40,13 +46,37 @@ class DropBoxAccountsController < ApplicationController
 
     session[:request_db_session] = db_session.serialize
 
-    auth_url = db_session.get_authorize_url url('/oauth-callback')
+    auth_url = db_session.get_authorize_url 'http://localhost:3000/dropbox/oauth_callback'
     
-    respond_to do |format|
-      format.html { redirect auth_url  }
-      format.json { head :no_content }
-    end
+    redirect_to auth_url
   end
+
+  
+  def oauth_callback
+    
+    # Finish OAuth Step 2
+    ser = session[:request_db_session]
+    unless ser
+        return html_page "Error in OAuth step 2", "<p>Couldn't find OAuth state in session.</p>"
+    end
+    db_session = DropboxSession.deserialize(ser)
+
+    # OAuth Step 3: Get an access token from Dropbox.
+    begin
+        db_session.get_access_token
+    rescue DropboxError => e
+        Rails.logger.info("Oh..no.. DropBox second step broke.")   
+        return redirect_to root_path
+    end
+    session.delete(:request_db_session)
+    session[:authorized_db_session] = db_session.serialize
+  
+    # In this simple example, we store the authorized DropboxSession in the web
+    # session hash.  A "real" webapp might store it somewhere more persistent.
+    
+    redirect_to resources_url
+  end
+
 
   # GET /drop_box_accounts/1/edit
   def edit

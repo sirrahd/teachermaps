@@ -53,3 +53,6 @@ en:
     account_name_label:         "Account name"
     button:                     "Create my account!"
     welcome:                    "Welcome to %{app_name}"
+  settings:
+    dropbox_sync_label:         "Sync DropBox"
+    google_drive_sync_label:    "Sync Google Drive"

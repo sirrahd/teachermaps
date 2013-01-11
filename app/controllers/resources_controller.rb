@@ -1,7 +1,9 @@
 require 'google/api_client'
+require 'dropbox_sdk'
 
 class ResourcesController < ApplicationController
   include GoogleAccountsHelper
+  include DropBoxAccountsHelper
   include SessionsHelper
 
   before_filter :require_session
@@ -25,7 +27,43 @@ class ResourcesController < ApplicationController
     else
       Rails.logger.info("User does not have a synced Google Account") 
     end
+
+    # Get the DropboxClient object.  Redirect to OAuth flow if necessary.
+    db_client = get_db_client
+    Rails.logger.info("DropBox Rails Client #{db_client} Session: #{session[:authorized_db_session]}")  
+    # unless db_client
+    #     redirect url("/oauth-start")
+    # end
+
+    # Call DropboxClient.metadata
+    path =  '/'
+    begin
+        #entry = db_client.metadata(path)
+        entry = db_client.metadata(path)
+    rescue DropboxAuthError => e
+        session.delete(:authorized_db_session)  # An auth error means the db_session is probably bad
+        # return html_page "Dropbox auth error", "<p>#{h e}</p>"
+    rescue DropboxError => e
+        # if e.http_response.code == '404'
+        #     return html_page "Path not found: #{h path}", ""
+        # else
+        #     return html_page "Dropbox API error", "<pre>#{h e.http_response}</pre>"
+        # end
+        Rails.logger.info("DropBox Error")  
+    end
+
+    if entry['is_dir']
+        entries = render_folder(db_client, entry)
+    else
+        entries = render_file(db_client, entry)
+    end
+
+    Rails.logger.info("DropBox Entries: #{entries}")  
+
+
     
+
+
     
     respond_to do |format|
       format.html # index.html.erb
@@ -146,24 +184,6 @@ class ResourcesController < ApplicationController
     respond_to do |format|
       format.html { redirect_to redirect_uri }
     end
-  end
-
-  # DropBox
-
-  def drop_box_oauth_request
-
-    db_session = DropboxSession.new(APP_KEY, APP_SECRET)
-    begin
-        db_session.get_request_token
-    rescue DropboxError => e
-       Rails.logger.info("Oh..no.. DropBox session request broke")   
-    end
-
-    session[:request_db_session] = db_session.serialize
-
-    auth_url = db_session.get_authorize_url url('/oauth-callback')
-    redirect auth_url 
-
   end
 
 
