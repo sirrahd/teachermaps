@@ -29,6 +29,7 @@ Teachermaps::Application.routes.draw do
 
   # DropBox API
   match 'dropbox/new' => 'drop_box_accounts#new', :as => 'new_drop_box_accounts'
+  match 'dropbox/download/:path' => 'drop_box_accounts#download', :as => 'drop_box_accounts_download', :constraints => {:path => /[\w.]+/}
   match 'dropbox/oauth_callback' => 'drop_box_accounts#oauth_callback'
 
   # The priority is based upon order of creation:

@@ -1,9 +1,8 @@
 class Resource < ActiveRecord::Base
-  attr_accessible :slug, :title, :url
+  attr_accessible :slug, :title, :url, :mime_type, :size
 
 
   belongs_to :resource_type
-  # has_one or belongs_to??
 
   belongs_to :user
     

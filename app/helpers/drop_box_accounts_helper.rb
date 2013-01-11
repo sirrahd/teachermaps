@@ -33,7 +33,7 @@ module DropBoxAccountsHelper
 	        out += "<div><a style='text-decoration: none' href='/?path=#{cp}'>#{cn}</a></div>"
 	    end
 
-	    "Folder: #{entry['path']} #{out}"
+	    "Folder: #{entry['path']} #{entry}"
 	end
 
 	def render_file(db_client, entry)

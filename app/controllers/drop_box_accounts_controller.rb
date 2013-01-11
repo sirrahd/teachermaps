@@ -1,6 +1,7 @@
 require 'dropbox_sdk'
 
 class DropBoxAccountsController < ApplicationController
+include DropBoxAccountsHelper
 
   APP_KEY    = Rails.application.config.APP_KEY
   APP_SECRET = Rails.application.config.APP_SECRET
@@ -25,6 +26,40 @@ class DropBoxAccountsController < ApplicationController
       format.html # show.html.erb
       format.json { render json: @drop_box_account }
     end
+  end
+
+
+  # GET /drop_box_accounts/1
+  # GET /drop_box_accounts/1.json
+  def download
+    #@drop_box_account = DropBoxAccount.find(params[:])
+    # Get the DropboxClient object.  Redirect to OAuth flow if necessary.
+    db_client = get_db_client
+    Rails.logger.info("DropBox Rails Client #{db_client} Session: #{session[:authorized_db_session]}")  
+    # unless db_client
+    #     redirect url("/oauth-start")
+    # end
+
+    # Call DropboxClient.metadata
+    path =  '/'
+    begin
+        #entry = db_client.metadata(path)
+        entry = db_client.shares( "/#{params[:path]}" )
+        #entry = db_client.shares( '/gemspec.rb' )
+    rescue DropboxAuthError => e
+        session.delete(:authorized_db_session)  # An auth error means the db_session is probably bad
+        # return html_page "Dropbox auth error", "<p>#{h e}</p>"
+    rescue DropboxError => e
+        Rails.logger.info("DropBox Error")  
+    end
+
+    Rails.logger.info("DropBox Sharable: #{entry}")  
+
+    return redirect_to entry['url']
+    # respond_to do |format|
+    # format.html # show.html.erb
+    # format.json { render json: @drop_box_account }
+    # end
   end
 
   # GET /drop_box_accounts/new
