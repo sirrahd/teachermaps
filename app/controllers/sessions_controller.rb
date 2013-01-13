@@ -1,9 +1,11 @@
 class SessionsController < ApplicationController
   def new
+    if signed_in?
+      redirect_to @current_user
+    end
   end
   
   def create
-    # more efficient--string search for @
     user = User.find_by_email(params[:session][:name].downcase) ||
            User.find_by_account_name(params[:session][:name].downcase)
     

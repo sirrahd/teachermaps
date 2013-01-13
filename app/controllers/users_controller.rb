@@ -10,6 +10,10 @@ class UsersController < ApplicationController
   end
   
   def new
+    if signed_in?
+      redirect_to @current_user
+    end
+    
     @user = User.new
   end
   
@@ -18,7 +22,7 @@ class UsersController < ApplicationController
     if @user.save
       sign_in @user
       flash[:success] = t('signup.welcome', app_name: t('global.app_name'))
-      redirect_to user_path(@user)
+      redirect_to @user
     else
       render 'new'
     end
