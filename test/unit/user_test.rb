@@ -96,6 +96,18 @@ class UserTest < ActiveSupport::TestCase
       @user.account_name = invalid_account_name
       assert !(@user.valid?), "User created with invalid account_name #{invalid_account_name}."
     end
+
+
+    valid_account_names =  %w[
+                        oisfoaisf
+                        fadsFD24398
+                        fOIoiahfd8923
+                        sof92837hiuUFDS
+                      ]
+    valid_account_names.each do |valid_account_name|
+      @user.account_name = valid_account_name
+      assert @user.valid?, "User creation failed for valid account_name #{valid_account_name}."
+    end
   end
 
   # We use email address as an identifier, so they must be unique

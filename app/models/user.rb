@@ -13,7 +13,6 @@
 #
 
 class User < ActiveRecord::Base
-  self.primary_key = :account_name
   attr_accessible :email, :name, :account_name, :password, :password_confirmation
   has_secure_password
   
@@ -39,6 +38,10 @@ class User < ActiveRecord::Base
   
   validates :password, presence: true, length: { minimum: 6 }
   validates :password_confirmation, presence: true
+
+  def to_param
+    self.account_name
+  end
 
   private
   
