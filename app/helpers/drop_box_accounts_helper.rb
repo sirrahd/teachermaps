@@ -6,9 +6,10 @@ module DropBoxAccountsHelper
 
 	def list_folder(drop_box_account)
 		@client ||= drop_box_client( drop_box_account )
-	    Rails.logger.info("Client: #{@client}")  
+	    
+
 	    unless @client
-	        return []
+	        return nil
 	    end
 
 	    
@@ -26,7 +27,7 @@ module DropBoxAccountsHelper
 	        Rails.logger.info("DropBox File #{cp}")  
 	    end
 
-	    
+
 
 	end
 
@@ -66,10 +67,12 @@ module DropBoxAccountsHelper
 	        begin
 	            return DropboxClient.new(db_session, ACCESS_TYPE)
 	        rescue DropboxAuthError => e
-	            # The stored session didn't work.  Fall through and start OAuth.
-	            session[:authorized_db_session].delete
+	        	Rails.logger.info("Could not authenticate DropBox Account" )
 	        end
-	        Rails.logger.info("SESSION: #{db_session}" )
+	    else
+	    	Rails.logger.info("User does not have a DropBox Account" )
 	    end
+
+    	return nil    
 	end
 end

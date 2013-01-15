@@ -36,7 +36,7 @@ include SessionsHelper
     #@drop_box_account = DropBoxAccount.find(params[:])
     # Get the DropboxClient object.  Redirect to OAuth flow if necessary.
     db_client = get_db_client
-    Rails.logger.info("DropBox Rails Client #{db_client} Session: #{session[:authorized_db_session]}")  
+    Rails.logger.info("DropBox Rails Client #{db_client}")  
     # unless db_client
     #     redirect url("/oauth-start")
     # end
@@ -48,8 +48,7 @@ include SessionsHelper
         entry = db_client.shares( "/#{params[:path]}" )
         #entry = db_client.shares( '/gemspec.rb' )
     rescue DropboxAuthError => e
-        session.delete(:authorized_db_session)  # An auth error means the db_session is probably bad
-        # return html_page "Dropbox auth error", "<p>#{h e}</p>"
+        # redirect to dropbox ouath
     rescue DropboxError => e
         Rails.logger.info("DropBox Error")  
     end
@@ -105,7 +104,6 @@ include SessionsHelper
         return redirect_to root_path
     end
     session.delete(:request_db_session)
-    #session[:authorized_db_session] = db_session.serialize
 
     Rails.logger.info("CurrentUser#{current_user}")
 
