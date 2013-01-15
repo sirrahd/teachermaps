@@ -28,13 +28,13 @@ class ResourcesController < ApplicationController
       Rails.logger.info("User does not have a synced Google Account") 
     end
 
-    if @current_user.has_drop_box_account?
-      drop_box_account = @current_user.drop_box_account 
-      Rails.logger.info("Valid DropBox Session") 
-      list_folder( drop_box_account )
-    else
-      Rails.logger.info("User does not have a synced Google Account") 
-    end
+    # if @current_user.has_drop_box_account?
+    #   drop_box_account = @current_user.drop_box_account 
+    #   Rails.logger.info("Valid DropBox Session") 
+    #   list_folder( drop_box_account )
+    # else
+    #   Rails.logger.info("User does not have a synced Google Account") 
+    # end
 
     
     respond_to do |format|

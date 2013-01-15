@@ -47,10 +47,10 @@ module GoogleAccountsHelper
 
 		    result = Array.new
 		    parameters = {}
-		    # parameters['title'] = 'TeacherMaps'
+		    parameters['title'] = 'TeacherMaps'
 		    # parameters['q'] = 'TeacherMaps'
-		    # parameters['mimeType'] = 'application/vnd.google-apps.folder'
-		    parameters['maxResults'] = '10'
+		    parameters['mimeType'] = 'application/vnd.google-apps.folder'
+		    parameters['maxResults'] = '1'
 
 		    api_result = @client.execute(
 		      :api_method => drive.files.list,
@@ -69,6 +69,38 @@ module GoogleAccountsHelper
 	end
 
 
+	# Typically binary data file, Non-Google Document
+	def create_file(client, title, description, parent_id, mime_type, file_name)
+	   insert(client, title, description, parent_id, 'application/vnd.google-apps.file', file_name)
+	end
+
+	# Google Document
+	def create_google_document(client, title, description, parent_id, mime_type, file_name)
+	   insert(client, title, description, parent_id, 'application/vnd.google-apps.document', file_name)
+	end
+
+	# Google Folder
+	def create_folder(client, title, description, parent_id, mime_type, file_name)
+	   insert(client, title, description, parent_id, 'application/vnd.google-apps.folder', file_name)
+	end
+
+	# Photo file
+	def create_image(client, title, description, parent_id, mime_type, file_name)
+	   insert(client, title, description, parent_id, 'application/vnd.google-apps.photo', file_name)
+	end
+
+	# Video file
+	def create_image(client, title, description, parent_id, mime_type, file_name)
+	   insert(client, title, description, parent_id, 'application/vnd.google-apps.video', file_name)
+	end
+
+
+
+
+
+	
+
+
 
 	private 
 
@@ -83,6 +115,35 @@ module GoogleAccountsHelper
 
 			client
 		end)
+	end
+
+	def insert_file(client, title, description, parent_id, mime_type, file_name)
+	   drive = client.discovered_api('drive', 'v2')
+	  
+	   file = drive.files.insert.request_schema.new({
+	     'title' => title,
+	     'description' => description,
+	     'mimeType' => mime_type
+	   })
+
+	   # Set the parent folder.
+	   if parent_id
+	     file.parents = [{'id' => parent_id}]
+	   end
+	   media = Google::APIClient::UploadIO.new(file_name, mime_type)
+	   result = client.execute(
+	     :api_method => drive.files.insert,
+	     :body_object => file,
+	     :media => media,
+	     :parameters => {
+	       'uploadType' => 'multipart',
+	       'alt' => 'json'})
+	   if result.status == 200
+	     return result.data
+	   else
+	     puts "An error occurred: #{result.data['error']['message']}"
+	     return nil
+	   end
 	end
 
 
