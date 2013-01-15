@@ -31,7 +31,7 @@ include DropBoxAccountsHelper
 
   # GET /drop_box_accounts/1
   # GET /drop_box_accounts/1.json
-  def download
+  def preview
     #@drop_box_account = DropBoxAccount.find(params[:])
     # Get the DropboxClient object.  Redirect to OAuth flow if necessary.
     db_client = get_db_client
