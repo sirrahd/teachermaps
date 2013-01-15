@@ -39,6 +39,8 @@ module DropBoxAccountsHelper
 	       db_session.get_request_token
 	       store = {}
 		   store['request_db_session'] = db_session.serialize
+
+		   # Need to get rid of hard coded url
 		   store['auth_url'] = db_session.get_authorize_url 'http://localhost:3000/dropbox/oauth_callback'
 		   store
 	    rescue DropboxError => e
