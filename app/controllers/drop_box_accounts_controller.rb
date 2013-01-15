@@ -65,25 +65,25 @@ include SessionsHelper
   # GET /drop_box_accounts/new
   # GET /drop_box_accounts/new.json
   def new
-    #@drop_box_account = DropBoxAccount.new
 
-    # respond_to do |format|
-    #   format.html # new.html.erb
-    #   format.json { render json: @drop_box_account }
+
+    # Check for existing dropbox account
+    # If dropbox account and has permission (authorized)
+    #    redirect to sync page
     # end
 
-    db_session = DropboxSession.new(APP_KEY, APP_SECRET)
-    begin
-        db_session.get_request_token
-    rescue DropboxError => e
-       Rails.logger.info("Oh..no.. DropBox session request broke")   
+    drop_box_session = request_drop_box_session()
+
+    if drop_box_session.has_key('request_db_session') and !drop_box_session['request_db_session'].nil?
+       session[:request_db_session] = drop_box_session['request_db_session']
+    end
+    
+    if drop_box_session.has_key('auth_url') and !drop_box_session['auth_url'].nil?
+       redirect_to drop_box_session['auth_url']
+    else
+       redirect_to settings_path
     end
 
-    session[:request_db_session] = db_session.serialize
-
-    auth_url = db_session.get_authorize_url 'http://localhost:3000/dropbox/oauth_callback'
-    
-    redirect_to auth_url
   end
 
   

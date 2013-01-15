@@ -27,9 +27,25 @@ module DropBoxAccountsHelper
 	        Rails.logger.info("DropBox File #{cp}")  
 	    end
 
+	    return entry
+
 
 
 	end
+
+	def request_drop_box_session()
+		db_session = DropboxSession.new(APP_KEY, APP_SECRET)
+	    begin
+	       db_session.get_request_token
+	       store = {}
+		   store['request_db_session'] = db_session.serialize
+		   store['auth_url'] = db_session.get_authorize_url 'http://localhost:3000/dropbox/oauth_callback'
+		   store
+	    rescue DropboxError => e
+	       Rails.logger.info("Oh..no.. DropBox session request broke")   
+	       {'request_db_session' => nil, 'auth_url' => nil }
+	    end
+	end 
 
 	def render_folder(db_client, entry)
 
