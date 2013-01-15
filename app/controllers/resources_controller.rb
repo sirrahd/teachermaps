@@ -28,41 +28,13 @@ class ResourcesController < ApplicationController
       Rails.logger.info("User does not have a synced Google Account") 
     end
 
-    # Get the DropboxClient object.  Redirect to OAuth flow if necessary.
-    db_client = get_db_client
-    Rails.logger.info("DropBox Rails Client #{db_client} Session: #{session[:authorized_db_session]}")  
-    # unless db_client
-    #     redirect url("/oauth-start")
-    # end
-
-    # Call DropboxClient.metadata
-    path =  '/'
-    begin
-        #entry = db_client.metadata(path)
-        entry = db_client.metadata(path)
-    rescue DropboxAuthError => e
-        session.delete(:authorized_db_session)  # An auth error means the db_session is probably bad
-        # return html_page "Dropbox auth error", "<p>#{h e}</p>"
-    rescue DropboxError => e
-        # if e.http_response.code == '404'
-        #     return html_page "Path not found: #{h path}", ""
-        # else
-        #     return html_page "Dropbox API error", "<pre>#{h e.http_response}</pre>"
-        # end
-        Rails.logger.info("DropBox Error")  
-    end
-
-    if entry['is_dir']
-        entries = render_folder(db_client, entry)
+    if @current_user.has_drop_box_account?
+      drop_box_account = @current_user.drop_box_account 
+      Rails.logger.info("Valid DropBox Session") 
+      list_folder( drop_box_account )
     else
-        entries = render_file(db_client, entry)
+      Rails.logger.info("User does not have a synced Google Account") 
     end
-
-    Rails.logger.info("DropBox Entries: #{entries}")  
-
-
-    
-
 
     
     respond_to do |format|

@@ -43,8 +43,11 @@ class User < ActiveRecord::Base
   validates :password_confirmation, presence: true
 
   def has_google_account?
-
     !google_account.nil?
+  end 
+
+  def has_drop_box_account?
+    !drop_box_account.nil?
   end 
 
   def friendly_link

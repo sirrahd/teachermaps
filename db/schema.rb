@@ -11,9 +11,27 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130111004937) do
+ActiveRecord::Schema.define(:version => 20130111021632) do
+
+  create_table "drop_box_accounts", :force => true do |t|
+    t.integer  "user_id"
+    t.string   "session_token"
+    t.datetime "created_at",    :null => false
+    t.datetime "updated_at",    :null => false
+  end
 
   create_table "google_accounts", :force => true do |t|
+    t.string   "access_token"
+    t.string   "refresh_token"
+    t.string   "expires_in"
+    t.string   "issued_at"
+    t.string   "folder_id"
+    t.integer  "user_id"
+    t.datetime "created_at",    :null => false
+    t.datetime "updated_at",    :null => false
+  end
+
+  create_table "google_apis", :force => true do |t|
     t.string   "access_token"
     t.string   "refresh_token"
     t.string   "expires_in"
@@ -28,15 +46,34 @@ ActiveRecord::Schema.define(:version => 20130111004937) do
     t.string "name"
   end
 
-# Could not dump table "resources" because of following StandardError
-#   Unknown type 'belongs_to' for column 'resource_type'
+  create_table "resources", :force => true do |t|
+    t.string   "slug"
+    t.string   "title"
+    t.string   "url"
+    t.string   "mime_type"
+    t.decimal  "size",       :precision => 20, :scale => 2
+    t.datetime "created_at",                                :null => false
+    t.datetime "updated_at",                                :null => false
+    t.integer  "user_id"
+  end
 
   create_table "settings", :force => true do |t|
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
 
-# Could not dump table "users" because of following StandardError
-#   Unknown type 'has_many' for column 'resources'
+  create_table "users", :force => true do |t|
+    t.string   "name"
+    t.string   "email"
+    t.datetime "created_at",      :null => false
+    t.datetime "updated_at",      :null => false
+    t.string   "account_name"
+    t.string   "password_digest"
+    t.string   "remember_token"
+  end
+
+  add_index "users", ["account_name"], :name => "index_users_on_account_name", :unique => true
+  add_index "users", ["email"], :name => "index_users_on_email", :unique => true
+  add_index "users", ["remember_token"], :name => "index_users_on_remember_token"
 
 end

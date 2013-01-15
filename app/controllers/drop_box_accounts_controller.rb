@@ -2,6 +2,7 @@ require 'dropbox_sdk'
 
 class DropBoxAccountsController < ApplicationController
 include DropBoxAccountsHelper
+include SessionsHelper
 
   APP_KEY    = Rails.application.config.APP_KEY
   APP_SECRET = Rails.application.config.APP_SECRET
@@ -104,10 +105,17 @@ include DropBoxAccountsHelper
         return redirect_to root_path
     end
     session.delete(:request_db_session)
-    session[:authorized_db_session] = db_session.serialize
-  
-    # In this simple example, we store the authorized DropboxSession in the web
-    # session hash.  A "real" webapp might store it somewhere more persistent.
+    #session[:authorized_db_session] = db_session.serialize
+
+    Rails.logger.info("CurrentUser#{current_user}")
+
+    if (@current_user.has_drop_box_account?)
+      @current_user.drop_box_account.session_token = db_session.serialize
+    else
+      @current_user.drop_box_account = DropBoxAccount.new( {"user_id" => @current_user.id, "session_token" => db_session.serialize} )
+    end 
+
+    @current_user.save()
     
     redirect_to resources_url
   end
