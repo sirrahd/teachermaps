@@ -1,4 +1,12 @@
+require 'google/api_client'
+
 class GoogleAccountsController < ApplicationController
+  include GoogleAccountsHelper
+  include SessionsHelper
+
+  before_filter :require_session
+  
+
   # GET /google_accounts
   # GET /google_accounts.json
   def index
@@ -24,12 +32,45 @@ class GoogleAccountsController < ApplicationController
   # GET /google_accounts/new
   # GET /google_accounts/new.json
   def new
-    @google_account = GoogleAccount.new
+    auth_url = google_authorization_uri
+
+    Rails.logger.info("Current User: #{@current_user}")  
+    Rails.logger.info("REDIRECT_URI: #{auth_url}")  
+    
+    respond_to do |format|
+      format.html { redirect_to auth_url }
+    end
+  end
+
+  def oauth_callback
+
+    Rails.logger.info("Callback success")  
+    Rails.logger.info("AUTHENTICATED CODE: #{params[:code]} \n Client: #{@current_user}")  
+
+    google_refresh_token( params[:code] )
+
+    if @current_user.has_google_account?
+      google_account = @current_user.google_account 
+      Rails.logger.info("Valid Google Session") 
+    else
+      Rails.logger.info("Invalid Google Session, Creating one") 
+      google_account = GoogleAccount.new
+      google_account.user_id = @current_user.id
+    end
+
+    google_account.refresh_token = google_session.refresh_token
+    google_account.access_token  = google_session.access_token
+    google_account.expires_in    = google_session.expires_in
+    google_account.issued_at     = google_session.issued_at
+
+    google_account.save( )
+
 
     respond_to do |format|
-      format.html # new.html.erb
-      format.json { render json: @google_account }
+      format.html { redirect_to resources_url }
+      format.json { head :no_content }
     end
+
   end
 
   # GET /google_accounts/1/edit
@@ -78,6 +119,14 @@ class GoogleAccountsController < ApplicationController
     respond_to do |format|
       format.html { redirect_to google_accounts_url }
       format.json { head :no_content }
+    end
+  end
+
+  private 
+  # Requires user session
+  def require_session
+    unless current_user
+      redirect_to signin_path
     end
   end
 end

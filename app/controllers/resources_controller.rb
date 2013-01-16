@@ -114,49 +114,49 @@ class ResourcesController < ApplicationController
     end
   end
 
-  ##
-  # Google Drive
-  ## 
-  def google_api_oauth_callback
+  # ##
+  # # Google Drive
+  # ## 
+  # def google_api_oauth_callback
     
-    Rails.logger.info("Callback success")  
-    Rails.logger.info("AUTHENTICATED CODE: #{params[:code]}")  
+  #   Rails.logger.info("Callback success")  
+  #   Rails.logger.info("AUTHENTICATED CODE: #{params[:code]}")  
 
-    google_refresh_token( params[:code] )
+  #   google_refresh_token( params[:code] )
 
-    if @current_user.has_google_account?
-      google_account = @current_user.google_account 
-      Rails.logger.info("Valid Google Session") 
-    else
-      Rails.logger.info("Invalid Google Session, Creating one") 
-      google_account = GoogleAccount.new
-      google_account.user_id = @current_user.id
-    end
+  #   if @current_user.has_google_account?
+  #     google_account = @current_user.google_account 
+  #     Rails.logger.info("Valid Google Session") 
+  #   else
+  #     Rails.logger.info("Invalid Google Session, Creating one") 
+  #     google_account = GoogleAccount.new
+  #     google_account.user_id = @current_user.id
+  #   end
 
-    google_account.refresh_token = google_session.refresh_token
-    google_account.access_token  = google_session.access_token
-    google_account.expires_in    = google_session.expires_in
-    google_account.issued_at     = google_session.issued_at
+  #   google_account.refresh_token = google_session.refresh_token
+  #   google_account.access_token  = google_session.access_token
+  #   google_account.expires_in    = google_session.expires_in
+  #   google_account.issued_at     = google_session.issued_at
 
-    google_account.save( )
+  #   google_account.save( )
 
 
-    respond_to do |format|
-      format.html { redirect_to resources_url }
-      format.json { head :no_content }
-    end
-  end 
+  #   respond_to do |format|
+  #     format.html { redirect_to resources_url }
+  #     format.json { head :no_content }
+  #   end
+  # end 
 
-  def google_drive_sync
+  # def google_drive_sync
     
-    redirect_uri = google_authorization_uri
+  #   auth_url = google_authorization_uri
 
-    Rails.logger.info("REDIRECT_URI: #{redirect_uri}")  
+  #   Rails.logger.info("REDIRECT_URI: #{auth_url}")  
     
-    respond_to do |format|
-      format.html { redirect_to redirect_uri }
-    end
-  end
+  #   respond_to do |format|
+  #     format.html { redirect_to auth_url }
+  #   end
+  # end
 
 
   private

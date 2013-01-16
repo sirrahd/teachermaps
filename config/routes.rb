@@ -23,8 +23,9 @@ Teachermaps::Application.routes.draw do
   match '/contact', to: 'static_pages#contact'
 
   # Google API
-  match 'resources/google-api/callback' => 'resources#google_api_oauth_callback', :as => 'google_oauth_callback'
-  match 'resources/google-api/drive/sync' => 'resources#google_drive_sync', :as => 'google_drive_sync'
+  # match 'resources/google-api/callback' => 'resources#google_api_oauth_callback', :as => 'google_oauth_callback'
+  # match 'resources/google-api/drive/sync' => 'resources#google_drive_sync', :as => 'google_drive_sync'
+  match 'google/oauth_callback' => 'google_accounts#oauth_callback'
 
 
   # DropBox API

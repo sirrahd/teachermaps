@@ -69,7 +69,7 @@ module GoogleAccountsHelper
 	end
 
 
-	# Typically binary data file, Non-Google Document
+	# Typical binary data file, Non-Google Document
 	def create_file(client, title, description, parent_id, mime_type, file_name)
 	   insert(client, title, description, parent_id, 'application/vnd.google-apps.file', file_name)
 	end
