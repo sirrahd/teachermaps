@@ -58,6 +58,12 @@ class GoogleAccountsController < ApplicationController
       google_account.user_id = @current_user.id
     end
 
+    app_folder = create_folder("Apps", "Store and Organize all your teaching materials");
+    Rails.logger.info("Apps Folder: #{app_folder['id']}")
+    teachermaps_folder = create_folder("Apps", "Store and Organize all your teaching materials", app_folder['id']);
+    Rails.logger.info("TeacherMaps Folder: #{teachermaps_folder['id']}")
+    google_account.folder_id       = teachermaps_folder['id']
+
     google_account.refresh_token = google_session.refresh_token
     google_account.access_token  = google_session.access_token
     google_account.expires_in    = google_session.expires_in

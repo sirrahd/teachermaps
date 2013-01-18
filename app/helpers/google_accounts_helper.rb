@@ -71,27 +71,28 @@ module GoogleAccountsHelper
 
 	# Typical binary data file, Non-Google Document
 	def create_file(client, title, description, parent_id, mime_type, file_name)
-	   insert(client, title, description, parent_id, 'application/vnd.google-apps.file', file_name)
+	   insert_file(client, title, description, parent_id, 'application/vnd.google-apps.file', file_name)
 	end
 
 	# Google Document
 	def create_google_document(client, title, description, parent_id, mime_type, file_name)
-	   insert(client, title, description, parent_id, 'application/vnd.google-apps.document', file_name)
+	   insert_file(client, title, description, parent_id, 'application/vnd.google-apps.document', file_name)
 	end
 
 	# Google Folder
-	def create_folder(client, title, description, parent_id, mime_type, file_name)
-	   insert(client, title, description, parent_id, 'application/vnd.google-apps.folder', file_name)
+	def create_folder(title, description, parent_id=nil)
+	   @client ||= google_client()
+	   insert_file(@client, title, description, parent_id, 'application/vnd.google-apps.folder')
 	end
 
 	# Photo file
 	def create_image(client, title, description, parent_id, mime_type, file_name)
-	   insert(client, title, description, parent_id, 'application/vnd.google-apps.photo', file_name)
+	   insert_file(client, title, description, parent_id, 'application/vnd.google-apps.photo', file_name)
 	end
 
 	# Video file
 	def create_image(client, title, description, parent_id, mime_type, file_name)
-	   insert(client, title, description, parent_id, 'application/vnd.google-apps.video', file_name)
+	   insert_file(client, title, description, parent_id, 'application/vnd.google-apps.video', file_name)
 	end
 
 
@@ -117,7 +118,7 @@ module GoogleAccountsHelper
 		end)
 	end
 
-	def insert_file(client, title, description, parent_id, mime_type, file_name)
+	def insert_file(client, title, description, parent_id, mime_type, file_name=nil)
 	   drive = client.discovered_api('drive', 'v2')
 	  
 	   file = drive.files.insert.request_schema.new({
@@ -130,11 +131,15 @@ module GoogleAccountsHelper
 	   if parent_id
 	     file.parents = [{'id' => parent_id}]
 	   end
-	   media = Google::APIClient::UploadIO.new(file_name, mime_type)
+	   if !file_name.nil?
+	      media = Google::APIClient::UploadIO.new(file_name, mime_type)
+	   else
+	      media = ''
+	   end 
 	   result = client.execute(
 	     :api_method => drive.files.insert,
 	     :body_object => file,
-	     :media => media,
+	     
 	     :parameters => {
 	       'uploadType' => 'multipart',
 	       'alt' => 'json'})
