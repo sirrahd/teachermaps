@@ -56,8 +56,8 @@ en:
   settings:
     dropbox_add_label:          "Add DropBox"
     google_drive_add_label:     "Add Google Drive"
-    google_drive_open_folder:   "Open Google Drive"
+    google_drive_open_folder:   "Open Google Drive Folder"
     google_drive_remove_label:  "Remove Google Drive"
-    google_drive_remove_confirm: "Remove Google Drive folder. This will not delete your files. Are you sure?"
+    google_drive_remove_confirm: "Removing Google Drive folder. This will not delete your files. Are you sure?"
 
 

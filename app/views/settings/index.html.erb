@@ -10,9 +10,8 @@
       <% if @google_account.nil?  %>
         <%= link_to t('settings.google_drive_add_label'), new_google_account_path %> 
       <% else %>
-        <%= link_to t('settings.google_drive_open_folder'), "https://drive.google.com/#folders/#{@google_account.folder_id}", :target => "_blank" %>
+        <%= link_to t('settings.google_drive_open_folder'), "https://drive.google.com/#folders/#{@google_account.folder_id}", :target => "_blank" %> &#124;
       <% end %>
-      &#124;
     </td>
     
     <td>
