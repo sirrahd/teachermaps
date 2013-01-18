@@ -59,9 +59,9 @@ class GoogleAccountsController < ApplicationController
     end
 
     app_folder = create_folder("Apps", "Store and Organize all your teaching materials");
-    Rails.logger.info("Apps Folder: #{app_folder['id']}")
-    teachermaps_folder = create_folder("Apps", "Store and Organize all your teaching materials", app_folder['id']);
-    Rails.logger.info("TeacherMaps Folder: #{teachermaps_folder['id']}")
+    Rails.logger.info("Apps Folder: #{app_folder['mimeType']}")
+    teachermaps_folder = create_folder("TeacherMaps", "Store and Organize all your teaching materials", app_folder['id']);
+    Rails.logger.info("TeacherMaps Folder: #{teachermaps_folder['mimeType']}")
     google_account.folder_id       = teachermaps_folder['id']
 
     google_account.refresh_token = google_session.refresh_token
@@ -121,6 +121,12 @@ class GoogleAccountsController < ApplicationController
   def destroy
     @google_account = GoogleAccount.find(params[:id])
     @google_account.destroy
+
+    if @current_user.has_google_account?
+      @current_user.google_account = nil
+      @current_user.save( )
+      Rails.logger.info("Removed Google Drive Reference") 
+    end
 
     respond_to do |format|
       format.html { redirect_to google_accounts_url }

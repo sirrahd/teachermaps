@@ -139,10 +139,10 @@ module GoogleAccountsHelper
 	   result = client.execute(
 	     :api_method => drive.files.insert,
 	     :body_object => file,
-	     
 	     :parameters => {
-	       'uploadType' => 'multipart',
-	       'alt' => 'json'})
+	       # 'uploadType' => 'multipart',
+	       # 'alt' => 'json'}
+	     })
 	   if result.status == 200
 	     return result.data
 	   else

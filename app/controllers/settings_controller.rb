@@ -13,6 +13,16 @@ class SettingsController < ApplicationController
       end
     end
 
+    @google_account = nil
+    if @current_user.has_google_account?
+       @google_account = @current_user.google_account
+    end
+    Rails.logger.info("Google Account: #{@google_account}")
+
+
+       
+
+
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @settings }

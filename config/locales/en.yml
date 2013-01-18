@@ -54,5 +54,10 @@ en:
     button:                     "Create my account!"
     welcome:                    "Welcome to %{app_name}"
   settings:
-    dropbox_sync_label:         "Sync DropBox"
-    google_drive_sync_label:    "Sync Google Drive"
+    dropbox_add_label:          "Add DropBox"
+    google_drive_add_label:     "Add Google Drive"
+    google_drive_open_folder:   "Open Google Drive"
+    google_drive_remove_label:  "Remove Google Drive"
+    google_drive_remove_confirm: "Remove Google Drive folder. This will not delete your files. Are you sure?"
+
+

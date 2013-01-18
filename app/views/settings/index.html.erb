@@ -6,13 +6,25 @@
   </tr>
 
   <tr>
-    <td><%= link_to t('settings.google_drive_sync_label'), new_google_account_path %></td>
-    <td></td>
+    <td>
+      <% if @google_account.nil?  %>
+        <%= link_to t('settings.google_drive_add_label'), new_google_account_path %> 
+      <% else %>
+        <%= link_to t('settings.google_drive_open_folder'), "https://drive.google.com/#folders/#{@google_account.folder_id}", :target => "_blank" %>
+      <% end %>
+      &#124;
+    </td>
+    
+    <td>
+      <% if !@google_account.nil? %>
+      <%= link_to t('settings.google_drive_remove_label'), @google_account, :confirm => t('settings.google_drive_remove_confirm'), :method => :delete %>
+      <% end %>
+    </td>
     <td></td>
   </tr>
 
   <tr>
-    <td><%= link_to t('settings.dropbox_sync_label'), new_drop_box_accounts_path %></td>
+    <td><%= link_to t('settings.dropbox_add_label'), new_drop_box_accounts_path %></td>
     <td></td>
     <td></td>
   </tr>
