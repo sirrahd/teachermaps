@@ -65,6 +65,6 @@ en:
     success_sync:                "Synced with Google Drive"
   resources:
     synced_n_files:              "Synced %{sync_count} files."
-
+    link:                        "Resources"
 
 

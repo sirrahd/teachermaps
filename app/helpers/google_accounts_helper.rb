@@ -65,13 +65,19 @@ module GoogleAccountsHelper
 
 		    if api_result.status == 200
 		      children = api_result.data
-		      children.items.each do |child|
-		        #Rails.logger.info("File #{child.title} Parent Id: #{child.parents[0]['id']} #{folder_id}")
-		        
-		        # If resource id matches TeacherMaps folder id
-		        if child.parents[0]['id'] == folder_id
-		        	result << child
-		        end
+		      children.items.each do |child|	
+		        	        
+		        #parents = child.parents rescue [{'id'=> nil}]
+
+		        begin
+			        # If resource id matches TeacherMaps folder id
+			        if child.parents[0]['id'] == folder_id
+			        	result << child
+			        end
+		    	rescue
+		    		Rails.logger.info("Error in querying Google Drive.")
+		    		result = []
+		    	end
 		        
 		      end
 		      
@@ -112,8 +118,13 @@ module GoogleAccountsHelper
 	end
 
 
-
-
+	def google_create_teachermaps_folder()
+		app_folder = create_folder("Apps", "Store and Organize all your teaching materials");
+	    Rails.logger.info("Apps Folder: #{app_folder['mimeType']}")
+	    teachermaps_folder = create_folder("TeacherMaps", "Store and Organize all your teaching materials", app_folder['id']);
+	    Rails.logger.info("TeacherMaps Folder: #{teachermaps_folder['mimeType']}")
+	    teachermaps_folder['id']
+	end
 
 	private 
 
