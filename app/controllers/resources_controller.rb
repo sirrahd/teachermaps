@@ -22,7 +22,7 @@ class ResourcesController < ApplicationController
       Rails.logger.info("Valid Google Session") 
       google_load_session( google_account )
    
-      @resources = google_fetch_documents
+      @resources = google_fetch_documents(google_account.folder_id)
       Rails.logger.info("GDRIVE FILES: #{google_documents}")  
     else
       Rails.logger.info("User does not have a synced Google Account") 

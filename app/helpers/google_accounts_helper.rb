@@ -40,32 +40,69 @@ module GoogleAccountsHelper
 	  
 	end
 
-	def google_fetch_documents
+	def google_fetch_documents( folder_id=nil )
 
 		@documents = (begin
 			drive = @client.discovered_api('drive', 'v2')
 
 		    result = Array.new
 		    parameters = {}
+
+		    if !folder_id.nil?
+		       # Only look in this folder
+		   	   parameters['parents'] = [folder_id]
+		    end
+		  
+
 		    parameters['title'] = 'TeacherMaps'
-		    # parameters['q'] = 'TeacherMaps'
-		    parameters['mimeType'] = 'application/vnd.google-apps.folder'
-		    parameters['maxResults'] = '1'
+		    parameters['maxResults'] = '10'
 
 		    api_result = @client.execute(
 		      :api_method => drive.files.list,
-		      :parameters => parameters
-		    )
+		      :parameters => parameters)
 
 		    if api_result.status == 200
-		      files = api_result.data
-		      result.concat(files.items)
+		      children = api_result.data
+		      children.items.each do |child|
+		        Rails.logger.info("File #{child.title} Parent Id: #{child.parents[0]['id']} #{folder_id}")
+		        
+		        # If resource id matches TeacherMaps folder id
+		        if child.parents[0]['id'] == folder_id
+		        	result << child
+		        end
+		        
+		      end
+		      
+		      Rails.logger.info("Files: #{result}")
 		    else
 		      Rails.logger.info("An error occurred from Google API HTTP Error #{api_result.status}: #{api_result.data[:error]}")
 		    end
 
 		    result
 		end)
+	end
+
+	def print_files_in_folder(client, folder_id)
+	  page_token = nil
+	  begin
+	    parameters = {'folderId' => folder_id}
+	    if page_token.to_s != ''
+	      parameters['pageToken'] = page_token
+	    end
+	    result = client.execute(
+	      :api_method => @drive.children.list,
+	      :parameters => parameters)
+	    if api_result.status == 200
+	      children = result.data
+	      children.items.each do |child|
+	        puts "File Id: #{child.id}"
+	      end
+	      page_token = children.next_page_token
+	    else
+	      puts "An error occurred: #{result.data['error']['message']}"
+	      page_token = nil
+	    end
+	  end while page_token.to_s != ''
 	end
 
 
@@ -150,6 +187,10 @@ module GoogleAccountsHelper
 	     return nil
 	   end
 	end
+
+
+
+
 
 
 end

@@ -32,13 +32,20 @@ class GoogleAccountsController < ApplicationController
   # GET /google_accounts/new
   # GET /google_accounts/new.json
   def new
-    auth_url = google_authorization_uri
+
+
+    if !@current_user.has_google_account?
+      #google_account = @current_user.google_account 
+      Rails.logger.info("Valid Google Session") 
+      return redirect_to google_authorization_uri
+    end
+    
 
     Rails.logger.info("Current User: #{@current_user}")  
-    Rails.logger.info("REDIRECT_URI: #{auth_url}")  
+    Rails.logger.info("REDIRECT_URI: #{settings_url}")  
     
     respond_to do |format|
-      format.html { redirect_to auth_url }
+      format.html { redirect_to settings_url, :flash => { :notice => "Google Drive already added." }}
     end
   end
 
@@ -73,7 +80,7 @@ class GoogleAccountsController < ApplicationController
 
 
     respond_to do |format|
-      format.html { redirect_to resources_url }
+      format.html { redirect_to resources_url, :flash => { :success => "Synced with Google Drive" } }
       format.json { head :no_content }
     end
 
@@ -129,7 +136,7 @@ class GoogleAccountsController < ApplicationController
     end
 
     respond_to do |format|
-      format.html { redirect_to settings_url }
+      format.html { redirect_to settings_url, :flash => { :success => "Removed Google Drive" }}
       format.json { head :no_content }
     end
   end
