@@ -15,13 +15,15 @@ class UsersController < ApplicationController
       return redirect_to "#{users_url}/#{@current_user.id}"
     end
 
-
-
   end # More efficient look for int
   
+
+
   def new
     @user = User.new
   end
+  
+
   
   def create
     @user = User.new(params[:user])

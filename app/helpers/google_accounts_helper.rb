@@ -4,21 +4,25 @@ module GoogleAccountsHelper
 
 	attr_accessor :google_documents, :google_authorization_uri, :google_session
 
+	# Returns cached documents
 	def google_documents
 		@documents ||= Array.new
 		@documents
 	end
 
+	# Generates Ouath URL Request
 	def google_authorization_uri
 		@client ||= google_client()
 		@client.authorization.authorization_uri.to_s
 	end 
 
+	# Returns authorized tokens
 	def google_session
 		@client ||= google_client()
 		@client.authorization
 	end 
 
+	# Loads Google API client with persisted OAuth data
 	def google_load_session(account)
 		@client ||= google_client()
 		@client.authorization.access_token  = account.access_token
@@ -28,6 +32,7 @@ module GoogleAccountsHelper
 	end
 	
 
+	# Gets/Updates OAuth tokens needed for Google API
 	def google_refresh_token (auth_code)
 
 		@client ||= google_client()
@@ -35,8 +40,6 @@ module GoogleAccountsHelper
 
 	    @client.authorization.code = auth_code
 	    @client.authorization.fetch_access_token!
-		
-	  
 	end
 
 	def google_fetch_documents( folder_id=nil )
