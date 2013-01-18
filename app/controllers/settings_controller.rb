@@ -4,12 +4,11 @@ class SettingsController < ApplicationController
   def index
     @setting = Setting
 
-    Rails.logger.info("Valid session: #{signed_in?}") 
 
     # Re-directs users if not logged in
     if !signed_in?
       return respond_to do |format|
-        format.html { redirect_to  root_url }
+        format.html { redirect_to  signin_url }
       end
     end
 

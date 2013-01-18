@@ -32,8 +32,7 @@ module GoogleAccountsHelper
 
 		@client ||= google_client()
 
-	
-		# Rails.logger.info("Google Auth Code: #{auth_code}")  
+
 	    @client.authorization.code = auth_code
 	    @client.authorization.fetch_access_token!
 		
@@ -48,14 +47,14 @@ module GoogleAccountsHelper
 		    result = Array.new
 		    parameters = {}
 
+		    parameters['title'] = 'TeacherMaps'
+		    parameters['maxResults'] = '10'
+
 		    if !folder_id.nil?
 		       # Only look in this folder
 		   	   parameters['parents'] = [folder_id]
 		    end
-		  
-
-		    parameters['title'] = 'TeacherMaps'
-		    parameters['maxResults'] = '10'
+		 
 
 		    api_result = @client.execute(
 		      :api_method => drive.files.list,
@@ -64,7 +63,7 @@ module GoogleAccountsHelper
 		    if api_result.status == 200
 		      children = api_result.data
 		      children.items.each do |child|
-		        Rails.logger.info("File #{child.title} Parent Id: #{child.parents[0]['id']} #{folder_id}")
+		        #Rails.logger.info("File #{child.title} Parent Id: #{child.parents[0]['id']} #{folder_id}")
 		        
 		        # If resource id matches TeacherMaps folder id
 		        if child.parents[0]['id'] == folder_id
@@ -80,29 +79,6 @@ module GoogleAccountsHelper
 
 		    result
 		end)
-	end
-
-	def print_files_in_folder(client, folder_id)
-	  page_token = nil
-	  begin
-	    parameters = {'folderId' => folder_id}
-	    if page_token.to_s != ''
-	      parameters['pageToken'] = page_token
-	    end
-	    result = client.execute(
-	      :api_method => @drive.children.list,
-	      :parameters => parameters)
-	    if api_result.status == 200
-	      children = result.data
-	      children.items.each do |child|
-	        puts "File Id: #{child.id}"
-	      end
-	      page_token = children.next_page_token
-	    else
-	      puts "An error occurred: #{result.data['error']['message']}"
-	      page_token = nil
-	    end
-	  end while page_token.to_s != ''
 	end
 
 
@@ -133,10 +109,6 @@ module GoogleAccountsHelper
 	end
 
 
-
-
-
-	
 
 
 
