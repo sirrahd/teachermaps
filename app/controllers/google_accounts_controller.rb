@@ -129,7 +129,7 @@ class GoogleAccountsController < ApplicationController
     end
 
     respond_to do |format|
-      format.html { redirect_to google_accounts_url }
+      format.html { redirect_to resources_url }
       format.json { head :no_content }
     end
   end
