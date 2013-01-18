@@ -35,57 +35,18 @@ class GoogleAccountsController < ApplicationController
 
 
     if !@current_user.has_google_account?
-      #google_account = @current_user.google_account 
-      Rails.logger.info("Valid Google Session") 
+      # No account exists
+      # Redirect to Google's OAuth page
       return redirect_to google_authorization_uri
     end
     
-
-    Rails.logger.info("Current User: #{@current_user}")  
-    Rails.logger.info("REDIRECT_URI: #{settings_url}")  
-    
+    # Found previous Google Account, notify user
     respond_to do |format|
       format.html { redirect_to settings_url, :flash => { :notice => "Google Drive already added." }}
     end
   end
 
-  def oauth_callback
-
-    Rails.logger.info("Callback success")  
-    Rails.logger.info("AUTHENTICATED CODE: #{params[:code]} \n Client: #{@current_user}")  
-
-    google_refresh_token( params[:code] )
-
-    if @current_user.has_google_account?
-      google_account = @current_user.google_account 
-      Rails.logger.info("Valid Google Session") 
-    else
-      Rails.logger.info("Invalid Google Session, Creating one") 
-      google_account = GoogleAccount.new
-      google_account.user_id = @current_user.id
-    end
-
-    app_folder = create_folder("Apps", "Store and Organize all your teaching materials");
-    Rails.logger.info("Apps Folder: #{app_folder['mimeType']}")
-    teachermaps_folder = create_folder("TeacherMaps", "Store and Organize all your teaching materials", app_folder['id']);
-    Rails.logger.info("TeacherMaps Folder: #{teachermaps_folder['mimeType']}")
-    google_account.folder_id       = teachermaps_folder['id']
-
-    google_account.refresh_token = google_session.refresh_token
-    google_account.access_token  = google_session.access_token
-    google_account.expires_in    = google_session.expires_in
-    google_account.issued_at     = google_session.issued_at
-
-    google_account.save( )
-
-
-    respond_to do |format|
-      format.html { redirect_to resources_url, :flash => { :success => "Synced with Google Drive" } }
-      format.json { head :no_content }
-    end
-
-  end
-
+  
   # GET /google_accounts/1/edit
   def edit
     @google_account = GoogleAccount.find(params[:id])
@@ -126,22 +87,73 @@ class GoogleAccountsController < ApplicationController
   # DELETE /google_accounts/1
   # DELETE /google_accounts/1.json
   def destroy
-    @google_account = GoogleAccount.find(params[:id])
-    @google_account.destroy
+     @google_account = GoogleAccount.find(params[:id])
+    
+     flash = {}
+     if @current_user.has_google_account?
+        account = @current_user.google_account 
 
-    if @current_user.has_google_account?
-      @current_user.google_account = nil
-      @current_user.save( )
-      Rails.logger.info("Removed Google Drive Reference") 
+        if account.id == @google_account.id 
+           # If user owns requested Google Account
+
+           @current_user.google_account = nil
+           @current_user.save( )
+
+           @google_account.destroy
+
+           flash['success'] = t('google_accounts.removed')
+        else 
+           flash['notice'] = t('google_accounts.remove_invalid')
+        end
+
     end
 
     respond_to do |format|
-      format.html { redirect_to settings_url, :flash => { :success => "Removed Google Drive" }}
+      format.html { redirect_to settings_url, :flash => flash }
       format.json { head :no_content }
     end
   end
 
+
+  def oauth_callback
+
+    Rails.logger.info("Callback success")  
+    Rails.logger.info("AUTHENTICATED CODE: #{params[:code]} \n Client: #{@current_user}")  
+
+    google_refresh_token( params[:code] )
+
+    if @current_user.has_google_account?
+      google_account = @current_user.google_account 
+      Rails.logger.info("Valid Google Session") 
+    else
+      # Creating new account for User
+      google_account = GoogleAccount.new
+      google_account.user_id = @current_user.id
+    end
+
+    app_folder = create_folder("Apps", "Store and Organize all your teaching materials");
+    Rails.logger.info("Apps Folder: #{app_folder['mimeType']}")
+    teachermaps_folder = create_folder("TeacherMaps", "Store and Organize all your teaching materials", app_folder['id']);
+    Rails.logger.info("TeacherMaps Folder: #{teachermaps_folder['mimeType']}")
+    google_account.folder_id       = teachermaps_folder['id']
+
+    google_account.refresh_token = google_session.refresh_token
+    google_account.access_token  = google_session.access_token
+    google_account.expires_in    = google_session.expires_in
+    google_account.issued_at     = google_session.issued_at
+
+    google_account.save( )
+
+
+    respond_to do |format|
+      format.html { redirect_to resources_url, :flash => { :success => t('google_accounts.success_sync') } }
+      format.json { head :no_content }
+    end
+
+  end
+
   private 
+  
   # Requires user session
   def require_session
     unless current_user

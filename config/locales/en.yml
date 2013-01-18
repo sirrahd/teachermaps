@@ -59,5 +59,10 @@ en:
     google_drive_open_folder:   "Open Google Drive Folder"
     google_drive_remove_label:  "Remove Google Drive"
     google_drive_remove_confirm: "Removing Google Drive folder. This will not delete your files. Are you sure?"
+  google_accounts:
+    removed:                     "Removed Google Drive"
+    remove_invalid:              "Delete your own Google Account!"
+    success_sync:                "Synced with Google Drive"
+
 
 
