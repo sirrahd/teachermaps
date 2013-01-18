@@ -63,6 +63,8 @@ en:
     removed:                     "Removed Google Drive"
     remove_invalid:              "Delete your own Google Account!"
     success_sync:                "Synced with Google Drive"
+  resources:
+    synced_n_files:              "Synced %{sync_count} files."
 
 
 

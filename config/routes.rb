@@ -2,12 +2,15 @@ Teachermaps::Application.routes.draw do
   resources :drop_box_accounts
   resources :google_accounts
 
-
   resources :settings
 
   resources :resource_types
-  resources :resources
 
+
+  # Sync Google Drive and/or DropBox resources
+  match 'resources/sync' => 'resources#sync', :as => 'sync_resources'
+  resources :resources
+  
 
   resources :users
   resources :sessions, only: [:new, :create, :destroy]
@@ -23,8 +26,6 @@ Teachermaps::Application.routes.draw do
   match '/contact', to: 'static_pages#contact'
 
   # Google API
-  # match 'resources/google-api/callback' => 'resources#google_api_oauth_callback', :as => 'google_oauth_callback'
-  # match 'resources/google-api/drive/sync' => 'resources#google_drive_sync', :as => 'google_drive_sync'
   match 'google/oauth_callback' => 'google_accounts#oauth_callback'
 
 
