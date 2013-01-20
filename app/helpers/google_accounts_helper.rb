@@ -66,9 +66,7 @@ module GoogleAccountsHelper
 		    if api_result.status == 200
 		      children = api_result.data
 		      children.items.each do |child|	
-		        	        
-		        #parents = child.parents rescue [{'id'=> nil}]
-
+		        	      
 		        begin
 			        # If resource id matches TeacherMaps folder id
 			        if child.parents[0]['id'] == folder_id
@@ -76,7 +74,7 @@ module GoogleAccountsHelper
 			        end
 		    	rescue
 		    		Rails.logger.info("Error in querying Google Drive.")
-		    		result = []
+		    		return result
 		    	end
 		        
 		      end
