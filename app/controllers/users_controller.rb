@@ -1,18 +1,14 @@
 class UsersController < ApplicationController
   def show
     # Users must be signed in to view a profile
-    if !signed_in?
-      return_to signin_url
-    end
+    return_to signin_url if !signed_in?
 
     # Users can only sign in to their own account; ignore params
     @user = @current_user
   end
   
   def new
-    if signed_in?
-      redirect_to @current_user
-    end
+    redirect_to @current_user if signed_in?
     
     @user = User.new
   end
