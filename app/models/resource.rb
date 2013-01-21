@@ -1,15 +1,16 @@
 class Resource < ActiveRecord::Base
-  attr_accessible :slug, :title, :url, :mime_type, :size
 
+	# TeacherMaps generated slug linking to a GoogleDrive/DropBox Resource 
+	attr_accessible :slug
 
-  belongs_to :resource_type
+	# Common attributes shared accross each Cloud Services
+	attr_accessible :file_size, :title, :mime_type
 
-  belongs_to :user
-    
-  before_save do |resource|
-    # Do some edits
-  end
-  
+  	belongs_to :resource_type
+  	belongs_to :user
+
+  	# TeacherMaps specific attributes can be listed here
+
 end
 
 

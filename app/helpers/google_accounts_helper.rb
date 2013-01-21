@@ -88,6 +88,35 @@ module GoogleAccountsHelper
 		end)
 	end
 
+	def retrieve_all_changes(start_change_id=nil)
+	    client ||= google_client()
+	    drive = @client.discovered_api('drive', 'v2')
+		result = Array.new
+	  	page_token = nil
+	 	#begin
+   		parameters = {}
+   	 	if start_change_id.to_s != ''
+      		parameters['startChangeId'] = start_change_id
+    	end
+	    if page_token.to_s != ''
+	      parameters['pageToken'] = page_token
+	    end
+	    api_result = client.execute(
+	      :api_method => drive.changes.list,
+	      :parameters => parameters)
+
+	    if api_result.status == 200
+	      changes = api_result.data
+	      result.concat(changes.items)
+	      Rails.logger.info(result)
+	    else
+	      Rails.logger.info("An error occurred: #{result.data['error']['message']}")
+	      page_token = nil
+	    end
+	  	#end while page_token.to_s != ''
+	  	result
+	end
+
 
 	# Typical binary data file, Non-Google Document
 	def create_file(client, title, description, parent_id, mime_type, file_name)
@@ -171,6 +200,9 @@ module GoogleAccountsHelper
 	     return nil
 	   end
 	end
+
+
+
 
 
 

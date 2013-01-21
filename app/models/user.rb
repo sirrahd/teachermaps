@@ -19,6 +19,8 @@ class User < ActiveRecord::Base
   has_one :google_account
   has_one :drop_box_account
   
+  has_many :resources
+  
   before_save do |user|
     user.email = user.email.downcase
     user.account_name = user.account_name.downcase
