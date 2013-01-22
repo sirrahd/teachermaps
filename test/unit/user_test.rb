@@ -96,7 +96,7 @@ class UserTest < ActiveSupport::TestCase
       @user.account_name = invalid_account_name
       assert !(@user.valid?), "User created with invalid account_name #{invalid_account_name}."
     end
-    
+
     valid_account_names =  %w[
                         oisfoaisf
                         fadsFD24398

@@ -4,12 +4,11 @@
       <%= link_to t('global.app_name'), root_path, id: "logo" %>
       <nav>
         <ul class="nav pull-right">
-          <li><%= link_to t('home.link'),     root_path %></li>
-          <li><%= link_to t('help.link'),     help_path %></li>
           <% if signed_in? %>
+            <li><a href="#">Send feedback</a></li>
             <li id="fat-menu" class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                <%= t('signin.account') %> <b class="caret"></b>
+                <%= current_user.name %> <b class="caret"></b>
               </a>
               <ul class="dropdown-menu">
                 <li><%= link_to t('signin.profile'), current_user %></li>
@@ -21,6 +20,7 @@
               </ul>
             </li>
           <% else %>
+            <li><%= link_to t('signup.link'), signup_path %></li>
             <li><%= link_to t('signin.link'), signin_path %></li>
           <% end %>
         </ul>
