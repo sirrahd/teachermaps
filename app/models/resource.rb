@@ -11,6 +11,12 @@ class Resource < ActiveRecord::Base
 
   	# TeacherMaps specific attributes can be listed here
 
+  	before_save :default_values
+  	def default_values
+  		# Random, need to check for uniuqness
+		self.slug ||= SecureRandom.urlsafe_base64
+	end
+
 end
 
 

@@ -3,10 +3,22 @@ class CreateResources < ActiveRecord::Migration
   	create_table :resources do |t|
       t.string  :slug
       t.string  :title
-      t.string  :url
       t.string  :mime_type
-      t.decimal :size, :precision => 20, :scale => 2
-      
+      t.string  :file_size
+
+      # in bytes
+      t.string :size
+
+      # Google Drive
+      t.string :file_id
+
+      # DropBox
+      t.string :rev 
+      t.string :path 
+      t.string :file_hash
+      t.string :modified
+
+      t.string :type
       t.timestamps
     end
 
