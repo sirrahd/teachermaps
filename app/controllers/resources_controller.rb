@@ -98,6 +98,7 @@ class ResourcesController < ApplicationController
   # Sync with Google Drive and/or Dropbox
   def sync
     @resources = Resource.where( :user_id => @current_user.id )
+    # @resources = @current_user.resources
     Rails.logger.info("Resources = #{@resource}")
 
     sync_count = 0
@@ -109,9 +110,50 @@ class ResourcesController < ApplicationController
       # changes = google_fetch_changes()
       @files = google_fetch_documents(google_account.folder_id)
 
+      # Create Dictonary File_ID => Google Resource
+      resources_by_id = Hash[@resources.map { |p| [p['file_id'], p] }]
+
+
+      # Chached resources to save
+      cached_resources = []
+
+      Rails.logger.info("Resources by id: #{resources_by_id}")
       @files.each do |file|
-        Rails.logger.info("File: #{file}")
+       
+        if resources_by_id.has_key?(file['id'])
+          # Check for name
+          #   If not equal update name
+          Rails.logger.info("Existing Resource: #{file['id']}")
+        else
+
+          Rails.logger.info("Found new Resource: #{file['id']}")
+          google_resource = GoogleResource.new
+          google_resource.file_id = file['id']
+          google_resource.title = file['title']
+          google_resource.mime_type = file['mimeType']
+          google_resource.file_size = file['fileSize']
+          google_resource.save( )
+
+          Rails.logger.info("New Google Resource: #{google_resource.inspect}")
+          # Add to resources
+          # @resources << google_resource
+          # Add to helper dictionary
+          resources_by_id[google_resource.file_id] = google_resource
+          
+          # Add to User
+          @current_user.resources << google_resource
+
+          # Cache resources to save later
+          # cached_resources << google_resource
+          sync_count += 1
+
+        end
+
       end 
+
+     Rails.logger.info("Cached Resources: #{cached_resources.inspect}")
+     #@current_user.resources << cached_resources
+     @current_user.save()
 
       
       

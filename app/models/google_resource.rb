@@ -5,8 +5,14 @@ class GoogleResource < Resource
 	# Google File
   	attr_accessible :file_id
 
-	def link 
+	def open_link 
   		# Depending on MIME TYPE return generated link
 
+  		return 'http://www.google.com'
   	end 
+
+  	def download_link
+
+  		return 'http://www.google.com'
+  	end
 end

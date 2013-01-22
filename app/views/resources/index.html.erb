@@ -10,19 +10,17 @@
   <tr>
     <th>Title</th>
     <th>Created</th>
-    <th>Owner</th>
-    <th></th>
+    <th>Type</th>
     <th></th>
     
   </tr>
 
 <% @resources.each do |resource| %>
   <tr>
-    <td><%= link_to resource.title, "https://docs.google.com/document/d/#{resource.id}/preview", :target => "_blank" %></td>
-    <td><%= resource.createdDate %></td>
-    <td><%= resource.ownerNames[0] %></td>
-    <td><%= link_to 'Download', "https://docs.google.com/feeds/download/documents/export/Export?id=#{resource.id}&exportFormat=pdf", :target => "_blank"%></td>
-    <td><%= link_to 'Edit', resource.alternateLink, :target => "_blank" %></td>
+    <td><%= link_to resource.title, "#{resource.open_link}", :target => "_blank" %></td>
+    <td><%= resource.created_at %></td>
+    <td><%= link_to 'Download', "#{resource.download_link}", :target => "_blank"%></td>
+    <td><%= resource.type %></td>
   </tr>
 <% end %>
 </table>

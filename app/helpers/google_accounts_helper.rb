@@ -72,8 +72,7 @@ module GoogleAccountsHelper
 		        	result << child
 		        end
 	    	rescue
-	    		Rails.logger.info("Error in querying Google Drive.")
-	    		return result
+	    		Rails.logger.info("File has no parent, continue")
 	    	end
 	        
 	      end
