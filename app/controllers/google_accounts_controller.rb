@@ -131,6 +131,10 @@ class GoogleAccountsController < ApplicationController
       google_account.user_id = @current_user.id
     end
 
+
+    #changes_list = google_fetch_changes()
+
+
     google_account.folder_id = google_create_teachermaps_folder()
     
     google_account.refresh_token = google_session.refresh_token
@@ -139,6 +143,9 @@ class GoogleAccountsController < ApplicationController
     google_account.issued_at     = google_session.issued_at
 
     google_account.save( )
+
+
+
 
 
     respond_to do |format|

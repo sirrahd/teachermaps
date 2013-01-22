@@ -12,8 +12,10 @@ class ResourcesController < ApplicationController
   # GET /resources
   # GET /resources.json
   def index
-    @resources = Resource.all
-    
+    @resources = Resource.where( :user_id => @current_user.id )
+    Rails.logger.info("Resources = #{@resource}")
+
+
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @resources }
@@ -95,6 +97,8 @@ class ResourcesController < ApplicationController
 
   # Sync with Google Drive and/or Dropbox
   def sync
+    @resources = Resource.where( :user_id => @current_user.id )
+    Rails.logger.info("Resources = #{@resource}")
 
     sync_count = 0
 
@@ -102,8 +106,14 @@ class ResourcesController < ApplicationController
       google_account = @current_user.google_account 
       Rails.logger.info("Valid Google Session") 
       google_load_session( google_account )
-   
-      retrieve_all_changes()
+      # changes = google_fetch_changes()
+      @files = google_fetch_documents(google_account.folder_id)
+
+      @files.each do |file|
+        Rails.logger.info("File: #{file}")
+      end 
+
+      
       
     else
       Rails.logger.info("User does not have a synced Google Account") 

@@ -4,11 +4,11 @@ module GoogleAccountsHelper
 
 	attr_accessor :google_documents, :google_authorization_uri, :google_session
 
-	# Returns cached documents
-	def google_documents
-		@documents ||= Array.new
-		@documents
-	end
+	# # Returns cached documents
+	# def google_documents
+	# 	@documents ||= Array.new
+	# 	@documents
+	# end
 
 	# Generates Ouath URL Request
 	def google_authorization_uri
@@ -44,51 +44,49 @@ module GoogleAccountsHelper
 
 	def google_fetch_documents( folder_id=nil )
 
-		@documents = (begin
-			drive = @client.discovered_api('drive', 'v2')
+		drive = @client.discovered_api('drive', 'v2')
 
-		    result = Array.new
-		    parameters = {}
+	    result = Array.new
+	    parameters = {}
 
-		    parameters['title'] = 'TeacherMaps'
-		    parameters['maxResults'] = '10'
+	    parameters['title'] = 'TeacherMaps'
+	    parameters['maxResults'] = '10'
 
-		    if !folder_id.nil?
-		       # Only look in this folder
-		   	   parameters['parents'] = [folder_id]
-		    end
-		 
+	    if !folder_id.nil?
+	       # Only look in this folder
+	   	   parameters['parents'] = [folder_id]
+	    end
+	 
 
-		    api_result = @client.execute(
-		      :api_method => drive.files.list,
-		      :parameters => parameters)
+	    api_result = @client.execute(
+	      :api_method => drive.files.list,
+	      :parameters => parameters)
 
-		    if api_result.status == 200
-		      children = api_result.data
-		      children.items.each do |child|	
-		        	      
-		        begin
-			        # If resource id matches TeacherMaps folder id
-			        if child.parents[0]['id'] == folder_id
-			        	result << child
-			        end
-		    	rescue
-		    		Rails.logger.info("Error in querying Google Drive.")
-		    		return result
-		    	end
-		        
-		      end
-		      
-		      Rails.logger.info("Files: #{result}")
-		    else
-		      Rails.logger.info("An error occurred from Google API HTTP Error #{api_result.status}: #{api_result.data[:error]}")
-		    end
+	    if api_result.status == 200
+	      children = api_result.data
+	      children.items.each do |child|	
+	        	      
+	        begin
+		        # If resource id matches TeacherMaps folder id
+		        if child.parents[0]['id'] == folder_id
+		        	result << child
+		        end
+	    	rescue
+	    		Rails.logger.info("Error in querying Google Drive.")
+	    		return result
+	    	end
+	        
+	      end
+	      
+	      Rails.logger.info("Files: #{result}")
+	    else
+	      Rails.logger.info("An error occurred from Google API HTTP Error #{api_result.status}: #{api_result.data[:error]}")
+	    end
 
-		    result
-		end)
+	    result
 	end
 
-	def retrieve_all_changes(start_change_id=nil)
+	def google_fetch_changes(start_change_id=nil)
 	    client ||= google_client()
 	    drive = @client.discovered_api('drive', 'v2')
 		result = Array.new
@@ -106,15 +104,15 @@ module GoogleAccountsHelper
 	      :parameters => parameters)
 
 	    if api_result.status == 200
-	      changes = api_result.data
-	      result.concat(changes.items)
-	      Rails.logger.info(result)
+	    	Rails.logger.info(api_result.data)
+	      	return api_result.data
+	      
 	    else
 	      Rails.logger.info("An error occurred: #{result.data['error']['message']}")
 	      page_token = nil
 	    end
 	  	#end while page_token.to_s != ''
-	  	result
+	  	result []
 	end
 
 
