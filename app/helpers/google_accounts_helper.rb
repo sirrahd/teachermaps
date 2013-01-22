@@ -50,7 +50,7 @@ module GoogleAccountsHelper
 	    parameters = {}
 
 	    parameters['title'] = 'TeacherMaps'
-	    parameters['maxResults'] = '10'
+	    parameters['maxResults'] = '100'
 
 	    if !folder_id.nil?
 	       # Only look in this folder
