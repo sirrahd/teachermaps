@@ -113,7 +113,6 @@ class ResourcesController < ApplicationController
       resources_by_id = Hash[@resources.map { |p| [p['file_id'], p] }]
       query_set_ids   = Hash.new
 
-
       # Rails.logger.info("Resources by id: #{resources_by_id}")
       @queryset_resources .each do |file|
 
