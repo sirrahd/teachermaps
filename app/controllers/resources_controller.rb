@@ -110,12 +110,8 @@ class ResourcesController < ApplicationController
       # changes = google_fetch_changes()
       @files = google_fetch_documents(google_account.folder_id)
 
-      # Create Dictonary File_ID => Google Resource
+      # Create Dictonary File_ID => Google Resource to easily check if a file exists
       resources_by_id = Hash[@resources.map { |p| [p['file_id'], p] }]
-
-
-      # Chached resources to save
-      cached_resources = []
 
       Rails.logger.info("Resources by id: #{resources_by_id}")
       @files.each do |file|
@@ -135,25 +131,22 @@ class ResourcesController < ApplicationController
           google_resource.save( )
 
           Rails.logger.info("New Google Resource: #{google_resource.inspect}")
-          # Add to resources
-          # @resources << google_resource
-          # Add to helper dictionary
+          
+          # Add to temp reference dictionary
           resources_by_id[google_resource.file_id] = google_resource
           
           # Add to User
           @current_user.resources << google_resource
 
-          # Cache resources to save later
-          # cached_resources << google_resource
+          # Increment File Sync Count
           sync_count += 1
 
         end
 
       end 
 
-     Rails.logger.info("Cached Resources: #{cached_resources.inspect}")
-     #@current_user.resources << cached_resources
-     @current_user.save()
+      # Save all new resources
+      @current_user.save()
 
       
       

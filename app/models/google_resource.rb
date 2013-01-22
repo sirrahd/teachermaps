@@ -8,11 +8,7 @@ class GoogleResource < Resource
 	def open_link 
   		# Depending on MIME TYPE return generated link
 
-  		return 'http://www.google.com'
+  		return "https://docs.google.com/file/d/#{self.file_id}/edit"
   	end 
-
-  	def download_link
-
-  		return 'http://www.google.com'
-  	end
+  	
 end
