@@ -107,10 +107,9 @@ class ResourcesController < ApplicationController
       google_account = @current_user.google_account 
       Rails.logger.info("Valid Google Session") 
       google_load_session( google_account )
-      # changes = google_fetch_changes()
       @files = google_fetch_documents(google_account.folder_id)
 
-      # Create Dictonary File_ID => Google Resource to easily check if a file exists
+      # Create Dictonary {File_ID => Google Resource} to easily check if a file exists
       resources_by_id = Hash[@resources.map { |p| [p['file_id'], p] }]
 
       Rails.logger.info("Resources by id: #{resources_by_id}")
@@ -148,8 +147,6 @@ class ResourcesController < ApplicationController
       # Save all new resources
       @current_user.save()
 
-      
-      
     else
       Rails.logger.info("User does not have a synced Google Account") 
     end
