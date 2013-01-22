@@ -12,31 +12,7 @@ class ResourcesController < ApplicationController
   # GET /resources
   # GET /resources.json
   def index
-    # @resources = Resource.all
-    @resources = []
-
-    # Rails.logger.info("AUTHENTICATED CODE: #{session}")  
-
-    # if @current_user.has_google_account?
-    #   google_account = @current_user.google_account 
-    #   Rails.logger.info("Valid Google Session") 
-    #   google_load_session( google_account )
-   
-    #   @resources = google_fetch_documents(google_account.folder_id)
-    #   Rails.logger.info("GDRIVE FILES: #{google_documents}")  
-    # else
-    #   Rails.logger.info("User does not have a synced Google Account") 
-    # end
-
-    # if @current_user.has_drop_box_account?
-    #   drop_box_account = @current_user.drop_box_account 
-    #   Rails.logger.info("Valid DropBox Session") 
-    #   list_folder( drop_box_account )
-    # else
-    #   Rails.logger.info("User does not have a synced Google Account") 
-    # end
-
-
+    @resources = Resource.all
     
     respond_to do |format|
       format.html # index.html.erb

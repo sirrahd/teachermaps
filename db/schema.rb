@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130121004253) do
+ActiveRecord::Schema.define(:version => 20130111021632) do
 
   create_table "drop_box_accounts", :force => true do |t|
     t.integer  "user_id"
@@ -31,10 +31,6 @@ ActiveRecord::Schema.define(:version => 20130121004253) do
     t.string   "largest_change_id"
     t.datetime "created_at",        :null => false
     t.datetime "updated_at",        :null => false
-  end
-
-  create_table "resource_types", :force => true do |t|
-    t.string "name"
   end
 
   create_table "resources", :force => true do |t|
