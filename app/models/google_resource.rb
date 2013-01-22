@@ -7,7 +7,7 @@ class GoogleResource < Resource
 
 	def open_link 
 
-		Rails.logger.info("MimeType: #{self.mime_type}")
+		Rails.logger.info("File: #{self.title} : #{self.mime_type}")
   		# Depending on MIME TYPE return generated link
   		link = ''
   		

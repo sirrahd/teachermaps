@@ -116,9 +116,17 @@ class ResourcesController < ApplicationController
       @files.each do |file|
        
         if resources_by_id.has_key?(file['id'])
-          # Check for name
-          #   If not equal update name
+          
           Rails.logger.info("Existing Resource: #{file['id']}")
+
+          google_resource = resources_by_id[file['id']]
+          if file['title'] != google_resource.title
+            google_resource.title = file['title']
+            google_resource.save
+            # Should we update sync_count when renaming files?
+            sync_count += 1
+          end
+          
         else
 
           Rails.logger.info("Found new Resource: #{file['id']}")
@@ -131,7 +139,7 @@ class ResourcesController < ApplicationController
 
           Rails.logger.info("New Google Resource: #{google_resource.inspect}")
           
-          # Add to temp reference dictionary
+          # Add to temp reference dictionary, possibly do not need
           resources_by_id[google_resource.file_id] = google_resource
           
           # Add to User
@@ -141,6 +149,9 @@ class ResourcesController < ApplicationController
           sync_count += 1
 
         end
+
+
+
 
       end 
 
