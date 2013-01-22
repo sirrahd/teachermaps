@@ -1,9 +1,7 @@
 <h1>My Resources</h1>
 
 <span class="pull-right">
-  <%= link_to sync_resources_path do %>
-    <%= image_tag('refresh.png', :size => '48x48') %>
-  <% end %>
+  <%= link_to t('resources.sync'), sync_resources_path, :class => 'btn', :style => "margin-bottom: 5px;" %>
 </span>
 
 <table class="table table-condensed" >
