@@ -1,7 +1,7 @@
 <h1>My Resources</h1>
 
 <span class="pull-right">
-  <%= link_to t('resources.sync'), sync_resources_path, :class => 'btn', :style => "margin-bottom: 5px;" %>
+  <%= link_to t('resources.sync'), "#myModal", :class => 'btn', :style => "margin-bottom: 5px;", :role => 'button' ,'data-toggle' => "modal", :onclick => "window.location=\"#{sync_resources_path}\"" %>
 </span>
 
 <table class="table table-condensed" >
@@ -25,3 +25,11 @@
 <br />
 
 <%= link_to 'New Resource', new_resource_path %>
+
+<div id="myModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-header">Loading...</div>
+  <div class="modal-body">
+    <%= image_tag "loading.gif", :alt => "Loading"%>
+  </div>
+  <div class="modal-footer"></div>
+</div>
