@@ -58,7 +58,11 @@ en:
     google_drive_add_label:     "Add Google Drive"
     google_drive_open_folder:   "Open Google Drive Folder"
     google_drive_remove_label:  "Remove Google Drive"
-    google_drive_remove_confirm: "Removing Google Drive folder. This will not delete your files. Are you sure?"
+    google_drive_remove_confirm: "Removing Google Drive access. This will not delete your files. Are you sure?"
+    drop_box_add_label:         "Add DropBox"
+    drop_box_open_folder:       "Open DropBox Folder"
+    drop_box_remove_label:      "Remove DropBox"
+    drop_box_remove_confirm:    "Removing DropBox access. This will not delete your files. Are you sure?"
   google_accounts:
     removed:                     "Removed Google Drive"
     remove_invalid:              "Delete your own Google Account!"
@@ -70,6 +74,8 @@ en:
     deleted_file:                "Deleted %{title}"
     delete_label:                "Delete"
     delete_file_confirmation:    "Delete %{title}?"
-
+  drop_box:
+    found_existing_account:      "Found existing DropBox account"
+    session_request_error:       "There was an error requesting for DropbBox authentication"
 
 

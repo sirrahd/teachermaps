@@ -1,11 +1,10 @@
-require 'dropbox_sdk'
 
 class DropBoxAccountsController < ApplicationController
-include DropBoxAccountsHelper
-include SessionsHelper
 
-  APP_KEY    = Rails.application.config.APP_KEY
-  APP_SECRET = Rails.application.config.APP_SECRET
+  include SessionsHelper
+
+  before_filter :require_session
+
 
   # GET /drop_box_accounts
   # GET /drop_box_accounts.json
@@ -66,55 +65,56 @@ include SessionsHelper
   # GET /drop_box_accounts/new.json
   def new
 
+    drop_box_account = nil
 
-    # Check for existing dropbox account
-    # If dropbox account and has permission (authorized)
-    #    redirect to sync page
-    # end
+    if @current_user.has_drop_box_account?
+      # Reuse DropBox Account
+      drop_box_account = @current_user.drop_box_account
+    else
+      # Create new DropBox account
+      drop_box_account = DropBoxAccount.new
+      @current_user.drop_box_account = drop_box_account
+      @current_user.save()
+    end
 
-    drop_box_session = request_drop_box_session()
 
-    if drop_box_session.has_key('request_db_session') and !drop_box_session['request_db_session'].nil?
-       session[:request_db_session] = drop_box_session['request_db_session']
+    session_data = drop_box_account.request_session()
+
+    if session_data != false
+      # Successful request, redirecting...
+      session[:request_db_session] = session_data['request_db_session']
+      redirect_to session_data['auth_url']
+    else
+      # Unsuccessfull request
+      redirect_to settings_path, :flash => { :error => t('drop_box.session_request_error') }
     end
     
-    if drop_box_session.has_key('auth_url') and !drop_box_session['auth_url'].nil?
-       redirect_to drop_box_session['auth_url']
-    else
-       redirect_to settings_path
-    end
-
   end
 
   
   def oauth_callback
-    
-    # Finish OAuth Step 2
-    ser = session[:request_db_session]
-    unless ser
-        return html_page "Error in OAuth step 2", "<p>Couldn't find OAuth state in session.</p>"
-    end
-    db_session = DropboxSession.deserialize(ser)
+
+    # Get user's DropBox account
+    drop_box_account = @current_user.drop_box_account
+    # Load Session via authenticated access code
+    drop_box_session = drop_box_account.load_session(session[:request_db_session])
 
     # OAuth Step 3: Get an access token from Dropbox.
     begin
-        db_session.get_access_token
+        drop_box_session.get_access_token
     rescue DropboxError => e
         Rails.logger.info("Oh..no.. DropBox second step broke.")   
-        return redirect_to root_path
+        return redirect_to settings_path, :flash => { :error => t('drop_box.session_request_error') }
     end
+
+    Rails.logger.info("CurrentUser: #{current_user}")
+    Rails.logger.info("DropBox OAuth Token: #{drop_box_session.serialize}")
+    @current_user.drop_box_account.session_token = drop_box_session.serialize      
+    @current_user.drop_box_account.save()
+    
+    # Clean up
     session.delete(:request_db_session)
 
-    Rails.logger.info("CurrentUser#{current_user}")
-
-    if (@current_user.has_drop_box_account?)
-      @current_user.drop_box_account.session_token = db_session.serialize
-    else
-      @current_user.drop_box_account = DropBoxAccount.new( {"user_id" => @current_user.id, "session_token" => db_session.serialize} )
-    end 
-
-    @current_user.save()
-    
     redirect_to resources_url
   end
 
@@ -165,6 +165,18 @@ include SessionsHelper
     respond_to do |format|
       format.html { redirect_to drop_box_accounts_url }
       format.json { head :no_content }
+    end
+  end
+
+
+
+
+  private
+
+  # Requires user session
+  def require_session
+    unless current_user
+      redirect_to signin_path
     end
   end
 end

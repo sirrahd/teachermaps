@@ -16,11 +16,10 @@ class SettingsController < ApplicationController
     if @current_user.has_google_account?
        @google_account = @current_user.google_account
     end
-    Rails.logger.info("Google Account: #{@google_account}")
-
-
-       
-
+    @drop_box_account = nil
+    if @current_user.has_drop_box_account?
+      @drop_box_account = @current_user.drop_box_account
+    end
 
     respond_to do |format|
       format.html # index.html.erb
