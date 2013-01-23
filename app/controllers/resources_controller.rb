@@ -1,4 +1,4 @@
-require 'google/api_client'
+#require 'google/api_client'
 require 'dropbox_sdk'
 
 class ResourcesController < ApplicationController
@@ -95,13 +95,9 @@ class ResourcesController < ApplicationController
 
   
 
-  # Sync with Google Drive and/or Dropbox
   def sync
-    @resources = Resource.where( :user_id => @current_user.id )
-    # @resources = @current_user.resources
-    # Rails.logger.info("Resources = #{@resource}")
-
     
+    sync_count = 0
 
     if @current_user.has_google_account?
       google_account = @current_user.google_account 
@@ -109,17 +105,18 @@ class ResourcesController < ApplicationController
       Rails.logger.info("Valid Google Session") 
 
       google_account.load_session()
-      google_account.sync_files()
+      sync_count = google_account.sync_files()
      
     else
       Rails.logger.info("User does not have a synced Google Account") 
     end
 
 
+    # After all syncing is done, re-query the resources to render
+    @resources = Resource.where( :user_id => @current_user.id )
     
-
     respond_to do |format|
-       format.html { redirect_to resources_url, :flash => { :success => t('resources.synced_n_files', :sync_count => sync_count.length) } }
+       format.html { redirect_to resources_url, :flash => { :success => t('resources.synced_n_files', :sync_count => sync_count) } }
        format.json { head :no_content }
     end
   end

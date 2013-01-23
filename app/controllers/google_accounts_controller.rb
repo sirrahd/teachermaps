@@ -1,4 +1,3 @@
-require 'google/api_client'
 
 class GoogleAccountsController < ApplicationController
   include GoogleAccountsHelper
@@ -49,6 +48,7 @@ class GoogleAccountsController < ApplicationController
     respond_to do |format|
       format.html { redirect_to settings_url, :flash => { :notice => "Google Drive already added." }}
     end
+
   end
 
   
@@ -125,21 +125,26 @@ class GoogleAccountsController < ApplicationController
     Rails.logger.info("Callback success")  
     Rails.logger.info("AUTHENTICATED CODE: #{params[:code]} \n Client: #{@current_user}")  
 
-    # Query Google OAuth tokens
-    google_account.refresh_token( params[:code] )
 
-    if @current_user.has_google_account?
-      Rails.logger.info("Valid Google Session") 
+
+    # If user does not have a google account
+    if !@current_user.has_google_account?
+      Rails.logger.info("Authorized Google Account") 
 
       google_account = @current_user.google_account    
+
+      # Query Google OAuth tokens
+      google_account.fetch_tokens( params[:code] )
 
       # Create TeacherMaps folder on first sync  
       google_account.create_teachermaps_folder()
 
       google_account.save( )
 
-      # Sync now
-      return redirect_to sync_resources_path
+    end
+
+    # Sync now
+    return redirect_to sync_resources_path
 
   end
 
@@ -151,4 +156,5 @@ class GoogleAccountsController < ApplicationController
       redirect_to signin_path
     end
   end
+
 end
