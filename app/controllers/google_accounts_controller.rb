@@ -33,14 +33,19 @@ class GoogleAccountsController < ApplicationController
   # GET /google_accounts/new.json
   def new
 
-
     if !@current_user.has_google_account?
-      # No account exists
+      
+      # No account exists, create one
+      google_account = GoogleAccount.new
+
+      # Link Google Account to user
+      @current_user.google_account = google_account
+      @current_user.save()
+
       # Redirect to Google's OAuth page
-      return redirect_to google_authorization_uri
+      return redirect_to google_account.authorization_url
     end
     
-    # Found previous Google Account, notify user
     respond_to do |format|
       format.html { redirect_to settings_url, :flash => { :notice => "Google Drive already added." }}
     end
@@ -120,38 +125,21 @@ class GoogleAccountsController < ApplicationController
     Rails.logger.info("Callback success")  
     Rails.logger.info("AUTHENTICATED CODE: #{params[:code]} \n Client: #{@current_user}")  
 
-    google_refresh_token( params[:code] )
+    # Query Google OAuth tokens
+    google_account.refresh_token( params[:code] )
 
     if @current_user.has_google_account?
-      google_account = @current_user.google_account 
       Rails.logger.info("Valid Google Session") 
-    else
-      # Creating new account for User
-      google_account = GoogleAccount.new
-      google_account.user_id = @current_user.id
-    end
 
+      google_account = @current_user.google_account    
 
-    #changes_list = google_fetch_changes()
+      # Create TeacherMaps folder on first sync  
+      google_account.create_teachermaps_folder()
 
+      google_account.save( )
 
-    google_account.folder_id = google_create_teachermaps_folder()
-    
-    google_account.refresh_token = google_session.refresh_token
-    google_account.access_token  = google_session.access_token
-    google_account.expires_in    = google_session.expires_in
-    google_account.issued_at     = google_session.issued_at
-
-    google_account.save( )
-
-
-
-
-
-    respond_to do |format|
-      format.html { redirect_to resources_url, :flash => { :success => t('google_accounts.success_sync') } }
-      format.json { head :no_content }
-    end
+      # Sync now
+      return redirect_to sync_resources_path
 
   end
 

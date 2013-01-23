@@ -31,6 +31,6 @@ class GoogleResource < Resource
   		end
 
   		return link
-  	end 
+	end 
 
 end
