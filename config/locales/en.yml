@@ -64,7 +64,7 @@ en:
     drop_box_remove_label:      "Remove DropBox"
     drop_box_remove_confirm:    "Removing DropBox access. This will not delete your files. Are you sure?"
   google_accounts:
-    removed:                     "Removed Google Drive"
+    removed:                     "Removed Google Drive Account"
     remove_invalid:              "Delete your own Google Account!"
     success_sync:                "Synced with Google Drive"
   resources:
@@ -74,8 +74,10 @@ en:
     deleted_file:                "Deleted %{title}"
     delete_label:                "Delete"
     delete_file_confirmation:    "Delete %{title}?"
-  drop_box:
+  drop_box_acounts:
     found_existing_account:      "Found existing DropBox account"
     session_request_error:       "There was an error requesting for DropbBox authentication"
-
+    removed:                     "Removed DropBox Account"
+    remove_invalid:              "Delete your own DropBox Account!"
+    success_sync:                "Synced with DropBox Acccount"
 

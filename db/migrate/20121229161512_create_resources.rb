@@ -15,8 +15,6 @@ class CreateResources < ActiveRecord::Migration
       # DropBox
       t.string :rev 
       t.string :path 
-      t.string :file_hash
-      t.string :modified
 
       t.string :type
       t.timestamps

@@ -16,6 +16,8 @@ ActiveRecord::Schema.define(:version => 20130111021632) do
   create_table "drop_box_accounts", :force => true do |t|
     t.integer  "user_id"
     t.string   "session_token"
+    t.string   "file_hash"
+    t.string   "cursor"
     t.string   "type"
     t.datetime "created_at",    :null => false
     t.datetime "updated_at",    :null => false
@@ -42,8 +44,6 @@ ActiveRecord::Schema.define(:version => 20130111021632) do
     t.string   "file_id"
     t.string   "rev"
     t.string   "path"
-    t.string   "file_hash"
-    t.string   "modified"
     t.string   "type"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false

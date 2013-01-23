@@ -147,7 +147,7 @@ class ResourcesController < ApplicationController
       
       Rails.logger.info("Valid DropBox Session") 
 
-      drop_box_account.request_session()
+      #drop_box_account.request_session()
       sync_count += drop_box_account.sync_files()
      
     else

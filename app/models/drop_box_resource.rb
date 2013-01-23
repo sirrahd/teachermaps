@@ -1,5 +1,5 @@
 class DropBoxResource < Resource
-	attr_accessible :rev, :path, :file_hash, :modified
+	attr_accessible :revision, :rev, :path
 
 	belongs_to :user
 end
