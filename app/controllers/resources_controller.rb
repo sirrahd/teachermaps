@@ -1,8 +1,6 @@
-#require 'google/api_client'
 require 'dropbox_sdk'
 
 class ResourcesController < ApplicationController
-  include GoogleAccountsHelper
   include DropBoxAccountsHelper
   include SessionsHelper
 
@@ -85,15 +83,31 @@ class ResourcesController < ApplicationController
   # DELETE /resources/1.json
   def destroy
     @resource = Resource.find(params[:id])
+
+    deleted_title = @resource.title 
+
+    Rails.logger.info("Deleting a #{@resource.class.name}")
+    if @current_user.has_google_account? and @resource.class.name == "GoogleResource"
+      google_account = @current_user.google_account 
+      
+      Rails.logger.info("Valid Google Session") 
+
+      google_account.load_session()
+      result = google_account.delete_file(@resource.file_id)
+
+      Rails.logger.info("Successful Deletion?: #{result}")
+    else
+      Rails.logger.info("User does not have a synced Google Account or File is not a GoogleResource") 
+    end
+
+    # Removing resource
     @resource.destroy
 
     respond_to do |format|
-      format.html { redirect_to resources_url }
+      format.html { redirect_to resources_url, :flash => { :success => t('resources.deleted_file', :title => deleted_title) } }
       format.json { head :no_content }
     end
-  end
-
-  
+  end 
 
   def sync
     

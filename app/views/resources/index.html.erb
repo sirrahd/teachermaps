@@ -1,34 +1,33 @@
 <h1>My Resources</h1>
 
 <span class="pull-right">
-  <%= link_to t('resources.sync'), "#myModal", :class => 'btn', :style => "margin-bottom: 5px;", :role => 'button' ,'data-toggle' => "modal", :onclick => "window.location=\"#{sync_resources_path}\"" %>
+  <%= link_to t('resources.sync'), "#loadingModal", :class => 'btn', :style => "margin-bottom: 5px;", :role => 'button' ,'data-toggle' => "modal", :onclick => "window.location=\"#{sync_resources_path}\"" %>
 </span>
 
 <table class="table table-condensed" >
   <tr>
     <th>Title</th>
     <th>Created</th>
+    <th>Deletion</th>
     <th>Type</th>
-    <th></th>
   </tr>
 
 <% @resources.each do |resource| %>
   <tr>
     <td><%= link_to resource.title, "#{resource.open_link}", :target => "_blank" %></td>
     <td><%= resource.created_at %></td>
-    <td><%= resource.type %></td>
     <td><%= link_to "Delete", resource_path(resource) , :confirm => "Delete #{resource.title}?", :method => :delete %></td>
+    <td><%= resource.type %></td>
   </tr>
 <% end %>
 </table>
 
 <br />
 
-<%= link_to 'New Resource', new_resource_path %>
-
-<div id="myModal" style="text-align:center;" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" >
+<div id="loadingModal" style="text-align:center;" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="loadingModalLabel" aria-hidden="true" >
   <div class="modal-header"><h1>Loading...</h1></div>
   <div class="modal-body">
     <%= image_tag "loading.gif", :alt => "Loading"%>
   </div>
+  <div class="modal-header"></div>
 </div>

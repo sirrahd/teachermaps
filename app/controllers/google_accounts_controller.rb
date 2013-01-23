@@ -1,6 +1,5 @@
 
 class GoogleAccountsController < ApplicationController
-  include GoogleAccountsHelper
   include SessionsHelper
 
   before_filter :require_session
@@ -124,7 +123,6 @@ class GoogleAccountsController < ApplicationController
 
     Rails.logger.info("Callback success")  
     Rails.logger.info("AUTHENTICATED CODE: #{params[:code]} \n Client: #{@current_user}")  
-
 
 
     # If user does not have a google account

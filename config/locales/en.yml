@@ -67,4 +67,5 @@ en:
     synced_n_files:              "Synced %{sync_count} files."
     link:                        "Resources"
     sync:                        "Sync Files"
+    deleted_file:                "Deleted %{title}"
 
