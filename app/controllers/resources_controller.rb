@@ -95,7 +95,7 @@ class ResourcesController < ApplicationController
       google_account.load_session()
       result = google_account.delete_file(@resource.file_id)
 
-      Rails.logger.info("Successful Deletion?: #{result}")
+      Rails.logger.info("Successful Deletion?: #{result.inspect}")
     else
       Rails.logger.info("User does not have a synced Google Account or File is not a GoogleResource") 
     end

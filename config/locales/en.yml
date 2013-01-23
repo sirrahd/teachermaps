@@ -68,4 +68,8 @@ en:
     link:                        "Resources"
     sync:                        "Sync Files"
     deleted_file:                "Deleted %{title}"
+    delete_label:                "Delete"
+    delete_file_confirmation:    "Delete %{title}?"
+
+
 
