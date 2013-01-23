@@ -14,8 +14,8 @@
       <% end %>
     </td>
     <td>
-      &#124;
       <% if !@google_account.nil? %>
+      &#124;
       <%= link_to t('settings.google_drive_remove_label'), @google_account, :confirm => t('settings.google_drive_remove_confirm'), :method => :delete %>
       <% end %>
     </td>
@@ -31,8 +31,8 @@
       <% end %>
     </td>
     <td>
-      &#124;
       <% if !@drop_box_account.nil? %>
+      &#124;
       <%= link_to t('settings.drop_box_remove_label'), @drop_box_account, :confirm => t('settings.drop_box_remove_confirm'), :method => :delete %>
       <% end %>
     </td>

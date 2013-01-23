@@ -87,6 +87,8 @@ class ResourcesController < ApplicationController
     deleted_title = @resource.title 
 
     Rails.logger.info("Deleting a #{@resource.class.name}")
+
+    # Google Resource
     if @current_user.has_google_account? and @resource.class.name == "GoogleResource"
       google_account = @current_user.google_account 
       
@@ -98,6 +100,20 @@ class ResourcesController < ApplicationController
       Rails.logger.info("Successful Deletion?: #{result.inspect}")
     else
       Rails.logger.info("User does not have a synced Google Account or File is not a GoogleResource") 
+    end
+
+
+
+    # DropBox Resources
+    if @current_user.has_drop_box_account? and @resource.class.name == "DropBoxAccount"
+      drop_box_account = @current_user.drop_box_account 
+      
+      Rails.logger.info("Valid DropBox Session") 
+
+    
+      # Rails.logger.info("Successful Deletion?: #{result.inspect}")
+    else
+      Rails.logger.info("User does not have a synced DropBox Account or File is not a DropBox Resource") 
     end
 
     # Removing resource
@@ -119,10 +135,23 @@ class ResourcesController < ApplicationController
       Rails.logger.info("Valid Google Session") 
 
       google_account.load_session()
-      sync_count = google_account.sync_files()
+      sync_count += google_account.sync_files()
      
     else
       Rails.logger.info("User does not have a synced Google Account") 
+    end
+
+
+    if @current_user.has_drop_box_account?
+      drop_box_account = @current_user.drop_box_account 
+      
+      Rails.logger.info("Valid DropBox Session") 
+
+      drop_box_account.request_session()
+      sync_count += drop_box_account.sync_files()
+     
+    else
+      Rails.logger.info("User does not have a synced DropBox Account") 
     end
 
 
