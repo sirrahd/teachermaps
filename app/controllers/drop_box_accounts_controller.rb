@@ -76,7 +76,6 @@ class DropBoxAccountsController < ApplicationController
       return redirect_to settings_url, :flash => { :notice=> t('drop_box_acounts.denied_oauth')}
     end
 
-
     # Get user's DropBox account
     drop_box_account = @current_user.drop_box_account
     # Load Session via authenticated access code
@@ -99,7 +98,6 @@ class DropBoxAccountsController < ApplicationController
   # DELETE /drop_box_accounts/1.json
   def destroy
  
-
     @drop_box_account = DropBoxAccount.find(params[:id])
     
      flash = {}
