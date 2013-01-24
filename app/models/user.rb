@@ -49,7 +49,7 @@ class User < ActiveRecord::Base
   end 
 
   def has_drop_box_account?
-    !drop_box_account.nil?
+    !drop_box_account.nil? and !drop_box_account.session_token.nil?
   end 
 
   def friendly_link

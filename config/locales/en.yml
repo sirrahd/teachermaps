@@ -67,6 +67,7 @@ en:
     removed:                     "Removed Google Drive Account"
     remove_invalid:              "Delete your own Google Account!"
     success_sync:                "Synced with Google Drive"
+    denied_oauth:                "You denied TeacherMaps access to Google Drive"
   resources:
     synced_n_files:              "Synced %{sync_count} files."
     link:                        "Resources"
@@ -80,4 +81,5 @@ en:
     removed:                     "Removed DropBox Account"
     remove_invalid:              "Delete your own DropBox Account!"
     success_sync:                "Synced with DropBox Acccount"
+    denied_oauth:                "You denied TeacherMaps access to DropBox"
 

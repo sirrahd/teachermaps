@@ -71,6 +71,12 @@ class DropBoxAccountsController < ApplicationController
   
   def oauth_callback
 
+    # User denied TeacherMaps access to during OAuth handshake
+    if params[:not_approved] == 'true'
+      return redirect_to settings_url, :flash => { :notice=> t('drop_box_acounts.denied_oauth')}
+    end
+
+
     # Get user's DropBox account
     drop_box_account = @current_user.drop_box_account
     # Load Session via authenticated access code

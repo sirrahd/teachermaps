@@ -121,8 +121,16 @@ class GoogleAccountsController < ApplicationController
     end
   end
 
+  def oauth_callback_denied
+
+  end 
 
   def oauth_callback
+
+    # User denied TeacherMaps access to during OAuth handshake
+    if params[:error] == 'access_denied'
+      return redirect_to settings_url, :flash => { :notice=> t('google_accounts.denied_oauth')}
+    end
 
     Rails.logger.info("Callback success")  
     Rails.logger.info("AUTHENTICATED CODE: #{params[:code]} \n Client: #{@current_user}")  
