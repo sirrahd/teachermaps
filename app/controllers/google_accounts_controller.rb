@@ -105,6 +105,9 @@ class GoogleAccountsController < ApplicationController
 
            @google_account.destroy
 
+           # Delete all google resources belonging to this user
+           GoogleResource.delete_all( :type=>'GoogleResource', :user_id=>@current_user.id )
+
            flash['success'] = t('google_accounts.removed')
         else 
            flash['notice'] = t('google_accounts.remove_invalid')
@@ -136,8 +139,6 @@ class GoogleAccountsController < ApplicationController
 
       # Create TeacherMaps folder on first sync  
       google_account.create_teachermaps_folder()
-
-      GoogleResource.delete_all( :type =>'GoogleResource' )
 
       google_account.save( )
 

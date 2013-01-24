@@ -108,8 +108,8 @@ class DropBoxAccountsController < ApplicationController
 
            @drop_box_account.destroy
 
-           # Remove all resources reference to DropBox resources
-           DropBoxResource.delete_all( :type =>'DropBoxResource' )
+           # Remove all resources reference to DropBox resources belonging to this user
+           DropBoxResource.delete_all( :type =>'DropBoxResource', :user_id=>@current_user.id  )
 
            flash['success'] = t('drop_box_acounts.removed')
         else 
