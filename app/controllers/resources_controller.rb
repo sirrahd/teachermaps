@@ -13,6 +13,12 @@ class ResourcesController < ApplicationController
     @resources = Resource.where( :user_id => @current_user.id )
     Rails.logger.info("Resources = #{@resource}")
 
+    # Temporary, just testing out search_for_teachermaps_folder()
+    # if @current_user.has_google_account?
+
+    #   @current_user.google_account.search_for_teachermaps_folder()
+    # end
+
 
     respond_to do |format|
       format.html # index.html.erb
