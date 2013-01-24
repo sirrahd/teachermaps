@@ -47,6 +47,17 @@ class ResourcesController < ApplicationController
 
     Rails.logger.info("Deleting a #{@resource.class.name}")
 
+    @resource = Resource.find(params[:id])
+
+    result = Resource.find(:all, :conditions => { :user_id => @current_user.id, :id => params[:id] })
+
+    if result.nil?
+      Rails.logger.info("No such resource")
+      return redirect_to resources_url, :flash => { :error => 'Resouce does not exist' }
+    else
+      Rails.logger.info("Found resource")
+    end
+
     # Google Resource
     if @current_user.has_google_account? and @resource.class.name == "GoogleResource"
       google_account = @current_user.google_account 
@@ -64,8 +75,12 @@ class ResourcesController < ApplicationController
 
 
     # DropBox Resources
-    if @current_user.has_drop_box_account? and @resource.class.name == "DropBoxAccount"
+    if @current_user.has_drop_box_account? and @resource.class.name == "DropBoxResource"
       drop_box_account = @current_user.drop_box_account 
+
+      result = drop_box_account.delete_file(@resource.path)
+
+      Rails.logger.info("Successful Deletion?: #{result}")
       
       Rails.logger.info("Valid DropBox Session") 
     else
