@@ -27,9 +27,6 @@ Teachermaps::Application.routes.draw do
 
   # Google API
   match 'google/oauth_callback' => 'google_accounts#oauth_callback'
-  
-  #http://localhost:3000/google/oauth_callback?error=access_denied
-
 
   # DropBox API
   match 'dropbox/new' => 'drop_box_accounts#new', :as => 'new_drop_box_accounts'

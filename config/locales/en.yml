@@ -75,6 +75,7 @@ en:
     deleted_file:                "Deleted %{title}"
     delete_label:                "Delete"
     delete_file_confirmation:    "Delete %{title}?"
+    resource_link_error:         "There was an error opening \"%{title}\""
   drop_box_acounts:
     found_existing_account:      "Found existing DropBox account"
     session_request_error:       "There was an error requesting for DropbBox authentication"
