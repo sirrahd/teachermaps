@@ -6,35 +6,6 @@ class DropBoxAccountsController < ApplicationController
   before_filter :require_session
 
 
-  # # GET /drop_box_accounts/1
-  # # GET /drop_box_accounts/1.json
-  # def preview
-  #   #@drop_box_account = DropBoxAccount.find(params[:])
-  #   # Get the DropboxClient object.  Redirect to OAuth flow if necessary.
-  #   db_client = get_db_client
-  #   Rails.logger.info("DropBox Rails Client #{db_client}")  
-  #   # unless db_client
-  #   #     redirect url("/oauth-start")
-  #   # end
-
-  #   # Call DropboxClient.metadata
-  #   path =  '/'
-  #   begin
-  #       #entry = db_client.metadata(path)
-  #       entry = db_client.shares( "/#{params[:path]}" )
-  #       #entry = db_client.shares( '/gemspec.rb' )
-  #   rescue DropboxAuthError => e
-  #       # redirect to dropbox ouath
-  #   rescue DropboxError => e
-  #       Rails.logger.info("DropBox Error")  
-  #   end
-
-  #   Rails.logger.info("DropBox Sharable: #{entry}")  
-
-  #   return redirect_to entry['url']
-    
-  # end
-
   # GET /drop_box_accounts/new
   # GET /drop_box_accounts/new.json
   def new
@@ -85,11 +56,6 @@ class DropBoxAccountsController < ApplicationController
     redirect_to sync_resources_path
   end
 
-
-  # GET /drop_box_accounts/1/edit
-  def edit
-    @drop_box_account = DropBoxAccount.find(params[:id])
-  end
 
   # DELETE /drop_box_accounts/1
   # DELETE /drop_box_accounts/1.json

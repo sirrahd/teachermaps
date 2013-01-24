@@ -26,7 +26,6 @@ class ResourcesController < ApplicationController
     Rails.logger.info("Resource #{params[:id]}")
     @resource = Resource.find_by_slug( params[:id] )
     Rails.logger.info("Showing Resource #{@resource.slug} ")
-
     
     resource_link = @resource.open_link()
 
@@ -36,13 +35,7 @@ class ResourcesController < ApplicationController
     else
       redirect_to resource_link
     end
-
     
-  end
-
-  # GET /resources/1/edit
-  def edit
-    @resource = Resource.find(params[:id])
   end
 
   # DELETE /resources/1
@@ -75,15 +68,13 @@ class ResourcesController < ApplicationController
       drop_box_account = @current_user.drop_box_account 
       
       Rails.logger.info("Valid DropBox Session") 
-
-    
-      # Rails.logger.info("Successful Deletion?: #{result.inspect}")
     else
       Rails.logger.info("User does not have a synced DropBox Account or File is not a DropBox Resource") 
     end
 
     # Removing resource
     @resource.destroy
+
 
     respond_to do |format|
       format.html { redirect_to resources_url, :flash => { :success => t('resources.deleted_file', :title => deleted_title) } }
