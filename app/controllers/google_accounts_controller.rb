@@ -137,6 +137,8 @@ class GoogleAccountsController < ApplicationController
       # Create TeacherMaps folder on first sync  
       google_account.create_teachermaps_folder()
 
+      GoogleResource.delete_all( :type =>'GoogleResource' )
+
       google_account.save( )
 
     end

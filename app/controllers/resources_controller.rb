@@ -129,6 +129,7 @@ class ResourcesController < ApplicationController
     
     sync_count = 0
 
+    # Google Files
     if @current_user.has_google_account?
       google_account = @current_user.google_account 
       
@@ -141,7 +142,7 @@ class ResourcesController < ApplicationController
       Rails.logger.info("User does not have a synced Google Account") 
     end
 
-
+    # DropBox Files
     if @current_user.has_drop_box_account?
       drop_box_account = @current_user.drop_box_account 
       
@@ -153,7 +154,6 @@ class ResourcesController < ApplicationController
     else
       Rails.logger.info("User does not have a synced DropBox Account") 
     end
-
 
     # After all syncing is done, re-query the resources to render
     @resources = Resource.where( :user_id => @current_user.id )

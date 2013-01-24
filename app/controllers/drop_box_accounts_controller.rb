@@ -100,13 +100,16 @@ class DropBoxAccountsController < ApplicationController
      if @current_user.has_drop_box_account?
         account = @current_user.drop_box_account 
 
-        if account.id == @drop_box_account.id 
+        if account.id == @drop_box_account.id
            # If user owns requested DropBox Account
 
            @current_user.drop_box_account = nil
            @current_user.save( )
 
            @drop_box_account.destroy
+
+           # Remove all resources reference to DropBox resources
+           DropBoxResource.delete_all( :type =>'DropBoxResource' )
 
            flash['success'] = t('drop_box_acounts.removed')
         else 
