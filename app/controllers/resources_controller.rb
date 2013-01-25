@@ -70,7 +70,7 @@ class ResourcesController < ApplicationController
       
       Rails.logger.info("Valid Google Session") 
 
-      google_account.load_session()
+      #google_account.load_session()
       result = google_account.delete_file(@resource.file_id)
 
       Rails.logger.info("Successful Deletion?: #{result.inspect}")
@@ -113,7 +113,7 @@ class ResourcesController < ApplicationController
       
       Rails.logger.info("Valid Google Session") 
 
-      google_account.load_session()
+      #google_account.load_session()
       sync_count += google_account.sync_files()
      
     else
