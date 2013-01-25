@@ -6,8 +6,10 @@ gem 'jquery-rails', '2.0.2'
 gem 'bcrypt-ruby', '3.0.1'
 
 group :development, :test do
-	gem 'sqlite3', '1.3.5'
+  gem 'sqlite3', '1.3.5'
   gem 'annotate', '2.5.0'
+  gem 'execjs', '1.4.0'
+  gem 'therubyracer', '0.11.3'
 end
 
 # Gems used only for assets and not required
