@@ -54,3 +54,9 @@ en:
     link:                       "Privacy"
   terms:
     link:                       "Terms"
+  feedback:
+    link:                       "Send feedback"
+    title:                      "Help make us better!"
+    text:                       "Your feedback is always anonymous."
+    button:                     "Send"
+    submit:                     "Sending..."
