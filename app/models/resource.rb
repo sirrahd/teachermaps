@@ -16,6 +16,10 @@ class Resource < ActiveRecord::Base
 		self.slug ||= SecureRandom.urlsafe_base64.downcase
 	end
 
+	def to_param
+		self.slug
+	end
+
 end
 
 
