@@ -65,9 +65,6 @@ class GoogleAccountsController < ApplicationController
     end
   end
 
-  def oauth_callback_denied
-
-  end 
 
   def oauth_callback
 
@@ -79,7 +76,6 @@ class GoogleAccountsController < ApplicationController
     Rails.logger.info("Callback success")  
     Rails.logger.info("AUTHENTICATED CODE: #{params[:code]} \n Client: #{@current_user}")  
 
-
     # If user does not have a google account
     if !@current_user.has_google_account?
       Rails.logger.info("Authorized Google Account") 
@@ -89,8 +85,19 @@ class GoogleAccountsController < ApplicationController
       # Query Google OAuth tokens
       google_account.fetch_tokens( params[:code] )
 
-      # Create TeacherMaps folder on first sync  
-      google_account.create_teachermaps_folder()
+      folder_id =  google_account.search_for_teachermaps_folder()
+
+      if folder_id
+        Rails.logger.info("Reusing /Apps/TeacherMaps #{folder_id}")
+        # Found exisitng /Apps/TeacherMaps folder in GoogleDrive, reusing
+        google_account.folder_id = folder_id
+        
+      else
+        # Could not find /Apps/TeacherMaps folder in GoogleDrive
+        # Create new /Apps/TeacherMaps folder
+        google_account.create_teachermaps_folder()
+        Rails.logger.info("Creating new /Apps/TeacherMaps #{google_account.folder_id}")
+      end      
 
       google_account.save( )
 
