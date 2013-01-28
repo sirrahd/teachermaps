@@ -14,7 +14,7 @@ $(document).ready(function(){
       // Reset fields and any validation errors, so form can be used again.
       $('#feedback_message').val("");
       $('#validation_error').empty();
-      $('#anonymous').attr("checked", "checked");
+      $('#anonymous').removeAttr("checked");
 
       // Thank you experience
       var $feedbackDropdown = $(this).parent()
@@ -26,7 +26,7 @@ $(document).ready(function(){
         $feedbackDropdown.addClass("input-xlarge");
         $('#confirm').remove();
         $feedbackDropdown.children().removeClass('hidden');
-      }, 1000);
+      }, 2000);
     })
     .bind('ajax:complete', function(evt, xhr, status){
       var $submitButton = $(this).find('input[name="commit"]');
