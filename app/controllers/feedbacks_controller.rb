@@ -6,6 +6,12 @@ class FeedbacksController < ApplicationController
                               agent: request.env['HTTP_USER_AGENT'],
                               host: request.env['HTTP_HOST'])
 
+    if params[:anonymous].nil?
+      @feedback.name = params[:feedback][:name]
+      @feedback.account_name = params[:feedback][:account_name]
+      @feedback.email = params[:feedback][:email]
+    end
+
     if @feedback.valid?
       FeedbackMailer.feedback_email(@feedback).deliver
       render json: '', status: :created

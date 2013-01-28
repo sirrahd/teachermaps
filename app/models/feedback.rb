@@ -3,7 +3,7 @@ class Feedback
   include ActiveModel::Conversion
   extend ActiveModel::Naming
 
-  attr_accessor :time, :page, :agent, :host, :message
+  attr_accessor :time, :page, :agent, :host, :message, :name, :account_name, :email
 
   validates_presence_of :time, :page, :agent, :host, :message
 

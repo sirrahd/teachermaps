@@ -1,5 +1,9 @@
 <%= @feedback.message %>
 
+<% if @feedback.name %>
+from <%= @feedback.name %> (<%= @feedback.account_name %>, <%= @feedback.email %>)
+<% end %>
+
 <%= @feedback.agent %>
 
 Sent from <%= @feedback.page %> on <%= @feedback.host %> at <%= @feedback.time %>

@@ -5,6 +5,9 @@
   </head>
   <body>
     <p><%= @feedback.message %></p>
+    <% if @feedback.name %>
+      <p>from <%= @feedback.name %> (<%= @feedback.account_name %>, <%= @feedback.email %>)</p>
+    <% end %>
     <p><%= @feedback.agent %></p>
     <p>Sent from <%= @feedback.page %> on <%= @feedback.host %> at <%= @feedback.time %></p>
     <p>Have a great day!</p>

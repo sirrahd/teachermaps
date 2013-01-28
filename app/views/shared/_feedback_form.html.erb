@@ -5,14 +5,21 @@
   <div class="dropdown-menu input-xlarge" style="padding: 15px; padding-bottom: 0">
     <%= form_for Feedback.new, remote: true, html: { :'data-type' => 'html', id: 'feedback_form' } do |f| %>
 
-      <p><strong><%= t('feedback.title') %></strong></p>
-      <p class="muted">Your feedback is always anonymous.</p>
+      <legend><%= t('feedback.title') %></legend>
       <%= f.text_area :message, rows: 3 %>
       <div id="validation_error"></div>
 
       <%= f.hidden_field :page, value: "#{@current_controller}##{@current_action}" %>
+      <%= f.hidden_field :name, value: @current_user.name  %>
+      <%= f.hidden_field :email, value: @current_user.email %>
+      <%= f.hidden_field :account_name, value: @current_user.account_name %>
+
+      <label class="pull-left checkbox" style="margin-top: 7px;">
+        <%= check_box_tag :anonymous, 1, true %> Send anonymously
+      </label>
 
       <%= f.submit  t('feedback.button'), class: "pull-right btn btn-primary" %>
+
       <div class="clearfix"></div>
     <% end %>
   </div>
