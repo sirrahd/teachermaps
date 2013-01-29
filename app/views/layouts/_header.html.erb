@@ -5,7 +5,7 @@
       <nav>
         <ul class="nav pull-right">
           <% if signed_in? %>
-            <li><a href="#">Send feedback</a></li>
+            <%= render 'shared/feedback_form' %>
             <li id="fat-menu" class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                 <%= current_user.name %> <b class="caret"></b>

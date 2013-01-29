@@ -1,4 +1,5 @@
 @import "bootstrap";
+/*@import "bootstrap-responsive";*/
 
 /* mixins, variables, etc. */
 
@@ -89,12 +90,12 @@ footer {
   color: $grayLight;
   a {
     color: $gray;
-    &:hover { 
+    &:hover {
       color: $grayDarker;
     }
-  }  
-  small { 
-    float: left; 
+  }
+  small {
+    float: left;
   }
   ul {
     float: right;
@@ -157,7 +158,7 @@ input {
   @extend .control-group;
   @extend .error;
  }
- 
+
 /* miscellaneous */
 
 .debug_dump {
@@ -166,4 +167,9 @@ input {
   width: 100%;
   margin-top: 45px;
   @include box-sizing;
+}
+
+.hidden {
+  display: none;
+  visibility: hidden;
 }
