@@ -2,27 +2,29 @@
   <a href="#" class="dropdown-toggle" data-toggle="dropdown">
     <%= t 'feedback.link' %> <b class="caret"></b>
   </a>
-  <div class="dropdown-menu input-xlarge" style="padding: 15px; padding-bottom: 0">
-    <%= form_for Feedback.new, remote: true, html: { :'data-type' => 'html', id: 'feedback_form' } do |f| %>
+  <ul class="dropdown-menu input-xlarge" style="padding:0;margin:0;">
+    <div class="well" style="background-color:white;border:0;box-shadow:none;margin-bottom:0;padding:10px 19px 1px">
+      <%= form_for Feedback.new, remote: true, html: { :'data-type' => 'html', id: 'feedback_form' } do |f| %>
 
-      <legend><%= t('feedback.title') %></legend>
-      <%= f.text_area :message, rows: 3 %>
-      <div id="validation_error"></div>
+        <legend><%= t('feedback.title') %></legend>
+        <%= f.text_area :message, rows: 3 %>
+        <div id="validation_error"></div>
 
-      <%= f.hidden_field :page, value: "#{@current_controller}##{@current_action}" %>
-      <%= f.hidden_field :name, value: @current_user.name  %>
-      <%= f.hidden_field :email, value: @current_user.email %>
-      <%= f.hidden_field :account_name, value: @current_user.account_name %>
+        <%= f.hidden_field :page, value: "#{@current_controller}##{@current_action}" %>
+        <%= f.hidden_field :name, value: @current_user.name  %>
+        <%= f.hidden_field :email, value: @current_user.email %>
+        <%= f.hidden_field :account_name, value: @current_user.account_name %>
 
-      <label class="pull-left checkbox" style="margin-top: 7px;">
-        <%= check_box_tag :anonymous, 1 %> Send anonymously
-      </label>
+        <label class="pull-left checkbox" style="margin-top: 7px;">
+          <%= check_box_tag :anonymous, 1 %> Send anonymously
+        </label>
 
-      <%= f.submit  t('feedback.button'), class: "pull-right btn btn-primary" %>
+        <%= f.submit  t('feedback.button'), class: "pull-right btn btn-primary" %>
 
-      <div class="clearfix"></div>
-    <% end %>
-  </div>
+        <div class="clearfix"></div>
+      <% end %>
+    </div>
+  </ul>
 </li>
 
 
