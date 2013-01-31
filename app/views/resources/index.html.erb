@@ -10,7 +10,7 @@
     </a>
     <ul class="dropdown-menu pull-left">
       <%= link_to t('resources.sync'), "#loadingModal",'data-toggle' => "modal", :onclick => "window.location=\"#{sync_resources_path}\"" %>
-      <%= link_to "Upload Resource", "#uploadResourceModal",'data-toggle' => "modal" %>
+      <%= link_to t('resources.update_resources'), "#uploadResourceModal",'data-toggle' => "modal" %>
     </ul>
   </div>
 </span>
@@ -35,30 +35,24 @@
 
 <br />
 
-<div id="loadingModal" style="text-align:center;" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="loadingModalLabel" aria-hidden="true" >
-  <div class="modal-header"><h1>Loading...</h1></div>
+<div id="loadingModal" style="text-align:center;" class="modal hide fade in" tabindex="-1" role="dialog" aria-labelledby="loadingModalLabel" aria-hidden="true" >
+  <div class="modal-header"><h1><%= t('resources.loading_label') %></h1></div>
   <div class="modal-body">
     <%= image_tag "loading.gif", :alt => "Loading"%>
   </div>
   <div class="modal-header"></div>
 </div>
 
-<div id="uploadResourceModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="uploadResourceModalLabel" aria-hidden="true" >
+<div id="uploadResourceModal" class="modal hide fade in" tabindex="-1" role="dialog" aria-labelledby="uploadResourceModalLabel" aria-hidden="true" >
   <div class="modal-header"><h1>Upload a Resource</h1></div>
   <div class="modal-body">
-    <%= form_for(@resource, :method => "post", :remote =>"true") do |f| %>
-      <%= label_tag(:title, "Title: ") %>
-      <%= text_field_tag(:title) %>
-      <%= label_tag(:link, "Link: ") %>
-      <%= text_field_tag(:link) %>
+    <%= form_for Resource.new, remote: true, html: {  :'data-type' => 'html', id: 'create_resource_form' }  do |f| %>
+      <%= label_tag(:title, t('resource.title_label')) %>
+      <%= f.text_field :title  %>
+      <%= label_tag(:link, t('resource.link_label')) %>
+      <%= f.text_field :link  %>
       <%= submit_tag("Upload", :class=>"btn") %>
     <% end %>
   </div>
   <div class="modal-header"></div>
 </div>
-
-<script type="text/javascript">
-    $(document).ready(function () {
-        $('.dropdown-toggle').dropdown();
-    });
-</script>

@@ -14,3 +14,25 @@
 //= require jquery_ujs
 //= require bootstrap
 //= require_tree .
+
+
+$(document).ready(function () { 
+	$('.dropdown-toggle').dropdown(); 
+});	
+
+jQuery(function($) {
+  // create a convenient toggleLoading function
+  var closeCreateResourceModal = function() { 
+    $('#uploadResourceModal').modal('hide');
+    console.log("Closing modal");
+  };
+
+  $("#create_resource_form")
+    // .bind("ajax:loading",  closeCreateResourceModal)
+    .bind("ajax:complete", closeCreateResourceModal)
+    .bind("ajax:success", function(event, data, status, xhr) {
+        //$("#response").html(data);
+        $('#loadingModal').modal('show');
+        window.location = "/resources/sync/";
+    });
+});

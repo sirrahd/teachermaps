@@ -46,15 +46,31 @@ class ResourcesController < ApplicationController
   def create
 
     Rails.logger.info("Using this #{params}")
-    @resource = Resource.new(params[:resource])
+    @resource = Resource.new( :title => params[:resource][:title] )
+    @resource.link = params[:resource][:link]
     @resource.type = "LinkResource"
 
-    if @resource.save
-      flash[:notice] = "Successfully created #{@resource.title}."      
-      redirect_to resources_url
-    else
-      render :action => 'index'
+    Rails.logger.info("Rails title: #{@resource.title}")
+
+    respond_to do |format|
+      if @resource.save
+        @current_user.resources << @resource
+
+        format.html { redirect_to(resources_url, :notice => "Resource #{@resource.title} created.") }
+        format.js
+      else
+        format.html { render :action => "index" }
+        format.js
+      end
     end
+
+    # if @resource.save
+    #   flash[:notice] = "Successfully created #{@resource.title}."      
+    #   redirect_to resources_url
+    #   format.js
+    # else
+    #   render :action => 'index'
+    # end
 
     # Rails.logger.info("Using this #{params}")
     # @resource = Resource.new(params[:resource])
@@ -66,7 +82,7 @@ class ResourcesController < ApplicationController
     # Rails.logger.info("Created #{@resource.title}!!")
 
     # respond_to do |format|
-    #   format.js { redirect_to(resources_url, :notice => "Created #{@resource.title}") }
+    #   format.html { redirect_to(resources_url, :notice => "Created #{@resource.title}") }
     # end
   end
 
