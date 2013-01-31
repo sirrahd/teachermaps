@@ -13,7 +13,7 @@ class ResourcesController < ApplicationController
     @resources = Resource.where( :user_id => @current_user.id )
     Rails.logger.info("Resources = #{@resource}")
 
-    
+
 
     respond_to do |format|
       format.html # index.html.erb
@@ -42,22 +42,29 @@ class ResourcesController < ApplicationController
   # DELETE /resources/1
   # DELETE /resources/1.json
   def destroy
-    @resource = Resource.find(params[:id])
+    #@resource = Resource.find_by(params[:id])
+
+    # # Cache for flash notification
+    # deleted_title = @resource.title 
+    # Grab resource
+    # @resource = Resource.find(params[:id])
+
+    begin
+
+      @resource = Resource.find_by_slug(params[:id])
+
+      # Confirm that the user has permissions to this resource
+      Resource.find(:all, :conditions => { :user_id => @current_user.id, :id => params[:id] })
+      Rails.logger.info("Found resource")
+
+    rescue
+      Rails.logger.info("No such resource")
+      return redirect_to resources_url, :flash => { :error => 'Resouce does not exist' }
+    end
 
     # Cache for flash notification
     deleted_title = @resource.title 
-    # Grab resource
-    @resource = Resource.find(params[:id])
 
-    # Confirm that the user has permissions to this resource
-    result = Resource.find(:all, :conditions => { :user_id => @current_user.id, :id => params[:id] })
-
-    if result.nil?
-      Rails.logger.info("No such resource")
-      return redirect_to resources_url, :flash => { :error => 'Resouce does not exist' }
-    else
-      Rails.logger.info("Found resource")
-    end
 
     # Google Resource
     if @current_user.has_google_account? and @resource.class.name == "GoogleResource"
