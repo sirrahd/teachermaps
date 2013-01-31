@@ -3,7 +3,7 @@ class GoogleResource < Resource
 	belongs_to :user
 
 	# Google File
-  	attr_accessible :file_id
+  attr_accessible :file_id
 
 	def open_link 
 

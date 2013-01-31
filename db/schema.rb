@@ -18,7 +18,6 @@ ActiveRecord::Schema.define(:version => 20130111021632) do
     t.string   "session_token"
     t.string   "file_hash"
     t.string   "cursor"
-    t.string   "type"
     t.datetime "created_at",    :null => false
     t.datetime "updated_at",    :null => false
   end
@@ -44,6 +43,7 @@ ActiveRecord::Schema.define(:version => 20130111021632) do
     t.string   "file_id"
     t.string   "rev"
     t.string   "path"
+    t.string   "link"
     t.string   "type"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false

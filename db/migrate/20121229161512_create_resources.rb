@@ -16,6 +16,10 @@ class CreateResources < ActiveRecord::Migration
       t.string :rev 
       t.string :path 
 
+      # Link
+      t.string  :link
+      
+
       t.string :type
       t.timestamps
     end

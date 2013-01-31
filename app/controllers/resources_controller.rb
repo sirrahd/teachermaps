@@ -13,6 +13,8 @@ class ResourcesController < ApplicationController
     @resources = Resource.where( :user_id => @current_user.id )
     Rails.logger.info("Resources = #{@resource}")
 
+    
+
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @resources }

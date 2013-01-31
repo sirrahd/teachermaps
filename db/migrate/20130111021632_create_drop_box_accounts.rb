@@ -6,7 +6,6 @@ class CreateDropBoxAccounts < ActiveRecord::Migration
       t.string  :file_hash
       t.string  :cursor
       
-      t.string :type
       t.timestamps
     end
   end
