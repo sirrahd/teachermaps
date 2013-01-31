@@ -10,7 +10,7 @@
     </a>
     <ul class="dropdown-menu pull-left">
       <%= link_to t('resources.sync'), "#loadingModal",'data-toggle' => "modal", :onclick => "window.location=\"#{sync_resources_path}\"" %>
-      <%= link_to "Upload Resource", "#" %>
+      <%= link_to "Upload Resource", "#uploadResourceModal",'data-toggle' => "modal" %>
     </ul>
   </div>
 </span>
@@ -39,6 +39,20 @@
   <div class="modal-header"><h1>Loading...</h1></div>
   <div class="modal-body">
     <%= image_tag "loading.gif", :alt => "Loading"%>
+  </div>
+  <div class="modal-header"></div>
+</div>
+
+<div id="uploadResourceModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="uploadResourceModalLabel" aria-hidden="true" >
+  <div class="modal-header"><h1>Upload a Resource</h1></div>
+  <div class="modal-body">
+    <%= form_tag(@resource, :method => "post", :remote =>"true") do %>
+      <%= label_tag(:title, "Title: ") %>
+      <%= text_field_tag(:title) %>
+      <%= label_tag(:link, "Link: ") %>
+      <%= text_field_tag(:link) %>
+      <%= submit_tag("Upload", :class=>"btn", 'data-dismiss'=>"modal", 'aria-hidden'=>"true") %>
+    <% end %>
   </div>
   <div class="modal-header"></div>
 </div>

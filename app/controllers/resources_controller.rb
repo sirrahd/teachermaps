@@ -13,6 +13,9 @@ class ResourcesController < ApplicationController
     @resources = Resource.where( :user_id => @current_user.id )
     Rails.logger.info("Resources = #{@resource}")
 
+    # For rendering Ajax "Upload Resource" form
+    @new_resource = Resource.new
+
 
 
     respond_to do |format|
@@ -30,7 +33,7 @@ class ResourcesController < ApplicationController
     
     resource_link = @resource.open_link()
 
-    # Gracefully handle broken links
+    # Gracefully handle nil links
     if !resource_link
       redirect_to resources_url, :flash => { :error => t('resources.resource_link_error', :title => @resource.title) }
     else
@@ -38,6 +41,17 @@ class ResourcesController < ApplicationController
     end
     
   end
+
+
+  def create
+      @resource = Resource.new(params[:post])
+      @resource.save
+
+      respond_to do |format|
+        format.html { redirect_to(resources_url, :notice => "Created #{@resource.title}") }
+      end
+  end
+
 
   # DELETE /resources/1
   # DELETE /resources/1.json
