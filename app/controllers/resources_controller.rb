@@ -53,15 +53,13 @@ class ResourcesController < ApplicationController
     Rails.logger.info("Rails title: #{@resource.title}")
 
     respond_to do |format|
-      if @resource.save
-        @current_user.resources << @resource
+      @resource.save
 
-        format.html { redirect_to(resources_url, :notice => "Resource #{@resource.title} created.") }
-        format.js
-      else
-        format.html { render :action => "index" }
-        format.js
-      end
+      @current_user.resources << @resource
+      @resources = Resource.where( :user_id => @current_user.id )
+
+      format.html { render :partial => 'resources/resources_table' }
+      format.js
     end
 
     # if @resource.save

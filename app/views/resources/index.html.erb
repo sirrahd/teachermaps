@@ -15,23 +15,7 @@
   </div>
 </span>
 
-<table class="table table-condensed" >
-  <tr>
-    <th>Title</th>
-    <th>Created</th>
-    <th>Deletion</th>
-    <th>Type</th>
-  </tr>
-
-<% @resources.each do |resource| %>
-  <tr>
-    <td><%= link_to resource.title, resource_url(resource), :target => "_blank" %></td>
-    <td><%= resource.created_at %></td>
-    <td><%= link_to t('resources.delete_label'), resource_path(resource) , :confirm => t('resources.delete_file_confirmation', :title=>resource.title), :method => :delete %></td>
-    <td><%= resource.type %></td>
-  </tr>
-<% end %>
-</table>
+<%= render 'resources/resources_table' %>
 
 <br />
 
