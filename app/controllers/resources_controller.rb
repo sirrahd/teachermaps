@@ -42,15 +42,9 @@ class ResourcesController < ApplicationController
   # DELETE /resources/1
   # DELETE /resources/1.json
   def destroy
-    #@resource = Resource.find_by(params[:id])
-
-    # # Cache for flash notification
-    # deleted_title = @resource.title 
-    # Grab resource
-    # @resource = Resource.find(params[:id])
 
     begin
-
+      # Catch resource not found errors
       @resource = Resource.find_by_slug(params[:id])
 
       # Confirm that the user has permissions to this resource

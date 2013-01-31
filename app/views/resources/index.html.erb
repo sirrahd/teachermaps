@@ -1,7 +1,18 @@
 <h1>My Resources</h1>
 
+
+
 <span class="pull-right">
-  <%= link_to t('resources.sync'), "#loadingModal", :class => 'btn', :style => "margin-bottom: 5px;", :role => 'button' ,'data-toggle' => "modal", :onclick => "window.location=\"#{sync_resources_path}\"" %>
+  <div class="btn-group" style="margin-bottom:10px;">
+    <a class="btn dropdown-toggle" data-toggle="dropdown" href="#" >
+      Action
+      <span class="caret"></span>
+    </a>
+    <ul class="dropdown-menu pull-left">
+      <%= link_to t('resources.sync'), "#loadingModal",'data-toggle' => "modal", :onclick => "window.location=\"#{sync_resources_path}\"" %>
+      <%= link_to "Upload Resource", "#" %>
+    </ul>
+  </div>
 </span>
 
 <table class="table table-condensed" >
@@ -31,3 +42,9 @@
   </div>
   <div class="modal-header"></div>
 </div>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('.dropdown-toggle').dropdown();
+    });
+</script>
