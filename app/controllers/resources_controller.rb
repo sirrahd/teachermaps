@@ -46,20 +46,28 @@ class ResourcesController < ApplicationController
   def create
 
     Rails.logger.info("Using this #{params}")
-    @resource = Resource.new( :title => params[:resource][:title] )
-    @resource.link = params[:resource][:link]
-    @resource.type = "LinkResource"
+    @resource = LinkResource.new( :link => params[:resource][:link] )
+    #@resource.link = params[:resource][:link]
+    @resource.title = params[:resource][:link]
+    #@resource.type = "LinkResource"
 
     Rails.logger.info("Rails title: #{@resource.title}")
 
     respond_to do |format|
-      @resource.save
+      
+      if @resource.save
 
-      @current_user.resources << @resource
-      @resources = Resource.where( :user_id => @current_user.id )
+        @current_user.resources << @resource
+        @resources = Resource.where( :user_id => @current_user.id )
 
-      format.html { render :partial => 'resources/resources_table' }
-      format.js
+        format.html { render :partial => 'resources/resources_table' }
+        format.js
+      else
+
+        Rails.logger.info("Server Error: #{@resource.errors}")
+        format.html { render :partial => 'resources/error_messages', :error => true, :status => 500  }
+        format.js
+      end
     end
 
     # if @resource.save

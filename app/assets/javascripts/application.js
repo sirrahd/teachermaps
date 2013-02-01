@@ -22,16 +22,22 @@ $(document).ready(function () {
 
 jQuery(function($) {
   // create a convenient toggleLoading function
-   var closeCreateResourceModal = function() { 
+  var closeCreateResourceModal = function() { 
     $('#uploadResourceModal').modal('hide');
     console.log("Closing Upload Resource modal");
   };
 
   $("#create_resource_form")
     // .bind("ajax:loading",  closeCreateResourceModal)
-    .bind("ajax:complete", closeCreateResourceModal)
+    // .bind("ajax:complete", closeCreateResourceModal)
+    .bind("ajax:error", function(event, data, status, xhr) {
+        console.log("Error in form");
+        console.log(data.responseText);
+        $("#uploadResourcesErrors").html(data.responseText);      
+    })
     .bind("ajax:success", function(event, data, status, xhr) {
         console.log("Closing Loading modal");
         $("#resources_table").html(data);      
+        closeCreateResourceModal();
     });
 });
