@@ -1,0 +1,38 @@
+/**
+For stateless flash notifications 
+
+Message: string message to render in flash element
+*/
+function pushFlash(message){
+	pushFlash(message, false);
+}
+
+/**
+For stateful flash notifications 
+
+Message: string message to render in flash element
+State: state of the flash notification
+ - error
+ - success
+ - info
+
+*/
+function pushFlash(message, state){
+	
+	var mainContainer  = $("#main-container");
+	var flashContainer = $("#flash-container");
+	var cancelButton = '<button type="button" class="close" data-dismiss="alert">&times;</button>';
+	var customState = "";
+
+	// Remove any stale flashes
+	flashContainer.remove();
+
+	// Apply custom state to flash notification
+	if (state) {
+		customState = ' alert-'+state;		
+	} 
+
+	// Render the flash notificaiton
+	mainContainer.prepend('<div id="flash-container" class="alert'+customState+'">'+cancelButton+message+'</div>');
+
+}

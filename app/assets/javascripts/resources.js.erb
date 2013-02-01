@@ -11,5 +11,6 @@ jQuery(function($) {
         console.log("Closing Loading modal");
         $("#resources_table").html(data);      
         $('#uploadResourceModal').modal('hide');
+        pushFlash("Upload resource successful!");
     });
 });
