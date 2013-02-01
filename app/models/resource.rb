@@ -9,9 +9,6 @@ class Resource < ActiveRecord::Base
   	belongs_to :user
 
   	# TeacherMaps specific attributes can be listed here
-
-
-
   	validates :title, :presence => {:message => 'Title cannot be blank.'}, :length => {:minimum => 2, :maximum => 2048}
 
   	before_create :default_values
