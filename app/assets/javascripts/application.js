@@ -14,3 +14,8 @@
 //= require jquery_ujs
 //= require bootstrap
 //= require_tree .
+
+$(document).ready(function () { 
+	// Initiates all bootrap dropdowns.
+	$('.dropdown-toggle').dropdown(); 
+});	
