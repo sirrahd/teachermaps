@@ -1,16 +1,13 @@
 jQuery(function($) {
   $("#create_resource_form")
-    // .bind("ajax:loading",  closeCreateResourceModal)
-    // .bind("ajax:complete", closeCreateResourceModal)
     .bind("ajax:error", function(event, data, status, xhr) {
         console.log("Error in form");
         console.log(data.responseText);
         $("#uploadResourcesErrors").html(data.responseText);      
     })
     .bind("ajax:success", function(event, data, status, xhr) {
-        console.log("Closing Loading modal");
         $("#resources_table").html(data);      
         $('#uploadResourceModal').modal('hide');
-        pushFlash("Upload resource successful!");
+        pushFlash("Resource upload was successful!", 'success');
     });
 });

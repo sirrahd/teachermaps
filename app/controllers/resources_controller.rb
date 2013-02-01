@@ -1,4 +1,3 @@
-require 'dropbox_sdk'
 
 class ResourcesController < ApplicationController
   include DropBoxAccountsHelper
@@ -15,8 +14,6 @@ class ResourcesController < ApplicationController
 
     # For rendering Ajax "Upload Resource" form
     @new_resource = Resource.new
-
-
 
     respond_to do |format|
       format.html # index.html.erb
@@ -47,7 +44,6 @@ class ResourcesController < ApplicationController
     Rails.logger.info("Using this #{params}")
     @resource = LinkResource.new( :link => params[:resource][:link] )
     @resource.title = params[:resource][:title]
-    Rails.logger.info("Rails title: #{@resource.title}")
 
     respond_to do |format|
 
@@ -59,7 +55,6 @@ class ResourcesController < ApplicationController
         format.js
       else
 
-        Rails.logger.info("Server Error: #{@resource.errors}")
         format.html { render :partial => 'resources/error_messages', :error => true, :status => 500  }
         format.js
       end
@@ -131,6 +126,8 @@ class ResourcesController < ApplicationController
     
     sync_count = 0
 
+
+    # These two can be refactored into two simpler if statements 
     # Google Files
     if @current_user.has_google_account?
       google_account = @current_user.google_account 
