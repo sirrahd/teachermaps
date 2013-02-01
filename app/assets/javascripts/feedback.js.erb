@@ -1,0 +1,63 @@
+$(document).ready(function(){
+
+  $('#feedback_form')
+    .bind("ajax:beforeSend", function(evt, xhr, settings){
+      var $submitButton = $(this).find('input[name="commit"]');
+
+      // Update the text of the submit button to let the user know stuff is happening.
+      $submitButton.attr("value", "<%= I18n.t('feedback.submit') %>");
+      $(this).find('input').attr("disabled", "disabled");
+    })
+    .bind("ajax:success", function(evt, data, status, xhr){
+      var $form = $(this);
+
+      // Reset fields and any validation errors, so form can be used again.
+      $('#feedback_message').val("");
+      $('#validation_error').empty();
+      $('#anonymous').removeAttr("checked");
+
+      // Thank you experience
+      var $feedbackDropdown = $(this).parent()
+      $feedbackDropdown.children().addClass('hidden');
+      $feedbackDropdown.append("<p id='confirm'><%= I18n.t('feedback.success') %></p>");
+      $feedbackDropdown.removeClass('input-xlarge');
+      setTimeout(function(){
+        $('[data-toggle="dropdown"]').parent().removeClass('open');
+        $feedbackDropdown.addClass("input-xlarge");
+        $('#confirm').remove();
+        $feedbackDropdown.children().removeClass('hidden');
+      }, 2000);
+    })
+    .bind('ajax:complete', function(evt, xhr, status){
+      var $submitButton = $(this).find('input[name="commit"]');
+
+      // Restore the original submit button text
+      $submitButton.attr("value", "<%= I18n.t('feedback.button') %>");
+      $(this).find('input').removeAttr("disabled");
+    })
+    .bind("ajax:error", function(evt, xhr, status, error){
+      var $form = $(this),
+          errors,
+          errorText;
+
+      try {
+        // Populate errorText with the comment errors
+        errors = $.parseJSON(xhr.responseText);
+      } catch(err) {
+        // If the responseText is not valid JSON (like if a 500 exception was thrown), populate errors with a generic error message.
+        errors = ["<%= I18n.t('feedback.generic_error') %>"];
+      }
+
+      // Build the list of errors
+      errorText = "";
+
+      for ( error in errors ) {
+        errorText += '<p class="text-error">' + errors[error] + "</p> ";
+      }
+
+      // Insert error list into form
+      $('#validation_error').html(errorText);
+      $('#feedback_message').focus();
+    });
+
+});

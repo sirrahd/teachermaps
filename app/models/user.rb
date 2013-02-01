@@ -52,9 +52,13 @@ class User < ActiveRecord::Base
     !drop_box_account.nil? and !drop_box_account.session_token.nil?
   end 
 
-  def friendly_link
-    Rails.application.routes.url_helpers.users_path + '/' + self.account_name
-  end # Should we cache or DB this?
+  # def friendly_link
+  #   Rails.application.routes.url_helpers.users_path + '/' + self.account_name
+  # end # Should we cache or DB this?
+
+  def to_param
+    self.account_name
+  end
 
   private
   

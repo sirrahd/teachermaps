@@ -8,7 +8,7 @@ en:
         password_digest:        "Password"
   global:
     app_name:                   "TeacherMaps"
-    copyright:                  "Copyright 2012"
+    copyright:                  "Copyright 2013"
   shared:
     errors:                     "The form contains %{count}."
     error_noun:                 "error"
@@ -23,23 +23,20 @@ en:
   about:
     title:                      "About"
     link:                       "About"
-    text:                       "This is us."
+    text:                       "Learn about us here."
   contact:
     title:                      "Contact"
     link:                       "Contact"
     text:                       "Contact information goes here."
   news:
-    title:                      "News"
     link:                       "News"
-    text:                       "This is news."
   signin:
     title:                      "Sign in"
     link:                       "Sign in"
-    name_label:                 "Account name or Email"
+    name_label:                 "Username or Email"
     password_label:             "Password"
     new_user:                   "New user? %{signup} now!"
     error:                      "We couldn't find anyone with that name and password."
-    account:                    "Account"
     profile:                    "Profile"
     settings:                   "Settings"
     signout:                    "Sign out"
@@ -47,12 +44,24 @@ en:
     title:                      "Sign up"
     link:                       "Sign up"
     name_label:                 "Name"
-    email_label:                "Email address"
+    email_label:                "Email"
     pwd_label:                  "Password"
     pwdconf_label:              "One more time..."
-    account_name_label:         "Account name"
+    account_name_label:         "Username"
     button:                     "Create my account!"
     welcome:                    "Welcome to %{app_name}"
+  privacy:
+    link:                       "Privacy"
+  terms:
+    link:                       "Terms"
+  feedback:
+    link:                       "Send feedback"
+    title:                      "Help make us better!"
+    text:                       "Your feedback is always anonymous."
+    button:                     "Send"
+    submit:                     "Sending..."
+    generic_error:              "Please reload the page and try again"
+    success:                    "Thank you!"
   settings:
     dropbox_add_label:          "Add DropBox"
     google_drive_add_label:     "Add Google Drive"
