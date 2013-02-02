@@ -1,4 +1,6 @@
 class LinkResource < Resource
+
+	TYPE = 'LinkResource'
 	
 	belongs_to :user
 

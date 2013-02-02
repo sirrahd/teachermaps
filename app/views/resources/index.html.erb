@@ -31,7 +31,7 @@
     Tags: <br/><br/>
 
   
-    <%= form_for Resource.new, remote: true, html: {  :'data-type' => 'html', id: 'create_resource_form' }  do |f| %>
+    <%= form_for Resource.new, remote: true, html: { :multipart => true, :'data-type' => 'html', id: 'create_resource_form' }  do |f| %>
       <%= label_tag(:title, t('resources.title_label')) %>
       <%= f.text_field :title  %>
 

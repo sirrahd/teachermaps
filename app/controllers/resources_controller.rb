@@ -45,7 +45,17 @@ class ResourcesController < ApplicationController
   def create
     Rails.logger.info("Using this #{params}")
     @resource = Resource.new()
-    @resource.link = params[:resource][:link]
+    @type = Resource::TYPE
+
+    if params[:resource].has_key?('link')
+      @resource.link = params[:resource][:link]
+      @type = LinkResource::TYPE
+    elsif @current_user.setting.has_upload_to?
+      @type = @current_user.setting.upload_to
+    end
+
+    # if params[:resource]
+
     @resource.title = params[:resource][:title]
 
     respond_to do |format|

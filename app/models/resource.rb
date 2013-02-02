@@ -1,5 +1,7 @@
 class Resource < ActiveRecord::Base
 
+	TYPE = 'Resource'
+
 	# TeacherMaps generated slug linking to a GoogleDrive/DropBox Resource 
 	attr_accessible :slug
 
