@@ -1,4 +1,6 @@
 class DropBoxResource < Resource
+
+	TYPE = 'DropBoxResource'
 	
 	attr_accessible :rev, :path, :link
 

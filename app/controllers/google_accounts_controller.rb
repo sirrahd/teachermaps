@@ -46,14 +46,14 @@ class GoogleAccountsController < ApplicationController
            @google_account.destroy
 
            # Delete all google resources belonging to this user
-           GoogleResource.delete_all( :type=>'GoogleResource', :user_id=>@current_user.id )
+           GoogleResource.delete_all( :type=>GoogleResource::TYPE, :user_id=>@current_user.id )
 
            flash['success'] = t('google_accounts.removed')
 
 
            if @current_user.has_drop_box_account?
               # Transfer default uploads to DropBox
-              @setting.upload_to = t('drop_box_accounts.drop_box')
+              @setting.upload_to = GoogleResource::TYPE
            else
               # User is going to need to assign one before next upload
               @setting.upload_to = nil

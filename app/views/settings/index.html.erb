@@ -45,7 +45,7 @@
        
         <%= form_for @setting, remote: true, html: { :'data-type' => 'html', id: 'update_setting_form' }  do |f| %>
           <%= label_tag(:upload_to, t('settings.upload_to_label')) %>
-          <%= f.select(:upload_to, [ [t('google_accounts.google_drive'), "GoogleResource"], [ t('drop_box_accounts.drop_box'), "DropBoxResource" ]], {}, {:onchange => '$(this.form).submit();'} )  %>
+          <%= f.select(:upload_to, [ [t('google_accounts.google_drive'), GoogleResource::TYPE], [ t('drop_box_accounts.drop_box'), DropBoxResource::TYPE ]], {}, {:onchange => '$(this.form).submit();'} )  %>
         <% end %>
         
       <% elsif  @drop_box_account.nil? and !@google_account.nil?  %>  
