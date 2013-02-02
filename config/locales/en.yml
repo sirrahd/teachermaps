@@ -72,7 +72,9 @@ en:
     drop_box_open_folder:       "Open DropBox Folder"
     drop_box_remove_label:      "Remove DropBox"
     drop_box_remove_confirm:    "Removing DropBox access. This will not delete your files. Are you sure?"
+    upload_to_label:            "Default Upload To:"
   google_accounts:
+    google_drive:                "Google Drive"
     removed:                     "Removed Google Drive Account"
     remove_invalid:              "Delete your own Google Account!"
     success_sync:                "Synced with Google Drive"
@@ -97,7 +99,8 @@ en:
   link_resources:
     link_not_valid:              "is not a valid web link."
     link_blank_error:            "cannot be blank."
-  drop_box_acounts:
+  drop_box_accounts:
+    drop_box:                    "DropBox"
     found_existing_account:      "Found existing DropBox account"
     session_request_error:       "There was an error requesting for DropbBox authentication"
     removed:                     "Removed DropBox Account"

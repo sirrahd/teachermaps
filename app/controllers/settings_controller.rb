@@ -1,16 +1,10 @@
 class SettingsController < ApplicationController
-  # GET /settings
-  # GET /settings.json
+  
+  before_filter :require_session
+
+
   def index
-    @setting = Setting
-
-
-    # Re-directs users if not logged in
-    if !signed_in?
-      return respond_to do |format|
-        format.html { redirect_to  signin_url }
-      end
-    end
+    @setting = Setting.find(@current_user.id)
 
     @google_account = nil
     if @current_user.has_google_account?
@@ -97,4 +91,13 @@ class SettingsController < ApplicationController
   #     format.json { head :no_content }
   #   end
   # end
+
+  private
+
+  # Requires user session
+  def require_session
+    unless current_user
+      redirect_to signin_path
+    end
+  end
 end

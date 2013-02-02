@@ -41,7 +41,7 @@ class DropBoxAccountsController < ApplicationController
 
     # User denied TeacherMaps access to during OAuth handshake
     if params[:not_approved] == 'true'
-      return redirect_to settings_url, :flash => { :notice=> t('drop_box_acounts.denied_oauth')}
+      return redirect_to settings_url, :flash => { :notice=> t('drop_box_accounts.denied_oauth')}
     end
 
     # Get user's DropBox account
@@ -78,9 +78,9 @@ class DropBoxAccountsController < ApplicationController
            # Remove all resources reference to DropBox resources belonging to this user
            DropBoxResource.delete_all( :type =>'DropBoxResource', :user_id=>@current_user.id  )
 
-           flash['success'] = t('drop_box_acounts.removed')
+           flash['success'] = t('drop_box_accounts.removed')
         else 
-           flash['notice'] = t('drop_box_acounts.remove_invalid')
+           flash['notice'] = t('drop_box_accounts.remove_invalid')
         end
 
     end

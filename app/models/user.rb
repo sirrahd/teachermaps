@@ -18,14 +18,17 @@ class User < ActiveRecord::Base
 
   has_one :google_account
   has_one :drop_box_account
+  has_one :setting
   
   has_many :resources
+
   
   before_save do |user|
     user.email = user.email.downcase
     user.account_name = user.account_name.downcase
   end
   before_save :create_remember_token
+  before_create :default_values
   
   validates :name, presence: true, length: { maximum: 50 }
   
@@ -57,7 +60,11 @@ class User < ActiveRecord::Base
   end
 
   private
-  
+
+  def default_values
+    self.setting = Setting.new
+  end
+
   def create_remember_token
     self.remember_token = SecureRandom.urlsafe_base64
   end
