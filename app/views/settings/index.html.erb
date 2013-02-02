@@ -41,21 +41,19 @@
 
   <tr>
     <td>
-    </td>
-    <td>
       <% if !@drop_box_account.nil? and !@google_account.nil?  %>
         <%= form_for @setting, remote: true, html: {  :'data-type' => 'html', id: 'setting_form' }  do |f| %>
-          <%= label_tag(:upload_to, t('setting.upload_to_label')) %>
+          <%= label_tag(:upload_to, t('settings.upload_to_label')) %>
           <%= f.select(:upload_to, [ t('google_accounts.google_drive'), t('drop_box_accounts.drop_box') ])  %>
         <% end %>
       <% elsif  @drop_box_account.nil? and !@google_account.nil?  %>  
         <%= form_for @setting, remote: true, html: {  :'data-type' => 'html', id: 'setting_form' }  do |f| %>
-          <%= label_tag(:upload_to, t('setting.upload_to_label')) %>
+          <%= label_tag(:upload_to, t('settings.upload_to_label')) %>
           <%= f.select(:upload_to, [ t('google_accounts.google_drive') ], {}, {:class => 'disabled', :disabled=>'disabled'})  %>
         <% end %>   
       <% elsif  !@drop_box_account.nil? and @google_account.nil?  %>  
         <%= form_for @setting, remote: true, html: {  :'data-type' => 'html', id: 'setting_form', class: 'disabled' }  do |f| %>
-          <%= label_tag(:upload_to, t('setting.upload_to_label')) %>
+          <%= label_tag(:upload_to, t('settings.upload_to_label')) %>
           <%= f.select(:upload_to, [ t('drop_box_accounts.drop_box') ], {}, {:class => 'disabled', :disabled=>'disabled'})  %>
         <% end %>
       <% else %>
@@ -63,6 +61,8 @@
       <% end %>
     </td>
     <td></td>
+    <td>
+    </td>
   </tr>
 
 </table>
