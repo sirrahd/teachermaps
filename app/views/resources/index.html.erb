@@ -13,10 +13,13 @@
   </div>
 </span>
 
-<%= render 'resources/fine_uploader' %>
 
 <div>
-<%= render 'resources/resources_table' %>
+  <%= render 'resources/fine_uploader' %>
+</div>
+
+<div>
+  <%= render 'resources/resources_table' %>
 </div>
 
 <div id="loadingModal" style="text-align:center;" class="modal hide fade in" tabindex="-1" role="dialog" aria-labelledby="loadingModalLabel" aria-hidden="true" >
@@ -42,3 +45,13 @@
   </div>
   <div class="modal-header"></div>
 </div>
+
+
+
+
+<%= stylesheet_link_tag "fineuploader-3.2" %>
+<%= javascript_include_tag 'fineuploader-3.2' %>
+
+<script type="text/javascript">
+  window.onload = createUploader;
+</script>
