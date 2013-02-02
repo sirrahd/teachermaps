@@ -94,7 +94,7 @@ en:
     update_resources:           "Upload Resource"
     title_label:                "Title: "
     loading_label:              "Loading..."
-    link_lable:                 "Link: "
+    link_label:                 "Link: "
     upload_label:               "Upload a Resource"
     upload_success:             "Resource upload was successful!"
     does_not_exist:             "Resouce does not exist"

@@ -14,9 +14,8 @@
 </span>
 
 
-<div>
-  <%= render 'resources/fine_uploader' %>
-</div>
+
+
 
 <div>
   <%= render 'resources/resources_table' %>
@@ -35,13 +34,32 @@
   <div class="modal-header"><h1><%= t('resources.upload_label') %></h1></div>
   <div class="modal-body">
     <div id="uploadResourcesErrors"></div>
+    Grade: <br/>
+    Subject: <br/>
+    Tags: <br/><br/>
+
+    
+
     <%= form_for Resource.new, remote: true, html: {  :'data-type' => 'html', id: 'create_resource_form' }  do |f| %>
-      <%= label_tag(:title, t('resource.title_label')) %>
+      <%= label_tag(:title, t('resources.title_label')) %>
       <%= f.text_field :title  %>
-      <%= label_tag(:link, t('resource.link_label')) %>
+
+      Upload Link:<br/>
+      <%= label_tag(:link, t('resources.link_label')) %>
       <%= f.text_field :link  %>
+
+
+      or <br/><br/>
+
+      Upload File: <br/>
+
+      <div id="bootstrapped-fine-uploader"></div>
       <%= submit_tag("Upload", :class=>"btn") %>
     <% end %>
+
+    
+
+    <script type="text/javascript">window.onload = createUploader;</script>
   </div>
   <div class="modal-header"></div>
 </div>
@@ -52,6 +70,3 @@
 <%= stylesheet_link_tag "fineuploader-3.2" %>
 <%= javascript_include_tag 'fineuploader-3.2' %>
 
-<script type="text/javascript">
-  window.onload = createUploader;
-</script>
