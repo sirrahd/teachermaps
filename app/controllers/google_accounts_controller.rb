@@ -21,7 +21,7 @@ class GoogleAccountsController < ApplicationController
     end
     
     respond_to do |format|
-      format.html { redirect_to settings_url, :flash => { :notice => t ('google_accounts.already_added') }}
+      format.html { redirect_to settings_url, :flash => { :notice => I18n.t('google_accounts.already_added') }}
     end
 
   end
