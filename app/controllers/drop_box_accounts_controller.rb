@@ -62,6 +62,7 @@ class DropBoxAccountsController < ApplicationController
   def destroy
  
     @drop_box_account = DropBoxAccount.find(params[:id])
+    @setting = Setting.find(@current_user.id)
     
      flash = {}
      if @current_user.has_drop_box_account?
@@ -77,6 +78,16 @@ class DropBoxAccountsController < ApplicationController
 
            # Remove all resources reference to DropBox resources belonging to this user
            DropBoxResource.delete_all( :type =>'DropBoxResource', :user_id=>@current_user.id  )
+
+           if @current_user.has_google_account?
+              # Transfer default uploads to DropBox
+              @setting.upload_to = t('google_accounts.google_drive')
+           else
+              # User is going to need to assign one before next upload
+              @setting.upload_to = nil
+           end
+
+           @setting.save()
 
            flash['success'] = t('drop_box_accounts.removed')
         else 

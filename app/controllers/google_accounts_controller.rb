@@ -30,6 +30,8 @@ class GoogleAccountsController < ApplicationController
 
   def destroy
      @google_account = GoogleAccount.find(params[:id])
+     @setting = Setting.find(@current_user.id)
+
     
      flash = {}
      if @current_user.has_google_account?
@@ -47,6 +49,17 @@ class GoogleAccountsController < ApplicationController
            GoogleResource.delete_all( :type=>'GoogleResource', :user_id=>@current_user.id )
 
            flash['success'] = t('google_accounts.removed')
+
+
+           if @current_user.has_drop_box_account?
+              # Transfer default uploads to DropBox
+              @setting.upload_to = t('drop_box_accounts.drop_box')
+           else
+              # User is going to need to assign one before next upload
+              @setting.upload_to = nil
+           end
+           @setting.save()
+
         else 
            flash['notice'] = t('google_accounts.remove_invalid')
         end

@@ -75,6 +75,7 @@ en:
     upload_to_label:            "Default Upload To:"
     save_success:               "Settings saved"
     save_error:                 "Error in saving settings"
+    select_storage_service:     "In order to upload a resource, you must select a storage service."
   google_accounts:
     google_drive:               "Google Drive"
     removed:                    "Removed Google Drive Account"

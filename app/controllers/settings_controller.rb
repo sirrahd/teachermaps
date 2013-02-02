@@ -15,6 +15,10 @@ class SettingsController < ApplicationController
       @drop_box_account = @current_user.drop_box_account
     end
 
+    if @google_account.nil? and @drop_box_account.nil?
+      flash['info'] = t('settings.select_storage_service')
+    end
+
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @settings }
