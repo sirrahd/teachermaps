@@ -18,11 +18,12 @@ jQuery(function($) {
 });
 
 
-function createUploader() {
+function createResourceUploader() {
+
     var uploader = new qq.FineUploader({
       element: document.getElementById('bootstrapped-fine-uploader'),
       request: {
-        endpoint: 'server/handleUploads'
+        endpoint: 'resources'
       },
       text: {
         uploadButton: '<i class="icon-upload icon-white"></i> Drag file or click here to add a resource'
@@ -37,7 +38,13 @@ function createUploader() {
         success: 'alert alert-success',
         fail: 'alert alert-error'
       },
+      multiple: false,
+      maxConnections: 1,
+      //sizeLimit: 104857600, //100 MB
+      sizeLimit: 2097200, //50 MB
+      autoUpload: false,
       debug: true
     });
+    return true;
 }
 

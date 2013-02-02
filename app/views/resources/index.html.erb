@@ -1,19 +1,11 @@
 <h1>My Resources</h1>
 
-<span class="pull-right">
-  <div class="btn-group" style="margin-bottom:10px;">
-    <a class="btn dropdown-toggle" data-toggle="dropdown" href="#" >
-      Action
-      <span class="caret"></span>
-    </a>
-    <ul class="dropdown-menu pull-left">
-      <li><%= link_to t('resources.sync'), "#loadingModal",'data-toggle' => "modal", :onclick => "window.location=\"#{sync_resources_path}\"" %></li>
-      <li><%= link_to t('resources.update_resources'), "#uploadResourceModal",'data-toggle' => "modal" %></li>
-    </ul>
-  </div>
+<span class="pull-right" style="margin-bottom:10px;">
+  
+      <%= link_to t('resources.sync_label'), "#loadingModal",'data-toggle' => "modal", :onclick => "window.location=\"#{sync_resources_path}\"", :class => 'btn'  %>
+      <%= link_to t('resources.upload_label'), "#uploadResourceModal",'data-toggle' => "modal", :class => 'btn' %>
+ 
 </span>
-
-
 
 
 
@@ -31,15 +23,14 @@
 
 
 <div id="uploadResourceModal" class="modal hide fade in" tabindex="-1" role="dialog" aria-labelledby="uploadResourceModalLabel" aria-hidden="true" >
-  <div class="modal-header"><h1><%= t('resources.upload_label') %></h1></div>
+  <div class="modal-header"><h1><%= t('resources.form_upload_label') %></h1></div>
   <div class="modal-body">
     <div id="uploadResourcesErrors"></div>
     Grade: <br/>
     Subject: <br/>
     Tags: <br/><br/>
 
-    
-
+  
     <%= form_for Resource.new, remote: true, html: {  :'data-type' => 'html', id: 'create_resource_form' }  do |f| %>
       <%= label_tag(:title, t('resources.title_label')) %>
       <%= f.text_field :title  %>
@@ -48,18 +39,19 @@
       <%= label_tag(:link, t('resources.link_label')) %>
       <%= f.text_field :link  %>
 
-
       or <br/><br/>
 
       Upload File: <br/>
 
       <div id="bootstrapped-fine-uploader"></div>
+      <br/><br/>
+
       <%= submit_tag("Upload", :class=>"btn") %>
     <% end %>
 
     
 
-    <script type="text/javascript">window.onload = createUploader;</script>
+    <script type="text/javascript">window.onload = createResourceUploader();</script>
   </div>
   <div class="modal-header"></div>
 </div>

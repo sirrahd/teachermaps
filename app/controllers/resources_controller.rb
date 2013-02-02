@@ -44,7 +44,8 @@ class ResourcesController < ApplicationController
 
   def create
     Rails.logger.info("Using this #{params}")
-    @resource = LinkResource.new( :link => params[:resource][:link] )
+    @resource = Resource.new()
+    @resource.link = params[:resource][:link]
     @resource.title = params[:resource][:title]
 
     respond_to do |format|

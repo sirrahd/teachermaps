@@ -86,7 +86,8 @@ en:
   resources:
     synced_n_files:             "Synced %{sync_count} files."
     link:                       "Resources"
-    sync:                       "Sync Files"
+    sync_label:                 "Sync"
+    upload_label:               "Upload"
     deleted_file:               "Deleted %{title}"
     delete_label:               "Delete"
     delete_file_confirmation:   "Delete %{title}?"
@@ -95,7 +96,7 @@ en:
     title_label:                "Title: "
     loading_label:              "Loading..."
     link_label:                 "Link: "
-    upload_label:               "Upload a Resource"
+    form_upload_label:          "Upload a Resource"
     upload_success:             "Resource upload was successful!"
     does_not_exist:             "Resouce does not exist"
     title_blank_error:          "cannot be blank."
