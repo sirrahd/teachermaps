@@ -5,9 +5,6 @@ class ResourcesController < ApplicationController
 
   before_filter :require_session
 
-
-  # GET /resources
-  # GET /resources.json
   def index
     @resources = Resource.where( :user_id => @current_user.id )
     Rails.logger.info("Resources = #{@resource}")
@@ -26,6 +23,11 @@ class ResourcesController < ApplicationController
   def show
     Rails.logger.info("Resource #{params[:id]}")
     @resource = Resource.find_by_slug( params[:id] )
+
+    if @resource.nil?
+      return redirect_to resources_url, :flash => { :error => t('resources.does_not_exist') }
+    end
+
     Rails.logger.info("Showing Resource #{@resource.slug} ")
     
     resource_link = @resource.open_link()
@@ -62,8 +64,7 @@ class ResourcesController < ApplicationController
   end
 
 
-  # DELETE /resources/1
-  # DELETE /resources/1.json
+
   def destroy
 
     begin
@@ -76,7 +77,7 @@ class ResourcesController < ApplicationController
 
     rescue
       Rails.logger.info("No such resource")
-      return redirect_to resources_url, :flash => { :error => 'Resouce does not exist' }
+      return redirect_to resources_url, :flash => { :error =>  t('resources.does_not_exist') }
     end
 
     # Cache for flash notification

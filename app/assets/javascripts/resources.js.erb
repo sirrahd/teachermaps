@@ -12,7 +12,7 @@ jQuery(function($) {
         // Hide the upload form    
         $('#uploadResourceModal').modal('hide');
         // Flash user of the success
-        pushFlash("Resource upload was successful!", 'success');
+        pushFlash("<%= I18n.t('resources.upload_success') %>", 'success');
     });
     
 });

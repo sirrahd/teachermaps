@@ -77,6 +77,7 @@ en:
     remove_invalid:              "Delete your own Google Account!"
     success_sync:                "Synced with Google Drive"
     denied_oauth:                "You denied TeacherMaps access to Google Drive"
+    already_added:               "Google Drive already added"
   resources:
     synced_n_files:              "Synced %{sync_count} files."
     link:                        "Resources"
@@ -89,6 +90,13 @@ en:
     title_label:                 "Title: "
     loading_label:               "Loading..."
     link_lable:                  "Link: "
+    upload_label:                "Upload a Resource"
+    upload_success:              "Resource upload was successful!"
+    does_not_exist:              "Resouce does not exist"
+    title_blank_error:           "cannot be blank."
+  link_resources:
+    link_not_valid:              "is not a valid web link."
+    link_blank_error:            "cannot be blank."
   drop_box_acounts:
     found_existing_account:      "Found existing DropBox account"
     session_request_error:       "There was an error requesting for DropbBox authentication"

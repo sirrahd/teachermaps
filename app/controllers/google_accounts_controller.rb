@@ -5,9 +5,6 @@ class GoogleAccountsController < ApplicationController
   before_filter :require_session
   
 
-
-  # GET /google_accounts/new
-  # GET /google_accounts/new.json
   def new
 
     if !@current_user.has_google_account?
@@ -24,16 +21,13 @@ class GoogleAccountsController < ApplicationController
     end
     
     respond_to do |format|
-      format.html { redirect_to settings_url, :flash => { :notice => "Google Drive already added." }}
+      format.html { redirect_to settings_url, :flash => { :notice => t ('google_accounts.already_added') }}
     end
 
   end
 
 
 
-
-  # DELETE /google_accounts/1
-  # DELETE /google_accounts/1.json
   def destroy
      @google_account = GoogleAccount.find(params[:id])
     

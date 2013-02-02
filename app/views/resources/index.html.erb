@@ -27,7 +27,7 @@
 
 
 <div id="uploadResourceModal" class="modal hide fade in" tabindex="-1" role="dialog" aria-labelledby="uploadResourceModalLabel" aria-hidden="true" >
-  <div class="modal-header"><h1>Upload a Resource</h1></div>
+  <div class="modal-header"><h1><%= t('resources.upload_label') %></h1></div>
   <div class="modal-body">
     <div id="uploadResourcesErrors"></div>
     <%= form_for Resource.new, remote: true, html: {  :'data-type' => 'html', id: 'create_resource_form' }  do |f| %>
