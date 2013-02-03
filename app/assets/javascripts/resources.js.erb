@@ -27,51 +27,78 @@ jQuery(function($) {
         e.preventDefault();
     });
 
-    $("#create_resource_form")
-    .bind("ajax:error", function(event, data, status, xhr) {
-        // Not sure why I have to use the responseText here
-        $("#uploadResourcesErrors").html(data.responseText);      
-    })
-    .bind("ajax:success", function(event, data, status, xhr) {
-        // Update the resources table
-        $("#resources_table").html(data);  
-        // Hide the upload form    
-        $('#uploadResourceModal').modal('hide');
-        // Flash user of the success
-        pushFlash({message:"<%= I18n.t('resources.upload_success') %>", state:'success'});
-    });
 
-    // Initialize the jQuery File Upload widget:
+     // Initialize the jQuery File Upload widget:
     $('#create_resource_form').fileupload({
-        url : '/resources',
+        url : '/resources/ajax/file',
+        autoUpload: false,
+        dataType: 'json',
         maxNumberOfFiles: 1,
         maxFileSize: 52428800,
-        dropZone: $('#dropzone')
-    })
-    .bind('fileuploadadd', function (e, data) {
-        filename = data.originalFiles[0].name;
-        $('#resourceContainer').empty();
-        $('#resourceContainer').append('<tbody><tr><td>'+filename+'</td></tr></tbody>');
-        // data.submit();
-        // data.formData = $('create_resource_form').serializeArray();
-        // data.submit();
+        dropZone: $('#dropzone'),
+        add : function (e, data){
+            filename = data.originalFiles[0].name;
+            $('#resourceContainer').empty();
+            $('#resourceContainer').append('<tbody><tr><td>'+filename+'</td></tr></tbody>');
+            console.log("Sending "+filename);
+
+             $('#submit-resource-form').on('click', function () {
+                console.log("Sending data + files");
+                data.submit();
+            });
+
+        }
     });
+
    
-    $('#create_resource_form').bind('fileuploadsubmit', function (e, data) {
-        return false;
-        // filename = data.originalFiles[0].name;
-        // $('#resourceContainer').empty();
-        // $('#resourceContainer').append('<tbody><tr><td>'+filename+'</td></tr></tbody>');
-        // data.formData = $('create_resource_form').serializeArray();
-        // data.submit();
-        // // The example input, doesn't have to be part of the upload form:
-        // var input = $('#input');
-        // data.formData = {example: input.val()};
-        // if (!data.formData.example) {
-        //   input.focus();
-        //   return false;
-        // }
-    });
+
+    // $("#create_resource_form")
+    // // .bind("ajax:beforeSend", function (event, data, stats, xhr){
+    // //     console.log("Before sending data");
+    // //     console.log(data);
+    // //     // data.submit();
+    // // })
+    // .bind("ajax:success", function(event, data, status, xhr) {
+    //     // Update the resources table
+    //     $("#resources_table").html(data);  
+    //     // Hide the upload form    
+    //     $('#uploadResourceModal').modal('hide');
+    //     // Flash user of the success
+    //     pushFlash({message:"<%= I18n.t('resources.upload_success') %>", state:'success'});
+    // })
+    // .bind("ajax:error", function(event, data, status, xhr) {
+    //     // Not sure why I have to use the responseText here
+    //     $("#uploadResourcesErrors").html(data.responseText); 
+    //     console.log("Error in form fields submission");
+        
+    // });
+
+   
+
+    // .bind('fileuploadadd', function (e, data) {
+    //     filename = data.originalFiles[0].name;
+    //     $('#resourceContainer').empty();
+    //     $('#resourceContainer').append('<tbody><tr><td>'+filename+'</td></tr></tbody>');
+    //     // data.submit();
+    //     // data.formData = $('create_resource_form').serializeArray();
+    //     // data.submit();
+    // });
+   
+    // $('#create_resource_form').bind('fileuploadsubmit', function (e, data) {
+    //     return false;
+    //     filename = data.originalFiles[0].name;
+    //     $('#resourceContainer').empty();
+    //     $('#resourceContainer').append('<tbody><tr><td>'+filename+'</td></tr></tbody>');
+    //     data.formData = $('create_resource_form').serializeArray();
+    //     data.submit();
+    //     // The example input, doesn't have to be part of the upload form:
+    //     var input = $('#input');
+    //     data.formData = {example: input.val()};
+    //     if (!data.formData.example) {
+    //       input.focus();
+    //       return false;
+    //     }
+    // });
     
 });
 
