@@ -86,7 +86,6 @@
 #dropzone {
     display:none;
     background: rgb(220,235,258);
-    /*width: 150px;*/
     width: auto;
     height: 0px;
     line-height: 0px;
@@ -95,7 +94,6 @@
 }
 #dropzone.in {
     display:block;
-    /*width: 600px;*/
     height: 50px;
     line-height: 25px;
     font-size: larger;

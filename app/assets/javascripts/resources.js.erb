@@ -27,8 +27,6 @@ jQuery(function($) {
         e.preventDefault();
     });
 
-
-
     $("#create_resource_form")
     .bind("ajax:error", function(event, data, status, xhr) {
         // Not sure why I have to use the responseText here
@@ -44,19 +42,21 @@ jQuery(function($) {
     });
 
     // Initialize the jQuery File Upload widget:
-    $('#fileupload').fileupload({
+    $('#create_resource_form').fileupload({
         maxNumberOfFiles: 1,
         maxFileSize: 52428800,
-        debug: true,
-        dropZone: $('#dropzone') 
+        dropZone: $('#dropzone'),
+    }).bind('fileuploadadd', function (e, data) {
+        console.log('<tr>'+data.originalFiles[0].name+'</tr>');
+        
+        $('#resourceContainer').empty();
+        $('#resourceContainer').append('<tbody><tr><td>'+data.originalFiles[0].name+'</td></tr></tbody>');
     });
    
-    $('#fileupload').bind('fileuploadsubmit', function (e, data) {
+    $('#create_resource_form').bind('fileuploadsubmit', function (e, data) {
         // The example input, doesn't have to be part of the upload form:
         var input = $('#input');
         data.formData = {example: input.val()};
-        console.log("Pushing...");
-        console.log(data.formData);
         if (!data.formData.example) {
           input.focus();
           return false;

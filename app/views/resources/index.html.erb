@@ -48,12 +48,13 @@
         <span id="fileupload-button" class="btn btn-success fileinput-button">
             <i class="icon-plus icon-white"></i>
             <span>Drag and Drop or Click here to upload</span>
-            <%= f.file_field :file_upload, :id => 'fileupload' %>
+            <%= f.file_field :file_upload %>
         </span>
+        <!-- The table listing the files available for upload/download -->
+        <table class="table table-condensed" id="resourceContainer" ></table>
       </div>
       
-      <!-- The table listing the files available for upload/download -->
-      <table role="presentation" class="table table-striped files"><tbody></tbody></table>
+      
     
 
       <%= submit_tag("Upload", :class=>"btn") %>
