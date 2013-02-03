@@ -43,22 +43,29 @@
 
       Upload File: <br/>
 
-      <div id="bootstrapped-fine-uploader"></div>
-      <br/><br/>
+      <div>
+        <span id="dropzone" class="fade well">Drop resource files here</span>
+        <span id="fileupload-button" class="btn btn-success fileinput-button">
+            <i class="icon-plus icon-white"></i>
+            <span>Drag and Drop or Click here to upload</span>
+            <%= f.file_field :file_upload, :id => 'fileupload' %>
+        </span>
+      </div>
+      
+      <!-- The table listing the files available for upload/download -->
+      <table role="presentation" class="table table-striped files"><tbody></tbody></table>
+    
 
       <%= submit_tag("Upload", :class=>"btn") %>
     <% end %>
 
-    
-
-    <script type="text/javascript">window.onload = createResourceUploader();</script>
   </div>
   <div class="modal-header"></div>
 </div>
 
 
 
+<%= javascript_include_tag 'vendor/jquery.ui.widget', 'jquery.iframe-transport', 'jquery.fileupload', 'jquery.fileupload-ui', 'jquery.fileupload-fp'  %>
+<%= stylesheet_link_tag 'jquery.fileupload-ui' %>
 
-<%= stylesheet_link_tag "fineuploader-3.2" %>
-<%= javascript_include_tag 'fineuploader-3.2' %>
 

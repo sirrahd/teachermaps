@@ -1,7 +1,35 @@
 jQuery(function($) {
 
-  $("#create_resource_form")
+    // Expands dragover area
+    $(document).bind('dragover', function (e) {
+        var dropZone = $('#dropzone'),
+            timeout = window.dropZoneTimeout,
+            uploadButton = $('#fileupload-button');
+        if (!timeout) {
+            dropZone.addClass('in');            
+            uploadButton.hide();
+        } else {
+            clearTimeout(timeout);
+        }
+        if (e.target === dropZone[0]) {
+            dropZone.addClass('hover');
+        } else {
+            dropZone.removeClass('hover');
+        }
+        window.dropZoneTimeout = setTimeout(function () {
+            window.dropZoneTimeout = null;
+            dropZone.removeClass('in hover');
+            uploadButton.show();
+        }, 100);
+    });
 
+    $(document).bind('drop dragover', function (e) {
+        e.preventDefault();
+    });
+
+
+
+    $("#create_resource_form")
     .bind("ajax:error", function(event, data, status, xhr) {
         // Not sure why I have to use the responseText here
         $("#uploadResourcesErrors").html(data.responseText);      
@@ -14,37 +42,57 @@ jQuery(function($) {
         // Flash user of the success
         pushFlash({message:"<%= I18n.t('resources.upload_success') %>", state:'success'});
     });
+
+    // Initialize the jQuery File Upload widget:
+    $('#fileupload').fileupload({
+        maxNumberOfFiles: 1,
+        maxFileSize: 52428800,
+        debug: true,
+        dropZone: $('#dropzone') 
+    });
+   
+    $('#fileupload').bind('fileuploadsubmit', function (e, data) {
+        // The example input, doesn't have to be part of the upload form:
+        var input = $('#input');
+        data.formData = {example: input.val()};
+        console.log("Pushing...");
+        console.log(data.formData);
+        if (!data.formData.example) {
+          input.focus();
+          return false;
+        }
+    });
     
 });
 
 
-function createResourceUploader() {
+// function createResourceUploader() {
 
-    var uploader = new qq.FineUploader({
-      element: document.getElementById('bootstrapped-fine-uploader'),
-      request: {
-        endpoint: 'resources'
-      },
-      text: {
-        uploadButton: '<i class="icon-upload icon-white"></i> Drag file or click here to add a resource'
-      },
-      template: '<div class="qq-uploader" >' +
-                  '<pre class="qq-upload-drop-area" style="width: 510px;"><span>{dragZoneText}</span></pre>' +
-                  '<div class="qq-upload-button btn btn-success" style="width: auto;">{uploadButtonText}</div>' +
-                  '<span class="qq-drop-processing" ><span style="width: auto;">{dropProcessingText}</span><span class="qq-drop-processing-spinner"></span></span>' +
-                  '<ul class="qq-upload-list" style="margin-top: 10px; text-align: center;"></ul>' +
-                '</div>',
-      classes: {
-        success: 'alert alert-success',
-        fail: 'alert alert-error'
-      },
-      multiple: false,
-      maxConnections: 1,
-      //sizeLimit: 104857600, //100 MB
-      sizeLimit: 2097200, //50 MB
-      autoUpload: false,
-      debug: true
-    });
-    return true;
-}
+//     var uploader = new qq.FineUploader({
+//       element: document.getElementById('bootstrapped-fine-uploader'),
+//       request: {
+//         endpoint: 'resources'
+//       },
+//       text: {
+//         uploadButton: '<i class="icon-upload icon-white"></i> Drag file or click here to add a resource'
+//       },
+//       template: '<div class="qq-uploader" >' +
+//                   '<pre class="qq-upload-drop-area" style="width: 510px;"><span>{dragZoneText}</span></pre>' +
+//                   '<div class="qq-upload-button btn btn-success" style="width: auto;">{uploadButtonText}</div>' +
+//                   '<span class="qq-drop-processing" ><span style="width: auto;">{dropProcessingText}</span><span class="qq-drop-processing-spinner"></span></span>' +
+//                   '<ul class="qq-upload-list" style="margin-top: 10px; text-align: center;"></ul>' +
+//                 '</div>',
+//       classes: {
+//         success: 'alert alert-success',
+//         fail: 'alert alert-error'
+//       },
+//       multiple: false,
+//       maxConnections: 1,
+//       //sizeLimit: 104857600, //100 MB
+//       sizeLimit: 5242880052428800, //50 MB
+//       autoUpload: false,
+//       debug: true
+//     });
+//     return true;
+// }
 

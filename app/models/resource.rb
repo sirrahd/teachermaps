@@ -6,7 +6,7 @@ class Resource < ActiveRecord::Base
 	attr_accessible :slug
 
 	# Common attributes shared accross each Cloud Services
-	attr_accessible :file_size, :title, :mime_type
+	attr_accessible :file_size, :title, :mime_type, :file_upload
 
   	belongs_to :user
 
