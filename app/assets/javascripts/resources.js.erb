@@ -43,24 +43,34 @@ jQuery(function($) {
 
     // Initialize the jQuery File Upload widget:
     $('#create_resource_form').fileupload({
+        url : '/resources',
         maxNumberOfFiles: 1,
         maxFileSize: 52428800,
-        dropZone: $('#dropzone'),
-    }).bind('fileuploadadd', function (e, data) {
-        console.log('<tr>'+data.originalFiles[0].name+'</tr>');
-        
+        dropZone: $('#dropzone')
+    })
+    .bind('fileuploadadd', function (e, data) {
+        filename = data.originalFiles[0].name;
         $('#resourceContainer').empty();
-        $('#resourceContainer').append('<tbody><tr><td>'+data.originalFiles[0].name+'</td></tr></tbody>');
+        $('#resourceContainer').append('<tbody><tr><td>'+filename+'</td></tr></tbody>');
+        // data.submit();
+        // data.formData = $('create_resource_form').serializeArray();
+        // data.submit();
     });
    
     $('#create_resource_form').bind('fileuploadsubmit', function (e, data) {
-        // The example input, doesn't have to be part of the upload form:
-        var input = $('#input');
-        data.formData = {example: input.val()};
-        if (!data.formData.example) {
-          input.focus();
-          return false;
-        }
+        return false;
+        // filename = data.originalFiles[0].name;
+        // $('#resourceContainer').empty();
+        // $('#resourceContainer').append('<tbody><tr><td>'+filename+'</td></tr></tbody>');
+        // data.formData = $('create_resource_form').serializeArray();
+        // data.submit();
+        // // The example input, doesn't have to be part of the upload form:
+        // var input = $('#input');
+        // data.formData = {example: input.val()};
+        // if (!data.formData.example) {
+        //   input.focus();
+        //   return false;
+        // }
     });
     
 });

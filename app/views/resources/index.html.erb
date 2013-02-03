@@ -50,14 +50,12 @@
             <span>Drag and Drop or Click here to upload</span>
             <%= f.file_field :file_upload %>
         </span>
+        <br/>
         <!-- The table listing the files available for upload/download -->
         <table class="table table-condensed" id="resourceContainer" ></table>
       </div>
       
-      
-    
-
-      <%= submit_tag("Upload", :class=>"btn") %>
+      <%= submit_tag("Upload", :class=>"btn btn-primary start") %>
     <% end %>
 
   </div>
