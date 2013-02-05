@@ -2,8 +2,8 @@
   <a href="#" class="dropdown-toggle" data-toggle="dropdown">
     <%= t 'feedback.link' %> <b class="caret"></b>
   </a>
-  <ul class="dropdown-menu input-xlarge" style="padding:0;margin:0;">
-    <div class="well" style="background-color:white;border:0;box-shadow:none;margin-bottom:0;padding:10px 19px 1px">
+  <ul id="feedback-dropdown" class="dropdown-menu input-xlarge">
+    <div id="feedback-background" class="well">
       <%= form_for Feedback.new, remote: true, html: { :'data-type' => 'html', id: 'feedback_form' } do |f| %>
 
         <legend><%= t('feedback.title') %></legend>

@@ -1,5 +1,4 @@
 $(document).ready(function(){
-
   $('#feedback_form')
     .bind("ajax:beforeSend", function(evt, xhr, settings){
       var $submitButton = $(this).find('input[name="commit"]');
@@ -20,10 +19,8 @@ $(document).ready(function(){
       var $feedbackDropdown = $(this).parent()
       $feedbackDropdown.children().addClass('hidden');
       $feedbackDropdown.append("<p id='confirm'><%= I18n.t('feedback.success') %></p>");
-      $feedbackDropdown.removeClass('input-xlarge');
       setTimeout(function(){
         $('[data-toggle="dropdown"]').parent().removeClass('open');
-        $feedbackDropdown.addClass("input-xlarge");
         $('#confirm').remove();
         $feedbackDropdown.children().removeClass('hidden');
       }, 2000);
@@ -59,5 +56,4 @@ $(document).ready(function(){
       $('#validation_error').html(errorText);
       $('#feedback_message').focus();
     });
-
 });

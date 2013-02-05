@@ -20,31 +20,19 @@ textarea {
   text-align: center;
 }
 
-/* typography */
+/* component-specific */
 
-h1, h2, h3, h4, h5, h6 {
-  line-height: 1;
+#header {
+  margin-bottom: 20px;
 }
 
-h1 {
-  font-size: 3em;
-  letter-spacing: -2px;
-  margin-bottom: 30px;
-  text-align: center;
-}
-
-h2 {
-  font-size: 1.7em;
-  letter-spacing: -1px;
-  margin-bottom: 30px;
-  text-align: center;
-  font-weight: normal;
-  color: $grayLight;
-}
-
-p {
-  font-size: 1.1em;
-  line-height: 1.7em;
+/* This makes bootstrap wells flat white */
+#feedback-background {
+  background-color: white;
+  border: 0;
+  box-shadow: none;
+  margin-bottom: 0;
+  padding: 10px 19px 1px;
 }
 
 /* footer */
