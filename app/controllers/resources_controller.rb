@@ -1,6 +1,5 @@
 
 class ResourcesController < ApplicationController
-  include DropBoxAccountsHelper
   include SessionsHelper
 
   before_filter :require_session
