@@ -30,7 +30,7 @@
   <div class="modal-header"><h1><%= t('resources.upload_label') %></h1></div>
   <div class="modal-body">
     <div id="uploadResourcesErrors"></div>
-    <%= form_for Resource.new, remote: true, html: {  :'data-type' => 'html', id: 'create_resource_form' }  do |f| %>
+    <%= form_for Resource.new, remote: true, html: {  :'data-type' => 'html', id: 'create_resource_form' }  do |f| %>      
       <%= label_tag(:title, t('resource.title_label')) %>
       <%= f.text_field :title  %>
       <%= label_tag(:link, t('resource.link_label')) %>

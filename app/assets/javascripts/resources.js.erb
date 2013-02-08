@@ -13,6 +13,10 @@ jQuery(function($) {
         $('#uploadResourceModal').modal('hide');
         // Flash user of the success
         pushFlash("<%= I18n.t('resources.upload_success') %>", 'success');
+        // Rest form
+        this.reset();
+        // Clear any error notification
+        $("#uploadResourcesErrors").html('');      
     });
     
 });

@@ -3,6 +3,11 @@ For stateless flash notifications, defaults to yellow
 
 Message: string message to render in flash element
 */
+
+function clearFlash(){
+	$("#flash-container").html();
+}
+
 function pushFlash(message){
 	pushFlash(message, false);
 }
