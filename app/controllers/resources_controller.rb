@@ -41,103 +41,30 @@ class ResourcesController < ApplicationController
   end
 
 
-  # def create
-  
-  #   Rails.logger.info("Using this #{params}")
-  #   @resource = Resource.new()
-  #   @type = Resource::TYPE
-
-  #   if params[:resource].has_key?('type')
-  #     @resource.link = params[:resource][:type]
-  #     @type = LinkResource::TYPE
-  #     Rails.logger.info("Creating resource: #{@type}")
-  #   else
-
-  #     return format.js { render :nothing => true, :status => 200, :content_type => 'text/json' }
-  #   end
-
-    
-
-  #   # if params[:resource].has_key?('link')
-  #   #   @resource.link = params[:resource][:link]
-  #   #   @type = LinkResource::TYPE
-  #   # elsif @current_user.setting.has_upload_to?
-  #   #   @type = @current_user.setting.upload_to
-  #   # end
-
-  #   # # if params[:resource]
-
-  #   # @resource.title = params[:resource][:title]
-
-  #   # respond_to do |format|
-
-  #   #   if @resource.save
-  #   #     @current_user.resources << @resource
-  #   #     @resources = Resource.where( :user_id => @current_user.id )
-
-  #   #     format.html { render :partial => 'resources/resources_table' }
-  #   #     format.js
-  #   #   else
-
-  #   #     format.html { render :partial => 'resources/error_messages', :error => true, :status => 500  }
-  #   #     format.js
-  #   #   end
-  #   # end
-
-  #   respond_to do |format|
-  #     # if @setting.update_attributes(params[:setting])
-  #     #   Rails.logger.info("Settings save success")
-  #       format.js { render :nothing => true, :status => 200, :content_type => 'text/json' }
-  #     # else
-  #     #   Rails.logger.info("Settings save error")
-  #       # format.html { render :nothing => true, :status => 500, :content_type => 'text/json' }
-  #       # format.js
-  #     # end
-  #   end
-
-  # end
-
   def ajax_upload_link
     Rails.logger.info("Using this #{params}")
-    @resource = Resource.new()
-    @type = Resource::TYPE
-
-    # if params[:resource].has_key?('link')
-    #   @resource.link = params[:resource][:link]
-    #   @type = LinkResource::TYPE
-    # elsif @current_user.setting.has_upload_to?
-    #   @type = @current_user.setting.upload_to
-    # end
-
-    # if params[:resource]
+    @resource = ResourceLink.new(params[:resource])
+    @type = LinkResource::TYPE
 
     # @resource.title = params[:resource][:title]
+    # @resource.link = params[:resource][:link]
 
-    # respond_to do |format|
-
-      # if @resource.save
-      #   # @current_user.resources << @resource
-      #   # @resources = Resource.where( :user_id => @current_user.id )
-
-      #   format.html { render :partial => 'resources/resources_table' }
-      #   format.js
-      # else
-
-      #   format.html { render :partial => 'resources/error_messages', :error => true, :status => 500  }
-      #   format.js
-      # end
-
-    # end
+    Rails.logger.info("Creating #{@resource}")
 
     respond_to do |format|
-      # if @setting.update_attributes(params[:setting])
-      #   Rails.logger.info("Settings save success")
-        format.js { render :nothing => true, :status => 200, :content_type => 'text/json' }
-      # else
-      #   Rails.logger.info("Settings save error")
-        # format.html { render :nothing => true, :status => 500, :content_type => 'text/json' }
-        # format.js
-      # end
+
+      if @resource.save
+        @current_user.resources << @resource
+        @resources = Resource.where( :user_id => @current_user.id )
+
+        format.html { render :partial => 'resources/resources_table' }
+        format.js
+      else
+
+        format.html { render :partial => 'resources/error_messages', :error => true, :status => 500  }
+        format.js
+      end
+
     end
 
   end  
