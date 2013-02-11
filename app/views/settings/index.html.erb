@@ -1,0 +1,46 @@
+<table>
+  <tr>
+    <th>Settings</th>
+    <th></th>
+    <th></th>
+  </tr>
+
+  <tr>
+    <td>
+      <% if @google_account.nil?  %>
+        <%= link_to t('settings.google_drive_add_label'), new_google_account_path %> 
+      <% else %>
+        <%= link_to t('settings.google_drive_open_folder'), @google_account.drive_folder_link , :target => "_blank" %>
+      <% end %>
+    </td>
+    <td>
+      <% if !@google_account.nil? %>
+      &#124;
+      <%= link_to t('settings.google_drive_remove_label'), @google_account, :confirm => t('settings.google_drive_remove_confirm'), :method => :delete %>
+      <% end %>
+    </td>
+    <td></td>
+  </tr>
+
+  <tr>
+    <td>
+      <% if @drop_box_account.nil?  %>
+        <%= link_to t('settings.dropbox_add_label'), new_drop_box_accounts_path %>
+      <% else %>
+        <%= link_to t('settings.drop_box_open_folder'), @drop_box_account.folder_link , :target => "_blank" %> 
+      <% end %>
+    </td>
+    <td>
+      <% if !@drop_box_account.nil? %>
+      &#124;
+      <%= link_to t('settings.drop_box_remove_label'), @drop_box_account, :confirm => t('settings.drop_box_remove_confirm'), :method => :delete %>
+      <% end %>
+    </td>
+    <td></td>
+  </tr>
+
+</table>
+
+<br />
+
+
