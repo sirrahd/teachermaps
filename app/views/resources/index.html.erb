@@ -10,8 +10,8 @@
       <span class="caret"></span>
     </a>
     <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
-      <li><%= link_to "Upload File", "#uploadResourceModal",'data-toggle' => "modal" %></li>
-      <li><%= link_to "Upload Link", "#uploadResourceModal",'data-toggle' => "modal" %></li>
+      <li><%= link_to "Upload File", "#uploadResourceFileModal",'data-toggle' => "modal" %></li>
+      <li><%= link_to "Upload Link", "#uploadResourceLinkModal",'data-toggle' => "modal" %></li>
     </ul>
   </div>
 
@@ -32,7 +32,8 @@
 </div>
 
 
-<div id="uploadResourceModal" class="modal hide fade in" tabindex="-1" role="dialog" aria-labelledby="uploadResourceModalLabel" aria-hidden="true" >
+<div id="uploadResourceFileModal" class="modal hide fade in" tabindex="-1" role="dialog" aria-labelledby="uploadResourceModalLabel" aria-hidden="true" >
+  <button type="button" class="close" data-dismiss='modal' style="margin-right:10px;" >&times;</button>
   <div class="modal-header"><h1><%= t('resources.form_upload_label') %></h1></div>
   <div class="modal-body">
     <div id="uploadResourcesErrors"></div>
@@ -44,12 +45,6 @@
     <%= form_for Resource.new, html: { :multipart => true, :'data-type' => 'json', id: 'create_resource_form' }  do |f| %>
       <%= label_tag(:title, t('resources.title_label')) %>
       <%= f.text_field :title  %>
-
-      Upload Link:<br/>
-      <%= label_tag(:link, t('resources.link_label')) %>
-      <%= f.text_field :link  %>
-
-      or <br/><br/>
 
       Upload File: <br/>
 
@@ -66,6 +61,38 @@
       </div>
       
       <%= link_to("Upload", '#', :class=>"btn btn-primary start", :id=>"submit-resource-form") %>
+      <%= link_to("Cancel", '#', :class=>"btn btn start", "data-dismiss"=>"modal") %>
+    <% end %>
+
+  </div>
+  <div class="modal-header"></div>
+</div>
+
+
+<div id="uploadResourceLinkModal" class="modal hide fade in" tabindex="-1" role="dialog" aria-labelledby="uploadResourceModalLabel" aria-hidden="true" >
+  <button type="button" class="close" data-dismiss='modal' style="margin-right:10px;" >&times;</button>
+
+  <div class="modal-header"><h1><%= t('resources.form_upload_label') %></h1></div>
+  <div class="modal-body">
+    <div id="uploadResourcesErrors"></div>
+    Grade: <br/>
+    Subject: <br/>
+    Tags: <br/><br/>
+
+  
+    <%= form_for Resource.new, html: { :multipart => true, :'data-type' => 'json', id: 'create_resource_form' }  do |f| %>
+      Upload Link:<br/>
+
+
+      <%= label_tag(:title, t('resources.title_label')) %>
+      <%= f.text_field :title  %>
+
+      
+      <%= label_tag(:link, t('resources.link_label')) %>
+      <%= f.text_field :link  %>
+
+      <%= link_to("Upload", '#', :class=>"btn btn-primary start", :id=>"submit-resource-form") %>
+      <%= link_to("Cancel", '#', :class=>"btn btn start", "data-dismiss"=>"modal") %>
     <% end %>
 
   </div>
