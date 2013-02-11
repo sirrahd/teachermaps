@@ -83,6 +83,8 @@
     <%= form_for Resource.new, html: { :multipart => true, :'data-type' => 'json', id: 'create_resource_link_form' }  do |f| %>
       Upload Link:<br/>
 
+       <%= f.hidden_field 'type', :value => 'LinkResource' %>
+
 
       <%= label_tag(:title, t('resources.title_label')) %>
       <%= f.text_field :title  %>
@@ -91,7 +93,7 @@
       <%= label_tag(:link, t('resources.link_label')) %>
       <%= f.text_field :link  %>
 
-      <%= link_to("Upload", '#', :class=>"btn btn-primary start", :id=>"submit-resource-form") %>
+      <%= f.submit("Upload", :class=>"btn btn-primary start") %>
       <%= link_to("Cancel", '#', :class=>"btn btn start", "data-dismiss"=>"modal") %>
     <% end %>
 
