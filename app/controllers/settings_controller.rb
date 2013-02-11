@@ -36,17 +36,6 @@ class SettingsController < ApplicationController
     end
   end
 
-  # # GET /settings/new
-  # # GET /settings/new.json
-  # def new
-  #   @setting = Setting.new
-
-  #   respond_to do |format|
-  #     format.html # new.html.erb
-  #     format.json { render json: @setting }
-  #   end
-  # end
-
   # GET /settings/1/edit
   def edit
     @setting = Setting.find(params[:id])
@@ -59,13 +48,11 @@ class SettingsController < ApplicationController
 
     respond_to do |format|
       if @setting.update_attributes(params[:setting])
-        Rails.logger.info("Settings save success")
-        format.html { render :nothing => true, :status => 200, :content_type => 'text/html' }
-        format.js
+        format.html { redirect_to @setting, notice: 'Setting was successfully updated.' }
+        format.json { head :no_content }
       else
-        Rails.logger.info("Settings save error")
-        format.html { render :nothing => true, :status => 500, :content_type => 'text/html' }
-        format.js
+        format.html { render action: "edit" }
+        format.json { render json: @setting.errors, status: :unprocessable_entity }
       end
     end
   end
