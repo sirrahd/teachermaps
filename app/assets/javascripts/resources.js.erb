@@ -55,14 +55,17 @@ jQuery(function($) {
     
     $("#create_resource_link_form")
     .bind("ajax:error", function(event, data, status, xhr) {
+        console.log('Found error');
         // Not sure why I have to use the responseText here
         $("#uploadResourcesErrors").html(data.responseText);      
     })
     .bind("ajax:success", function(event, data, status, xhr) {
+        console.log('Successs');
+        console.log(data);
         // Update the resources table
         $("#resources_table").html(data);  
         // Hide the upload form    
-        $('#uploadResourceModal').modal('hide');
+        $('#uploadResourceLinkModal').modal('hide');
         // Flash user of the success
         pushFlash("<%= I18n.t('resources.upload_success') %>", 'success');
         // Rest form

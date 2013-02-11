@@ -43,13 +43,10 @@ class ResourcesController < ApplicationController
 
   def ajax_upload_link
     Rails.logger.info("Using this #{params}")
-    @resource = ResourceLink.new(params[:resource])
+    @resource = LinkResource.new(params[:resource])
     @type = LinkResource::TYPE
 
-    # @resource.title = params[:resource][:title]
-    # @resource.link = params[:resource][:link]
-
-    Rails.logger.info("Creating #{@resource}")
+    Rails.logger.info("Creating #{@resource.inspect}")
 
     respond_to do |format|
 
@@ -59,10 +56,11 @@ class ResourcesController < ApplicationController
 
         format.html { render :partial => 'resources/resources_table' }
         format.js
+        
       else
 
-        format.html { render :partial => 'resources/error_messages', :error => true, :status => 500  }
-        format.js
+        format.js { render :partial => 'shared/error_messages', :error => true, :status => 500 , :locals => {:object => @resource} }
+      
       end
 
     end
