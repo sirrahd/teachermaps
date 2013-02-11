@@ -17,8 +17,3 @@
 //= require i18n
 //= require i18n/translations
 
-// Not sure where to put this, does not work globaly if I put it into a specific js.erb file
-$(document).ready(function () { 
-	// Initiates all bootrap dropdowns.
-	$('.dropdown-toggle').dropdown(); 
-});	
