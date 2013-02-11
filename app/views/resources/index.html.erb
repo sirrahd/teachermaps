@@ -80,7 +80,7 @@
     Tags: <br/><br/>
 
   
-    <%= form_for Resource.new, :url => resources_ajax_link, html: { :multipart => true, :'data-type' => 'json', id: 'create_resource_link_form' }  do |f| %>
+    <%= form_for Resource.new, :url => resources_ajax_link_path, html: { :multipart => true, :'data-type' => 'json', id: 'create_resource_link_form' }  do |f| %>
       Upload Link:<br/>
 
       <%= label_tag(:title, t('resources.title_label')) %>

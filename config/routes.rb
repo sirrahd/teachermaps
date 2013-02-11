@@ -9,8 +9,8 @@ Teachermaps::Application.routes.draw do
 
   # Sync Google Drive and/or DropBox resources
   match 'resources/sync' => 'resources#sync', :as => 'sync_resources'
-  match '/resources/ajax/file' => 'resources#ajax_upload_file'
-  match '/resources/ajax/link' => 'resources#ajax_upload_link'
+  match '/resources/ajax/create/file' => 'resources#ajax_upload_file'
+  match '/resources/ajax/create/link' => 'resources#ajax_upload_link'
   resources :resources
   
   
