@@ -16,8 +16,3 @@
 //= require_tree .
 //= require i18n
 //= require i18n/translations
-
-$(document).ready(function () { 
-	// Initiates all bootrap dropdowns.
-	$('.dropdown-toggle').dropdown(); 
-});	
