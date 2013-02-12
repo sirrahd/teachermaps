@@ -10,6 +10,8 @@ class Resource < ActiveRecord::Base
 
   	belongs_to :user
 
+  	
+
   	# TeacherMaps specific attributes can be listed here
   	validates :title, :presence => {:message => I18n.t('resources.title_blank_error')}, :length => {:minimum => 2, :maximum => 2048}
 
