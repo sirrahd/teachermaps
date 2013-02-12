@@ -53,14 +53,11 @@ class ResourcesController < ApplicationController
       if @resource.save
         @current_user.resources << @resource
         @resources = Resource.where( :user_id => @current_user.id )
-
-        format.html { render :partial => 'resources/resources_table' }
-        format.js
+        format.js { render :partial => 'resources/resources_table' }
         
       else
 
         format.js { render :partial => 'shared/error_messages', :error => true, :status => 500 , :locals => {:object => @resource} }
-      
       end
 
     end
