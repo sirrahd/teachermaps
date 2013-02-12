@@ -67,7 +67,7 @@ jQuery(function($) {
         // Hide the upload form    
         $('#uploadResourceLinkModal').modal('hide');
         // Flash user of the success
-        pushFlash("<%= I18n.t('resources.upload_success') %>", 'success');
+        pushFlash({message:"<%= I18n.t('resources.upload_success') %>", state: 'success', fadeOut: 5000});
         // Rest form
         this.reset();
         // Clear any error notification
