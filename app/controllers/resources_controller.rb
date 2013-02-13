@@ -57,7 +57,8 @@ class ResourcesController < ApplicationController
         
       else
 
-        format.js { render :partial => 'shared/error_messages', :error => true, :status => 500 , :locals => {:object => @resource} }
+        # format.js { render :partial => 'shared/error_messages', :error => true, :status => 500 , :locals => {:object => @resource} }
+        format.js { render :partial => 'shared/error_messages', :locals => { :object => @resource }, :status => 500  }
       end
 
     end

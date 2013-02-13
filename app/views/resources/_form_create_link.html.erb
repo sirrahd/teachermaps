@@ -1,4 +1,4 @@
-<div id="uploadResourcesErrors"></div>
+<div id="uploadResourceLinkErrors"></div>
   
 <%= form_for Resource.new, :remote => true, :url => resources_ajax_create_link_path, html: { :multipart => true, :'data-type' => 'html', id: 'create_resource_link_form' }  do |f| %>
   Grade: <br/>
