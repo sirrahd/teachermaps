@@ -1,12 +1,13 @@
 class AddCourseSubjectToResources < ActiveRecord::Migration
-  def up
-  	create_table :table do |t|
-     
-      t.timestamps
-    end
+  def self.up
+    create_table :resources_subjects, :id => false do |t|
+	  t.references :course_subject, :resource 
+	end
+
+	add_index :resources_subjects, [:course_subject_id,:resource_id]
   end
 
-  def down
-  	drop_table :table
+  def self.down
+    drop_table :resources_subjects
   end
 end

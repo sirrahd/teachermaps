@@ -1,12 +1,13 @@
 class AddCourseGradeToResources < ActiveRecord::Migration
-  def up
-  	create_table :table do |t|
-     
-      t.timestamps
-    end
+  def self.up
+    create_table :resources_grades, :id => false do |t|
+	  t.references  :course_grade,:resource
+	end
+
+	add_index :resources_grades, [:course_grade_id,:resource_id,]
   end
 
-  def down
-  	drop_table :table
+  def self.down
+    drop_table :resources_grades
   end
 end
