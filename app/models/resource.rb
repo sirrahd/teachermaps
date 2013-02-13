@@ -10,8 +10,8 @@ class Resource < ActiveRecord::Base
 
   	belongs_to :user
 
-  	has_many :course_subjects
-  	has_many :course_grades
+  	has_and_belongs_to_many :course_subjects, :uniq => true
+  	has_and_belongs_to_many :course_grades, :uniq => true
 
   	# TeacherMaps specific attributes can be listed here
   	validates :title, :presence => {:message => I18n.t('resources.title_blank_error')}, :length => {:minimum => 2, :maximum => 2048}

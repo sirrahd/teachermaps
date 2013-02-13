@@ -6,28 +6,24 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
-# User.create( name: "James Kobol", email: "jim.kobol@gmail.com", account_name: "jameskobol", password: 'jameskobol', password_confirmation: 'jameskobol')
-
-CourseGrade.delete_all
-CourseGrade.create(:name => 'K')
-CourseGrade.create(:name => '1')
-CourseGrade.create(:name => '2')
-CourseGrade.create(:name => '3')
-CourseGrade.create(:name => '4')
-CourseGrade.create(:name => '5')
-CourseGrade.create(:name => '6')
-CourseGrade.create(:name => '7')
-CourseGrade.create(:name => '8')
-CourseGrade.create(:name => '9')
-CourseGrade.create(:name => '10')
-CourseGrade.create(:name => '11')
-CourseGrade.create(:name => '12')
+# Create the seed data 
 
 
-CourseSubject.delete_all
-CourseSubject.create(:name => 'Mathematics')
-CourseSubject.create(:name => 'Physics')
-CourseSubject.create(:name => 'Science')
-CourseSubject.create(:name => 'History')
-CourseSubject.create(:name => 'Social Studies')
-CourseSubject.create(:name => 'Foreign Languages')
+# Course Grades 
+seed = [
+	'K', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10',
+	'10', '11', '12'
+]
+seed.each do |name|  
+	CourseGrade.find_or_create_by_name name
+end  
+
+
+
+# Course Subjects
+seed = [
+	'Mathematics', 'Physics', 'Science', 'History', 'Social Studies', 'Foreign Languages'
+]
+seed.each do |name|  
+	CourseSubject.find_or_create_by_name name
+end  
