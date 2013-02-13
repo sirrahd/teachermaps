@@ -1,0 +1,42 @@
+<h1>My Resources</h1>
+
+<span class="pull-right">
+  <div class="btn-group" style="margin-bottom:10px;">
+    <a class="btn dropdown-toggle" data-toggle="dropdown" href="#" >
+      Action
+      <span class="caret"></span>
+    </a>
+    <ul class="dropdown-menu pull-left">
+      <li><%= link_to t('resources.sync'), "#loadingModal",'data-toggle' => "modal", :onclick => "window.location=\"#{sync_resources_path}\"" %></li>
+      <li><%= link_to t('resources.update_resources'), "#uploadResourceModal",'data-toggle' => "modal" %></li>
+    </ul>
+  </div>
+</span>
+
+<div>
+<%= render 'resources/resources_table' %>
+</div>
+
+<div id="loadingModal" style="text-align:center;" class="modal hide fade in" tabindex="-1" role="dialog" aria-labelledby="loadingModalLabel" aria-hidden="true" >
+  <div class="modal-header"><h1><%= t('resources.loading_label') %></h1></div>
+  <div class="modal-body">
+    <%= image_tag "loading.gif", :alt => "Loading"%>
+  </div>
+  <div class="modal-header"></div>
+</div>
+
+
+<div id="uploadResourceModal" class="modal hide fade in" tabindex="-1" role="dialog" aria-labelledby="uploadResourceModalLabel" aria-hidden="true" >
+  <div class="modal-header"><h1><%= t('resources.upload_label') %></h1></div>
+  <div class="modal-body">
+    <div id="uploadResourcesErrors"></div>
+    <%= form_for Resource.new, remote: true, html: {  :'data-type' => 'html', id: 'create_resource_form' }  do |f| %>      
+      <%= label_tag(:title, t('resource.title_label')) %>
+      <%= f.text_field :title  %>
+      <%= label_tag(:link, t('resource.link_label')) %>
+      <%= f.text_field :link  %>
+      <%= submit_tag("Upload", :class=>"btn") %>
+    <% end %>
+  </div>
+  <div class="modal-header"></div>
+</div>

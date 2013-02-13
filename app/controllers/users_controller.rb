@@ -11,7 +11,11 @@ class UsersController < ApplicationController
     redirect_to @current_user if signed_in?
     
     @user = User.new
+
+
   end
+  
+
   
   def create
     @user = User.new(params[:user])

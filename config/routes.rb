@@ -1,4 +1,17 @@
 Teachermaps::Application.routes.draw do
+  resources :drop_box_accounts
+  resources :google_accounts
+
+  resources :settings
+
+  resources :resource_types
+
+
+  # Sync Google Drive and/or DropBox resources
+  match 'resources/sync' => 'resources#sync', :as => 'sync_resources'
+  resources :resources
+  
+
   resources :users
   resources :sessions, only: [:new, :create, :destroy]
   resources :feedbacks, only: [:create]
@@ -6,12 +19,21 @@ Teachermaps::Application.routes.draw do
   root to: 'static_pages#home'
 
   match '/signup',  to: 'users#new'
-  match '/signin',  to: 'sessions#new'
+  match '/signin',  to: 'sessions#new', :as => 'signin'
   match '/signout', to: 'sessions#destroy', via: :delete
 
   match '/help',    to: 'static_pages#help'
   match '/about',   to: 'static_pages#about'
   match '/contact', to: 'static_pages#contact'
+
+  # Google API
+  match 'google/oauth_callback' => 'google_accounts#oauth_callback'
+
+  # DropBox API
+  match 'dropbox/new' => 'drop_box_accounts#new', :as => 'new_drop_box_accounts'
+  match 'dropbox/preview/:path' => 'drop_box_accounts#preview', :as => 'drop_box_accounts_preview', :constraints => {:path => /[\w.\/]+/}
+  match 'dropbox/oauth_callback' => 'drop_box_accounts#oauth_callback'
+
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

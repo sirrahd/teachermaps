@@ -11,6 +11,7 @@
         <div class="nav-collapse collapse">
           <ul class="nav pull-right">
             <% if signed_in? %>
+              <li><%= link_to t('resources.link'), resources_path %></li>
               <%= render 'shared/feedback_form' %>
               <li id="fat-menu" class="dropdown">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">

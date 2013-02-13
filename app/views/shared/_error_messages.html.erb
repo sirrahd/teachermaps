@@ -1,6 +1,13 @@
-<% if @user.errors.any? %>
-  <div class="alert alert-error">
-    <%= t('shared.errors', count: pluralize(@user.errors.count, t('shared.error_noun'))) %>
+<% if object.errors.any? %>
+  <div id="error_explanation">
+    <div class="alert alert-error">
+      <%= t('shared.errors', count: pluralize(object.errors.count, t('shared.error_noun'))) %>
+    </div>
+    <ul>
+    <% object.errors.full_messages.each do |msg| %>
+      <li>* <%= msg %></li>
+    <% end %>
+    </ul>
   </div>
   <ul class="unstyled">
   <% @user.errors.full_messages.each do |msg| %>
