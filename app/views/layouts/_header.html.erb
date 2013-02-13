@@ -19,7 +19,7 @@
                 </a>
                 <ul class="dropdown-menu">
                   <li><%= link_to t('signin.profile'), current_user %></li>
-                  <li><%= link_to t('signin.settings'), "#" %></li>
+                  <li><%= link_to t('signin.settings'), settings_path %></li>
                   <li class="divider"></li>
                   <li>
                     <%= link_to t('signin.signout'), signout_path, method: "delete" %>
