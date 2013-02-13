@@ -22,7 +22,7 @@
   <%= render 'resources/resources_table' %>
 </div>
 
-<div id="loadingModal" style="text-align:center;" class="modal hide fade in" tabindex="-1" role="dialog" aria-labelledby="loadingModalLabel" aria-hidden="true" >
+<div id="loadingModal" style="text-align:center;" class="modal hide fade in" tabindex="-1" role="dialog" aria-labelledby="loadingModalLabel">
   <div class="modal-header"><h1><%= t('resources.loading_label') %></h1></div>
   <div class="modal-body">
     <%= image_tag "loading.gif", :alt => "Loading"%>
@@ -31,7 +31,7 @@
 </div>
 
 
-<div id="uploadResourceFileModal" class="modal hide fade in" tabindex="-1" role="dialog" aria-labelledby="uploadResourceModalLabel" aria-hidden="true" >
+<div id="uploadResourceFileModal" class="modal hide fade in" tabindex="-1" role="dialog" aria-labelledby="uploadResourceModalLabel" >
   <button type="button" class="close" data-dismiss='modal' style="margin-right:10px;" >&times;</button>
   <div class="modal-header"><h1>Upload Resource File</h1></div>
   <div class="modal-body">

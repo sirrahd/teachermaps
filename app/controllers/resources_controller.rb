@@ -46,11 +46,11 @@ class ResourcesController < ApplicationController
     @resource = LinkResource.new(params[:resource])
     @type = LinkResource::TYPE
 
-    Rails.logger.info("Creating #{@resource.inspect}")
+    Rails.logger.info("Creating #{@resource.inspect} valid? #{@resource.valid?}")
 
     respond_to do |format|
 
-      if @resource.save
+      if @resource.valid? and @resource.save
         @current_user.resources << @resource
         @resources = Resource.where( :user_id => @current_user.id )
         format.js { render :partial => 'resources/resources_table' }
