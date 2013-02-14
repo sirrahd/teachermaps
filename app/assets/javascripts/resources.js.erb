@@ -1,32 +1,34 @@
-jQuery(function($) {
+jQuery(function($) {    
 
-    
-    // Expands dragover area
-    $(document).bind('dragover', function (e) {
-        var dropZone = $('#dropzone'),
-            timeout = window.dropZoneTimeout,
-            uploadButton = $('#fileupload-button');
-        if (!timeout) {
-            dropZone.addClass('in');            
-            uploadButton.hide();
-        } else {
-            clearTimeout(timeout);
-        }
-        if (e.target === dropZone[0]) {
-            dropZone.addClass('hover');
-        } else {
-            dropZone.removeClass('hover');
-        }
-        window.dropZoneTimeout = setTimeout(function () {
-            window.dropZoneTimeout = null;
-            dropZone.removeClass('in hover');
-            uploadButton.show();
-        }, 100);
-    });
+    // $('select').select2();
 
-    $(document).bind('drop dragover', function (e) {
-        e.preventDefault();
-    });
+ 
+    // // Expands dragover area
+    // $(document).bind('dragover', function (e) {
+    //     var dropZone = $('#dropzone'),
+    //         timeout = window.dropZoneTimeout,
+    //         uploadButton = $('#fileupload-button');
+    //     if (!timeout) {
+    //         dropZone.addClass('in');            
+    //         uploadButton.hide();
+    //     } else {
+    //         clearTimeout(timeout);
+    //     }
+    //     if (e.target === dropZone[0]) {
+    //         dropZone.addClass('hover');
+    //     } else {
+    //         dropZone.removeClass('hover');
+    //     }
+    //     window.dropZoneTimeout = setTimeout(function () {
+    //         window.dropZoneTimeout = null;
+    //         dropZone.removeClass('in hover');
+    //         uploadButton.show();
+    //     }, 100);
+    // });
+
+    // $(document).bind('drop dragover', function (e) {
+    //     e.preventDefault();
+    // });
 
 
      // Initialize the jQuery File Upload widget:

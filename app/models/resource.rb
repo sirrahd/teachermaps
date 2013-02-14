@@ -8,10 +8,18 @@ class Resource < ActiveRecord::Base
 	# Common attributes shared accross each Cloud Services
 	attr_accessible :file_size, :title, :mime_type, :file_upload
 
+
+
   	belongs_to :user
 
   	has_and_belongs_to_many :course_subjects, :uniq => true
   	has_and_belongs_to_many :course_grades, :uniq => true
+
+  	accepts_nested_attributes_for :course_subjects
+  	accepts_nested_attributes_for :course_grades
+
+  	attr_accessible :course_subjects
+  	attr_accessible :course_grades
 
   	# TeacherMaps specific attributes can be listed here
   	validates :title, :presence => {:message => I18n.t('resources.title_blank_error')}, :length => {:minimum => 2, :maximum => 2048}

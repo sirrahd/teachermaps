@@ -44,6 +44,26 @@ class ResourcesController < ApplicationController
   def ajax_upload_link
     Rails.logger.info("Using this #{params}")
     @resource = LinkResource.new(params[:resource])
+    # @resource.title = params[:resource][:title]
+    # @resource.link = params[:resource][:link]
+    
+    # [:resource][:course_subjects].delete_if { |x| x == ''}
+    # [:resource][:course_grades].delete_if { |x| x == ''}
+
+    # params[:resource][:course_subjects].split(',')
+    
+    # params[:resource][:course_subjects].each do |d|
+    #   Rails.logger.info(d)
+    # end
+    # params[:resource][:course_grades].each do |d|
+    #   Rails.logger.info(d)
+    # end
+
+
+
+    @resource.course_subjects = params[:resource][:course_subjects]
+    @resource.course_grades = params[:resource][:course_grades]
+    
     @type = LinkResource::TYPE
 
     Rails.logger.info("Creating #{@resource.inspect} valid? #{@resource.valid?}")
