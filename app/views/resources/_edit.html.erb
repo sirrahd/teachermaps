@@ -13,12 +13,12 @@
 
 
   <%= label_tag(:course_grades, "Grades") %>
-  <%= select_tag('resource[course_grades]', options_from_collection_for_select(@resource.course_grades, 'id', 'name'), { :multiple => true, :style=>'width:100%;' }) %>
+  <input type="hidden" name="resource[course_grades]"  id="select_edit_coruse_grades">
   <br/><br/>
  
 
   <%= label_tag(:course_subjects, "Subjects") %>
-  <%= select_tag('resource[course_subjects]', options_from_collection_for_select(@resource.course_subjects, 'id', 'name'), { :multiple => true, :style=>'width:100%;' }) %>
+  <%= select_tag('resource[course_subjects]', options_from_collection_for_select(CourseSubject.all, 'id', 'name'), { :multiple => true, :style=>'width:100%;', :id=>'select_edit_coruse_subjects'}) %>
   <br/><br/>
 
   <span>
@@ -35,3 +35,31 @@
 
 <% end %>
 </div>
+
+<script type="text/javascript">
+$(document).ready(function() { 
+
+  $("#select_edit_coruse_grades").select2({ function(){
+    var data = {results: [ 
+      {'id':1, 'text':'Ben'}, 
+      {'id':22, 'text':'Andrea'}, 
+      {'id':23, 'text':'Tim'}, 
+      {'id':7, 'text':'Matt'}]
+    };
+    data.results.push({text: data.text});
+    query.callback(data);
+  }}).select2({
+    multiple : true,
+  });
+  
+    // $("#select_edit_coruse_subjects").select2({
+    //   tags: [
+    //     {'id':1, 'text':'Ben'}, 
+    //     {'id':22, 'text':'Andrea'}, 
+    //     {'id':23, 'text':'Tim'}, 
+    //     {'id':7, 'text':'Matt'}
+    //   ]
+    // }).select2("val", [1,22]);
+});
+
+</script>
