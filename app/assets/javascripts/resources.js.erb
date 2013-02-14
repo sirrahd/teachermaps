@@ -1,7 +1,6 @@
 jQuery(function($) {    
 
     // $('select').select2();
- 
 
     $("#create_resource_link_form")
     .live("ajax:error", function(event, data, status, xhr) {
@@ -19,7 +18,6 @@ jQuery(function($) {
         this.reset();
         // Clear any error notification
         $("#uploadResourcesErrors").html('');  
-        // $('select').select2();
     });
 
 
@@ -42,7 +40,6 @@ jQuery(function($) {
 
             $('#viewResourceLinkModal').modal('hide');
             console.log("Loaded Resource:"+resourceId);
-            // $('select').select2();
         });   
 
     });
@@ -64,8 +61,7 @@ jQuery(function($) {
         // Rest form
         this.reset();
         // Clear any error notification
-        $("#editResourceLinkErrors").html('');  
-        // $('select').select2();
+        $("#editResourceLinkErrors").html(''); 
     });
 
 

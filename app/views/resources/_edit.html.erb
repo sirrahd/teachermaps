@@ -13,17 +13,15 @@
 
 
   <%= label_tag(:course_grades, "Grades") %>
-  <label><%= @resource.course_grades %></label>
-  <%= select_tag("course_grade_ids[]", options_for_select(CourseGrade.find(:all).collect { |cat| [cat.name, cat.id] }, @resource.course_grades.collect { |cat| cat.id}), {:multiple=>true, :size=>3})%>
+  <%= select_tag("resource[course_grades]", options_for_select(CourseGrade.find(:all).collect { |cat| [cat.name, cat.id] }, @resource.course_grades.collect { |cat| cat.id}), {:multiple=>true, :id=>'select_edit_coruse_grades'})%>
   <br/><br/>
  
 
   <%= label_tag(:course_subjects, "Subjects") %>
-  
+  <%= select_tag("resource[course_subjets]", options_for_select(CourseSubject.find(:all).collect { |cat| [cat.name, cat.id] }, @resource.course_subjects.collect { |cat| cat.id}), {:multiple=>true, :id=>'select_edit_coruse_subjects'})%>
   <br/><br/>
 
   <span>
-    
     <% if @resource.type == LinkResource::TYPE %>
       <%= link_to 'Open Link', @resource.link, :class => 'btn', :target => "_blank"  %>
     <% else %>
@@ -40,17 +38,12 @@
 <script type="text/javascript">
 $(document).ready(function() { 
 
-  // $("#select_edit_coruse_grades").select2({});
-  $("#select_edit_coruse_subjects").select2({});
-  
-    // $("#select_edit_coruse_subjects").select2({
-    //   tags: [
-    //     {'id':1, 'text':'Ben'}, 
-    //     {'id':22, 'text':'Andrea'}, 
-    //     {'id':23, 'text':'Tim'}, 
-    //     {'id':7, 'text':'Matt'}
-    //   ]
-    // }).select2("val", [1,22]);
+  $("#select_edit_coruse_grades").select2({
+    width : 'resolve'
+  });
+  $("#select_edit_coruse_subjects").select2({
+    width : 'resolve'
+  });
 });
 
 </script>
