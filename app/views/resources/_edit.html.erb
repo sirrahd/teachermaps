@@ -1,6 +1,7 @@
-<div id="uploadResourceLinkErrors"></div>
+<div class="span6">
+<div id="editResourceLinkErrors"></div>
   
-<%= form_for @resource, :remote => true, html: { :multipart => true, :'data-type' => 'html', id: 'create_resource_link_form' }  do |f| %>
+<%= form_for @resource, :url=>edit_resource_path(@resource), :remote => true, html: { :multipart => true, :'data-type' => 'html', id: 'edit_resource_link_form' }  do |f| %>
   <%= label_tag(:course_grades, "Grades") %>
   <%= select_tag('resource[course_grades]', options_from_collection_for_select(@resource.course_grades, 'id', 'name'), { :multiple => true, :style=>'width:100%;' }) %>
   <br/><br/>
@@ -12,7 +13,7 @@
 
   <span>
     <%= link_to 'Open Link', "#", :class => 'btn'  %>
-    <%= link_to t('resources.delete_label'), resource_path(@resource) , :confirm => t('resources.delete_file_confirmation', :title=>@resource.title), :method => :delete %>
+    <%= link_to t('resources.delete_label'), resource_path(@resource) , :confirm => t('resources.delete_file_confirmation', :title=>@resource.title), :method => :delete, :class=>'btn' %>
     <%= f.submit('Save', :class=>"btn") %>
   </span>
 
@@ -26,3 +27,4 @@
   <%= f.submit("Upload", :class=>"btn btn-primary start") %>
   <%= link_to("Cancel", '#', :class=>"btn btn start", "data-dismiss"=>"modal") %>
 <% end %>
+</div>

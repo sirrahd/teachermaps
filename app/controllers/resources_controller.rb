@@ -60,6 +60,29 @@ class ResourcesController < ApplicationController
   end
 
 
+    # GET /resources/1/edit
+  def edit
+    @resource = Resource.where(:id => params[:id], :user_id=>@current_user.id).first
+    Rails.logger.info("Editing #{@resource.inspect}")
+    render partial: "resources/edit"
+  end
+
+  # PUT /resrouce/1
+  # PUT /resource/1.json
+  def update
+    @resource = Resource.where(:id => params[:id], :user_id=>@current_user.id)
+
+    respond_to do |format|
+      if @resource.update_attributes(params[:resource])
+        format.html { render partial: "resources/edit"}
+      else
+        format.html { render partial: "resources/edit"}
+        format.json { render json: @setting.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+
+
   def ajax_upload_link
     Rails.logger.info("Using this #{params}")
     @resource = LinkResource.new

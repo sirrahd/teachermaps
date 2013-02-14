@@ -1,7 +1,6 @@
 jQuery(function($) {    
 
     $('select').select2();
-    // $('select').live('select2');
  
 
     $("#create_resource_link_form")
@@ -16,12 +15,57 @@ jQuery(function($) {
         pushFlash({message:"<%= I18n.t('resources.upload_success') %>", state: 'success', fadeOut: 5000});
         // Hide all modals
         $('.modal.in').modal('hide');   
-        $('modal-backdrop').remove();
         // Rest form
         this.reset();
         // Clear any error notification
         $("#uploadResourcesErrors").html('');  
         $('select').select2();
+    });
+
+
+    $("#editResourceLinkView")
+    .live("click", function() {
+        console.log("Editing view: ");
+
+        var resourceId = $(this).attr('resource-id');
+        
+        // Confirm form data
+        if (resourceId == undefined) return false;
+
+        $.ajax({
+          url: '/resources/'+resourceId+'/edit',
+          dataType: 'html'
+        }).done(function(data) {
+            console.log(data);
+            $('#editResourceLinkModalBody').html(data);
+            $('#editResourceLinkModal').modal('show');
+
+            $('#viewResourceLinkModal').modal('hide');
+            console.log("Loaded Resource:"+resourceId);
+            $('select').select2();
+        });   
+
+    });
+
+
+
+    $("#editResourceLinkModal")
+    .live("ajax:error", function(event, data, status, xhr) {
+        // Not sure why I have to use the responseText here
+        $("#editResourceLinkErrors").html(data.responseText);      
+    })
+    .live("ajax:success", function(event, data, status, xhr) {
+        // Update the resources table
+        $("#resources_table").html(data);  
+        // Flash user of the success
+        pushFlash({message:"Update success", state: 'success', fadeOut: 5000});
+        // Hide all modals
+        $('.modal.in').modal('hide');   
+        // Rest form
+        this.reset();
+        // Clear any error notification
+        $("#editResourceLinkErrors").html('');  
+        // $('select').select2();
     });
 
 
@@ -137,8 +181,7 @@ function loadViewResourceLinkModal(resourceURI){
         $('#viewResourceLinkModalBody').html(data);
         $('#viewResourceLinkModal').modal('show');
         console.log("Loaded Resource:"+resourceURI);
-    });
-    
+    });   
 }
 
 
