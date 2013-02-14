@@ -1,5 +1,5 @@
 <div class="row">
-  <aside class="span4">
+  <aside class="span12">
     <section>
       <h1><%= @user.name %></h1>
       <p><%= @user.account_name %>
@@ -15,12 +15,12 @@
   </aside>
 </div>
 
+
 <div class="tab-content">
   <!-- <div class="tab-pane" id="maps"></div> -->
   <div class="tab-pane active" id="resources">
+
   	<%= render 'resources/resources_table' %>
-
-
   	<div id="viewResourceLinkModal" class="modal hide fade in" tabindex="-1" role="dialog" aria-labelledby="viewResourceLinkModalLabel" style="text-align:center;">
 	  <button type="button" class="close" data-dismiss='modal' style="margin-right:10px;" >&times;</button>
 	  <div class="modal-body" id="viewResourceLinkModalBody">
@@ -30,6 +30,7 @@
 	  </div>
 	  <div class="modal-header"></div>
 	</div>
+
 
   </div>
 

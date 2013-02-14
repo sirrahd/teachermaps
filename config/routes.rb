@@ -11,6 +11,7 @@ Teachermaps::Application.routes.draw do
   match 'resources/sync' => 'resources#sync', :as => 'sync_resources'
   match '/resources/ajax/create/file' => 'resources#ajax_upload_file'
   match '/resources/ajax/create/link' => 'resources#ajax_upload_link'
+  match '/resources/ajax/:slug' => 'resources#ajax_show', :as => 'resources_ajax_show'
   resources :resources
   
   

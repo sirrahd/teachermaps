@@ -1,18 +1,36 @@
-<table class="table table-condensed table-hover" id="resources_table" >
-  <tr>
-    <th>Title</th>
-    <th>Created</th>
-    <th>Deletion</th>
-    <th>Type</th>
-  </tr>
+<table class="table table-condensed table-hover"  id="resources_table" >
+  <tbody>
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th>Created</th>
+      <th>Type</th>
+      <th>Action</th>
+    </tr>
+  </thead>
 
-<% @resources.each do |resource| %>
-  <tr href="#viewResourceLinkModal" data-toggle="modal" style="cursor:pointer;">
-    <td><%= link_to resource.title, resource_url(resource), :target => "_blank" %></td>
-    <td><%= resource.created_at %></td>
-    <td><%= link_to t('resources.delete_label'), resource_path(resource) , :confirm => t('resources.delete_file_confirmation', :title=>resource.title), :method => :delete %></td>
-    <td><%= resource.type %></td>
-  </tr>
-<% end %>
+  <% @resources.each do |resource| %>
+    <tr> 
+      <td><%= link_to resource.title, resource_url(resource), :target => "_blank" %></td>
+      <td><%= resource.created_at %></td>
+      <td><%= resource.type %></td>
+      <td>
+        <div class="btn-group">
+          <button class="btn">View</button>
+          <button class="btn dropdown-toggle" data-toggle="dropdown">
+            <span class="caret"></span>
+          </button>
+          <ul class="dropdown-menu">
+             
+            <li><%= link_to 'Open/Download', "#" %></li>
+            <li><%= link_to t('resources.delete_label'), resource_path(resource) , :confirm => t('resources.delete_file_confirmation', :title=>@resource.title), :method => :delete %></li>
+            <li><%= link_to 'Edit', "#" %></li>
+  
+          </ul>
+        </div>
+      </td>
+    </tr>
+  <% end %>
+</tbody>
 </table>
 

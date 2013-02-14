@@ -40,6 +40,22 @@ class ResourcesController < ApplicationController
     
   end
 
+  def ajax_show 
+    Rails.logger.info("Resource #{params[:slug]}")
+    @resource = Resource.find_by_slug( params[:slug] )
+
+    Rails.logger.info("Showing Resource #{@resource.slug} ")
+
+    # Gracefully handle nil links
+    if @resource.nil?
+      format.js { render :partial => 'shared/error_messages', :locals => { :object => @resource }, :status => 500  }
+    else
+      format.html # show.html.erb
+      format.json { render json: @resource }
+    end
+    
+  end
+
 
   def ajax_upload_link
     Rails.logger.info("Using this #{params}")
