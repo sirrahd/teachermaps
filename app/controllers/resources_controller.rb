@@ -70,7 +70,7 @@ class ResourcesController < ApplicationController
   # PUT /resrouce/1
   # PUT /resource/1.json
   def update
-    @resource = Resource.where(:id => params[:id], :user_id=>@current_user.id)
+    @resource = Resource.where(:id => params[:id], :user_id=>@current_user.id).first
 
     @resource.title = params[:resource][:title]
     @resource.link = params[:resource][:link]
@@ -79,7 +79,7 @@ class ResourcesController < ApplicationController
     if params[:resource].has_key?('course_subjects')
       params[:resource][:course_subjects].each do |subject_id|
         begin
-          @resource.course_subjects << CourseSubjects.find(subject_id)
+          @resource.course_subjects << CourseSubject.find(subject_id)
         rescue 
         end
       end
@@ -93,10 +93,11 @@ class ResourcesController < ApplicationController
         end
       end
     end  
-    
+
     respond_to do |format|
       if @resource.valid? and @resource.save
-        format.html { render partial: "resources/edit"}
+        @resources = Resource.where( :user_id => @current_user.id )
+        format.html { render :partial => 'resources/resources_table' }
       else
         format.html { render partial: "resources/edit"}
         format.json { render json: @setting.errors, status: :unprocessable_entity }

@@ -21,6 +21,20 @@ jQuery(function($) {
     });
 
 
+    $("#edit_resource_link_form")
+    .live("ajax:error", function(event, data, status, xhr) {
+        // Not sure why I have to use the responseText here
+        $("#editResourceLinkErrors").html(data.responseText);      
+    })
+    .live("ajax:success", function(event, data, status, xhr) {
+        // Update the resources table
+        $("#resources_table").html(data);  
+        // Flash user of the success
+        pushFlash({message:"<%= I18n.t('resources.upload_success') %>", state: 'success', fadeOut: 5000});
+        $("#uploadResourcesErrors").html('');  
+    });
+
+
     $("#editResourceLinkView")
     .live("click", function() {
         console.log("Editing view: ");

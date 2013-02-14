@@ -12,8 +12,6 @@ Teachermaps::Application.routes.draw do
   match '/resources/ajax/create/file' => 'resources#ajax_upload_file'
   match '/resources/ajax/create/link' => 'resources#ajax_upload_link'
   match '/resources/ajax/show/:slug' => 'resources#ajax_show', :as => 'resources_ajax_show'
-  
-  resources :link_resources, :controller => 'resources'
   resources :resources
   
   

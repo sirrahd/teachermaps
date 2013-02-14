@@ -1,7 +1,7 @@
 <div class="span6">
 <div id="editResourceLinkErrors"></div>
   
-<%= form_for @resource, :url=>resource_path, html: { :multipart => true, :'data-type' => 'html', id: 'edit_resource_link_form' }  do |f| %>
+<%= form_for @resource, :url=>resource_path, html: { :remote=>true, :multipart => true, :'data-type' => 'html', id: 'edit_resource_link_form' }  do |f| %>
   
 
   <%= label_tag(:title, t('resources.title_label')) %>
@@ -18,7 +18,7 @@
  
 
   <%= label_tag(:course_subjects, "Subjects") %>
-  <%= select_tag("resource[course_subjets]", options_for_select(CourseSubject.find(:all).collect { |cat| [cat.name, cat.id] }, @resource.course_subjects.collect { |cat| cat.id}), {:multiple=>true, :id=>'select_edit_coruse_subjects'})%>
+  <%= select_tag("resource[course_subjects]", options_for_select(CourseSubject.find(:all).collect { |cat| [cat.name, cat.id] }, @resource.course_subjects.collect { |cat| cat.id}), {:multiple=>true, :id=>'select_edit_coruse_subjects'})%>
   <br/><br/>
 
   <span>
