@@ -5,6 +5,10 @@ class UsersController < ApplicationController
 
     # Users can only sign in to their own account; ignore params
     @user = @current_user
+
+    @resources = Resource.where( :user_id => @current_user.id )
+    # For rendering Ajax "Upload Resource" form
+    @resource = Resource.new
   end
   
   def new

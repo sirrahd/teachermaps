@@ -5,6 +5,21 @@
       <p><%= @user.account_name %>
       <br />
       <%= @user.email %></p>
+
+      <br/><br/>
+      <ul class="nav nav-tabs">
+      	<!-- <li><a href="#maps" data-toggle="tab">Maps</a></li> -->
+      	<li class="active"><a href="#resources" data-toggle="tab">Resources</a></li>
+      <ul>
     </section>
   </aside>
 </div>
+
+<div class="tab-content">
+  <!-- <div class="tab-pane" id="maps"></div> -->
+  <div class="tab-pane active" id="resources">
+  	<%= render 'resources/resources_table' %>
+  </div>
+
+</div>
+  

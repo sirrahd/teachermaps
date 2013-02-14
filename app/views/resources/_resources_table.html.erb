@@ -1,4 +1,4 @@
-<table class="table table-condensed" id="resources_table" >
+<table class="table table-condensed table-hover" id="resources_table" >
   <tr>
     <th>Title</th>
     <th>Created</th>
@@ -7,7 +7,7 @@
   </tr>
 
 <% @resources.each do |resource| %>
-  <tr>
+  <tr href="#viewResourceLinkModal" data-toggle="modal" style="cursor:pointer;">
     <td><%= link_to resource.title, resource_url(resource), :target => "_blank" %></td>
     <td><%= resource.created_at %></td>
     <td><%= link_to t('resources.delete_label'), resource_path(resource) , :confirm => t('resources.delete_file_confirmation', :title=>resource.title), :method => :delete %></td>
@@ -15,3 +15,17 @@
   </tr>
 <% end %>
 </table>
+
+
+<div id="viewResourceLinkModal" class="modal hide fade in" tabindex="-1" role="dialog" aria-labelledby="uploadResourceModalLabel" aria-hidden="true" >
+  <button type="button" class="close" data-dismiss='modal' style="margin-right:10px;" >&times;</button>
+
+  <div class="modal-header"><h1>Upload Link Resource</h1></div>
+  <div class="modal-body">
+
+    <h1> You did it </>
+
+  </div>
+  <div class="modal-header"></div>
+</div>
+
