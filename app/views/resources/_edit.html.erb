@@ -7,11 +7,13 @@
   <%= label_tag(:title, t('resources.title_label')) %>
   <%= f.text_field :title  %>
 
-  
-  <%= label_tag(:link, t('resources.link_label')) %>
+
+  <% if @resource.type == LinkResource::TYPE %>
+    <%= label_tag(:link, t('resources.link_label')) %>
   <%= f.text_field :link  %>
-
-
+  <% end %>
+  
+  
   <%= label_tag(:course_grades, "Grades") %>
   <%= select_tag("resource[course_grades]", options_for_select(CourseGrade.find(:all).collect { |cat| [cat.name, cat.id] }, @resource.course_grades.collect { |cat| cat.id}), {:multiple=>true, :id=>'select_edit_coruse_grades'})%>
   <br/><br/>

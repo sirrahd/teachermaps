@@ -77,21 +77,11 @@ class ResourcesController < ApplicationController
 
     # Convert primary keys to objects
     if params[:resource].has_key?('course_subjects')
-      params[:resource][:course_subjects].each do |subject_id|
-        begin
-          @resource.course_subjects << CourseSubject.find(subject_id)
-        rescue 
-        end
-      end
+      @resource.course_subjects = params[:resource][:course_subjects].present? ? CourseSubject.find_all_by_id(params[:resource][:course_subjects]) : []
     end
     
     if params[:resource].has_key?('course_grades')
-      params[:resource][:course_grades].each do |course_id|
-        begin
-        @resource.course_grades << CourseGrade.find(course_id)
-        rescue 
-        end
-      end
+      @resource.course_grades = params[:resource][:course_grades].present? ? CourseGrade.find_all_by_id(params[:resource][:course_grades]) : []
     end  
 
     respond_to do |format|
