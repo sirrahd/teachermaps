@@ -1,16 +1,17 @@
 
 
 <h2><%= @resource.title %></h2>
-<%= if @resource.course_grades.any?  %>
+<% if @resource.course_grades.any?  %>
   <%=  @resource.course_grades.each do |grade| %>
-  <%= label_tag(grade, grade.name) %>
-  <%= end %>
-<%= end %>
-<%= if @resource.course_subjects.any?  %>
+  <% label_tag(grade, grade.name) %>
+  <% end %>
+<% end %>
+
+<% if @resource.course_subjects.any?  %>
   <%=  @resource.course_subjects.each do |subject| %>
-  <%= label_tag(subject, subject.name) %>
-  <%= end %>
-<%= end %>
+     label_tag(subject, subject.name)
+  <% end %>
+<% end %>
 
 <span>
   <%= link_to 'Open Link', @resource.link, :class => 'btn'  %>
@@ -19,12 +20,8 @@
 </span>
 
   <%= label_tag(:title, t('resources.title_label')) %>
-  <%= f.text_field :title  %>
+  <%= label_tag @resource, :title %>
 
   
   <%= label_tag(:link, t('resources.link_label')) %>
-  <%= f.text_field :link  %>
-
-  <%= f.submit("Upload", :class=>"btn btn-primary start") %>
-  <%= link_to("Cancel", '#', :class=>"btn btn start", "data-dismiss"=>"modal") %>
-<% end %>
+  <%= label_tag @resource, :link %>

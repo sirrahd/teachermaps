@@ -46,12 +46,13 @@ class ResourcesController < ApplicationController
 
     Rails.logger.info("Showing Resource #{@resource.slug} ")
 
+    respond_to do |format|
     # Gracefully handle nil links
-    if @resource.nil?
-      format.js { render :partial => 'shared/error_messages', :locals => { :object => @resource }, :status => 500  }
-    else
-      format.html # show.html.erb
-      format.json { render json: @resource }
+      if @resource.nil?
+        format.html { render :partial => 'shared/error_messages', :locals => { :object => @resource }, :status => 500  }
+      else
+        format.html { render :partial => 'resources/show'}
+      end
     end
     
   end

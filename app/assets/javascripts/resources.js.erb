@@ -134,15 +134,23 @@ jQuery(function($) {
 });
 
 
-// function loadViewResourceLinkModal(resourceURI){
-//     if(resourceURI == undefined) return false;
+function loadViewResourceLinkModal(resourceURI){
+    if(resourceURI == undefined) return false;
+
+    console.log("Loading Resource:"+resourceURI);
     
-//     $('#viewResourceLinkModalBody').html('<img src="/assets/loading.gif"/>');
-//     console.log("Loading Resource:"+resourceURI);
-//     $('#viewResourceLinkModalBody').load(resourceURI);
-//     // $('#viewResourceLinkModal').modal('show');
-//     console.log("Loaded Resource:"+resourceURI);
-// }
+
+    $.ajax({
+      url: resourceURI,
+      dataType: 'html'
+    }).done(function(data) {
+        console.log(data);
+        $('#viewResourceLinkModalBody').html(data);
+        $('#viewResourceLinkModal').modal('show');
+        console.log("Loaded Resource:"+resourceURI);
+    });
+    
+}
 
 // function createResourceUploader() {
 

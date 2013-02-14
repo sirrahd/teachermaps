@@ -16,16 +16,14 @@
       <td><%= resource.type %></td>
       <td>
         <div class="btn-group">
-          <button class="btn">View</button>
-          <button class="btn dropdown-toggle" data-toggle="dropdown">
+          <%= link_to 'Edit', "#", :class=>'btn',  :onclick=>"loadViewResourceLinkModal('#{resources_ajax_show_path resource.slug}');" %>
+          <button class="btn dropdown-'data-toggle' => "modal", " data-toggle="dropdown">
             <span class="caret"></span>
           </button>
           <ul class="dropdown-menu">
-             
             <li><%= link_to 'Open/Download', "#" %></li>
             <li><%= link_to t('resources.delete_label'), resource_path(resource) , :confirm => t('resources.delete_file_confirmation', :title=>@resource.title), :method => :delete %></li>
             <li><%= link_to 'Edit', "#" %></li>
-  
           </ul>
         </div>
       </td>
