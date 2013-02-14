@@ -19,6 +19,18 @@
   <!-- <div class="tab-pane" id="maps"></div> -->
   <div class="tab-pane active" id="resources">
   	<%= render 'resources/resources_table' %>
+
+
+  	<div id="viewResourceLinkModal" class="modal hide fade in" tabindex="-1" role="dialog" aria-labelledby="viewResourceLinkModalLabel" style="text-align:center;">
+	  <button type="button" class="close" data-dismiss='modal' style="margin-right:10px;" >&times;</button>
+	  <div class="modal-body" id="viewResourceLinkModalBody">
+
+	    <%= image_tag('loading.gif', :alt => "Loading...", :size=>"150x150") %>
+
+	  </div>
+	  <div class="modal-header"></div>
+	</div>
+
   </div>
 
 </div>
