@@ -1,6 +1,15 @@
 <div id="uploadResourceLinkErrors"></div>
   
 <%= form_for Resource.new, :remote => true, :url => resources_ajax_create_link_path, html: { :multipart => true, :'data-type' => 'html', id: 'create_resource_link_form' }  do |f| %>
+
+  <%= label_tag(:title, t('resources.title_label')) %>
+  <%= f.text_field :title  %>
+
+
+  <%= label_tag(:link, t('resources.link_label')) %>
+  <%= f.text_field :link  %>
+
+  
   <%= label_tag(:course_grades, "Grades") %>
   <%= select_tag('resource[course_grades]', options_from_collection_for_select(CourseGrade.all, 'id', 'name'), { :multiple => true, :style=>'width:100%;' }) %>
   <br/><br/>
@@ -9,13 +18,6 @@
   <%= label_tag(:course_subjects, "Subjects") %>
   <%= select_tag('resource[course_subjects]', options_from_collection_for_select(CourseSubject.all, 'id', 'name'), { :multiple => true, :style=>'width:100%;' }) %>
   <br/><br/>
-
-  <%= label_tag(:title, t('resources.title_label')) %>
-  <%= f.text_field :title  %>
-
-  
-  <%= label_tag(:link, t('resources.link_label')) %>
-  <%= f.text_field :link  %>
 
   <%= f.submit("Upload", :class=>"btn btn-primary start") %>
   <%= link_to("Cancel", '#', :class=>"btn btn start", "data-dismiss"=>"modal") %>
