@@ -2,12 +2,24 @@ jQuery(function($) {
 
     $('select').select2();
 
-    // $("#viewResourceLinkModal").modal({
-    //     backdrop: false,
-    //     keyboard: true,
-    //     show: false
-    // });
-
+    $("#create_resource_link_form")
+    .bind("ajax:error", function(event, data, status, xhr) {
+        // Not sure why I have to use the responseText here
+        $("#uploadResourceLinkErrors").html(data.responseText);      
+    })
+    .bind("ajax:success", function(event, data, status, xhr) {
+        // Update the resources table
+        $("#resources_table").html(data);  
+        // Hide the upload form    
+        $('#uploadResourceLinkModal').modal('hide');
+        // Flash user of the success
+        pushFlash({message:"<%= I18n.t('resources.upload_success') %>", state: 'success', fadeOut: 5000});
+        // Rest form
+        this.reset();
+        // Clear any error notification
+        $("#uploadResourcesErrors").html('');      
+    });
+ 
 
 
  
@@ -61,28 +73,6 @@ jQuery(function($) {
     //     }
     // });
 
-
-
-
-    
-    $("#create_resource_link_form")
-    .bind("ajax:error", function(event, data, status, xhr) {
-        // Not sure why I have to use the responseText here
-        $("#uploadResourceLinkErrors").html(data.responseText);      
-    })
-    .bind("ajax:success", function(event, data, status, xhr) {
-        // Update the resources table
-        $("#resources_table").html(data);  
-        // Hide the upload form    
-        $('#uploadResourceLinkModal').modal('hide');
-        // Flash user of the success
-        pushFlash({message:"<%= I18n.t('resources.upload_success') %>", state: 'success', fadeOut: 5000});
-        // Rest form
-        this.reset();
-        // Clear any error notification
-        $("#uploadResourcesErrors").html('');      
-    });
-
     // $("#create_resource_form")
     // // .bind("ajax:beforeSend", function (event, data, stats, xhr){
     // //     console.log("Before sending data");
@@ -103,8 +93,6 @@ jQuery(function($) {
     //     console.log("Error in form fields submission");
         
     // });
-
-   
 
     // .bind('fileuploadadd', function (e, data) {
     //     filename = data.originalFiles[0].name;
@@ -153,33 +141,4 @@ function loadViewResourceLinkModal(resourceURI){
     
 }
 
-// function createResourceUploader() {
-
-//     var uploader = new qq.FineUploader({
-//       element: document.getElementById('bootstrapped-fine-uploader'),
-//       request: {
-//         endpoint: 'resources'
-//       },
-//       text: {
-//         uploadButton: '<i class="icon-upload icon-white"></i> Drag file or click here to add a resource'
-//       },
-//       template: '<div class="qq-uploader" >' +
-//                   '<pre class="qq-upload-drop-area" style="width: 510px;"><span>{dragZoneText}</span></pre>' +
-//                   '<div class="qq-upload-button btn btn-success" style="width: auto;">{uploadButtonText}</div>' +
-//                   '<span class="qq-drop-processing" ><span style="width: auto;">{dropProcessingText}</span><span class="qq-drop-processing-spinner"></span></span>' +
-//                   '<ul class="qq-upload-list" style="margin-top: 10px; text-align: center;"></ul>' +
-//                 '</div>',
-//       classes: {
-//         success: 'alert alert-success',
-//         fail: 'alert alert-error'
-//       },
-//       multiple: false,
-//       maxConnections: 1,
-//       //sizeLimit: 104857600, //100 MB
-//       sizeLimit: 5242880052428800, //50 MB
-//       autoUpload: false,
-//       debug: true
-//     });
-//     return true;
-// }
 

@@ -33,7 +33,7 @@ class ResourcesController < ApplicationController
 
     # Gracefully handle nil links
     if !resource_link
-      redirect_to resources_url, :flash => { :error => t('resources.resource_link_error', :title => @resource.title) }
+      redirect_to @current_user, :flash => { :error => t('resources.resource_link_error', :title => @resource.title) }
     else
       redirect_to resource_link
     end
@@ -45,6 +45,8 @@ class ResourcesController < ApplicationController
     @resource = Resource.find_by_slug( params[:slug] )
 
     Rails.logger.info("Showing Resource #{@resource.slug} ")
+
+    Rails.logger.info("Resource Link: #{@resource.link}")
 
     respond_to do |format|
     # Gracefully handle nil links
@@ -205,7 +207,7 @@ class ResourcesController < ApplicationController
 
 
     respond_to do |format|
-      format.html { redirect_to resources_url, :flash => { :success => t('resources.deleted_file', :title => deleted_title) } }
+      format.html { redirect_to @current_user, :flash => { :success => t('resources.deleted_file', :title => deleted_title) } }
       format.json { head :no_content }
     end
   end 
@@ -246,7 +248,7 @@ class ResourcesController < ApplicationController
     @resources = Resource.where( :user_id => @current_user.id )
     
     respond_to do |format|
-       format.html { redirect_to resources_url, :flash => { :success => t('resources.synced_n_files', :sync_count => sync_count) } }
+       format.html { redirect_to @current_user, :flash => { :success => t('resources.synced_n_files', :sync_count => sync_count) } }
        format.json { head :no_content }
     end
   end
