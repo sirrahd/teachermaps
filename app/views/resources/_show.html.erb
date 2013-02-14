@@ -1,27 +1,45 @@
-
-
-<h2><%= @resource.title %></h2>
-<% if @resource.course_grades.any?  %>
-  <%=  @resource.course_grades.each do |grade| %>
-  <% label_tag(grade, grade.name) %>
-  <% end %>
-<% end %>
-
-<% if @resource.course_subjects.any?  %>
-  <%=  @resource.course_subjects.each do |subject| %>
-     label_tag(subject, subject.name)
-  <% end %>
-<% end %>
-
-<span>
-  <%= link_to 'Open Link', @resource.link, :class => 'btn'  %>
-  <%= link_to t('resources.delete_label'), resource_path(@resource) , :confirm => t('resources.delete_file_confirmation', :title=>@resource.title), :method => :delete %>
-  <%= link_to 'Edit', "#", :class => 'btn'  %>
-</span>
-
-  <%= label_tag(:title, t('resources.title_label')) %>
-  <%= label_tag @resource, :title %>
+<form class="form">
+  <h1><%= @resource.title %></h1>  
 
   
-  <%= label_tag(:link, t('resources.link_label')) %>
-  <%= label_tag @resource, :link %>
+  <div class="control-group">
+    <label >Grades</label>
+    <div class="controls">
+      <% if @resource.course_grades.any? %>
+        <% @resource.course_grades.each do |x| %>
+          <%= x.name %>
+        <% end %>
+      <% else %>   
+        <label>None</label>
+      <% end %>    
+    </div>
+  </div>
+  
+
+
+  <div class="control-group">
+    <label>Subjects</label>
+    <div class="controls">
+      <% if @resource.course_subjects.any? %>
+        <% @resource.course_subjects.each do |x| %>
+          <%= x.name %>
+        <% end %>
+      <% else %>   
+        <label>None</label>
+      <% end %>    
+    </div>
+  </div>
+
+
+  <div class="control-group">
+    <div class="controls">
+      <%= link_to 'Open/Download', @resource.link, :class => 'btn', :target => "_blank"  %>
+      <%= link_to t('resources.delete_label'), resource_path(@resource) , :confirm => t('resources.delete_file_confirmation', :title=>@resource.title), :method => :delete, :class=>'btn' %>
+      <%= link_to 'Edit', "#", :class => 'btn'  %>
+    </div>
+  </div>
+
+
+
+
+</form>

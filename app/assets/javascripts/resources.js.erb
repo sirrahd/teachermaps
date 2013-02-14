@@ -146,6 +146,7 @@ function loadViewResourceLinkModal(resourceURI){
     }).done(function(data) {
         console.log(data);
         $('#viewResourceLinkModalBody').html(data);
+        $('select').select2();
         $('#viewResourceLinkModal').modal('show');
         console.log("Loaded Resource:"+resourceURI);
     });
