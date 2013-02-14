@@ -1,7 +1,9 @@
 <div id="uploadResourceLinkErrors"></div>
   
 <%= form_for Resource.new, :remote => true, :url => resources_ajax_create_link_path, html: { :multipart => true, :'data-type' => 'html', id: 'create_resource_link_form' }  do |f| %>
-  Grade: <br/>
+  Grade:
+  <%= f.select :course_grades, options_for_select(CourseGrade.all.collect {|lang| [lang.name, lang.id]}, @resource.course_grades), {}, {:multiple => true, :class => "chzn-select", :style => "width:450px;" }  %>
+
   Subject: <br/>
   Tags: <br/><br/>
 

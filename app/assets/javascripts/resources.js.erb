@@ -29,27 +29,27 @@ jQuery(function($) {
     });
 
 
-    //  // Initialize the jQuery File Upload widget:
-    // $('#create_resource_form').fileupload({
-    //     url : '/resources/ajax/create/file',
-    //     autoUpload: false,
-    //     dataType: 'json',
-    //     maxNumberOfFiles: 1,
-    //     maxFileSize: 52428800,
-    //     dropZone: $('#dropzone'),
-    //     add : function (e, data){
-    //         filename = data.originalFiles[0].name;
-    //         $('#resourceContainer').empty();
-    //         $('#resourceContainer').append('<tbody><tr><td>'+filename+'</td></tr></tbody>');
-    //         console.log("Sending "+filename);
+     // Initialize the jQuery File Upload widget:
+    $('#create_resource_form').fileupload({
+        url : '/resources/ajax/create/file',
+        autoUpload: false,
+        dataType: 'json',
+        maxNumberOfFiles: 1,
+        maxFileSize: 52428800,
+        dropZone: $('#dropzone'),
+        add : function (e, data){
+            filename = data.originalFiles[0].name;
+            $('#resourceContainer').empty();
+            $('#resourceContainer').append('<tbody><tr><td>'+filename+'</td></tr></tbody>');
+            console.log("Sending "+filename);
 
-    //         $('#submit-resource-form').on('click', function () {
-    //             console.log("Sending data + files");
-    //             data.submit();
-    //         });
+            $('#submit-resource-form').on('click', function () {
+                console.log("Sending data + files");
+                data.submit();
+            });
 
-    //     }
-    // });
+        }
+    });
 
 
 

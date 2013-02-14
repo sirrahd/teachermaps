@@ -9,7 +9,7 @@ class ResourcesController < ApplicationController
     Rails.logger.info("Resources = #{@resource}")
 
     # For rendering Ajax "Upload Resource" form
-    @new_resource = Resource.new
+    @resource = Resource.new
 
     respond_to do |format|
       format.html # index.html.erb
