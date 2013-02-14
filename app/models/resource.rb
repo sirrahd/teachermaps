@@ -15,8 +15,8 @@ class Resource < ActiveRecord::Base
   	has_and_belongs_to_many :course_subjects, :uniq => true
   	has_and_belongs_to_many :course_grades, :uniq => true
 
-  	accepts_nested_attributes_for :course_subjects
-  	accepts_nested_attributes_for :course_grades
+  	# accepts_nested_attributes_for :course_subjects
+  	# accepts_nested_attributes_for :course_grades
 
   	attr_accessible :course_subjects
   	attr_accessible :course_grades

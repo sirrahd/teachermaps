@@ -43,26 +43,28 @@ class ResourcesController < ApplicationController
 
   def ajax_upload_link
     Rails.logger.info("Using this #{params}")
-    @resource = LinkResource.new(params[:resource])
-    # @resource.title = params[:resource][:title]
-    # @resource.link = params[:resource][:link]
+    @resource = LinkResource.new
+    @resource.title = params[:resource][:title]
+    @resource.link = params[:resource][:link]
+
+    # Convert primary keys to objects
+    if params[:resource].has_key?('course_subjects')
+      params[:resource][:course_subjects].each do |subject_id|
+        begin
+          @resource.course_subjects << CourseSubjects.find(subject_id)
+        rescue 
+        end
+      end
+    end
     
-    # [:resource][:course_subjects].delete_if { |x| x == ''}
-    # [:resource][:course_grades].delete_if { |x| x == ''}
-
-    # params[:resource][:course_subjects].split(',')
-    
-    # params[:resource][:course_subjects].each do |d|
-    #   Rails.logger.info(d)
-    # end
-    # params[:resource][:course_grades].each do |d|
-    #   Rails.logger.info(d)
-    # end
-
-
-
-    @resource.course_subjects = params[:resource][:course_subjects]
-    @resource.course_grades = params[:resource][:course_grades]
+    if params[:resource].has_key?('course_grades')
+      params[:resource][:course_grades].each do |course_id|
+        begin
+        @resource.course_grades << CourseGrade.find(course_id)
+        rescue 
+        end
+      end
+    end
     
     @type = LinkResource::TYPE
 
