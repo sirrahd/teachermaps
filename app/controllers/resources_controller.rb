@@ -72,8 +72,30 @@ class ResourcesController < ApplicationController
   def update
     @resource = Resource.where(:id => params[:id], :user_id=>@current_user.id)
 
+    @resource.title = params[:resource][:title]
+    @resource.link = params[:resource][:link]
+
+    # Convert primary keys to objects
+    if params[:resource].has_key?('course_subjects')
+      params[:resource][:course_subjects].each do |subject_id|
+        begin
+          @resource.course_subjects << CourseSubjects.find(subject_id)
+        rescue 
+        end
+      end
+    end
+    
+    if params[:resource].has_key?('course_grades')
+      params[:resource][:course_grades].each do |course_id|
+        begin
+        @resource.course_grades << CourseGrade.find(course_id)
+        rescue 
+        end
+      end
+    end  
+    
     respond_to do |format|
-      if @resource.update_attributes(params[:resource])
+      if @resource.valid? and @resource.save
         format.html { render partial: "resources/edit"}
       else
         format.html { render partial: "resources/edit"}

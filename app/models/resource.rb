@@ -34,6 +34,16 @@ class Resource < ActiveRecord::Base
 		self.slug
 	end
 
+
+  def self.inherited(child)
+    child.instance_eval do
+      def model_name
+        Resource.model_name
+      end
+    end
+    super
+  end
+
 end
 
 

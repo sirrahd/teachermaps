@@ -12,4 +12,5 @@ class LinkResource < Resource
   	def open_link()
 		self.link
 	end
+
 end

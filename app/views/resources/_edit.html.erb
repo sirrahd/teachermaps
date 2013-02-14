@@ -1,7 +1,7 @@
 <div class="span6">
 <div id="editResourceLinkErrors"></div>
   
-<%= form_for @resource, :url=>resource_path, :remote => true, html: { :multipart => true, :'data-type' => 'html', id: 'edit_resource_link_form' }  do |f| %>
+<%= form_for @resource, :url=>resource_path, html: { :multipart => true, :'data-type' => 'html', id: 'edit_resource_link_form' }  do |f| %>
   
 
   <%= label_tag(:title, t('resources.title_label')) %>
