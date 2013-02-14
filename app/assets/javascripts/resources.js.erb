@@ -8,16 +8,18 @@ jQuery(function($) {
         $("#uploadResourceLinkErrors").html(data.responseText);      
     })
     .bind("ajax:success", function(event, data, status, xhr) {
+        console.log('You got it!!');
         // Update the resources table
-        $("#resources_table").html(data);  
+        $("#resources_table").html(data);
         // Hide the upload form    
-        $('#uploadResourceLinkModal').modal('hide');
-        // Flash user of the success
-        pushFlash({message:"<%= I18n.t('resources.upload_success') %>", state: 'success', fadeOut: 5000});
+        $("#uploadResourceLinkModal").modal('hide');
         // Rest form
         this.reset();
         // Clear any error notification
         $("#uploadResourcesErrors").html('');      
+        // Flash user of the success
+        pushFlash({message:"<%= I18n.t('resources.upload_success') %>", state: 'success', fadeOut: 5000});
+        
     });
  
 
@@ -127,14 +129,12 @@ function loadViewResourceLinkModal(resourceURI){
 
     console.log("Loading Resource:"+resourceURI);
     
-
     $.ajax({
       url: resourceURI,
       dataType: 'html'
     }).done(function(data) {
         console.log(data);
         $('#viewResourceLinkModalBody').html(data);
-        $('select').select2();
         $('#viewResourceLinkModal').modal('show');
         console.log("Loaded Resource:"+resourceURI);
     });
