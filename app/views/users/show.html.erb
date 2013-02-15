@@ -18,29 +18,22 @@
   </div>
   <div class="span3">
     <%= link_to t('resources.sync_label'), "#loadingModal",'data-toggle' => "modal", :onclick => "window.location=\"#{sync_resources_path}\"", :class => 'btn'  %>
-    <div class="btn-group">
-      <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
-        Upload Resource
-        <span class="caret"></span>
-      </a>
-      <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
-        <!-- <li><%= link_to "Upload File", "#uploadResourceFileModal",'data-toggle' => "modal" %></li> -->
-        <li><%= link_to "Upload Link", "#uploadResourceLinkModal",'data-toggle' => "modal" %></li>
-      </ul>
-    </div>
+    <%= link_to "Upload Link", "#uploadResourceLinkModal",'data-toggle' => "modal", :class=>'btn' %>
   </div>
 </div>
-
-
 
 <div class="tab-content">
   <!-- <div class="tab-pane" id="maps"></div> -->
   <div class="tab-pane active" id="resources">
-    <div class="span12">
+    <div class="row">
+      <div class="span12">
       <%= render 'resources/form_filter_resource' %>
+      </div>
     </div>
-
-  	<%= render 'resources/resources_table' %>
-  	
+    <div class="row">
+      <div class="span12">
+        <%= render 'resources/resources_table' %>
+      </div>
+    </div>
   </div>
 </div>

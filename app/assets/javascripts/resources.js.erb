@@ -1,5 +1,7 @@
 jQuery(function($) {    
 
+    $("select").select2({});
+
     $("#create_resource_link_form")
     .live("ajax:error", function(event, data, status, xhr) {
         // Not sure why I have to use the responseText here
@@ -16,6 +18,7 @@ jQuery(function($) {
         this.reset();
         // Clear any error notification
         $("#uploadResourcesErrors").html('');  
+        // $("select").select2({});
     });
 
 

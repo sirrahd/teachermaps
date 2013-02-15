@@ -86,10 +86,7 @@ class ResourcesController < ApplicationController
     end
   end
 
-
   def ajax_filter
-
-    #Article.find(:all, :limit => 10, :conditions => {:category => "gardening"}, :order => "created_at DESC", :include => :comments) 
 
     filter = {}
     @resources = Resource.where( :user_id => @current_user.id )

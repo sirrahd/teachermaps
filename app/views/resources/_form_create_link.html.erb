@@ -11,12 +11,12 @@
 
   
   <%= label_tag(:course_grades, "Grades") %>
-  <%= select_tag('resource[course_grades]', options_from_collection_for_select(CourseGrade.all, 'id', 'name'), { :multiple => true, :style=>'width:100%;' }) %>
+  <%= select_tag('resource[course_grades]', options_from_collection_for_select(CourseGrade.all, 'id', 'name'), { :multiple => true, :style=>'width:100%;', :id=>'create_resource_grades' }) %>
   <br/><br/>
  
 
   <%= label_tag(:course_subjects, "Subjects") %>
-  <%= select_tag('resource[course_subjects]', options_from_collection_for_select(CourseSubject.all, 'id', 'name'), { :multiple => true, :style=>'width:100%;' }) %>
+  <%= select_tag('resource[course_subjects]', options_from_collection_for_select(CourseSubject.all, 'id', 'name'), { :multiple => true, :style=>'width:100%;', :id=>'create_resource_subjects' }) %>
   <br/><br/>
 
   <%= f.submit("Upload", :class=>"btn btn-primary start") %>
