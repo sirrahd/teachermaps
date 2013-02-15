@@ -64,7 +64,10 @@ class ResourcesController < ApplicationController
     @resource = Resource.where(:id => params[:id], :user_id=>@current_user.id).first
 
     @resource.title = params[:resource][:title]
-    @resource.link = params[:resource][:link]
+
+    if @resource.class.name == LinkResource::TYPE
+      @resource.link = params[:resource][:link]
+    end
 
     # Google Resource
     if @current_user.has_google_account? and @resource.class.name == GoogleResource::TYPE
@@ -94,8 +97,9 @@ class ResourcesController < ApplicationController
         @resources = Resource.where( :user_id => @current_user.id )
         format.html { render :partial => 'resources/resources_table' }
       else
-        format.html { render partial: "resources/edit"}
-        format.json { render json: @setting.errors, status: :unprocessable_entity }
+        #format.html { render partial: "resources/edit", :errors => '' }
+        format.html { render :partial => 'shared/error_messages', :locals => { :object => @resource }, :status => 500  }
+        #format.json { render json: @setting.errors, status: :unprocessable_entity }
       end
     end
   end
