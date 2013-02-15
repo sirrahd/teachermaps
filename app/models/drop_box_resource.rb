@@ -8,10 +8,12 @@ class DropBoxResource < Resource
 
 	#TODO: Refactor this to be called when crated and cache in db
 	def open_link()
-		self.link
-		# drop_box_account = DropBoxAccount.find_by_user_id( self.user_id )
-		# link = drop_box_account.media_link( self.path )
-		# link
 		
+		if self.link?
+			drop_box_account = DropBoxAccount.find_by_user_id( self.user_id )
+			self.link = drop_box_account.media_link( self.path )
+		end
+
+		self.link		
 	end
 end
