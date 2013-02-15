@@ -72,6 +72,8 @@ jQuery(function($) {
 
 
 
+
+
     $("#edit_resource_link_form")
     .live("ajax:error", function(event, data, status, xhr) {
         // Not sure why I have to use the responseText here
@@ -130,10 +132,6 @@ jQuery(function($) {
         $('body').removeClass('modal-open');
         $('.modal-backdrop').remove();
     });
-
-
-
-
 
 
 
