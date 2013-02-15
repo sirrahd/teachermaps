@@ -25,6 +25,9 @@ jQuery(function($) {
         // Clear any error notification
         $("#uploadResourcesErrors").html('');  
         // $("select").select2({});
+
+        $('body').removeClass('modal-open');
+        $('.modal-backdrop').remove();
     });
 
 
@@ -123,6 +126,9 @@ jQuery(function($) {
         this.reset();
         // Clear any error notification
         $("#editResourceLinkErrors").html(''); 
+
+        $('body').removeClass('modal-open');
+        $('.modal-backdrop').remove();
     });
 
 
