@@ -19,6 +19,7 @@
   <%= select_tag('resource[course_subjects]', options_from_collection_for_select(CourseSubject.all, 'id', 'name'), { :multiple => true, :style=>'width:100%;', :id=>'create_resource_subjects' }) %>
   <br/><br/>
 
-  <%= f.submit("Upload", :class=>"btn btn-primary start") %>
   <%= link_to("Cancel", '#', :class=>"btn btn start", "data-dismiss"=>"modal") %>
+  <%= f.submit("Create", :class=>"btn btn-primary start") %>
+  
 <% end %>
