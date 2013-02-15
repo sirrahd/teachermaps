@@ -2,6 +2,12 @@ jQuery(function($) {
 
     $("select").select2({});
 
+
+
+
+
+
+
     $("#create_resource_link_form")
     .live("ajax:error", function(event, data, status, xhr) {
         // Not sure why I have to use the responseText here
@@ -22,23 +28,22 @@ jQuery(function($) {
     });
 
 
-    $("#edit_resource_link_form")
-    .live("ajax:error", function(event, data, status, xhr) {
-        // Not sure why I have to use the responseText here
-        $("#editResourceLinkErrors").html(data.responseText);      
-    })
-    .live("ajax:success", function(event, data, status, xhr) {
-        // Update the resources table
-        $("#resources_table").html(data);  
-        // Flash user of the success
-        pushFlash({message:"<%= I18n.t('resources.upload_success') %>", state: 'success', fadeOut: 5000});
-        $("#uploadResourcesErrors").html('');  
-    });
+
+
+
+
+   
+
+
+
+
+
 
 
     var timer;
     $("#filter_edit_search").live('keyup input',function() {
         var form = $(this);
+        // Prevents ajax request till N milliseconds 
         timer && clearTimeout(timer);
         timer = setTimeout(function(){ 
             form.submit();
@@ -61,6 +66,21 @@ jQuery(function($) {
 
 
 
+
+
+
+    $("#edit_resource_link_form")
+    .live("ajax:error", function(event, data, status, xhr) {
+        // Not sure why I have to use the responseText here
+        $("#editResourceLinkErrors").html(data.responseText);      
+    })
+    .live("ajax:success", function(event, data, status, xhr) {
+        // Update the resources table
+        $("#resources_table").html(data);  
+        // Flash user of the success
+        pushFlash({message:"<%= I18n.t('resources.upload_success') %>", state: 'success', fadeOut: 5000});
+        $("#uploadResourcesErrors").html('');  
+    });
 
 
     $("#editResourceLinkView")
@@ -104,6 +124,12 @@ jQuery(function($) {
         // Clear any error notification
         $("#editResourceLinkErrors").html(''); 
     });
+
+
+
+
+
+
 
 
     // // Expands dragover area

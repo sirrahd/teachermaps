@@ -66,36 +66,18 @@ class ResourcesController < ApplicationController
     @resource.title = params[:resource][:title]
     @resource.link = params[:resource][:link]
 
-
     # Google Resource
     if @current_user.has_google_account? and @resource.class.name == GoogleResource::TYPE
       google_account = @current_user.google_account 
       
-      Rails.logger.info("Valid Google Session") 
+      Rails.logger.info("Valid Google Session; Rename Google File") 
 
-      #google_account.load_session()
-      result = google_account.delete_file(@resource.file_id)
+      result = google_account.change_file_name(@resource.file_id, @resource.title)
 
       Rails.logger.info("Successful Deletion?: #{result.inspect}")
     else
       Rails.logger.info("User does not have a synced Google Account or File is not a GoogleResource") 
     end
-
-
-
-    # DropBox Resources
-    if @current_user.has_drop_box_account? and @resource.class.name == DropBoxResource::TYPE
-      drop_box_account = @current_user.drop_box_account 
-
-      result = drop_box_account.delete_file(@resource.path)
-
-      Rails.logger.info("Successful Deletion?: #{result}")
-      
-      Rails.logger.info("Valid DropBox Session") 
-    else
-      Rails.logger.info("User does not have a synced DropBox Account or File is not a DropBox Resource") 
-    end
-
 
 
     # Convert primary keys to objects
