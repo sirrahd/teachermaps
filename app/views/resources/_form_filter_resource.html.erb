@@ -1,7 +1,7 @@
 <%= form_tag resources_ajax_filter_path, id: 'filter_resource_form', :class=>"form-inline", :remote=>true, :onchange=>'$(this).form.submit();' do %>
   
 
-  <%= select_tag("resource_types", options_for_select([[LinkResource::TYPE], [GoogleResource::TYPE], [DropBoxResource::TYPE]]), :multiple=>true, :id=>'filter_edit_resource_types') %>
+  <%= select_tag("resource_types", options_for_select([[ 'Web', LinkResource::TYPE], [ 'Google', GoogleResource::TYPE], [ 'DropBox', DropBoxResource::TYPE]]), :multiple=>true, :id=>'filter_edit_resource_types') %>
 
   <%= select_tag("course_grades", options_from_collection_for_select(CourseGrade.all, "id", "name"), {:multiple=>true, :id=>'filter_edit_coruse_grades'}) %>
 

@@ -100,15 +100,14 @@ class ResourcesController < ApplicationController
     end
 
     if params.has_key?('course_grades')
-      @resources &= Resource.find(:all, :joins => :course_grades, :conditions=>{:course_grades=>{:id => params[:course_grades]}})
+      @resources &= Resource.find(:all, :joins => :course_grades, :conditions=>{:user_id => @current_user.id, :course_grades=>{:id => params[:course_grades]}})
       
     end
 
     if params.has_key?('course_subjects')
-      @resources &= Resource.find(:all, :joins => :course_subjects, :conditions=>{:course_subjects=>{:id => params[:course_subjects]}})
+      @resources &= Resource.find(:all, :joins => :course_subjects, :conditions=>{:user_id => @current_user.id, :course_subjects=>{:id => params[:course_subjects]}})
     end
 
-    
     Rails.logger.info(@resources);
     render :partial => 'resources/resources_table'
 
