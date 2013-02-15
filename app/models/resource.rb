@@ -35,7 +35,10 @@ class Resource < ActiveRecord::Base
 	end
 
 
+
   def self.inherited(child)
+    # http://www.alexreisner.com/code/single-table-inheritance-in-rails
+    # Needed so we can use a single form for all Resource types
     child.instance_eval do
       def model_name
         Resource.model_name

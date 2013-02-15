@@ -1,7 +1,5 @@
 jQuery(function($) {    
 
-    // $('select').select2();
-
     $("#create_resource_link_form")
     .live("ajax:error", function(event, data, status, xhr) {
         // Not sure why I have to use the responseText here
@@ -35,6 +33,33 @@ jQuery(function($) {
     });
 
 
+    var timer;
+    $("#filter_edit_search").live('keyup input',function() {
+        var form = $(this);
+        timer && clearTimeout(timer);
+        timer = setTimeout(function(){ 
+            form.submit();
+        }, 500);
+    });
+
+    $('#filter_resource_form').live('change', function() {
+        $(this).submit();
+    });
+
+    $("#filter_resource_form")
+    .live("ajax:error", function(event, data, status, xhr) {
+        pushFlash({message:"Error in filtering resoruces", state: 'success', fadeOut: 5000});
+    })
+    .live("ajax:success", function(event, data, status, xhr) {
+        // Update the resources table
+        $("#resources_table").html(data);  
+        console.log(data);
+    });
+
+
+
+
+
     $("#editResourceLinkView")
     .live("click", function() {
         console.log("Editing view: ");
@@ -57,7 +82,6 @@ jQuery(function($) {
         });   
 
     });
-
 
 
     $("#editResourceLinkModal")

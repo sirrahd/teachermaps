@@ -1,0 +1,31 @@
+<%= form_tag resources_ajax_filter_path, id: 'filter_resource_form', :class=>"form-inline", :remote=>true, :onchange=>'$(this).form.submit();' do %>
+  
+
+  <%= select_tag("resource_types", options_for_select([[LinkResource::TYPE], [GoogleResource::TYPE], [DropBoxResource::TYPE]]), :multiple=>true, :id=>'filter_edit_resource_types') %>
+
+  <%= select_tag("course_grades", options_from_collection_for_select(CourseGrade.all, "id", "name"), {:multiple=>true, :id=>'filter_edit_coruse_grades'}) %>
+
+  <%= select_tag("course_subjects", options_from_collection_for_select(CourseSubject.all, "id", "name"), {:multiple=>true, :id=>'filter_edit_coruse_subjects'}) %>
+
+  <input name="q" type="text" class="search-query" placeholder="Search" style="width:250px" id="filter_edit_search">
+
+<% end %>
+
+<script type="text/javascript">
+$(document).ready(function() { 
+  
+  $("#filter_edit_resource_types").select2({
+    width : '200px',
+    placeholder: 'All Types'
+  });
+  $("#filter_edit_coruse_grades").select2({
+    width : '200px',
+    placeholder: 'All Grades'
+  });
+  $("#filter_edit_coruse_subjects").select2({
+      width : '250px',
+      placeholder: 'All Subjects'
+    });
+  });
+
+</script>

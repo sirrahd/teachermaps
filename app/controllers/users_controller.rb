@@ -1,4 +1,11 @@
 class UsersController < ApplicationController
+
+  def index
+    # /users/ was returning a 404
+    return_to signin_url if !signed_in?
+    redirect_to @current_user
+  end
+
   def show
     # Users must be signed in to view a profile
     return_to signin_url if !signed_in?

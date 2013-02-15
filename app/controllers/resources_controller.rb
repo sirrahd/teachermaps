@@ -5,16 +5,7 @@ class ResourcesController < ApplicationController
   before_filter :require_session
 
   def index
-    @resources = Resource.where( :user_id => @current_user.id )
-    Rails.logger.info("Resources = #{@resource}")
-
-    # For rendering Ajax "Upload Resource" form
-    @resource = Resource.new
-
-    respond_to do |format|
-      format.html # index.html.erb
-      format.json { render json: @resources }
-    end
+    redirect_to @current_user
   end
 
   # GET /resources/1
@@ -95,6 +86,45 @@ class ResourcesController < ApplicationController
     end
   end
 
+
+  def ajax_filter
+
+    #Article.find(:all, :limit => 10, :conditions => {:category => "gardening"}, :order => "created_at DESC", :include => :comments) 
+
+    filter = {}
+    @resources = Resource.where( :user_id => @current_user.id )
+
+    if params.has_key?('q') and !params[:q].empty?
+      @resources &= Resource.where( 'title LIKE ?', "%#{params[:q].strip}%" )
+    end
+
+    if params.has_key?('resource_types')
+      @resources &= Resource.where( :type => params[:resource_types])
+    end
+
+    if params.has_key?('course_grades')
+      @resources &= Resource.find(:all, :joins => :course_grades)
+      
+    end
+
+    if params.has_key?('course_subjects')
+      @resources &= Resource.find(:all, :joins => :course_subjects)
+    end
+
+    
+    Rails.logger.info(@resources);
+
+
+
+
+    # @resources = Resource.where( 
+    #   :user_id => @current_user.id 
+
+    # )
+    render :partial => 'resources/resources_table'
+
+
+  end
 
   def ajax_upload_link
     Rails.logger.info("Using this #{params}")
