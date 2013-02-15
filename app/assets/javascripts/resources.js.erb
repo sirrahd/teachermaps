@@ -21,7 +21,7 @@ jQuery(function($) {
         // Hide all modals
         $('.modal.in').modal('hide');   
         // Rest form
-        $(this).reset();
+        $(this)[0].reset();
         // Clear any error notification
         $("#uploadResourcesErrors").html('');  
         // $("select").select2({});
@@ -123,7 +123,7 @@ jQuery(function($) {
         // Hide all modals
         $('.modal.in').modal('hide');   
         // Rest form
-        this.reset();
+        $('#edit_resource_link_form')[0].reset();
         // Clear any error notification
         $("#editResourceLinkErrors").html(''); 
 
