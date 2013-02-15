@@ -25,9 +25,9 @@
 
   <span>
     <% if @resource.type == LinkResource::TYPE %>
-      <%= link_to 'Open Link', @resource.link, :class => 'btn', :target => "_blank"  %>
+      <%= link_to 'Open Link', resource_url(@resource), :target => "_blank", :class => 'btn' %>
     <% else %>
-      <%= link_to 'Open File', @resource.open_link, :class => 'btn', :target => "_blank"  %>
+      <%= link_to 'Open File', resource_url(@resource), :target => "_blank", :class => 'btn' %>
     <% end %>
 
     <%= link_to t('resources.delete_label'), resource_path(@resource) , :confirm => t('resources.delete_file_confirmation', :title=>@resource.title), :method => :delete, :class=>'btn' %>
