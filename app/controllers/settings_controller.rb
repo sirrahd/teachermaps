@@ -4,7 +4,7 @@ class SettingsController < ApplicationController
 
 
   def index
-    @setting = Setting.find(@current_user.id)
+    @setting = @current_user.setting
 
     @google_account = nil
     if @current_user.has_google_account?
