@@ -106,7 +106,8 @@ class ResourcesController < ApplicationController
     @resources = Resource.where( :user_id => @current_user.id )
 
     if params.has_key?('q') and !params[:q].empty?
-      @resources &= Resource.where( 'title LIKE ?', "%#{params[:q].strip}%" )
+      #@resources &= Resource.where( 'title LIKE ?', "%#{params[:q].strip}%" )
+      @resources &= Resource.where( Resource.arel_table[:title].matches("%#{params[:q].strip}%") )
     end
 
     if params.has_key?('resource_types')
