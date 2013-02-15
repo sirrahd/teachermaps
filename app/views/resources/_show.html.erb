@@ -3,31 +3,29 @@
 
   
   <div class="control-group">
-    <label >Grades</label>
-    <div class="controls">
-      <% if @resource.course_grades.any? %>
+    <% if @resource.course_subjects.any? %>
+      <label>Grades</label>
+      <div class="controls">
         <% @resource.course_grades.each do |x| %>
           <%= x.name %>
         <% end %>
-      <% else %>   
-        <label>None</label>
-      <% end %>    
-    </div>
+      </div>
+    <% end %>
   </div>
   
 
 
   <div class="control-group">
-    <label>Subjects</label>
-    <div class="controls">
+    
       <% if @resource.course_subjects.any? %>
+      <label>Subjects</label>
+      <div class="controls">
         <% @resource.course_subjects.each do |x| %>
           <%= x.name %>
         <% end %>
-      <% else %>   
-        <label>None</label>
-      <% end %>    
-    </div>
+      </div>
+      <% end %>  
+    
   </div>
 
 
