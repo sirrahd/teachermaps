@@ -16,14 +16,14 @@
         <% if resource.course_grades.any? %>
           <%= resource.course_grades.map(&:name).join(", ") %>
         <% else %>   
-          <label>None</label>
+          
         <% end %>     
       </td>
       <td>
         <% if resource.course_subjects.any? %>
           <%= resource.course_subjects.map(&:name).join(", ") %>
         <% else %>   
-          <label>None</label>
+          
         <% end %>    
       </td>
       <td>

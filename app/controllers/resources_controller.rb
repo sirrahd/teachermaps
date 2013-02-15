@@ -110,14 +110,6 @@ class ResourcesController < ApplicationController
 
     
     Rails.logger.info(@resources);
-
-
-
-
-    # @resources = Resource.where( 
-    #   :user_id => @current_user.id 
-
-    # )
     render :partial => 'resources/resources_table'
 
 
