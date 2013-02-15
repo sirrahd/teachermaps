@@ -3,8 +3,8 @@
   <thead>
     <tr>
       <th>Title</th>
-      <th>Created</th>
-      <th>Type</th>
+      <th>Grades</th>
+      <th>Subjects</th>
       <th>Action</th>
     </tr>
   </thead>
@@ -12,8 +12,20 @@
   <% @resources.each do |resource| %>
     <tr> 
       <td><%= link_to resource.title, resource_url(resource), :target => "_blank" %></td>
-      <td><%= resource.created_at %></td>
-      <td><%= resource.type %></td>
+      <td>
+        <% if resource.course_grades.any? %>
+          <%= resource.course_grades.map(&:name).join(", ") %>
+        <% else %>   
+          <label>None</label>
+        <% end %>     
+      </td>
+      <td>
+        <% if resource.course_subjects.any? %>
+          <%= resource.course_subjects.map(&:name).join(", ") %>
+        <% else %>   
+          <label>None</label>
+        <% end %>    
+      </td>
       <td>
         <%= link_to 'View', "#", :class=>'btn',  :onclick=>"loadViewResourceLinkModal('#{resources_ajax_show_path resource.slug}');" %>
       </td>
