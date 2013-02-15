@@ -3,12 +3,10 @@
 
   
   <div class="control-group">
-    <% if @resource.course_subjects.any? %>
-      <label>Grades</label>
-      <div class="controls">
-        <% @resource.course_grades.each do |x| %>
-          <%= x.name %>
-        <% end %>
+    <% if @resource.course_grades.any? %>
+      <label ><strong>Grades</strong></label>
+      <div class="controls" style="margin-left:10px;">
+        <%= @resource.course_grades.map(&:name).join(", ") %>
       </div>
     <% end %>
   </div>
@@ -18,11 +16,9 @@
   <div class="control-group">
     
       <% if @resource.course_subjects.any? %>
-      <label>Subjects</label>
-      <div class="controls">
-        <% @resource.course_subjects.each do |x| %>
-          <%= x.name %>
-        <% end %>
+      <label><strong>Subjects</strong></label>
+      <div class="controls" style="margin-left:10px;">
+        <%= @resource.course_subjects.map(&:name).join(", ") %>
       </div>
       <% end %>  
     
