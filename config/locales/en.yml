@@ -82,6 +82,8 @@ en:
     upload_success:             "Resource upload was successful!"
     does_not_exist:             "Resouce does not exist"
     title_blank_error:          "cannot be blank."
+    filter_failure:             "Error in filtering resoruces"
+    edit_success:               "Saved Changes"
   link_resources:
     link_not_valid:             "is not a valid web link."
     link_blank_error:           "cannot be blank."

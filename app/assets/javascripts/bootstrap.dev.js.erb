@@ -1,17 +1,27 @@
-function closeModalOnSubmit(){
 
+/**
+element = the div element of the Modal's body.
+
+By passing in the element, we can localize the dismiss model
+button of the model and close the modal properly. If 
+no elment is given, we close all open models.
+
+*/
+function closeModalOnSubmit(element){
+
+    var element = element || undefined;
 	window.setTimeout(function() { 
-        // Hide all modals
-        if( $('.close').length > 0 ){
+        
+        if( element != undefined ){
             // With animation
-            $('.close').click();
-            console.log("Closing via click");
+            element.find('.close').click();
+            console.log("Closed via click");
         } else {
             // Without animation
             $('.modal.in').modal('hide');   
-            // $('.modal.in').modal.close();
-            console.log("Closing manually");
+            console.log("Closed manually");
         }
+
     }, 300);
 
     window.setTimeout(function() { 
