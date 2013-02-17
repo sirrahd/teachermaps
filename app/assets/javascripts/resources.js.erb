@@ -24,8 +24,7 @@ jQuery(function($) {
         $(this)[0].reset();
         // Clear any error notification
         $("#uploadResourcesErrors").html('');  
-        
-        closeModalOnSubmit($(this));
+        closeModalOnSubmit();
     });
 
 
@@ -84,6 +83,8 @@ jQuery(function($) {
         // Flash user of the success
         pushFlash({message:"<%= I18n.t('resources.upload_success') %>", state: 'success', fadeOut: 5000});
         $("#uploadResourcesErrors").html('');  
+        closeModalOnSubmit();
+        console.log("Success Edit" + "<%= I18n.t('resources.edit_success') %>");
     });
 
     $("#editResourceLinkView")
@@ -109,29 +110,29 @@ jQuery(function($) {
     });
 
 
-    $("#editResourceLinkModal")
-    .live("ajax:error", function(event, data, status, xhr) {
-        // Not sure why I have to use the responseText here
-        $("#editResourceLinkErrors").html(data.responseText);    
-        console.log("Failure Edit");
+    // $("#editResourceLinkModal")
+    // .live("ajax:error", function(event, data, status, xhr) {
+    //     // Not sure why I have to use the responseText here
+    //     $("#editResourceLinkErrors").html(data.responseText);    
+    //     console.log("Failure Edit");
 
-    })
-    .live("ajax:success", function(event, data, status, xhr) {
-        // Update the resources table
-        $("#resources_table").html(data);  
-        // Flash user of the success
-        pushFlash({message:"<%= I18n.t('resources.edit_success') %>", state: 'success', fadeOut: 5000});
+    // })
+    // .live("ajax:success", function(event, data, status, xhr) {
+    //     // Update the resources table
+    //     $("#resources_table").html(data);  
+    //     // Flash user of the success
+    //     pushFlash({message:"<%= I18n.t('resources.edit_success') %>", state: 'success', fadeOut: 5000});
         
-        // Rest form
-        $('#edit_resource_link_form')[0].reset();
-        // Clear any error notification
-        $("#editResourceLinkErrors").html(''); 
+    //     // Rest form
+    //     $('#edit_resource_link_form')[0].reset();
+    //     // Clear any error notification
+    //     $("#editResourceLinkErrors").html(''); 
         
-        closeModalOnSubmit($(this));
+    //     closeModalOnSubmit($(this));
 
-        console.log("Success Edit" + "<%= I18n.t('resources.edit_success') %>");
+    //     console.log("Success Edit" + "<%= I18n.t('resources.edit_success') %>");
 
-    });
+    // });
 
 
 
