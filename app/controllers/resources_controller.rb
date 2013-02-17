@@ -61,6 +61,7 @@ class ResourcesController < ApplicationController
   # PUT /resrouce/1
   # PUT /resource/1.json
   def update
+    Rails.logger.info("Updating Resource #{params}")
     @resource = Resource.where(:id => params[:id], :user_id=>@current_user.id).first
 
     @resource.title = params[:resource][:title]

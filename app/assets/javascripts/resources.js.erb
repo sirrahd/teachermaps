@@ -100,7 +100,7 @@ jQuery(function($) {
           url: '/resources/'+resourceId+'/edit',
           dataType: 'html'
         }).done(function(data) {
-            console.log(data);
+            // console.log(data);
             $('#editResourceLinkModalBody').html(data);
             $('#editResourceLinkModal').modal('show');
 
@@ -114,22 +114,25 @@ jQuery(function($) {
     $("#editResourceLinkModal")
     .live("ajax:error", function(event, data, status, xhr) {
         // Not sure why I have to use the responseText here
-        $("#editResourceLinkErrors").html(data.responseText);      
+        $("#editResourceLinkErrors").html(data.responseText);    
+        console.log("Failure Edit");
+
     })
     .live("ajax:success", function(event, data, status, xhr) {
         // Update the resources table
         $("#resources_table").html(data);  
         // Flash user of the success
         pushFlash({message:"Update success", state: 'success', fadeOut: 5000});
-        // Hide all modals
-        $('.modal.in').modal('hide');   
+        
         // Rest form
         $('#edit_resource_link_form')[0].reset();
         // Clear any error notification
         $("#editResourceLinkErrors").html(''); 
+        
+        closeModalOnSubmit();
 
-        $('body').removeClass('modal-open');
-        $('.modal-backdrop').remove();
+        console.log("Success Edit");
+
     });
 
 

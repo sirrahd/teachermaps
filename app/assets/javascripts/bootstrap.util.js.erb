@@ -1,0 +1,22 @@
+
+
+
+function closeModalOnSubmit(){
+
+	// $('.close').click();
+	window.setTimeout(function() { 
+        // Hide all modals
+        // $('.modal.in').modal('hide');   
+        // $('.modal.in').modal.close();
+        $('.close').click();
+    }, 300);
+
+    window.setTimeout(function() { 
+    	$('.modal-backdrop').fadeOut('fast');
+        // $('body').removeClass('modal-open');
+        // $('.modal-backdrop').remove();
+    }, 450);
+    console.log('Closing Modal');
+
+
+}
