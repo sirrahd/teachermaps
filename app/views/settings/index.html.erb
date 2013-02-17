@@ -8,15 +8,15 @@
   <tr>
     <td>
       <% if @google_account.nil?  %>
-        <%= link_to t('settings.google_drive_add_label'), new_google_account_path %> 
+        <%= link_to t('google_drive.link'), new_google_account_path %> 
       <% else %>
-        <%= link_to t('settings.google_drive_open_folder'), @google_account.drive_folder_link , :target => "_blank" %>
+        <%= link_to t('google_drive.open_folder'), @google_account.drive_folder_link , :target => "_blank" %>
       <% end %>
     </td>
     <td>
       <% if !@google_account.nil? %>
       &#124;
-      <%= link_to t('settings.google_drive_remove_label'), @google_account, :confirm => t('settings.google_drive_remove_confirm'), :method => :delete %>
+      <%= link_to t('google_drive.remove'), @google_account, :confirm => t('google_drive.remove_confirmation'), :method => :delete %>
       <% end %>
     </td>
     <td></td>
@@ -25,44 +25,38 @@
   <tr>
     <td>
       <% if @drop_box_account.nil?  %>
-        <%= link_to t('settings.dropbox_add_label'), new_drop_box_accounts_path %>
+        <%= link_to t('drop_box_add'), new_drop_box_accounts_path %>
       <% else %>
-        <%= link_to t('settings.drop_box_open_folder'), @drop_box_account.folder_link , :target => "_blank" %> 
+        <%= link_to t('drop_box.open_folder'), @drop_box_account.folder_link , :target => "_blank" %> 
       <% end %>
     </td>
     <td>
       <% if !@drop_box_account.nil? %>
       &#124;
-      <%= link_to t('settings.drop_box_remove_label'), @drop_box_account, :confirm => t('settings.drop_box_remove_confirm'), :method => :delete %>
+      <%= link_to t('drop_box.remove'), @drop_box_account, :confirm => t('drop_box.remove_confirmation'), :method => :delete %>
       <% end %>
     </td>
     <td></td>
   </tr>
 
-  <tr>
-    <td>
-      <% if !@drop_box_account.nil? and !@google_account.nil?  %>
-       
-     <!--    <%= form_for @setting, remote: true, html: { :'data-type' => 'html', id: 'update_setting_form' }  do |f| %>
-          <%= label_tag(:upload_to, t('settings.upload_to_label')) %>
-          <%= f.select(:upload_to, [ [t('google_accounts.google_drive'), GoogleResource::TYPE], [ t('drop_box_accounts.drop_box'), DropBoxResource::TYPE ]], {}, {:onchange => '$(this.form).submit();'} )  %>
-        <% end %> -->
-        
-      <% elsif  @drop_box_account.nil? and !@google_account.nil?  %>  
-        <%= select_tag "setting_form", options_for_select([t('google_accounts.google_drive'), GoogleResource::TYPE]), :disabled => true %>
 
-      <% elsif  !@drop_box_account.nil? and @google_account.nil?  %>  
-        <%= select_tag "setting_form", options_for_select([ t('drop_box_accounts.drop_box'), DropBoxResource::TYPE ]), :disabled => true %>
-
-      <% end %>
-    </td>
-    <td></td>
-    <td>
-    </td>
-  </tr>
 
 </table>
 
 <br />
 
+<% if !@drop_box_account.nil? and !@google_account.nil?  %>
+       
+  <%= form_for @setting, remote: true, html: { :'data-type' => 'html', id: 'update_setting_form' }  do |f| %>
+    <%= label_tag(:upload_to, t('settings.upload_to')) %>
+    <%= f.select(:upload_to, [ [t('google_drive.link'), GoogleResource::TYPE], [ t('drop_box.link'), DropBoxResource::TYPE ]], {}, {:onchange => '$(this.form).submit();', :style=>"width:200px;"} )  %>
+  <% end %>
+  
+<% elsif  @drop_box_account.nil? and !@google_account.nil?  %>  
+  <%= select_tag "setting_form", options_for_select([t('google_drive.link'), GoogleResource::TYPE]), :disabled => true %>
+
+<% elsif  !@drop_box_account.nil? and @google_account.nil?  %>  
+  <%= select_tag "setting_form", options_for_select([ t('drop_box.link'), DropBoxResource::TYPE ]), :disabled => true %>
+
+<% end %>
 

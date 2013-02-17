@@ -3,11 +3,11 @@
   
 <%= form_for Resource.new, :remote => true, :url => resources_ajax_create_link_path, html: { :multipart => true, :'data-type' => 'html', id: 'create_resource_link_form' }  do |f| %>
 
-  <%= label_tag(:title, t('resources.title_label')) %>
+  <%= label_tag(:title, t('resources.title')) %>
   <%= f.text_field :title  %>
 
 
-  <%= label_tag(:link, t('resources.link_label')) %>
+  <%= label_tag(:link, t('resources.link')) %>
   <%= f.text_field :link  %>
 
   

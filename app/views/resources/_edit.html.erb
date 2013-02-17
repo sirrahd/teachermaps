@@ -5,12 +5,12 @@
 <%= form_for @resource, :url=>resource_path, html: { :remote=>true, :multipart => true, :'data-type' => 'html', id: 'edit_resource_link_form' }  do |f| %>
   
 
-  <%= label_tag(:title, t('resources.title_label')) %>
+  <%= label_tag(:title, t('resources.title')) %>
   <%= f.text_field :title  %>
 
 
   <% if @resource.type == LinkResource::TYPE %>
-    <%= label_tag(:link, t('resources.link_label')) %>
+    <%= label_tag(:link, t('resources.link')) %>
   <%= f.text_field :link  %>
   <% end %>
   
@@ -31,7 +31,7 @@
       <%= link_to 'Open File', resource_url(@resource), :target => "_blank", :class => 'btn' %>
     <% end %>
 
-    <%= link_to t('resources.delete_label'), resource_path(@resource) , :confirm => t('resources.delete_file_confirmation', :title=>@resource.title), :method => :delete, :class=>'btn' %>
+    <%= link_to t('resources.delete'), resource_path(@resource) , :confirm => t('resources.delete_file_confirmation', :title=>@resource.title), :method => :delete, :class=>'btn' %>
     <%= f.submit("Save", :class=>"btn btn-primary start") %>
   </span>
 
