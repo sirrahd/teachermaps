@@ -1,4 +1,4 @@
-<%= form_tag resources_ajax_filter_path, id: 'filter_resource_form', :class=>"form-inline", :remote=>true, :onchange=>'$(this).form.submit();' do %>
+<%= form_tag resources_ajax_filter_path, id: 'filter_resource_form', :class=>"form-inline", :remote=>true do %>
   
 
   <%= select_tag("resource_types", options_for_select([[ 'Web', LinkResource::TYPE], [ 'Google', GoogleResource::TYPE], [ 'DropBox', DropBoxResource::TYPE]]), :multiple=>true, :id=>'filter_edit_resource_types') %>

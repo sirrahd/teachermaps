@@ -23,22 +23,22 @@
         <% end %>    
       </td>
       <td>
-        <%= link_to 'View', "#", :class=>'btn', :onclick=>"loadViewResourceLinkModal('#{resources_ajax_show_path resource.slug}');" %>
+        <%= link_to 'View', "#", :class=>'btn', :onclick=>"loadshow_resource_link_modal('#{resources_ajax_show_path resource.slug}');" %>
       </td>
     </tr>
   <% end %>
 </tbody>
 </table>
 
-<div id="editResourceLinkModal" class="modal hide fade in" tabindex="-1" role="dialog" aria-labelledby="editResourceLinkModalLabel" aria-hidden="true" >
-  <div class="modal-body" id="editResourceLinkModalBody"></div>
+<div id="edit_resource_link_modal" class="modal hide fade in" tabindex="-1" role="dialog" aria-labelledby="edit_resource_link_modalLabel" aria-hidden="true" >
+  <div class="modal-body" id="edit_resource_link_modal_body"></div>
 </div>
 
-<div id="viewResourceLinkModal" class="modal hide fade in" tabindex="-1" role="dialog" aria-labelledby="viewResourceLinkModalLabel" >
-    <div class="modal-body" id="viewResourceLinkModalBody"></div>
+<div id="show_resource_link_modal" class="modal hide fade in" tabindex="-1" role="dialog" aria-labelledby="show_resource_link_modalLabel" >
+    <div class="modal-body" id="show_resource_link_modal_body"></div>
 </div>
 
-<div id="uploadResourceLinkModal" class="modal hide fade in" tabindex="-1" role="dialog" aria-labelledby="uploadResourceModalLabel" aria-hidden="true" >
+<div id="put_resource_link_modal" class="modal hide fade in" tabindex="-1" role="dialog" aria-labelledby="uploadResourceModalLabel" aria-hidden="true" >
   <div class="modal-body">
     <%= render 'resources/form_create_link' %>
   </div>

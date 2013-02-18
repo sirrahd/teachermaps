@@ -38,7 +38,7 @@
       <% end %>
       
       <%= link_to t('resources.delete'), resource_path(@resource) , :confirm => t('resources.delete_file_confirmation', :title=>@resource.title), :method => :delete, :class=>'btn' %>
-      <%= link_to 'Edit', "#", :class=>"btn btn-primary start", :id=>'editResourceLinkView', 'resource-id'=>@resource.id  %>
+      <%= link_to 'Edit', "#", :class=>"btn btn-primary start", :id=>'edit_resource_link_view', 'resource-id'=>@resource.id  %>
     </div>
   </div>
 

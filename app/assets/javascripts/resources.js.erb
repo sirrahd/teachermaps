@@ -28,18 +28,6 @@ jQuery(function($) {
     });
 
 
-
-
-
-
-   
-
-
-
-
-
-
-
     var timer;
     $("#filter_edit_search").live('keyup input',function() {
         var form = $(this);
@@ -50,6 +38,7 @@ jQuery(function($) {
         }, 500);
     });
 
+    // Needed for browser compatibility 
     $('#filter_resource_form').change(function() {
         $(this).submit();
     });
@@ -87,7 +76,7 @@ jQuery(function($) {
         console.log("Success Edit" + "<%= I18n.t('resources.edit_success') %>");
     });
 
-    $("#editResourceLinkView")
+    $("#edit_resource_link_view")
     .live("click", function() {
         console.log("Editing view: ");
 
@@ -100,143 +89,19 @@ jQuery(function($) {
           url: '/resources/'+resourceId+'/edit',
           dataType: 'html'
         }).done(function(data) {
-            $('#editResourceLinkModalBody').html(data);
-            $('#editResourceLinkModal').modal('show');
+            $('#edit_resource_link_modal_body').html(data);
+            $('#edit_resource_link_modal').modal('show');
 
-            $('#viewResourceLinkModal').modal('hide');
+            $('#show_resource_link_modal').modal('hide');
             console.log("Loaded Resource:"+resourceId);
         });   
 
     });
-
-
-    // $("#editResourceLinkModal")
-    // .live("ajax:error", function(event, data, status, xhr) {
-    //     // Not sure why I have to use the responseText here
-    //     $("#editResourceLinkErrors").html(data.responseText);    
-    //     console.log("Failure Edit");
-
-    // })
-    // .live("ajax:success", function(event, data, status, xhr) {
-    //     // Update the resources table
-    //     $("#resources_table").html(data);  
-    //     // Flash user of the success
-    //     pushFlash({message:"<%= I18n.t('resources.edit_success') %>", state: 'success', fadeOut: 5000});
-        
-    //     // Rest form
-    //     $('#edit_resource_link_form')[0].reset();
-    //     // Clear any error notification
-    //     $("#editResourceLinkErrors").html(''); 
-        
-    //     closeModalOnSubmit($(this));
-
-    //     console.log("Success Edit" + "<%= I18n.t('resources.edit_success') %>");
-
-    // });
-
-
-
-
-    // // Expands dragover area
-    // $(document).bind('dragover', function (e) {
-    //     var dropZone = $('#dropzone'),
-    //         timeout = window.dropZoneTimeout,
-    //         uploadButton = $('#fileupload-button');
-    //     if (!timeout) {
-    //         dropZone.addClass('in');            
-    //         uploadButton.hide();
-    //     } else {
-    //         clearTimeout(timeout);
-    //     }
-    //     if (e.target === dropZone[0]) {
-    //         dropZone.addClass('hover');
-    //     } else {
-    //         dropZone.removeClass('hover');
-    //     }
-    //     window.dropZoneTimeout = setTimeout(function () {
-    //         window.dropZoneTimeout = null;
-    //         dropZone.removeClass('in hover');
-    //         uploadButton.show();
-    //     }, 100);
-    // });
-
-    // $(document).bind('drop dragover', function (e) {
-    //     e.preventDefault();
-    // });
-
-
-     // Initialize the jQuery File Upload widget:
-    // $('#create_resource_form').fileupload({
-    //     url : '/resources/ajax/create/file',
-    //     autoUpload: false,
-    //     dataType: 'json',
-    //     maxNumberOfFiles: 1,
-    //     maxFileSize: 52428800,
-    //     dropZone: $('#dropzone'),
-    //     add : function (e, data){
-    //         filename = data.originalFiles[0].name;
-    //         $('#resourceContainer').empty();
-    //         $('#resourceContainer').append('<tbody><tr><td>'+filename+'</td></tr></tbody>');
-    //         console.log("Sending "+filename);
-
-    //         $('#submit-resource-form').on('click', function () {
-    //             console.log("Sending data + files");
-    //             data.submit();
-    //         });
-
-    //     }
-    // });
-
-    // $("#create_resource_form")
-    // // .bind("ajax:beforeSend", function (event, data, stats, xhr){
-    // //     console.log("Before sending data");
-    // //     console.log(data);
-    // //     // data.submit();
-    // // })
-    // .bind("ajax:success", function(event, data, status, xhr) {
-    //     // Update the resources table
-    //     $("#resources_table").html(data);  
-    //     // Hide the upload form    
-    //     $('#uploadResourceModal').modal('hide');
-    //     // Flash user of the success
-    //     pushFlash({message:"<%= I18n.t('resources.upload_success') %>", state:'success'});
-    // })
-    // .bind("ajax:error", function(event, data, status, xhr) {
-    //     // Not sure why I have to use the responseText here
-    //     $("#uploadResourcesErrors").html(data.responseText); 
-    //     console.log("Error in form fields submission");
-        
-    // });
-
-    // .bind('fileuploadadd', function (e, data) {
-    //     filename = data.originalFiles[0].name;
-    //     $('#resourceContainer').empty();
-    //     $('#resourceContainer').append('<tbody><tr><td>'+filename+'</td></tr></tbody>');
-    //     // data.submit();
-    //     // data.formData = $('create_resource_form').serializeArray();
-    //     // data.submit();
-    // });
-   
-    // $('#create_resource_form').bind('fileuploadsubmit', function (e, data) {
-    //     return false;
-    //     filename = data.originalFiles[0].name;
-    //     $('#resourceContainer').empty();
-    //     $('#resourceContainer').append('<tbody><tr><td>'+filename+'</td></tr></tbody>');
-    //     data.formData = $('create_resource_form').serializeArray();
-    //     data.submit();
-    //     // The example input, doesn't have to be part of the upload form:
-    //     var input = $('#input');
-    //     data.formData = {example: input.val()};
-    //     if (!data.formData.example) {
-    //       input.focus();
-    //       return false;
-    //     }
-    // });
     
 });
 
 
-function loadViewResourceLinkModal(resourceURI){
+function loadshow_resource_link_modal(resourceURI){
     if(resourceURI == undefined) return false;
 
     console.log("Loading Resource:"+resourceURI);
@@ -246,8 +111,8 @@ function loadViewResourceLinkModal(resourceURI){
       dataType: 'html'
     }).done(function(data) {
         console.log(data);
-        $('#viewResourceLinkModalBody').html(data);
-        $('#viewResourceLinkModal').modal('show');
+        $('#show_resource_link_modal_body').html(data);
+        $('#show_resource_link_modal').modal('show');
         console.log("Loaded Resource:"+resourceURI);
     });   
 }
