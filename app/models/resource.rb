@@ -30,10 +30,8 @@ class Resource < ActiveRecord::Base
   	belongs_to :user
 
   	has_and_belongs_to_many :course_subjects, :uniq => true
-  	has_and_belongs_to_many :course_grades, :uniq => true
+  	has_and_belongs_to_many :course_grades, :uniq => true, :order => 'id ASC'
 
-  	# accepts_nested_attributes_for :course_subjects
-  	# accepts_nested_attributes_for :course_grades
 
   	attr_accessible :course_subjects
   	attr_accessible :course_grades
@@ -63,6 +61,17 @@ class Resource < ActiveRecord::Base
     end
     super
   end
+
+  # def get_grades
+  #   if self.course_grades.any?
+      
+  #     # Rails.logger.info("Grades: #{grades.inspect}")
+  #     # grades.sort{|x,y| x.id <=> y.id }
+  #     Rails.logger.info("Grades: #{grades.inspect}")
+  #     # grades = self.course_grades.each { |grade| "#{grade.name}, " }
+  #     self.course_grades
+  #   end
+  # end
 
   def get_type
 
