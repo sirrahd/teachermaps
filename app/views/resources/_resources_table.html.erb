@@ -23,7 +23,7 @@
         <% end %>    
       </td>
       <td>
-        <%= link_to 'View', "#", :class=>'btn', :onclick=>"loadshow_resource_link_modal('#{resources_ajax_show_path resource.slug}');" %>
+        <%= link_to 'View', "#", :class=>'btn', :id=>'show_resource', 'resource-url'=>"#{resources_ajax_show_path resource.slug}" %>
       </td>
     </tr>
   <% end %>

@@ -113,24 +113,42 @@ jQuery(function($) {
         });   
 
     });
+
+
+
+    //////////////////////////////
+    //
+    // Show Resources 
+    //
+    //////////////////////////////
+
+    $("#show_resource")
+    .live("click", function() {
+        
+
+        var resourceURI = $(this).attr('resource-url');
+
+        if(resourceURI == undefined) return false;
+
+        console.log("Showing view: "+resourceURI);
+        
+        // Confirm form data exists
+        if (resourceURI == undefined) return false;
+
+        $.ajax({
+          url: resourceURI,
+          dataType: 'html'
+        }).done(function(data) {
+          console.log(data);
+          $('#show_resource_link_modal_body').html(data);
+          $('#show_resource_link_modal').modal('show');
+          console.log("Loaded Resource:"+resourceURI);
+        });   
+
+    });
     
 });
 
 
-function loadshow_resource_link_modal(resourceURI){
-    if(resourceURI == undefined) return false;
-
-    console.log("Loading Resource:"+resourceURI);
-    
-    $.ajax({
-      url: resourceURI,
-      dataType: 'html'
-    }).done(function(data) {
-        console.log(data);
-        $('#show_resource_link_modal_body').html(data);
-        $('#show_resource_link_modal').modal('show');
-        console.log("Loaded Resource:"+resourceURI);
-    });   
-}
 
 
