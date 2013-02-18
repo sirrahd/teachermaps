@@ -2,6 +2,22 @@ class Resource < ActiveRecord::Base
 
 	TYPE = 'Resource'
   MAX_TITLE_RENDER_LEN = 35
+  MIME_TYPES = {
+    'text/html' => 'HTML',
+    'text/plain'=> 'Text',
+    'application/rtf'=> 'Text',
+    'application/vnd.oasis.opendocument.text'=> 'Word Document',
+    'application/pdf'=> 'PDF',
+    'application/msword' => 'Word Document',
+    'application/vnd.openxmlformats-officedocument.wordprocessingml.document' => 'Word Document',
+    'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' => 'Spreadsheet',
+    'application/x-vnd.oasis.opendocument.spreadsheet' => 'Spreadsheet',
+    'image/jpeg'=> 'Image',
+    'image/gif'=> 'Image',
+    'image/png'=> 'Image',
+    'image/svg+xml'=> 'Image',
+    'application/vnd.openxmlformats-officedocument.presentationml.presentation' => 'Presentation'
+  }
   
 	# TeacherMaps generated slug linking to a GoogleDrive/DropBox Resource 
 	attr_accessible :slug
@@ -46,6 +62,20 @@ class Resource < ActiveRecord::Base
       end
     end
     super
+  end
+
+  def get_type
+
+    if self.mime_type.nil?
+      'Web'
+    else
+      if MIME_TYPES.has_key?(self.mime_type)
+        MIME_TYPES[self.mime_type]
+      else
+        Rails.logger.info("Could not locate MimeType: #{self.mime_type}")
+        ''
+      end
+    end
   end
 
 end

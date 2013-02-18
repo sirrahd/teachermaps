@@ -2,15 +2,16 @@
   <tbody>
   <thead>
     <tr>
+      <th><%= t('shared.type') %></th>
       <th><%= t('resources.title') %></th>
       <th><%= t('resources.grades') %></th>
       <th><%= t('resources.subjects') %></th>
-      <th><%= t('shared.action') %></th>
     </tr>
   </thead>
 
   <% @resources.each do |resource| %>
     <tr resource-url="<%= resources_ajax_show_path resource.slug %>"> 
+      <td><%= resource.get_type %></td>
       <td><%= link_to truncate(resource.title, :length => Resource::MAX_TITLE_RENDER_LEN), resource_url(resource), :target => "_blank" %></td>
       <td>
         <% if resource.course_grades.any? %>
@@ -21,9 +22,6 @@
         <% if resource.course_subjects.any? %>
           <%= resource.course_subjects.map(&:name).join(", ") %>
         <% end %>    
-      </td>
-      <td>
-        <%= link_to t('shared.view') , "#", :class=>'btn', :id=>'show_resource', 'resource-url'=>"#{resources_ajax_show_path resource.slug}" %>
       </td>
     </tr>
   <% end %>
