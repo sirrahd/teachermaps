@@ -11,7 +11,7 @@
 
   <% @resources.each do |resource| %>
     <tr> 
-      <td><%= link_to resource.title, resource_url(resource), :target => "_blank" %></td>
+      <td><%= link_to truncate(resource.title, :length => 35), resource_url(resource), :target => "_blank" %></td>
       <td>
         <% if resource.course_grades.any? %>
           <%= resource.course_grades.map(&:name).join(", ") %>
