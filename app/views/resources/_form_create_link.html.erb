@@ -12,15 +12,27 @@
 
   
   <%= label_tag(:course_grades, t('resources.grades')) %>
-  <%= select_tag('resource[course_grades]', options_from_collection_for_select(CourseGrade.all, 'id', 'name'), { :multiple => true, :style=>'width:100%;', :id=>'create_resource_grades' }) %>
+  <%= select_tag('resource[course_grades]', options_from_collection_for_select(CourseGrade.all, 'id', 'name'), { :multiple => true, :id=>'create_resource_grades'}) %>
   <br/><br/>
  
 
   <%= label_tag(:course_subjects, t('resources.subjects')) %>
-  <%= select_tag('resource[course_subjects]', options_from_collection_for_select(CourseSubject.all, 'id', 'name'), { :multiple => true, :style=>'width:100%;', :id=>'create_resource_subjects' }) %>
+  <%= select_tag('resource[course_subjects]', options_from_collection_for_select(CourseSubject.all, 'id', 'name'), { :multiple => true,  :id=>'create_resource_subjects' }) %>
   <br/><br/>
 
   <%= link_to(t('shared.cancel'), '#', :class=>"btn btn start", "data-dismiss"=>"modal") %>
   <%= f.submit(t('shared.create'), :class=>"btn btn-primary start") %>
   
 <% end %>
+
+
+<script type="text/javascript">
+$(document).ready(function() {  
+  $("#create_resource_grades").select2({
+    width : '100%'
+  });
+  $("#create_resource_subjects").select2({
+    width : '100%'
+  });
+});
+</script>
