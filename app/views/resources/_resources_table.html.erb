@@ -1,4 +1,4 @@
-<table class="table table-condensed table-hover"  id="resources_table" >
+<table class="table table-condensed table-hover"  id="resources_table"  style="cursor:pointer;">
   <tbody>
   <thead>
     <tr>
@@ -44,3 +44,16 @@
   </div>
 </div>
 
+<script type="text/javascript">
+$(document).ready(function() {
+    $('#resources_table a').click(function(e){
+        console.log('Click link');
+        e.stopPropagation();
+    });
+
+    $('#resources_table tr').click(function(e) {
+        console.log('Click row')
+        e.stopPropagation();
+    });
+});
+</script>
