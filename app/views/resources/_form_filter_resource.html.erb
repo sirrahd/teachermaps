@@ -1,30 +1,30 @@
 <%= form_tag resources_ajax_filter_path, id: 'filter_resource_form', :class=>"form-inline", :remote=>true do %>
   
 
-  <%= select_tag("resource_types", options_for_select([[ 'Web', LinkResource::TYPE], [ 'Google', GoogleResource::TYPE], [ 'DropBox', DropBoxResource::TYPE]]), :multiple=>true, :id=>'filter_edit_resource_types') %>
+  <%= select_tag("resource_types", options_for_select([ [ I18n.t('resources.web'), LinkResource::TYPE],  [ I18n.t('google_drive.link'), GoogleResource::TYPE],  [ I18n.t('drop_box.link'), DropBoxResource::TYPE] ]), :multiple=>true, :id=>'filter_resource_types') %>
 
-  <%= select_tag("course_grades", options_from_collection_for_select(CourseGrade.all, "id", "name"), {:multiple=>true, :id=>'filter_edit_coruse_grades'}) %>
+  <%= select_tag("course_grades", options_from_collection_for_select(CourseGrade.all, "id", "name"), {:multiple=>true, :id=>'filter_course_grades'}) %>
 
-  <%= select_tag("course_subjects", options_from_collection_for_select(CourseSubject.all, "id", "name"), {:multiple=>true, :id=>'filter_edit_coruse_subjects'}) %>
+  <%= select_tag("course_subjects", options_from_collection_for_select(CourseSubject.all, "id", "name"), {:multiple=>true, :id=>'filter_course_subjects'}) %>
 
-  <input name="q" type="text" class="search-query" placeholder="Search" style="width:250px" id="filter_edit_search">
+  <input name="q" type="text" class="search-query" placeholder="<%= t('shared.search') %>" style="width:250px" id="filter_edit_search">
 
 <% end %>
 
 <script type="text/javascript">
 $(document).ready(function() { 
   
-  $("#filter_edit_resource_types").select2({
+  $("#filter_resource_types").select2({
     width : '200px',
-    placeholder: 'All Types'
+    placeholder: '<%= t("resources.all_types") %>'
   });
-  $("#filter_edit_coruse_grades").select2({
+  $("#filter_course_grades").select2({
     width : '200px',
-    placeholder: 'All Grades'
+    placeholder: '<%= t("resources.all_grades") %>'
   });
-  $("#filter_edit_coruse_subjects").select2({
+  $("#filter_course_subjects").select2({
       width : '250px',
-      placeholder: 'All Subjects'
-    });
+      placeholder: '<%= t("resources.all_subjects") %>'
   });
+}); 
 </script>

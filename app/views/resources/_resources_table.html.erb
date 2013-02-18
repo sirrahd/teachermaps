@@ -2,10 +2,10 @@
   <tbody>
   <thead>
     <tr>
-      <th>Title</th>
-      <th>Grades</th>
-      <th>Subjects</th>
-      <th>Action</th>
+      <th><%= t('resources.title') %></th>
+      <th><%= t('resources.grades') %></th>
+      <th><%= t('resources.subjects') %></th>
+      <th><%= t('shared.action') %></th>
     </tr>
   </thead>
 
@@ -23,22 +23,22 @@
         <% end %>    
       </td>
       <td>
-        <%= link_to 'View', "#", :class=>'btn', :id=>'show_resource', 'resource-url'=>"#{resources_ajax_show_path resource.slug}" %>
+        <%= link_to t('shared.view') , "#", :class=>'btn', :id=>'show_resource', 'resource-url'=>"#{resources_ajax_show_path resource.slug}" %>
       </td>
     </tr>
   <% end %>
 </tbody>
 </table>
 
-<div id="edit_resource_link_modal" class="modal hide fade in" tabindex="-1" role="dialog" aria-labelledby="edit_resource_link_modalLabel" aria-hidden="true" >
+<div id="edit_resource_link_modal" class="modal hide fade in" tabindex="-1" role="dialog" aria-labelledby="edit_resource_link_modal_label" aria-hidden="true" >
   <div class="modal-body" id="edit_resource_link_modal_body"></div>
 </div>
 
-<div id="show_resource_link_modal" class="modal hide fade in" tabindex="-1" role="dialog" aria-labelledby="show_resource_link_modalLabel" >
+<div id="show_resource_link_modal" class="modal hide fade in" tabindex="-1" role="dialog" aria-labelledby="show_resource_link_modal_label" >
     <div class="modal-body" id="show_resource_link_modal_body"></div>
 </div>
 
-<div id="put_resource_link_modal" class="modal hide fade in" tabindex="-1" role="dialog" aria-labelledby="uploadResourceModalLabel" aria-hidden="true" >
+<div id="put_resource_link_modal" class="modal hide fade in" tabindex="-1" role="dialog" aria-labelledby="upload_resource_modal_label" aria-hidden="true" >
   <div class="modal-body">
     <%= render 'resources/form_create_link' %>
   </div>
@@ -48,10 +48,10 @@
 $(document).ready(function() { 
   
   $("#create_resource_grades").select2({
-    placeholder: 'Select Grades'
+    placeholder: "<%= t('resources.select_grades') %>"
   });
   $("#create_resource_subjects").select2({
-      placeholder: 'Select Subjects'
+      placeholder: "<%= t('resources.select_subjects') %>"
     });
   });
 </script>
