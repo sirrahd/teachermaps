@@ -14,7 +14,7 @@ jQuery(function($) {
     $("#create_resource_link_form")
     .live("ajax:error", function(event, data, status, xhr) {
         // Not sure why I have to use the responseText here
-        $("#uploadResourceLinkErrors").html(data.responseText);      
+        $("#put_resource_link_errors").html(data.responseText);      
     })
     .live("ajax:success", function(event, data, status, xhr) {
         // Update the resources table
@@ -79,7 +79,7 @@ jQuery(function($) {
     $("#edit_resource_link_form")
     .live("ajax:error", function(event, data, status, xhr) {
         // Not sure why I have to use the responseText here
-        $("#editResourceLinkErrors").html(data.responseText);      
+        $("#edit_resource_link_errors").html(data.responseText);      
     })
     .live("ajax:success", function(event, data, status, xhr) {
         // Update the resources table
@@ -111,6 +111,8 @@ jQuery(function($) {
         });   
 
     });
+
+
 
 
 
