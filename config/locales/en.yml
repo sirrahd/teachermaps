@@ -98,6 +98,7 @@ en:
     select_grades:              "Select Grades"
     select_subjects:            "Select Subjects"
     all_types:                  "All Types"
+    all_sources:                "All Sources"
     open_link:                  "Open Link"
     open_file:                  "Open File"
     web:                        "Web"
