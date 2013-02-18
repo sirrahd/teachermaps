@@ -58,7 +58,6 @@ jQuery(function($) {
 
     $("#filter_resource_form")
     .live("ajax:error", function(event, data, status, xhr) {
-        // pushFlash({message:"Error in filtering resoruces", state: 'success', fadeOut: 5000});
         pushFlash({message:"<%= I18n.t('resources.filter_failure') %>", state: 'success', fadeOut: 5000});
     })
     .live("ajax:success", function(event, data, status, xhr) {
@@ -107,7 +106,6 @@ jQuery(function($) {
         }).done(function(data) {
             $('#edit_resource_link_modal_body').html(data);
             $('#edit_resource_link_modal').modal('show');
-
             $('#show_resource_link_modal').modal('hide');
             console.log("Loaded Resource:"+resourceId);
         });   
