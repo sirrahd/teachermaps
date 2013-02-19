@@ -2,39 +2,24 @@ class Resource < ActiveRecord::Base
 
 	TYPE = 'Resource'
   MAX_TITLE_RENDER_LEN = 35
-  MIME_TYPES = {
-    'text/html' => 'HTML',
-    'text/plain'=> 'Text',
-    'application/rtf'=> 'Text',
-    'application/vnd.oasis.opendocument.text'=> 'Word Document',
-    'application/pdf'=> 'PDF',
-    'application/msword' => 'Word Document',
-    'application/vnd.openxmlformats-officedocument.wordprocessingml.document' => 'Word Document',
-    'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' => 'Spreadsheet',
-    'application/x-vnd.oasis.opendocument.spreadsheet' => 'Spreadsheet',
-    'image/jpeg'=> 'Image',
-    'image/gif'=> 'Image',
-    'image/png'=> 'Image',
-    'image/svg+xml'=> 'Image',
-    'application/vnd.openxmlformats-officedocument.presentationml.presentation' => 'Presentation'
-  }
+  
   
 	# TeacherMaps generated slug linking to a GoogleDrive/DropBox Resource 
 	attr_accessible :slug
 
-	# Common attributes shared accross each Cloud Services
-	attr_accessible :file_size, :title, :mime_type, :file_upload
+	# Common attributes shared accross each Cloud Storage Services
+	attr_accessible :file_size, :title, :mime_type_old, :file_upload
 
 
 
   	belongs_to :user
+    belongs_to :mime_type
 
-  	has_and_belongs_to_many :course_subjects, :uniq => true
+  	has_and_belongs_to_many :course_subjects, :uniq => true, :order => 'name ASC'
   	has_and_belongs_to_many :course_grades, :uniq => true, :order => 'id ASC'
 
-
-  	attr_accessible :course_subjects
-  	attr_accessible :course_grades
+  	# attr_accessible :course_subjects
+  	# attr_accessible :course_grades
 
   	# TeacherMaps specific attributes can be listed here
   	validates :title, :presence => {:message => I18n.t('resources.title_blank_error')}, :length => {:minimum => 2, :maximum => 2048}
@@ -76,15 +61,24 @@ class Resource < ActiveRecord::Base
   def get_type
 
     if self.mime_type.nil?
-      'Web'
-    else
-      if MIME_TYPES.has_key?(self.mime_type)
-        MIME_TYPES[self.mime_type]
-      else
-        Rails.logger.info("Could not locate MimeType: #{self.mime_type}")
-        ''
-      end
+      self.mime_type = MimeType.find_by_name('Web')
+      
+      Rails.logger.info("Type#{self.mime_type}")
+      self.save()
     end
+
+    self.mime_type.name
+
+    # if self.mime_type.nil?
+    #   'Web'
+    # else
+    #   if MIME_TYPES.has_key?(self.mime_type)
+    #     MIME_TYPES[self.mime_type]
+    #   else
+    #     Rails.logger.info("Could not locate MimeType: #{self.mime_type}")
+    #     ''
+    #   end
+    # end
   end
 
 end

@@ -28,3 +28,35 @@ seed = [
 seed.each do |name|  
 	CourseSubject.find_or_create_by_name name
 end  
+
+
+
+# Mime Types 
+
+seed = MimeType::TYPES
+
+seed.each_pair do |type,name|  
+	conditions = {
+		:mime_type => type,
+		:name => name
+	}
+	mime_type = MimeType.find_by_mime_type(type) || MimeType.create(conditions)
+	mime_type.name = name
+	mime_type.save
+
+end  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

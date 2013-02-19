@@ -65,7 +65,7 @@ ActiveRecord::Schema.define(:version => 20130212043952) do
   create_table "resources", :force => true do |t|
     t.string   "slug"
     t.string   "title"
-    t.string   "mime_type"
+    t.string   "mime_type_old"
     t.string   "file_size"
     t.string   "size"
     t.string   "file_id"
@@ -73,8 +73,8 @@ ActiveRecord::Schema.define(:version => 20130212043952) do
     t.string   "path"
     t.string   "link"
     t.string   "type"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",    :null => false
+    t.datetime "updated_at",    :null => false
     t.integer  "user_id"
   end
 

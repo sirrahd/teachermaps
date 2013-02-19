@@ -76,6 +76,7 @@ en:
     select_storage_service:     "In order to upload a resource, you must select a storage service."
   resources:
     link:                       "Resources"
+    web_link:                   "Link"
     synced_n_files:             "Synced %{sync_count} files."
     sync:                       "Sync"
     upload:                     "Upload"
