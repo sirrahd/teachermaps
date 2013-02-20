@@ -1,9 +1,9 @@
 class ResourceType < ActiveRecord::Base
 
 	attr_accessible :name, :thumbnail
-	
 
-	MIME_TYPE_CONVERSION = {
+
+	MIME_TYPE_CONVERSIONS = {
 		'text/link' => 'Web',
 
 	    'text/html' => 'Document',
@@ -12,26 +12,20 @@ class ResourceType < ActiveRecord::Base
 	    'application/txt'=> 'Document',
 	    'application/vnd.oasis.opendocument.text'=> 'Document',
 	    'application/pdf'=> 'Document',
-	    'application/msword' => 'Document',
-	    'application/vnd.openxmlformats-officedocument.wordprocessingml.document' => 'Document',
-	    'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' => 'Document',
-	    'application/x-vnd.oasis.opendocument.spreadsheet' => 'Document',
+	    'application/msword' => 'Document',	    
 	    'text/csv' => 'Document',
 	    'application/atom+xml' => 'Document',
 	    'application/vnd.ms-excel' => 'Document',
 	    'application/vnd.ms-excel.sheet.binary.macroenabled.12' => 'Document',
 	    'application/vnd.ms-excel.template.macroenabled.12' => 'Document',
 	    'application/vnd.ms-excel.sheet.macroenabled.12' => 'Document',
-	    'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' => 'Document',
-	    'application/vnd.openxmlformats-officedocument.spreadsheetml.template' => 'Document',
 	    'application/vnd.openxmlformats-officedocument.wordprocessingml.document' => 'Document',
 	    'application/vnd.openxmlformats-officedocument.wordprocessingml.template' => 'Document',
 	    'application/x-mswrite' => 'Document',
-	    'application/vnd.oasis.opendocument.text' => 'Document',
 	    'text/richtext' => 'Document',
 	    'application/xml' => 'Document',
-	    'application/vnd.oasis.opendocument.presentation' => 'Document',
-
+	    
+	    'application/vnd.oasis.opendocument.presentation' => 'Presentation',
 	    'application/vnd.openxmlformats-officedocument.presentationml.presentation' => 'Presentation',
 	    'application/vnd.openxmlformats-officedocument.presentationml.presentation' => 'Presentation',
 	    'application/vnd.openxmlformats-officedocument.presentationml.slide' => 'Presentation',
@@ -42,7 +36,13 @@ class ResourceType < ActiveRecord::Base
 	    'application/vnd.ms-powerpoint.slide.macroenabled.12' => 'Presentation',
 	    'application/vnd.ms-powerpoint.slideshow.macroenabled.12' => 'Presentation',
 	    'application/vnd.ms-powerpoint.presentation.macroenabled.12' => 'Presentation',
-	    'application/vnd.oasis.opendocument.spreadsheet' => 'Presentation',
+	    
+
+	    'application/vnd.oasis.opendocument.spreadsheet' => 'Spreadsheet',
+	    'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' => 'Spreadsheet',
+	    'application/x-vnd.oasis.opendocument.spreadsheet' => 'Spreadsheet',
+	    'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' => 'Spreadsheet',
+	    'application/vnd.openxmlformats-officedocument.spreadsheetml.template' => 'Spreadsheet',
 	    
 
 	    'image/jpeg'=> 'Image',

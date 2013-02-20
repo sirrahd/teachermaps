@@ -44,7 +44,7 @@ seed = {
 }
 
 seed.each_pair do |name,thumbnail|  
-	mime_type = Resource.find_or_create_by_name name
+	mime_type = ResourceType.find_or_create_by_name name
 	# Update thumbnails
 	mime_type.thumbnail = thumbnail
 	mime_type.save

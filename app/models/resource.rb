@@ -10,8 +10,6 @@ class Resource < ActiveRecord::Base
 	# Common attributes shared accross each Cloud Storage Services
 	attr_accessible :file_size, :title, :mime_type, :file_upload
 
-
-
   	belongs_to :user
     belongs_to :resource_type
 
@@ -57,7 +55,7 @@ class Resource < ActiveRecord::Base
   # end
 
   def get_type
-    return self.mime_type
+    # return self.mime_type
 
     # if self.mime_type.nil?
     #   self.mime_type = MimeType.find_by_name('Web')
@@ -66,7 +64,7 @@ class Resource < ActiveRecord::Base
     #   self.save()
     # end
 
-    self.mime_type.name
+    self.resource_type.name
 
     # if self.mime_type.nil?
     #   'Web'
