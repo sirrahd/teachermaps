@@ -3,7 +3,7 @@
 
   <%= select_tag("resource_types", options_from_collection_for_select(ResourceType.all, "id", "name"), :multiple=>true, :id=>'filter_resource_types') %>
 
-  <%= select_tag("course_grades", options_for_select(@filter_course_grades.sort.map {|k,v| [v,k]}), {:multiple=>true, :id=>'filter_course_grades'}) %>
+  <%= select_tag("course_grades", options_for_select(@test.map {|x| [x.name, x.id]}), {:multiple=>true, :id=>'filter_course_grades'}) %>
 
   <%= select_tag("course_subjects", options_from_collection_for_select(CourseSubject.all, "id", "name"), {:multiple=>true, :id=>'filter_course_subjects'}) %>
 

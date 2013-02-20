@@ -15,10 +15,14 @@ class UsersController < ApplicationController
 
     @resources = Resource.where( :user_id => @current_user.id )
 
-    #@test = CourseGrades.where(:id =  )
-    blah = @resources.each {|resource| x.course_grades(&id) }
-    @resources.each {|resource| x.course_grades(&id) }
-    
+    @test = CourseGrade.where(:id => @resources.map { |resource| resource.course_grades.collect(&:id) } )
+    blah = @resources.map { |resource| resource.course_grades.collect(&:id)}
+    @next = @test.map {|x| [x.id, x.name]}
+    Rails.logger.info("Filtered Grades #{blah}")
+    Rails.logger.info("Filtered Grades #{@test.inspect}")
+    Rails.logger.info("Filtered Grades #{@next.inspect}")
+
+
     @filter_course_grades = {}
     @resources.each do |resource|
       if !resource.course_grades.empty?
