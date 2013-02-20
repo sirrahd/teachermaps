@@ -14,6 +14,23 @@ class UsersController < ApplicationController
     @user = @current_user
 
     @resources = Resource.where( :user_id => @current_user.id )
+
+    #@test = CourseGrades.where(:id =  )
+    blah = @resources.each {|resource| x.course_grades(&id) }
+    @resources.each {|resource| x.course_grades(&id) }
+    
+    @filter_course_grades = {}
+    @resources.each do |resource|
+      if !resource.course_grades.empty?
+        resource.course_grades.each do |x|
+          @filter_course_grades[x.id] = x.name
+        end 
+      end
+    end
+    # Rails.logger.info("Filtered Grades #{@filter_course_grades}")
+
+
+
     # For rendering Ajax "Upload Resource" form
     @resource = Resource.new
   end
