@@ -61,39 +61,12 @@ class Resource < ActiveRecord::Base
     super
   end
 
-  # def get_grades
-  #   if self.course_grades.any?
-      
-  #     # Rails.logger.info("Grades: #{grades.inspect}")
-  #     # grades.sort{|x,y| x.id <=> y.id }
-  #     Rails.logger.info("Grades: #{grades.inspect}")
-  #     # grades = self.course_grades.each { |grade| "#{grade.name}, " }
-  #     self.course_grades
-  #   end
-  # end
+  def get_thumbnail
+    "<i class='#{self.resource_type.thumbnail}'></i>"
+  end
 
   def get_type
-    # return self.mime_type
-
-    # if self.mime_type.nil?
-    #   self.mime_type = MimeType.find_by_name('Web')
-      
-    #   Rails.logger.info("Type#{self.mime_type}")
-    #   self.save()
-    # end
-
     self.resource_type.name
-
-    # if self.mime_type.nil?
-    #   'Web'
-    # else
-    #   if MIME_TYPES.has_key?(self.mime_type)
-    #     MIME_TYPES[self.mime_type]
-    #   else
-    #     Rails.logger.info("Could not locate MimeType: #{self.mime_type}")
-    #     ''
-    #   end
-    # end
   end
 
 end

@@ -15,25 +15,9 @@ class UsersController < ApplicationController
 
     @resources = Resource.where( :user_id => @current_user.id )
 
-    @test = CourseGrade.where(:id => @resources.map { |resource| resource.course_grades.collect(&:id) } )
-    blah = @resources.map { |resource| resource.course_grades.collect(&:id)}
-    @next = @test.map {|x| [x.id, x.name]}
-    Rails.logger.info("Filtered Grades #{blah}")
-    Rails.logger.info("Filtered Grades #{@test.inspect}")
-    Rails.logger.info("Filtered Grades #{@next.inspect}")
-
-
-    @filter_course_grades = {}
-    @resources.each do |resource|
-      if !resource.course_grades.empty?
-        resource.course_grades.each do |x|
-          @filter_course_grades[x.id] = x.name
-        end 
-      end
-    end
-    # Rails.logger.info("Filtered Grades #{@filter_course_grades}")
-
-
+    @filter_course_grades = CourseGrade.where(:id => @resources.map { |resource| resource.course_grades.collect(&:id) } )
+    @filter_course_subjects = CourseSubject.where(:id => @resources.map { |resource| resource.course_subjects.collect(&:id) } )
+  
 
     # For rendering Ajax "Upload Resource" form
     @resource = Resource.new

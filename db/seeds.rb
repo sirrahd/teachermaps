@@ -34,14 +34,14 @@ end
 # Resource Types
 
 seed = {
-	'Document' => '',
-	'Spreadsheet' => '',
-	'Presentation' => '',
-	'Video' => '',
-	'Audio' => '',
-	'Image' => '',
-	'Web' => '',
-	'Other' => '',
+	'Document' => 'icon-font',
+	'Spreadsheet' => 'icon-th-list',
+	'Presentation' => 'icon-comment',
+	'Video' => 'icon-film',
+	'Audio' => 'icon-music',
+	'Image' => 'icon-picture',
+	'Web' => 'icon-globe',
+	'Other' => 'icon-file',
 }
 
 seed.each_pair do |name,thumbnail|  

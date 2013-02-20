@@ -11,7 +11,7 @@
 
   <% @resources.each do |resource| %>
     <tr resource-url="<%= resources_ajax_show_path resource.slug %>"> 
-      <td><%= resource.get_type %></td>
+      <td title="<%= resource.get_type %>"><%= raw resource.get_thumbnail %></td>
       <td><%= link_to truncate(resource.title, :length => Resource::MAX_TITLE_RENDER_LEN), resource_url(resource), :target => "_blank" %></td>
       <td>
         <% if resource.course_grades.any? %>
