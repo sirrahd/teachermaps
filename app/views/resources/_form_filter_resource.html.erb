@@ -1,7 +1,7 @@
 <%= form_tag resources_ajax_filter_path, id: 'filter_resource_form', :class=>"form-inline", :remote=>true do %>
   
 
-  <%= select_tag("resource_types", options_for_select([ [ I18n.t('resources.web'), LinkResource::TYPE],  [ I18n.t('google_drive.link'), GoogleResource::TYPE],  [ I18n.t('drop_box.link'), DropBoxResource::TYPE] ]), :multiple=>true, :id=>'filter_resource_types') %>
+  <%= select_tag("resource_types", options_from_collection_for_select(ResourceType.all, "id", "name"), :multiple=>true, :id=>'filter_resource_types') %>
 
   <%= select_tag("course_grades", options_from_collection_for_select(CourseGrade.all, "id", "name"), {:multiple=>true, :id=>'filter_course_grades'}) %>
 
@@ -16,7 +16,7 @@ $(document).ready(function() {
   
   $("#filter_resource_types").select2({
     width : '200px',
-    placeholder: '<%= t("resources.all_sources") %>'
+    placeholder: '<%= t("resources.all_types") %>'
   });
   $("#filter_course_grades").select2({
     width : '200px',

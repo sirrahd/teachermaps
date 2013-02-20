@@ -107,6 +107,8 @@ class ResourcesController < ApplicationController
 
   def ajax_filter
 
+    Rails.logger.info("Filter Params: #{params}")
+
     filter = {}
     @resources = Resource.where( :user_id => @current_user.id )
 
@@ -116,7 +118,8 @@ class ResourcesController < ApplicationController
     end
 
     if params.has_key?('resource_types')
-      @resources &= Resource.where( :type => params[:resource_types])
+      #@resources &= Resource.where( :type => params[:resource_types])
+      @resources &= Resource.find(:all, :conditions=>{:user_id => @current_user.id, :resource_type_id=>params[:resource_types]})
     end
 
     if params.has_key?('course_grades')
