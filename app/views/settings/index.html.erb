@@ -45,7 +45,7 @@
 
 <br />
 
-<% if !@drop_box_account.nil? and !@google_account.nil?  %>
+<% if !@drop_box_account.nil? and !@google_account.nil? and false # Disabling for now  %>
        
   <%= form_for @setting, remote: true, html: { :'data-type' => 'html', id: 'update_setting_form' }  do |f| %>
     <%= label_tag(:upload_to, t('settings.upload_to')) %>

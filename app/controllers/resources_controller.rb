@@ -71,20 +71,6 @@ class ResourcesController < ApplicationController
       @resource.link = params[:resource][:link]
     end
 
-    # Google Resource
-    if @current_user.has_google_account? and @resource.class.name == GoogleResource::TYPE
-      google_account = @current_user.google_account 
-      
-      Rails.logger.info("Valid Google Session; Rename Google File") 
-
-      result = google_account.change_file_name(@resource.file_id, @resource.title)
-
-      Rails.logger.info("Successful Deletion?: #{result.inspect}")
-    else
-      Rails.logger.info("User does not have a synced Google Account or File is not a GoogleResource") 
-    end
-
-
     # Convert primary keys to objects
     if params[:resource].has_key?('course_subjects')
       @resource.course_subjects = params[:resource][:course_subjects].present? ? CourseSubject.find_all_by_id(params[:resource][:course_subjects]) : []

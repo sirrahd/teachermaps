@@ -6,7 +6,8 @@
     
 
     <%= label_tag(:title, t('resources.title')) %>
-    <%= f.text_field :title  %>
+    <%= f.text_field :title, :disabled=>'disabled'  %>
+    <%= f.hidden_field :title, :value => @resource.title %>
 
 
     <% if @resource.type == LinkResource::TYPE %>
