@@ -1,7 +1,7 @@
 <%= form_tag resources_ajax_filter_path, id: 'filter_resource_form', :class=>"form-inline", :remote=>true do %>
   
 
-  <%= select_tag("resource_types", options_from_collection_for_select(ResourceType.all, "id", "name"), :multiple=>true, :id=>'filter_resource_types') %>
+  <%= select_tag("resource_types", options_for_select(@filter_course_types.map {|x| [x.name, x.id]}), :multiple=>true, :id=>'filter_resource_types') %>
 
   <%= select_tag("course_grades", options_for_select(@filter_course_grades.map {|x| [x.name, x.id]}), {:multiple=>true, :id=>'filter_course_grades'}) %>
 

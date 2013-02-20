@@ -142,6 +142,7 @@ class ResourcesController < ApplicationController
     @resource = LinkResource.new
     @resource.title = params[:resource][:title]
     @resource.link = params[:resource][:link]
+    @resource.resource_type = ResourceType.find_by_name('Web')
 
     # Convert primary keys to objects
     if params[:resource].has_key?('course_subjects')

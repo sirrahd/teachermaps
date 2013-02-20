@@ -15,6 +15,7 @@ class UsersController < ApplicationController
 
     @resources = Resource.where( :user_id => @current_user.id )
 
+    @filter_course_types = ResourceType.where(:id => @resources.map { |resource| resource.resource_type.id } )
     @filter_course_grades = CourseGrade.where(:id => @resources.map { |resource| resource.course_grades.collect(&:id) } )
     @filter_course_subjects = CourseSubject.where(:id => @resources.map { |resource| resource.course_subjects.collect(&:id) } )
   
