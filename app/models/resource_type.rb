@@ -21,9 +21,11 @@ class ResourceType < ActiveRecord::Base
 	    'application/vnd.ms-excel.sheet.macroenabled.12' => 'Document',
 	    'application/vnd.openxmlformats-officedocument.wordprocessingml.document' => 'Document',
 	    'application/vnd.openxmlformats-officedocument.wordprocessingml.template' => 'Document',
+	    'application/vnd.google-apps.document' => 'Document',
 	    'application/x-mswrite' => 'Document',
 	    'text/richtext' => 'Document',
 	    'application/xml' => 'Document',
+
 	    
 	    'application/vnd.oasis.opendocument.presentation' => 'Presentation',
 	    'application/vnd.openxmlformats-officedocument.presentationml.presentation' => 'Presentation',
@@ -36,6 +38,7 @@ class ResourceType < ActiveRecord::Base
 	    'application/vnd.ms-powerpoint.slide.macroenabled.12' => 'Presentation',
 	    'application/vnd.ms-powerpoint.slideshow.macroenabled.12' => 'Presentation',
 	    'application/vnd.ms-powerpoint.presentation.macroenabled.12' => 'Presentation',
+	    'application/vnd.google-apps.presentation' => 'Presentation',
 	    
 
 	    'application/vnd.oasis.opendocument.spreadsheet' => 'Spreadsheet',
@@ -43,6 +46,7 @@ class ResourceType < ActiveRecord::Base
 	    'application/x-vnd.oasis.opendocument.spreadsheet' => 'Spreadsheet',
 	    'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' => 'Spreadsheet',
 	    'application/vnd.openxmlformats-officedocument.spreadsheetml.template' => 'Spreadsheet',
+	    'application/vnd.google-apps.spreadsheet' => 'Spreadsheet',
 	    
 
 	    'image/jpeg'=> 'Image',
@@ -51,6 +55,8 @@ class ResourceType < ActiveRecord::Base
 	    'image/svg+xml'=> 'Image',
 	    'image/bmp' => 'Image',
 	    'image/x-icon' => 'Image',
+	    'application/vnd.google-apps.drawing' => 'Image',
+	    'application/vnd.google-apps.photo' => 'Image',
 
 
 	    'audio/ogg' => 'Audio',
@@ -58,6 +64,7 @@ class ResourceType < ActiveRecord::Base
 	    'audio/x-ms-wma' => 'Audio',
 	    'audio/x-mpegurl' => 'Audio',
 	    'audio/x-aac' => 'Audio',    
+	    'application/vnd.google-apps.audio' => 'Audio',
 
 	
 	    'application/x-shockwave-flash' => 'Video',
@@ -73,8 +80,9 @@ class ResourceType < ActiveRecord::Base
 	    'video/mpeg' => 'Video',
 	    'video/mp4' => 'Video',
 	    'application/mp4' => 'Video',
-	    'video/ogg' => 'Video'
-    
+	    'video/ogg' => 'Video',
+	    'application/vnd.google-apps.video' => 'Video'
+
 	}
   
 end

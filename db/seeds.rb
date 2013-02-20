@@ -35,6 +35,7 @@ end
 
 seed = {
 	'Document' => '',
+	'Spreadsheet' => '',
 	'Presentation' => '',
 	'Video' => '',
 	'Audio' => '',

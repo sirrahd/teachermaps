@@ -30,6 +30,24 @@ class Resource < ActiveRecord::Base
 		self.slug
 	end
 
+  def assign_type
+      conversion_table = ResourceType::MIME_TYPE_CONVERSIONS
+
+      if self.mime_type.nil?
+        # Web content
+        self.resource_type = ResourceType.find_by_name 'Web'
+      else
+        if conversion_table.has_key?(self.mime_type)
+          # If we have a mapping conversion
+          self.resource_type = ResourceType.find_by_name conversion_table[self.mime_type]
+        else
+          # If we do not have a mapping conversion
+          self.resource_type = ResourceType.find_by_name 'Other'
+        end
+      end
+      self.save
+  end
+
 
 
   def self.inherited(child)
