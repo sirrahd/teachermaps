@@ -85,7 +85,7 @@ jQuery(function($) {
         // Update the resources table
         $("#resources_table").html(data);  
         // Flash user of the success
-        pushFlash({message:"<%= I18n.t('resources.upload_success') %>", state: 'success', fadeOut: 5000});
+        pushFlash({message:"<%= I18n.t('resources.edit_success') %>", state: 'success', fadeOut: 5000});
         $("#uploadResourcesErrors").html('');  
         closeModalOnSubmit();
         console.log("Success Edit" + "<%= I18n.t('resources.edit_success') %>");

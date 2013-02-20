@@ -59,12 +59,17 @@ class ResourceType < ActiveRecord::Base
 	    'application/vnd.google-apps.photo' => 'Image',
 
 
+	    'audio/mpeg' => 'Audio',
 	    'audio/ogg' => 'Audio',
 	    'audio/mp4' => 'Audio',
 	    'audio/x-ms-wma' => 'Audio',
 	    'audio/x-mpegurl' => 'Audio',
 	    'audio/x-aac' => 'Audio',    
 	    'application/vnd.google-apps.audio' => 'Audio',
+	    'audio/x-wav' => 'Audio',
+	    'audio/wav' => 'Audio',
+	    'audio/mid' => 'Audio',
+	    'audio/x-mpegurl' => 'Audio',
 
 	
 	    'application/x-shockwave-flash' => 'Video',
