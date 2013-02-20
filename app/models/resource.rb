@@ -8,18 +8,16 @@ class Resource < ActiveRecord::Base
 	attr_accessible :slug
 
 	# Common attributes shared accross each Cloud Storage Services
-	attr_accessible :file_size, :title, :mime_type_old, :file_upload
+	attr_accessible :file_size, :title, :mime_type, :file_upload
 
 
 
   	belongs_to :user
-    belongs_to :mime_type
+    belongs_to :resource_type
 
   	has_and_belongs_to_many :course_subjects, :uniq => true, :order => 'name ASC'
   	has_and_belongs_to_many :course_grades, :uniq => true, :order => 'id ASC'
 
-  	# attr_accessible :course_subjects
-  	# attr_accessible :course_grades
 
   	# TeacherMaps specific attributes can be listed here
   	validates :title, :presence => {:message => I18n.t('resources.title_blank_error')}, :length => {:minimum => 2, :maximum => 2048}
@@ -59,13 +57,14 @@ class Resource < ActiveRecord::Base
   # end
 
   def get_type
+    return self.mime_type
 
-    if self.mime_type.nil?
-      self.mime_type = MimeType.find_by_name('Web')
+    # if self.mime_type.nil?
+    #   self.mime_type = MimeType.find_by_name('Web')
       
-      Rails.logger.info("Type#{self.mime_type}")
-      self.save()
-    end
+    #   Rails.logger.info("Type#{self.mime_type}")
+    #   self.save()
+    # end
 
     self.mime_type.name
 

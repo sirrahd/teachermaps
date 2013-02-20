@@ -31,21 +31,24 @@ end
 
 
 
-# Mime Types 
+# Resource Types
 
-seed = MimeType::TYPES
+seed = {
+	'Document' => '',
+	'Presentation' => '',
+	'Video' => '',
+	'Audio' => '',
+	'Image' => '',
+	'Web' => '',
+	'Other' => '',
+}
 
-seed.each_pair do |type,name|  
-	conditions = {
-		:mime_type => type,
-		:name => name
-	}
-	mime_type = MimeType.find_by_mime_type(type) || MimeType.create(conditions)
-	mime_type.name = name
+seed.each_pair do |name,thumbnail|  
+	mime_type = Resource.find_or_create_by_name name
+	# Update thumbnails
+	mime_type.thumbnail = thumbnail
 	mime_type.save
-
 end  
-
 
 
 
