@@ -52,12 +52,12 @@
     <%= f.select(:upload_to, [ [t('google_drive.link'), GoogleResource::TYPE], [ t('drop_box.link'), DropBoxResource::TYPE ]], {}, {:onchange => '$(this.form).submit();', :style=>"width:200px;"} )  %>
   <% end %>
   
-<% elsif  @drop_box_account.nil? and !@google_account.nil?  %>  
+<% elsif  @drop_box_account.nil? and !@google_account.nil?  and false # Disabling for now %>  
   <div style="width: 200px;">
   <%= select_tag "setting_form", options_for_select([t('google_drive.link'), GoogleResource::TYPE]), :disabled => true %>
   </div>
 
-<% elsif  !@drop_box_account.nil? and @google_account.nil?  %>  
+<% elsif  !@drop_box_account.nil? and @google_account.nil? and false # Disabling for now %>  
   
   <div style="width: 200px;">
     <%= select_tag "setting_form", options_for_select([ t('drop_box.link'), DropBoxResource::TYPE ]), :disabled => true %>
