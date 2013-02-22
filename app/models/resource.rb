@@ -62,7 +62,7 @@ class Resource < ActiveRecord::Base
   end
 
   def get_thumbnail
-    "<i class='#{self.resource_type.thumbnail}'></i>"
+    "<div class='#{self.resource_type.thumbnail}'></div>"
   end
 
   def get_type

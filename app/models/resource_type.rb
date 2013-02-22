@@ -15,10 +15,6 @@ class ResourceType < ActiveRecord::Base
 	    'application/msword' => 'Document',	    
 	    'text/csv' => 'Document',
 	    'application/atom+xml' => 'Document',
-	    'application/vnd.ms-excel' => 'Document',
-	    'application/vnd.ms-excel.sheet.binary.macroenabled.12' => 'Document',
-	    'application/vnd.ms-excel.template.macroenabled.12' => 'Document',
-	    'application/vnd.ms-excel.sheet.macroenabled.12' => 'Document',
 	    'application/vnd.openxmlformats-officedocument.wordprocessingml.document' => 'Document',
 	    'application/vnd.openxmlformats-officedocument.wordprocessingml.template' => 'Document',
 	    'application/vnd.google-apps.document' => 'Document',
@@ -47,6 +43,11 @@ class ResourceType < ActiveRecord::Base
 	    'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' => 'Spreadsheet',
 	    'application/vnd.openxmlformats-officedocument.spreadsheetml.template' => 'Spreadsheet',
 	    'application/vnd.google-apps.spreadsheet' => 'Spreadsheet',
+	    'application/vnd.ms-excel' => 'Spreadsheet',
+	    'application/vnd.ms-excel.sheet.binary.macroenabled.12' => 'Spreadsheet',
+	    'application/vnd.ms-excel.template.macroenabled.12' => 'Spreadsheet',
+	    'application/vnd.ms-excel.sheet.macroenabled.12' => 'Spreadsheet',
+	    
 	    
 
 	    'image/jpeg'=> 'Image',
