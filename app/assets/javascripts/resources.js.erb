@@ -28,9 +28,6 @@ jQuery(function($) {
             }
         }
 
-        // Update the resources table
-        // $("#resources_table").html(data);
-        // $('#resource_filter').html();
         // Flash user of the success
         pushFlash({message:"<%= I18n.t('resources.upload_success') %>", state: 'success', fadeOut: 5000});
         // Hide all modals
@@ -142,7 +139,9 @@ jQuery(function($) {
         e.stopPropagation();
     });
 
-    // Disabling for now
+    // This is currently duplicated, will update when we decide
+    // weather we are going to click a resource row or click an 
+    // edit button. 
     $('#resources_table tr').live("click", function(e) {
     
         var resourceURI = $(this).attr('resource-url');
