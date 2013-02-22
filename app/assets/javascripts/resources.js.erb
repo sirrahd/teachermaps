@@ -1,12 +1,6 @@
 jQuery(function($) {    
 
-    // $("select").select2({});
-
-
-   
-
-
-
+    
     //////////////////////////////
     //
     // Create Resources 
@@ -19,9 +13,24 @@ jQuery(function($) {
         // Not sure why I have to use the responseText here
         $("#put_resource_link_errors").html(data.responseText);      
     })
-    .live("ajax:success", function(event, data, status, xhr) {
+    .live("ajax:success", function(event, response, status, xhr) {
+        
+        data = $.parseJSON(response);
+
+        if (data != undefined) {
+            if (data.resources != undefined) {
+                console.log("Reloading resources");
+                $("#resources_table").html(data.resources);
+            }
+            if (data.filters != undefined) {
+                console.log("Reloading filters");
+                $('#resource_filter').html(data.filters);
+            }
+        }
+
         // Update the resources table
-        $("#resources_table").html(data);  
+        // $("#resources_table").html(data);
+        // $('#resource_filter').html();
         // Flash user of the success
         pushFlash({message:"<%= I18n.t('resources.upload_success') %>", state: 'success', fadeOut: 5000});
         // Hide all modals
@@ -55,7 +64,7 @@ jQuery(function($) {
     });
 
     // Needed for browser compatibility 
-    $('#filter_resource_form').change(function() {
+    $('#filter_resource_form').live('change', function() {
         $(this).submit();
     });
 

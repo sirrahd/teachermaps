@@ -148,11 +148,20 @@ class ResourcesController < ApplicationController
       if @resource.valid? and @resource.save
         @current_user.resources << @resource
         @resources = Resource.where( :user_id => @current_user.id )
-        format.js { render :partial => 'resources/resources_table' }
+
+        # Need to re-generate filters
+        @filter_course_types = ResourceType.where(:id => @resources.map { |resource| resource.resource_type.id } )
+        @filter_course_grades = CourseGrade.where(:id => @resources.map { |resource| resource.course_grades.collect(&:id) } )
+        @filter_course_subjects = CourseSubject.where(:id => @resources.map { |resource| resource.course_subjects.collect(&:id) } )
+        # Render filter and resources to dictionary
+        response = { 
+          :filters => render_to_string(:partial => 'resources/form_filter_resource', :layout => false,  :locals => {:resources => @resources, :filter_course_types => @filter_course_types, :filter_course_grades=>@filter_course_grades, :filter_course_subjects=>@filter_course_subjects}),
+          :resources => render_to_string(:partial => 'resources/resources_table', :layout => false,  :locals => {:resources => @resources})
+        }
+        # Send resource and fitlers back via JSON format
+        format.js { render :json => response }
         
       else
-
-        # format.js { render :partial => 'shared/error_messages', :error => true, :status => 500 , :locals => {:object => @resource} }
         format.js { render :partial => 'shared/error_messages', :locals => { :object => @resource }, :status => 500  }
       end
 
