@@ -17,7 +17,6 @@ group :development, :test do
   gem 'annotate', '2.5.0'
   gem 'execjs', '1.4.0'
   gem 'therubyracer', '0.11.3'
-  # gem 'omniauth', '1.1.3'
 end
 
 # Gems used only for assets and not required
