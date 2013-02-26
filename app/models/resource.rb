@@ -18,7 +18,7 @@ class Resource < ActiveRecord::Base
 
 
   	# TeacherMaps specific attributes can be listed here
-  	validates :title, :presence => {:message => I18n.t('resources.title_blank_error')}, :length => {:minimum => 2, :maximum => 2048}
+  	validates :title, :presence => {:message => I18n.t('resources.title_blank_error')}, :length => {:minimum => 2, :maximum => 250}
 
   	before_create :default_values
   	def default_values
