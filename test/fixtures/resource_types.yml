@@ -1,0 +1,24 @@
+document:
+ name: Document
+ thumbnail: icon-font
+spreadsheet:
+ name: Spreadsheet
+ thumbnail: icon-th-list
+presentation:
+ name: Presentation
+ thumbnail: icon-comment
+video:
+ name: Video
+ thumbnail: icon-film
+audio:
+ name: Audio
+ thumbnail: icon-music
+image:
+ name: Image
+ thumbnail: icon-picture
+web:
+ name: Web
+ thumbnail: icon-globe
+other:
+ name: Other
+ thumbnail: icon-file

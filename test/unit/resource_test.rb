@@ -8,6 +8,7 @@ class ResourceTest < ActiveSupport::TestCase
   test "should respond to attributes" do
     assert_respond_to @resource, :title,  "Resource missing title name."
     assert_respond_to @resource, :user,  "Resource missing user."
+    assert_respond_to @resource, :resource_type, "Resource missing resource type"
   end
 
   # Basic checks for name existence and length
@@ -57,7 +58,51 @@ class ResourceTest < ActiveSupport::TestCase
   	assert_equal @resource.course_subjects.length, 2, 'Resource has incorrect number of course subjects'
 
   	@resource.course_subjects = []
-  	assert_equal @resource.course_subjects.length, 0, 'Resource has did not delete course subjects'
+  	   assert_equal @resource.course_subjects.length, 0, 'Resource has did not delete course subjects'
+   
+  end
+
+
+  # Checks for course subjects manipulation
+  test "resource must valid resource type" do
+    
+    @resource.mime_type = nil
+    @resource.assign_type
+    assert_equal @resource.resource_type, resource_types(:web) , 'Resource has an incorrect resourece type'
+
+    @resource.mime_type = 'application/msword'
+    @resource.assign_type
+    assert_equal @resource.resource_type, resource_types(:document) , 'Resource has an incorrect resourece type'
+
+    @resource.mime_type = 'application/vnd.ms-powerpoint'
+    @resource.assign_type
+    assert_equal @resource.resource_type, resource_types(:presentation) , 'Resource has an incorrect resourece type'
+
+    @resource.mime_type = 'application/vnd.oasis.opendocument.spreadsheet'
+    @resource.assign_type
+    assert_equal @resource.resource_type, resource_types(:spreadsheet) , 'Resource has an incorrect resourece type'
+
+    @resource.mime_type = 'image/png'
+    @resource.assign_type
+    assert_equal @resource.resource_type, resource_types(:image) , 'Resource has an incorrect resourece type'
+
+    @resource.mime_type = 'audio/mpeg'
+    @resource.assign_type
+    assert_equal @resource.resource_type, resource_types(:audio) , 'Resource has an incorrect resourece type'
+
+    @resource.mime_type = 'video/mp4'
+    @resource.assign_type
+    assert_equal @resource.resource_type, resource_types(:video) , 'Resource has an incorrect resourece type'
+
+    @resource.mime_type = 'video/mp4'
+    @resource.assign_type
+    assert_not_equal @resource.resource_type, resource_types(:audio) , 'Resource has an incorrect resourece type'
+
+
+
+    
+    
+    
    
   end
   
