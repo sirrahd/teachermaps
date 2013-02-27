@@ -6,6 +6,7 @@ class ResourceTest < ActiveSupport::TestCase
 
   # Make sure our users have the necessary attributes
   test "should respond to attributes" do
+    assert_respond_to @resource, :slug,  "Resource missing slug."
     assert_respond_to @resource, :title,  "Resource missing title name."
     assert_respond_to @resource, :user,  "Resource missing user."
     assert_respond_to @resource, :resource_type, "Resource missing resource type"
@@ -97,13 +98,7 @@ class ResourceTest < ActiveSupport::TestCase
     @resource.mime_type = 'video/mp4'
     @resource.assign_type
     assert_not_equal @resource.resource_type, resource_types(:audio) , 'Resource has an incorrect resourece type'
-
-
-
     
-    
-    
-   
   end
   
   
