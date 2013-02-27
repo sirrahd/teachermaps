@@ -41,8 +41,6 @@ class ResourceTest < ActiveSupport::TestCase
     @resource.course_grades << [course_grades(:one), course_grades(:two)]
   	assert_equal @resource.course_grades.length, 2, 'Resource has incorrect number of course grades'
 
-  	queryset = Resource.find(:all, :joins => :course_grades, :conditions=>{:course_grades=>[course_grades(:one).id]})
-  	assert_equal queryset.length, 1, 'Resource did not save course grades'	
 
   	@resource.course_grades = []
   	assert_equal @resource.course_grades.length, 0, 'Resource has did not delete course grades'
@@ -57,9 +55,6 @@ class ResourceTest < ActiveSupport::TestCase
 
     @resource.course_subjects << [course_subjects(:math), course_subjects(:science)]
   	assert_equal @resource.course_subjects.length, 2, 'Resource has incorrect number of course subjects'
-
-  	queryset = Resource.find(:all, :joins => :course_subjects, :conditions=>{:course_subjects=>[course_subjects(:math)]})
-  	assert_equal queryset.length, 1, 'Resource did not save course subjects'	
 
   	@resource.course_subjects = []
   	assert_equal @resource.course_subjects.length, 0, 'Resource has did not delete course subjects'
@@ -78,14 +73,12 @@ class ResourceTest < ActiveSupport::TestCase
                       
     assert @user.valid?, "Initialized user was not valid."
     assert @user.save, "Unable to save valid user."
-  	# print @user.inspect
+  	
 
   	@resource = Resource.create :title => 'TestResource'
   	@resource.user = @user
 
   	assert @resource.valid? 'Initialized resource was not valid.'
-  	#assert @resource.save 'Initialized resource was not saved.'
-  	# print @resource.inspect
-                       
+  	                      
   end
 end
