@@ -13,8 +13,16 @@ namespace :admin  do
 
     xml_doc.search('//LearningStandardItem').each do |t|
       name = t.at('StatementCode').inner_text
-      grade = t.at('GradeLevel').inner_text
       description = t.at('Statement').inner_text
+
+      t.search('//GradeLevels').each do |element|
+
+        grade = element.at('GradeLevel').inner_text
+        print "#{name} #{grade} #{description}\n"
+
+      end
+
+      
       print "#{t.at('StatementCode').inner_text}\n"
     end
 
