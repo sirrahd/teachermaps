@@ -186,6 +186,7 @@ DEPENDENCIES
   google-api-client (= 0.5.0)
   i18n-js (= 2.1.2)
   jquery-rails (= 2.0.2)
+  nokogiri (= 1.5.6)
   pg (= 0.12.2)
   rails (= 3.2.12)
   sass-rails (= 3.2.5)
