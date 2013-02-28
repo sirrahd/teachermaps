@@ -3,30 +3,22 @@ require 'nokogiri'
 
 namespace :admin  do
   desc "Update the types of all the Resources."
-  task :standards_xml_to_yaml, :xml_file do |t, xml_file|
+  task :standards_xml_to_yaml, :xml_file, :yaml_file do |t, args|
 
-    print "Reading xml file: #{xml_file}\n"
+    print "Reading xml file: #{args[:xml_file]}\n"
+    print "Writing yaml file: #{args[:yaml_file]}\n"
 
+    file_stream = File.open(args[:xml_file])
+    xml_doc = Nokogiri::XML(file_stream)
 
-
-    reader = Nokogiri::XML::Reader(xml_file)
-    titles = []
-    text = ''
-    grab_text = false
-    reader.each do |elem|
-      if elem.name == "title"
-        if elem.node_type == 1  # start element?
-          grab_text = true
-        else # elem.node_type == 15  # end element?
-          titles << text
-          text = ''
-          grab_text = false
-        end
-      elsif grab_text && elem.node_type == 3 # text?
-        print elem.value
-      end
+    xml_doc.search('//LearningStandardItem').each do |t|
+      name = t.at('StatementCode').inner_text
+      grade = t.at('GradeLevel').inner_text
+      description = t.at('Statement').inner_text
+      print "#{t.at('StatementCode').inner_text}\n"
     end
-  	
+
+    file_stream.close
 
     print "Have a nice day #{ENV['USER']}\n"
   end
