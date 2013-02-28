@@ -1,17 +1,45 @@
-<table class="table table-condensed" id="resources_table" >
-  <tr>
-    <th>Title</th>
-    <th>Created</th>
-    <th>Deletion</th>
-    <th>Type</th>
-  </tr>
+<table class="table table-condensed table-hover"  id="resources_table"  style="cursor:pointer;">
+  <tbody>
+  <thead>
+    <tr>
+      <th><%= t('shared.type') %></th>
+      <th><%= t('resources.title') %></th>
+      <th><%= t('resources.grades') %></th>
+      <th><%= t('resources.subjects') %></th>
+    </tr>
+  </thead>
 
-<% @resources.each do |resource| %>
-  <tr>
-    <td><%= link_to resource.title, resource_url(resource), :target => "_blank" %></td>
-    <td><%= resource.created_at %></td>
-    <td><%= link_to t('resources.delete_label'), resource_path(resource) , :confirm => t('resources.delete_file_confirmation', :title=>resource.title), :method => :delete %></td>
-    <td><%= resource.type %></td>
-  </tr>
-<% end %>
+  <% @resources.each do |resource| %>
+    <tr resource-url="<%= resources_ajax_show_path resource.slug %>"> 
+      <td title="<%= resource.get_type %>" style="width:35px;"><%= raw resource.get_thumbnail %></td>
+      <td><%= link_to truncate(resource.title, :length => Resource::MAX_TITLE_RENDER_LEN), resource_url(resource), :target => "_blank" %></td>
+      <td>
+        <% if resource.course_grades.any? %>
+          <%= resource.course_grades.map(&:name).join(", ") %>
+        <% end %>     
+      </td>
+      <td>
+        <% if resource.course_subjects.any? %>
+          <%= resource.course_subjects.map(&:name).join(", ") %>
+        <% end %>    
+      </td>
+      <td><%= link_to t('shared.edit'), '#', 'resource-url'=>resources_ajax_show_path(resource.slug), :class=>'btn show_resource', :style=>"height:18px;" %></td>
+    </tr>
+  <% end %>
+</tbody>
 </table>
+
+<div id="edit_resource_link_modal" class="modal hide fade in" >
+  <div class="modal-body" id="edit_resource_link_modal_body"></div>
+</div>
+
+<div id="show_resource_link_modal" class="modal hide fade in"  >
+    <div class="modal-body" id="show_resource_link_modal_body"></div>
+</div>
+
+<div id="put_resource_link_modal" class="modal hide fade in" >
+  <div class="modal-body">
+    <%= render 'resources/form_create_link' %>
+  </div>
+</div>
+

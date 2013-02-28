@@ -1,13 +1,16 @@
 source 'https://rubygems.org'
 
 gem 'rails', '3.2.12'
+
 gem 'bootstrap-sass', '2.2.2.0'
 gem 'jquery-rails', '2.0.2'
 gem 'bcrypt-ruby', '3.0.1'
 gem "i18n-js", '2.1.2'
-
+gem "select2-rails", '3.2.1'
 gem 'google-api-client', '0.5.0'
 gem 'dropbox-sdk', '1.5.1'
+
+
 
 group :development, :test do
   gem 'sqlite3', '1.3.5'

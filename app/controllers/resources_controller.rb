@@ -5,16 +5,8 @@ class ResourcesController < ApplicationController
   before_filter :require_session
 
   def index
-    @resources = Resource.where( :user_id => @current_user.id )
-    Rails.logger.info("Resources = #{@resource}")
-
-    # For rendering Ajax "Upload Resource" form
-    @new_resource = Resource.new
-
-    respond_to do |format|
-      format.html # index.html.erb
-      format.json { render json: @resources }
-    end
+    # Currently does not exist
+    redirect_to @current_user
   end
 
   # GET /resources/1
@@ -33,34 +25,149 @@ class ResourcesController < ApplicationController
 
     # Gracefully handle nil links
     if !resource_link
-      redirect_to resources_url, :flash => { :error => t('resources.resource_link_error', :title => @resource.title) }
+      redirect_to @current_user, :flash => { :error => t('resources.resource_link_error', :title => @resource.title) }
     else
       redirect_to resource_link
     end
     
   end
 
+  def ajax_show 
+    Rails.logger.info("Resource #{params[:slug]}")
+    @resource = Resource.find_by_slug( params[:slug] )
 
-  def create
-    Rails.logger.info("Using this #{params}")
-    @resource = LinkResource.new( :link => params[:resource][:link] )
-    @resource.title = params[:resource][:title]
+    Rails.logger.info("Showing Resource #{@resource.slug} ")
+
+    Rails.logger.info("Resource Link: #{@resource.link}")
 
     respond_to do |format|
-
-      if @resource.save
-        @current_user.resources << @resource
-        @resources = Resource.where( :user_id => @current_user.id )
-
-        format.html { render :partial => 'resources/resources_table' }
-        format.js
+    # Gracefully handle nil links
+      if @resource.nil?
+        format.html { render :partial => 'shared/error_messages', :locals => { :object => @resource }, :status => 500  }
       else
-        format.html { render :partial => 'shared/error_messages', :locals => { :object => @resource }, :error => true, :status => 500  }
-        format.js
+        format.html { render :partial => 'resources/show'}
+      end
+    end
+    
+  end
+
+
+    # GET /resources/1/edit
+  def edit
+    @resource = Resource.where(:id => params[:id], :user_id=>@current_user.id).first
+    Rails.logger.info("Editing #{@resource.inspect}")
+    render partial: "resources/edit"
+  end
+
+  # PUT /resrouce/1
+  # PUT /resource/1.json
+  def update
+    Rails.logger.info("Updating Resource #{params}")
+    @resource = Resource.where(:id => params[:id], :user_id=>@current_user.id).first
+
+    @resource.title = params[:resource][:title]
+
+    if @resource.class.name == LinkResource::TYPE
+      @resource.link = params[:resource][:link]
+    end
+
+    # Convert primary keys to objects
+    if params[:resource].has_key?('course_subjects')
+      @resource.course_subjects = params[:resource][:course_subjects].present? ? CourseSubject.find_all_by_id(params[:resource][:course_subjects]) : []
+    end
+    
+    if params[:resource].has_key?('course_grades')
+      @resource.course_grades = params[:resource][:course_grades].present? ? CourseGrade.find_all_by_id(params[:resource][:course_grades]) : []
+    end  
+
+    respond_to do |format|
+      if @resource.valid? and @resource.save
+        @resources = Resource.where( :user_id => @current_user.id )
+        format.html { render :partial => 'resources/resources_table' }
+      else
+        #format.html { render partial: "resources/edit", :errors => '' }
+        format.html { render :partial => 'shared/error_messages', :locals => { :object => @resource }, :status => 500  }
+        #format.json { render json: @setting.errors, status: :unprocessable_entity }
       end
     end
   end
 
+  def ajax_filter
+
+    Rails.logger.info("Filter Params: #{params}")
+
+    filter = {}
+    @resources = Resource.where( :user_id => @current_user.id )
+
+    if params.has_key?('q') and !params[:q].empty?
+      #@resources &= Resource.where( 'title LIKE ?', "%#{params[:q].strip}%" )
+      @resources &= Resource.where( Resource.arel_table[:title].matches("%#{params[:q].strip}%") )
+    end
+
+    if params.has_key?('resource_types')
+      @resources &= Resource.find(:all, :conditions=>{:user_id => @current_user.id, :resource_type_id=>params[:resource_types]})
+    end
+
+    if params.has_key?('course_grades')
+      @resources &= Resource.find(:all, :joins => :course_grades, :conditions=>{:user_id => @current_user.id, :course_grades=>{:id => params[:course_grades]}})
+      
+    end
+
+    if params.has_key?('course_subjects')
+      @resources &= Resource.find(:all, :joins => :course_subjects, :conditions=>{:user_id => @current_user.id, :course_subjects=>{:id => params[:course_subjects]}})
+    end
+
+    Rails.logger.info(@resources);
+    render :partial => 'resources/resources_table'
+
+
+  end
+
+  def ajax_upload_link
+    Rails.logger.info("Using this #{params}")
+    @resource = LinkResource.new
+    @resource.title = params[:resource][:title]
+    @resource.link = params[:resource][:link]
+    @resource.resource_type = ResourceType.find_by_name('Web')
+
+    # Convert primary keys to objects
+    if params[:resource].has_key?('course_subjects')
+      @resource.course_subjects = params[:resource][:course_subjects].present? ? CourseSubject.find_all_by_id(params[:resource][:course_subjects]) : []
+    end
+    
+    if params[:resource].has_key?('course_grades')
+      @resource.course_grades = params[:resource][:course_grades].present? ? CourseGrade.find_all_by_id(params[:resource][:course_grades]) : []
+    end  
+    
+    @type = LinkResource::TYPE
+
+    Rails.logger.info("Creating #{@resource.inspect} valid? #{@resource.valid?}")
+
+    respond_to do |format|
+
+      if @resource.valid? and @resource.save
+        @current_user.resources << @resource
+        @resources = Resource.where( :user_id => @current_user.id )
+
+        # Need to re-generate filters
+        @filter_course_types = ResourceType.where(:id => @resources.map { |resource| resource.resource_type.id } )
+        @filter_course_grades = CourseGrade.where(:id => @resources.map { |resource| resource.course_grades.collect(&:id) } )
+        @filter_course_subjects = CourseSubject.where(:id => @resources.map { |resource| resource.course_subjects.collect(&:id) } )
+        # Render filter and resources to dictionary
+        response = { 
+          :filters => render_to_string(:partial => 'resources/form_filter_resource', :layout => false,  :locals => {:resources => @resources, :filter_course_types => @filter_course_types, :filter_course_grades=>@filter_course_grades, :filter_course_subjects=>@filter_course_subjects}),
+          :resources => render_to_string(:partial => 'resources/resources_table', :layout => false,  :locals => {:resources => @resources})
+        }
+        # Send resource and fitlers back via JSON format
+        format.js { render :json => response }
+        
+      else
+        format.js { render :partial => 'shared/error_messages', :locals => { :object => @resource }, :status => 500  }
+      end
+
+    end
+
+  end  
 
 
   def destroy
@@ -80,7 +187,6 @@ class ResourcesController < ApplicationController
 
     # Cache for flash notification
     deleted_title = @resource.title 
-
 
     # Google Resource
     if @current_user.has_google_account? and @resource.class.name == "GoogleResource"
@@ -116,7 +222,7 @@ class ResourcesController < ApplicationController
 
 
     respond_to do |format|
-      format.html { redirect_to resources_url, :flash => { :success => t('resources.deleted_file', :title => deleted_title) } }
+      format.html { redirect_to @current_user, :flash => { :success => t('resources.deleted_file', :title => deleted_title) } }
       format.json { head :no_content }
     end
   end 
@@ -157,7 +263,7 @@ class ResourcesController < ApplicationController
     @resources = Resource.where( :user_id => @current_user.id )
     
     respond_to do |format|
-       format.html { redirect_to resources_url, :flash => { :success => t('resources.synced_n_files', :sync_count => sync_count) } }
+       format.html { redirect_to @current_user, :flash => { :success => t('resources.synced_n_files', :sync_count => sync_count) } }
        format.json { head :no_content }
     end
   end

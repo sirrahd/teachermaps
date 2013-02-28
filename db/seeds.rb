@@ -5,3 +5,61 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
+
+# Create the seed data 
+
+
+
+# Course Grades 
+seed = [
+	'K', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12'
+]
+seed.each do |name|  
+	CourseGrade.find_or_create_by_name name
+end  
+
+
+
+# Course Subjects
+seed = [
+	'Mathematics', 'Physics', 'Science', 'History', 'Social Studies', 'Foreign Languages'
+]
+seed.each do |name|  
+	CourseSubject.find_or_create_by_name name
+end  
+
+
+
+# Resource Types
+
+seed = {
+	'Document' => 'icon-font',
+	'Spreadsheet' => 'icon-th-list',
+	'Presentation' => 'icon-comment',
+	'Video' => 'icon-film',
+	'Audio' => 'icon-music',
+	'Image' => 'icon-picture',
+	'Web' => 'icon-globe',
+	'Other' => 'icon-file',
+}
+
+seed.each_pair do |name,thumbnail|  
+	mime_type = ResourceType.find_or_create_by_name name
+	# Update thumbnails
+	mime_type.thumbnail = thumbnail
+	mime_type.save
+end  
+
+
+
+
+
+
+
+
+
+
+
+
+
+

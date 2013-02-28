@@ -1,5 +1,40 @@
-<p><strong><%= @user.name %></strong>
-<br />
-<%= @user.account_name %>
-<br />
-<%= @user.email %></p>
+<div class="row">
+  <aside class="span8">
+    <section>
+      <p><strong><%= @user.name %></strong>
+      <br />
+      <%= @user.account_name %>
+      <br />
+      <%= @user.email %></p>
+    </section>
+  </aside>
+</div>
+
+<div class="row">
+  <div class="span9">
+    <ul class="nav nav-tabs">
+      <!-- <li><a href="#maps" data-toggle="tab">Maps</a></li> -->
+      <li class="active"><a href="#resources" data-toggle="tab">Resources</a></li>
+    </ul>
+  </div>
+  <div class="span3">
+    <%= link_to t('resources.sync'), "#loading_modal",'data-toggle' => "modal", :onclick => "window.location=\"#{sync_resources_path}\"", :class => 'btn'  %>
+    <%= link_to "Add Link", "#put_resource_link_modal",'data-toggle' => "modal", :class=>'btn' %>
+  </div>
+</div>
+
+<div class="tab-content">
+  <!-- <div class="tab-pane" id="maps"></div> -->
+  <div class="tab-pane active" id="resources">
+    <div class="row">
+      <div class="span12" id="resource_filter">
+      <%= render 'resources/form_filter_resource' %>
+      </div>
+    </div>
+    <div class="row">
+      <div class="span12">
+        <%= render 'resources/resources_table' %>
+      </div>
+    </div>
+  </div>
+</div>

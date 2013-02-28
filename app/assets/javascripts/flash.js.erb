@@ -1,28 +1,29 @@
 /**
-For stateless flash notifications, defaults to yellow
-
-Message: string message to render in flash element
-*/
-
-function clearFlash(){
-	$("#flash-container").html();
-}
-
-function pushFlash(message){
-	pushFlash(message, false);
-}
-
-/**
 For stateful flash notifications 
 
-Message: string message to render in flash element
-State: state of the flash notification
+message: string message to render in flash element
+state: state of the flash notification
  - error
  - success
  - info
+fadout: N milliseconds which the flash is to be shown, then fades out
 
+Returns false if no message is provided
+
+e.g. pushFlash({message: 'test', state:'success', fadeOut: 3000});
 */
-function pushFlash(message, state){
+function pushFlash(options){
+
+	var config = {
+		state  : false,
+		fadeOut : false,
+		message : false,
+	};
+
+	// Update fields with options
+	$.extend(config, options);
+
+	console.log(config);
 	
 	var mainContainer  = $("#main-container");
 	var flashContainer = $("#flash-container");
@@ -32,11 +33,24 @@ function pushFlash(message, state){
 	// Remove any stale flashes
 	flashContainer.remove();
 
+	// If no message was provided, do not render flash notificaiton
+	if (!config.message) return false;
+
 	// Apply custom state to flash notification
-	if (state) {
-		customState = ' alert-'+state;		
+	if (config.state) {
+		customState = ' alert-'+config.state;
 	} 
 
 	// Render the flash notificaiton
-	mainContainer.prepend('<div id="flash-container" class="alert'+customState+'">'+cancelButton+message+'</div>');
+	mainContainer.prepend('<div id="flash-container" class="alert'+customState+'">'+cancelButton+config.message+'</div>');
+
+	// Apply custom state to flash notification
+	if (config.fadeOut) {
+		// Update flashContainer
+		flashContainer = $("#flash-container");
+		// Sets timer to fade out in N milliseconds
+		window.setInterval( function() {flashContainer.fadeOut('slow'); }, config.fadeOut );
+	} 
+
+	return true;
 }

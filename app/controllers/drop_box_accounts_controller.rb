@@ -41,7 +41,7 @@ class DropBoxAccountsController < ApplicationController
 
     # User denied TeacherMaps access to during OAuth handshake
     if params[:not_approved] == 'true'
-      return redirect_to settings_url, :flash => { :notice=> t('drop_box_acounts.denied_oauth')}
+      return redirect_to settings_url, :flash => { :notice=> t('drop_box.denied_oauth')}
     end
 
     # Get user's DropBox account
@@ -62,6 +62,7 @@ class DropBoxAccountsController < ApplicationController
   def destroy
  
     @drop_box_account = DropBoxAccount.find(params[:id])
+    @setting = Setting.find(@current_user.id)
     
      flash = {}
      if @current_user.has_drop_box_account?
@@ -76,11 +77,21 @@ class DropBoxAccountsController < ApplicationController
            @drop_box_account.destroy
 
            # Remove all resources reference to DropBox resources belonging to this user
-           DropBoxResource.delete_all( :type =>'DropBoxResource', :user_id=>@current_user.id  )
+           DropBoxResource.delete_all( :type =>DropBoxResource::TYPE, :user_id=>@current_user.id  )
 
-           flash['success'] = t('drop_box_acounts.removed')
+           if @current_user.has_google_account?
+              # Transfer default uploads to DropBox
+              @setting.upload_to = DropBoxResource::TYPE
+           else
+              # User is going to need to assign one before next upload
+              @setting.upload_to = nil
+           end
+
+           @setting.save()
+
+           flash['success'] = t('drop_box.removed')
         else 
-           flash['notice'] = t('drop_box_acounts.remove_invalid')
+           flash['notice'] = t('drop_box.remove_invalid')
         end
 
     end

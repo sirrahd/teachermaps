@@ -1,0 +1,54 @@
+<button type="button" class="close" data-dismiss="modal" style="margin-right:10px;">&times;</button>
+<div class="span6">
+  <div id="edit_resource_link_errors"></div>
+    
+  <%= form_for @resource, :url=>resource_path, html: { :remote=>true, :multipart => true, :'data-type' => 'html', id: 'edit_resource_link_form' }  do |f| %>
+    
+
+    <%= label_tag(:title, t('resources.title')) %>
+    <%= f.text_field :title, :disabled=>'disabled'  %>
+    <%= f.hidden_field :title, :value => @resource.title %>
+
+
+    <% if @resource.type == LinkResource::TYPE %>
+      <%= label_tag(:link, t('resources.link')) %>
+    <%= f.text_field :link  %>
+    <% end %>
+    
+    
+    <%= label_tag(:course_grades, t('resources.grades')) %>
+    <%= select_tag("resource[course_grades]", options_for_select(CourseGrade.find(:all).collect { |cat| [cat.name, cat.id] }, @resource.course_grades.collect { |cat| cat.id}), {:multiple=>true, :id=>'select_edit_course_grades'})%>
+    <br/><br/>
+   
+
+    <%= label_tag(:course_subjects, t('resources.subjects')) %>
+    <%= select_tag("resource[course_subjects]", options_for_select(CourseSubject.find(:all).collect { |cat| [cat.name, cat.id] }, @resource.course_subjects.collect { |cat| cat.id}), {:multiple=>true, :id=>'select_edit_course_subjects'})%>
+    <br/><br/>
+
+    <span>
+      <% if @resource.type == LinkResource::TYPE %>
+        <%= link_to t('resources.open_link'), resource_url(@resource), :target => "_blank", :class => 'btn' %>
+      <% else %>
+        <%= link_to t('resources.open_file'), resource_url(@resource), :target => "_blank", :class => 'btn' %>
+      <% end %>
+
+      <%= link_to t('resources.delete'), resource_path(@resource) , :confirm => t('resources.delete_file_confirmation', :title=>@resource.title), :method => :delete, :class=>'btn' %>
+      <%= f.submit(t('shared.save'), :class=>"btn btn-primary start") %>
+    </span>
+
+  <% end %>
+</div>
+
+<script type="text/javascript">
+$(document).ready(function() { 
+  //Manually configure on load
+  $("#select_edit_course_grades").select2({
+    width : 'resolve'
+  });
+  $("#select_edit_course_subjects").select2({
+    width : 'resolve'
+  });
+
+});
+
+</script>

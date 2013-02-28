@@ -1,4 +1,6 @@
 class LinkResource < Resource
+
+	TYPE = 'LinkResource'
 	
 	belongs_to :user
 
@@ -10,4 +12,5 @@ class LinkResource < Resource
   	def open_link()
 		self.link
 	end
+
 end

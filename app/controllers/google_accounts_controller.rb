@@ -21,7 +21,7 @@ class GoogleAccountsController < ApplicationController
     end
     
     respond_to do |format|
-      format.html { redirect_to settings_url, :flash => { :notice => I18n.t('google_accounts.already_added') }}
+      format.html { redirect_to settings_url, :flash => { :notice => I18n.t('google_drive.already_added') }}
     end
 
   end
@@ -30,6 +30,8 @@ class GoogleAccountsController < ApplicationController
 
   def destroy
      @google_account = GoogleAccount.find(params[:id])
+     @setting = Setting.find(@current_user.id)
+
     
      flash = {}
      if @current_user.has_google_account?
@@ -44,11 +46,22 @@ class GoogleAccountsController < ApplicationController
            @google_account.destroy
 
            # Delete all google resources belonging to this user
-           GoogleResource.delete_all( :type=>'GoogleResource', :user_id=>@current_user.id )
+           GoogleResource.delete_all( :type=>GoogleResource::TYPE, :user_id=>@current_user.id )
 
-           flash['success'] = t('google_accounts.removed')
+           flash['success'] = t('google_drive.removed')
+
+
+           if @current_user.has_drop_box_account?
+              # Transfer default uploads to DropBox
+              @setting.upload_to = GoogleResource::TYPE
+           else
+              # User is going to need to assign one before next upload
+              @setting.upload_to = nil
+           end
+           @setting.save()
+
         else 
-           flash['notice'] = t('google_accounts.remove_invalid')
+           flash['notice'] = t('google_drive.remove_invalid')
         end
 
     end
@@ -64,7 +77,7 @@ class GoogleAccountsController < ApplicationController
 
     # User denied TeacherMaps access to during OAuth handshake
     if params[:error] == 'access_denied'
-      return redirect_to settings_url, :flash => { :notice=> t('google_accounts.denied_oauth')}
+      return redirect_to settings_url, :flash => { :notice=> t('google_drive.denied_oauth')}
     end
 
     Rails.logger.info("Callback success")  
