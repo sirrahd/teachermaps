@@ -21,17 +21,35 @@ class ResourceTest < ActiveSupport::TestCase
     @resource.link = 'www.pizza.com'
     assert !(@resource.valid?), "Resource created with invalid link."
 
-    @resource.link = 'www.pizza.com'
+    @resource.link = 'http:www.pizza'
     assert !(@resource.valid?), "Resource created with invalid link."
 
     @resource.link = 'pizza.com'
     assert !(@resource.valid?), "Resource created with invalid link."
 
-    @resource.link = 'http://www.google.co.uk/'
+    @resource.link = 'http://pizza'
+    assert !(@resource.valid?), "Resource created with invalid link."
+
+    @resource.link = 'http//pizza.com'
+    assert !(@resource.valid?), "Resource created with invalid link."
+
+    @resource.link = 'http:/pizza.com'
+    assert !(@resource.valid?), "Resource created with invalid link."
+
+    @resource.link = 'http:pizza.com'
+    assert !(@resource.valid?), "Resource created with invalid link."
+
+    @resource.link = 'http::pizza.com'
+    assert !(@resource.valid?), "Resource created with invalid link."
+
+    @resource.link = 'http:///pizza.com'
     assert !(@resource.valid?), "Resource created with invalid link."
 
     @resource.link = 'http://pizza.com'
-    assert @resource.valid?, "Resource created with invalid link."
+    assert @resource.valid?, "Resource not created with valid link."
+
+    @resource.link = 'http://www.google.co.uk/'
+    assert @resource.valid?, "Resource not created with international valid link."
 
     @resource.link = 'http://www.bam.com'
     assert @resource.valid?, "Resource not created with valid link."
