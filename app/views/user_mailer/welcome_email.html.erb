@@ -5,6 +5,6 @@
   </head>
   <body>
     <h1><%= t('welcome_email.title', name: @user.name) %></h1>
-    <%= @url %>
+    <%= link_to "Confirm", controller: 'users', action: 'show_with_email_confirmation', params: { account: @user.account_name, key: @user.email_confirmation_key }, only_path: false, host: @host %>
   </body>
 </html>

@@ -1,8 +1,8 @@
 class UserMailer < ActionMailer::Base
 
-  def welcome_email(user)
+  def welcome_email(user, host)
     @user = user
-    @url = user.email_confirmation_url
+    @host = host
     mail( to: user.email, subject: t('welcome_email.subject') )
   end
 end

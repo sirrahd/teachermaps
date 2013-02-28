@@ -58,14 +58,11 @@ class User < ActiveRecord::Base
     self.account_name
   end
 
-  def email_confirmation_url
-    self.create_email_confirmation_key
+  def email_confirmation_key
+    Digest::MD5.hexdigest(self.email + self.updated_at.iso8601)
   end
 
   private
-
-  def create_email_confirmation_key
-    Digest::MD5.hexdigest(self.email + self.password_digest)
 
   def default_values
     self.setting = Setting.new

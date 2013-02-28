@@ -136,3 +136,5 @@ en:
     content_textonly:            "Activate your account with the link below:"
     content:                     "%{activation_link} to active your account."
     activation_link:             "Click here"
+  confirmation:
+    success:                     "Thanks! We confirmed your email address."
