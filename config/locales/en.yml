@@ -104,4 +104,9 @@ en:
     remove_invalid:              "Delete your own DropBox Account!"
     success_sync:                "Synced with DropBox Acccount"
     denied_oauth:                "You denied TeacherMaps access to DropBox"
-
+  welcome_email:
+    subject:                     "Welcome to TeacherMaps!"
+    title:                       "Let's get started, %{name}"
+    content_textonly:            "Activate your account with the link below:"
+    content:                     "%{activation_link} to active your account."
+    activation_link:             "Click here"
