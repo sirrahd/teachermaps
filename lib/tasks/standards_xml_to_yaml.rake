@@ -15,7 +15,7 @@ namespace :admin  do
       name = t.at('StatementCode').inner_text
       description = t.at('Statement').inner_text
 
-      t.search('//GradeLevels').each do |element|
+      t.search('GradeLevels').each do |element|
 
         grade = element.at('GradeLevel').inner_text
         print "#{name} #{grade} #{description}\n"
@@ -23,7 +23,7 @@ namespace :admin  do
       end
 
       
-      print "#{t.at('StatementCode').inner_text}\n"
+      #print "#{t.at('StatementCode').inner_text}\n"
     end
 
     file_stream.close
