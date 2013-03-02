@@ -50,6 +50,29 @@ end
 
 
 
+# # ELA E Standards
+# seed = YAML::load_file('db/seeds/cc-ela-lit.yaml')
+# seed.each_pair do |key,standard|  
+	
+# 	s = Standard.find_or_create_by_name standard['name']
+# 	s.text = standard['text']
+# 	s.course_grade = CourseGrade.find_by_name standard['course_grade']
+# 	s.course_subject = CourseSubject.find_by_name standard['course_subject']
+# 	s.sub_subject = standard['sub_subject']
+# 	s.is_parent_standard = standard['is_parent_standard']
+	
+# 	if standard['parent_standard']
+# 		s.parent_standard = Standard.find_or_create_by_name standard['parent_standard']
+# 	end
+
+# 	s.save
+# 	print "Created #{standard['name']}\n"
+# end  
+
+
+
+
+
 
 
 

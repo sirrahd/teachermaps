@@ -19,6 +19,9 @@ namespace :admin  do
 
     standards << "StatementCode|Grade|Subject|Sub-Subject|Statement\n"
 
+    parent_standards = {}
+    parent_standard = nil
+
     xml_doc.search('LearningStandardItem').each do |t|
       
       name = t.at('StatementCode').inner_text
@@ -34,14 +37,15 @@ namespace :admin  do
       t.search('GradeLevel').each do |grade_elem|
         # CC ELA&L has 11-12 as grade level
         grade = grade_elem.inner_text
-
         if grade =~ /-/
           grade.split('-').collect do |grade_name|
             standards << "#{name}|#{grade_name}|#{subject.name}|#{sub_subject}|#{description}\n"
           end
         else
+          grade_name = (grade != 'K') ? grade.to_i.to_s : grade
           standards << "#{name}|#{grade}|#{subject.name}|#{sub_subject}|#{description}\n"
         end
+
       end
 
       
@@ -60,8 +64,7 @@ namespace :admin  do
       file.close unless file == nil
     end
 
-
-
     print "Have a nice day #{ENV['USER']}\n"
   end
 end
+

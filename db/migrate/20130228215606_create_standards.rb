@@ -7,6 +7,7 @@ class CreateStandards < ActiveRecord::Migration
       t.string :text				# Description/content
       t.string :domain 				# Domain 
       t.string :sub_subject		 	# Indexable string sub subject Science => "Life Science"
+      t.string :slug				# A unique identifier of standard
 
       t.integer :course_grade_id
       t.integer :course_subject_id

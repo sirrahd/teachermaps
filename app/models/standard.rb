@@ -1,7 +1,7 @@
 class Standard < ActiveRecord::Base
 
   # Searchable content, later will be indexed for Full Search Text
-  attr_accessible :name, :text, :domain, :sub_subject
+  attr_accessible :name, :text, :slug, :domain, :sub_subject
 
   # Parent/Child standard
   belongs_to :parent_standard, :class_name => 'Standard', :foreign_key => 'parent_standard_id'

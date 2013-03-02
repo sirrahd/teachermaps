@@ -100,6 +100,7 @@ ActiveRecord::Schema.define(:version => 20130228215612) do
     t.string  "text"
     t.string  "domain"
     t.string  "sub_subject"
+    t.string  "slug"
     t.integer "course_grade_id"
     t.integer "course_subject_id"
     t.integer "standard_type_id"
