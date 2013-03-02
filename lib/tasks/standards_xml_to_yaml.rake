@@ -1,6 +1,8 @@
 require 'yaml'
 require 'nokogiri'
 
+
+
 namespace :admin  do
   desc "Update the types of all the Resources."
   task :standards_xml_to_yaml, [:xml_file, :yaml_file] => [:environment] do |t, args|
@@ -14,10 +16,6 @@ namespace :admin  do
     standards = []
     standard = nil
 
-
-    subject = CourseSubject.find_by_name 'English'
-    sub_subject = 'English Language Arts and Literacy'
-
     xml_doc.search('LearningStandardItem').each do |t|
       
 
@@ -26,17 +24,19 @@ namespace :admin  do
 
       t.search('GradeLevels').each do |element|
 
+        org_grade = element.at('GradeLevel').inner_text
         grade = element.at('GradeLevel').inner_text
-        grade = (grade != 'K') ? grade.to_i.to_s : grade
-        grade = CourseGrade.find_by_name grade
-        #print "#{name} #{grade.id} #{description}\n"
+        
+        # CC ELA&L has 11-12 as grade level
+        if grade =~ /-/
+          grade.split('-').collect do |grade_name|
+            standards << create_standard(name, description, grade_name)
+          end
+        else
+          grade_name = (grade != 'K') ? grade.to_i.to_s : grade
+          standards << create_standard(name, description, grade_name)
+        end
 
-        standard = Standard.new
-        standard.name = name
-        standard.text = description
-        standard.course_grade = grade
-        standard.course_subject = subject
-        standard.sub_subject = sub_subject
 
       end
     end
@@ -44,6 +44,29 @@ namespace :admin  do
     file_stream.close
 
 
+    standards.each do |s|
+      # print "#{s.course_grade.name}\n"
+    end
+
     print "Have a nice day #{ENV['USER']}\n"
   end
+end
+
+
+def create_standard(name, description, grade_name )
+
+  
+  grade = CourseGrade.find_by_name grade_name
+  subject = CourseSubject.find_by_name 'English'
+  sub_subject = 'English Language Arts and Literacy'
+
+
+  standard = Standard.new
+  standard.name = name
+  standard.text = description
+  standard.course_grade = grade
+  standard.course_subject = subject
+  standard.sub_subject = sub_subject
+
+  standard
 end
