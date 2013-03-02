@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130220000216) do
+ActiveRecord::Schema.define(:version => 20130228215612) do
 
   create_table "course_grades", :force => true do |t|
     t.string   "name"
@@ -89,6 +89,22 @@ ActiveRecord::Schema.define(:version => 20130220000216) do
     t.string   "upload_to"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+  end
+
+  create_table "standard_types", :force => true do |t|
+    t.string "name"
+  end
+
+  create_table "standards", :force => true do |t|
+    t.string  "name"
+    t.string  "text"
+    t.string  "domain"
+    t.string  "sub_subject"
+    t.integer "course_grade_id"
+    t.integer "course_subject_id"
+    t.integer "standard_type_id"
+    t.integer "parent_standard_id"
+    t.boolean "is_parent_standard"
   end
 
   create_table "users", :force => true do |t|

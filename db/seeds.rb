@@ -1,3 +1,6 @@
+require 'yaml'
+
+
 # This file should contain all the record creation needed to seed the database with its default values.
 # The data can then be loaded with the rake db:seed (or created alongside the db with db:setup).
 #
@@ -21,34 +24,32 @@ end
 
 
 # Course Subjects
-seed = [
-	'Mathematics', 'Physics', 'Science', 'History', 'Social Studies', 'Foreign Languages'
-]
-seed.each do |name|  
-	CourseSubject.find_or_create_by_name name
+seed = YAML::load_file('db/seeds/course_subject.yaml')
+seed.each do |key, subject|
+	CourseSubject.find_or_create_by_name subject['name']
 end  
 
 
 
 # Resource Types
 
-seed = {
-	'Document' => 'icon-font',
-	'Spreadsheet' => 'icon-th-list',
-	'Presentation' => 'icon-comment',
-	'Video' => 'icon-film',
-	'Audio' => 'icon-music',
-	'Image' => 'icon-picture',
-	'Web' => 'icon-globe',
-	'Other' => 'icon-file',
-}
+# seed = {
+# 	'Document' => 'icon-font',
+# 	'Spreadsheet' => 'icon-th-list',
+# 	'Presentation' => 'icon-comment',
+# 	'Video' => 'icon-film',
+# 	'Audio' => 'icon-music',
+# 	'Image' => 'icon-picture',
+# 	'Web' => 'icon-globe',
+# 	'Other' => 'icon-file',
+# }
 
-seed.each_pair do |name,thumbnail|  
-	mime_type = ResourceType.find_or_create_by_name name
-	# Update thumbnails
-	mime_type.thumbnail = thumbnail
-	mime_type.save
-end  
+# seed.each_pair do |name,thumbnail|  
+# 	mime_type = ResourceType.find_or_create_by_name name
+# 	# Update thumbnails
+# 	mime_type.thumbnail = thumbnail
+# 	mime_type.save
+# end  
 
 
 
