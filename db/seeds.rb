@@ -16,7 +16,6 @@ require 'yaml'
 # Course Grades 
 seed = YAML::load_file('db/seeds/course_grades.yaml')
 seed.each do |key, grade|  
-	print "#{grade['name']}\n"
 	CourseGrade.find_or_create_by_name grade['name']
 end  
 
@@ -37,6 +36,14 @@ seed.each_pair do |key,resource_type|
 	# Update thumbnails
 	resource_type_object.thumbnail = resource_type['thumbnail']
 	resource_type_object.save
+end  
+
+
+
+# Standard Types
+seed = YAML::load_file('db/seeds/standard_types.yaml')
+seed.each_pair do |key,standard_type|  
+	standard_type_object = StandardType.find_or_create_by_name standard_type['name']
 end  
 
 

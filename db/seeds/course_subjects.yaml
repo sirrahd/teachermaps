@@ -11,3 +11,5 @@ social_studies:
  name: Social Studies
 foreign_language:
  name: Foreign Languages
+english:
+ name: English

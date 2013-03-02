@@ -2,7 +2,3 @@ common_core:
  name: Common Core
 california_cs:
  name: California Content Standards
-texas_eks:
- name: Texas Essential Knowledge and Skills
-arizona_cc:
- name: Arizona’s Common Core
