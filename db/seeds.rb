@@ -24,7 +24,7 @@ end
 
 
 # Course Subjects
-seed = YAML::load_file('db/seeds/course_subject.yaml')
+seed = YAML::load_file('db/seeds/course_subjects.yaml')
 seed.each do |key, subject|
 	CourseSubject.find_or_create_by_name subject['name']
 end  
@@ -32,24 +32,13 @@ end
 
 
 # Resource Types
-
-# seed = {
-# 	'Document' => 'icon-font',
-# 	'Spreadsheet' => 'icon-th-list',
-# 	'Presentation' => 'icon-comment',
-# 	'Video' => 'icon-film',
-# 	'Audio' => 'icon-music',
-# 	'Image' => 'icon-picture',
-# 	'Web' => 'icon-globe',
-# 	'Other' => 'icon-file',
-# }
-
-# seed.each_pair do |name,thumbnail|  
-# 	mime_type = ResourceType.find_or_create_by_name name
-# 	# Update thumbnails
-# 	mime_type.thumbnail = thumbnail
-# 	mime_type.save
-# end  
+seed = YAML::load_file('db/seeds/resource_types.yaml')
+seed.each_pair do |key,resource_type|  
+	resource_type_object = ResourceType.find_or_create_by_name resource_type['name']
+	# Update thumbnails
+	resource_type_object.thumbnail = resource_type['thumbnail']
+	resource_type_object.save
+end  
 
 
 
