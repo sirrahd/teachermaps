@@ -14,11 +14,10 @@ require 'yaml'
 
 
 # Course Grades 
-seed = [
-	'K', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12'
-]
-seed.each do |name|  
-	CourseGrade.find_or_create_by_name name
+seed = YAML::load_file('db/seeds/course_grades.yaml')
+seed.each do |key, grade|  
+	print "#{grade['name']}\n"
+	CourseGrade.find_or_create_by_name grade['name']
 end  
 
 
