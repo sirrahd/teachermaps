@@ -4,7 +4,7 @@ class CreateStandards < ActiveRecord::Migration
 
       # These later are going to be indexed using Solr/Lucene
       t.string :name				# Title
-      t.string :text				# Description/content
+      t.string :statement			# Description/content
       t.string :domain 				# Domain 
       t.string :sub_subject		 	# Indexable string sub subject Science => "Life Science"
 

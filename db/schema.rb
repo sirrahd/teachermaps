@@ -97,7 +97,7 @@ ActiveRecord::Schema.define(:version => 20130228215612) do
 
   create_table "standards", :force => true do |t|
     t.string  "name"
-    t.string  "text"
+    t.string  "statement"
     t.string  "domain"
     t.string  "sub_subject"
     t.integer "course_grade_id"

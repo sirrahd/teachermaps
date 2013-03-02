@@ -18,14 +18,13 @@ namespace :admin  do
 
     xml_doc.search('LearningStandardItem').each do |t|
       
-
       name = t.at('StatementCode').inner_text
       description = ActionView::Base.full_sanitizer.sanitize(t.at('Statement').inner_text)
 
       t.search('GradeLevels').each do |element|
 
         org_grade = element.at('GradeLevel').inner_text
-        grade = element.at('GradeLevel').inner_text
+        grade = org_grade.dup
         
         # CC ELA&L has 11-12 as grade level
         if grade =~ /-/
@@ -37,15 +36,13 @@ namespace :admin  do
           standards << create_standard(name, description, grade_name)
         end
 
-
       end
     end
 
     file_stream.close
 
-
     standards.each do |s|
-      # print "#{s.course_grade.name}\n"
+      print "#{s.statement}\n"
     end
 
     print "Have a nice day #{ENV['USER']}\n"
@@ -55,15 +52,13 @@ end
 
 def create_standard(name, description, grade_name )
 
-  
   grade = CourseGrade.find_by_name grade_name
   subject = CourseSubject.find_by_name 'English'
   sub_subject = 'English Language Arts and Literacy'
 
-
   standard = Standard.new
   standard.name = name
-  standard.text = description
+  standard.statement = description
   standard.course_grade = grade
   standard.course_subject = subject
   standard.sub_subject = sub_subject
