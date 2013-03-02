@@ -16,6 +16,8 @@ namespace :admin  do
     standards = []
     standard = nil
 
+    parent_standards = []
+
     xml_doc.search('LearningStandardItem').each do |t|
       
       name = t.at('StatementCode').inner_text
@@ -37,13 +39,17 @@ namespace :admin  do
         end
 
       end
+
+      t.search('Statements').each do |element|
+        print "#{name}: #{element.at('Statement').inner_text}\n"
+      end
     end
 
     file_stream.close
 
-    standards.each do |s|
-      print "#{s.statement}\n"
-    end
+    # standards.each do |s|
+    #   print "#{s.text}\n"
+    # end
 
     print "Have a nice day #{ENV['USER']}\n"
   end
@@ -58,7 +64,7 @@ def create_standard(name, description, grade_name )
 
   standard = Standard.new
   standard.name = name
-  standard.statement = description
+  standard.text = description
   standard.course_grade = grade
   standard.course_subject = subject
   standard.sub_subject = sub_subject
