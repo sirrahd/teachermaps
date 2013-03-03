@@ -1,3 +1,5 @@
+# Itsa Meee!! Mario!!!!
+
 class CreateMaps < ActiveRecord::Migration
   def self.up
     create_table :maps do |t|
@@ -43,14 +45,11 @@ class CreateMaps < ActiveRecord::Migration
     remove_index :course_subjects_resources, :name => :maps_course_subjects_index
     drop_table :course_subjects_resources
 
-    add_index :course_grades_maps, :name => :course_grades_maps_index
-    add_index :course_grades_maps, :name => :maps_course_grades_index
+    remove_index :course_grades_maps, :name => :course_grades_maps_index
+    remove_index :course_grades_maps, :name => :maps_course_grades_index
     drop_table :course_grades_resources
-    
-    
   end
 end
 
 
 
-# Itsa Meee!! Mario!!!!
