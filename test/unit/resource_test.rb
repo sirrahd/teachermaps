@@ -59,7 +59,7 @@ class ResourceTest < ActiveSupport::TestCase
   	assert_equal @resource.course_subjects.length, 2, 'Resource has incorrect number of course subjects'
 
   	@resource.course_subjects = []
-  	   assert_equal @resource.course_subjects.length, 0, 'Resource has did not delete course subjects'
+  	assert_equal @resource.course_subjects.length, 0, 'Resource has did not delete course subjects'
    
   end
 

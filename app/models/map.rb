@@ -12,10 +12,10 @@ class Map < ActiveRecord::Base
   belongs_to :user
 
   validates :name, :presence => {:message => 'cannot be blank.'}, :length => {:minimum => 2, :maximum => 250}
+  validates :text, :presence => {:message => 'cannot be blank.'}, :length => {:minimum => 2, :maximum => 2048}
 
   before_create :default_values
   before_validation	:clean_attrs
-  
 
   def to_param
 	self.slug
@@ -30,6 +30,9 @@ class Map < ActiveRecord::Base
   def default_values
   	# Random, need to check for uniuqness
 	self.slug ||= SecureRandom.urlsafe_base64.downcase
+	self.resources_count  ||= 0
+	self.standards_count  ||= 0
+	self.objectives_count ||= 0
   end
 end
 
