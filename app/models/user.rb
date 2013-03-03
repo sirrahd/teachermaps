@@ -21,6 +21,7 @@ class User < ActiveRecord::Base
   has_one :setting
   
   has_many :resources
+  has_many :maps
 
   
   before_save do |user|

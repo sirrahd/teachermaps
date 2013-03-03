@@ -1,0 +1,34 @@
+<table class="table table-condensed table-hover"  id="maps_table"  style="cursor:pointer;">
+  <tbody>
+    <% @maps.each do |map| %>
+      <tr map-url="#"> 
+        <td>
+          <div class="row">
+            <div class="span10" id="resource_filter">
+              <h4><%= map.name %></h4>
+              <span>
+                <%= map.text %>
+              </span>
+            </div>
+          </div>
+          <div class="row">
+            <div class="span10">
+              <ul class="inline">
+              <li>
+                <label>Standards: <%= map.standards_count %> </label>
+              </li>
+              <li>
+                <label>Objectives: <%= map.objectives_count %></label>
+              </li>
+              <li>
+                <label>Resources: <%= map.resources_count %></label>
+              </li>
+              </ul>
+            </div>
+          </div>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+

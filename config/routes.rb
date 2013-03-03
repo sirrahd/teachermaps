@@ -4,6 +4,7 @@ Teachermaps::Application.routes.draw do
   resources :drop_box_accounts
   resources :google_accounts
 
+
   resources :settings
 
 
@@ -14,6 +15,8 @@ Teachermaps::Application.routes.draw do
   match '/resources/ajax/filter' => 'resources#ajax_filter', :as => 'resources_ajax_filter'
   resources :resources
   
+  match 'users/maps' => 'maps#index', :as => 'maps_index'
+  resources :maps
   
 
   resources :users

@@ -13,6 +13,8 @@ class UsersController < ApplicationController
     # Users can only sign in to their own account; ignore params
     @user = @current_user
 
+    @maps = Map.where( :user_id=> @current_user )
+
     @resources = Resource.where( :user_id => @current_user.id )
 
     @filter_course_types = ResourceType.where(:id => @resources.map { |resource| resource.resource_type.id } )
