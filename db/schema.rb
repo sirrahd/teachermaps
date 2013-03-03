@@ -108,7 +108,6 @@ ActiveRecord::Schema.define(:version => 20130303003444) do
   end
 
   create_table "map_standards", :force => true do |t|
-    t.string   "name"
     t.string   "slug"
     t.integer  "standard_id"
     t.integer  "map_id"

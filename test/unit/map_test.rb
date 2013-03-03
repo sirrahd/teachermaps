@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class UserTest < ActiveSupport::TestCase
+class MapTest < ActiveSupport::TestCase
   setup :initialize_user
   
   # Make sure our users have the necessary attributes
@@ -81,6 +81,17 @@ class UserTest < ActiveSupport::TestCase
     assert @map.valid?, "Map not created with valid text."
   end  
 
+  # Checks for map standards manipulation
+  test "maps standards test" do
+    @map.map_standards = []
+    assert_equal @map.map_standards, [], "Map' map_standards assignment is not working."
+    
+    @map.map_standards << [map_standards(:map_standard_one), map_standards(:map_standard_two)]
+    assert_equal @map.map_standards.length, 2, 'Map has incorrect number of map standards'
+    
+    @map.map_standards = []
+    assert_equal @map.map_standards.length, 0, 'Map has did not delete mapstandards'
+  end
 
   # Checks for course grade manipulation
   test "map must valid course grade" do
@@ -105,6 +116,13 @@ class UserTest < ActiveSupport::TestCase
 
     @map.course_subjects = []
     assert_equal @map.course_subjects.length, 0, 'Map has did not delete course subjects'
+  end
+
+  # Checks for course subjects manipulation
+  test "map must unique slug" do
+    @map2 = @map.dup
+    assert !(@map2.valid?), 'Map was created with duplicate slug.' 
+    assert !(@map2.save),   'Map was created with duplicate slug.'
   end
   
   private

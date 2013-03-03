@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class ResourceTest < ActiveSupport::TestCase
+class LinkResourceTest < ActiveSupport::TestCase
   setup :initialize_link_resource
   
 

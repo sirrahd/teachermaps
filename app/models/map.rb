@@ -1,3 +1,6 @@
+require 'uuidtools'
+require 'base64'
+
 class Map < ActiveRecord::Base
   # Core components	
   attr_accessible :name, :slug, :text, :thumbnail
@@ -11,28 +14,32 @@ class Map < ActiveRecord::Base
 
   belongs_to :user
 
+  validates :user, :presence => {:message => 'cannot be blank.'}
   validates :name, :presence => {:message => 'cannot be blank.'}, :length => {:minimum => 2, :maximum => 250}
   validates :text, :presence => {:message => 'cannot be blank.'}, :length => {:minimum => 2, :maximum => 2048}
+  validates_uniqueness_of :slug, :allow_nil => true, :case_sensitive => true
 
   before_create :default_values
   before_validation	:clean_attrs
 
   def to_param
-	self.slug
+	  self.slug
   end
 
   private 
 
   def clean_attrs
-	if self.name then self.name = self.name.strip end
-	if self.text then self.text = self.text.strip end
+    if self.name then self.name = self.name.strip end
+    if self.text then self.text = self.text.strip end
   end
+
   def default_values
-  	# Random, need to check for uniuqness
-	self.slug ||= SecureRandom.urlsafe_base64.downcase
-	self.resources_count  ||= 0
-	self.standards_count  ||= 0
-	self.objectives_count ||= 0
+    self.slug ||= (Base64.strict_encode64 UUIDTools::UUID.random_create).downcase
+  
+    self.resources_count  ||= 0
+    self.standards_count  ||= 0
+    self.objectives_count ||= 0
   end
+  
 end
 
