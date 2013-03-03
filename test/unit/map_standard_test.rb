@@ -11,6 +11,18 @@ class MapStandardTest < ActiveSupport::TestCase
     assert_respond_to @map_standard, :map,      "Map Standard missing map."
   end
 
+   # Checks for map standards manipulation
+  test "map objectives test" do
+    @map_standard.map_objectives = []
+    assert_equal @map_standard.map_objectives, [], "Map Standard Map Objective assignment is not working."
+    
+    @map_standard.map_objectives << [map_objectives(:map_objective_one), map_objectives(:map_objective_two)]
+    assert_equal @map_standard.map_objectives.length, 2, 'Map has incorrect number of map standards'
+    
+    @map_standard.map_objectives = []
+    assert_equal @map_standard.map_objectives.length, 0, 'Map Standard has did not delete map objectives'
+  end
+
   # Make sure our MapStandard has the necessary map
   test "should have valid map" do    
   	@map_standard.map = nil

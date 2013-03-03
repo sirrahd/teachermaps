@@ -4,11 +4,11 @@ class CreateMapResources < ActiveRecord::Migration
 
       t.string :text
 
+	  t.integer :user_id
       t.integer :resource_id
       t.integer :map_id
-      t.integer :user_id
-
-
+      t.integer :map_objective_id
+      
       t.timestamps
     end
   end

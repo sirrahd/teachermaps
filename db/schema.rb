@@ -91,6 +91,7 @@ ActiveRecord::Schema.define(:version => 20130303003444) do
 
   create_table "map_objectives", :force => true do |t|
     t.string   "name"
+    t.string   "text"
     t.string   "slug"
     t.integer  "map_standard_id"
     t.integer  "user_id"
@@ -101,11 +102,12 @@ ActiveRecord::Schema.define(:version => 20130303003444) do
 
   create_table "map_resources", :force => true do |t|
     t.string   "text"
+    t.integer  "user_id"
     t.integer  "resource_id"
     t.integer  "map_id"
-    t.integer  "user_id"
-    t.datetime "created_at",  :null => false
-    t.datetime "updated_at",  :null => false
+    t.integer  "map_objective_id"
+    t.datetime "created_at",       :null => false
+    t.datetime "updated_at",       :null => false
   end
 
   create_table "map_standards", :force => true do |t|
