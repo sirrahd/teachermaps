@@ -48,7 +48,7 @@ class MapStandardTest < ActiveSupport::TestCase
     assert @user.valid?, "Initialized user was not valid."
     assert @user.save, "Unable to save valid user."
 
-    @map_standard = MapStandard.new 
+    @map_standard = MapStandard.new
     @map_standard.standard = standards(:standard_8051b7d8d2cc77b2e3a73b0d7428454a71f1c011)
     @map_standard.map = maps(:map_one)        
     @map_standard.user = @user

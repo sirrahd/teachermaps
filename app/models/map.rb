@@ -14,7 +14,7 @@ class Map < ActiveRecord::Base
 
   belongs_to :user
 
-  validates :user, :presence => {:message => 'cannot be blank.'}
+  validates :user, :presence => {:message => 'cannot be missing.'}
   validates :name, :presence => {:message => 'cannot be blank.'}, :length => {:minimum => 2, :maximum => 250}
   validates :text, :presence => {:message => 'cannot be blank.'}, :length => {:minimum => 2, :maximum => 2048}
   validates_uniqueness_of :slug, :allow_nil => true, :case_sensitive => true

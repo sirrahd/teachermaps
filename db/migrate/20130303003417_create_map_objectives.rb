@@ -5,6 +5,7 @@ class CreateMapObjectives < ActiveRecord::Migration
       t.string :name
       t.string :slug
 
+      t.integer :map_standard_id
       t.integer :user_id
       t.integer :map_id	
 
