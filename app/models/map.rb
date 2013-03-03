@@ -37,6 +37,10 @@ require 'base64'
 
 
 class Map < ActiveRecord::Base
+
+  MAX_TEXT_RENDER_LEN = 260
+  MAX_NAME_RENDER_LEN = 50
+
   # Core components	
   attr_accessible :name, :slug, :text, :thumbnail
 

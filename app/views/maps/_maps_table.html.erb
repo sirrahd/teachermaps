@@ -5,9 +5,9 @@
         <td>
           <div class="row">
             <div class="span11" id="resource_filter">
-              <h4><%= map.name %></h4>
+              <h4><%= truncate(map.name, :length => Map::MAX_NAME_RENDER_LEN) %></h4>
               <span>
-                <%= map.text %>
+                <%= truncate(map.text, :length => Map::MAX_TEXT_RENDER_LEN) %>
               </span>
             </div>
           </div>
