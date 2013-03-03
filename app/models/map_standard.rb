@@ -1,3 +1,10 @@
 class MapStandard < ActiveRecord::Base
-  # attr_accessible :title, :body
+  # Core components	
+  attr_accessible :name, :slug, :standard
+
+  has_many :map_objectives
+
+  belongs_to :user
+  belongs_to :map
+
 end
