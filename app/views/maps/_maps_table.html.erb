@@ -4,7 +4,7 @@
       <tr map-url="#"> 
         <td>
           <div class="row">
-            <div class="span10" id="resource_filter">
+            <div class="span11" id="resource_filter">
               <h4><%= map.name %></h4>
               <span>
                 <%= map.text %>
@@ -12,19 +12,36 @@
             </div>
           </div>
           <div class="row">
-            <div class="span10">
+          
+            <div class="span4">
               <ul class="inline">
-              <li>
-                <label>Standards: <%= map.standards_count %> </label>
-              </li>
-              <li>
-                <label>Objectives: <%= map.objectives_count %></label>
-              </li>
-              <li>
-                <label>Resources: <%= map.resources_count %></label>
-              </li>
+                <li>
+                  <label>Standards: <%= map.standards_count %> </label>
+                </li>
+                <li>
+                  <label>Objectives: <%= map.objectives_count %></label>
+                </li>
+                <li>
+                  <label>Resources: <%= map.resources_count %></label>
+                </li>
               </ul>
             </div>
+
+            <div class="span4 pull-right">
+              <ul class="inline">
+                <li>
+                  <% if map.course_subjects.any? %>
+                    <label>Subjects: <%= map.course_subjects.map(&:name).join(", ") %></label>
+                  <% end %>    
+                </li>
+                <li>
+                  <% if map.course_grades.any? %>
+                    <label>Grades: <%= map.course_grades.map(&:name).join(", ") %></label>
+                  <% end %>
+                </li>
+              </ul>
+            </div>
+
           </div>
         </td>
       </tr>
