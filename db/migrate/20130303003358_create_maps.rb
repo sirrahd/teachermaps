@@ -41,13 +41,15 @@ class CreateMaps < ActiveRecord::Migration
 
 
   def self.down
-    remove_index :course_subjects_resources, :name => :course_subjects_maps_index
-    remove_index :course_subjects_resources, :name => :maps_course_subjects_index
-    drop_table :course_subjects_resources
+    remove_index :course_subjects_maps, :name => :course_subjects_maps_index
+    remove_index :course_subjects_maps, :name => :maps_course_subjects_index
+    drop_table :course_subjects_maps
 
     remove_index :course_grades_maps, :name => :course_grades_maps_index
     remove_index :course_grades_maps, :name => :maps_course_grades_index
-    drop_table :course_grades_resources
+    drop_table :course_grades_maps
+
+    drop_table :maps
   end
 end
 
