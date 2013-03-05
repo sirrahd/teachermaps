@@ -3,7 +3,6 @@ map_one:
  slug: "thisIsSomeUniqueSlug12345"
  user: bjkiller
  text: This is the content of the map-a-roo
- #map_standards: map_standard_one
  course_grades: six,seven,eight
  course_subjects: science
 map_two:
@@ -11,7 +10,6 @@ map_two:
  slug: "MarioAndLuigiSlug12346"
  user: bjkiller
  text: Gots to save the Princess!!
- #map_standards: map_standard_one, map_standard_two
  course_grades: nine,ten
  course_subjects: math,physics	
 
