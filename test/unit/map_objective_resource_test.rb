@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class MapResourceTest < ActiveSupport::TestCase
+class MapObjectiveResourceTest < ActiveSupport::TestCase
   setup :initialize_user
   
   # Make sure our users have the necessary attributes
@@ -9,6 +9,7 @@ class MapResourceTest < ActiveSupport::TestCase
     assert_respond_to @map_resource, :user, "Map Resource missing user."
     assert_respond_to @map_resource, :resource, "Map missing resource."
     assert_respond_to @map_resource, :map, "Map Resource missing map."
+    assert_respond_to @map_resource, :map_objective, "Map Resource missing map map_objective."
   end
 
   # Basic checks for name existence and length
@@ -57,10 +58,10 @@ class MapResourceTest < ActiveSupport::TestCase
     assert @user.valid?, "Initialized user was not valid."
     assert @user.save, "Unable to save valid user."
 
-    @map_resource = MapResource.new text: 'This is a sample text description for a map resource.'
+    @map_resource = MapObjectiveResource.new text: 'This is a sample text description for a map resource.'
     @map_resource.user = @user
     @map_resource.map = maps(:map_one)
-    #@map_resource.map_objective = map_objectives(:map_objective_one)
+    @map_resource.map_objective = map_objectives(:map_objective_one)
     @map_resource.resource = resources(:resource_one)
 
     assert @map_resource.valid?, "Initialized map objresourceective was not valid."

@@ -118,6 +118,18 @@ class MapTest < ActiveSupport::TestCase
     assert_equal @map.course_subjects.length, 0, 'Map has did not delete course subjects'
   end
 
+  # Checks for map assessments manipulation
+  test "map must valid map assessments" do
+    @map.map_assessments = []
+    assert_equal @map.map_assessments, [], "Map created with a course subjects."
+
+    @map.map_assessments << [map_assessments(:map_assessment_one), map_assessments(:map_assessment_two)]
+    assert_equal @map.map_assessments.length, 2, 'Map has incorrect number of course subjects'
+
+    @map.map_assessments = []
+    assert_equal @map.map_assessments.length, 0, 'Map has did not delete course subjects'
+  end
+
   # Checks for course subjects manipulation
   test "map must unique slug" do
     @map2 = @map.dup
