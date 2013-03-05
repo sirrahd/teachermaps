@@ -22,9 +22,13 @@ namespace :admin  do
     parent_standards = {}
     parent_standard = nil
 
+    standard_count = {}
+    course_grades = []
     xml_doc.search('LearningStandardItem').each do |t|
       
       name = t.at('StatementCode').inner_text
+
+      standard_count[name] = true
 
       if name == nil or name.empty?
         next
@@ -39,17 +43,23 @@ namespace :admin  do
         grade = grade_elem.inner_text
         if grade =~ /-/
           grade.split('-').collect do |grade_name|
-            standards << "#{name}|#{grade_name}|#{subject.name}|#{sub_subject}|#{description}\n"
+           # standards << "#{name}|#{grade_name}|#{subject.name}|#{sub_subject}|#{description}\n"
+            course_grades << grade_name
           end
         else
           grade_name = (grade != 'K') ? grade.to_i.to_s : grade
-          standards << "#{name}|#{grade}|#{subject.name}|#{sub_subject}|#{description}\n"
+          #standards << "#{name}|#{grade_name}|#{subject.name}|#{sub_subject}|#{description}\n"
+          course_grades << grade_name
         end
-
       end
 
+
+      standards << "#{name}|#{course_grades.join(", ")}|#{subject.name}|#{sub_subject}|#{description}\n"
+      course_grades = []
       
     end
+
+    print "Number of standards with unique name: #{standard_count.length}\n"
 
     file_stream.close
 
