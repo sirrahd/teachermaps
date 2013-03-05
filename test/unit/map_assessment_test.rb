@@ -13,7 +13,7 @@ class MapObjectiveTest < ActiveSupport::TestCase
   end
 
   # Basic checks for name existence and length
-  test "name must have valid format" do
+  test "map assessment name must have valid format" do
     @map_objective.name = nil
     assert !(@map_objective.valid?), "Map Objective created without name."
 
@@ -47,7 +47,7 @@ class MapObjectiveTest < ActiveSupport::TestCase
 
 
   # Basic checks for text existence and length
-  test "text must have valid format" do
+  test "map assessment text must have valid format" do
     @map_objective.text = nil
     assert !(@map_objective.valid?), "Map Objective created without text."
 
@@ -81,7 +81,7 @@ class MapObjectiveTest < ActiveSupport::TestCase
 
 
   # Make sure our Map Objective has the necessary map
-  test "should have valid map" do    
+  test "map assessment should have valid map" do    
   	@map_objective.map = nil
     assert !(@map_objective.valid?), "Map validated without map."
     @map_objective.map = maps(:map_one)
@@ -89,7 +89,7 @@ class MapObjectiveTest < ActiveSupport::TestCase
   end
 
   # Make sure our Map Objective has the necessary map standard
-  test "map objective should have valid map standard" do    
+  test "map assessment should have valid map standard" do    
   	@map_objective.map_standard = nil
     assert !(@map_objective.valid?), "Map Objective validated without map standard."
     @map_objective.map_standard = map_standards(:map_standard_one)
@@ -97,14 +97,14 @@ class MapObjectiveTest < ActiveSupport::TestCase
   end
 
   # Checks uniquness of Map Objective's slug
-  test "map standard must have unique slug" do
+  test "map assessment must have unique slug" do
     @map_objective2 = @map_objective.dup
     assert !(@map_objective2.valid?), 'Map objective was validated with duplicate slug.' 
     assert !(@map_objective2.save),   'Map objective was created with duplicate slug.'
   end
 
   # Checks for map resources manipulation
-  test "map objectives test" do
+  test "map assessment resources test" do
     @map_objective.map_resources = []
     assert_equal @map_objective.map_resources, [], "Map Objective Map resources assignment is not working."
     

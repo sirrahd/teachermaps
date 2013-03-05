@@ -11,7 +11,7 @@ class MapObjectiveTest < ActiveSupport::TestCase
     assert_respond_to @map_objective, :name, "Map Objective missing name."
     assert_respond_to @map_objective, :text, "Map Objective missing text."
     assert_respond_to @map_objective, :map_standard, "Map Objective missing standard."
-    
+    assert_respond_to @map_objective, :map_resources, "Map Objective missing map_resources."
   end
 
   # Basic checks for name existence and length
@@ -83,7 +83,7 @@ class MapObjectiveTest < ActiveSupport::TestCase
 
 
   # Make sure our Map Objective has the necessary map
-  test "should have valid map" do    
+  test "map objective should have valid map" do    
   	@map_objective.map = nil
     assert !(@map_objective.valid?), "Map validated without map."
     @map_objective.map = maps(:map_one)
@@ -99,14 +99,14 @@ class MapObjectiveTest < ActiveSupport::TestCase
   end
 
   # Checks uniquness of Map Objective's slug
-  test "map standard must have unique slug" do
+  test "map objective must have unique slug" do
     @map_objective2 = @map_objective.dup
     assert !(@map_objective2.valid?), 'Map objective was validated with duplicate slug.' 
     assert !(@map_objective2.save),   'Map objective was created with duplicate slug.'
   end
 
   # Checks for map resources manipulation
-  test "map objectives test" do
+  test "map objective resources test" do
     @map_objective.map_resources = []
     assert_equal @map_objective.map_resources, [], "Map Objective Map resources assignment is not working."
     
@@ -116,25 +116,15 @@ class MapObjectiveTest < ActiveSupport::TestCase
     @map_objective.map_resources = []
     assert_equal @map_objective.map_resources.length, 0, 'Map Standard has did not delete map resources'
   end
-
   
   private
   
   def initialize_user
-
-    @user = User.new  name: "Example User", 
-                      email: "user@example.org",
-                      account_name: "example",
-                      password: "foobar",
-                      password_confirmation: "foobar"
                       
-    assert @user.valid?, "Initialized user was not valid."
-    assert @user.save, "Unable to save valid user."
-
     @map_objective = MapObjective.new name: 'Test Map Objective', text: 'Woke up quick at about noon; Just thought that i had to be in compton soon; I gotta get drunk before the day begin'
     @map_objective.map_standard = map_standards(:map_standard_one)
     @map_objective.map = maps(:map_one)        
-    @map_objective.user = @user
+    @map_objective.user = users(:bjkiller)
 
     assert @map_objective.valid?, "Initialized map standard was not valid."
     assert @map_objective.save, "Unable to save valid map standard." 
