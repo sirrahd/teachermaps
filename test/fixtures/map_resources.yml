@@ -2,11 +2,9 @@ map_resource_one:
  text: blah blah de dah
  user: bjkiller
  map: map_one
- map_objective: map_objective_one
  resource: resource_one
 map_resource_two:
  text: When she was just a girl. She expected the world. But it flew away from her reach so. She ran away in her sleep. And dreamed of Para-para-paradise, Para-para-paradise, Para-para-paradise, Every time she closed her eyes
  user: bjkiller
  map: map_two
- map_objective: map_objective_two
  resource: resource_two

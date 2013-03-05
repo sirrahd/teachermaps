@@ -19,7 +19,6 @@ class CreateResources < ActiveRecord::Migration
       # Link
       t.string  :link
       
-
       t.string :type
       t.timestamps
     end

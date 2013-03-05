@@ -50,6 +50,7 @@ class Map < ActiveRecord::Base
   has_and_belongs_to_many :course_subjects, :uniq => true, :order => 'name ASC'
   has_and_belongs_to_many :course_grades, :uniq => true, :order => 'id ASC'
   has_many :map_standards
+  has_many :map_assessments
 
   belongs_to :user
 
