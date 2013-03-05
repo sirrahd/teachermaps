@@ -4,7 +4,9 @@ class Standard < ActiveRecord::Base
   attr_accessible :name, :text, :slug, :domain, :sub_subject
 
   # Parent/Child standard
-  belongs_to :parent_standard, :class_name => 'Standard', :foreign_key => '																																																																														'
+  #belongs_to :parent_standard, :class_name => 'Standard', :foreign_key => ''
+  has_many :children_standards, :class_name => 'Standard', :foreign_key => 'parent_standard_id'
+  belongs_to :parent_standard, :class_name => 'Standard', :foreign_key => 'parent_standard_id'
   # belongs_to :parent_standard
   attr_accessible :is_parent_standard
 

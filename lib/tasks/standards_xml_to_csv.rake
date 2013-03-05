@@ -2,9 +2,16 @@ require 'yaml'
 require 'nokogiri'
 
 
+
 namespace :admin  do
+  
   desc "Update the types of all the Resources."
   task :standards_xml_to_csv, [:xml_file, :csv_file] => [:environment] do |t, args|
+    course_grade_map = {
+      'K' => 'k', '1' => 'one', '2' => 'two', '3' => 'three', '4' => 'four', '5' => 'five',
+      '6' => 'six', '7' => 'seven', '8' => 'eight', '9' => 'nine', '10' => 'ten', 
+      '11' => 'eleven', '12' => 'twelve'
+    }
 
     print "Reading xml file: #{args[:xml_file]}\n"
     print "Writing yaml file: #{args[:csv_file]}\n"
@@ -19,16 +26,10 @@ namespace :admin  do
 
     standards << "StatementCode|Grade|Subject|Sub-Subject|Statement\n"
 
-    parent_standards = {}
-    parent_standard = nil
-
-    standard_count = {}
     course_grades = []
     xml_doc.search('LearningStandardItem').each do |t|
       
       name = t.at('StatementCode').inner_text
-
-      standard_count[name] = true
 
       if name == nil or name.empty?
         next
@@ -39,27 +40,22 @@ namespace :admin  do
       description = description.gsub(/\n/,'')
 
       t.search('GradeLevel').each do |grade_elem|
-        # CC ELA&L has 11-12 as grade level
         grade = grade_elem.inner_text
+        # CC ELA&L has 11-12 as grade level
         if grade =~ /-/
           grade.split('-').collect do |grade_name|
-           # standards << "#{name}|#{grade_name}|#{subject.name}|#{sub_subject}|#{description}\n"
-            course_grades << grade_name
+            course_grades << course_grade_map[grade_name]
           end
         else
           grade_name = (grade != 'K') ? grade.to_i.to_s : grade
-          #standards << "#{name}|#{grade_name}|#{subject.name}|#{sub_subject}|#{description}\n"
-          course_grades << grade_name
+          course_grades << course_grade_map[grade_name]
         end
       end
 
-
       standards << "#{name}|#{course_grades.join(", ")}|#{subject.name}|#{sub_subject}|#{description}\n"
       course_grades = []
-      
-    end
 
-    print "Number of standards with unique name: #{standard_count.length}\n"
+    end
 
     file_stream.close
 

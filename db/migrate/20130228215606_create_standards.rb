@@ -9,7 +9,6 @@ class CreateStandards < ActiveRecord::Migration
       t.string :sub_subject	# Indexable string sub subject Science => "Life Science"
       t.string :slug				# A unique identifier of standard
 
-      # t.integer :course_grade_id
       t.integer :course_subject_id
       t.integer :standard_type_id
 

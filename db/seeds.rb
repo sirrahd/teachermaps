@@ -49,23 +49,28 @@ end
 
 if ActiveRecord::Base.connection.table_exists? 'standards'
 	# ELA E Standards
-	seed = YAML::load_file('db/seeds/cc-ela-lit.yaml')
+	seed = YAML::load_file('db/seeds/literacy-standards.yaml')
 	seed.each_pair do |key,standard|  
 		
-		s = Standard.find_or_create_by_name standard['name']
+		s = Standard.find_or_create_by_slug standard['slug']
+		s.slug = standard['slug']
 		s.name = standard['name']
 		s.text = standard['text']
-		s.course_grades << CourseGrade.find_by_name( standard['course_grade'] )
 		s.course_subject = CourseSubject.find_by_name standard['course_subject']
 		s.sub_subject = standard['sub_subject']
+		s.standard_type = StandardType.find_by_name standard['standard_type']
 		s.is_parent_standard = standard['is_parent_standard']
-		
+
+		standard['course_grades'].split(",").each do |grade_name|
+			s.course_grades << CourseGrade.find_by_name( grade_name.split )
+		end
+
 		if standard['parent_standard']
 			s.parent_standard = Standard.find_by_name standard['parent_standard']
 		end
 
 		s.save
-		print "Created #{standard['name']}\n"
+		#print "Created #{standard['name']}\n"
 	end  
 end
 

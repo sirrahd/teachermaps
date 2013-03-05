@@ -179,7 +179,6 @@ ActiveRecord::Schema.define(:version => 20130303003444) do
     t.string  "domain"
     t.string  "sub_subject"
     t.string  "slug"
-    t.integer "course_grade_id"
     t.integer "course_subject_id"
     t.integer "standard_type_id"
     t.integer "parent_standard_id"
@@ -189,11 +188,12 @@ ActiveRecord::Schema.define(:version => 20130303003444) do
   create_table "users", :force => true do |t|
     t.string   "name"
     t.string   "email"
-    t.datetime "created_at",      :null => false
-    t.datetime "updated_at",      :null => false
+    t.datetime "created_at",                     :null => false
+    t.datetime "updated_at",                     :null => false
     t.string   "account_name"
     t.string   "password_digest"
     t.string   "remember_token"
+    t.integer  "confirmed",       :default => 0, :null => false
   end
 
   add_index "users", ["account_name"], :name => "index_users_on_account_name", :unique => true
