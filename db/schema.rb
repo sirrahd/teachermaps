@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130220000216) do
+ActiveRecord::Schema.define(:version => 20130228131249) do
 
   create_table "course_grades", :force => true do |t|
     t.string   "name"
@@ -85,8 +85,6 @@ ActiveRecord::Schema.define(:version => 20130220000216) do
   end
 
   create_table "settings", :force => true do |t|
-    t.integer  "user_id"
-    t.string   "upload_to"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
@@ -94,11 +92,12 @@ ActiveRecord::Schema.define(:version => 20130220000216) do
   create_table "users", :force => true do |t|
     t.string   "name"
     t.string   "email"
-    t.datetime "created_at",      :null => false
-    t.datetime "updated_at",      :null => false
+    t.datetime "created_at",                     :null => false
+    t.datetime "updated_at",                     :null => false
     t.string   "account_name"
     t.string   "password_digest"
     t.string   "remember_token"
+    t.integer  "confirmed",       :default => 0, :null => false
   end
 
   add_index "users", ["account_name"], :name => "index_users_on_account_name", :unique => true

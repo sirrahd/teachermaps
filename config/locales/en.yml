@@ -69,7 +69,7 @@ en:
     submit:                     "Sending..."
     generic_error:              "Please reload the page and try again"
     success:                    "Thank you!"
-  settings:    
+  settings:
     upload_to:                  "Default Upload To:"
     save_success:               "Settings saved"
     save_error:                 "Error in saving settings"
@@ -130,7 +130,11 @@ en:
     remove_invalid:             "Delete your own Dropbox Account!"
     success_sync:               "Synced with Dropbox Acccount"
     denied_oauth:               "You denied TeacherMaps access to Dropbox"
-
-
-
-
+  welcome_email:
+    subject:                     "Welcome to TeacherMaps!"
+    title:                       "Let's get started, %{name}"
+    content_textonly:            "Activate your account with the link below:"
+    content:                     "%{activation_link} to active your account."
+    activation_link:             "Click here"
+  confirmation:
+    success:                     "Thanks! We confirmed your email address."
