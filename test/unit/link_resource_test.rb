@@ -61,21 +61,13 @@ class LinkResourceTest < ActiveSupport::TestCase
   private
   
   def initialize_link_resource
-  	@user = User.new  name: "Example User", 
-                      email: "user@example.org",
-                      account_name: "example",
-                      password: "foobar",
-                      password_confirmation: "foobar"
-                      
-    assert @user.valid?, "Initialized user was not valid."
-    assert @user.save, "Unable to save valid user."
   	
-
   	@resource = LinkResource.create :title => 'TestLinkResource', :link =>'http://valid-link.com'
     @resource.assign_type
-  	@resource.user = @user
+  	@resource.user = users(:bjkiller)
 
-  	assert @resource.valid? 'Initialized resource was not valid.'
+  	assert @resource.valid?, 'Initialized resource was not valid.'
+    assert @resource.save, 'Initialized resource was not saved.'
   	                      
   end
 end

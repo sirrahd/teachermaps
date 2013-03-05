@@ -1,27 +1,27 @@
 standard_8051b7d8d2cc77b2e3a73b0d7428454a71f1c011:
  slug: "8051b7d8d2cc77b2e3a73b0d7428454a71f1c011"
  name: "CCSS.ELA-Literacy.CCRA.R.1"
- course_grades: K
+ course_grades: one,three
  course_subject: "English"
  sub_subject: "English Language Arts and Literacy"
- is_parent_standard: "false"
+ is_parent_standard: "true"
  parent_standard: ""
  text: "Read closely to determine what the text says explicitly and to make logical inferences from it; cite specific textual evidence when writing or speaking to support conclusions drawn from the text."
 standard_0c58b3a43cd6b87290672514bce1afec3f471d18:
  slug: "0c58b3a43cd6b87290672514bce1afec3f471d18"
- name: "CCSS.ELA-Literacy.CCRA.R.1"
+ name: "CCSS.ELA-Literacy.CCRA.R.1a"
  course_grades: one
  course_subject: "English"
  sub_subject: "English Language Arts and Literacy"
  is_parent_standard: "false"
- parent_standard: ""
+ parent_standard: standard_8051b7d8d2cc77b2e3a73b0d7428454a71f1c011
  text: "Read closely to determine what the text says explicitly and to make logical inferences from it; cite specific textual evidence when writing or speaking to support conclusions drawn from the text."
 standard_0f1295b338bcb85c59d76e5c5d2ed2369c55d671:
  slug: "0f1295b338bcb85c59d76e5c5d2ed2369c55d671"
- name: "CCSS.ELA-Literacy.CCRA.R.1"
+ name: "CCSS.ELA-Literacy.CCRA.R.1b"
  course_grades: two
  course_subject: "English"
  sub_subject: "English Language Arts and Literacy"
  is_parent_standard: "false"
- parent_standard: ""
+ parent_standard: standard_8051b7d8d2cc77b2e3a73b0d7428454a71f1c011
  text: "Read closely to determine what the text says explicitly and to make logical inferences from it; cite specific textual evidence when writing or speaking to support conclusions drawn from the text."

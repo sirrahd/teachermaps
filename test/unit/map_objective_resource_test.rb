@@ -4,7 +4,7 @@ class MapObjectiveResourceTest < ActiveSupport::TestCase
   setup :initialize_user
   
   # Make sure our users have the necessary attributes
-  test "should respond to attributes" do
+  test "map objective resource should respond to attributes" do
     assert_respond_to @map_resource, :text, "Map Resource missing text."
     assert_respond_to @map_resource, :user, "Map Resource missing user."
     assert_respond_to @map_resource, :resource, "Map missing resource."
@@ -13,7 +13,7 @@ class MapObjectiveResourceTest < ActiveSupport::TestCase
   end
 
   # Basic checks for name existence and length
-  test "text must have valid format" do
+  test "map objective resource text must have valid format" do
     @map_resource.text = nil
     assert !(@map_resource.valid?), "Map Resource created without text."
 
@@ -49,17 +49,8 @@ class MapObjectiveResourceTest < ActiveSupport::TestCase
   
   def initialize_user
 
-    @user = User.new  name: "Example User", 
-                      email: "user@example.org",
-                      account_name: "example",
-                      password: "foobar",
-                      password_confirmation: "foobar"
-                      
-    assert @user.valid?, "Initialized user was not valid."
-    assert @user.save, "Unable to save valid user."
-
     @map_resource = MapObjectiveResource.new text: 'This is a sample text description for a map resource.'
-    @map_resource.user = @user
+    @map_resource.user = users(:bjkiller)
     @map_resource.map = maps(:map_one)
     @map_resource.map_objective = map_objectives(:map_objective_one)
     @map_resource.resource = resources(:resource_one)

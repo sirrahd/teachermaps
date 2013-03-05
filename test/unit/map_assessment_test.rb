@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class MapObjectiveTest < ActiveSupport::TestCase
+class MapAssessmentTest < ActiveSupport::TestCase
   setup :initialize_user
   
   # Make sure our users have the necessary attributes
