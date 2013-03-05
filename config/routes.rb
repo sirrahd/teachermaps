@@ -3,13 +3,11 @@ Teachermaps::Application.routes.draw do
 
   resources :drop_box_accounts
   resources :google_accounts
-
-
+  
   resources :settings
 
-
   # Sync Google Drive and/or DropBox resources
-  match 'resources/sync' => 'resources#sync', :as => 'sync_resources'
+  match '/resources/sync' => 'resources#sync', :as => 'sync_resources'
   match '/resources/ajax/create/link' => 'resources#ajax_upload_link'
   match '/resources/ajax/show/:slug' => 'resources#ajax_show', :as => 'resources_ajax_show'
   match '/resources/ajax/filter' => 'resources#ajax_filter', :as => 'resources_ajax_filter'
@@ -18,7 +16,6 @@ Teachermaps::Application.routes.draw do
   match 'users/maps' => 'maps#index', :as => 'maps_index'
   resources :maps
   
-
   resources :users
   resources :sessions, only: [:new, :create, :destroy]
   resources :feedbacks, only: [:create]

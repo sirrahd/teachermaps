@@ -16,6 +16,7 @@ jQuery(function($) {
     .live("ajax:success", function(event, response, status, xhr) {
         
         data = $.parseJSON(response);
+        console.log(data);
 
         if (data != undefined) {
             if (data.resources != undefined) {
@@ -86,6 +87,10 @@ jQuery(function($) {
 
 
     $("#edit_resource_link_form")
+    .live("ajax:beforeSend", function(xhr, settings) {
+        console.log(xhr);
+        console.log(settings);
+    })
     .live("ajax:error", function(event, data, status, xhr) {
         // Not sure why I have to use the responseText here
         $("#edit_resource_link_errors").html(data.responseText);      

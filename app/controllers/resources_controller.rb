@@ -74,11 +74,17 @@ class ResourcesController < ApplicationController
     # Convert primary keys to objects
     if params[:resource].has_key?('course_subjects')
       @resource.course_subjects = params[:resource][:course_subjects].present? ? CourseSubject.find_all_by_id(params[:resource][:course_subjects]) : []
+      else
+      # User deleted all course subjects
+      @resource.course_subjects = []
     end
     
     if params[:resource].has_key?('course_grades')
       @resource.course_grades = params[:resource][:course_grades].present? ? CourseGrade.find_all_by_id(params[:resource][:course_grades]) : []
-    end  
+    else
+      # User deleted all course grades
+      @resource.course_grades = []
+    end
 
     respond_to do |format|
       if @resource.valid? and @resource.save
