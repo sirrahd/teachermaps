@@ -5,11 +5,11 @@ class MapStandard < ActiveRecord::Base
   # Core components	
   attr_accessible :slug
 
-  has_many :map_objectives
-
   belongs_to :user
   belongs_to :map
   belongs_to :standard
+
+  has_many :map_objectives
 
   validates :standard, :presence => {:message => 'cannot be blank.'}
   validates :user, :presence => {:message => 'cannot be blank.'}

@@ -10,7 +10,9 @@ class MapTest < ActiveSupport::TestCase
     assert_respond_to @map, :user,  "Map missing user."
     assert_respond_to @map, :resources_count,  "Map missing resources count."
     assert_respond_to @map, :objectives_count, "Map missing objectives count."
-    assert_respond_to @map, :standards_count,  "Map missing standards cont."  
+    assert_respond_to @map, :standards_count,  "Map missing standards count."  
+    assert_respond_to @map, :map_standards,    "Map missing map standards."  
+    assert_respond_to @map, :map_assessments,  "Map missing map objectives."  
   end
   
   # Basic checks for name existence and length
@@ -141,19 +143,9 @@ class MapTest < ActiveSupport::TestCase
   
   def initialize_user
 
-    @user = User.new  name: "Example User", 
-                      email: "user@example.org",
-                      account_name: "example",
-                      password: "foobar",
-                      password_confirmation: "foobar"
-                      
-    assert @user.valid?, "Initialized user was not valid."
-    assert @user.save, "Unable to save valid user."
-
-
     @map = Map.new name: 'Map Unit Test',
                    text: 'This is a sample text description.'
-    @map.user = @user             
+    @map.user = users(:bjkiller)
 
 
     assert @map.valid?, "Initialized map was not valid."

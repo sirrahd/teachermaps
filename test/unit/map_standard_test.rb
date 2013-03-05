@@ -9,6 +9,7 @@ class MapStandardTest < ActiveSupport::TestCase
     assert_respond_to @map_standard, :user,  	"Map Standard missing user."
     assert_respond_to @map_standard, :standard, "Map Standard missing standard."
     assert_respond_to @map_standard, :map,      "Map Standard missing map."
+    assert_respond_to @map_standard, :map_objectives, "Map Standard missing map objectives."
   end
 
    # Checks for map standards manipulation
@@ -51,19 +52,10 @@ class MapStandardTest < ActiveSupport::TestCase
   
   def initialize_user
 
-    @user = User.new  name: "Example User", 
-                      email: "user@example.org",
-                      account_name: "example",
-                      password: "foobar",
-                      password_confirmation: "foobar"
-                      
-    assert @user.valid?, "Initialized user was not valid."
-    assert @user.save, "Unable to save valid user."
-
     @map_standard = MapStandard.new
     @map_standard.standard = standards(:standard_8051b7d8d2cc77b2e3a73b0d7428454a71f1c011)
     @map_standard.map = maps(:map_one)        
-    @map_standard.user = @user
+    @map_standard.user = users(:bjkiller)
 
     assert @map_standard.valid?, "Initialized map standard was not valid."
     assert @map_standard.save, "Unable to save valid map standard." 
