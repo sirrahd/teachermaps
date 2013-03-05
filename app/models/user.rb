@@ -59,7 +59,7 @@ class User < ActiveRecord::Base
   end
 
   def email_confirmation_key
-    Digest::MD5.hexdigest(self.email + self.updated_at.iso8601)
+    Digest::MD5.hexdigest(self.email + self.confirmed.to_s + self.created_at.iso8601)
   end
 
   private
