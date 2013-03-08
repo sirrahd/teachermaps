@@ -11,10 +11,10 @@ class MapStandard < ActiveRecord::Base
 
   has_many :map_objectives
 
-  validates :standard, :presence => {:message => 'cannot be blank.'}
-  validates :user, :presence => {:message => 'cannot be blank.'}
-  validates :map, :presence => {:message => 'cannot be blank.'}
-  validates_uniqueness_of :slug, :allow_nil => true, :case_sensitive => true
+  validates :standard, presence: true
+  validates :user, presence: true
+  validates :map, presence: true
+  validates_uniqueness_of :slug, allow_nil: true, case_sensitive: true
 
   before_create :default_values
 

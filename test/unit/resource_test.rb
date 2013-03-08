@@ -115,7 +115,7 @@ class ResourceTest < ActiveSupport::TestCase
     assert @user.save, "Unable to save valid user."
   	
 
-  	@resource = Resource.create :title => 'TestResource'
+  	@resource = Resource.create title: 'TestResource'
   	@resource.user = @user
 
   	assert @resource.valid? 'Initialized resource was not valid.'

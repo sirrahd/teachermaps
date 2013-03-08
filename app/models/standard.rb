@@ -8,17 +8,17 @@ class Standard < ActiveRecord::Base
 
   # Parent/Child standard, points to self
   attr_accessible :is_parent_standard
-  belongs_to :parent_standard, :class_name => 'Standard', :foreign_key => 'parent_standard_id'
-  has_many :children_standards, :class_name => 'Standard', :foreign_key => 'parent_standard_id'
+  belongs_to :parent_standard, class_name: 'Standard', foreign_key: 'parent_standard_id'
+  has_many :children_standards, class_name:'Standard', foreign_key: 'parent_standard_id'
   
   # Filterable via select options
   has_and_belongs_to_many :course_grades, :uniq => true, :order => 'name ASC'
 
   before_validation :clean_attrs
 
-  validates :name, :presence => {:message => 'cannot be blank.'}, :length => {:minimum => 2, :maximum => 250}
-  validates :text, :presence => {:message => 'cannot be blank.'}, :length => {:minimum => 2, :maximum => 2048}
-  validates_uniqueness_of :slug, :allow_nil => true, :case_sensitive => true
+  validates :name, presence: true, length: {minimum: 2, maximum: 250}
+  validates :text, presence: true, length: {minimum: 2, maximum: 2048}
+  validates_uniqueness_of :slug, allow_nil: true, case_sensitive: true
 
   private 
   

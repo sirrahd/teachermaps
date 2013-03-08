@@ -5,10 +5,10 @@ class MapResource < ActiveRecord::Base
   belongs_to :map
   belongs_to :resource
 
-  validates :user, :presence => {:message => 'cannot be missing.'}
-  validates :resource, :presence => {:message => 'cannot be missing.'}
-  validates :map, :presence => {:message => 'cannot be missing.'}
-  validates :text, :presence => {:message => 'cannot be blank.'}, :length => {:minimum => 2, :maximum => 2048}
+  validates :user, presence: true
+  validates :resource, presence: true
+  validates :map, presence: true
+  validates :text, presence: true, length: {minimum: 2, maximum: 2048}
 
   before_validation	:clean_attrs
 

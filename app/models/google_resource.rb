@@ -2,7 +2,6 @@ class GoogleResource < Resource
 
   TYPE = 'GoogleResource'
   
-	# attr_accessible :user_id, :resource_id
 	belongs_to :user
 
 	# Google File

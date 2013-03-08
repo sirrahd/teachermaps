@@ -13,12 +13,12 @@ class Resource < ActiveRecord::Base
   belongs_to :user
   belongs_to :resource_type
 
-  has_and_belongs_to_many :course_subjects, :uniq => true, :order => 'name ASC'
-  has_and_belongs_to_many :course_grades, :uniq => true, :order => 'id ASC'
+  has_and_belongs_to_many :course_subjects, uniq: true, order: 'name ASC'
+  has_and_belongs_to_many :course_grades, uniq: true, order: 'id ASC'
 
 
   # TeacherMaps specific attributes can be listed here
-  validates :title, :presence => {:message => I18n.t('resources.title_blank_error')}, :length => {:minimum => 2, :maximum => 250}
+  validates :title, presence: {:message => I18n.t('resources.title_blank_error')}, length: {minimum: 2, maximum: 250}
 
   before_create :default_values
   def default_values

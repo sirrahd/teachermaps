@@ -7,12 +7,12 @@ class MapObjective < ActiveRecord::Base
 
   has_many :map_resources
 
-  validates :name, :presence => {:message => 'cannot be blank.'}, :length => {:minimum => 2, :maximum => 250}
-  validates :text, :presence => {:message => 'cannot be blank.'}, :length => {:minimum => 2, :maximum => 2048}
-  validates :map_standard, :presence => {:message => 'cannot be blank.'}
-  validates :user, :presence => {:message => 'cannot be blank.'}
-  validates :map, :presence => {:message => 'cannot be blank.'}
-  validates_uniqueness_of :slug, :allow_nil => true, :case_sensitive => true
+  validates :map_standard, presence: true
+  validates :user, presence: true
+  validates :map, presence: true
+  validates :name, presence: true, length: {minimum: 2, maximum: 250}
+  validates :text, presence: true, length: {minimum: 2, maximum: 2048}
+  validates_uniqueness_of :slug, allow_nil: true, case_sensitive: true
 
   before_create :default_values
   before_validation	:clean_attrs

@@ -16,15 +16,12 @@ jQuery(function($) {
     .live("ajax:success", function(event, response, status, xhr) {
         
         data = $.parseJSON(response);
-        console.log(data);
 
         if (data != undefined) {
             if (data.resources != undefined) {
-                console.log("Reloading resources");
                 $("#resources_table").html(data.resources);
             }
             if (data.filters != undefined) {
-                console.log("Reloading filters");
                 $('#resource_filter').html(data.filters);
             }
         }
@@ -73,7 +70,6 @@ jQuery(function($) {
     .live("ajax:success", function(event, data, status, xhr) {
         // Update the resources table
         $("#resources_table").html(data);  
-        console.log(data);
     });
 
 
@@ -88,8 +84,7 @@ jQuery(function($) {
 
     $("#edit_resource_link_form")
     .live("ajax:beforeSend", function(xhr, settings) {
-        console.log(xhr);
-        console.log(settings);
+        // Blah!!!
     })
     .live("ajax:error", function(event, data, status, xhr) {
         // Not sure why I have to use the responseText here
@@ -102,12 +97,10 @@ jQuery(function($) {
         pushFlash({message:"<%= I18n.t('resources.edit_success') %>", state: 'success', fadeOut: 5000});
         $("#uploadResourcesErrors").html('');  
         closeModalOnSubmit();
-        console.log("Success Edit" + "<%= I18n.t('resources.edit_success') %>");
     });
 
     $("#edit_resource_link_view")
     .live("click", function() {
-        console.log("Editing view: ");
 
         var resourceId = $(this).attr('resource-id');
         
@@ -121,7 +114,6 @@ jQuery(function($) {
             $('#edit_resource_link_modal_body').html(data);
             $('#edit_resource_link_modal').modal('show');
             $('#show_resource_link_modal').modal('hide');
-            console.log("Loaded Resource:"+resourceId);
         });   
 
     });
@@ -140,7 +132,6 @@ jQuery(function($) {
 
 
     $('#resources_table a').live("click", function(e) {
-        console.log('Clicked link');
         e.stopPropagation();
     });
 
@@ -152,8 +143,6 @@ jQuery(function($) {
         var resourceURI = $(this).attr('resource-url');
 
         if(resourceURI == undefined) return false;
-
-        console.log("Showing view: "+resourceURI);
         
         // Confirm form data exists
         if (resourceURI == undefined) return false;
@@ -162,10 +151,8 @@ jQuery(function($) {
           url: resourceURI,
           dataType: 'html'
         }).done(function(data) {
-          console.log(data);
           $('#show_resource_link_modal_body').html(data);
           $('#show_resource_link_modal').modal('show');
-          console.log("Loaded Resource:"+resourceURI);
         });   
 
         e.stopPropagation();
@@ -176,8 +163,6 @@ jQuery(function($) {
         var resourceURI = $(this).attr('resource-url');
 
         if(resourceURI == undefined) return false;
-
-        console.log("Showing view: "+resourceURI);
         
         // Confirm form data exists
         if (resourceURI == undefined) return false;
@@ -186,10 +171,8 @@ jQuery(function($) {
           url: resourceURI,
           dataType: 'html'
         }).done(function(data) {
-          console.log(data);
           $('#show_resource_link_modal_body').html(data);
           $('#show_resource_link_modal').modal('show');
-          console.log("Loaded Resource:"+resourceURI);
         });   
 
         e.stopPropagation();

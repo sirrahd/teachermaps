@@ -4,11 +4,11 @@ class MapAssessment < ActiveRecord::Base
   belongs_to :user
   belongs_to :map
 
-  validates :map, :presence => {:message => 'cannot be missing.'}
-  validates :user, :presence => {:message => 'cannot be missing.'}
-  validates :name, :presence => {:message => 'cannot be blank.'}, :length => {:minimum => 2, :maximum => 250}
-  validates :text, :presence => {:message => 'cannot be blank.'}, :length => {:minimum => 2, :maximum => 2048}
-  validates_uniqueness_of :slug, :allow_nil => true, :case_sensitive => true
+  validates :map, presence: true
+  validates :user, presence: true
+  validates :name, presence: true, length: {minimum: 2, maximum: 250}
+  validates :text, presence: true, length: {minimum: 2, maximum: 2048}
+  validates_uniqueness_of :slug, allow_nil: true, case_sensitive: true
 
   before_create :default_values
   before_validation	:clean_attrs

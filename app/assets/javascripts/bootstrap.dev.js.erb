@@ -15,11 +15,9 @@ function closeModalOnSubmit(element){
         if( element != undefined ){
             // With animation
             element.find('.close').click();
-            console.log("Closed via click");
         } else {
             // Without animation
             $('.modal.in').modal('hide');   
-            console.log("Closed manually");
         }
 
     }, 300);
@@ -28,6 +26,5 @@ function closeModalOnSubmit(element){
     	$('.modal-backdrop').fadeOut('fast');    
         $('.modal-backdrop').remove();
     }, 400);
-    console.log('Closing Modal');
 
 }
