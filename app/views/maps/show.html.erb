@@ -1,15 +1,32 @@
 <div class="row">
-  <div class="span7">
+  <div class="span7" style="">
     <div>
       <div>
-        <!-- Bread Crumbs -->
-        <%= link_to "#{@map.name} /", "#" %>
+        <!-- Breadcrumb -->
+        <%= link_to "#{@map.name.titlecase}", "#" %> /
       </div>
       <div>
-        <!-- Map Header -->
+        <h2><%= @map.name.titlecase %></h2>
       </div>
-        <!-- Map Content -->
+      <!-- Map Content -->
+      </div>
+        <p><%= @map.text %></p>
       <div>
+      <div>
+        <div>
+          <h3>Standards</h3>
+        </div>
+        <div>
+          <!-- Map Standards -->
+        </div>
+      </div>
+      <div>
+        <div>
+          <h3>Assessments</h3>
+        </div>
+        <div>
+          <!-- Map Assessments -->
+        </div>
       </div>
     </div>
   </div>
