@@ -6,24 +6,8 @@ class MapsController < ApplicationController
 
   def show
 
-  	print params
-
-    # if !@current_user.has_google_account?
-      
-    #   # No account exists, create one
-    #   google_account = GoogleAccount.new
-
-    #   # Link Google Account to user
-    #   @current_user.google_account = google_account
-    #   @current_user.save()
-
-    #   # Redirect to Google's OAuth page
-    #   return redirect_to google_account.authorization_url
-    # end
-    
-    #respond_to do |format|
-    # return redirect_to 
-    #end
+  	print "Showing map #{params[:id]}"
+  	@map = Map.find_by_slug_and_user_id( params[:id], @current_user.id )
 
   end
 
