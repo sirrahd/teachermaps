@@ -1,0 +1,11 @@
+jQuery(function($) {    
+
+    $('#maps_table tr').live("click", function(e) {
+    
+        var mapURI = $(this).attr('map-url');
+        window.location = mapURI;
+        return;
+    });
+
+
+});

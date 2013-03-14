@@ -5,7 +5,7 @@
 <table class="table table-condensed table-hover"  id="maps_table"  style="cursor:pointer;">
   <tbody>
     <% @maps.each do |map| %>
-      <tr map-url="#"> 
+      <tr map-url="<%= map_path map.slug %>"> 
         <td>
           <div class="row">
             <div class="span11" id="resource_filter">
@@ -52,4 +52,10 @@
     <% end %>
   </tbody>
 </table>
+
+<div id="edit_map_modal" class="modal hide fade in"  >
+    <div class="modal-body" id="edit_map_modal_body"></div>
+</div>
+
+
 
