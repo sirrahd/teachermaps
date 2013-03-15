@@ -1,5 +1,5 @@
 <div class="row">
-  <div class="span7" style="">
+  <div class="span10" style="">
     <div>
       <div>
         <!-- Breadcrumb -->
@@ -14,10 +14,20 @@
       <div>
       <div>
         <div>
+          <div class="pull-right"><%= link_to 'Add Standards', "#filter_map_standards_modal",'data-toggle' => "modal",  :class => 'btn'  %></div>
           <h3>Standards</h3>
         </div>
         <div>
           <!-- Map Standards -->
+          <% if !@map.map_standards.empty? %>
+            <% @map.sorted_map_standards.each do |map_standard| %>
+              <div>
+                <span>
+                  <span><b><%= map_standard.standard.name %></b><span>: <%= map_standard.standard.text %>
+                <span>
+              </div>
+            <% end %>
+          <% end %>
         </div>
       </div>
       <div>
@@ -31,15 +41,12 @@
     </div>
   </div>
 
-  <div class="span5">
-    <div id="filter_standards_panel">
+
+  <div id="filter_map_standards_modal" class="modal hide fade in" >
+    <div class="modal-body">
       <div><H3>Standards Filter</H3></div>
-      <div>
-        <!-- Standard Filters -->
-      </div>
-      <div>
-        <!-- Standards Table -->
-      </div>
+        <!-- Standards  -->
+        <%= render 'map_standards/form_filter' %>
     </div>
   </div>
 </div>

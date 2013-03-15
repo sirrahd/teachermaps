@@ -15,6 +15,9 @@ Teachermaps::Application.routes.draw do
   
   match 'users/maps' => 'maps#index', :as => 'maps_index'
   resources :maps
+
+  match '/maps/ajax/filter' => 'map_standards#ajax_filter'
+  resources :map_standards
   
   resources :users
   resources :sessions, only: [:new, :create, :destroy]
