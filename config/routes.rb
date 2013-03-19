@@ -27,7 +27,8 @@ Teachermaps::Application.routes.draw do
   match '/about',   to: 'static_pages#about'
   match '/contact', to: 'static_pages#contact'
 
-  match '/confirm', to: 'users#show_with_email_confirmation'
+  match '/confirm', to: 'users#confirm_email'
+  match '/pwdreset', to: 'users#reset_password'
 
   # Google API
   match 'google/oauth_callback' => 'google_accounts#oauth_callback'

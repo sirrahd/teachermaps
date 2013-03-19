@@ -62,6 +62,10 @@ class User < ActiveRecord::Base
     Digest::MD5.hexdigest(self.email + self.confirmed.to_s + self.created_at.iso8601)
   end
 
+  def reset_password_key
+    Digest::MD5.hexdigest(self.email + self.password_digest + self.created_at.iso8601)
+  end
+
   private
 
   def default_values

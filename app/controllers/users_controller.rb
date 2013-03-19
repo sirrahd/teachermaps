@@ -30,7 +30,7 @@ class UsersController < ApplicationController
     @user = User.new
   end
 
-  def show_with_email_confirmation
+  def confirm_email
     @user = User.find_by_account_name(params[:account])
 
     if @user.email_confirmation_key == params[:key]
@@ -40,6 +40,20 @@ class UsersController < ApplicationController
       redirect_to @user
     else
       redirect_to signin_url
+    end
+  end
+
+  def reset_password
+    @user = User.find_by_account_name(params[:account])
+
+    if @user.reset_password_key == params[:key]
+      sign_in @user
+      flash[:success] = 'nice work'
+      redirect_to @user
+    elsif !params[:key]
+      UserMailer.reset_password_email(@user, request.env['HTTP_HOST']).deliver
+    else
+      # TODO user made request and it failed
     end
   end
 
