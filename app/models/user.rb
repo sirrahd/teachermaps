@@ -66,6 +66,10 @@ class User < ActiveRecord::Base
     Digest::MD5.hexdigest(self.email + self.password_digest + self.created_at.iso8601)
   end
 
+  def request_token
+    Digest::MD5.hexdigest(self.updated_at)
+  end
+
   private
 
   def default_values

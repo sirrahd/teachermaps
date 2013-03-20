@@ -50,10 +50,10 @@ class UsersController < ApplicationController
       sign_in @user
       flash[:success] = 'nice work'
       redirect_to @user
-    elsif !params[:key]
+    elsif @user.request_token == params[:key]
       UserMailer.reset_password_email(@user, request.env['HTTP_HOST']).deliver
     else
-      # TODO user made request and it failed
+      # TODO take user to the reset password form
     end
   end
 
