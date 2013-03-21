@@ -1,0 +1,25 @@
+<ul id="standards_table"  style="cursor:pointer;list-style-type: none;">
+	<% if @standards %>
+		<% @standards.each do |standard| %>
+		    <li standard-url="<%= standard_path standard.id %>" style="margin-bottom:10px;" class="standard">
+
+		    	<div>
+		    		<b><%= standard.name %></b> <%= standard.text %>
+		    	</div> 
+		  
+		    	<% if standard.is_parent_standard %>
+		    		<ul style="cursor:pointer;">
+			    		<% standard.children_standards.each do |child| %>
+			    			<li standard-url="<%= standard_path standard.id %>">
+						    	<div >
+						    		<b><%= child.name %></b> <%= child.text %>
+						    	</div>
+					    	</li>
+				    	<% end %>
+			    	</ul>	
+				<% end %>	   				
+		    </li>
+		    
+		<% end %>
+    <% end %>
+</ul>

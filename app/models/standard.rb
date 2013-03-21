@@ -1,7 +1,7 @@
 class Standard < ActiveRecord::Base
 
   # Searchable content, later will be indexed for Full Search Text
-  attr_accessible :name, :text, :slug, :domain, :sub_subject
+  attr_accessible :name, :text, :slug, :domain, :sub_subject, :standard_type
 
   belongs_to :course_subject
   belongs_to :standard_type
