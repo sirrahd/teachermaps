@@ -30,38 +30,11 @@ class UsersController < ApplicationController
     @user = User.new
   end
 
-  def confirm_email
-    @user = User.find_by_account_name(params[:account])
-
-    if @user.email_confirmation_key == params[:key]
-      @user.update_attribute(:confirmed, 1)
-      sign_in @user
-      flash[:success] = t 'confirmation.success'
-      redirect_to @user
-    else
-      redirect_to signin_url
-    end
-  end
-
-  def reset_password
-    @user = User.find_by_account_name(params[:account])
-
-    if @user.reset_password_key == params[:key]
-      sign_in @user
-      flash[:success] = 'nice work'
-      redirect_to @user
-    elsif @user.request_token == params[:key]
-      UserMailer.reset_password_email(@user, request.env['HTTP_HOST']).deliver
-    else
-      # TODO take user to the reset password form
-    end
-  end
-
   def create
     @user = User.new(params[:user])
     if @user.save
       sign_in @user
-      UserMailer.welcome_email(@user, request.env['HTTP_HOST']).deliver
+      SettingMailer.welcome_email(@user, request.env['HTTP_HOST']).deliver
       flash[:success] = t('signup.welcome', app_name: t('global.app_name'))
       redirect_to @user
     else

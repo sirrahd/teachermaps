@@ -1,5 +1,5 @@
 class SettingsController < ApplicationController
-  
+
   before_filter :require_session
 
 
@@ -43,6 +43,31 @@ class SettingsController < ApplicationController
         format.html { render action: "edit" }
         format.json { render json: @setting.errors, status: :unprocessable_entity }
       end
+    end
+  end
+
+  def confirm_email
+    @user = User.find_by_account_name(params[:account])
+
+    if @user.email_confirmation_key == params[:key]
+      @user.update_attribute(:confirmed, 1)
+      sign_in @user
+      flash[:success] = t 'confirmation.success'
+      redirect_to @user
+    else
+      redirect_to signin_url
+    end
+  end
+
+  def reset_password
+    @user = User.find_by_account_name(params[:account])
+
+    if @user.reset_password_key == params[:key]
+      render 'settings/password_reset'
+    elsif @user.request_token == params[:key]
+      SettingMailer.reset_password_email(@user, request.env['HTTP_HOST']).deliver
+    else
+      # TODO take user to the reset password form
     end
   end
 
