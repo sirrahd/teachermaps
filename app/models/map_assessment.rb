@@ -4,6 +4,8 @@ class MapAssessment < ActiveRecord::Base
   belongs_to :user
   belongs_to :map
 
+  has_many :map_resources
+
   validates :map, presence: true
   validates :user, presence: true
   validates :name, presence: true, length: {minimum: 2, maximum: 250}

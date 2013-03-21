@@ -3,7 +3,6 @@ class MapsController < ApplicationController
 
   before_filter :require_session
 
-
   def show
 
   	print "Showing map #{params[:id]}"
@@ -15,15 +14,11 @@ class MapsController < ApplicationController
 
   end
 
-
   def new
   end
 
-
-
   def destroy
   end
-
 
   private 
   

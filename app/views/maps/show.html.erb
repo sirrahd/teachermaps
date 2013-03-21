@@ -24,7 +24,7 @@
               <div>
                 <span>
                   <span><b><%= map_standard.standard.name %></b><span>: <%= map_standard.standard.text %>
-                <span>
+                </span>
               </div>
             <% end %>
           <% end %>
@@ -36,17 +36,44 @@
         </div>
         <div>
           <!-- Map Assessments -->
+          <% if !@map.map_assessments.empty? %>
+            <% @map.map_assessments.each do |map_asssessment| %>
+              <div style="padding:5px;">
+                <div>
+                  <span><b><%= map_asssessment.name %></b><span>: <%= map_asssessment.text %>
+                </div>
+                <% if !map_asssessment.map_resources.empty? %>
+                  <% map_asssessment.map_resources.each do |map_resource| %>
+                    <div style="padding-left:50px;">
+                      <div>
+                        <span title="<%= map_resource.resource.get_type %>" style="width:35px;"><%= raw map_resource.resource.get_thumbnail %></span>
+                        <span><b><%= link_to map_resource.resource.title.titlecase, resource_path(map_resource.resource.slug),  :target => "_blank" %></b><span>: <%= map_resource.text %>
+                      </div>
+                    </div>
+                  <% end %>
+                <% end %>
+              </div>
+            <% end %>
+          <% end %>
         </div>
       </div>
     </div>
   </div>
 
-
-  <div id="filter_map_standards_modal" class="modal hide fade in" >
+  <div id="filter_map_standards_modal" class="modal hide fade in">
     <div class="modal-body">
+      <button type="button" class="close" data-dismiss="modal" style="margin-right:10px;">&times;</button>
       <div><H3>Standards Filter</H3></div>
-        <!-- Standards  -->
-        <%= render 'map_standards/form_filter' %>
+        <div class="row">
+          <div class="span12" id="standards_filter">
+          <%= render 'standards/form_filter' %>
+          </div>
+        </div>
+        <div class="row">
+          <div class="span12">
+            <%= render 'standards/table' %>
+          </div>
+        </div>
     </div>
   </div>
 </div>
