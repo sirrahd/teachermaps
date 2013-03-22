@@ -1,3 +1,0 @@
-<%= t('welcome_email.title', name: @user.name) %>
-<%= t('welcome_email.content_textonly') %>
-<%= url_for controller: 'settings', action: 'confirm_email', params: { account: @user.account_name, key: @user.email_confirmation_key }, only_path: false, host: @host %>

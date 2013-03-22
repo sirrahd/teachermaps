@@ -1,4 +1,4 @@
-class SettingMailer < ActionMailer::Base
+class UserMailer < ActionMailer::Base
 
   def welcome_email(user, host)
     @user = user
