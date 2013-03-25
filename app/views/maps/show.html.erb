@@ -17,17 +17,11 @@
           <div class="pull-right"><%= link_to 'Edit Standards', "#filter_map_standards_modal",'data-toggle' => "modal",  :class => 'btn'  %></div>
           <h3>Standards</h3>
         </div>
-        <div>
+        <div id="map_standards_list">
+        
           <!-- Map Standards -->
-          <% if !@map.map_standards.empty? %>
-            <% @map.sorted_map_standards.each do |map_standard| %>
-              <div>
-                <span>
-                  <span><b><%= map_standard.standard.name %></b><span>: <%= map_standard.standard.text %>
-                </span>
-              </div>
-            <% end %>
-          <% end %>
+          <%= render 'maps/map_standards_list' %>
+
         </div>
       </div>
       <div>

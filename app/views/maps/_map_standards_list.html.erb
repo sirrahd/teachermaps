@@ -1,0 +1,9 @@
+<% if !@map.map_standards.empty? %>
+  <% @map.sorted_map_standards.each do |map_standard| %>
+    <div>
+      <span>
+        <span><b><%= map_standard.standard.name %></b><span>: <%= map_standard.standard.text %>
+      </span>
+    </div>
+  <% end %>
+<% end %>

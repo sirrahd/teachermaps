@@ -51,9 +51,10 @@ jQuery(function($) {
 
         $.ajax({
           url: requestURL,
-          dataType: 'json'
+          dataType: 'html'
         }).done(function(data) {
           console.log("Removed Standard from Map: " + standardId + " From Map: " + mapId);
+          $('#map_standards_list').html(data);
         });   
 
         $(this).attr('class','standard-default');
@@ -73,9 +74,10 @@ jQuery(function($) {
 
         $.ajax({
           url: requestURL,
-          dataType: 'json'
+          dataType: 'html'
         }).done(function(data) {
           console.log("Added Standard from Map: " + standardId + " From Map: " + mapId);
+          $('#map_standards_list').html(data);
         });   
 
         $(this).attr('class','standard-selected');
