@@ -80,6 +80,10 @@ jQuery(function($) {
           $('#map_standards_list').html(data);
         });   
 
+        $(this).find('.standard-default').each(function() {
+            $(this).attr('class','standard-selected');
+        });
+
         $(this).attr('class','standard-selected');
 
         e.stopPropagation();
