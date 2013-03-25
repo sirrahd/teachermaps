@@ -30,6 +30,48 @@ jQuery(function($) {
         $("#standards_table").html(data);  
     });
 
+
+
+    $('#standards_list .standard-selected').live("click", function(e) {
+    
+        var standardId = $(this).attr('standard-id');
+        if(standardId == undefined) return false;
+
+        // $.ajax({
+        //   url: resourceURI,
+        //   dataType: 'html'
+        // }).done(function(data) {
+        //   $('#show_resource_link_modal_body').html(data);
+        //   $('#show_resource_link_modal').modal('show');
+        // });   
+        console.log("Removing Standard from Map: " + standardId);
+
+        $(this).attr('class','standard-default');
+
+        e.stopPropagation();
+    });
+
+    $('#standards_list .standard-default').live("click", function(e) {
+    
+        var standardId = $(this).attr('standard-id');
+        if(standardId == undefined) return false;
+    
+
+        // $.ajax({
+        //   url: resourceURI,
+        //   dataType: 'html'
+        // }).done(function(data) {
+        //   $('#show_resource_link_modal_body').html(data);
+        //   $('#show_resource_link_modal').modal('show');
+        // });   
+        console.log("Adding Standard from Map: " + standardId);
+
+        $(this).attr('class','standard-selected');
+
+        e.stopPropagation();
+    });
+
+
     
 });
 

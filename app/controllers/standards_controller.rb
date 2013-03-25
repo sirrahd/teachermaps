@@ -23,7 +23,6 @@ class StandardsController < ApplicationController
     end
 
     @standards = Standard.find(:all, :conditions=>{:standard_type_id=>params[:standard_type], :parent_standard_id=>nil})
-    Rails.logger.info(@standards);
 
     if params.has_key?('course_subject')
       @standards &= Standard.find(:all, :conditions=>{:course_subject_id=>params[:course_subject]})
@@ -34,10 +33,17 @@ class StandardsController < ApplicationController
     end
 
     if params.has_key?('q') and !params[:q].empty?
-      @standards &= Standard.where( Standard.arel_table[:text].matches("%#{params[:q].strip}%") )
+      #@standards &= Standard.where( Standard.arel_table[:text].matches("%#{params[:q].strip}%") )
+      @standards &= Standard.find(:all, :conditions => ['text LIKE ?', "%#{params[:q].strip}%"])
     end
 
-    Rails.logger.info(@standards);
+    if @current_user
+      map_standards = MapStandard.where(user_id: @current_user.id)
+      @map_standards_by_standard_id = Hash[map_standards.map { |p| [p['standard_id'], true] }]
+      # Rails.logger.info("Map Standards: #{@map_standards_by_standard_id.inspect}")
+    end
+
+    # Rails.logger.info(@standards);
     render :partial => 'standards/list'
   end
 

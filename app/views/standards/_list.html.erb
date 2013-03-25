@@ -1,23 +1,34 @@
-<ul id="standards_table"  style="cursor:pointer;list-style-type: none;">
+<ul id="standards_list"  style="cursor:pointer;list-style-type: none;">
 	<% if @standards %>
 		<% @standards.each do |standard| %>
-		    <li standard-url="<%= standard_path standard.id %>" style="margin-bottom:10px;" class="standard">
+		    <li style="margin-bottom:10px;">
 
-		    	<div>
-		    		<b><%= standard.name %></b> <%= standard.text %>
-		    	</div> 
-		  
+		    	<% if @map_standards_by_standard_id.has_key?(standard.id) %>
+		    		<div class="standard-selected" standard-id="<%= standard.id %>">
+              	<% else %>
+                	<div class="standard-default" standard-id="<%= standard.id %>" >
+              	<% end %> 
+
+              	<b><%= standard.name %></b> <%= standard.text %>
+	    		
 		    	<% if standard.is_parent_standard %>
 		    		<ul style="cursor:pointer;">
 			    		<% standard.children_standards.each do |child| %>
-			    			<li standard-url="<%= standard_path standard.id %>">
-						    	<div >
+			    			<li>
+						    	<% if @map_standards_by_standard_id.has_key?(child.id) %>
+						    		<div class="standard-selected" standard-id="<%= child.id %>">
+				              	<% else %>
+				                	<div class="standard-default" standard-id="<%= standard.id %>">
+				              	<% end %> 
 						    		<b><%= child.name %></b> <%= child.text %>
 						    	</div>
 					    	</li>
 				    	<% end %>
 			    	</ul>	
-				<% end %>	   				
+				<% end %>	
+
+
+				</div> 		
 		    </li>
 		    
 		<% end %>

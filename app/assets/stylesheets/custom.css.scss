@@ -93,6 +93,9 @@ input {
   }
 }
 
-.standard:hover {
-  background-color: #f5f5f5;
+.standard-default:hover {
+  background-color: #F5F5F5;
+}
+.standard-selected {
+  background-color: #FFFF66;
 }
