@@ -36,10 +36,10 @@ class StandardsController < ApplicationController
       #@standards &= Standard.where( Standard.arel_table[:text].matches("%#{params[:q].strip}%") )
       @standards &= Standard.find(:all, :conditions => ['text LIKE ?', "%#{params[:q].strip}%"])
     end
-
+    
     if @current_user
       map_standards = MapStandard.where(user_id: @current_user.id)
-      @map_standards_by_standard_id = Hash[map_standards.map { |p| [p['standard_id'], true] }]
+      @map_standards_by_standard_id = Hash[map_standards.map { |p| [p['standard_id'], p] }]
       # Rails.logger.info("Map Standards: #{@map_standards_by_standard_id.inspect}")
     end
 

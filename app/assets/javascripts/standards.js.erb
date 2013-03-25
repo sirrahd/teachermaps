@@ -2,7 +2,7 @@ jQuery(function($) {
     
     //////////////////////////////
     //
-    // Filter Resources 
+    // Filter Standards 
     //
     //////////////////////////////
 
@@ -32,19 +32,29 @@ jQuery(function($) {
 
 
 
-    $('#standards_list .standard-selected').live("click", function(e) {
-    
-        var standardId = $(this).attr('standard-id');
-        if(standardId == undefined) return false;
+    //////////////////////////////
+    //
+    // Adding/Removing Map Standards
+    //
+    //////////////////////////////
 
-        // $.ajax({
-        //   url: resourceURI,
-        //   dataType: 'html'
-        // }).done(function(data) {
-        //   $('#show_resource_link_modal_body').html(data);
-        //   $('#show_resource_link_modal').modal('show');
-        // });   
-        console.log("Removing Standard from Map: " + standardId);
+
+    $('#standards_list .standard-selected').live("click", function(e) {
+
+        var standardId = $(this).attr('standard-id');
+        var mapId = $('#map-id').attr('map-id');
+        if(standardId == undefined || mapId == undefined) return false;
+
+        console.log("Removing Standard from Map: " + standardId + " From Map: " + mapId);
+
+        var requestURL = '/ajax/maps/'+mapId+'/map_standards/'+standardId+'/destroy';
+
+        $.ajax({
+          url: requestURL,
+          dataType: 'json'
+        }).done(function(data) {
+          console.log("Removed Standard from Map: " + standardId + " From Map: " + mapId);
+        });   
 
         $(this).attr('class','standard-default');
 
@@ -54,17 +64,19 @@ jQuery(function($) {
     $('#standards_list .standard-default').live("click", function(e) {
     
         var standardId = $(this).attr('standard-id');
-        if(standardId == undefined) return false;
-    
+        var mapId = $('#map-id').attr('map-id');
+        if(standardId == undefined || mapId == undefined) return false;
 
-        // $.ajax({
-        //   url: resourceURI,
-        //   dataType: 'html'
-        // }).done(function(data) {
-        //   $('#show_resource_link_modal_body').html(data);
-        //   $('#show_resource_link_modal').modal('show');
-        // });   
-        console.log("Adding Standard from Map: " + standardId);
+        console.log("Adding Standard from Map: " + standardId + " From Map: " + mapId);
+
+        var requestURL = '/ajax/maps/'+mapId+'/map_standards/'+standardId+'/new';
+
+        $.ajax({
+          url: requestURL,
+          dataType: 'json'
+        }).done(function(data) {
+          console.log("Added Standard from Map: " + standardId + " From Map: " + mapId);
+        });   
 
         $(this).attr('class','standard-selected');
 

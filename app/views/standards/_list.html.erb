@@ -6,7 +6,7 @@
 		    	<% if @map_standards_by_standard_id.has_key?(standard.id) %>
 		    		<div class="standard-selected" standard-id="<%= standard.id %>">
               	<% else %>
-                	<div class="standard-default" standard-id="<%= standard.id %>" >
+                	<div class="standard-default" standard-id="<%= standard.id %>">
               	<% end %> 
 
               	<b><%= standard.name %></b> <%= standard.text %>
@@ -18,7 +18,7 @@
 						    	<% if @map_standards_by_standard_id.has_key?(child.id) %>
 						    		<div class="standard-selected" standard-id="<%= child.id %>">
 				              	<% else %>
-				                	<div class="standard-default" standard-id="<%= standard.id %>">
+				                	<div class="standard-default" standard-id="<%= child.id %>">
 				              	<% end %> 
 						    		<b><%= child.name %></b> <%= child.text %>
 						    	</div>
@@ -26,8 +26,7 @@
 				    	<% end %>
 			    	</ul>	
 				<% end %>	
-
-
+				
 				</div> 		
 		    </li>
 		    

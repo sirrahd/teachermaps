@@ -17,7 +17,11 @@ Teachermaps::Application.routes.draw do
   resources :maps
 
   match '/maps/ajax/filter' => 'map_standards#ajax_filter'
+  
+  match '/ajax/maps/:map_id/map_standards/:standard_id/new' => 'map_standards#ajax_new', as: 'map_standards_ajax_new'
+  match '/ajax/maps/:map_id/map_standards/:standard_id/destroy' => 'map_standards#ajax_destroy', as: 'map_standards_ajax_destroy'
   resources :map_standards
+
 
   match '/standards/ajax/filter' => 'standards#ajax_filter'
   resources :standards
