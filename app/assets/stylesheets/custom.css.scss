@@ -93,9 +93,23 @@ input {
   }
 }
 
+
+/* Map Standard Filter */
 .standard-default:hover {
   background-color: #F5F5F5;
 }
 .standard-selected {
   background-color: #FFFF66;
 }
+
+
+/* Map Resource Filter */
+.resource-modal .modal-body {
+  max-height: 550px;
+}
+
+.resource-modal {
+  min-width: 720px; 
+  margin: -250px 0px 0px -390px; /* PLAY THE WITH THE VALUES TO SEE GET THE DESIRED EFFECT */
+}
+

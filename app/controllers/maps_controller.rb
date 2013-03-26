@@ -13,9 +13,7 @@ class MapsController < ApplicationController
     @filter_standard_types = StandardType.all
     @filter_resource_types = ResourceType.all
     @filter_course_grades = CourseGrade.all
-    @filter_course_subjects = CourseSubject.all
-    
-    
+    @filter_course_subjects = CourseSubject.all   
 
   end
 

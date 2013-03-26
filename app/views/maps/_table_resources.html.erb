@@ -1,4 +1,4 @@
-<table class="table table-condensed table-hover"  id="resources_table"  style="cursor:pointer;">
+<table class="table table-condensed table-hover"  id="map_resources_table"  style="cursor:pointer;">
   <tbody>
   <thead>
     <tr>
@@ -23,23 +23,8 @@
           <%= resource.course_subjects.map(&:name).join(", ") %>
         <% end %>    
       </td>
-      <td><%= link_to t('shared.edit'), '#', 'resource-url'=>resources_ajax_show_path(resource.slug), :class=>'btn show_resource', :style=>"height:18px;" %></td>
     </tr>
   <% end %>
 </tbody>
 </table>
-
-<div id="edit_resource_link_modal" class="modal hide fade in" >
-  <div class="modal-body" id="edit_resource_link_modal_body"></div>
-</div>
-
-<div id="show_resource_link_modal" class="modal hide fade in"  >
-    <div class="modal-body" id="show_resource_link_modal_body"></div>
-</div>
-
-<div id="put_resource_link_modal" class="modal hide fade in" >
-  <div class="modal-body">
-    <%= render 'resources/form_create_link' %>
-  </div>
-</div>
 
