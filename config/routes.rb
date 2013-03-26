@@ -14,6 +14,7 @@ Teachermaps::Application.routes.draw do
   resources :resources
   
   match 'users/maps' => 'maps#index', :as => 'maps_index'
+  match '/ajax/maps/filter/resources' => 'maps#ajax_filter_resources', as: 'maps_resources_ajax_filter'
   resources :maps
 
   match '/maps/ajax/filter' => 'map_standards#ajax_filter'
