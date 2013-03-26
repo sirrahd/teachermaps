@@ -13,6 +13,7 @@
         <p><%= @map.text %></p>
       <div>
       <div>
+        <div class="pull-right"><%= link_to 'Edit Resources', "#filter_resources_modal",'data-toggle' => "modal",  :class => 'btn'  %></div>
         <div>
           <div class="pull-right"><%= link_to 'Edit Standards', "#filter_map_standards_modal",'data-toggle' => "modal",  :class => 'btn'  %></div>
           <h3>Standards</h3>
@@ -60,7 +61,7 @@
       <button type="button" class="close" data-dismiss="modal" style="margin-right:10px;">&times;</button>
       <div><H3>Standards Filter</H3></div>
         <div class="row">
-          <div class="span12" id="standards_filter">
+          <div class="span7" id="standards_filter">
           <%= render 'standards/form_filter' %>
           </div>
         </div>
@@ -69,6 +70,25 @@
             <%= render 'standards/list' %>
           </div>
         </div>
+    </div>
+  </div>
+
+
+  <div id="filter_resources_modal" class="resource-modal modal hide fade in">
+    <input type="hidden" id="map-id" map-id=<%= @map.id %> />
+    <div class="modal-body">
+      <button type="button" class="close" data-dismiss="modal" style="margin-right:10px;">&times;</button>
+      <div><H3>Resource Filter</H3></div>
+      <div class="row">
+        <div class="span10" id="resource_filter">
+        <%= render 'maps/filter_resource' %>
+        </div>
+      </div>
+      <div class="row">
+        <div class="span10" id="resource_table">
+          <%= render 'maps/table_resources' %>
+        </div>
+      </div>
     </div>
   </div>
 </div>

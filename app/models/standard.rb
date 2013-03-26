@@ -17,7 +17,7 @@ class Standard < ActiveRecord::Base
   before_validation :clean_attrs
 
   validates :name, presence: true, length: {minimum: 2, maximum: 250}
-  validates :text, presence: true, length: {minimum: 2, maximum: 2048}
+  validates :text, presence: true, length: {minimum: 2, maximum: 3500}
   validates_uniqueness_of :slug, allow_nil: true, case_sensitive: true
 
   private 

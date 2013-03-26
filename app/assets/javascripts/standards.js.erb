@@ -80,6 +80,7 @@ jQuery(function($) {
           $('#map_standards_list').html(data);
         });   
 
+        // Mark all children standards as selected
         $(this).find('.standard-default').each(function() {
             $(this).attr('class','standard-selected');
         });

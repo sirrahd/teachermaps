@@ -8,9 +8,13 @@ class MapsController < ApplicationController
   	print "Showing map #{params[:id]}"
   	@map = Map.find_by_slug_and_user_id( params[:id], @current_user.id )
 
+
+    @resources = Resource.where user_id: @current_user.id
+    @filter_standard_types = StandardType.all
+    @filter_resource_types = ResourceType.all
     @filter_course_grades = CourseGrade.all
     @filter_course_subjects = CourseSubject.all
-    @filter_standard_types = StandardType.all
+    
     
 
   end

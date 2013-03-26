@@ -21,8 +21,8 @@ namespace :admin  do
 
     standards = []
 
-    subject = CourseSubject.find_by_name 'English'
-    sub_subject = 'English Language Arts and Literacy'
+    subject = CourseSubject.find_by_name 'Mathematics'
+    sub_subject = 'Mathematics'
 
     standards << "StatementCode|Grade|Subject|Sub-Subject|Statement\n"
 
