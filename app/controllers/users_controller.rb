@@ -42,10 +42,30 @@ class UsersController < ApplicationController
     end
   end
 
+  def edit
+  end
+
+  def update
+    # If the request includes a key, use it
+    if params[:key]
+      @user = User.find_by_account_name(params[:account_name])
+      @user = nil unless @user.request_key == params[:key]
+    end
+
+    if @user.update_attributes(params[:user])
+      flash[:success] = "Profile updated"
+      sign_in @user
+      redirect_to @user
+    else
+      flash[:warning] = t 'reset_password.error'
+      redirect_to :back
+    end
+  end
+
   def confirm_email
     @user = User.find_by_account_name(params[:account])
 
-    if @user.email_confirmation_key == params[:key]
+    if @user.request_key == params[:key]
       @user.update_attribute(:confirmed, 1)
       sign_in @user
       flash[:success] = t 'confirmation.success'
@@ -56,20 +76,30 @@ class UsersController < ApplicationController
   end
 
   def reset_password
+    # Stage 3: User navigates from email link
     if params[:account_name]
       @user = User.find_by_account_name(params[:account_name])
-      if @user.reset_password_key == params[:key]
+      if @user.request_key == params[:key]
         render 'password_reset'
         return
-      elsif  @user.email == params[:email]
+      else
+        flash[:warning] = t 'reset_password.error'
+      end
+
+    #Stage 2: User provides email address
+    elsif params[:email]
+      if @user = User.find_by_email(params[:email])
         UserMailer.reset_password_email(@user, request.env['HTTP_HOST']).deliver
-        flash[:success] = "REPLACE_SUCCESS"
+        flash[:success] = t 'reset_password.email_sent'
         redirect_to root_url
         return
       else
-        flash[:warning] = "REPLACE_TRY_AGAIN"
+          # Fails, re-render reset confirmation with the flash
+          flash[:warning] = t 'reset_password.error'
       end
     end
+
+    # Stage 1: User enters email address
     render 'password_reset_confirmation'
   end
 
