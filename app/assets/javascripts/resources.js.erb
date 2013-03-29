@@ -72,7 +72,29 @@ jQuery(function($) {
         $("#resources_table").html(data);  
     });
 
+    var map_timer;
+    $("#maps_filter_resource_form").live('keyup input',function() {
+        var form = $(this);
+        // Prevents ajax request till N milliseconds 
+        timer && clearTimeout(timer);
+        timer = setTimeout(function(){ 
+            form.submit();
+        }, 500);
+    });
 
+    // Needed for browser compatibility 
+    $('#maps_filter_resource_form').live('change', function() {
+        $(this).submit();
+    });
+
+    $("#maps_filter_resource_form")
+    .live("ajax:error", function(event, data, status, xhr) {
+        pushFlash({message:"<%= I18n.t('resources.filter_failure') %>", state: 'success', fadeOut: 5000});
+    })
+    .live("ajax:success", function(event, data, status, xhr) {
+        // Update the resources table
+        $("#map_resource_table").html(data);  
+    });
 
 
     //////////////////////////////
