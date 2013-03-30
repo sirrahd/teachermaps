@@ -67,6 +67,9 @@ class MapAssessmentsController < ApplicationController
 	    @filter_resource_types = ResourceType.all
 	    @filter_course_grades = CourseGrade.all
 	    @filter_course_subjects = CourseSubject.all   
+	    map_resources = @map_assessment.map_resources
+	    @map_resources_by_resource_id = Hash[map_resources.map { |p| [p['resource_id'], p] }]
+      	Rails.logger.info("Map Assessment Ressource: #{@map_resources_by_resource_id.inspect}")
 
   		return render :partial => 'maps/modal_resources', :locals => { :object => @map }
   	end
@@ -80,7 +83,6 @@ class MapAssessmentsController < ApplicationController
 	    @resources = Resource.where( :user_id => @current_user.id )
 
 	    if params.has_key?('q') and !params[:q].empty?
-	      #@resources &= Resource.where( 'title LIKE ?', "%#{params[:q].strip}%" )
 	      @resources &= Resource.where( Resource.arel_table[:title].matches("%#{params[:q].strip}%") )
 	    end
 
@@ -99,6 +101,70 @@ class MapAssessmentsController < ApplicationController
 
 	    Rails.logger.info(@resources);
 	    render :partial => 'map_assessments/table_resources'
+	end
+
+
+	def ajax_new
+
+	    Rails.info.logger(params)
+
+	    @map = Map.find_by_id_and_user_id(params[:map_id], @current_user.id)
+	    standard = Standard.find(params[:standard_id])
+
+	    if !@map or !standard
+	      Rails.logger.info("Could not locate either map #{params[:map_id]} or standard #{params[:standard_id]}") 
+	      return render :nothing => true, :status => 404
+	    end
+
+	    Rails.logger.info("Located Map #{@map} and Standard #{standard}")
+
+	    if !MapStandard.find_by_standard_id_and_map_id_and_user_id(standard.id, @map.id, @current_user.id)
+	        new_map_standard = MapStandard.new
+	        new_map_standard.standard = standard
+	        new_map_standard.map = @map
+	        new_map_standard.user = @current_user
+	        @map.map_standards << new_map_standard
+	    end
+
+	    # Add any children standards
+	    standard.children_standards.each do |child_standard|
+	      # Enforce prevention of the same standard being added twice
+	      if !MapStandard.find_by_standard_id_and_map_id_and_user_id(child_standard.id, @map.id, @current_user.id)
+	        new_map_standard = MapStandard.new
+	        new_map_standard.standard = child_standard
+	        new_map_standard.map = @map
+	        new_map_standard.user = @current_user
+	        @map.map_standards << new_map_standard
+	      end
+	    end
+
+	    return render partial: 'maps/map_standards_list'
+	end
+
+	def ajax_destroy
+		if !@current_user 
+	      return render :nothing => true, :status => 403
+	    end
+	    if !params.has_key?('map_id') or !params.has_key?('standard_id')
+	      return render :nothing => true, :status => 404
+	    end
+
+	    print params
+
+	    @map = Map.find_by_id_and_user_id(params[:map_id], @current_user.id)
+	    standard = Standard.find(params[:standard_id])
+	    map_standard = MapStandard.find_by_standard_id_and_map_id_and_user_id(params[:standard_id], @map.id, @current_user.id)
+
+	    if !@map or !standard or !map_standard
+	      Rails.logger.info("Could not locate either map standard from given data") 
+	      return render :nothing => true, :status => 404
+	    end
+
+	    map_standard.destroy
+
+	    Rails.logger.info("Deleted map standard")
+
+	    return render partial: 'maps/map_standards_list'
 	end
 
 	private

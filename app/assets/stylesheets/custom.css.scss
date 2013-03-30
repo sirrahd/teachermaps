@@ -114,6 +114,14 @@ input {
 }
 
 
+/* Map Standard Filter */
+.map-assessment-resource-default:hover {
+  background-color: #F5F5F5;
+}
+.map-assessment-resource-selected {
+  background-color: #FFFF66;
+}
+
 /* Control visibility */
 .editable span a {
    visibility: hidden;

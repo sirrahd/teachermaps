@@ -1,0 +1,57 @@
+//////////////////////////////
+    //
+    // Adding/Removing Map Standards
+    //
+    //////////////////////////////
+
+
+    $('#maps_map_assessments_resources_table .map-assessment-resource-selected').live("click", function(e) {
+
+        var standardId = $(this).attr('standard-id');
+        var mapId = $('#map-id').attr('map-id');
+        if(standardId == undefined || mapId == undefined) return false;
+
+        console.log("Removing Standard from Map: " + standardId + " From Map: " + mapId);
+
+        var requestURL = '/ajax/maps/'+mapId+'/map_standards/'+standardId+'/destroy';
+
+        $.ajax({
+          url: requestURL,
+          dataType: 'html'
+        }).done(function(data) {
+          console.log("Removed Standard from Map: " + standardId + " From Map: " + mapId);
+          $('#map_standards_list').html(data);
+        });   
+
+        $(this).attr('class','standard-default');
+
+        e.stopPropagation();
+    });
+
+    $('#maps_map_assessments_resources_table .map-assessment-resource-default').live("click", function(e) {
+    
+        var standardId = $(this).attr('standard-id');
+        var mapId = $('#map-id').attr('map-id');
+        if(standardId == undefined || mapId == undefined) return false;
+
+        console.log("Adding Standard from Map: " + standardId + " From Map: " + mapId);
+
+        var requestURL = '/ajax/maps/'+mapId+'/map_standards/'+standardId+'/new';
+
+        $.ajax({
+          url: requestURL,
+          dataType: 'html'
+        }).done(function(data) {
+          console.log("Added Standard from Map: " + standardId + " From Map: " + mapId);
+          $('#map_standards_list').html(data);
+        });   
+
+        // Mark all children standards as selected
+        $(this).find('.standard-default').each(function() {
+            $(this).attr('class','standard-selected');
+        });
+
+        $(this).attr('class','standard-selected');
+
+        e.stopPropagation();
+    });
