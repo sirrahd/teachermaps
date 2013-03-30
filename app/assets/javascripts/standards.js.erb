@@ -47,8 +47,9 @@ jQuery(function($) {
 
     $('#standards_list .standard-selected').live("click", function(e) {
 
+
         var standardId = $(this).attr('standard-id');
-        var mapId = $('#map-id').attr('map-id');
+        var mapId = $('#map-id').val();
         if(standardId == undefined || mapId == undefined) return false;
 
         console.log("Removing Standard from Map: " + standardId + " From Map: " + mapId);
@@ -71,7 +72,7 @@ jQuery(function($) {
     $('#standards_list .standard-default').live("click", function(e) {
     
         var standardId = $(this).attr('standard-id');
-        var mapId = $('#map-id').attr('map-id');
+        var mapId = $('#map-id').val();
         if(standardId == undefined || mapId == undefined) return false;
 
         console.log("Adding Standard from Map: " + standardId + " From Map: " + mapId);
