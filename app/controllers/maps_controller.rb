@@ -23,36 +23,7 @@ class MapsController < ApplicationController
   def destroy
   end
 
-  def ajax_filter_resources
-
-    Rails.logger.info("Filter Params: #{params}")
-
-    filter = {}
-    @resources = Resource.where( :user_id => @current_user.id )
-
-    if params.has_key?('q') and !params[:q].empty?
-      #@resources &= Resource.where( 'title LIKE ?', "%#{params[:q].strip}%" )
-      @resources &= Resource.where( Resource.arel_table[:title].matches("%#{params[:q].strip}%") )
-    end
-
-    if params.has_key?('resource_types')
-      @resources &= Resource.find(:all, :conditions=>{:user_id => @current_user.id, :resource_type_id=>params[:resource_types]})
-    end
-
-    if params.has_key?('course_grades')
-      @resources &= Resource.find(:all, :joins => :course_grades, :conditions=>{:user_id => @current_user.id, :course_grades=>{:id => params[:course_grades]}})
-      
-    end
-
-    if params.has_key?('course_subjects')
-      @resources &= Resource.find(:all, :joins => :course_subjects, :conditions=>{:user_id => @current_user.id, :course_subjects=>{:id => params[:course_subjects]}})
-    end
-
-    Rails.logger.info(@resources);
-    render :partial => 'maps/table_resources'
-
-
-  end
+  
 
 
   def update

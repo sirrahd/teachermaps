@@ -1,4 +1,4 @@
-<%= form_tag maps_resources_ajax_filter_path, id: 'maps_filter_resource_form', :class=>"form-inline", :remote=>true do %>
+<%= form_tag map_assessment_resources_ajax_filter_path( @map_assessment ), id: 'maps_filter_resource_form', :class=>"form-inline", :remote=>true do %>
   
   <%= select_tag("resource_types", options_for_select(@filter_resource_types.map {|x| [x.name, x.id]}), :multiple=>true, :id=>'maps_filter_resource_types') %>
 
