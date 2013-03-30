@@ -133,6 +133,10 @@ class Map < ActiveRecord::Base
   before_create :default_values
   before_validation	:clean_attrs
 
+  def title_titlecase
+    self.name.titlecase
+  end
+
   def to_param
 	  self.slug
   end

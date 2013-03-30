@@ -6,11 +6,11 @@
         <%= link_to "#{@map.name.titlecase}", "#" %> /
       </div>
       <div>
-        <h2><%= @map.name.titlecase %></h2>
+        <h2><%= best_in_place @map, :name, :type => :input, :display_as => :title_titlecase %></h2>
       </div>
       <!-- Map Content -->
       </div>
-        <p><%= @map.text %></p>
+        <p><%= best_in_place @map, :text, :type => :textarea %></p>
       <div>
       <div>
         <div class="pull-right"><%= link_to 'Edit Resources', "#filter_map_resources_modal",'data-toggle' => "modal",  :class => 'btn'  %></div>

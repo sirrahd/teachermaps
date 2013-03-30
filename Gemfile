@@ -9,7 +9,7 @@ gem "i18n-js", '2.1.2'
 gem "select2-rails", '3.2.1'
 gem 'google-api-client', '0.5.0'
 gem 'dropbox-sdk', '1.5.1'
-
+gem 'best_in_place', '2.1.0'
 
 
 group :development, :test do

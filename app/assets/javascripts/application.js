@@ -17,4 +17,6 @@
 //= require i18n
 //= require i18n/translations
 //= require select2
-
+//= require jquery-ui
+//= require best_in_place
+//= require best_in_place.purr
