@@ -67,6 +67,8 @@ class MapsController < ApplicationController
       format.json { respond_with_bip(@map) }
     end
   end
+
+  
 end
 
   private 
