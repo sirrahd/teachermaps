@@ -5,8 +5,6 @@ $(document).ready(function() {
 
 jQuery(function($) {    
 
-
-
     $('#maps_table tr').live("click", function(e) {
     
         var mapURI = $(this).attr('map-url');
@@ -63,25 +61,32 @@ jQuery(function($) {
 
         console.log("Adding assessment to Map: " + mapId + " owned by " + userId + " via path " + actionUrl);
 
-        var dataStore = {
-            'user_id' : userId,
-            'map_id' : mapId
-        };
-
         $.ajax({
-            data: { 'map_assessment': dataStore },
+            data: { 
+                'map_assessment': { 'user_id' : userId, 'map_id' : mapId }
+            },
             type: 'POST',
             url: actionUrl,
-            dataType: 'json'
-        }).done(function(data) {
-            console.log(data);
-          // console.log("Removed Standard from Map: " + standardId + " From Map: " + mapId);
-          $('#maps_list_map_assessments').html(data);
-        });   
-
-        // $(this).attr('class','standard-default');
+            dataType: 'html',
+            success: function (response) {
+                $('#maps_list_map_assessments').html(response);
+            },
+            error: function (xhr, ajaxOptions, thrownError) {
+                pushFlash({message:"Error adding a Map Assessment", state: 'error', fadeOut: 5000});
+            }
+        });
 
         e.stopPropagation();
+    });
+
+
+
+    $(".maps_map_assessments_destroy")
+    .live("ajax:error", function(event, data, status, xhr) {
+        pushFlash({message:"Error deleting Map Assessment", state: 'error', fadeOut: 5000});
+    })
+    .live("ajax:success", function(event, data, status, xhr) {
+        $('#maps_list_map_assessments').html(data);
     });
 
 

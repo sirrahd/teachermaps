@@ -2,7 +2,7 @@
   <% @map.map_assessments.each do |map_asssessment| %>
     <div style="padding:5px;">
       <div>
-        <%= link_to @map_asssessment, :confirm => "Delete \"#{map_asssessment.name.titlecase}\"?", :method => :delete, :class=>"pull-right"  do %>
+        <%= link_to map_asssessment, :confirm => "Delete \"#{map_asssessment.name.titlecase}\"?",  :method => :delete, :class=>"maps_map_assessments_destroy pull-right", remote: true do %>
           <i class="icon-trash"></i>
         <% end %>
         <span>
