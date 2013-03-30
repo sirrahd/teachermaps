@@ -39,10 +39,10 @@ class MapAssessmentsController < ApplicationController
 
   		@map_assessment = MapAssessment.find_by_id_and_user_id( params[:id], @current_user.id)
 
+  		# Stop here if map was not found
   		return render nothing: true, status: 404 if !@map_assessment
-
-	    # Cache for flash notification
-	    deleted_title = @map_assessment.name 
+	    
+	    # Needed to re-render map assessments
 	    @map = @map_assessment.map
 
 	    # Removing resource

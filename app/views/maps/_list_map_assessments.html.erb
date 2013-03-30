@@ -1,11 +1,18 @@
 <% if !@map.map_assessments.empty? %>
   <% @map.map_assessments.each do |map_asssessment| %>
     <div style="padding:5px;">
-      <div>
-        <%= link_to map_asssessment, :confirm => "Delete \"#{map_asssessment.name.titlecase}\"?",  :method => :delete, :class=>"maps_map_assessments_destroy pull-right", remote: true do %>
-          <i class="icon-trash"></i>
-        <% end %>
+      <div class="editable">
+        
         <span>
+          <%= link_to map_asssessment, :confirm => "Delete \"#{map_asssessment.name.titlecase}\"?",  :method => :delete, :class=>"maps_map_assessments_destroy pull-right", remote: true do %>
+            <i class="icon-trash"></i>
+          <% end %>
+          <br/>
+          <%= link_to "#filter_map_resources_modal", 'data-toggle' => "modal", :class=>"pull-right" do %>
+            <i class="icon-plus"></i>
+          <% end %>
+        </span>
+         <span>
           <b><%= best_in_place map_asssessment, :name, :type => :input %></b>
         </span>: <%= best_in_place map_asssessment, :text, :type => :textarea %>
 

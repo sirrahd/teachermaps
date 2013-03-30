@@ -59,7 +59,7 @@ jQuery(function($) {
 
         if(userId == undefined || mapId == undefined || actionUrl == undefined) return false;
 
-        console.log("Adding assessment to Map: " + mapId + " owned by " + userId + " via path " + actionUrl);
+        // console.log("Adding assessment to Map: " + mapId + " owned by " + userId + " via path " + actionUrl);
 
         $.ajax({
             data: { 
@@ -79,6 +79,11 @@ jQuery(function($) {
         e.stopPropagation();
     });
 
+    //////////////////////////////
+    //
+    // Remove Unit Assessment to Map
+    //
+    //////////////////////////////
 
 
     $(".maps_map_assessments_destroy")
