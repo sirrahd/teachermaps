@@ -32,6 +32,8 @@ class UsersController < ApplicationController
 
   def create
     @user = User.new(params[:user])
+    # Bug in heroku/postgres? This isn't getting defined initially, leading to errors
+    @user.confirmed = false
     if @user.save
       sign_in @user
       UserMailer.welcome_email(@user, request.env['HTTP_HOST']).deliver
