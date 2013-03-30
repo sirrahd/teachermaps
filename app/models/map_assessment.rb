@@ -1,5 +1,11 @@
+require 'uuidtools'
+require 'base64'
+
 class MapAssessment < ActiveRecord::Base
-  attr_accessible :slug, :name, :text
+  before_create :default_values
+  before_validation :clean_attrs
+
+  attr_accessible :name, :text, :user_id, :map_id
 
   belongs_to :user
   belongs_to :map
@@ -8,12 +14,9 @@ class MapAssessment < ActiveRecord::Base
 
   validates :map, presence: true
   validates :user, presence: true
-  validates :name, presence: true, length: {minimum: 2, maximum: 250}
-  validates :text, presence: true, length: {minimum: 2, maximum: 2048}
+  validates :name, length: {maximum: 250}
+  validates :text, length: {maximum: 2048}
   validates_uniqueness_of :slug, allow_nil: true, case_sensitive: true
-
-  before_create :default_values
-  before_validation	:clean_attrs
 
   private 
 
@@ -24,6 +27,8 @@ class MapAssessment < ActiveRecord::Base
 
   def default_values
     self.slug ||= (Base64.strict_encode64 UUIDTools::UUID.random_create).downcase
+    self.name = 'Untitled Map Assessment'
+    self.text = 'Description of the Assessment'
   end
 
 end

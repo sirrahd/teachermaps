@@ -1,9 +1,12 @@
 <div class="row">
+  <input type="hidden" id="map-id" value=<%= @map.id %> />
+  <input type="hidden" id="user-id" value=<%= @current_user.id %> />
+
   <div class="span10" style="">
     <div>
       <div>
         <!-- Breadcrumb -->
-        <%= link_to "#{@map.name.titlecase}", "#" %> /
+        <%= link_to "#{@map.name.titlecase}", map_path(@map) %> /
       </div>
       <div>
         <h2><%= best_in_place @map, :name, :type => :input, :display_as => :title_titlecase %></h2>
@@ -13,43 +16,31 @@
         <p><%= best_in_place @map, :text, :type => :textarea %></p>
       <div>
       <div>
-        <div class="pull-right"><%= link_to 'Edit Resources', "#filter_map_resources_modal",'data-toggle' => "modal",  :class => 'btn'  %></div>
         <div>
-          <div class="pull-right"><%= link_to 'Edit Standards', "#filter_map_standards_modal",'data-toggle' => "modal",  :class => 'btn'  %></div>
+          <div class="pull-right">
+            <%= link_to 'Add Standards', "javascript:(void)",'data-toggle' => "modal",  :class => 'btn'  %>
+            <%= link_to 'Edit Standards', "#filter_map_standards_modal",'data-toggle' => "modal",  :class => 'btn'  %>
+          </div> 
           <h3>Standards</h3>
         </div>
         <div id="map_standards_list">
 
           <!-- Map Standards -->
           <%= render 'maps/map_standards_list' %>
-          
+
         </div>
       </div>
       <div>
+        <div class="pull-right">
+            <%= link_to 'Add Assessment', "javascript:(void)", :class => 'btn', id: "create_map_assessment", 'action-url' => map_assessments_path %>
+        </div>  
         <div>
           <h3>Assessments</h3>
         </div>
-        <div>
+        
+        <div id="maps_list_map_assessments">
           <!-- Map Assessments -->
-          <% if !@map.map_assessments.empty? %>
-            <% @map.map_assessments.each do |map_asssessment| %>
-              <div style="padding:5px;">
-                <div>
-                  <span><b><%= best_in_place map_asssessment, :name, :type => :input %></b><span>: <%= best_in_place map_asssessment, :text, :type => :textarea %>
-                </div>
-                <% if !map_asssessment.map_resources.empty? %>
-                  <% map_asssessment.map_resources.each do |map_resource| %>
-                    <div style="padding-left:50px;">
-                      <div>
-                        <span title="<%= map_resource.resource.get_type %>" style="width:35px;"><%= raw map_resource.resource.get_thumbnail %></span>
-                        <span><b><%= link_to map_resource.resource.title.titlecase, resource_path(map_resource.resource.slug),  :target => "_blank" %></b><span>: <%= best_in_place map_resource, :text, :type => :textarea %>
-                      </div>
-                    </div>
-                  <% end %>
-                <% end %>
-              </div>
-            <% end %>
-          <% end %>
+          <%= render 'maps/list_map_assessments' %>
         </div>
       </div>
     </div>
@@ -75,7 +66,6 @@
   </div>
 
   <div id="filter_map_standards_modal" class="modal hide fade in">
-    <input type="hidden" id="map-id" map-id=<%= @map.id %> />
     <div class="modal-body">
       <button type="button" class="close" data-dismiss="modal" style="margin-right:10px;">&times;</button>
       <div><H3>Standards Filter</H3></div>
@@ -94,7 +84,6 @@
 
 
   <div id="filter_map_resources_modal" class="resource-modal modal hide fade in">
-    <input type="hidden" id="map-id" map-id=<%= @map.id %> />
     <div class="modal-body">
       <button type="button" class="close" data-dismiss="modal" style="margin-right:10px;">&times;</button>
       <div><H3>Resource Filter</H3></div>
