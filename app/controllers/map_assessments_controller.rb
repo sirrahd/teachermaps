@@ -57,6 +57,17 @@ class MapAssessmentsController < ApplicationController
 	    end
   	end 
 
+  	def ajax_show_resources
+  		@map = Map.find_by_slug_and_user_id( params[:id], @current_user.id )
+
+	    @resources = Resource.where user_id: @current_user.id
+	    @filter_resource_types = ResourceType.all
+	    @filter_course_grades = CourseGrade.all
+	    @filter_course_subjects = CourseSubject.all   
+
+  		return render :partial => 'maps/filter_resources', :locals => { :object => @map }
+  	end
+
   	# Requires user session
   	def require_session
     	unless current_user

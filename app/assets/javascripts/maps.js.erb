@@ -96,5 +96,15 @@ jQuery(function($) {
 
 
 
+    $(".maps_map_assessments_show_resources")
+    .live("ajax:error", function(event, data, status, xhr) {
+        pushFlash({message:"Error deleting Map Assessment", state: 'error', fadeOut: 5000});
+    })
+    .live("ajax:success", function(event, data, status, xhr) {
+        $('.filter_map_resources_modal_body').html(data);        
+    });
+
+
+
 
 });
