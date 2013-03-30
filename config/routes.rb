@@ -21,7 +21,7 @@ Teachermaps::Application.routes.draw do
   
   match '/ajax/maps/:map_id/map_standards/:standard_id/new' => 'map_standards#ajax_new', as: 'map_standards_ajax_new'
   match '/ajax/maps/:map_id/map_standards/:standard_id/destroy' => 'map_standards#ajax_destroy', as: 'map_standards_ajax_destroy'
-  match '/ajax/maps/:map_id/map_assessments/resources' => 'map_assessments#ajax_show_resources', as: 'map_assessments_ajax_show_resources'
+  match '/ajax/map_assessments/:id/resources' => 'map_assessments#ajax_show_resources', as: 'map_assessments_ajax_show_resources'
   resources :map_standards
   resources :map_assessments
   resources :map_resources

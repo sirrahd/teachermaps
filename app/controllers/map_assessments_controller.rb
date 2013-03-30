@@ -58,8 +58,11 @@ class MapAssessmentsController < ApplicationController
   	end 
 
   	def ajax_show_resources
-  		@map = Map.find_by_slug_and_user_id( params[:id], @current_user.id )
+  		@map_assessment = MapAssessment.find_by_id_and_user_id( params[:id], @current_user.id)
 
+  		return render nothing: true, status: 404 if !@map_assessment
+
+  		@map = @map_assessment.map
 	    @resources = Resource.where user_id: @current_user.id
 	    @filter_resource_types = ResourceType.all
 	    @filter_course_grades = CourseGrade.all
