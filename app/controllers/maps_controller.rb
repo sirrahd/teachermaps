@@ -17,7 +17,20 @@ class MapsController < ApplicationController
 
   end
 
-  def new
+  def create
+      Rails.logger.info(params)
+      @map = Map.new()
+      @map.user = @current_user
+
+      respond_to do |format|
+        if @map.save
+          Rails.logger.info("#{current_user.account_name} created a new map")
+          format.html { render :partial => 'user/table_maps', :locals => { :object => @map } }
+        else
+          Rails.logger.info("Map creation failure!!!")
+          format.html { render :json => @map.errors, :status => :unprocessable_entity  }
+        end
+      end
   end
 
   def destroy

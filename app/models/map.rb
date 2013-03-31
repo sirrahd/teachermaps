@@ -126,8 +126,8 @@ class Map < ActiveRecord::Base
   belongs_to :user
 
   validates :user, presence: true
-  validates :name, presence: true, length: {minimum: 2, maximum: 250}
-  validates :text, presence: true, length: {minimum: 2, maximum: 2048}
+  validates :name, length: {maximum: 250}
+  validates :text, length: {maximum: 2048}
   validates_uniqueness_of :slug, allow_nil: true, case_sensitive: true
 
   before_create :default_values
@@ -155,7 +155,9 @@ class Map < ActiveRecord::Base
 
   def default_values
     self.slug ||= (Base64.strict_encode64 UUIDTools::UUID.random_create).downcase
-      
+    
+    self.text = 'New Untitled Map'  
+    self.name = 'Description of the Map'
     self.resources_count  ||= 0
     self.standards_count  ||= 0
     self.objectives_count ||= 0

@@ -18,6 +18,40 @@ $(document).ready(function(){
   	$('#resource-controls').hide()
   });
 
+
+
+
+
+    //////////////////////////////
+    //
+    // Add Map
+    //
+    //////////////////////////////
+
+
+    $('#users_create_map').live("click", function(e) {
+
+        var actionUrl = $(this).attr('action-url');
+
+        if(actionUrl == undefined) return false;
+
+        console.log("Adding Map via path " + actionUrl);
+
+        $.ajax({
+            type: 'POST',
+            url: actionUrl,
+            dataType: 'html',
+            success: function (response) {
+                $('#maps_list_map_assessments').html(response);
+            },
+            error: function (xhr, ajaxOptions, thrownError) {
+                pushFlash({message:"Error adding a Map Assessment", state: 'error', fadeOut: 5000});
+            }
+        });
+
+        e.stopPropagation();
+    });
+
 });
 
 
