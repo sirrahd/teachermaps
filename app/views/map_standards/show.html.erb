@@ -5,11 +5,11 @@
 
       <div>
         <!-- Breadcrumb -->
-        <%= link_to "#{@map_standard.map.name.titlecase}", map_path(@map_standard.map) %> / <%= link_to "#{@map_standard.standard.name.titlecase}", "JavaScript:void(0);" %> /
+        <%= link_to "#{@map_standard.map.name.titlecase}", map_path(@map_standard.map) %> / <%= link_to "#{@map_standard.standard.name}", "JavaScript:void(0);" %> /
       </div>
 
       <div>
-        <h2><%= @map_standard.standard.name.titlecase %></h2>
+        <h2><%= @map_standard.standard.name %></h2>
       
 
       	<!-- Map Content -->
