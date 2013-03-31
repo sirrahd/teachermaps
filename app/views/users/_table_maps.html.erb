@@ -1,9 +1,15 @@
-<ul id="users_maps_table" style="list-style-type:none;">
+<ul style="list-style-type:none;">
     
     <% @maps.order("created_at DESC").each do |map| %>
         <li map-url="<%= map_path map.slug %>"  style="cursor:pointer;" class="hover">
           
-          <div class="row">
+          <div class="row editable">
+            <span>
+              <%= link_to map, :confirm => "Delete \"#{map.name.titlecase}\"?",  :method => :delete, :class=>"users_map_destroy pull-right", remote: true do %>
+                <i class="icon-trash"></i>
+              <% end %>
+            </span>
+
             <div class="span11" id="resource_filter">
               <h4><%= truncate(map.name, :length => Map::MAX_NAME_RENDER_LEN) %></h4>
               <span>

@@ -26,7 +26,7 @@ class MapsController < ApplicationController
       respond_to do |format|
         if @map.save
           @maps = Map.order("created_at DESC")
-          Rails.logger.info("#{current_user.account_name} created a new map #{@maps}")
+          Rails.logger.info("#{current_user.account_name} created a new map #{@map}")
           format.html { render :partial => 'users/table_maps', :locals => { :object => @map } }
         else
           Rails.logger.info("Map creation failure!!!")
@@ -36,6 +36,21 @@ class MapsController < ApplicationController
   end
 
   def destroy
+    Rails.logger.info(params)
+    @map = Map.find_by_slug params[:id]
+
+    @map.destroy if @map.user_id == @current_user.id
+  
+    respond_to do |format|
+      if @map.destroyed?
+        @maps = Map.order("created_at DESC")
+        Rails.logger.info("#{current_user.account_name} destroyed a map #{@map.name}")
+        format.html { render :partial => 'users/table_maps', :locals => { :object => @maps } }
+      else
+        Rails.logger.info("Map deletion failure!!!")
+        format.html { render :json => @map.errors, :status => :unprocessable_entity  }
+      end 
+    end
   end
 
   
