@@ -77,6 +77,12 @@ class MapAssessmentsController < ApplicationController
   	def ajax_filter_resources
 
 	    Rails.logger.info("Filter Params: #{params}")
+	    @map_assessment = MapAssessment.find(params[:map_assessment_id])
+
+	    return render nothing: true, status: 404 if !@map_assessment
+	    
+	    @map_resources_by_resource_id = Hash[@map_assessment.map_resources.map { |p| [p['resource_id'], p] }]
+      	Rails.logger.info("Map Assessment Ressource: #{@map_resources_by_resource_id.inspect}")
 
 	    filter = {}
 	    @resources = Resource.where( :user_id => @current_user.id )

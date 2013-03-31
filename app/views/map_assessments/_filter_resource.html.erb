@@ -1,5 +1,7 @@
 <%= form_tag map_assessment_resources_ajax_filter_path( @map_assessment ), id: 'maps_filter_resource_form', :class=>"form-inline", :remote=>true do %>
   
+  <%= hidden_field_tag "map_assessment_id", @map_assessment.id %>
+
   <%= select_tag("resource_types", options_for_select(@filter_resource_types.map {|x| [x.name, x.id]}), :multiple=>true, :id=>'maps_filter_resource_types') %>
 
   <%= select_tag("course_grades", options_for_select(@filter_course_grades.map {|x| [x.name, x.id]}), {:multiple=>true, :id=>'maps_filter_course_grades'}) %>
