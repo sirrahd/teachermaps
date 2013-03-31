@@ -157,8 +157,8 @@ class Map < ActiveRecord::Base
   def default_values
     self.slug ||= (Base64.strict_encode64 UUIDTools::UUID.random_create).downcase
     
-    self.text = 'New Untitled Map'  
-    self.name = 'Description of the Map'
+    self.name = 'New Untitled Map'  
+    self.text = 'Description of the Map'
     self.resources_count  ||= 0
     self.standards_count  ||= 0
     self.objectives_count ||= 0
