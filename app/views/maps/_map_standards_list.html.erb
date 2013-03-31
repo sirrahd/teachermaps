@@ -1,7 +1,7 @@
 <% if !@map.map_standards.empty? %>
   <% @map.sorted_map_standards.each do |map_standard| %>
   <ul>
-  	<li action-url="<%= map_map_standard_path map_standard.slug %>" class="hover clickable">    
+  	<li action-url="<%= map_map_standard_path map_standard %>" class="hover clickable">    
     	<b><%= map_standard.standard.name %>: </b>
     	<p><%= map_standard.standard.text %></p>
 

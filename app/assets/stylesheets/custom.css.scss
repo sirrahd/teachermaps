@@ -99,13 +99,11 @@ input {
 }
 .hover:hover {
   background-color: #F5F5F5;
+  padding:1px;
 }
-
 
 /* Map Standard Filter */
-.standard-default:hover {
-  background-color: #F5F5F5;
-}
+
 .standard-selected {
   /*background-color: #FFFF66;*/
   background-color: #DBDBFF;
@@ -124,16 +122,11 @@ input {
 
 
 /* Map Standard Filter */
-.map_assessment_resource_default:hover {
-  background-color: #F5F5F5;
-}
+
 .map_assessment_resource_selected {
-  /*background-color: #FFFF66;*/
   background-color: #DBDBFF;
 }
 
-
-/* Control visibility */
 .editable-btn span .btn {
    visibility: hidden;
 }  
