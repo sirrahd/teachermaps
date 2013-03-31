@@ -13,16 +13,14 @@
       </div>
       <!-- Map Content -->
       </div>
-        <p><%= best_in_place @map, :text, :type => :textarea %></p>
+        <p style="text-indent:50px;"><%= best_in_place @map, :text, :type => :textarea %></p>
       <div>
-      <div>
-        <div>
-          <div class="pull-right">
-            <%= link_to 'Add Standards', "JavaScript:void(0);", 'data-toggle' => "modal",  :class => 'btn'  %>
-            <%= link_to 'Edit Standards', "#filter_map_standards_modal",'data-toggle' => "modal",  :class => 'btn'  %>
-          </div> 
-          <h3>Standards</h3>
-        </div>
+
+      <div class="editable-btn">
+        <span class="pull-right">
+          <%= link_to 'Edit Standards', "#filter_map_standards_modal",'data-toggle' => "modal",  :class => 'btn'  %>
+        </span> 
+        <h3>Standards</h3>
         <div id="map_standards_list">
 
           <!-- Map Standards -->
@@ -30,10 +28,10 @@
 
         </div>
       </div>
-      <div>
-        <div class="pull-right">
+      <div class="editable-btn">
+        <span class="pull-right">
             <%= link_to 'Add Assessment', "JavaScript:void(0);", :class => 'btn', id: "create_map_assessment", 'action-url' => map_assessments_path %>
-        </div>  
+        </span>  
         <div>
           <h3>Assessments</h3>
         </div>

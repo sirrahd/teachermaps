@@ -27,20 +27,18 @@ class MapsController < ApplicationController
 
 
   def update
-  @map = Map.find_by_slug params[:id]
+    @map = Map.find_by_slug params[:id]
 
-  respond_to do |format|
-    if @map.update_attributes(params[:map])
-      format.html { redirect_to(@map, :notice => 'Map was successfully updated.') }
-      format.json { respond_with_bip(@map) }
-    else
-      format.html { render :action => "edit" }
-      format.json { respond_with_bip(@map) }
+    respond_to do |format|
+      if @map.update_attributes(params[:map])
+        format.html { redirect_to(@map, :notice => 'Map was successfully updated.') }
+        format.json { respond_with_bip(@map) }
+      else
+        format.html { render :action => "edit" }
+        format.json { respond_with_bip(@map) }
+      end
     end
   end
-
-  
-end
 
   private 
   

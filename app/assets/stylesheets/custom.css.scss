@@ -94,6 +94,11 @@ input {
 }
 
 
+.hover:hover {
+  background-color: #F5F5F5;
+}
+
+
 /* Map Standard Filter */
 .standard-default:hover {
   background-color: #F5F5F5;
@@ -124,11 +129,20 @@ input {
   background-color: #DBDBFF;
 }
 
+
 /* Control visibility */
+.editable-btn span .btn {
+   visibility: hidden;
+}  
+
+.editable-btn:hover span .btn{
+   visibility: visible;
+} 
+
 .editable span a i {
    visibility: hidden;
 }  
 
-.editable:hover span a i{
+.editable:hover span a i {
    visibility: visible;
 } 
