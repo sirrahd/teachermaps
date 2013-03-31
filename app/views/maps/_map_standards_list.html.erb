@@ -12,6 +12,7 @@
 				  	  <label>Objectives: <%= map_standard.map_objectives.count %></label>
 			        </li>
 			        <li>
+			        	<!-- I know, do not look the resource counter.... -->
 			        	<label>Resources: <%= map_standard.map_objectives.map{|a| a.map_resources.count}.sum %></label>
 			        </li>
 		        </ul>

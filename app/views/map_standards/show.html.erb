@@ -1,4 +1,5 @@
 <div class="row">
+  <input type="hidden" id="map_standard_id" value=<%= @map_standard.id %> />
   
   <div class="span10" style="">
     
@@ -19,7 +20,7 @@
       <div class="editable-btn">
        
         <span class="pull-right">
-          <%= link_to 'Add Objective', "JavaScript:void(0);", :class => 'btn', id: "", 'action-url' => map_objectives_path %>
+          <%= link_to 'Add Objective', "JavaScript:void(0);", :class => 'btn', id: 'create_map_objective', 'action-url' => map_objectives_path %>
         </span> 
         <h3>Objectives</h3>
         <div id="map_standards_objectives_list">

@@ -1,0 +1,49 @@
+//////////////////////////////
+//
+// Add Map Objective to Map Standard
+//
+//////////////////////////////
+
+
+$('#create_map_objective').live("click", function(e) {
+
+    var mapStandardId = $('#map_standard_id').val();
+    var actionUrl = $(this).attr('action-url');
+
+    console.log("Adding Objective to Map Standard: " + mapStandardId + " via path " + actionUrl);
+
+    if(map_standard_id == undefined || actionUrl == undefined) return false;
+
+
+    $.ajax({
+        data: { 
+            'map_standard_id' : mapStandardId
+        },
+        type: 'POST',
+        url: actionUrl,
+        dataType: 'html',
+        success: function (response) {
+            $('#map_standards_objectives_list').html(response);
+        },
+        error: function (xhr, ajaxOptions, thrownError) {
+            pushFlash({message:"Error adding a Map Objective", state: 'error', fadeOut: 5000});
+        }
+    });
+
+    e.stopPropagation();
+});
+
+//////////////////////////////
+//
+// Remove Unit Assessment to Map
+//
+//////////////////////////////
+
+
+$(".map_standards_map_objective_destroy")
+.live("ajax:error", function(event, data, status, xhr) {
+    pushFlash({message:"Error deleting Map Assessment", state: 'error', fadeOut: 5000});
+})
+.live("ajax:success", function(event, data, status, xhr) {
+    $('#map_standards_objectives_list').html(data);
+});

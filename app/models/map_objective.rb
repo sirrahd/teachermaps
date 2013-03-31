@@ -1,3 +1,7 @@
+require 'uuidtools'
+require 'base64'
+
+
 class MapObjective < ActiveRecord::Base
   attr_accessible :name, :slug, :text
 
@@ -10,8 +14,8 @@ class MapObjective < ActiveRecord::Base
   validates :map_standard, presence: true
   validates :user, presence: true
   validates :map, presence: true
-  validates :name, presence: true, length: {minimum: 2, maximum: 250}
-  validates :text, presence: true, length: {minimum: 2, maximum: 2048}
+  validates :name, length: {maximum: 250}
+  validates :text, length: {maximum: 2048}
   validates_uniqueness_of :slug, allow_nil: true, case_sensitive: true
 
   before_create :default_values
@@ -26,5 +30,7 @@ class MapObjective < ActiveRecord::Base
 
   def default_values
     self.slug ||= (Base64.strict_encode64 UUIDTools::UUID.random_create).downcase
+    self.text = 'Description of the Map Map Objective'
+    self.name = 'Untitled Map Objective'
   end
 end
