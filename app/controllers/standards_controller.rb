@@ -7,12 +7,6 @@ class StandardsController < ApplicationController
     Rails.logger.info("Standards")
   end
 
-  def new
-  end 
-
-  def destroy
-  end
-
   def ajax_filter
     print params
     Rails.logger.info("Filter Params: #{params}")
