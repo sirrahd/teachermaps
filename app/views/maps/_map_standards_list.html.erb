@@ -1,19 +1,23 @@
 <% if !@map.map_standards.empty? %>
-  <% @map.sorted_map_standards.each do |map_standard| %>
-  <ul>
-  	<li action-url="<%= map_map_standard_path map_standard %>" class="hover clickable">    
-    	<b><%= map_standard.standard.name %>: </b>
-    	<p><%= map_standard.standard.text %></p>
+	<% @map.sorted_map_standards.each do |map_standard| %>
+	   	<ul>
 
-	      <ul class="inline">
-	        <li>
-	          <label>Objectives: <%= map_standard.map_objectives.count %></label>
-	        </li>
-	        <li>
-	          <label>Resources: <%= map_standard.map_objectives.map(&:map_resources).count %></label>
-	        </li>
-	      </ul>
-		</li>
-	</ul>
-  <% end %>
+			<li action-url="<%= map_map_standard_path map_standard %>" class="hover clickable">    
+	       		
+	       		<b><%= map_standard.standard.name %>: </b>
+	       		<p><%= map_standard.standard.text %></p>
+
+			    <ul class="inline">
+				  	<li>
+				  	  <label>Objectives: <%= map_standard.map_objectives.count %></label>
+			        </li>
+			        <li>
+			        	<label>Resources: <%= map_standard.map_objectives.map(&:map_resources).count %></label>
+			        </li>
+		        </ul>
+
+			</li>
+
+		</ul>
+  	<% end %>
 <% end %>
