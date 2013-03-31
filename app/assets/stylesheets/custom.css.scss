@@ -111,7 +111,7 @@ input {
 
 .resource-modal {
   min-width: 720px; 
-  margin: -250px 0px 0px -360px; /* PLAY THE WITH THE VALUES TO SEE GET THE DESIRED EFFECT */
+  margin: -250px 0px 0px -360px;
 }
 
 
@@ -125,10 +125,10 @@ input {
 }
 
 /* Control visibility */
-.editable span a {
+.editable span a i {
    visibility: hidden;
 }  
 
-.editable:hover span a {
+.editable:hover span a i{
    visibility: visible;
 } 
