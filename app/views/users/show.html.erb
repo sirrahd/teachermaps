@@ -26,12 +26,8 @@
 <div class="tab-content">
   <div class="tab-pane active" id="maps">
     <div class="row">
+        <%= link_to 'Create Map', "JavaScript:void(0);", 'action-url'=> maps_path, :class => 'pull-right btn', id: "users_create_map"%>
       <div class="span12">
-        
-        <div class="create-new-box" id="users_create_map" action-url="<%= maps_path %>" >
-          <label><h4>&#43;&nbsp;New Map</h4></label>
-        </div> 
-        
         <%= render 'users/table_maps' %>
       </div>
     </div>

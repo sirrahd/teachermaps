@@ -22,10 +22,12 @@ class MapsController < ApplicationController
       @map = Map.new()
       @map.user = @current_user
 
+
       respond_to do |format|
         if @map.save
-          Rails.logger.info("#{current_user.account_name} created a new map")
-          format.html { render :partial => 'user/table_maps', :locals => { :object => @map } }
+          @maps = Map.order("created_at DESC")
+          Rails.logger.info("#{current_user.account_name} created a new map #{@maps}")
+          format.html { render :partial => 'users/table_maps', :locals => { :object => @map } }
         else
           Rails.logger.info("Map creation failure!!!")
           format.html { render :json => @map.errors, :status => :unprocessable_entity  }

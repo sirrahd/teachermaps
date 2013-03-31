@@ -1,6 +1,6 @@
 <ul id="users_maps_table" style="list-style-type:none;">
     
-    <% @maps.order('created_at DESC').each do |map| %>
+    <% @maps.order("created_at DESC").each do |map| %>
         <li map-url="<%= map_path map.slug %>"  style="cursor:pointer;" class="hover">
           
           <div class="row">
