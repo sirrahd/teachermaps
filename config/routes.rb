@@ -12,15 +12,17 @@ Teachermaps::Application.routes.draw do
   match '/resources/ajax/show/:slug' => 'resources#ajax_show', :as => 'resources_ajax_show'
   match '/resources/ajax/filter' => 'resources#ajax_filter', :as => 'resources_ajax_filter'
   resources :resources
+
+
   
   match 'users/maps' => 'maps#index', :as => 'maps_index'
-  resources :maps
+  resources :maps 
 
   match '/maps/ajax/filter' => 'map_standards#ajax_filter'
   
   match '/ajax/maps/:map_id/map_standards/:standard_id/new' => 'map_standards#ajax_new', as: 'map_standards_ajax_new'
   match '/ajax/maps/:map_id/map_standards/:standard_id/destroy' => 'map_standards#ajax_destroy', as: 'map_standards_ajax_destroy'
-  resources :map_standards
+  
 
   match '/ajax/map_assessments/:id/resources/filter' => 'map_assessments#ajax_filter_resources', as: 'map_assessment_resources_ajax_filter'
   match '/ajax/map_assessments/:id/resources' => 'map_assessments#ajax_show_resources', as: 'map_assessments_ajax_show_resources'
@@ -28,8 +30,8 @@ Teachermaps::Application.routes.draw do
   match '/ajax/map_assessments/:map_assessment_id/map_resources/:resource_id/destroy' => 'map_assessments#ajax_destroy_resource', as: 'map_assessments_ajax_destroy_resource'
   resources :map_assessments
   
-
   resources :map_resources
+  resources :map_objectives
 
   match '/standards/ajax/filter' => 'standards#ajax_filter'
   resources :standards
@@ -37,6 +39,8 @@ Teachermaps::Application.routes.draw do
   resources :users
   resources :sessions, only: [:new, :create, :destroy]
   resources :feedbacks, only: [:create]
+
+
 
   root to: 'static_pages#home'
 
@@ -56,6 +60,9 @@ Teachermaps::Application.routes.draw do
   match 'dropbox/preview/:path' => 'drop_box_accounts#preview', :as => 'drop_box_accounts_preview', :constraints => {:path => /[\w.\/]+/}
   match 'dropbox/oauth_callback' => 'drop_box_accounts#oauth_callback'
 
+  namespace :map do
+    resources :map_standards
+  end
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

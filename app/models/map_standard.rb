@@ -2,6 +2,8 @@ require 'uuidtools'
 require 'base64'
 
 class MapStandard < ActiveRecord::Base
+
+  before_create :default_values
   # Core components	
   attr_accessible :slug
 
@@ -16,7 +18,11 @@ class MapStandard < ActiveRecord::Base
   validates :map, presence: true
   validates_uniqueness_of :slug, allow_nil: true, case_sensitive: true
 
-  before_create :default_values
+  def to_param
+    self.slug
+  end
+
+  
 
   private 
 

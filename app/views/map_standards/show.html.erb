@@ -1,0 +1,34 @@
+<div class="row">
+  
+  <div class="span10" style="">
+    
+
+      <div>
+        <!-- Breadcrumb -->
+        <%= link_to "#{@map_standard.map.name.titlecase}", map_path(@map_standard.map) %> / <%= link_to "#{@map_standard.standard.name.titlecase}", "JavaScript:void(0);" %> /
+      </div>
+
+      <div>
+        <h2><%= @map_standard.standard.name.titlecase %></h2>
+      
+
+      	<!-- Map Content -->
+        <p style="text-indent:50px;"><%= @map_standard.standard.text %></p>
+	  </div>
+
+      <div class="editable-btn">
+       
+        <span class="pull-right">
+          <%= link_to 'Add Objective', "JavaScript:void(0);", :class => 'btn', id: "", 'action-url' => map_objectives_path %>
+        </span> 
+        <h3>Objectives</h3>
+        <div id="map_standards_objectives_list">
+
+          <!-- Map Objectives -->
+
+
+        </div>
+      </div>
+
+  </div>
+</div>

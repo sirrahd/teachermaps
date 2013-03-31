@@ -2,6 +2,11 @@ class MapStandardsController < ApplicationController
   include SessionsHelper
 
   before_filter :require_session
+  
+  def show
+    Rails.logger.info(params)
+    @map_standard = MapStandard.find_by_slug params[:id]
+  end
 
   def ajax_new
    
