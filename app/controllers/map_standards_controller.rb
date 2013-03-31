@@ -27,6 +27,9 @@ class MapStandardsController < ApplicationController
         new_map_standard.map = @map
         new_map_standard.user = @current_user
         @map.map_standards << new_map_standard
+
+        @map.standards_count += 1
+        @map.save
     end
 
     # Add any children standards
@@ -38,6 +41,9 @@ class MapStandardsController < ApplicationController
         new_map_standard.map = @map
         new_map_standard.user = @current_user
         @map.map_standards << new_map_standard
+
+        @map.standards_count += 1
+        @map.save
       end
     end
 
@@ -52,8 +58,6 @@ class MapStandardsController < ApplicationController
       return render :nothing => true, :status => 404
     end
 
-    print params
-
     @map = Map.find_by_id_and_user_id(params[:map_id], @current_user.id)
     standard = Standard.find(params[:standard_id])
     map_standard = MapStandard.find_by_standard_id_and_map_id_and_user_id(params[:standard_id], @map.id, @current_user.id)
@@ -64,6 +68,9 @@ class MapStandardsController < ApplicationController
     end
 
     map_standard.destroy
+
+    @map.standards_count -= 1
+    @map.save
 
     Rails.logger.info("Deleted map standard")
 
