@@ -1,7 +1,7 @@
 <% if !@map.map_standards.empty? %>
   <% @map.sorted_map_standards.each do |map_standard| %>
-    <div class="hover clickable">
-	    
+  <ul>
+  	<li action-url="<%= map_standard_path map_standard.slug %>" class="hover clickable">    
     	<b><%= map_standard.standard.name %>: </b>
     	<p><%= map_standard.standard.text %></p>
 
@@ -13,7 +13,7 @@
 	          <label>Resources: <%= map_standard.map_objectives.map(&:map_resources).count %></label>
 	        </li>
 	      </ul>
-	    
-    </div>
+		</li>
+	</ul>
   <% end %>
 <% end %>

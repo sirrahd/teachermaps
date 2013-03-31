@@ -2,7 +2,7 @@ $(document).ready(function(){
 
   $('#users_maps_table ul li').live("click", function(e) {
   
-      var mapURI = $(this).attr('map-url');
+      var mapURI = $(this).attr('action-url');
       window.location = mapURI;
       return;
   });
