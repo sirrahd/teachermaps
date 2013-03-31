@@ -40,12 +40,15 @@
 
     $('#maps_map_assessments_resources_table .map_assessment_resource_selected').live("click", function(e) {
 
-        // /ajax/map_assessments/:map_asssessment_id/map_resource/:map_resource_id/destroy
-        var actionUrl = $(this).attr('action-url');
+        // /ajax/map_assessments/:map_asssessment_id/map_resources/:map_resource_id/destroy
+        var mapAssessmentId = $(this).attr('map-assessment-id');
+        var resourceId = $(this).attr('resource-id'); 
+        var actionUrl = '/ajax/map_assessments/'+mapAssessmentId+'/map_resources/'+resourceId+'/destroy'
         var resourceElem = $(this);
+
         console.log("Removing map resource to assessment: "+actionUrl)
 
-        if(actionUrl == undefined) return false;
+        if(mapAssessmentId == undefined || resourceId == undefined) return false;
 
         $.ajax({
             url: actionUrl,
@@ -66,12 +69,15 @@
 
     $('#maps_map_assessments_resources_table .map_assessment_resource_default').live("click", function(e) {
         
-        // /ajax/map_assessments/:map_asssessment_id/map_resource/:map_resource_id/new
-        var actionUrl = $(this).attr('action-url');
+        // /ajax/map_assessments/:map_asssessment_id/map_resources/:map_resource_id/new
+        var mapAssessmentId = $(this).attr('map-assessment-id');
+        var resourceId = $(this).attr('resource-id'); 
+        var actionUrl = '/ajax/map_assessments/'+mapAssessmentId+'/map_resources/'+resourceId+'/new'
         var resourceElem = $(this);
-        console.log("Adding map resource to assessment: "+actionUrl)
 
-        if(actionUrl == undefined) return false;
+        console.log("Removing map resource to assessment: "+actionUrl)
+
+        if(mapAssessmentId == undefined || resourceId == undefined) return false;
 
         $.ajax({
             url: actionUrl,
