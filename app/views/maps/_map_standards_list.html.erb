@@ -12,7 +12,7 @@
 				  	  <label>Objectives: <%= map_standard.map_objectives.count %></label>
 			        </li>
 			        <li>
-			        	<label>Resources: <%= map_standard.map_objectives.map(&:map_resources).count %></label>
+			        	<label>Resources: <%= map_standard.map_objectives.map{|a| a.map_resources.count}.sum %></label>
 			        </li>
 		        </ul>
 
