@@ -131,7 +131,7 @@ class MapAssessmentsController < ApplicationController
 	    	
 	    	@map_assessment.map_resources << @map_resource
 	   	end
-	   	
+
 	    respond_to do |format|
 	      if @map_resource.save and @map_assessment.save
 	      	format.html { render :partial => 'maps/list_map_assessments', :locals => { :object => @map } }
@@ -143,29 +143,36 @@ class MapAssessmentsController < ApplicationController
 	end
 
 	def ajax_destroy_resource
-		if !@current_user 
+		Rails.logger.info(params)
+	    @map_assessment = MapAssessment.find(params[:map_assessment_id])
+	    @resource = Resource.find(params[:resource_id])
+
+	    if !@map_assessment or !@resource
+	      Rails.logger.info("Could not locate either map assessment #{params[:map_assessment_id]} or resource #{params[:resource_id]}") 
+	      return render :nothing => true, :status => 404
+	    end
+
+	    Rails.logger.info("User: #{@current_user.id} MapAssessment: #{@map_assessment.user_id} Resource: #{@resource.user_id}")
+	    if @map_assessment.user_id != @current_user.id or @resource.user_id != @current_user.id
+	      Rails.logger.info("User does not have permission to add this resource") 
 	      return render :nothing => true, :status => 403
 	    end
-	    if !params.has_key?('map_id') or !params.has_key?('standard_id')
-	      return render :nothing => true, :status => 404
+
+	    @map = @map_assessment.map
+
+	    @map_resource = MapResource.find_by_map_assessment_id_and_resource_id(@map_assessment, @resource)
+	    @map_resource.destroy
+
+	    Rails.logger.info("Deleted map resource @map_resource.name")
+
+	    respond_to do |format|
+	      if @map_resource.destroyed?
+	      	format.html { render :partial => 'maps/list_map_assessments', :locals => { :object => @map } }
+	      else
+	      	Rails.logger.info("Errors: #{@map_resource.errors.inspect}")
+	      	format.html { render nothing: true, status: 500 }
+	      end
 	    end
-
-	    print params
-
-	    @map = Map.find_by_id_and_user_id(params[:map_id], @current_user.id)
-	    standard = Standard.find(params[:standard_id])
-	    map_standard = MapStandard.find_by_standard_id_and_map_id_and_user_id(params[:standard_id], @map.id, @current_user.id)
-
-	    if !@map or !standard or !map_standard
-	      Rails.logger.info("Could not locate either map standard from given data") 
-	      return render :nothing => true, :status => 404
-	    end
-
-	    map_standard.destroy
-
-	    Rails.logger.info("Deleted map standard")
-
-	    return render partial: 'maps/map_standards_list'
 	end
 
 	private
