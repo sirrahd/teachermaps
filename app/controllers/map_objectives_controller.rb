@@ -56,7 +56,6 @@ class MapObjectivesController < ApplicationController
     @map_objective.destroy
 
 
-
     respond_to do |format|
       if @map.save
         format.html { render :partial => 'map_standards/list_map_objectives'}
@@ -65,6 +64,21 @@ class MapObjectivesController < ApplicationController
       end
     end
   end 
+
+
+  def update
+    @map_objective = MapObjective.find params[:id]
+
+      respond_to do |format|
+        if @map_objective.update_attributes(params[:map_objective])
+            format.html { redirect_to(@map_objective, :notice => 'Map Objective was successfully updated.') }
+            format.json { respond_with_bip(@map_objective) }
+        else
+            format.html { render :action => "edit" }
+            format.json { respond_with_bip(@map_objective) }
+        end
+      end
+    end
 
 
   private 
