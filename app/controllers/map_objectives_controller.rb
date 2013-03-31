@@ -69,16 +69,68 @@ class MapObjectivesController < ApplicationController
   def update
     @map_objective = MapObjective.find params[:id]
 
-      respond_to do |format|
-        if @map_objective.update_attributes(params[:map_objective])
-            format.html { redirect_to(@map_objective, :notice => 'Map Objective was successfully updated.') }
-            format.json { respond_with_bip(@map_objective) }
-        else
-            format.html { render :action => "edit" }
-            format.json { respond_with_bip(@map_objective) }
-        end
+    respond_to do |format|
+      if @map_objective.update_attributes(params[:map_objective])
+          format.html { redirect_to(@map_objective, :notice => 'Map Objective was successfully updated.') }
+          format.json { respond_with_bip(@map_objective) }
+      else
+          format.html { render :action => "edit" }
+          format.json { respond_with_bip(@map_objective) }
       end
     end
+  end
+
+
+  def ajax_show_resources
+    @map_objective = MapObjective.find_by_id_and_user_id( params[:map_objective_id], @current_user.id)
+
+    return render nothing: true, status: 404 if !@map_objective
+
+    @map = @map_objective.map
+    @resources = Resource.where user_id: @current_user.id
+    @filter_resource_types = ResourceType.all
+    @filter_course_grades = CourseGrade.all
+    @filter_course_subjects = CourseSubject.all   
+    @map_resources_by_resource_id = Hash[@map_objective.map_resources.map { |p| [p['resource_id'], p] }]
+    Rails.logger.info("Map Objectives Ressources: #{@map_resources_by_resource_id.inspect}")
+
+    return render :partial => 'map_standards/modal_resources'
+  end
+
+
+  def ajax_filter_resources
+
+      Rails.logger.info("Filter Params: #{params}")
+      @map_assessment = MapAssessment.find(params[:map_assessment_id])
+
+      return render nothing: true, status: 404 if !@map_assessment
+      
+      @map_resources_by_resource_id = Hash[@map_assessment.map_resources.map { |p| [p['resource_id'], p] }]
+        Rails.logger.info("Map Assessment Ressource: #{@map_resources_by_resource_id.inspect}")
+
+      filter = {}
+      @resources = Resource.where( :user_id => @current_user.id )
+
+      if params.has_key?('q') and !params[:q].empty?
+        @resources &= Resource.where( Resource.arel_table[:title].matches("%#{params[:q].strip}%") )
+      end
+
+      if params.has_key?('resource_types')
+        @resources &= Resource.find(:all, :conditions=>{:user_id => @current_user.id, :resource_type_id=>params[:resource_types]})
+      end
+
+      if params.has_key?('course_grades')
+        @resources &= Resource.find(:all, :joins => :course_grades, :conditions=>{:user_id => @current_user.id, :course_grades=>{:id => params[:course_grades]}})
+        
+      end
+
+      if params.has_key?('course_subjects')
+        @resources &= Resource.find(:all, :joins => :course_subjects, :conditions=>{:user_id => @current_user.id, :course_subjects=>{:id => params[:course_subjects]}})
+      end
+
+      Rails.logger.info(@resources);
+      render :partial => 'map_assessments/table_resources'
+  end
 
 
   private 

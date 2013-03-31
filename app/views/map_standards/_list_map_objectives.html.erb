@@ -8,7 +8,7 @@
             <i class="icon-trash"></i>
           <% end %>
           <br/>
-          <%= link_to  map_objectives_ajax_show_resources_path(map_objective), {:remote => true, 'data-toggle' => "modal", 'data-target' =>  "#map_objective_filter_resources_modal", :class => 'maps_objectives_show_resources pull-right'} do %>
+          <%= link_to  map_objectives_ajax_show_resources_path(map_objective), {:remote => true, 'data-toggle' => "modal", 'data-target' =>  "#filter_map_objectives_resources_modal", :class => 'maps_objectives_show_resources pull-right'} do %>
             <i class="icon-pencil"></i>
           <% end %>
         </span>
@@ -16,7 +16,6 @@
           <b><%= best_in_place map_objective, :name, :type => :input %>:</b>
           <p style="text-indent:50px;"><%= best_in_place map_objective, :text, :type => :textarea %></p>
         </span>
-
       
         <% if !map_objective.map_resources.empty? %>
           <% map_objective.map_resources.each do |map_resource| %>
