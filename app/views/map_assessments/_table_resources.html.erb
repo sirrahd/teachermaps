@@ -11,9 +11,9 @@
 
   <% @resources.each do |resource| %>
     <% if  @map_resources_by_resource_id.has_key? resource.id %>
-      <tr resource-url="<%= resources_ajax_show_path resource.slug %>" class="map-assessment-resource-selected"> 
+      <tr action-url="<%= map_assessments_ajax_destroy_resource_path @map_assessment, resource.id %>" class="map_assessment_resource_selected"> 
     <% else %>
-      <tr resource-url="<%= resources_ajax_show_path resource.slug %>" class="map-assessment-resource-default"> 
+      <tr action-url="<%= map_assessments_ajax_new_resource_path @map_assessment, resource.id %>" class="map_assessment_resource_default"> 
     <% end %>
 
       <td title="<%= resource.get_type %>" style="width:35px;"><%= raw resource.get_thumbnail %></td>

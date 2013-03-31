@@ -36,7 +36,6 @@ class MapAssessmentsController < ApplicationController
 
 
   	def destroy
-
   		@map_assessment = MapAssessment.find_by_id_and_user_id( params[:id], @current_user.id)
 
   		# Stop here if map was not found
@@ -104,44 +103,46 @@ class MapAssessmentsController < ApplicationController
 	end
 
 
-	def ajax_new
+	def ajax_new_resource
 
-	    Rails.info.logger(params)
+	    Rails.logger.info(params)
+	    @map_assessment = MapAssessment.find(params[:map_assessment_id])
+	    @resource = Resource.find(params[:resource_id])
 
-	    @map = Map.find_by_id_and_user_id(params[:map_id], @current_user.id)
-	    standard = Standard.find(params[:standard_id])
-
-	    if !@map or !standard
-	      Rails.logger.info("Could not locate either map #{params[:map_id]} or standard #{params[:standard_id]}") 
+	    if !@map_assessment or !@resource
+	      Rails.logger.info("Could not locate either map assessment #{params[:map_assessment_id]} or resource #{params[:resource_id]}") 
 	      return render :nothing => true, :status => 404
 	    end
 
-	    Rails.logger.info("Located Map #{@map} and Standard #{standard}")
-
-	    if !MapStandard.find_by_standard_id_and_map_id_and_user_id(standard.id, @map.id, @current_user.id)
-	        new_map_standard = MapStandard.new
-	        new_map_standard.standard = standard
-	        new_map_standard.map = @map
-	        new_map_standard.user = @current_user
-	        @map.map_standards << new_map_standard
+	    Rails.logger.info("User: #{@current_user.id} MapAssessment: #{@map_assessment.user_id} Resource: #{@resource.user_id}")
+	    if @map_assessment.user_id != @current_user.id or @resource.user_id != @current_user.id
+	      Rails.logger.info("User does not have permission to add this resource") 
+	      return render :nothing => true, :status => 403
 	    end
 
-	    # Add any children standards
-	    standard.children_standards.each do |child_standard|
-	      # Enforce prevention of the same standard being added twice
-	      if !MapStandard.find_by_standard_id_and_map_id_and_user_id(child_standard.id, @map.id, @current_user.id)
-	        new_map_standard = MapStandard.new
-	        new_map_standard.standard = child_standard
-	        new_map_standard.map = @map
-	        new_map_standard.user = @current_user
-	        @map.map_standards << new_map_standard
+	    @map = @map_assessment.map
+
+	    if !MapResource.find_by_map_assessment_id_and_resource_id(@map_assessment, @resource)
+	    	@map_resource = MapAssessmentResource.new
+	    	@map_resource.user = @current_user
+	    	@map_resource.map = @map_assessment.map
+	    	@map_resource.resource = @resource
+	    	@map_resource.map_assessment = @map_assessment
+	    	
+	    	@map_assessment.map_resources << @map_resource
+	   	end
+	   	
+	    respond_to do |format|
+	      if @map_resource.save and @map_assessment.save
+	      	format.html { render :partial => 'maps/list_map_assessments', :locals => { :object => @map } }
+	      else
+	      	Rails.logger.info("Errors: #{@map_resource.errors.inspect} #{@map_assessment.errors.inspect}")
+	      	format.html { render nothing: true, status: 500 }
 	      end
 	    end
-
-	    return render partial: 'maps/map_standards_list'
 	end
 
-	def ajax_destroy
+	def ajax_destroy_resource
 		if !@current_user 
 	      return render :nothing => true, :status => 403
 	    end

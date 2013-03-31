@@ -8,7 +8,7 @@ class MapResource < ActiveRecord::Base
   validates :user, presence: true
   validates :resource, presence: true
   validates :map, presence: true
-  validates :text, presence: true, length: {minimum: 2, maximum: 2048}
+  validates :text, length: {maximum: 2048}
 
   before_validation	:clean_attrs
 
@@ -27,5 +27,11 @@ class MapResource < ActiveRecord::Base
       end
     end
     super
+  end
+
+
+  before_create :default_values
+  def default_values
+    self.text = 'Description of the Resource'
   end
 end

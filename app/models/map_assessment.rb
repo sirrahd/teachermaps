@@ -10,7 +10,7 @@ class MapAssessment < ActiveRecord::Base
   belongs_to :user
   belongs_to :map
 
-  has_many :map_resources
+  has_many :map_resources, :uniq => true
 
   validates :map, presence: true
   validates :user, presence: true
