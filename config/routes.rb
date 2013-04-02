@@ -71,7 +71,7 @@ Teachermaps::Application.routes.draw do
   end
 
   resources :users do
-    resources :map_standards
+    resources :map_standards, :path => 'standards'
   end
   
   # namespace :map do
