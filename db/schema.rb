@@ -89,7 +89,7 @@ ActiveRecord::Schema.define(:version => 20130303003444) do
   create_table "map_assessments", :force => true do |t|
     t.string   "slug"
     t.string   "name"
-    t.string   "text"
+    t.text     "text"
     t.integer  "user_id"
     t.integer  "map_id"
     t.datetime "created_at", :null => false
@@ -98,7 +98,7 @@ ActiveRecord::Schema.define(:version => 20130303003444) do
 
   create_table "map_objectives", :force => true do |t|
     t.string   "name"
-    t.string   "text"
+    t.text     "text"
     t.string   "slug"
     t.integer  "map_standard_id"
     t.integer  "user_id"
@@ -108,7 +108,7 @@ ActiveRecord::Schema.define(:version => 20130303003444) do
   end
 
   create_table "map_resources", :force => true do |t|
-    t.string   "text"
+    t.text     "text"
     t.integer  "resource_id"
     t.integer  "user_id"
     t.integer  "map_id"
@@ -131,7 +131,7 @@ ActiveRecord::Schema.define(:version => 20130303003444) do
   create_table "maps", :force => true do |t|
     t.string   "name"
     t.string   "slug"
-    t.string   "text"
+    t.text     "text"
     t.string   "thumbnail"
     t.integer  "resources_count"
     t.integer  "objectives_count"
@@ -176,7 +176,7 @@ ActiveRecord::Schema.define(:version => 20130303003444) do
 
   create_table "standards", :force => true do |t|
     t.string  "name"
-    t.string  "text"
+    t.text    "text"
     t.string  "domain"
     t.string  "sub_subject"
     t.string  "slug"
@@ -189,12 +189,11 @@ ActiveRecord::Schema.define(:version => 20130303003444) do
   create_table "users", :force => true do |t|
     t.string   "name"
     t.string   "email"
-    t.datetime "created_at",                     :null => false
-    t.datetime "updated_at",                     :null => false
+    t.datetime "created_at",      :null => false
+    t.datetime "updated_at",      :null => false
     t.string   "account_name"
     t.string   "password_digest"
     t.string   "remember_token"
-    t.integer  "confirmed",       :default => 0, :null => false
   end
 
   add_index "users", ["account_name"], :name => "index_users_on_account_name", :unique => true

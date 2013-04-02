@@ -3,7 +3,7 @@ class CreateMapObjectives < ActiveRecord::Migration
     create_table :map_objectives do |t|
 
       t.string :name
-      t.string :text
+      t.text   :text
       t.string :slug
 
       t.integer :map_standard_id
