@@ -132,7 +132,7 @@ ActiveRecord::Schema.define(:version => 20130303003444) do
     t.string   "name"
     t.string   "slug"
     t.text     "text"
-    t.string   "thumbnail"
+    t.text     "thumbnail"
     t.integer  "resources_count"
     t.integer  "objectives_count"
     t.integer  "standards_count"
