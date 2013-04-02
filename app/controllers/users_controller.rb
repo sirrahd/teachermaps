@@ -1,5 +1,7 @@
 class UsersController < ApplicationController
 
+  before_filter :require_session
+
   def index
     # /users/ was returning a 404
     return_to signin_url if !signed_in?
@@ -8,7 +10,8 @@ class UsersController < ApplicationController
 
   def show
     # Users must be signed in to view a profile
-    return_to signin_url if !signed_in?
+    #Rails.logger.info(signin_url)
+    #redirect_to signin_path if !signed_in?
 
     # Users can only sign in to their own account; ignore params
     @user = @current_user
@@ -43,6 +46,15 @@ class UsersController < ApplicationController
       redirect_to @user
     else
       render 'new'
+    end
+  end
+
+  private 
+
+  # Requires user session
+  def require_session
+    unless current_user
+      redirect_to signin_path
     end
   end
 end
