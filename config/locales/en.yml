@@ -42,7 +42,6 @@ en:
     link:                       "Sign in"
     name_label:                 "Username or Email"
     password_label:             "Password"
-    new_user:                   "New user? %{signup} now!"
     error:                      "We couldn't find anyone with that name and password."
     profile:                    "Profile"
     settings:                   "Settings"
@@ -131,10 +130,24 @@ en:
     success_sync:               "Synced with Dropbox Acccount"
     denied_oauth:               "You denied TeacherMaps access to Dropbox"
   welcome_email:
-    subject:                     "Welcome to TeacherMaps!"
-    title:                       "Let's get started, %{name}"
-    content_textonly:            "Activate your account with the link below:"
-    content:                     "%{activation_link} to active your account."
-    activation_link:             "Click here"
+    subject:                    "Welcome to TeacherMaps!"
+    title:                      "Let's get started, %{name}"
+    content_textonly:           "Activate your account with the link below:"
+    content:                    "%{activation_link} to active your account."
+    activation_link:            "Click here"
   confirmation:
-    success:                     "Thanks! We confirmed your email address."
+    success:                    "Thanks! We confirmed your email address."
+  reset_password:
+    subject:                    "Forgot your password?"
+    content_textonly:           "Click the link below to change your password:"
+    content:                    |
+                                <p>We received a password reset request for your TeacherMaps account.</p>
+                                <p>%{action} to change your password.</p>
+    action:                     "Click here"
+    new_password:               "Enter a new password"
+    submit:                     "Reset password"
+    email:                      "What's your email address?"
+    error:                      "Oops, that didn't work. Let's try again."
+    email_sent:                 "Check your email inbox to confirm your identity and reset your password"
+    title:                      "Reset your password"
+    link:                       "Forgot your password?"

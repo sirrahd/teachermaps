@@ -12,6 +12,10 @@
 
       <%= f.submit t('signin.link'), class: "btn btn-large btn-primary" %>
     <% end %>
-    <p><%= raw t('signin.new_user', signup: link_to(t('signup.link'), signup_path,)) %></p>
+    <p>
+      <%= link_to(t('signup.link'), signup_path) %>
+      |
+      <%= link_to(t('reset_password.link'), controller: 'users', action: 'reset_password') %>
+    </p>
   </div>
 </div>

@@ -30,21 +30,9 @@ class UsersController < ApplicationController
     @user = User.new
   end
 
-  def show_with_email_confirmation
-    @user = User.find_by_account_name(params[:account])
-
-    if @user.email_confirmation_key == params[:key]
-      @user.update_attribute(:confirmed, 1)
-      sign_in @user
-      flash[:success] = t 'confirmation.success'
-      redirect_to @user
-    else
-      redirect_to signin_url
-    end
-  end
-
   def create
     @user = User.new(params[:user])
+
     if @user.save
       sign_in @user
       UserMailer.welcome_email(@user, request.env['HTTP_HOST']).deliver
@@ -54,4 +42,66 @@ class UsersController < ApplicationController
       render 'new'
     end
   end
+
+  def edit
+  end
+
+  def update
+    # If the request includes a key, use it
+    if params[:key]
+      @user = User.find_by_account_name(params[:account_name])
+      @user = nil unless @user.request_key == params[:key]
+    end
+
+    if @user.update_attributes(params[:user])
+      flash[:success] = "Profile updated"
+      sign_in @user
+      redirect_to @user
+    else
+      flash[:warning] = t 'reset_password.error'
+      redirect_to :back
+    end
+  end
+
+  def confirm_email
+    @user = User.find_by_account_name(params[:account])
+
+    if @user.request_key == params[:key]
+      @user.update_attribute(:confirmed, 1)
+      sign_in @user
+      flash[:success] = t 'confirmation.success'
+      redirect_to @user
+    else
+      redirect_to signin_url
+    end
+  end
+
+  def reset_password
+    # Stage 3: User navigates from email link
+    if params[:account_name]
+      @user = User.find_by_account_name(params[:account_name])
+      if @user.request_key == params[:key]
+        render 'password_reset'
+        return
+      else
+        flash[:warning] = t 'reset_password.error'
+      end
+
+    #Stage 2: User provides email address
+    elsif params[:email]
+      if @user = User.find_by_email(params[:email])
+        UserMailer.reset_password_email(@user, request.env['HTTP_HOST']).deliver
+        flash[:success] = t 'reset_password.email_sent'
+        redirect_to root_url
+        return
+      else
+          # Fails, re-render reset confirmation with the flash
+          flash[:warning] = t 'reset_password.error'
+      end
+    end
+
+    # Stage 1: User enters email address
+    render 'password_reset_confirmation'
+  end
+
 end

@@ -58,8 +58,8 @@ class User < ActiveRecord::Base
     self.account_name
   end
 
-  def email_confirmation_key
-    Digest::MD5.hexdigest(self.email + self.confirmed.to_s + self.created_at.iso8601)
+  def request_key
+    Digest::MD5.hexdigest(self.email + self.account_name + self.confirmed.to_s + self.password_digest + self.created_at.iso8601)
   end
 
   private
