@@ -18,7 +18,7 @@ Teachermaps::Application.routes.draw do
   match '/contact', to: 'static_pages#contact'
 
 
-  resources :maps, only: [:update]
+  resources :maps, only: [:update, :create, :destroy]
   resources :users do
     resources :maps
   end
