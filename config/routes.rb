@@ -1,5 +1,4 @@
 Teachermaps::Application.routes.draw do
-  
 
     
   resources :settings
@@ -16,6 +15,9 @@ Teachermaps::Application.routes.draw do
   match '/help',    to: 'static_pages#help'
   match '/about',   to: 'static_pages#about'
   match '/contact', to: 'static_pages#contact'
+
+  match '/confirm', to: 'users#confirm_email'
+  match '/reset', to: 'users#reset_password'
 
 
   resources :maps, only: [:update, :create, :destroy]

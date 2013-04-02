@@ -1,7 +1,5 @@
 class UsersController < ApplicationController
 
-  # before_filter :require_session
-
   def index
     # /users/ was returning a 404
     return_to signin_url if !signed_in?
@@ -10,44 +8,33 @@ class UsersController < ApplicationController
 
   def show
     # Users must be signed in to view a profile
-    #Rails.logger.info(signin_url)
     redirect_to signin_url if !signed_in?
-    
-    # begin
-    #   @user = User.find_by_account_name(params[:id])
-    # rescue
-    #   @user = @current_user
-    #   # return redirect_to @current_user
-    # end
-    
-    
+
     # Users can only sign in to their own account; ignore params
     @user = @current_user
 
-    @maps = Map.where user_id: @current_user 
+    @resources = Resource.where( user_id: @current_user.id )
 
-    @resources = Resource.where user_id: @current_user.id
+    @filter_course_types = ResourceType.where( id: @resources.map { |resource| resource.resource_type.id } )
+    @filter_course_grades = CourseGrade.where( id: @resources.map { |resource| resource.course_grades.collect(&:id) } )
+    @filter_course_subjects = CourseSubject.where( id: @resources.map { |resource| resource.course_subjects.collect(&:id) } )
 
-    @filter_course_types = ResourceType.where id: @resources.map { |resource| resource.resource_type.id }
-    @filter_course_grades = CourseGrade.where id: @resources.map { |resource| resource.course_grades.collect(&:id) }
-    @filter_course_subjects = CourseSubject.where id: @resources.map { |resource| resource.course_subjects.collect(&:id) }
 
     # For rendering Ajax "Upload Resource" form
     @resource = Resource.new
-
   end
-  
+
   def new
     redirect_to @current_user if signed_in?
-    
-    @user = User.new
-  end  
 
-  
+    @user = User.new
+  end
+
   def create
     @user = User.new(params[:user])
     if @user.save
       sign_in @user
+      UserMailer.welcome_email(@user, request.env['HTTP_HOST']).deliver
       flash[:success] = t('signup.welcome', app_name: t('global.app_name'))
       redirect_to @user
     else
@@ -55,12 +42,65 @@ class UsersController < ApplicationController
     end
   end
 
-  private 
+  def edit
+  end
 
-  # Requires user session
-  def require_session
-    unless current_user
-      redirect_to signin_path
+  def update
+    # If the request includes a key, use it
+    if params[:key]
+      @user = User.find_by_account_name(params[:account_name])
+      @user = nil unless @user.request_key == params[:key]
+    end
+
+    if @user.update_attributes(params[:user])
+      flash[:success] = "Profile updated"
+      sign_in @user
+      redirect_to @user
+    else
+      flash[:warning] = t 'reset_password.error'
+      redirect_to :back
     end
   end
+
+  def confirm_email
+    @user = User.find_by_account_name(params[:account])
+
+    if @user.request_key == params[:key]
+      @user.update_attribute(:confirmed, 1)
+      sign_in @user
+      flash[:success] = t 'confirmation.success'
+      redirect_to @user
+    else
+      redirect_to signin_url
+    end
+  end
+
+  def reset_password
+    # Stage 3: User navigates from email link
+    if params[:account_name]
+      @user = User.find_by_account_name(params[:account_name])
+      if @user.request_key == params[:key]
+        render 'password_reset'
+        return
+      else
+        flash[:warning] = t 'reset_password.error'
+      end
+
+    #Stage 2: User provides email address
+    elsif params[:email]
+      if @user = User.find_by_email(params[:email])
+        UserMailer.reset_password_email(@user, request.env['HTTP_HOST']).deliver
+        flash[:success] = t 'reset_password.email_sent'
+        redirect_to root_url
+        return
+      else
+          # Fails, re-render reset confirmation with the flash
+          flash[:warning] = t 'reset_password.error'
+      end
+    end
+
+    # Stage 1: User enters email address
+    render 'password_reset_confirmation'
+  end
+
 end

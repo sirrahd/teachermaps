@@ -194,6 +194,7 @@ ActiveRecord::Schema.define(:version => 20130303003444) do
     t.string   "account_name"
     t.string   "password_digest"
     t.string   "remember_token"
+    t.integer  "confirmed",       :default => 0, :null => false
   end
 
   add_index "users", ["account_name"], :name => "index_users_on_account_name", :unique => true
