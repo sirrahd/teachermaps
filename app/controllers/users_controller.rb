@@ -11,7 +11,7 @@ class UsersController < ApplicationController
   def show
     # Users must be signed in to view a profile
     #Rails.logger.info(signin_url)
-    #redirect_to signin_path if !signed_in?
+    redirect_to signin_url if !signed_in?
 
     # Users can only sign in to their own account; ignore params
     @user = @current_user
@@ -32,8 +32,6 @@ class UsersController < ApplicationController
     redirect_to @current_user if signed_in?
     
     @user = User.new
-
-
   end
   
 
