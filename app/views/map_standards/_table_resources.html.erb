@@ -11,9 +11,9 @@
 
   <% @resources.each do |resource| %>
     <% if  @map_resources_by_resource_id.has_key? resource.id %>
-      <tr map-objective-id="<%= @map_objective.id %>" resource-id="<%= resource.id %>"  class="map_objective_resource_selected"> 
+      <tr map-objective-id="<%= @map_objective.id %>" resource-id="<%= resource.id %>"  class="map_objectives_resource_selected"> 
     <% else %>
-      <tr map-objective-id="<%= @map_objective.id %>" resource-id="<%= resource.id %>" class="map_objective_resource_default hover"> 
+      <tr map-objective-id="<%= @map_objective.id %>" resource-id="<%= resource.id %>" class="map_objectives_resource_default hover"> 
     <% end %>
 
       <td title="<%= resource.get_type %>" style="width:35px;"><%= raw resource.get_thumbnail %></td>

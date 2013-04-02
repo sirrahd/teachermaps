@@ -8,7 +8,7 @@
             <i class="icon-trash"></i>
           <% end %>
           <br/>
-          <%= link_to  map_objectives_ajax_show_resources_path(map_objective), {:remote => true, 'data-toggle' => "modal", 'data-target' =>  "#filter_map_objectives_resources_modal", :class => 'maps_objectives_show_resources pull-right'} do %>
+          <%= link_to  map_objectives_show_resources_path(map_objective), {:remote => true, 'data-toggle' => "modal", 'data-target' =>  "#filter_map_objectives_resources_modal", :class => 'maps_objectives_show_resources pull-right'} do %>
             <i class="icon-pencil"></i>
           <% end %>
         </span>

@@ -33,10 +33,10 @@ Teachermaps::Application.routes.draw do
   resources :map_resources
 
   
-  match '/ajax/map_objectives/:map_objective_id/resources/:resource_id/new' => 'map_objectives#ajax_new_resource', as: 'map_objectives_ajax_new_resource'
-  match '/ajax/map_objectives/:map_objective_id/resources/:resource_id/destroy' => 'map_objectives#ajax_destroy_resource', as: 'map_objectives_ajax_destroy_resource'
-  match '/ajax/map_objectives/:map_objective_id/resources/filter' => 'map_objectives#ajax_filter_resources', as: 'map_objectives_resources_ajax_filter'
-  match '/ajax/map_objectives/:map_objective_id/resources/' => 'map_objectives#ajax_show_resources', as: 'map_objectives_ajax_show_resources'
+  match '/map_objectives/:map_objective_id/resources/:resource_id/new' => 'map_objectives#create_resource', as: 'map_objectives_create_resource'
+  match '/map_objectives/:map_objective_id/resources/:resource_id/destroy' => 'map_objectives#destroy_resource', as: 'map_objectives_destroy_resource'
+  match '/map_objectives/:map_objective_id/resources/filter' => 'map_objectives#filter_resources', as: 'map_objectives_resources_filter'
+  match '/map_objectives/:map_objective_id/resources/' => 'map_objectives#show_resources', as: 'map_objectives_show_resources'
   resources :map_objectives
 
   match '/standards/ajax/filter' => 'standards#ajax_filter'
