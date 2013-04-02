@@ -21,6 +21,10 @@ class MapObjective < ActiveRecord::Base
   before_create :default_values
   before_validation	:clean_attrs
 
+  def owned_by?( user_id )
+    self.user_id == user_id
+  end
+
   private 
 
   def clean_attrs

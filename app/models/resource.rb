@@ -30,6 +30,10 @@ class Resource < ActiveRecord::Base
 		self.slug
 	end
 
+  def owned_by?( user_id )
+    self.user_id == user_id
+  end
+
   def assign_type
       conversion_table = ResourceType::MIME_TYPE_CONVERSIONS
 

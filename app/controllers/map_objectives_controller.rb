@@ -174,35 +174,36 @@ class MapObjectivesController < ApplicationController
 
   def destroy_resource
     Rails.logger.info(params)
-      @map_assessment = MapAssessment.find(params[:map_assessment_id])
-      @resource = Resource.find(params[:resource_id])
+    @map_objective = MapObjective.find(params[:map_objective_id])
+    @resource = Resource.find(params[:resource_id])
 
-      if !@map_assessment or !@resource
-        Rails.logger.info("Could not locate either map assessment #{params[:map_assessment_id]} or resource #{params[:resource_id]}") 
-        return render :nothing => true, :status => 404
+    if !@map_objective or !@resource
+      Rails.logger.info("Could not locate either map objective #{params[:map_objective_id]} or resource #{params[:resource_id]}") 
+      return render :nothing => true, :status => 404
+    end
+
+    Rails.logger.info("User: #{@current_user.id} Map Objective: #{@map_objective.user_id} Resource: #{@resource.user_id}")
+    if !@map_objective.owned_by?(@current_user.id) or !@resource.owned_by?(@current_user.id)
+      Rails.logger.info("User does not have permission to remove this resource") 
+      return render :nothing => true, :status => 403
+    end
+
+    @map_standard = @map_objective.map_standard
+    @map = @map_objective.map
+
+    @map_resource = MapResource.find_by_map_objective_id_and_resource_id(@map_objective, @resource)
+    @map_resource.destroy
+
+    Rails.logger.info("Deleted map resource")
+
+    respond_to do |format|
+      if @map_resource.destroyed?
+        format.html { render :partial => 'map_standards/list_map_objectives' }
+      else
+        Rails.logger.info("Errors: #{@map_resource.errors.inspect}")
+        format.html { render nothing: true, status: 500 }
       end
-
-      Rails.logger.info("User: #{@current_user.id} MapAssessment: #{@map_assessment.user_id} Resource: #{@resource.user_id}")
-      if @map_assessment.user_id != @current_user.id or @resource.user_id != @current_user.id
-        Rails.logger.info("User does not have permission to add this resource") 
-        return render :nothing => true, :status => 403
-      end
-
-      @map = @map_assessment.map
-
-      @map_resource = MapResource.find_by_map_assessment_id_and_resource_id(@map_assessment, @resource)
-      @map_resource.destroy
-
-      Rails.logger.info("Deleted map resource @map_resource.name")
-
-      respond_to do |format|
-        if @map_resource.destroyed?
-          format.html { render :partial => 'maps/list_map_assessments', :locals => { :object => @map } }
-        else
-          Rails.logger.info("Errors: #{@map_resource.errors.inspect}")
-          format.html { render nothing: true, status: 500 }
-        end
-      end
+    end
   end
 
   private 
