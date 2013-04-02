@@ -10,6 +10,7 @@ gem "select2-rails", '3.2.1'
 gem 'google-api-client', '0.5.0'
 gem 'dropbox-sdk', '1.5.1'
 gem 'best_in_place', '2.1.0'
+gem 'nokogiri', '1.5.6'
 
 
 group :development, :test do
@@ -17,7 +18,6 @@ group :development, :test do
   gem 'annotate', '2.5.0'
   gem 'execjs', '1.4.0'
   gem 'therubyracer', '0.11.3'
-  gem 'nokogiri', '1.5.6'
 end
 
 # Gems used only for assets and not required
