@@ -4,7 +4,7 @@ class CreateMapAssessments < ActiveRecord::Migration
 
       t.string :slug
       t.string :name
-      t.string :text
+      t.text   :text
 
       t.integer :user_id
       t.integer :map_id
