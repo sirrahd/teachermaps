@@ -101,12 +101,12 @@ class MapObjectivesController < ApplicationController
   def ajax_filter_resources
 
       Rails.logger.info("Filter Params: #{params}")
-      @map_assessment = MapAssessment.find(params[:map_assessment_id])
+      @map_objective = MapObjective.find(params[:map_objective_id])
 
-      return render nothing: true, status: 404 if !@map_assessment
+      return render nothing: true, status: 404 if !@map_objective
       
-      @map_resources_by_resource_id = Hash[@map_assessment.map_resources.map { |p| [p['resource_id'], p] }]
-        Rails.logger.info("Map Assessment Ressource: #{@map_resources_by_resource_id.inspect}")
+      @map_resources_by_resource_id = Hash[@map_objective.map_resources.map { |p| [p['resource_id'], p] }]
+      Rails.logger.info("Map Objective Ressource: #{@map_resources_by_resource_id.inspect}")
 
       filter = {}
       @resources = Resource.where( :user_id => @current_user.id )
@@ -129,7 +129,7 @@ class MapObjectivesController < ApplicationController
       end
 
       Rails.logger.info(@resources);
-      render :partial => 'map_assessments/table_resources'
+      render :partial => 'map_standards/table_resources'
   end
 
 
