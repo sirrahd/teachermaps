@@ -139,8 +139,10 @@ en:
     success:                    "Thanks! We confirmed your email address."
   reset_password:
     subject:                    "Forgot your password?"
-    content_textonly:           "Click the link below to reset your password:"
-    content:                    "%{action} to reset your password."
+    content_textonly:           "Click the link below to change your password:"
+    content:                    |
+                                <p>We received a password reset request for your TeacherMaps account.</p>
+                                <p>%{action} to change your password.</p>
     action:                     "Click here"
     new_password:               "Enter a new password"
     submit:                     "Reset password"
