@@ -21,9 +21,7 @@ class MapStandard < ActiveRecord::Base
   def to_param
     self.slug
   end
-
   
-
   private 
 
   def default_values

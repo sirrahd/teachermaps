@@ -16,7 +16,10 @@ Teachermaps::Application.routes.draw do
 
   
   match 'users/maps' => 'maps#index', :as => 'maps_index'
-  resources :maps 
+  # resources :maps 
+  resources :users do
+    resources :maps
+  end
 
   match '/maps/ajax/filter' => 'map_standards#ajax_filter'
   
@@ -42,7 +45,10 @@ Teachermaps::Application.routes.draw do
   match '/standards/ajax/filter' => 'standards#ajax_filter'
   resources :standards
   
-  resources :users
+  resources :users do
+    resources :maps
+  end
+  # resources :users
   resources :sessions, only: [:new, :create, :destroy]
   resources :feedbacks, only: [:create]
 
@@ -64,9 +70,18 @@ Teachermaps::Application.routes.draw do
   match 'dropbox/preview/:path' => 'drop_box_accounts#preview', :as => 'drop_box_accounts_preview', :constraints => {:path => /[\w.\/]+/}
   match 'dropbox/oauth_callback' => 'drop_box_accounts#oauth_callback'
 
-  namespace :map do
+
+  # resources :maps do
+  #   resources :map_standards
+  # end
+
+  resources :users do
     resources :map_standards
   end
+  
+  # namespace :map do
+  #   resources :map_standards
+  # end
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
