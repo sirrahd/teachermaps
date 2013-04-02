@@ -6,8 +6,8 @@ class CreateMaps < ActiveRecord::Migration
 
       t.string :name
       t.string :slug
-      t.text   :text, :limit => nil
-      t.text   :thumbnail, :limig => nil
+      t.string :text
+      t.string :thumbnail
 
       t.integer :resources_count
       t.integer :objectives_count
@@ -17,6 +17,9 @@ class CreateMaps < ActiveRecord::Migration
 
       t.timestamps
     end
+
+    change_column :maps, :text, :text, :limit => nil
+    change_column :maps, :thumbnail, :text, :limit => nil
 
     # Subjects
     create_table :course_subjects_maps, :id => false do |t|

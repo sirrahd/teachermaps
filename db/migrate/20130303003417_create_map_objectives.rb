@@ -3,7 +3,7 @@ class CreateMapObjectives < ActiveRecord::Migration
     create_table :map_objectives do |t|
 
       t.string :name
-      t.text   :text, :limit => nil
+      t.string :text
       t.string :slug
 
       t.integer :map_standard_id
@@ -12,6 +12,8 @@ class CreateMapObjectives < ActiveRecord::Migration
 
       t.timestamps
     end
+
+    change_column :map_objectives, :text, :text, :limit => nil
 
     
   end

@@ -4,7 +4,7 @@ class CreateStandards < ActiveRecord::Migration
 
       # These later are going to be indexed using Solr/Lucene
       t.string :name				# Title
-      t.text   :text, :limit => nil # Description/content
+      t.string :text        # Description/content
       t.string :domain 			# Domain 
       t.string :sub_subject	# Indexable string sub subject Science => "Life Science"
       t.string :slug				# A unique identifier of standard
@@ -17,6 +17,8 @@ class CreateStandards < ActiveRecord::Migration
       t.boolean :is_parent_standard
 
     end
+
+    change_column :standards, :text, :text, :limit => nil
 
     # Grades
     create_table :course_grades_standards, :id => false do |t|

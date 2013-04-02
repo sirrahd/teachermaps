@@ -2,7 +2,7 @@ class CreateMapResources < ActiveRecord::Migration
   def change
     create_table :map_resources do |t|
 
-      t.text    :text, :limit => nil # Description/content
+      t.string  :text
 
       t.integer :resource_id
 	    t.integer :user_id
@@ -17,5 +17,8 @@ class CreateMapResources < ActiveRecord::Migration
       
       t.timestamps
     end
+    
+    change_column :map_resources, :text, :text, :limit => nil
+
   end
 end

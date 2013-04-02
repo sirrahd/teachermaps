@@ -4,12 +4,14 @@ class CreateMapAssessments < ActiveRecord::Migration
 
       t.string :slug
       t.string :name
-      t.text   :text, :limit => nil
+      t.string :text
 
       t.integer :user_id
       t.integer :map_id
       
       t.timestamps
     end
+
+    change_column :map_assessments, :text, :text, :limit => nil
   end
 end
