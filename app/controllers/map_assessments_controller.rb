@@ -43,7 +43,7 @@ class MapAssessmentsController < ApplicationController
     
     # Needed to re-render map assessments
     @map = @map_assessment.map
-    @map_assessment.map_resources.each { @map.resources_count -= 1 }
+    @map.resources_count -= @map_assessment.map_resources.count
     
 
     # Removing resource

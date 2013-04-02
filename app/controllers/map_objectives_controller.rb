@@ -160,10 +160,12 @@ class MapObjectivesController < ApplicationController
         @map_resource.map_objective = @map_objective
         
         @map_objective.map_resources << @map_resource
+
+        @map.resources_count +=1 
       end
 
       respond_to do |format|
-        if @map_resource.save
+        if @map_resource.save and @map.save
           format.html { render :partial => 'map_standards/list_map_objectives'}
         else
           Rails.logger.info("Errors: #{@map_resource.errors.inspect} #{@map_objective.errors.inspect}")
@@ -190,6 +192,7 @@ class MapObjectivesController < ApplicationController
 
     @map_standard = @map_objective.map_standard
     @map = @map_objective.map
+    @map.resources_count -= 1
 
     @map_resource = MapResource.find_by_map_objective_id_and_resource_id(@map_objective, @resource)
     @map_resource.destroy
@@ -197,7 +200,7 @@ class MapObjectivesController < ApplicationController
     Rails.logger.info("Deleted map resource")
 
     respond_to do |format|
-      if @map_resource.destroyed?
+      if @map_resource.destroyed? and @map.save
         format.html { render :partial => 'map_standards/list_map_objectives' }
       else
         Rails.logger.info("Errors: #{@map_resource.errors.inspect}")
