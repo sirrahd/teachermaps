@@ -5,7 +5,7 @@
     <div>
       <div>
         <!-- Breadcrumb -->
-        <%= link_to "#{@map.name.titlecase.truncate(40)}", "JavaScript:void(0);" %> /
+        <%= link_to "My Maps", user_path(@map.user) %> / <%= link_to "#{@map.name.titlecase.truncate(40)}", "JavaScript:void(0);" %> /
       </div>
       <div>
         <h2><%= best_in_place @map, :name, :type => :input, :display_as => :title_titlecase %></h2>
