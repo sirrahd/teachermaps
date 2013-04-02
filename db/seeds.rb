@@ -53,7 +53,7 @@ if ActiveRecord::Base.connection.table_exists? 'standards'
 		'db/seeds/ccss.mathematics.yaml'
 	].each do |file|
 
-		print "Loading standards #{file}"
+		print "Loading standards #{file}\n"
 		seed = YAML::load_file(file)
 		seed.each_pair do |key,standard|  
 			
@@ -77,7 +77,7 @@ if ActiveRecord::Base.connection.table_exists? 'standards'
 			end
 
 			s.save
-			print "Created/Updated #{standard['name']}\n"
+			# print "Created/Updated #{standard['name']}\n"
 		end 
 	end 
 end

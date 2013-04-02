@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
 
-  before_filter :require_session
+  # before_filter :require_session
 
   def index
     # /users/ was returning a 404
@@ -12,7 +12,15 @@ class UsersController < ApplicationController
     # Users must be signed in to view a profile
     #Rails.logger.info(signin_url)
     redirect_to signin_url if !signed_in?
-
+    
+    # begin
+    #   @user = User.find_by_account_name(params[:id])
+    # rescue
+    #   @user = @current_user
+    #   # return redirect_to @current_user
+    # end
+    
+    
     # Users can only sign in to their own account; ignore params
     @user = @current_user
 
@@ -26,14 +34,14 @@ class UsersController < ApplicationController
 
     # For rendering Ajax "Upload Resource" form
     @resource = Resource.new
+
   end
   
   def new
     redirect_to @current_user if signed_in?
     
     @user = User.new
-  end
-  
+  end  
 
   
   def create

@@ -6,8 +6,8 @@ class CreateMaps < ActiveRecord::Migration
 
       t.string :name
       t.string :slug
-      t.text   :text
-      t.text   :thumbnail
+      t.text   :text, :limit => nil
+      t.text   :thumbnail, :limig => nil
 
       t.integer :resources_count
       t.integer :objectives_count
