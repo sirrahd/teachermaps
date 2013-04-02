@@ -15,11 +15,8 @@ Teachermaps::Application.routes.draw do
 
 
   
-  match 'users/maps' => 'maps#index', :as => 'maps_index'
+  # match 'users/maps' => 'maps#index', :as => 'maps_index'
   # resources :maps 
-  resources :users do
-    resources :maps
-  end
 
   match '/maps/ajax/filter' => 'map_standards#ajax_filter'
   
@@ -45,10 +42,8 @@ Teachermaps::Application.routes.draw do
   match '/standards/ajax/filter' => 'standards#ajax_filter'
   resources :standards
   
-  resources :users do
-    resources :maps
-  end
-  # resources :users
+  
+
   resources :sessions, only: [:new, :create, :destroy]
   resources :feedbacks, only: [:create]
 
@@ -71,9 +66,9 @@ Teachermaps::Application.routes.draw do
   match 'dropbox/oauth_callback' => 'drop_box_accounts#oauth_callback'
 
 
-  # resources :maps do
-  #   resources :map_standards
-  # end
+  resources :users do
+    resources :maps
+  end
 
   resources :users do
     resources :map_standards

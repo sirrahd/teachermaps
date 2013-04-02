@@ -1,7 +1,7 @@
 <ul style="list-style-type:none;">
     
     <% @maps.order("created_at DESC").each do |map| %>
-        <li action-url="<%= user_map_path @current_user,map.slug  %>"  style="cursor:pointer;" class="hover">
+        <li action-url="<%= user_map_path map.user,map.slug  %>"  style="cursor:pointer;" class="hover">
           
           <div class="row editable">
             <span>
