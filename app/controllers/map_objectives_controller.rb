@@ -26,7 +26,6 @@ class MapObjectivesController < ApplicationController
     @map_standard.map_objectives << @map_objective
 
     @map.objectives_count += 1
-    @map.save
 
     respond_to do |format|
       if @map_objective.save and @map.save

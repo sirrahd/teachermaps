@@ -9,12 +9,12 @@ class MapStandardsController < ApplicationController
   end
 
   def ajax_new
+
+    Rails.logger.info(params)
    
     if !@current_user 
       return render :nothing => true, :status => 403
     end
-
-    print params
 
     @map = Map.find_by_id_and_user_id(params[:map_id], @current_user.id)
     standard = Standard.find(params[:standard_id])
@@ -75,6 +75,7 @@ class MapStandardsController < ApplicationController
     map_standard.destroy
 
     @map.standards_count -= 1
+    @map.objectives_count -= map_standard.map_objectives.count
     @map.save
 
     Rails.logger.info("Deleted map standard")
