@@ -1,0 +1,10 @@
+$(document).ready(function(){
+  
+  $(document).on("click", '.action-link', function(e) {
+    var mapURI = $(this).attr('action-url');
+    window.location = mapURI;
+    return;
+  });
+
+});
+
