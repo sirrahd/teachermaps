@@ -3,13 +3,7 @@ $(document).ready(function() {
     $(".best_in_place").best_in_place();
 
 
-    // $('#map_standards_list ul li').live("click", function(e) {
-    //     var mapURI = $(this).attr('action-url');
-    //     window.location = mapURI;
-    //     return;
-    // });
-
-    $('#map_standards_list ul').live("click", "li", function(e) {
+    $('#map_standards_list ul li').live("click", function(e) {
         var mapURI = $(this).attr('action-url');
         window.location = mapURI;
         return;
@@ -30,7 +24,7 @@ $(document).ready(function() {
 
         if(userId == undefined || mapId == undefined || actionUrl == undefined) return false;
 
-        // console.log("Adding assessment to Map: " + mapId + " owned by " + userId + " via path " + actionUrl);
+        console.log("Adding assessment to Map: " + mapId + " owned by " + userId + " via path " + actionUrl);
 
         $.ajax({
             data: { 
