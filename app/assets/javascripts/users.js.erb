@@ -1,10 +1,16 @@
 $(document).ready(function(){
 
-  $(document).on("click", '#users_maps_table ul li', function(e) {
+  $(document).on("click", '.action-link', function(e) {
       var mapURI = $(this).attr('action-url');
       window.location = mapURI;
       return;
   });
+
+  // $(document).on("click", '#users_maps_table ul li', function(e) {
+  //     var mapURI = $(this).attr('action-url');
+  //     window.location = mapURI;
+  //     return;
+  // });
   
   // Hide by default
   $('#resource-controls').hide();
