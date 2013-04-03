@@ -7,7 +7,7 @@ $(document).ready(function(){
     //////////////////////////////
 
 
-    $('#create_map_objective').on("click", function(e) {
+    $(document).on("click", '#create_map_objective', function(e) {
 
         var mapStandardId = $('#map_standard_id').val();
         var actionUrl = $(this).attr('action-url');
@@ -41,20 +41,20 @@ $(document).ready(function(){
     //////////////////////////////
 
 
-    $(".map_standards_map_objective_destroy")
-    .on("ajax:error", function(event, data, status, xhr) {
+    $(document)
+    .on("ajax:error", ".map_standards_map_objective_destroy", function(event, data, status, xhr) {
         pushFlash({message:"Error deleting Map Assessment", state: 'error', fadeOut: 5000});
     })
-    .on("ajax:success", function(event, data, status, xhr) {
+    .on("ajax:success", ".map_standards_map_objective_destroy",function(event, data, status, xhr) {
         $('#map_standards_objectives_list').html(data);
     });
 
 
-    $(".maps_objectives_show_resources")
-    .on("ajax:error", function(event, data, status, xhr) {
+    $(document)
+    .on("ajax:error", ".maps_objectives_show_resources", function(event, data, status, xhr) {
         pushFlash({message:"Error fetching Map Objective Resources", state: 'error', fadeOut: 5000});
     })
-    .on("ajax:success", function(event, data, status, xhr) {
+    .on("ajax:success", ".maps_objectives_show_resources", function(event, data, status, xhr) {
         $('#filter_map_objectives_resources_modal').html(data);        
     });
 
@@ -70,7 +70,7 @@ $(document).ready(function(){
     //////////////////////////////
 
     var timer;
-    $("#map_standards_filter_resource_search").on('keyup input',function() {
+    $(document).on('keyup input', "#map_standards_filter_resource_search", function() {
         var form = $(this);
         // Prevents ajax request till N milliseconds 
         timer && clearTimeout(timer);
@@ -80,15 +80,15 @@ $(document).ready(function(){
     });
 
     // Needed for browser compatibility 
-    $('#map_standards_filter_resource_form').on('change', function() {
+    $(document).on('change', '#map_standards_filter_resource_form', function() {
         $(this).submit();
     });
 
-    $("#map_standards_filter_resource_form")
-    .on("ajax:error", function(event, data, status, xhr) {
+    $(document)
+    .on("ajax:error", "#map_standards_filter_resource_form", function(event, data, status, xhr) {
         pushFlash({message:"<%= I18n.t('resources.filter_failure') %>", state: 'success', fadeOut: 5000});
     })
-    .on("ajax:success", function(event, data, status, xhr) {
+    .on("ajax:success", "#map_standards_filter_resource_form", function(event, data, status, xhr) {
         // Update the resources table
         $("#map_standards_resources_table").html(data);  
     });
@@ -100,7 +100,7 @@ $(document).ready(function(){
     //////////////////////////////
 
 
-    $('#map_standards_resources_table .map_objectives_resource_selected').on("click", function(e) {
+    $(document).on("click", '#map_standards_resources_table .map_objectives_resource_selected', function(e) {
 
         // /map_objectives/:map_objective_id/resource/:map_resource_id/destroy
         var mapObjectiveId = $(this).attr('map-objective-id');
@@ -129,7 +129,7 @@ $(document).ready(function(){
         e.stopPropagation();
     });
 
-    $('#map_standards_resources_table .map_objectives_resource_default').on("click", function(e) {
+    $(document).on("click", '#map_standards_resources_table .map_objectives_resource_default', function(e) {
         
         // /map_objectives/:map_objective_id/resource/:map_resource_id/new
         var mapObjectiveId = $(this).attr('map-objective-id');
