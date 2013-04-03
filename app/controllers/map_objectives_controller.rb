@@ -93,7 +93,7 @@ class MapObjectivesController < ApplicationController
     @map_resources_by_resource_id = Hash[@map_objective.map_resources.map { |p| [p['resource_id'], p] }]
     Rails.logger.info("Map Objectives Ressources: #{@map_resources_by_resource_id.inspect}")
 
-    return render :partial => 'map_standards/modal_resources'
+    return render :partial => 'map_standards/modal_map_objective_resources'
   end
 
 
