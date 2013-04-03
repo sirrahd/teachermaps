@@ -22,35 +22,35 @@ $(document).ready(function(){
   });
 
 
-    //////////////////////////////
-    //
-    // Add Map
-    //
-    //////////////////////////////
+  //////////////////////////////
+  //
+  // Add Map
+  //
+  //////////////////////////////
 
 
-    $(document).on("click", '#users_create_map', function(e) {
+  $(document).on("click", '#users_create_map', function(e) {
 
-        var actionUrl = $(this).attr('action-url');
+      var actionUrl = $(this).attr('action-url');
 
-        if(actionUrl == undefined) return false;
+      if(actionUrl == undefined) return false;
 
-        console.log("Adding Map via path " + actionUrl);
+      console.log("Adding Map via path " + actionUrl);
 
-        $.ajax({
-            type: 'POST',
-            url: actionUrl,
-            dataType: 'html',
-            success: function (response) {
-                $('#users_maps_table').html(response);
-            },
-            error: function (xhr, ajaxOptions, thrownError) {
-                pushFlash({message:"Error adding a Map Assessment", state: 'error', fadeOut: 5000});
-            }
-        });
+      $.ajax({
+          type: 'POST',
+          url: actionUrl,
+          dataType: 'html',
+          success: function (response) {
+              $('#users_maps_table').html(response);
+          },
+          error: function (xhr, ajaxOptions, thrownError) {
+              pushFlash({message:"Error adding a Map Assessment", state: 'error', fadeOut: 5000});
+          }
+      });
 
-        e.stopPropagation();
-    });
+      e.stopPropagation();
+  });
 
 });
 

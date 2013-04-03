@@ -1,0 +1,21 @@
+$(document).ready(function() {   
+
+
+  //////////////////////////////
+  //
+  // Best In Place editing
+  //
+  //////////////////////////////
+  $(".best_in_place").best_in_place();
+
+
+  //////////////////////////////
+  //
+  // Boostrap Anchoring of Tabs
+  //
+  //////////////////////////////
+  if(window.location.hash != ""){
+    $('a[href="' + window.location.hash + '"]').click()
+  }
+
+});
