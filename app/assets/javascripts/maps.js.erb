@@ -1,12 +1,9 @@
-$(document).ready(function() {
-  /* Activating Best In Place */
-  jQuery(".best_in_place").best_in_place();
-});
+$(document).ready(function() {    
 
-jQuery(function($) {    
+    $(".best_in_place").best_in_place();
 
 
-    $('#map_standards_list ul li').live("click", function(e) {
+    $('#map_standards_list ul li').on("click", function(e) {
         var mapURI = $(this).attr('action-url');
         window.location = mapURI;
         return;
@@ -19,7 +16,7 @@ jQuery(function($) {
     //////////////////////////////
 
 
-    $('#create_map_assessment').live("click", function(e) {
+    $('#create_map_assessment').on("click", function(e) {
 
         var userId = $('#user-id').val();
         var mapId = $('#map-id').val();
@@ -55,18 +52,18 @@ jQuery(function($) {
 
 
     $(".maps_map_assessments_destroy")
-    .live("ajax:error", function(event, data, status, xhr) {
+    .on("ajax:error", function(event, data, status, xhr) {
         pushFlash({message:"Error deleting Map Assessment", state: 'error', fadeOut: 5000});
     })
-    .live("ajax:success", function(event, data, status, xhr) {
+    .on("ajax:success", function(event, data, status, xhr) {
         $('#maps_list_map_assessments').html(data);
     });
 
     $(".maps_map_assessments_show_resources")
-    .live("ajax:error", function(event, data, status, xhr) {
+    .on("ajax:error", function(event, data, status, xhr) {
         pushFlash({message:"Error fetching Map Assessment resources", state: 'error', fadeOut: 5000});
     })
-    .live("ajax:success", function(event, data, status, xhr) {
+    .on("ajax:success", function(event, data, status, xhr) {
         $('#filter_map_resources_modal').html(data);        
     });
 
