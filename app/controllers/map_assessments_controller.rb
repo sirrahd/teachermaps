@@ -107,7 +107,7 @@ class MapAssessmentsController < ApplicationController
     end
 
     Rails.logger.info(@resources);
-    render :partial => 'map_assessments/table_resources'
+    render :partial => 'maps/table_map_assessment_resources'
 	end
 
 
