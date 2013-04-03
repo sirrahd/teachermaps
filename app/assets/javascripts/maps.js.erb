@@ -7,7 +7,7 @@ $(document).ready(function() {
   //////////////////////////////
 
 
-  $(document).on("click", '#create_map_assessment', function(e) {
+  $(document).on('click', '#create_map_assessment', function(e) {
 
     // var userId = $('#user-id').val();
     var mapId = $('#map-id').val();
@@ -43,18 +43,18 @@ $(document).ready(function() {
 
 
   $(document)
-  .on("ajax:error", ".maps_map_assessments_destroy", function(event, data, status, xhr) {
+  .on('ajax:error', ".maps_map_assessments_destroy", function(event, data, status, xhr) {
     pushFlash({message:"Error deleting Map Assessment", state: 'error', fadeOut: 5000});
   })
-  .on("ajax:success", ".maps_map_assessments_destroy", function(event, data, status, xhr) {
+  .on('ajax:success', ".maps_map_assessments_destroy", function(event, data, status, xhr) {
     $('#maps_list_map_assessments').html(data);
   });
 
   $(document)
-  .on("ajax:error", ".maps_map_assessments_show_resources", function(event, data, status, xhr) {
+  .on('ajax:error', ".maps_map_assessments_show_resources", function(event, data, status, xhr) {
     pushFlash({message:"Error fetching Map Assessment resources", state: 'error', fadeOut: 5000});
   })
-  .on("ajax:success", ".maps_map_assessments_show_resources", function(event, data, status, xhr) {
+  .on('ajax:success', ".maps_map_assessments_show_resources", function(event, data, status, xhr) {
     $('#filter_map_resources_modal').html(data);        
   });
 
@@ -88,10 +88,10 @@ $(document).ready(function() {
   });
 
   $(document)
-  .on("ajax:error", "#filter_standards_form", function(event, data, status, xhr) {
+  .on('ajax:error', "#filter_standards_form", function(event, data, status, xhr) {
     pushFlash({message:"<%= I18n.t('resources.filter_failure') %>", state: 'success', fadeOut: 5000});
   })
-  .on("ajax:success", "#filter_standards_form", function(event, data, status, xhr) {
+  .on('ajax:success', "#filter_standards_form", function(event, data, status, xhr) {
     // Update the resources table
     $("#standards_table").html(data);  
   });
@@ -105,7 +105,7 @@ $(document).ready(function() {
   //////////////////////////////
 
 
-  $(document).on("click", '#standards_list .standard-selected', function(e) {
+  $(document).on('click', '#standards_list .standard-selected', function(e) {
 
 
     var standardId = $(this).attr('standard-id');
@@ -129,7 +129,7 @@ $(document).ready(function() {
     e.stopPropagation();
   });
 
-  $(document).on("click", '#standards_list .standard-default', function(e) {
+  $(document).on('click', '#standards_list .standard-default', function(e) {
   
     var standardId = $(this).attr('standard-id');
     var mapId = $('#map-id').val();
