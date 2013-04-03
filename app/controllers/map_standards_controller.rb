@@ -52,7 +52,7 @@ class MapStandardsController < ApplicationController
       end
     end
 
-    return render partial: 'maps/map_standards_list'
+    return render partial: 'maps/list_map_standards'
   end
 
   def ajax_destroy
@@ -80,7 +80,7 @@ class MapStandardsController < ApplicationController
 
     Rails.logger.info("Deleted map standard")
 
-    return render partial: 'maps/map_standards_list'
+    return render partial: 'maps/list_map_standards'
   end
 
   private 

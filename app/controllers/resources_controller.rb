@@ -89,7 +89,7 @@ class ResourcesController < ApplicationController
     respond_to do |format|
       if @resource.valid? and @resource.save
         @resources = Resource.where( :user_id => @current_user.id )
-        format.html { render :partial => 'resources/resources_table' }
+        format.html { render :partial => 'resources/table_resources' }
       else
         #format.html { render partial: "resources/edit", :errors => '' }
         format.html { render :partial => 'shared/error_messages', :locals => { :object => @resource }, :status => 500  }
@@ -124,7 +124,7 @@ class ResourcesController < ApplicationController
     end
 
     Rails.logger.info(@resources);
-    render :partial => 'resources/resources_table'
+    render :partial => 'resources/table_resources'
 
 
   end
@@ -161,8 +161,8 @@ class ResourcesController < ApplicationController
         @filter_course_subjects = CourseSubject.where(:id => @resources.map { |resource| resource.course_subjects.collect(&:id) } )
         # Render filter and resources to dictionary
         response = { 
-          :filters => render_to_string(:partial => 'resources/form_filter_resource', :layout => false,  :locals => {:resources => @resources, :filter_course_types => @filter_course_types, :filter_course_grades=>@filter_course_grades, :filter_course_subjects=>@filter_course_subjects}),
-          :resources => render_to_string(:partial => 'resources/resources_table', :layout => false,  :locals => {:resources => @resources})
+          :filters => render_to_string(:partial => 'resources/form_filter_resources', :layout => false,  :locals => {:resources => @resources, :filter_course_types => @filter_course_types, :filter_course_grades=>@filter_course_grades, :filter_course_subjects=>@filter_course_subjects}),
+          :resources => render_to_string(:partial => 'resources/table_resources', :layout => false,  :locals => {:resources => @resources})
         }
         # Send resource and fitlers back via JSON format
         format.js { render :json => response }
