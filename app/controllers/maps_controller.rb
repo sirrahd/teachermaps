@@ -25,9 +25,11 @@ class MapsController < ApplicationController
 
       respond_to do |format|
         if @map.save
-          @maps = Map.order("created_at DESC")
-          Rails.logger.info("#{current_user.account_name} created a new map #{@map}")
-          format.html { render :partial => 'users/table_maps', :locals => { :object => @map } }
+          # @maps = Map.find(:all, conditions: {user_id: @current_user.id})
+          # Rails.logger.info("#{current_user.account_name} created a new map #{@map}")
+          @maps = @current_user.maps
+          Rails.logger.info("#{@maps.inspect}")
+          format.html { render :partial => 'users/table_maps'}
         else
           Rails.logger.info("Map creation failure!!!")
           format.html { render :json => @map.errors, :status => :unprocessable_entity  }
@@ -43,7 +45,8 @@ class MapsController < ApplicationController
   
     respond_to do |format|
       if @map.destroyed?
-        @maps = Map.order("created_at DESC")
+        # @maps = Map.find(:all, conditions: {user_id: @current_user.id})
+        @maps = @current_user.maps
         Rails.logger.info("#{current_user.account_name} destroyed a map #{@map.name}")
         format.html { render :partial => 'users/table_maps', :locals => { :object => @maps } }
       else
