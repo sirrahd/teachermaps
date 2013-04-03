@@ -9,7 +9,7 @@
                 	<div class="standard-default hover" standard-id="<%= standard.id %>">
               	<% end %> 
 
-              	<b><%= standard.name %></b> <%= standard.text %>
+              	<b><%= standard.name %></b> <%= raw(standard.text) %>
 	    		
 		    	<% if standard.is_parent_standard %>
 		    		<ul style="cursor:pointer;">
@@ -20,7 +20,7 @@
 				              	<% else %>
 				                	<div class="standard-default" standard-id="<%= child.id %>">
 				              	<% end %> 
-						    		<b><%= child.name %></b> <%= child.text %>
+						    		<b><%= child.name %></b> <%= raw(child.text) %>
 						    	</div>
 					    	</li>
 				    	<% end %>
