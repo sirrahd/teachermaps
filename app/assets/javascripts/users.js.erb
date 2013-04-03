@@ -12,15 +12,19 @@ $(document).ready(function(){
   });
 
 
+  //////////////////////////////
+  //
+  // Remove Map
+  //
+  //////////////////////////////
+
   $(document)
-  .on("ajax:error", ".users_map_destroy", function(event, data, status, xhr) {
-      pushFlash({message:"Error deleting Map", state: 'error', fadeOut: 5000});
+  .on('ajax:error', '.users_map_destroy', function(event, data, status, xhr) {
+    pushFlash({message:"Error deleting Map", state: 'error', fadeOut: 5000});
   })
-  .on("ajax:success", ".users_map_destroy", function(event, data, status, xhr) {
-    console.log("Delete map success");
+  .on('ajax:success', '.users_map_destroy', function(event, data, status, xhr) {
     $('#users_maps_table').html(data);
   });
-
 
   //////////////////////////////
   //
@@ -28,14 +32,11 @@ $(document).ready(function(){
   //
   //////////////////////////////
 
-
-  $(document).on("click", '#users_create_map', function(e) {
+  $(document).on('click', '#users_create_map', function(e) {
 
       var actionUrl = $(this).attr('action-url');
 
       if(actionUrl == undefined) return false;
-
-      console.log("Adding Map via path " + actionUrl);
 
       $.ajax({
           type: 'POST',
@@ -45,7 +46,7 @@ $(document).ready(function(){
               $('#users_maps_table').html(response);
           },
           error: function (xhr, ajaxOptions, thrownError) {
-              pushFlash({message:"Error adding a Map Assessment", state: 'error', fadeOut: 5000});
+              pushFlash({message:'Error adding a Map Assessment', state: 'error', fadeOut: 5000});
           }
       });
 

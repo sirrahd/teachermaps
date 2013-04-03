@@ -5,7 +5,7 @@ class MapAssessment < ActiveRecord::Base
   before_create :default_values
   before_validation :clean_attrs
 
-  attr_accessible :name, :text, :user_id, :map_id
+  attr_accessible :name, :text, :map_id
 
   belongs_to :user
   belongs_to :map

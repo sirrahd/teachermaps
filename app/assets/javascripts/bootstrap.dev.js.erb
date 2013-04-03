@@ -1,31 +1,28 @@
 $(document).ready(function(){
-    /**
-    element = the div element of the Modal's body.
+  /**
+  element = the div element of the Modal's body.
 
-    By passing in the element, we can localize the dismiss model
-    button of the model and close the modal properly. If 
-    no elment is given, we close all open models.
-
-    */
-    function closeModalOnSubmit(element){
-
-        var element = element || undefined;
-    	window.setTimeout(function() { 
+  By passing in the element, we can localize the dismiss model
+  button of the model and close the modal properly. If 
+  no elment is given, we close all open models.
+  */
+  function closeModalOnSubmit(element){
+    var element = element || undefined;
+    window.setTimeout(function() { 
             
-            if( element != undefined ){
-                // With animation
-                element.find('.close').click();
-            } else {
-                // Without animation
-                $('.modal.in').modal('hide');   
-            }
+      if( element != undefined ){
+        // With animation
+        element.find('.close').click();
+      } else {
+        // Without animation
+        $('.modal.in').modal('hide');   
+      }
 
-        }, 300);
+    }, 300);
 
-        window.setTimeout(function() { 
-        	$('.modal-backdrop').fadeOut('fast');    
-            $('.modal-backdrop').remove();
-        }, 400);
-
-    }
+    window.setTimeout(function() { 
+      $('.modal-backdrop').fadeOut('fast');    
+      $('.modal-backdrop').remove();
+    }, 400);
+  }
 });

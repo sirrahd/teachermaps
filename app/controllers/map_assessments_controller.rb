@@ -5,19 +5,19 @@ class MapAssessmentsController < ApplicationController
 
 	def create
 		Rails.logger.info(params)
-	    @map_assessment = MapAssessment.new(params[:map_assessment])
-	    @map = Map.find(params[:map_assessment][:map_id])
-	    @map.map_assessments << @map_assessment
-
-	    respond_to do |format|
-	      if @map_assessment.save and @map.save
-	      	Rails.logger.info("Success!!!")
-	      	format.html { render :partial => 'maps/list_map_assessments', :locals => { :object => @map } }
-	      else
-	      	Rails.logger.info("Failure!!!")
-	      	format.html { render :json => @map_assessment.errors, :status => :unprocessable_entity  }
-	      end
-	    end
+    @map_assessment = MapAssessment.new( map_id: params[:map_id] )
+    @map_assessment.user = @current_user
+    @map = @map_assessment.map
+  
+    respond_to do |format|
+      if @map_assessment.save
+      	Rails.logger.info("Success!!!")
+      	format.html { render :partial => 'maps/list_map_assessments'}
+      else
+      	Rails.logger.info("Failure!!!")
+      	format.html { render :json => @map_assessment.errors, :status => :unprocessable_entity  }
+      end
+    end
 	end
 
 	def update

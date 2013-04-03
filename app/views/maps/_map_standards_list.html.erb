@@ -5,7 +5,7 @@
 			<li action-url="<%= user_map_standard_path map_standard.user, map_standard %>" class="hover clickable action-link">    
 	       		
 	       		<b><%= map_standard.standard.name %>: </b>
-	       		<p><%= map_standard.standard.text %></p>
+	       		<p><%= raw(map_standard.standard.text) %></p>
 
 			    <ul class="inline">
 				  	<li>
