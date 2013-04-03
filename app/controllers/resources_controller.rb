@@ -267,9 +267,9 @@ class ResourcesController < ApplicationController
 
     # After all syncing is done, re-query the resources to render
     @resources = Resource.where( :user_id => @current_user.id )
-    
+
     respond_to do |format|
-       format.html { redirect_to @current_user, :flash => { :success => t('resources.synced_n_files', :sync_count => sync_count) } }
+       format.html { redirect_to user_path(@current_user, :anchor => 'resources'), :flash => { :success => t('resources.synced_n_files', :sync_count => sync_count) } }
        format.json { head :no_content }
     end
   end
