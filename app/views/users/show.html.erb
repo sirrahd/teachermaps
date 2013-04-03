@@ -13,8 +13,8 @@
 <div class="row">
   <div class="span9">
     <ul class="nav nav-tabs">
-      <li class="active"><a href="#maps" data-toggle="tab">Maps</a></li>
-      <li><a href="#resources" data-toggle="tab">Resources</a></li>
+      <li class="active"><a href="#maps" data-toggle="tab" class="map-toggle-control">Maps</a></li>
+      <li><a href="#resources" data-toggle="tab" class="resource-toggle-control">Resources</a></li>
     </ul>
   </div>
   <div class="span3" id="resource-controls">
@@ -35,7 +35,7 @@
   <div class="tab-pane" id="resources">
     <div class="row">
       <div class="span12" id="resource_filter">
-      <%= render 'resources/form_filter_resources' %>
+      <%= render 'resources/filter_resources' %>
       </div>
     </div>
     <div class="row">

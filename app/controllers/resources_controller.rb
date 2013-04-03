@@ -161,7 +161,7 @@ class ResourcesController < ApplicationController
         @filter_course_subjects = CourseSubject.where(:id => @resources.map { |resource| resource.course_subjects.collect(&:id) } )
         # Render filter and resources to dictionary
         response = { 
-          :filters => render_to_string(:partial => 'resources/form_filter_resources', :layout => false,  :locals => {:resources => @resources, :filter_course_types => @filter_course_types, :filter_course_grades=>@filter_course_grades, :filter_course_subjects=>@filter_course_subjects}),
+          :filters => render_to_string(:partial => 'resources/filter_resources', :layout => false,  :locals => {:resources => @resources, :filter_course_types => @filter_course_types, :filter_course_grades=>@filter_course_grades, :filter_course_subjects=>@filter_course_subjects}),
           :resources => render_to_string(:partial => 'resources/table_resources', :layout => false,  :locals => {:resources => @resources})
         }
         # Send resource and fitlers back via JSON format

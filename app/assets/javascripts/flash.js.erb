@@ -1,58 +1,53 @@
-$(document).ready(function(){
+/**
+For stateful flash notifications 
 
-	/**
-	For stateful flash notifications 
+message: string message to render in flash element
+state: state of the flash notification
+ - error
+ - success
+ - info
+fadout: N milliseconds which the flash is to be shown, then fades out
 
-	message: string message to render in flash element
-	state: state of the flash notification
-	 - error
-	 - success
-	 - info
-	fadout: N milliseconds which the flash is to be shown, then fades out
+Returns false if no message is provided
+e.g. pushFlash({message: 'test', state:'success', fadeOut: 3000});
+*/
+var pushFlash = function(options){
 
-	Returns false if no message is provided
+	var config = {
+		state  : false,
+		fadeOut : false,
+		message : false,
+	};
 
-	e.g. pushFlash({message: 'test', state:'success', fadeOut: 3000});
-	*/
-	function pushFlash(options){
+	// Update fields with options
+	$.extend(config, options);
+	
+	var mainContainer  = $("#main-container");
+	var flashContainer = $("#flash-container");
+	var cancelButton = '<button type="button" class="close" data-dismiss="alert">&times;</button>';
+	var customState = '';
 
-		var config = {
-			state  : false,
-			fadeOut : false,
-			message : false,
-		};
+	// Remove any stale flashes
+	flashContainer.remove();
 
-		// Update fields with options
-		$.extend(config, options);
-		
-		var mainContainer  = $("#main-container");
-		var flashContainer = $("#flash-container");
-		var cancelButton = '<button type="button" class="close" data-dismiss="alert">&times;</button>';
-		var customState = '';
+	// If no message was provided, do not render flash notificaiton
+	if (!config.message) return false;
 
-		// Remove any stale flashes
-		flashContainer.remove();
+	// Apply custom state to flash notification
+	if (config.state) {
+		customState = ' alert-'+config.state;
+	} 
 
-		// If no message was provided, do not render flash notificaiton
-		if (!config.message) return false;
+	// Render the flash notificaiton
+	mainContainer.prepend('<div id="flash-container" class="alert'+customState+'">'+cancelButton+config.message+'</div>');
 
-		// Apply custom state to flash notification
-		if (config.state) {
-			customState = ' alert-'+config.state;
-		} 
+	// Apply custom state to flash notification
+	if (config.fadeOut) {
+		// Update flashContainer
+		flashContainer = $("#flash-container");
+		// Sets timer to fade out in N milliseconds
+		window.setInterval( function() {flashContainer.fadeOut('slow'); }, config.fadeOut );
+	} 
 
-		// Render the flash notificaiton
-		mainContainer.prepend('<div id="flash-container" class="alert'+customState+'">'+cancelButton+config.message+'</div>');
-
-		// Apply custom state to flash notification
-		if (config.fadeOut) {
-			// Update flashContainer
-			flashContainer = $("#flash-container");
-			// Sets timer to fade out in N milliseconds
-			window.setInterval( function() {flashContainer.fadeOut('slow'); }, config.fadeOut );
-		} 
-
-		return true;
-	}
-
-});
+	return true;
+}
