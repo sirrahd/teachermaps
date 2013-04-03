@@ -128,7 +128,7 @@ class MapObjectivesController < ApplicationController
       end
 
       Rails.logger.info(@resources);
-      render :partial => 'map_standards/table_resources'
+      render :partial => 'map_standards/table_map_objective_resources'
   end
 
   def create_resource
