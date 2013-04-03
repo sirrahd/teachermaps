@@ -38,7 +38,7 @@ class StandardsController < ApplicationController
     end
 
     # Rails.logger.info(@standards);
-    render :partial => 'standards/list_standards'
+    render :partial => 'maps/list_standards'
   end
 
   private 

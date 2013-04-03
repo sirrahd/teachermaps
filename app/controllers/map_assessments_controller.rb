@@ -70,9 +70,9 @@ class MapAssessmentsController < ApplicationController
     @filter_course_subjects = CourseSubject.all   
     map_resources = @map_assessment.map_resources
     @map_resources_by_resource_id = Hash[map_resources.map { |p| [p['resource_id'], p] }]
-    	Rails.logger.info("Map Assessment Ressource: #{@map_resources_by_resource_id.inspect}")
+    Rails.logger.info("Map Assessment Ressource: #{@map_resources_by_resource_id.inspect}")
 
-		return render :partial => 'maps/modal_resources', :locals => { :object => @map }
+		return render :partial => 'maps/modal_map_assessment_resources', :locals => { :object => @map }
 	end
 
 
