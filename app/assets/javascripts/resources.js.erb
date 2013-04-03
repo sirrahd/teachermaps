@@ -9,11 +9,11 @@ $(document).ready(function(){
 
 
     $("#create_resource_link_form")
-    .live("ajax:error", function(event, data, status, xhr) {
+    .on("ajax:error", function(event, data, status, xhr) {
         // Not sure why I have to use the responseText here
         $("#put_resource_link_errors").html(data.responseText);      
     })
-    .live("ajax:success", function(event, response, status, xhr) {
+    .on("ajax:success", function(event, response, status, xhr) {
         
         data = $.parseJSON(response);
 
@@ -49,7 +49,7 @@ $(document).ready(function(){
     //////////////////////////////
 
     var timer;
-    $("#filter_resource_search").live('keyup input',function() {
+    $("#filter_resource_search").on('keyup input',function() {
         var form = $(this);
         // Prevents ajax request till N milliseconds 
         timer && clearTimeout(timer);
@@ -59,21 +59,21 @@ $(document).ready(function(){
     });
 
     // Needed for browser compatibility 
-    $('#filter_resource_form').live('change', function() {
+    $('#filter_resource_form').on('change', function() {
         $(this).submit();
     });
 
     $("#filter_resource_form")
-    .live("ajax:error", function(event, data, status, xhr) {
+    .on("ajax:error", function(event, data, status, xhr) {
         pushFlash({message:"<%= I18n.t('resources.filter_failure') %>", state: 'success', fadeOut: 5000});
     })
-    .live("ajax:success", function(event, data, status, xhr) {
+    .on("ajax:success", function(event, data, status, xhr) {
         // Update the resources table
         $("#resources_table").html(data);  
     });
 
     var map_timer;
-    $("#maps_filter_resource_form").live('keyup input',function() {
+    $("#maps_filter_resource_form").on('keyup input',function() {
         var form = $(this);
         // Prevents ajax request till N milliseconds 
         timer && clearTimeout(timer);
@@ -83,15 +83,15 @@ $(document).ready(function(){
     });
 
     // Needed for browser compatibility 
-    $('#maps_filter_resource_form').live('change', function() {
+    $('#maps_filter_resource_form').on('change', function() {
         $(this).submit();
     });
 
     $("#maps_filter_resource_form")
-    .live("ajax:error", function(event, data, status, xhr) {
+    .on("ajax:error", function(event, data, status, xhr) {
         pushFlash({message:"<%= I18n.t('resources.filter_failure') %>", state: 'success', fadeOut: 5000});
     })
-    .live("ajax:success", function(event, data, status, xhr) {
+    .on("ajax:success", function(event, data, status, xhr) {
         // Update the resources table
         $("#map_resource_table").html(data);  
     });
@@ -104,7 +104,7 @@ $(document).ready(function(){
     //////////////////////////////
 
 
-    $('#map_resource_list .resource-selected').live("click", function(e) {
+    $('#map_resource_list .resource-selected').on("click", function(e) {
 
         var standardId = $(this).attr('standard-id');
         var mapId = $('#map-id').attr('map-id');
@@ -127,7 +127,7 @@ $(document).ready(function(){
         e.stopPropagation();
     });
 
-    $('#map_resource_list .resource-default').live("click", function(e) {
+    $('#map_resource_list .resource-default').on("click", function(e) {
     
         var standardId = $(this).attr('standard-id');
         var mapId = $('#map-id').attr('map-id');
@@ -164,14 +164,14 @@ $(document).ready(function(){
 
 
     $("#edit_resource_link_form")
-    .live("ajax:beforeSend", function(xhr, settings) {
+    .on("ajax:beforeSend", function(xhr, settings) {
         // Blah!!!
     })
-    .live("ajax:error", function(event, data, status, xhr) {
+    .on("ajax:error", function(event, data, status, xhr) {
         // Not sure why I have to use the responseText here
         $("#edit_resource_link_errors").html(data.responseText);      
     })
-    .live("ajax:success", function(event, data, status, xhr) {
+    .on("ajax:success", function(event, data, status, xhr) {
         // Update the resources table
         $("#resources_table").html(data);  
         // Flash user of the success
@@ -181,7 +181,7 @@ $(document).ready(function(){
     });
 
     $("#edit_resource_link_view")
-    .live("click", function() {
+    .on("click", function() {
 
         var resourceId = $(this).attr('resource-id');
         
@@ -212,14 +212,14 @@ $(document).ready(function(){
     //////////////////////////////
 
 
-    $('#resources_table a').live("click", function(e) {
+    $('#resources_table a').on("click", function(e) {
         e.stopPropagation();
     });
 
     // This is currently duplicated, will update when we decide
     // weather we are going to click a resource row or click an 
     // edit button. 
-    $('#resources_table tr').live("click", function(e) {
+    $('#resources_table tr').on("click", function(e) {
     
         var resourceURI = $(this).attr('resource-url');
 
@@ -239,7 +239,7 @@ $(document).ready(function(){
         e.stopPropagation();
     });
 
-    $('.show_resource').live("click", function(e) {
+    $('.show_resource').on("click", function(e) {
     
         var resourceURI = $(this).attr('resource-url');
 

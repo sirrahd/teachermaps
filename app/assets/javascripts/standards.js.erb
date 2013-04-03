@@ -13,7 +13,7 @@ $(document).ready(function(){
     //////////////////////////////
 
     var timer;
-    $("#filter_standards_search").live('keyup input',function() {
+    $("#filter_standards_search").on('keyup input',function() {
         var form = $(this);
         // Prevents ajax request till N milliseconds 
         timer && clearTimeout(timer);
@@ -23,15 +23,15 @@ $(document).ready(function(){
     });
 
     // Needed for browser compatibility 
-    $('#filter_standards_form').live('change', function() {
+    $('#filter_standards_form').on('change', function() {
         $(this).submit();
     });
 
     $("#filter_standards_form")
-    .live("ajax:error", function(event, data, status, xhr) {
+    .on("ajax:error", function(event, data, status, xhr) {
         pushFlash({message:"<%= I18n.t('resources.filter_failure') %>", state: 'success', fadeOut: 5000});
     })
-    .live("ajax:success", function(event, data, status, xhr) {
+    .on("ajax:success", function(event, data, status, xhr) {
         // Update the resources table
         $("#standards_table").html(data);  
     });
@@ -45,7 +45,7 @@ $(document).ready(function(){
     //////////////////////////////
 
 
-    $('#standards_list .standard-selected').live("click", function(e) {
+    $('#standards_list .standard-selected').on("click", function(e) {
 
 
         var standardId = $(this).attr('standard-id');
@@ -69,7 +69,7 @@ $(document).ready(function(){
         e.stopPropagation();
     });
 
-    $('#standards_list .standard-default').live("click", function(e) {
+    $('#standards_list .standard-default').on("click", function(e) {
     
         var standardId = $(this).attr('standard-id');
         var mapId = $('#map-id').val();

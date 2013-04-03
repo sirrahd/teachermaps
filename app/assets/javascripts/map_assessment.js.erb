@@ -7,7 +7,7 @@ $(document).ready(function(){
     //////////////////////////////
 
     var timer;
-    $("#maps_filter_resource_search").live('keyup input',function() {
+    $("#maps_filter_resource_search").on('keyup input',function() {
         var form = $(this);
         // Prevents ajax request till N milliseconds 
         timer && clearTimeout(timer);
@@ -17,15 +17,15 @@ $(document).ready(function(){
     });
 
     // Needed for browser compatibility 
-    $('#maps_filter_resource_form').live('change', function() {
+    $('#maps_filter_resource_form').on('change', function() {
         $(this).submit();
     });
 
     $("#maps_filter_resource_form")
-    .live("ajax:error", function(event, data, status, xhr) {
+    .on("ajax:error", function(event, data, status, xhr) {
         pushFlash({message:"<%= I18n.t('resources.filter_failure') %>", state: 'success', fadeOut: 5000});
     })
-    .live("ajax:success", function(event, data, status, xhr) {
+    .on("ajax:success", function(event, data, status, xhr) {
         // Update the resources table
         $("#maps_map_assessments_resources_table").html(data);  
     });
@@ -37,7 +37,7 @@ $(document).ready(function(){
     //////////////////////////////
 
 
-    $('#maps_map_assessments_resources_table .map_assessment_resource_selected').live("click", function(e) {
+    $('#maps_map_assessments_resources_table .map_assessment_resource_selected').on("click", function(e) {
 
         // /ajax/map_assessments/:map_asssessment_id/map_resources/:map_resource_id/destroy
         var mapAssessmentId = $(this).attr('map-assessment-id');
@@ -66,7 +66,7 @@ $(document).ready(function(){
         e.stopPropagation();
     });
 
-    $('#maps_map_assessments_resources_table .map_assessment_resource_default').live("click", function(e) {
+    $('#maps_map_assessments_resources_table .map_assessment_resource_default').on("click", function(e) {
         
         // /ajax/map_assessments/:map_asssessment_id/map_resources/:map_resource_id/new
         var mapAssessmentId = $(this).attr('map-assessment-id');
