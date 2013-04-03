@@ -4,7 +4,7 @@ class ResourceType < ActiveRecord::Base
 
 
 	MIME_TYPE_CONVERSIONS = {
-		'text/link' => 'Web',
+			'text/link' => 'Web',
 
 	    'text/html' => 'Document',
 	    'text/plain'=> 'Document',
@@ -72,7 +72,10 @@ class ResourceType < ActiveRecord::Base
 	    'audio/mid' => 'Audio',
 	    'audio/x-mpegurl' => 'Audio',
 
-	
+
+			'video/quicktime' => 'Video',
+			'video/x-quicktime' => 'Video',
+			'image/mov' => 'Video',
 	    'application/x-shockwave-flash' => 'Video',
 	    'video/x-msvideo' => 'Video',
 	    'video/x-flv' => 'Video',
