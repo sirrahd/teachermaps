@@ -3,10 +3,6 @@ class StandardsController < ApplicationController
 
   before_filter :require_session
 
-  def show
-    Rails.logger.info("Standards")
-  end
-
   def ajax_filter
     print params
     Rails.logger.info("Filter Params: #{params}")
