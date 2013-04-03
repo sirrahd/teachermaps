@@ -83,6 +83,36 @@ class MapStandardsController < ApplicationController
     return render partial: 'maps/list_map_standards'
   end
 
+
+  def destroy
+    if !@current_user 
+      return render :nothing => true, :status => 403
+    end
+    # if !params.has_key?('map_id') or !params.has_key?('standard_id')
+    #   return render :nothing => true, :status => 404
+    # end
+
+    # @map = Map.find_by_id_and_user_id(params[:map_id], @current_user.id)
+    # standard = Standard.find(params[:standard_id])
+    # map_standard = MapStandard.find_by_standard_id_and_map_id_and_user_id(params[:standard_id], @map.id, @current_user.id)
+    
+
+    if !@map or !standard or !map_standard
+      Rails.logger.info("Could not locate either map standard from given data") 
+      return render :nothing => true, :status => 404
+    end
+
+    map_standard.destroy
+
+    @map.standards_count -= 1
+    @map.objectives_count -= map_standard.map_objectives.count
+    @map.save
+
+    Rails.logger.info("Deleted map standard")
+
+    return render partial: 'maps/list_map_standards'
+  end
+
   private 
   
   # Requires user session

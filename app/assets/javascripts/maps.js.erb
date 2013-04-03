@@ -139,4 +139,19 @@ $(document).ready(function() {
 
   });
 
+
+  //////////////////////////////
+  //
+  // Remove Map Standard from Map
+  //
+  //////////////////////////////
+
+  $(document)
+  .on('ajax:error', ".maps_map_standard_destroy", function(event, data, status, xhr) {
+    pushFlash({message:"Error deleting Map Assessment", state: 'error', fadeOut: 5000});
+  })
+  .on('ajax:success', ".maps_map_standard_destroy", function(event, data, status, xhr) {
+    $('#map_standards_list').html(data);
+  });
+
 });
