@@ -1,6 +1,6 @@
 $(document).ready(function(){
 
-  $('#users_maps_table ul li').on("click", function(e) {
+  $('#users_maps_table ul li').live("click", function(e) {
   
       var mapURI = $(this).attr('action-url');
       window.location = mapURI;
@@ -20,10 +20,10 @@ $(document).ready(function(){
 
 
   $(".users_map_destroy")
-  .on("ajax:error", function(event, data, status, xhr) {
+  .live("ajax:error", function(event, data, status, xhr) {
       pushFlash({message:"Error deleting Map", state: 'error', fadeOut: 5000});
   })
-  .on("ajax:success", function(event, data, status, xhr) {
+  .live("ajax:success", function(event, data, status, xhr) {
       $('#users_maps_table').html(data);
   });
 
@@ -35,7 +35,7 @@ $(document).ready(function(){
     //////////////////////////////
 
 
-    $('#users_create_map').on("click", function(e) {
+    $('#users_create_map').live("click", function(e) {
 
         var actionUrl = $(this).attr('action-url');
 
