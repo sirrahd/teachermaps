@@ -42,9 +42,7 @@ class MapAssessmentsController < ApplicationController
 		return render nothing: true, status: 404 if !@map_assessment
     
     # Needed to re-render map assessments
-    @map = @map_assessment.map
-    # @map.resources_count -= @map_assessment.map_resources.count
-    
+    @map = @map_assessment.map    
 
     # Removing resource
     @map_assessment.destroy
@@ -136,10 +134,7 @@ class MapAssessmentsController < ApplicationController
 	    	@map_resource.map = @map
 	    	@map_resource.resource = @resource
 	    	@map_resource.map_assessment = @map_assessment
-	    	
-	    	# @map_assessment.map_resources << @map_resource
 
-	    	# @map.resources_count += 1
 	   	end
 
 	    respond_to do |format|
@@ -172,7 +167,6 @@ class MapAssessmentsController < ApplicationController
 
 	    @map_resource = MapResource.find_by_map_assessment_id_and_resource_id(@map_assessment, @resource)
 	    @map_resource.destroy
-	    # @map.resources_count -= 1
 
 	    Rails.logger.info("Deleted map resource @map_resource.name")
 

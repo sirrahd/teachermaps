@@ -44,8 +44,6 @@ class MapObjectivesController < ApplicationController
     
     # Needed to re-render map assessments
     @map = @map_objective.map
-    # @map.objectives_count -= 1
-    # @map.resources_count -= @map_objective.map_resources.count
 
     # Removing resource
     @map_objective.destroy
@@ -153,10 +151,6 @@ class MapObjectivesController < ApplicationController
         @map_resource.map = @map
         @map_resource.resource = @resource
         @map_resource.map_objective = @map_objective
-        
-        # @map_objective.map_resources << @map_resource
-
-        # @map.resources_count +=1 
       end
 
       respond_to do |format|
@@ -186,8 +180,6 @@ class MapObjectivesController < ApplicationController
     end
 
     @map_standard = @map_objective.map_standard
-    # @map = @map_objective.map
-    # @map.resources_count -= 1
 
     @map_resource = MapResource.find_by_map_objective_id_and_resource_id(@map_objective, @resource)
     @map_resource.destroy
