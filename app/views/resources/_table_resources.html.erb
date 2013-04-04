@@ -21,7 +21,7 @@
       <td>
         <% if resource.course_subjects.any? %>
           <%= resource.course_subjects.map(&:name).join(", ") %>
-        <% end %>    
+        <% end %> 
       </td>
       <td><%= link_to t('shared.edit'), 'JavaScript:void(0);', 'resource-url'=>resources_ajax_show_path(resource.slug), :class=>'btn show_resource', :style=>"height:18px;" %></td>
     </tr>
@@ -42,4 +42,3 @@
     <%= render 'resources/form_link' %>
   </div>
 </div>
-
