@@ -10,7 +10,7 @@
   </thead>
 
   <% @resources.each do |resource| %>
-    <tr resource-url="<%= resources_ajax_show_path resource.slug %>"> 
+    <tr resource-id="<%= resource.id %>" class="edit_resource_link_view" > 
       <td title="<%= resource.get_type %>" style="width:35px;"><%= raw resource.get_thumbnail %></td>
       <td><%= link_to truncate(resource.title, :length => Resource::MAX_TITLE_RENDER_LEN), resource_url(resource), :target => "_blank" %></td>
       <td>

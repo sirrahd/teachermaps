@@ -201,59 +201,59 @@ $(document).ready(function(){
 
 
 
-    //////////////////////////////
-    //
-    // Show Resources 
-    //
-    //////////////////////////////
+    // //////////////////////////////
+    // //
+    // // Show Resources 
+    // //
+    // //////////////////////////////
 
 
-    $(document).on('click', '#resources_table a', function(e) {
-        e.stopPropagation();
-    });
+    // $(document).on('click', '#resources_table a', function(e) {
+    //     e.stopPropagation();
+    // });
 
-    // This is currently duplicated, will update when we decide
-    // weather we are going to click a resource row or click an 
-    // edit button. 
-    $(document).on('click', '#resources_table tr', function(e) {
+    // // This is currently duplicated, will update when we decide
+    // // weather we are going to click a resource row or click an 
+    // // edit button. 
+    // $(document).on('click', '#resources_table tr', function(e) {
     
-        var resourceURI = $(this).attr('resource-url');
+    //     var resourceURI = $(this).attr('resource-url');
 
-        if(resourceURI == undefined) return false;
+    //     if(resourceURI == undefined) return false;
         
-        // Confirm form data exists
-        if (resourceURI == undefined) return false;
+    //     // Confirm form data exists
+    //     if (resourceURI == undefined) return false;
 
-        $.ajax({
-          url: resourceURI,
-          dataType: 'html'
-        }).done(function(data) {
-          $('#show_resource_link_modal_body').html(data);
-          $('#show_resource_link_modal').modal('show');
-        });   
+    //     $.ajax({
+    //       url: resourceURI,
+    //       dataType: 'html'
+    //     }).done(function(data) {
+    //       $('#show_resource_link_modal_body').html(data);
+    //       $('#show_resource_link_modal').modal('show');
+    //     });   
 
-        e.stopPropagation();
-    });
+    //     e.stopPropagation();
+    // });
 
-    $(document).on('click', '.show_resource', function(e) {
+    // $(document).on('click', '.show_resource', function(e) {
     
-        var resourceURI = $(this).attr('resource-url');
+    //     var resourceURI = $(this).attr('resource-url');
 
-        if(resourceURI == undefined) return false;
+    //     if(resourceURI == undefined) return false;
         
-        // Confirm form data exists
-        if (resourceURI == undefined) return false;
+    //     // Confirm form data exists
+    //     if (resourceURI == undefined) return false;
 
-        $.ajax({
-          url: resourceURI,
-          dataType: 'html'
-        }).done(function(data) {
-          $('#show_resource_link_modal_body').html(data);
-          $('#show_resource_link_modal').modal('show');
-        });   
+    //     $.ajax({
+    //       url: resourceURI,
+    //       dataType: 'html'
+    //     }).done(function(data) {
+    //       $('#show_resource_link_modal_body').html(data);
+    //       $('#show_resource_link_modal').modal('show');
+    //     });   
 
-        e.stopPropagation();
-    });
+    //     e.stopPropagation();
+    // });
     
 });
 
