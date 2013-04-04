@@ -41,12 +41,13 @@
 
 <script type="text/javascript">
 $(document).ready(function() { 
-  //Manually configure on load
   $("#select_edit_course_grades").select2({
-    width : 'resolve'
+    width : 'resolve',
+    placeholder: '<%= t("resources.grades") %>'
   });
   $("#select_edit_course_subjects").select2({
-    width : 'resolve'
+    width : 'resolve',
+    placeholder: '<%= t("resources.subjects") %>'
   });
 });
 
