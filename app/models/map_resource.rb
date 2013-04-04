@@ -12,6 +12,18 @@ class MapResource < ActiveRecord::Base
 
   before_validation	:clean_attrs
 
+  before_destroy :before_deletion
+  def before_deletion
+    Map.decrement_counter :resources_count, self.map.id
+  end
+
+  before_create :before_creation
+  def before_creation
+    if self.map.id
+      Map.increment_counter :resources_count, self.map.id 
+    end
+  end
+
   private 
 
   def clean_attrs
@@ -28,7 +40,6 @@ class MapResource < ActiveRecord::Base
     end
     super
   end
-
 
   before_create :default_values
   def default_values

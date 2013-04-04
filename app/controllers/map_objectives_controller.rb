@@ -23,16 +23,16 @@ class MapObjectivesController < ApplicationController
     @map_objective.map = @map
     @map_objective.user = @current_user
 
-    @map_standard.map_objectives << @map_objective
+    # @map_standard.map_objectives << @map_objective
 
-    @map.objectives_count += 1
+    # @map.objectives_count += 1
 
     respond_to do |format|
-      if @map_objective.save and @map.save
+      if @map_objective.save
         Rails.logger.info("Success in creating map objctive!!!")
         format.html { render :partial => 'map_standards/list_map_objectives'}
       else
-        Rails.logger.info("Failure in creating map objective!!! #{@map_objectives.errors} :: #{@map.errors}")
+        Rails.logger.info("Failure in creating map objective!!! #{@map_objectives.errors}")
         format.html { render :json => @map_assessment.errors, :status => :unprocessable_entity  }
       end
     end
@@ -190,8 +190,8 @@ class MapObjectivesController < ApplicationController
     end
 
     @map_standard = @map_objective.map_standard
-    @map = @map_objective.map
-    @map.resources_count -= 1
+    # @map = @map_objective.map
+    # @map.resources_count -= 1
 
     @map_resource = MapResource.find_by_map_objective_id_and_resource_id(@map_objective, @resource)
     @map_resource.destroy
@@ -199,7 +199,7 @@ class MapObjectivesController < ApplicationController
     Rails.logger.info("Deleted map resource")
 
     respond_to do |format|
-      if @map_resource.destroyed? and @map.save
+      if @map_resource.destroyed?# and @map.save
         format.html { render :partial => 'map_standards/list_map_objectives' }
       else
         Rails.logger.info("Errors: #{@map_resource.errors.inspect}")

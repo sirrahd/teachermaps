@@ -16,7 +16,6 @@ class Resource < ActiveRecord::Base
   has_and_belongs_to_many :course_subjects, uniq: true, order: 'name ASC'
   has_and_belongs_to_many :course_grades, uniq: true, order: 'id ASC'
 
-
   # TeacherMaps specific attributes can be listed here
   validates :title, presence: {:message => I18n.t('resources.title_blank_error')}, length: {minimum: 2, maximum: 250}
 
@@ -25,6 +24,12 @@ class Resource < ActiveRecord::Base
   	# Random, need to check for uniuqness
 		self.slug ||= SecureRandom.urlsafe_base64.downcase
 	end
+
+  before_destroy :deletion_cleanup
+  def deletion_cleanup
+    Rails.logger.info("Destroying all Map Resources")
+    MapResource.destroy_all( user_id: self.user_id, resource_id: self.id )
+  end
 
   def owned_by?( user_id )
     self.user_id == user_id
@@ -47,8 +52,6 @@ class Resource < ActiveRecord::Base
       end
       self.save
   end
-
-
 
   def self.inherited(child)
     # http://www.alexreisner.com/code/single-table-inheritance-in-rails

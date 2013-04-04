@@ -133,18 +133,18 @@ class MapAssessmentsController < ApplicationController
 	    if !MapResource.find_by_map_assessment_id_and_resource_id(@map_assessment, @resource)
 	    	@map_resource = MapAssessmentResource.new
 	    	@map_resource.user = @current_user
-	    	@map_resource.map = @map_assessment.map
+	    	@map_resource.map = @map
 	    	@map_resource.resource = @resource
 	    	@map_resource.map_assessment = @map_assessment
 	    	
-	    	@map_assessment.map_resources << @map_resource
+	    	# @map_assessment.map_resources << @map_resource
 
-	    	@map.resources_count += 1
+	    	# @map.resources_count += 1
 	   	end
 
 	    respond_to do |format|
-	      if @map_resource.save and @map_assessment.save and @map.save
-	      	format.html { render :partial => 'maps/list_map_assessments', :locals => { :object => @map } }
+	      if @map_resource.save and @map_assessment.save
+	      	format.html { render :partial => 'maps/list_map_assessments'}
 	      else
 	      	Rails.logger.info("Errors: #{@map_resource.errors.inspect} #{@map_assessment.errors.inspect}")
 	      	format.html { render nothing: true, status: 500 }
@@ -172,7 +172,7 @@ class MapAssessmentsController < ApplicationController
 
 	    @map_resource = MapResource.find_by_map_assessment_id_and_resource_id(@map_assessment, @resource)
 	    @map_resource.destroy
-	    @map.resources_count -= 1
+	    # @map.resources_count -= 1
 
 	    Rails.logger.info("Deleted map resource @map_resource.name")
 

@@ -8,7 +8,6 @@ class MapsController < ApplicationController
   	print "Showing map #{params[:id]}"
   	@map = Map.find_by_slug_and_user_id( params[:id], @current_user.id )
 
-
     @resources = Resource.where user_id: @current_user.id
     @filter_standard_types = StandardType.all
     @filter_resource_types = ResourceType.all
@@ -45,7 +44,6 @@ class MapsController < ApplicationController
   
     respond_to do |format|
       if @map.destroyed?
-        # @maps = Map.find(:all, conditions: {user_id: @current_user.id})
         @maps = @current_user.maps
         Rails.logger.info("#{current_user.account_name} destroyed a map #{@map.name}")
         format.html { render :partial => 'users/table_maps', :locals => { :object => @maps } }
@@ -55,8 +53,6 @@ class MapsController < ApplicationController
       end 
     end
   end
-
-  
 
 
   def update
