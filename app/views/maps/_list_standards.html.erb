@@ -4,9 +4,9 @@
 		    <li style="margin-bottom:10px;">
 
 		    	<% if @map_standards_by_standard_id.has_key?(standard.id) %>
-		    		<div class="standard-selected" standard-id="<%= standard.id %>">
+		    		<div class="standard-selected">
               	<% else %>
-                	<div class="standard-default hover" standard-id="<%= standard.id %>">
+                	<div class="standard-default hover" action-url="<%= map_standard_path(map_standard) %>">
               	<% end %> 
 
               	<b><%= standard.name %></b> <%= raw(standard.text) %>

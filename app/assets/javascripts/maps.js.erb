@@ -82,44 +82,27 @@ $(document).ready(function() {
 
   //////////////////////////////
   //
-  // Adding/Removing Map Standards
+  // Create Map Standards
   //
   //////////////////////////////
 
-  $(document).on('click', '#standards_list .standard-selected', function(e) {
-
-    var standardId = $(this).attr('standard-id');
-    var mapId = $('#map-id').val();
-    var element = $(this);
-    var actionUrl = '/ajax/maps/'+mapId+'/map_standards/'+standardId+'/destroy';
-    if(standardId == undefined || mapId == undefined) return false;
-
-    $.ajax({
-      url: actionUrl,
-      dataType: 'html',
-      success: function (response) {
-        $('#map_standards_list').html(response);
-        element.attr('class','standard-default');
-      },
-      error: function (xhr, ajaxOptions, thrownError) {
-        pushFlash({message:"Error adding a Map Assessment", state: 'error', fadeOut: 5000});
-      }
-    });
-
-    e.stopPropagation();
-  });
-
   $(document).on('click', '#standards_list .standard-default', function(e) {
   
-    var standardId = $(this).attr('standard-id');
-    var mapId = $('#map-id').val();
+    // var standardId = $(this).attr('standard-id');
+    // var mapId = $('#map-id').val();
+    // var element = $(this);
+    // var actionUrl = '/ajax/maps/'+mapId+'/map_standards/'+standardId+'/new';
+    // if(standardId == undefined || mapId == undefined) return false;
+    
     var element = $(this);
-    var actionUrl = '/ajax/maps/'+mapId+'/map_standards/'+standardId+'/new';
-    if(standardId == undefined || mapId == undefined) return false;
+    var actionUrl = $(this).attr('action-url');
+
+    if(actionUrl == undefined) return false;
 
     $.ajax({
       url: actionUrl,
       dataType: 'html',
+      type: 'DELETE',
       success: function (response) {
         $('#map_standards_list').html(response);
 
