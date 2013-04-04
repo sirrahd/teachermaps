@@ -87,22 +87,18 @@ $(document).ready(function() {
   //////////////////////////////
 
   $(document).on('click', '#standards_list .standard-default', function(e) {
-  
-    // var standardId = $(this).attr('standard-id');
-    // var mapId = $('#map-id').val();
-    // var element = $(this);
-    // var actionUrl = '/ajax/maps/'+mapId+'/map_standards/'+standardId+'/new';
-    // if(standardId == undefined || mapId == undefined) return false;
     
     var element = $(this);
+    var standardId = $(this).attr('standard-id');
     var actionUrl = $(this).attr('action-url');
 
-    if(actionUrl == undefined) return false;
+    if(actionUrl == undefined || standardId == undefined) return false;
 
     $.ajax({
+      data: {standard_id: standardId},
       url: actionUrl,
       dataType: 'html',
-      type: 'DELETE',
+      type: 'POST',
       success: function (response) {
         $('#map_standards_list').html(response);
 

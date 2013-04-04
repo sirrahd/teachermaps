@@ -4,7 +4,6 @@ class StandardsController < ApplicationController
   before_filter :require_session
 
   def ajax_filter
-    print params
     Rails.logger.info("Filter Params: #{params}")
 
     if !params.has_key?('standard_type') or !params.has_key?('course_subject')
@@ -12,6 +11,7 @@ class StandardsController < ApplicationController
       return render :partial => 'standards/list'
     end
 
+    @map = Map.find(params[:map_id])
     @standards = Standard.find(:all, :conditions=>{:standard_type_id=>params[:standard_type], :parent_standard_id=>nil})
 
     if params.has_key?('course_subject')

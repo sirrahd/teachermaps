@@ -19,17 +19,16 @@ Teachermaps::Application.routes.draw do
   match '/confirm', to: 'users#confirm_email'
   match '/reset', to: 'users#reset_password'
 
-
+  resources :map_standards, only: [:update, :destroy]
   resources :maps, only: [:update, :create, :destroy]
+  resources :maps do
+    resources :map_standards, only: [:create]
+  end
+
   resources :users do
     resources :maps
-  end
-
-  resources :map_standards, only: [:update, :create, :destroy]
-  resources :users do
     resources :map_standards, :path => 'standards', only: [:show]
   end
-
 
   # Sync Google Drive and/or DropBox resources
   match '/resources/sync' => 'resources#sync', :as => 'sync_resources'
