@@ -5,9 +5,6 @@ class DropBoxAccountsController < ApplicationController
 
   before_filter :require_session
 
-
-  # GET /drop_box_accounts/new
-  # GET /drop_box_accounts/new.json
   def new
 
     drop_box_account = nil
@@ -25,15 +22,17 @@ class DropBoxAccountsController < ApplicationController
     # Request an Authorized Session
     session_data = drop_box_account.fetch_request()
 
-    if session_data != false
-      # Successful request, redirecting...
-      session[:request_db_session] = session_data[:request_db_session]
-      redirect_to session_data[:auth_url]
-    else
-      # Unsuccessfull request
-      redirect_to settings_path, :flash => { :error => t('drop_box.session_request_error') }
+    respond_to do |format|
+      if session_data
+        # Successful request, redirecting...
+        session[:request_db_session] = session_data[:request_db_session]
+        format.html { redirect_to session_data[:auth_url] }
+      else
+        # Unsuccessfull request
+        format.html { redirect_to settings_path, :flash => { :error => t('drop_box.session_request_error') } }
+      end
     end
-    
+
   end
 
   
@@ -57,49 +56,42 @@ class DropBoxAccountsController < ApplicationController
   end
 
 
-  # DELETE /drop_box_accounts/1
-  # DELETE /drop_box_accounts/1.json
   def destroy
- 
     @drop_box_account = DropBoxAccount.find(params[:id])
     @setting = Setting.find(@current_user.id)
-    
-     flash = {}
-     if @current_user.has_drop_box_account?
-        account = @current_user.drop_box_account 
 
-        if account.id == @drop_box_account.id
-           # If user owns requested DropBox Account
+    if !@drop_box_account.owned_by?(@current_user)
+      return redirect_to settings_url, flash: {error: 'Invalid Dropbox account'}
+    end
 
-           @current_user.drop_box_account = nil
-           @current_user.save( )
+    if !@current_user.has_drop_box_account?
+      # User does not have a dropbox account
+      return redirect_to settings_url, flash: {error: 'User does not have a Dropbox account'}
+    end 
 
-           @drop_box_account.destroy
+    @current_user.drop_box_account = nil
+    @current_user.save( )
+    @drop_box_account.destroy
 
-           # Remove all resources reference to DropBox resources belonging to this user
-           DropBoxResource.delete_all( :type =>DropBoxResource::TYPE, :user_id=>@current_user.id  )
+    # Remove all resources reference to DropBox resources belonging to this user
+    DropBoxResource.delete_all( type: DropBoxResource::TYPE, user_id: @current_user.id  )
 
-           if @current_user.has_google_account?
-              # Transfer default uploads to DropBox
-              @setting.upload_to = DropBoxResource::TYPE
-           else
-              # User is going to need to assign one before next upload
-              @setting.upload_to = nil
-           end
-
-           @setting.save()
-
-           flash['success'] = t('drop_box.removed')
-        else 
-           flash['notice'] = t('drop_box.remove_invalid')
-        end
-
+    if @current_user.has_google_account?
+      # Transfer default uploads to DropBox
+      @setting.upload_to = DropBoxResource::TYPE
+    else
+      # User is going to need to assign one before next upload
+      @setting.upload_to = nil
     end
 
     respond_to do |format|
-      format.html { redirect_to settings_url, :flash => flash }
-      format.json { head :no_content }
+      if @drop_box_account.destroyed? and @setting.save()
+        format.html { redirect_to settings_url, flash: { success: t('drop_box.removed')}}
+      else
+        format.html { render nothing: true, status: 500 }
+      end
     end
+
   end
 
 
