@@ -9,7 +9,7 @@ class MapObjective < ActiveRecord::Base
   belongs_to :user
   belongs_to :map
 
-  has_many :map_resources
+  has_many :map_resources, :uniq => true, dependent: :destroy
 
   validates :map_standard, presence: true
   validates :user, presence: true
@@ -21,11 +21,25 @@ class MapObjective < ActiveRecord::Base
   before_create :default_values
   before_validation	:clean_attrs
 
+  before_destroy :before_deletion
+  
+  before_create :before_creation
+
   def owned_by?( user_id )
     self.user_id == user_id
   end
 
   private 
+
+  def before_deletion
+    Map.decrement_counter :objectives_count, self.map.id
+  end
+
+  def before_creation
+    if self.map.id
+      Map.increment_counter :objectives_count, self.map.id 
+    end
+  end
 
   def clean_attrs
     if self.name then self.name = self.name.strip end

@@ -10,7 +10,7 @@ class MapAssessment < ActiveRecord::Base
   belongs_to :user
   belongs_to :map
 
-  has_many :map_resources, :uniq => true
+  has_many :map_resources, :uniq => true, dependent: :destroy
 
   validates :map, presence: true
   validates :user, presence: true

@@ -23,10 +23,6 @@ class MapObjectivesController < ApplicationController
     @map_objective.map = @map
     @map_objective.user = @current_user
 
-    # @map_standard.map_objectives << @map_objective
-
-    # @map.objectives_count += 1
-
     respond_to do |format|
       if @map_objective.save
         Rails.logger.info("Success in creating map objctive!!!")
@@ -48,8 +44,8 @@ class MapObjectivesController < ApplicationController
     
     # Needed to re-render map assessments
     @map = @map_objective.map
-    @map.objectives_count -= 1
-    @map.resources_count -= @map_objective.map_resources.count
+    # @map.objectives_count -= 1
+    # @map.resources_count -= @map_objective.map_resources.count
 
     # Removing resource
     @map_objective.destroy
@@ -154,17 +150,17 @@ class MapObjectivesController < ApplicationController
       if !MapResource.find_by_map_objective_id_and_resource_id(@map_objective, @resource)
         @map_resource = MapObjectiveResource.new
         @map_resource.user = @current_user
-        @map_resource.map = @map_objective.map
+        @map_resource.map = @map
         @map_resource.resource = @resource
         @map_resource.map_objective = @map_objective
         
-        @map_objective.map_resources << @map_resource
+        # @map_objective.map_resources << @map_resource
 
-        @map.resources_count +=1 
+        # @map.resources_count +=1 
       end
 
       respond_to do |format|
-        if @map_resource.save and @map.save
+        if @map_resource.save
           format.html { render :partial => 'map_standards/list_map_objectives'}
         else
           Rails.logger.info("Errors: #{@map_resource.errors.inspect} #{@map_objective.errors.inspect}")

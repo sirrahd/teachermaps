@@ -38,9 +38,9 @@ class MapsController < ApplicationController
 
   def destroy
     Rails.logger.info(params)
-    @map = Map.find_by_slug params[:id]
+    @map = Map.find params[:id]
 
-    @map.destroy if @map.user_id == @current_user.id
+    @map.destroy if @map and @map.user_id == @current_user.id
   
     respond_to do |format|
       if @map.destroyed?
