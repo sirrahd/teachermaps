@@ -26,10 +26,6 @@ class Resource < ActiveRecord::Base
 		self.slug ||= SecureRandom.urlsafe_base64.downcase
 	end
 
-	def to_param
-		self.slug
-	end
-
   def owned_by?( user_id )
     self.user_id == user_id
   end

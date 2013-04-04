@@ -208,14 +208,14 @@ $(document).ready(function(){
     //////////////////////////////
 
 
-    $('#resources_table a').on('click', function(e) {
+    $(document).on('click', '#resources_table a', function(e) {
         e.stopPropagation();
     });
 
     // This is currently duplicated, will update when we decide
     // weather we are going to click a resource row or click an 
     // edit button. 
-    $('#resources_table tr').on('click', function(e) {
+    $(document).on('click', '#resources_table tr', function(e) {
     
         var resourceURI = $(this).attr('resource-url');
 
@@ -235,7 +235,7 @@ $(document).ready(function(){
         e.stopPropagation();
     });
 
-    $('.show_resource').on('click', function(e) {
+    $(document).on('click', '.show_resource', function(e) {
     
         var resourceURI = $(this).attr('resource-url');
 

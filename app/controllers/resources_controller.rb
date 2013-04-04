@@ -13,7 +13,7 @@ class ResourcesController < ApplicationController
   # GET /resources/1.json
   def show
     Rails.logger.info("Resource #{params[:id]}")
-    @resource = Resource.find_by_slug( params[:id] )
+    @resource = Resource.find( params[:id] )
 
     if @resource.nil?
       return redirect_to resources_url, :flash => { :error => t('resources.does_not_exist') }

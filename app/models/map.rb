@@ -138,10 +138,6 @@ class Map < ActiveRecord::Base
     self.name.titlecase
   end
 
-  def to_param
-	  self.slug
-  end
-
   def sorted_map_standards
     # Sorts by standards
     self.map_standards.all(:order => :standard_id)

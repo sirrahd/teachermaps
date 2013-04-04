@@ -23,7 +23,7 @@
           <%= resource.course_subjects.map(&:name).join(", ") %>
         <% end %>    
       </td>
-      <td><%= link_to t('shared.edit'), '#', 'resource-url'=>resources_ajax_show_path(resource.slug), :class=>'btn show_resource', :style=>"height:18px;" %></td>
+      <td><%= link_to t('shared.edit'), 'JavaScript:void(0);', 'resource-url'=>resources_ajax_show_path(resource.slug), :class=>'btn show_resource', :style=>"height:18px;" %></td>
     </tr>
   <% end %>
 </tbody>
