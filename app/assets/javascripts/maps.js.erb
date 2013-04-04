@@ -133,4 +133,40 @@ $(document).ready(function() {
     $('#map_standards_list').html(data);
   });
 
+
+
+
+
+
+
+  //////////////////////////////
+  //
+  // Filter Resources 
+  //
+  //////////////////////////////
+
+  var map_timer;
+  $(document).on('keyup input', '#maps_filter_resource_form', function() {
+      var form = $(this);
+      // Prevents ajax request till N milliseconds 
+      timer && clearTimeout(timer);
+      timer = setTimeout(function(){ 
+          form.submit();
+      }, 500);
+  });
+
+  $(document).on('change', '#maps_filter_resource_form', function() {
+      $(this).submit();
+  });
+
+  $(document)
+  .on('ajax:error', '#maps_filter_resource_form', function(event, data, status, xhr) {
+      pushFlash({message:"<%= I18n.t('resources.filter_failure') %>", state: 'success', fadeOut: 5000});
+  })
+  .on('ajax:success', '#maps_filter_resource_form', function(event, data, status, xhr) {
+      // Update the resources table
+      $('#map_resource_table').html(data);  
+  });
+
+
 });

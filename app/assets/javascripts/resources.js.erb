@@ -1,198 +1,140 @@
 $(document).ready(function(){    
 
-    
-    //////////////////////////////
-    //
-    // Create Resources 
-    //
-    //////////////////////////////
+  //////////////////////////////
+  //
+  // Create Resources 
+  //
+  //////////////////////////////
 
 
-    $(document)
-    .on('ajax:error', "#create_resource_link_form", function(event, data, status, xhr) {
-        // Not sure why I have to use the responseText here
-        $("#put_resource_link_errors").html(data.responseText);      
-    })
-    .on('ajax:success', "#create_resource_link_form", function(event, response, status, xhr) {
-        
-        data = $.parseJSON(response);
+  $(document)
+  .on('ajax:error', "#create_resource_link_form", function(event, data, status, xhr) {
+      // Not sure why I have to use the responseText here
+      $("#put_resource_link_errors").html(data.responseText);      
+  })
+  .on('ajax:success', "#create_resource_link_form", function(event, response, status, xhr) {
+      
+      data = $.parseJSON(response);
 
-        if (data != undefined) {
-            if (data.resources != undefined) {
-                $("#resources_table").html(data.resources);
-            }
-            if (data.filters != undefined) {
-                $('#resource_filter').html(data.filters);
-            }
-        }
+      if (data != undefined) {
+          if (data.resources != undefined) {
+              $("#resources_table").html(data.resources);
+          }
+          if (data.filters != undefined) {
+              $('#resource_filter').html(data.filters);
+          }
+      }
 
-        // Flash user of the success
-        pushFlash({message:"<%= I18n.t('resources.upload_success') %>", state: 'success', fadeOut: 5000});
-        // Hide all modals
-        $('.modal.in').modal('hide');   
-        // Rest form
-        $(this)[0].reset();
-        // Clear any error notification
-        $("#uploadResourcesErrors").html('');  
-        closeModalOnSubmit();
-    });
-
-
+      // Flash user of the success
+      pushFlash({message:"<%= I18n.t('resources.upload_success') %>", state: 'success', fadeOut: 5000});
+      // Hide all modals
+      $('.modal.in').modal('hide');   
+      // Rest form
+      $(this)[0].reset();
+      // Clear any error notification
+      $("#uploadResourcesErrors").html('');  
+      closeModalOnSubmit();
+  });
 
 
+  
+
+  // //////////////////////////////
+  // //
+  // // Adding/Removing  Assessment Resource
+  // //
+  // //////////////////////////////
 
 
-    //////////////////////////////
-    //
-    // Filter Resources 
-    //
-    //////////////////////////////
+  // $(document).on('click', '#map_resource_list .resource-selected', function(e) {
 
-    var timer;
-    $(document).on('keyup input', '#filter_resource_search', function() {
-        var form = $(this);
-        // Prevents ajax request till N milliseconds 
-        timer && clearTimeout(timer);
-        timer = setTimeout(function(){ 
-            form.submit();
-        }, 500);
-    });
+  //     var standardId = $(this).attr('standard-id');
+  //     var mapId = $('#map-id').attr('map-id');
+  //     if(standardId == undefined || mapId == undefined) return false;
 
-    // Needed for browser compatibility 
-    $(document).on('change', '#filter_resource_form', function() {
-        $(this).submit();
-    });
+  //     // console.log("Removing Standard from Map: " + standardId + " From Map: " + mapId);
 
-    $(document)
-    .on('ajax:error', '#filter_resource_form', function(event, data, status, xhr) {
-        pushFlash({message:"<%= I18n.t('resources.filter_failure') %>", state: 'success', fadeOut: 5000});
-    })
-    .on('ajax:success', '#filter_resource_form', function(event, data, status, xhr) {
-        // Update the resources table
-        $('#resources_table').html(data);  
-    });
+  //     var requestURL = '/ajax/maps/'+mapId+'/map_standards/'+standardId+'/destroy';
 
-    var map_timer;
-    $(document).on('keyup input', '#maps_filter_resource_form', function() {
-        var form = $(this);
-        // Prevents ajax request till N milliseconds 
-        timer && clearTimeout(timer);
-        timer = setTimeout(function(){ 
-            form.submit();
-        }, 500);
-    });
+  //     $.ajax({
+  //       url: requestURL,
+  //       dataType: 'html'
+  //     }).done(function(data) {
+  //       // console.log("Removed Standard from Map: " + standardId + " From Map: " + mapId);
+  //       $('#map_standards_list').html(data);
+  //     });   
 
-    // Needed for browser compatibility 
-    $(document).on('change', '#maps_filter_resource_form', function() {
-        $(this).submit();
-    });
+  //     $(this).attr('class','standard-default');
 
-    $(document)
-    .on('ajax:error', '#maps_filter_resource_form', function(event, data, status, xhr) {
-        pushFlash({message:"<%= I18n.t('resources.filter_failure') %>", state: 'success', fadeOut: 5000});
-    })
-    .on('ajax:success', '#maps_filter_resource_form', function(event, data, status, xhr) {
-        // Update the resources table
-        $('#map_resource_table').html(data);  
-    });
+  //     e.stopPropagation();
+  // });
+
+  // $(document).on('click', '#map_resource_list .resource-default', function(e) {
+  
+  //     var standardId = $(this).attr('standard-id');
+  //     var mapId = $('#map-id').attr('map-id');
+  //     if(standardId == undefined || mapId == undefined) return false;
+
+  //     console.log("Adding Standard from Map: " + standardId + " From Map: " + mapId);
+
+  //     var requestURL = '/ajax/maps/'+mapId+'/map_standards/'+standardId+'/new';
+
+  //     $.ajax({
+  //       url: requestURL,
+  //       dataType: 'html'
+  //     }).done(function(data) {
+  //       console.log("Added Standard from Map: " + standardId + " From Map: " + mapId);
+  //       $('#map_standards_list').html(data);
+  //     });   
+
+  //     // Mark all children standards as selected
+  //     $(this).find('.standard-default').each(function() {
+  //         $(this).attr('class','standard-selected');
+  //     });
+
+  //     $(this).attr('class','standard-selected');
+
+  //     e.stopPropagation();
+  // });
 
 
-    //////////////////////////////
-    //
-    // Adding/Removing  Resource
-    //
-    //////////////////////////////
+  //////////////////////////////
+  //
+  // Edit Resources 
+  //
+  //////////////////////////////
 
 
-    $(document).on('click', '#map_resource_list .resource-selected', function(e) {
+  $(document)
+  .on('ajax:error', "#edit_resource_link_form", function(event, data, status, xhr) {
+      // Not sure why I have to use the responseText here
+      $("#edit_resource_link_errors").html(data.responseText);      
+  })
+  .on('ajax:success', "#edit_resource_link_form", function(event, data, status, xhr) {
+      // Update the resources table
+      $("#resources_table").html(data);  
+      // Flash user of the success
+      pushFlash({message:"<%= I18n.t('resources.edit_success') %>", state: 'success', fadeOut: 5000});
+      $("#uploadResourcesErrors").html('');  
+      closeModalOnSubmit();
+  });
 
-        var standardId = $(this).attr('standard-id');
-        var mapId = $('#map-id').attr('map-id');
-        if(standardId == undefined || mapId == undefined) return false;
+  $(document).on('click', ".edit_resource_link_view", function() {
 
-        // console.log("Removing Standard from Map: " + standardId + " From Map: " + mapId);
+      var resourceId = $(this).attr('resource-id');
+      
+      if (resourceId == undefined) return false;
 
-        var requestURL = '/ajax/maps/'+mapId+'/map_standards/'+standardId+'/destroy';
+      $.ajax({
+        url: '/resources/'+resourceId+'/edit',
+        dataType: 'html'
+      }).done(function(data) {
+          $('#edit_resource_link_modal_body').html(data);
+          $('#edit_resource_link_modal').modal('show');
+          $('#show_resource_link_modal').modal('hide');
+      });   
 
-        $.ajax({
-          url: requestURL,
-          dataType: 'html'
-        }).done(function(data) {
-          // console.log("Removed Standard from Map: " + standardId + " From Map: " + mapId);
-          $('#map_standards_list').html(data);
-        });   
-
-        $(this).attr('class','standard-default');
-
-        e.stopPropagation();
-    });
-
-    $(document).on('click', '#map_resource_list .resource-default', function(e) {
-    
-        var standardId = $(this).attr('standard-id');
-        var mapId = $('#map-id').attr('map-id');
-        if(standardId == undefined || mapId == undefined) return false;
-
-        console.log("Adding Standard from Map: " + standardId + " From Map: " + mapId);
-
-        var requestURL = '/ajax/maps/'+mapId+'/map_standards/'+standardId+'/new';
-
-        $.ajax({
-          url: requestURL,
-          dataType: 'html'
-        }).done(function(data) {
-          console.log("Added Standard from Map: " + standardId + " From Map: " + mapId);
-          $('#map_standards_list').html(data);
-        });   
-
-        // Mark all children standards as selected
-        $(this).find('.standard-default').each(function() {
-            $(this).attr('class','standard-selected');
-        });
-
-        $(this).attr('class','standard-selected');
-
-        e.stopPropagation();
-    });
-
-
-    //////////////////////////////
-    //
-    // Edit Resources 
-    //
-    //////////////////////////////
-
-
-    $(document)
-    .on('ajax:error', "#edit_resource_link_form", function(event, data, status, xhr) {
-        // Not sure why I have to use the responseText here
-        $("#edit_resource_link_errors").html(data.responseText);      
-    })
-    .on('ajax:success', "#edit_resource_link_form", function(event, data, status, xhr) {
-        // Update the resources table
-        $("#resources_table").html(data);  
-        // Flash user of the success
-        pushFlash({message:"<%= I18n.t('resources.edit_success') %>", state: 'success', fadeOut: 5000});
-        $("#uploadResourcesErrors").html('');  
-        closeModalOnSubmit();
-    });
-
-    $(document).on('click', ".edit_resource_link_view", function() {
-
-        var resourceId = $(this).attr('resource-id');
-        
-        if (resourceId == undefined) return false;
-
-        $.ajax({
-          url: '/resources/'+resourceId+'/edit',
-          dataType: 'html'
-        }).done(function(data) {
-            $('#edit_resource_link_modal_body').html(data);
-            $('#edit_resource_link_modal').modal('show');
-            $('#show_resource_link_modal').modal('hide');
-        });   
-
-    });
+  });
     
 });
 
