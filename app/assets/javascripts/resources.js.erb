@@ -58,7 +58,7 @@ $(document).ready(function(){
       closeModalOnSubmit();
   });
 
-  $(document).on('click', ".edit_resource_link_view", function() {
+  $(document).on('click', ".edit_resource_link_view", function(e) {
 
       var resourceId = $(this).attr('resource-id');
       
@@ -73,6 +73,7 @@ $(document).ready(function(){
           $('#show_resource_link_modal').modal('hide');
       });   
 
+      e.stopPropagation();
   });
     
 });
