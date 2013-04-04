@@ -131,7 +131,7 @@ class ResourcesController < ApplicationController
 
     respond_to do |format|
 
-      if @resource.valid? and @resource.save
+      if @resource.save
         @current_user.resources << @resource
         @resources = Resource.where( :user_id => @current_user.id )
 
