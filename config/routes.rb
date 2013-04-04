@@ -27,7 +27,7 @@ Teachermaps::Application.routes.draw do
 
   resources :map_standards, only: [:update, :create, :destroy]
   resources :users do
-    resources :map_standards, :path => 'standards'
+    resources :map_standards, :path => 'standards', only: [:show]
   end
 
 

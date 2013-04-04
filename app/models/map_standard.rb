@@ -18,9 +18,9 @@ class MapStandard < ActiveRecord::Base
   validates :map, presence: true
   validates_uniqueness_of :slug, allow_nil: true, case_sensitive: true
 
-  def to_param
-    self.slug
-  end
+  # def to_param
+  #   self.slug
+  # end
 
   def owned_by?( user_id )
     self.user_id == user_id
