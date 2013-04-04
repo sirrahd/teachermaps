@@ -92,7 +92,11 @@ $(document).ready(function() {
     var standardId = $(this).attr('standard-id');
     var actionUrl = $(this).attr('action-url');
 
+    console.log(standardId);
+    console.log(actionUrl);
     if(actionUrl == undefined || standardId == undefined) return false;
+
+
 
     $.ajax({
       data: {standard_id: standardId},
@@ -100,6 +104,7 @@ $(document).ready(function() {
       dataType: 'html',
       type: 'POST',
       success: function (response) {
+        console.log(response);
         $('#map_standards_list').html(response);
 
         // Mark all children standards as selected

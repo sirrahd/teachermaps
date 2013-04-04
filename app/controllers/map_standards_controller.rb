@@ -23,28 +23,30 @@ class MapStandardsController < ApplicationController
     Rails.logger.info("Located Map #{@map} and Standard #{@standard}")
 
     if !MapStandard.find_by_standard_id_and_map_id_and_user_id(@standard.id, @map.id, @current_user.id)
-        new_map_standard = MapStandard.new
-        new_map_standard.standard = @standard
-        new_map_standard.map = @map
-        new_map_standard.user = @current_user
-        @map.map_standards << new_map_standard
+        @map_standard = MapStandard.new
+        @map_standard.standard = @standard
+        @map_standard.map = @map
+        @map_standard.user = @current_user
+        @map_standard.save
+        # @map.map_standards << new_map_standard
 
-        @map.standards_count += 1
-        @map.save
+        # @map.standards_count += 1
+        # @map.save
     end
 
     # Add any children standards
     @standard.children_standards.each do |child_standard|
       # Enforce prevention of the same standard being added twice
       if !MapStandard.find_by_standard_id_and_map_id_and_user_id(child_standard.id, @map.id, @current_user.id)
-        new_map_standard = MapStandard.new
-        new_map_standard.standard = child_standard
-        new_map_standard.map = @map
-        new_map_standard.user = @current_user
-        @map.map_standards << new_map_standard
+        @map_standard = MapStandard.new
+        @map_standard.standard = child_standard
+        @map_standard.map = @map
+        @map_standard.user = @current_user
+        @map_standard.save
+        # @map.map_standards << new_map_standard
 
-        @map.standards_count += 1
-        @map.save
+        # @map.standards_count += 1
+        # @map.save
       end
     end
 
