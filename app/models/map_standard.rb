@@ -21,6 +21,10 @@ class MapStandard < ActiveRecord::Base
   def to_param
     self.slug
   end
+
+  def owned_by?( user_id )
+    self.user_id == user_id
+  end
   
   private 
 

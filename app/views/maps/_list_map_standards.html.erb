@@ -5,7 +5,7 @@
 			<li action-url="<%= user_map_standard_path map_standard.user, map_standard %>" class="hover clickable action-link editable">    
 				
         <span>
-          <%= link_to user_map_standard_path, :confirm => "Delete \"#{map_standard.standard.name}\"?",  :method => :delete, :class=>"maps_map_standard_destroy pull-right", remote: true do %>
+          <%= link_to map_standard_path(map_standard.id), :confirm => "Delete \"#{map_standard.standard.name}\"?",  :method => :delete, :class=>"maps_map_standard_destroy pull-right", remote: true do %>
             <i class="icon-trash"></i>
           <% end %>
         </span>
