@@ -20,8 +20,7 @@ class MapsController < ApplicationController
       Rails.logger.info(params)
       @map = Map.new()
       @map.user = @current_user
-
-
+      
       respond_to do |format|
         if @map.save
           # @maps = Map.find(:all, conditions: {user_id: @current_user.id})

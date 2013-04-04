@@ -201,11 +201,9 @@ class ResourcesController < ApplicationController
 
     # Removing resource
     @resource.destroy
-    Rails.logger.info("You did it!!")
 
     respond_to do |format|
-      format.html { redirect_to @current_user, :flash => { :success => t('resources.deleted_file', :title => deleted_title) } }
-      format.json { head :no_content }
+      format.html { redirect_to user_path(@current_user, anchor: 'resources'), :flash => { :success => t('resources.deleted_file', :title => deleted_title) } }
     end
   end 
 
@@ -245,7 +243,7 @@ class ResourcesController < ApplicationController
     @resources = Resource.where( :user_id => @current_user.id )
 
     respond_to do |format|
-       format.html { redirect_to user_path(@current_user, :anchor => 'resources'), :flash => { :success => t('resources.synced_n_files', :sync_count => sync_count) } }
+       format.html { redirect_to user_path(@current_user, anchor: 'resources'), :flash => { :success => t('resources.synced_n_files', :sync_count => sync_count) } }
        format.json { head :no_content }
     end
   end
