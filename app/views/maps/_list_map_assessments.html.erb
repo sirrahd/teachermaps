@@ -23,7 +23,7 @@
             <div style="padding-left:50px;">
               <div>
                 <span title="<%= map_resource.resource.get_type %>" style="width:35px;"><%= raw map_resource.resource.get_thumbnail %></span>
-                <span><b><%= link_to map_resource.resource.title.titlecase, resource_path(map_resource.resource.slug),  :target => "_blank" %></b><span>: <%= best_in_place map_resource, :text, :type => :textarea %>
+                <span><b><%= link_to map_resource.resource.title.titlecase, resource_path(map_resource.resource),  :target => "_blank" %></b><span>: <%= best_in_place map_resource, :text, :type => :textarea %>
               </div>
             </div>
           <% end %>
