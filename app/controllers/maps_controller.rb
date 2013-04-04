@@ -56,7 +56,7 @@ class MapsController < ApplicationController
 
 
   def update
-    @map = Map.find_by_slug params[:id]
+    @map = Map.find params[:id]
 
     respond_to do |format|
       if @map.update_attributes(params[:map])

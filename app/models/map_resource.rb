@@ -14,12 +14,14 @@ class MapResource < ActiveRecord::Base
 
   before_destroy :before_deletion
   def before_deletion
-    Map.decrement_counter :resources_count, self.map.id
+    if self and self.map
+      Map.decrement_counter :resources_count, self.map.id
+    end
   end
 
   before_create :before_creation
   def before_creation
-    if self.map.id
+    if self and self.map
       Map.increment_counter :resources_count, self.map.id 
     end
   end

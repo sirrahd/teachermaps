@@ -27,7 +27,7 @@ class Resource < ActiveRecord::Base
 
   before_destroy :deletion_cleanup
   def deletion_cleanup
-    Rails.logger.info("Destroying all Map Resources")
+    Rails.logger.info("Deleting all Map Resources with #{self.user_id} #{self.id}")
     MapResource.destroy_all( user_id: self.user_id, resource_id: self.id )
   end
 

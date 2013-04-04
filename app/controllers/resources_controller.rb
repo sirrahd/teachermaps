@@ -160,12 +160,9 @@ class ResourcesController < ApplicationController
 
     begin
       # Catch resource not found errors
-      @resource = Resource.find_by_slug(params[:id])
-
       # Confirm that the user has permissions to this resource
-      Resource.find(:all, :conditions => { :user_id => @current_user.id, :id => params[:id] })
+      @resource = Resource.find(:all, :conditions => { :id => params[:id], :user_id => @current_user.id  }).first
       Rails.logger.info("Found resource")
-
     rescue
       Rails.logger.info("No such resource")
       return redirect_to resources_url, :flash => { :error =>  t('resources.does_not_exist') }
@@ -180,7 +177,6 @@ class ResourcesController < ApplicationController
       
       Rails.logger.info("Valid Google Session") 
 
-      #google_account.load_session()
       result = google_account.delete_file(@resource.file_id)
 
       Rails.logger.info("Successful Deletion?: #{result.inspect}")
@@ -205,7 +201,7 @@ class ResourcesController < ApplicationController
 
     # Removing resource
     @resource.destroy
-
+    Rails.logger.info("You did it!!")
 
     respond_to do |format|
       format.html { redirect_to @current_user, :flash => { :success => t('resources.deleted_file', :title => deleted_title) } }
