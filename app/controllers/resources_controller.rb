@@ -32,27 +32,7 @@ class ResourcesController < ApplicationController
     
   end
 
-  def ajax_show 
-    Rails.logger.info("Resource #{params[:slug]}")
-    @resource = Resource.find_by_slug( params[:slug] )
-
-    Rails.logger.info("Showing Resource #{@resource.slug} ")
-
-    Rails.logger.info("Resource Link: #{@resource.link}")
-
-    respond_to do |format|
-    # Gracefully handle nil links
-      if @resource.nil?
-        format.html { render :partial => 'shared/error_messages', :locals => { :object => @resource }, :status => 500  }
-      else
-        format.html { render :partial => 'resources/show'}
-      end
-    end
-    
-  end
-
-
-    # GET /resources/1/edit
+  # GET /resources/1/edit
   def edit
     @resource = Resource.where(:id => params[:id], :user_id=>@current_user.id).first
     Rails.logger.info("Editing #{@resource.inspect}")
