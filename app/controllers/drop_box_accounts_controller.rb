@@ -73,8 +73,8 @@ class DropBoxAccountsController < ApplicationController
     DropBoxResource.destroy_all( type: DropBoxResource::TYPE, user_id: @current_user.id  )
 
     if @current_user.has_google_account?
-      # Transfer default uploads to DropBox
-      @setting.upload_to = DropBoxResource::TYPE
+      # Transfer default uploads to Google
+      @setting.upload_to = GoogleResource::TYPE
     else
       # User is going to need to assign one before next upload
       @setting.upload_to = nil
