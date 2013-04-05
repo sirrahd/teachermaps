@@ -68,11 +68,15 @@ en:
     submit:                     "Sending..."
     generic_error:              "Please reload the page and try again"
     success:                    "Thank you!"
+    anonymous:                  "Send anonymously"
   settings:
+    title:                      "Settings"
     upload_to:                  "Default Upload To:"
     save_success:               "Settings saved"
     save_error:                 "Error in saving settings"
     select_storage_service:     "In order to upload a resource, you must select a storage service."
+    storage_title:              "Storage settings"
+    user_title:                 "User settings"
   resources:
     link:                       "Resources"
     web_link:                   "Link"

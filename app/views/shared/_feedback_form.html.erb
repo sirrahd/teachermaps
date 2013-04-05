@@ -16,7 +16,7 @@
         <%= f.hidden_field :account_name, value: @current_user.account_name %>
 
         <label class="pull-left checkbox" style="margin-top: 7px;">
-          <%= check_box_tag :anonymous, 1 %> Send anonymously
+          <%= check_box_tag :anonymous, 1 %> <%= t 'feedback.anonymous' %>
         </label>
 
         <%= f.submit  t('feedback.button'), class: "pull-right btn btn-primary" %>
