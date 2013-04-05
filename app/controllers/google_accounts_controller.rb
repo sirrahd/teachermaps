@@ -77,12 +77,6 @@ class GoogleAccountsController < ApplicationController
       return redirect_to settings_url, :flash => { :notice=> t('google_drive.denied_oauth')}
     end
 
-    Rails.logger.info("Callback success")  
-    Rails.logger.info("AUTHENTICATED CODE: #{params[:code]} \n Client: #{@current_user}")  
-
-    # If user does not have a google account
-    Rails.logger.info("Authorized Google Account") 
-
     @google_account = @current_user.google_account
     # Query Google OAuth tokens
     @google_account.fetch_tokens( params[:code] )

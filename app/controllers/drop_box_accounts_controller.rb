@@ -34,21 +34,30 @@ class DropBoxAccountsController < ApplicationController
   
   def oauth_callback
 
+    @drop_box_account = @current_user.drop_box_account || false
+
+    if !@drop_box_account
+      return redirect_to settings_url, flash: {error: 'Dropbox account not found'}
+    end
+
     # User denied TeacherMaps access to during OAuth handshake
     if params[:not_approved] == 'true'
       return redirect_to settings_url, :flash => { :notice=> t('drop_box.denied_oauth')}
     end
 
-    # Get user's DropBox account
-    drop_box_account = @current_user.drop_box_account
     # Load Session via authenticated access code
-    drop_box_account.fetch_tokens(session[:request_db_session])
-    
-    # Clean up session
-    session.delete(:request_db_session)
+    @drop_box_account.fetch_tokens(session[:request_db_session])
 
-    # Redirect to first sync
-    redirect_to sync_resources_path
+    return respond_to do |format|
+      if @current_user.has_drop_box_account?
+        session.delete(:request_db_session)
+        format.html { redirect_to sync_resources_path }
+      else
+        Rails.logger.info("Failed Dropbox OAuth Callback #{@drop_box_account.errors}")
+        format.html { render nothing: true, status: 500 }
+      end
+    end
+
   end
 
 
