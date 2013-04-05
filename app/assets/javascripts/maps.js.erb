@@ -175,11 +175,6 @@ $(document).ready(function() {
   //
   //////////////////////////////
 
-  $(document).on('click', '.maps_map_assessment_resource_link', function(e) {
-    window.open( $(this).attr('action-url'), '_blank' );
-    e.stopPropagation();
-  });
-
   $(document).on('click', '#maps_map_assessments_resources_table .map_assessment_resource_selected', function(e) {
 
     // /ajax/map_assessments/:map_asssessment_id/map_resources/:map_resource_id/destroy
