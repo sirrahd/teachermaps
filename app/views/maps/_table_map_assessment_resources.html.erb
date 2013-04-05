@@ -17,7 +17,7 @@
     <% end %>
 
       <td title="<%= resource.get_type %>" style="width:35px;"><%= raw resource.get_thumbnail %></td>
-      <td><%= link_to truncate(resource.title, :length => Resource::MAX_TITLE_RENDER_LEN), resource_path(resource), :target => "_blank" %></td>
+      <td><%= link_to truncate(resource.title, :length => Resource::MAX_TITLE_RENDER_LEN), 'JavaScript:void();', {:class => 'maps_map_assessment_resource_link', 'action-url' => resource_path(resource) } %></td>
       <td>
         <% if resource.course_grades.any? %>
           <%= resource.course_grades.map(&:name).join(", ") %>

@@ -9,8 +9,6 @@ class ResourcesController < ApplicationController
     redirect_to @current_user
   end
 
-  # GET /resources/1
-  # GET /resources/1.json
   def show
     Rails.logger.info("Resource #{params[:id]}")
     @resource = Resource.find( params[:id] )
@@ -32,15 +30,12 @@ class ResourcesController < ApplicationController
     
   end
 
-  # GET /resources/1/edit
   def edit
     @resource = Resource.where(:id => params[:id], :user_id=>@current_user.id).first
     Rails.logger.info("Editing #{@resource.inspect}")
     render partial: "resources/edit"
   end
 
-  # PUT /resrouce/1
-  # PUT /resource/1.json
   def update
     Rails.logger.info("Updating Resource #{params}")
     @resource = Resource.where(:id => params[:id], :user_id=>@current_user.id).first
@@ -77,6 +72,56 @@ class ResourcesController < ApplicationController
       end
     end
   end
+
+
+  def destroy
+
+    begin
+      # Catch resource not found errors
+      # Confirm that the user has permissions to this resource
+      @resource = Resource.find(:all, :conditions => { :id => params[:id], :user_id => @current_user.id  }).first
+      Rails.logger.info("Found resource")
+    rescue
+      Rails.logger.info("No such resource")
+      return redirect_to resources_url, :flash => { :error =>  t('resources.does_not_exist') }
+    end
+
+    # Cache for flash notification
+    deleted_title = @resource.title 
+
+    # Google Resource
+    if @current_user.has_google_account? and @resource.class.name == "GoogleResource"
+      google_account = @current_user.google_account 
+      
+      Rails.logger.info("Valid Google Session") 
+
+      result = google_account.delete_file(@resource.file_id)
+
+      Rails.logger.info("Successful Deletion?: #{result.inspect}")
+    else
+      Rails.logger.info("User does not have a synced Google Account or File is not a GoogleResource") 
+    end
+
+    # DropBox Resources
+    if @current_user.has_drop_box_account? and @resource.class.name == "DropBoxResource"
+      drop_box_account = @current_user.drop_box_account 
+
+      result = drop_box_account.delete_file(@resource.path)
+
+      Rails.logger.info("Successful Deletion?: #{result}")
+      
+      Rails.logger.info("Valid DropBox Session") 
+    else
+      Rails.logger.info("User does not have a synced DropBox Account or File is not a DropBox Resource") 
+    end
+
+    # Removing resource
+    @resource.destroy
+
+    respond_to do |format|
+      format.html { redirect_to user_path(@current_user, anchor: 'resources'), :flash => { :success => t('resources.deleted_file', :title => deleted_title) } }
+    end
+  end 
 
   def ajax_filter
 
@@ -154,58 +199,6 @@ class ResourcesController < ApplicationController
     end
 
   end  
-
-
-  def destroy
-
-    begin
-      # Catch resource not found errors
-      # Confirm that the user has permissions to this resource
-      @resource = Resource.find(:all, :conditions => { :id => params[:id], :user_id => @current_user.id  }).first
-      Rails.logger.info("Found resource")
-    rescue
-      Rails.logger.info("No such resource")
-      return redirect_to resources_url, :flash => { :error =>  t('resources.does_not_exist') }
-    end
-
-    # Cache for flash notification
-    deleted_title = @resource.title 
-
-    # Google Resource
-    if @current_user.has_google_account? and @resource.class.name == "GoogleResource"
-      google_account = @current_user.google_account 
-      
-      Rails.logger.info("Valid Google Session") 
-
-      result = google_account.delete_file(@resource.file_id)
-
-      Rails.logger.info("Successful Deletion?: #{result.inspect}")
-    else
-      Rails.logger.info("User does not have a synced Google Account or File is not a GoogleResource") 
-    end
-
-
-
-    # DropBox Resources
-    if @current_user.has_drop_box_account? and @resource.class.name == "DropBoxResource"
-      drop_box_account = @current_user.drop_box_account 
-
-      result = drop_box_account.delete_file(@resource.path)
-
-      Rails.logger.info("Successful Deletion?: #{result}")
-      
-      Rails.logger.info("Valid DropBox Session") 
-    else
-      Rails.logger.info("User does not have a synced DropBox Account or File is not a DropBox Resource") 
-    end
-
-    # Removing resource
-    @resource.destroy
-
-    respond_to do |format|
-      format.html { redirect_to user_path(@current_user, anchor: 'resources'), :flash => { :success => t('resources.deleted_file', :title => deleted_title) } }
-    end
-  end 
 
   def sync
     
