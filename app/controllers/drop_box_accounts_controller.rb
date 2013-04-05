@@ -1,36 +1,32 @@
 
 class DropBoxAccountsController < ApplicationController
-
   include SessionsHelper
 
   before_filter :require_session
 
   def new
 
-    drop_box_account = nil
-
-    if @current_user.has_drop_box_account?
-      # Reuse DropBox Account
-      drop_box_account = @current_user.drop_box_account
-    else
-      # Create new DropBox account
-      drop_box_account = DropBoxAccount.new
-      @current_user.drop_box_account = drop_box_account
+    if !@current_user.has_drop_box_account?
+      @current_user.drop_box_account = DropBoxAccount.new
       @current_user.save()
+
+      # Request an Authorized Session
+      session_data = @current_user.drop_box_account.fetch_request()
+
+      return respond_to do |format|
+        if session_data
+          # Successful request, redirecting...
+          session[:request_db_session] = session_data[:request_db_session]
+          format.html { redirect_to session_data[:auth_url] }
+        else
+          # Unsuccessfull request
+          format.html { redirect_to settings_path, :flash => { :error => t('drop_box.session_request_error') } }
+        end
+      end   
     end
 
-    # Request an Authorized Session
-    session_data = drop_box_account.fetch_request()
-
-    respond_to do |format|
-      if session_data
-        # Successful request, redirecting...
-        session[:request_db_session] = session_data[:request_db_session]
-        format.html { redirect_to session_data[:auth_url] }
-      else
-        # Unsuccessfull request
-        format.html { redirect_to settings_path, :flash => { :error => t('drop_box.session_request_error') } }
-      end
+    return respond_to do |format|
+      format.html { redirect_to settings_url, :flash => { :notice => I18n.t('google_drive.already_added') }}
     end
 
   end
