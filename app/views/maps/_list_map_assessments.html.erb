@@ -8,7 +8,7 @@
             <i class="icon-trash"></i>
           <% end %>
           <br/>
-          <%= link_to  map_assessments_ajax_show_resources_path(map_asssessment), {:remote => true, 'data-toggle' => "modal", 'data-target' =>  "#filter_map_resources_modal", :class => 'maps_map_assessments_show_resources pull-right'} do %>
+          <%= link_to  show_resources_map_assessment_path(map_asssessment), {:remote => true, 'data-toggle' => "modal", 'data-target' =>  "#filter_map_resources_modal", :class => 'maps_map_assessments_show_resources pull-right'} do %>
             <i class="icon-pencil"></i>
           <% end %>
         </span>
@@ -16,7 +16,6 @@
           <b><%= best_in_place map_asssessment, :name, :type => :input %></b>
           <p><%= best_in_place map_asssessment, :text, :type => :textarea %></p>
         </span>
-
       
         <% if !map_asssessment.map_resources.empty? %>
           <% map_asssessment.map_resources.each do |map_resource| %>

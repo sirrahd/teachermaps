@@ -5,16 +5,15 @@ class MapAssessmentsController < ApplicationController
 
 	def create
 		Rails.logger.info(params)
-    @map_assessment = MapAssessment.new( map_id: params[:map_id] )
+    @map_assessment = MapAssessment.new( map_id: params[:map_id])
     @map_assessment.user = @current_user
     @map = @map_assessment.map
   
     respond_to do |format|
       if @map_assessment.save
-      	Rails.logger.info("Success!!!")
       	format.html { render :partial => 'maps/list_map_assessments'}
       else
-      	Rails.logger.info("Failure!!!")
+      	Rails.logger.info("Create Map Assessment errror #{@map_assessment.errors.messages}")
       	format.html { render :json => @map_assessment.errors, :status => :unprocessable_entity  }
       end
     end
@@ -23,14 +22,12 @@ class MapAssessmentsController < ApplicationController
 	def update
 		@map_assessment = MapAssessment.find params[:id]
 
-	  	respond_to do |format|
-	    	if @map_assessment.update_attributes(params[:map_assessment])
-	      		format.html { redirect_to(@map_assessment, :notice => 'MapAssessment was successfully updated.') }
-		      	format.json { respond_with_bip(@map_assessment) }
-		    else
-		      	format.html { render :action => "edit" }
-		      	format.json { respond_with_bip(@map_assessment) }
-		    end
+  	respond_to do |format|
+    	if @map_assessment.update_attributes(params[:map_assessment])
+	      format.json { respond_with_bip(@map_assessment) }
+	    else
+	      format.json { respond_with_bip(@map_assessment) }
+	    end
 		end
 	end
 
@@ -48,15 +45,16 @@ class MapAssessmentsController < ApplicationController
     @map_assessment.destroy
 
     respond_to do |format|
-      if @map.save
-      	format.html { render :partial => 'maps/list_map_assessments', :locals => { :object => @map } }
+      if @map_assessment.destroyed?
+      	format.html { render partial: 'maps/list_map_assessments' }
       else
-      	format.html { render nothing: true, status: 500 }
+        Rails.logger.info("Destroy Map Assessment errror #{@map_assessment.errors.messages}")
+      	format.html { render :json => @map_assessment.errors, :status => :unprocessable_entity }
       end
     end
 	end 
 
-	def ajax_show_resources
+	def show_resources
 		@map_assessment = MapAssessment.find_by_id_and_user_id( params[:id], @current_user.id)
 
 		return render nothing: true, status: 404 if !@map_assessment
@@ -66,11 +64,10 @@ class MapAssessmentsController < ApplicationController
     @filter_resource_types = ResourceType.all
     @filter_course_grades = CourseGrade.all
     @filter_course_subjects = CourseSubject.all   
-    map_resources = @map_assessment.map_resources
-    @map_resources_by_resource_id = Hash[map_resources.map { |p| [p['resource_id'], p] }]
+    @map_resources_by_resource_id = Hash[@map_assessment.map_resources.map { |p| [p['resource_id'], p] }]
     Rails.logger.info("Map Assessment Ressource: #{@map_resources_by_resource_id.inspect}")
 
-		return render :partial => 'maps/modal_map_assessment_resources', :locals => { :object => @map }
+		return render :partial => 'maps/modal_map_assessment_resources'
 	end
 
 
