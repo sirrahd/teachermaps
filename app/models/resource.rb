@@ -1,7 +1,7 @@
 class Resource < ActiveRecord::Base
 
 	TYPE = 'Resource'
-  MAX_TITLE_RENDER_LEN = 35
+  MAX_TITLE_RENDER_LEN = 65
   
   
 	# TeacherMaps generated slug linking to a GoogleDrive/DropBox Resource 
