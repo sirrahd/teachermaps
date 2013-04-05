@@ -71,7 +71,7 @@ class MapAssessmentsController < ApplicationController
 	end
 
 
-	def ajax_filter_resources
+	def filter_resources
 
     Rails.logger.info("Filter Params: #{params}")
     @map_assessment = MapAssessment.find(params[:map_assessment_id])
