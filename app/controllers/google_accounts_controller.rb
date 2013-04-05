@@ -20,7 +20,7 @@ class GoogleAccountsController < ApplicationController
     end
     
     respond_to do |format|
-      format.html { redirect_to settings_url, :flash => { :notice => I18n.t('google_drive.already_added') }}
+      format.html { redirect_to settings_url, flash: { notice: I18n.t('google_drive.already_added') }}
     end
 
   end
@@ -39,12 +39,12 @@ class GoogleAccountsController < ApplicationController
     end 
 
     @current_user.google_account = nil
-    @current_user.save( )
+    @current_user.save
 
     @google_account.destroy
 
     # Delete all google resources belonging to this user
-    GoogleResource.destroy_all( :type=>GoogleResource::TYPE, :user_id=>@current_user.id )
+    GoogleResource.destroy_all( type: GoogleResource::TYPE, user_id: @current_user.id )
 
     if @current_user.has_drop_box_account?
       # Transfer default uploads to DropBox
@@ -57,7 +57,7 @@ class GoogleAccountsController < ApplicationController
 
     respond_to do |format|
       if @google_account.destroyed? and @setting.save()
-        format.html { redirect_to settings_url, flash: { success: t('google_drive.removed')}}
+        format.html { redirect_to settings_url, flash: { success: t('google_drive.removed') } }
       else
         format.html { render nothing: true, status: 500 }
       end
@@ -68,16 +68,17 @@ class GoogleAccountsController < ApplicationController
 
   def oauth_callback
 
-    if !@current_user.google_account.owned_by?(@current_user)
-      return redirect_to settings_url, flash: {error: 'Invalid Google account'}
+    @google_account = @current_user.google_account || false
+
+    if !@google_account
+      return redirect_to settings_url, flash: {error: 'Google account not found'}
     end
 
     # User denied TeacherMaps access to during OAuth handshake
     if params[:error] == 'access_denied'
-      return redirect_to settings_url, :flash => { :notice=> t('google_drive.denied_oauth')}
+      return redirect_to settings_url, flash: { notice:t('google_drive.denied_oauth')}
     end
 
-    @google_account = @current_user.google_account
     # Query Google OAuth tokens
     @google_account.fetch_tokens( params[:code] )
 

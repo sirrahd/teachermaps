@@ -75,7 +75,7 @@ class DropBoxAccountsController < ApplicationController
     end 
 
     @current_user.drop_box_account = nil
-    @current_user.save( )
+    @current_user.save
     @drop_box_account.destroy
 
     # Remove all resources reference to DropBox resources belonging to this user
@@ -93,12 +93,12 @@ class DropBoxAccountsController < ApplicationController
       if @drop_box_account.destroyed? and @setting.save()
         format.html { redirect_to settings_url, flash: { success: t('drop_box.removed')}}
       else
+        Rails.logger.info("Destroy Dropbox account error #{@drop_box_account.errors}")
         format.html { render nothing: true, status: 500 }
       end
     end
 
   end
-
 
   private
 
