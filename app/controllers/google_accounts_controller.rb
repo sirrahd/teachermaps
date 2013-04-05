@@ -68,7 +68,9 @@ class GoogleAccountsController < ApplicationController
 
   def oauth_callback
 
-  
+    if !@current_user.google_account.owned_by?(@current_user)
+      return redirect_to settings_url, flash: {error: 'Invalid Google account'}
+    end
 
     # User denied TeacherMaps access to during OAuth handshake
     if params[:error] == 'access_denied'
@@ -79,34 +81,23 @@ class GoogleAccountsController < ApplicationController
     Rails.logger.info("AUTHENTICATED CODE: #{params[:code]} \n Client: #{@current_user}")  
 
     # If user does not have a google account
-    if !@current_user.has_google_account?
-      Rails.logger.info("Authorized Google Account") 
+    Rails.logger.info("Authorized Google Account") 
 
-      google_account = @current_user.google_account    
+    @google_account = @current_user.google_account
+    # Query Google OAuth tokens
+    @google_account.fetch_tokens( params[:code] )
 
-      # Query Google OAuth tokens
-      google_account.fetch_tokens( params[:code] )
+    # Find previous Apps/TeacherMaps folder, else create one
+    @google_account.folder_id = @google_account.search_for_teachermaps_folder() || @google_account.create_teachermaps_folder()
 
-      folder_id =  google_account.search_for_teachermaps_folder()
-
-      if folder_id
-        Rails.logger.info("Reusing /Apps/TeacherMaps #{folder_id}")
-        # Found exisitng /Apps/TeacherMaps folder in GoogleDrive, reusing
-        google_account.folder_id = folder_id
-        
+    respond_to do |format|
+      if @google_account.save
+        format.html { redirect_to sync_resources_path }
       else
-        # Could not find /Apps/TeacherMaps folder in GoogleDrive
-        # Create new /Apps/TeacherMaps folder
-        google_account.create_teachermaps_folder()
-        Rails.logger.info("Creating new /Apps/TeacherMaps #{google_account.folder_id}")
-      end      
-
-      google_account.save( )
-
+        Rails.logger.info("Failed Google OAuth Callback #{@google_account.errors}")
+        format.html { render nothing: true, status: 500 }
+      end
     end
-
-    # Sync now
-    return redirect_to sync_resources_path
 
   end
 
