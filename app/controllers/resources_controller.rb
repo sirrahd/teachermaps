@@ -120,7 +120,7 @@ class ResourcesController < ApplicationController
 
   end 
 
-  def ajax_filter
+  def filter
 
     Rails.logger.info(params)
 
@@ -147,7 +147,7 @@ class ResourcesController < ApplicationController
     render :partial => 'resources/table_resources'
   end
 
-  def ajax_upload_link
+  def create_link
     Rails.logger.info(params)
 
     @resource = LinkResource.new
@@ -196,7 +196,6 @@ class ResourcesController < ApplicationController
     
     sync_count = 0
 
-
     # These two can be refactored into two simpler if statements 
     # Google Files
     if @current_user.has_google_account?
@@ -229,7 +228,6 @@ class ResourcesController < ApplicationController
 
     respond_to do |format|
        format.html { redirect_to user_path(@current_user, anchor: 'resources'), :flash => { :success => t('resources.synced_n_files', :sync_count => sync_count) } }
-       format.json { head :no_content }
     end
   end
 

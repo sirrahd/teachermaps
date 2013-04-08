@@ -51,7 +51,7 @@ class DropBoxAccountsController < ApplicationController
     return respond_to do |format|
       if @current_user.has_drop_box_account?
         session.delete(:request_db_session)
-        format.html { redirect_to sync_resources_path }
+        format.html { redirect_to resources_sync_path }
       else
         Rails.logger.info("Failed Dropbox OAuth Callback #{@drop_box_account.errors}")
         format.html { render nothing: true, status: 500 }

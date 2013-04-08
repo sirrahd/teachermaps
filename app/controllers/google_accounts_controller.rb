@@ -87,7 +87,7 @@ class GoogleAccountsController < ApplicationController
 
     respond_to do |format|
       if @google_account.save
-        format.html { redirect_to sync_resources_path }
+        format.html { redirect_to resources_sync_path }
       else
         Rails.logger.info("Failed Google OAuth Callback #{@google_account.errors}")
         format.html { render nothing: true, status: 500 }

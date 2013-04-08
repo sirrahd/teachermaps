@@ -19,6 +19,12 @@ Teachermaps::Application.routes.draw do
   match '/confirm', to: 'users#confirm_email'
   match '/reset', to: 'users#reset_password'
 
+  # Sync Google Drive and/or DropBox resources
+  match '/resources/sync' => 'resources#sync'
+  match '/resources/create/link' => 'resources#create_link'
+  match '/resources/filter' => 'resources#filter'
+  resources :resources
+
   resources :map_standards, only: [:update, :destroy]
   resources :maps, only: [:update, :create, :destroy]
   resources :maps do
@@ -29,13 +35,6 @@ Teachermaps::Application.routes.draw do
     resources :maps
     resources :map_standards, :path => 'standards', only: [:show]
   end
-
-  # Sync Google Drive and/or DropBox resources
-  match '/resources/sync' => 'resources#sync', :as => 'sync_resources'
-  match '/resources/ajax/create/link' => 'resources#ajax_upload_link'
-  
-  match '/resources/ajax/filter' => 'resources#ajax_filter', :as => 'resources_ajax_filter'
-  resources :resources
   
   resources :map_assessments do
     member do
@@ -59,7 +58,6 @@ Teachermaps::Application.routes.draw do
   match '/standards/ajax/filter' => 'standards#ajax_filter'
   resources :standards
   
-
   # Google API
   match 'google/oauth_callback' => 'google_accounts#oauth_callback'
   resources :google_accounts
