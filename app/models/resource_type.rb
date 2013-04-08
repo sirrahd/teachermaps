@@ -73,6 +73,9 @@ class ResourceType < ActiveRecord::Base
 	    'audio/x-mpegurl' => 'Audio',
 
 	
+	    'video/quicktime' => 'Video',
+			'video/x-quicktime' => 'Video',
+			'image/mov' => 'Video',
 	    'application/x-shockwave-flash' => 'Video',
 	    'video/x-msvideo' => 'Video',
 	    'video/x-flv' => 'Video',
