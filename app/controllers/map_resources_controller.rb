@@ -8,9 +8,9 @@ class MapResourcesController < ApplicationController
 
   	respond_to do |format|
     	if @map_resource.update_attributes params[:map_resource] 
-	      	format.json { respond_with_bip(@map_resource) }
+      	format.json { respond_with_bip(@map_resource) }
 	    else
-	      	format.json { respond_with_bip(@map_resource) }
+	      format.json { respond_with_bip(@map_resource) }
 	    end
 		end
 	end	

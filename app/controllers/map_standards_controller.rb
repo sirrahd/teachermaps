@@ -12,28 +12,26 @@ class MapStandardsController < ApplicationController
 
     Rails.logger.info(params)
    
-    @map = Map.find_by_id_and_user_id(params[:map_id], @current_user.id)
-    @standard = Standard.find(params[:standard_id])
+    @map = Map.find_by_id_and_user_id params[:map_id], @current_user.id
+    @standard = Standard.find params[:standard_id]
 
     if !@map or !@standard
       Rails.logger.info("Could not locate either map #{params[:map_id]} or standard #{params[:standard_id]}") 
-      return render :nothing => true, :status => 404
+      return render nothing: true, status: 404
     end
 
-    Rails.logger.info("Located Map #{@map} and Standard #{@standard}")
-
-    if !MapStandard.find_by_standard_id_and_map_id_and_user_id(@standard.id, @map.id, @current_user.id)
-        @map_standard = MapStandard.new
-        @map_standard.standard = @standard
-        @map_standard.map = @map
-        @map_standard.user = @current_user
-        @map_standard.save
+    if !MapStandard.find_by_standard_id_and_map_id @standard.id, @map.id
+      @map_standard = MapStandard.new
+      @map_standard.standard = @standard
+      @map_standard.map = @map
+      @map_standard.user = @current_user
+      @map_standard.save
     end
 
     # Add any children standards
     @standard.children_standards.each do |child_standard|
       # Enforce prevention of the same standard being added twice
-      if !MapStandard.find_by_standard_id_and_map_id_and_user_id(child_standard.id, @map.id, @current_user.id)
+      if !MapStandard.find_by_standard_id_and_map_id child_standard.id, @map.id
         @map_standard = MapStandard.new
         @map_standard.standard = child_standard
         @map_standard.map = @map
@@ -46,24 +44,24 @@ class MapStandardsController < ApplicationController
   end
 
   def destroy
+    Rails.logger.info(params)
+    
+    @map_standard = MapStandard.find_by_id_and_user_id params[:id], @current_user.id
 
-    @map_standard = MapStandard.find( params[:id] )
-
-    if !@map_standard or @map_standard.owned_by?(@current_user)
-      Rails.logger.info("Could not locate either map standard from given data") 
-      return render :nothing => true, :status => 404
+    if !@map_standard
+      Rails.logger.info("404 Error, Could not locate map standard #{params[:id]}") 
+      return render nothing: true, status: 404
     end
 
     @map = @map_standard.map
     @map_standard.destroy
 
     respond_to do |format|
-      if @map_standard.destroyed?
-        Rails.logger.info("Deleted Map Standard")                
+      if @map_standard.destroyed?            
         return render partial: 'maps/list_map_standards'
       else
-        Rails.logger.info("Map Standard deletion failure!!!")
-        format.html { render :json => @map_standard.errors, :status => :unprocessable_entity  }
+        Rails.logger.info("Map Standard deletion failure!!! #{@map_standard.errors.inspect}")
+        format.html { render json: @map_standard.errors, status: :unprocessable_entity  }
       end 
     end
   end
