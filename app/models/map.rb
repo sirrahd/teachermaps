@@ -113,7 +113,7 @@ class Map < ActiveRecord::Base
   MAX_NAME_RENDER_LEN = 100
 
   # Core components	
-  attr_accessible :name, :slug, :text, :thumbnail
+  attr_accessible :name, :slug, :text, :thumbnail, :user_id
 
   # For quick rendering of item counts
   attr_accessible :resources_count, :standards_count, :objectives_count

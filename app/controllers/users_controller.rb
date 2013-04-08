@@ -14,7 +14,7 @@ class UsersController < ApplicationController
     @user = @current_user
 
 
-    @maps = Map.where user_id: @current_user
+    @maps = Map.where( user_id: @current_user ).order('id DESC')
     @resources = Resource.where( user_id: @current_user.id )
 
     @filter_course_types = ResourceType.where( id: @resources.map { |resource| resource.resource_type.id } )

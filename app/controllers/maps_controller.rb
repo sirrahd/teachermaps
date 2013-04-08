@@ -5,10 +5,9 @@ class MapsController < ApplicationController
 
   def show
 
-  	print "Showing map #{params[:id]}"
   	@map = Map.find_by_slug_and_user_id( params[:id], @current_user.id )
 
-    @resources = Resource.where user_id: @current_user.id
+    # Used for rendering standards filter
     @filter_standard_types = StandardType.all
     @filter_resource_types = ResourceType.all
     @filter_course_grades = CourseGrade.all
@@ -18,21 +17,19 @@ class MapsController < ApplicationController
 
   def create
       Rails.logger.info(params)
-      @map = Map.new()
-      @map.user = @current_user
+
+      @map = Map.new user_id: @current_user.id
       
       respond_to do |format|
         if @map.save
-          # @maps = Map.find(:all, conditions: {user_id: @current_user.id})
-          # Rails.logger.info("#{current_user.account_name} created a new map #{@map}")
           @maps = @current_user.maps
-          Rails.logger.info("#{@maps.inspect}")
           format.html { render :partial => 'users/table_maps'}
         else
-          Rails.logger.info("Map creation failure!!!")
+          Rails.logger.info("Map creation failure!!! #{@map.errors.inspect}")
           format.html { render :json => @map.errors, :status => :unprocessable_entity  }
         end
       end
+      
   end
 
   def destroy
