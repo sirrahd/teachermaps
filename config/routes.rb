@@ -33,15 +33,15 @@ Teachermaps::Application.routes.draw do
   # Sync Google Drive and/or DropBox resources
   match '/resources/sync' => 'resources#sync', :as => 'sync_resources'
   match '/resources/ajax/create/link' => 'resources#ajax_upload_link'
-  match '/resources/ajax/show/:slug' => 'resources#ajax_show', :as => 'resources_ajax_show'
+  
   match '/resources/ajax/filter' => 'resources#ajax_filter', :as => 'resources_ajax_filter'
   resources :resources
   
   resources :map_assessments do
     member do
-      get  'show_resources'
-      post 'filter_resources'
-      post 'create_resource'
+      get    'show_resources'
+      post   'filter_resources'
+      post   'create_resource'
       delete 'destroy_resource'
     end
   end
@@ -49,15 +49,13 @@ Teachermaps::Application.routes.draw do
 
   resources :map_objectives do
     member do
-      get  'show_resources'
-      post 'filter_resources'
-      post 'create_resource'
+      get    'show_resources'
+      post   'filter_resources'
+      post   'create_resource'
       delete 'destroy_resource'
     end
   end
 
-
-  # match '/maps/ajax/filter' => 'map_standards#ajax_filter'
   match '/standards/ajax/filter' => 'standards#ajax_filter'
   resources :standards
   
