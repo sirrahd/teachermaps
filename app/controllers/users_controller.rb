@@ -39,7 +39,7 @@ class UsersController < ApplicationController
       flash[:success] = t('signup.welcome', app_name: t('global.app_name'))
       redirect_to @user
     else
-      render 'new'
+      redirect_to 'settings/index'
     end
   end
 
@@ -66,9 +66,12 @@ class UsersController < ApplicationController
     # If request is already authenticated
     @user = current_user
     if @user.update_attributes(params[:user])
-      render json: '', status: :accepted
+      flash[:success] = "Profile updated"
+      sign_in @user
+      redirect_to @user
     else
-      render json: @user.errors.full_messages, status: :unprocessable_entity
+      flash[:warning] = t 'reset_password.error'
+      redirect_to :back
     end
   end
 

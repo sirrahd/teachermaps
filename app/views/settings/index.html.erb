@@ -45,7 +45,7 @@
 
       <%= f.submit "Save changes", class: "btn btn-large btn-primary" %>
     <% end %>
-    <%= link_to(t('reset_password.action'), controller: 'users', action: 'reset_password', params: { account_name: @user.account_name, key: @user.request_key }) %>
+    <%= raw t('settings.change_password_link', action: link_to(t('reset_password.action'), controller: 'users', action: 'reset_password', params: { account_name: @user.account_name, key: @user.request_key })) %>
   </div>
 </div>
 
