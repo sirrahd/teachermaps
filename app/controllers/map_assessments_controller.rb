@@ -68,7 +68,6 @@ class MapAssessmentsController < ApplicationController
     @filter_course_subjects = CourseSubject.where( id: @resources.map { |resource| resource.course_subjects.collect(&:id) } )
 
     @map_resources_by_resource_id = Hash[@map_assessment.map_resources.map { |p| [p['resource_id'], p] }]
-    # Rails.logger.info("Map Assessment Ressource: #{@map_resources_by_resource_id.inspect}")
 
 		return render :partial => 'maps/modal_map_assessment_resources'
 	end
@@ -146,7 +145,7 @@ class MapAssessmentsController < ApplicationController
       Rails.logger.info("404 Error, either Map Assessment #{params[:id]} or resource #{params[:resource_id]}") 
       return render :nothing => true, :status => 404
     end
-    
+
     @map_resource = MapResource.find_by_map_assessment_id_and_resource_id(@map_assessment, @resource)
     @map_resource.destroy if @map_resource
 

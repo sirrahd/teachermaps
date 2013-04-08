@@ -14,7 +14,7 @@ $(document).ready(function(){
     if(map_standard_id == undefined || actionUrl == undefined) return false;
 
     $.ajax({
-      data: { 'map_standard_id' : mapStandardId },
+      data: { map_standard_id : mapStandardId },
       type: 'POST',
       url: actionUrl,
       dataType: 'html',
@@ -87,19 +87,21 @@ $(document).ready(function(){
   //
   //////////////////////////////
 
-  $(document).on('click', '#map_standards_resources_table .map_objectives_resource_selected', function(e) {
+  $(document).on('click', '.map_objectives_resource_selected', function(e) {
 
-    // /map_objectives/:map_objective_id/resource/:map_resource_id/destroy
+    // /map_objectives/:id/create_resource
     var mapObjectiveId = $(this).attr('map-objective-id');
     var resourceId = $(this).attr('resource-id'); 
-    var actionUrl = '/map_objectives/'+mapObjectiveId+'/resources/'+resourceId+'/destroy'
+    var actionUrl = '/map_objectives/'+mapObjectiveId+'/destroy_resource'
     var resourceElem = $(this);
 
     if(mapObjectiveId == undefined || resourceId == undefined) return false;
 
     $.ajax({
+      data: { resource_id: resourceId },
       url: actionUrl,
       dataType: 'html',
+      type: 'DELETE',
       success: function (response) {
         $('#map_standards_objectives_list').html(response);
         resourceElem.attr('class','map_objectives_resource_default');
@@ -112,19 +114,21 @@ $(document).ready(function(){
     e.stopPropagation();
   });
 
-  $(document).on('click', '#map_standards_resources_table .map_objectives_resource_default', function(e) {
+  $(document).on('click', '.map_objectives_resource_default', function(e) {
       
-    // /map_objectives/:map_objective_id/resource/:map_resource_id/new
+    // /map_objectives/:id/destroy_resource
     var mapObjectiveId = $(this).attr('map-objective-id');
     var resourceId = $(this).attr('resource-id'); 
-    var actionUrl = '/map_objectives/'+mapObjectiveId+'/resources/'+resourceId+'/new'
+    var actionUrl = '/map_objectives/'+mapObjectiveId+'/create_resource'
     var resourceElem = $(this);
 
     if(mapObjectiveId == undefined || resourceId == undefined) return false;
 
     $.ajax({
+      data: { resource_id: resourceId },
       url: actionUrl,
       dataType: 'html',
+      type: 'POST',
       success: function (response) {
         $('#map_standards_objectives_list').html(response);
         resourceElem.attr('class','map_objectives_resource_selected');
