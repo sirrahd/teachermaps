@@ -16,35 +16,33 @@ class MapsController < ApplicationController
   end
 
   def create
-      Rails.logger.info(params)
+    Rails.logger.info(params)
 
-      @map = Map.new user_id: @current_user.id
-      
-      respond_to do |format|
-        if @map.save
-          @maps = @current_user.maps
-          format.html { render :partial => 'users/table_maps'}
-        else
-          Rails.logger.info("Map creation failure!!! #{@map.errors.inspect}")
-          format.html { render :json => @map.errors, :status => :unprocessable_entity  }
-        end
+    @map = Map.new user_id: @current_user.id
+    
+    respond_to do |format|
+      if @map.save
+        @maps = @current_user.maps
+        format.html { render :partial => 'users/table_maps'}
+      else
+        Rails.logger.info("Map creation failure!!! #{@map.errors.inspect}")
+        format.html { render :json => @map.errors, :status => :unprocessable_entity  }
       end
-      
+    end
   end
 
   def destroy
     Rails.logger.info(params)
-    @map = Map.find params[:id]
-
-    @map.destroy if @map and @map.user_id == @current_user.id
+    
+    @map = Map.find_by_id_and_user_id params[:id], @current_user.id
+    @map.destroy if @map
   
     respond_to do |format|
       if @map.destroyed?
         @maps = @current_user.maps
-        Rails.logger.info("#{current_user.account_name} destroyed a map #{@map.name}")
-        format.html { render :partial => 'users/table_maps', :locals => { :object => @maps } }
+        format.html { render :partial => 'users/table_maps'}
       else
-        Rails.logger.info("Map deletion failure!!!")
+        Rails.logger.info("Map deletion failure!!! #{@map.errors.inspect}")
         format.html { render :json => @map.errors, :status => :unprocessable_entity  }
       end 
     end
@@ -52,14 +50,12 @@ class MapsController < ApplicationController
 
 
   def update
-    @map = Map.find params[:id]
+    @map = Map.find_by_id_and_user_id params[:id], @current_user.id
 
     respond_to do |format|
       if @map.update_attributes(params[:map])
-        format.html { redirect_to(@map, :notice => 'Map was successfully updated.') }
         format.json { respond_with_bip(@map) }
       else
-        format.html { render :action => "edit" }
         format.json { respond_with_bip(@map) }
       end
     end
