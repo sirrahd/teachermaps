@@ -5,16 +5,16 @@ class MapAssessmentsController < ApplicationController
 
 	def create
 		Rails.logger.info(params)
-    @map_assessment = MapAssessment.new( map_id: params[:map_id])
+    @map_assessment = MapAssessment.new( map_id: params[:map_id] )
     @map_assessment.user = @current_user
     @map = @map_assessment.map
   
     respond_to do |format|
       if @map_assessment.save
-      	format.html { render :partial => 'maps/list_map_assessments'}
+      	format.html { render partial: 'maps/list_map_assessments'}
       else
       	Rails.logger.info("Create Map Assessment errror #{@map_assessment.errors.messages}")
-      	format.html { render :json => @map_assessment.errors, :status => :unprocessable_entity  }
+      	format.html { render json: @map_assessment.errors, status: :unprocessable_entity  }
       end
     end
 	end
@@ -31,9 +31,8 @@ class MapAssessmentsController < ApplicationController
 		end
 	end
 
-
 	def destroy
-		@map_assessment = MapAssessment.find_by_id_and_user_id( params[:id], @current_user.id)
+		@map_assessment = MapAssessment.find_by_id_and_user_id( params[:id], @current_user.id )
 
 		# Stop here if map was not found
 		return render nothing: true, status: 404 if !@map_assessment
@@ -55,15 +54,19 @@ class MapAssessmentsController < ApplicationController
 	end 
 
 	def show_resources
-		@map_assessment = MapAssessment.find_by_id_and_user_id( params[:id], @current_user.id)
+		@map_assessment = MapAssessment.find_by_id_and_user_id( params[:id], @current_user.id )
 
 		return render nothing: true, status: 404 if !@map_assessment
 
 		@map = @map_assessment.map
     @resources = Resource.where user_id: @current_user.id
-    @filter_resource_types = ResourceType.all
-    @filter_course_grades = CourseGrade.all
-    @filter_course_subjects = CourseSubject.all   
+    @filter_resource_types = ResourceType.where( id: @resources.map { |resource| resource.resource_type.id } )
+    @filter_course_grades = CourseGrade.where( id: @resources.map { |resource| resource.course_grades.collect(&:id) } )
+    @filter_course_subjects = CourseSubject.where( id: @resources.map { |resource| resource.course_subjects.collect(&:id) } )
+
+    # @filter_resource_types = ResourceType.all
+    # @filter_course_grades = CourseGrade.all
+    # @filter_course_subjects = CourseSubject.all   
     @map_resources_by_resource_id = Hash[@map_assessment.map_resources.map { |p| [p['resource_id'], p] }]
     Rails.logger.info("Map Assessment Ressource: #{@map_resources_by_resource_id.inspect}")
 

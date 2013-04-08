@@ -43,7 +43,7 @@ Teachermaps::Application.routes.draw do
   resources :map_assessments do
     member do
       get 'show_resources'
-      get 'filter_resources'
+      post 'filter_resources'
     end
   end
   resources :map_resources
