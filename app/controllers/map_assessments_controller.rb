@@ -64,11 +64,8 @@ class MapAssessmentsController < ApplicationController
     @filter_course_grades = CourseGrade.where( id: @resources.map { |resource| resource.course_grades.collect(&:id) } )
     @filter_course_subjects = CourseSubject.where( id: @resources.map { |resource| resource.course_subjects.collect(&:id) } )
 
-    # @filter_resource_types = ResourceType.all
-    # @filter_course_grades = CourseGrade.all
-    # @filter_course_subjects = CourseSubject.all   
     @map_resources_by_resource_id = Hash[@map_assessment.map_resources.map { |p| [p['resource_id'], p] }]
-    Rails.logger.info("Map Assessment Ressource: #{@map_resources_by_resource_id.inspect}")
+    # Rails.logger.info("Map Assessment Ressource: #{@map_resources_by_resource_id.inspect}")
 
 		return render :partial => 'maps/modal_map_assessment_resources'
 	end
@@ -76,51 +73,48 @@ class MapAssessmentsController < ApplicationController
 
 	def filter_resources
 
-    Rails.logger.info("Filter Params: #{params}")
-    @map_assessment = MapAssessment.find(params[:map_assessment_id])
+    Rails.logger.info(params)
+    @map_assessment = MapAssessment.find params[:map_assessment_id]
 
     return render nothing: true, status: 404 if !@map_assessment
     
     @map_resources_by_resource_id = Hash[@map_assessment.map_resources.map { |p| [p['resource_id'], p] }]
-    	Rails.logger.info("Map Assessment Ressource: #{@map_resources_by_resource_id.inspect}")
-
+  
     filter = {}
-    @resources = Resource.where( :user_id => @current_user.id )
+    @resources = Resource.where( user_id: @current_user.id )
 
     if params.has_key?('q') and !params[:q].empty?
       @resources &= Resource.where( Resource.arel_table[:title].matches("%#{params[:q].strip}%") )
     end
 
     if params.has_key?('resource_types')
-      @resources &= Resource.find(:all, :conditions=>{:user_id => @current_user.id, :resource_type_id=>params[:resource_types]})
+      @resources &= Resource.find(:all, conditions: {user_id: @current_user.id, resource_type_id: params[:resource_types]})
     end
 
     if params.has_key?('course_grades')
-      @resources &= Resource.find(:all, :joins => :course_grades, :conditions=>{:user_id => @current_user.id, :course_grades=>{:id => params[:course_grades]}})
+      @resources &= Resource.find(:all, joins: :course_grades, conditions: {user_id: @current_user.id, course_grades: {id: params[:course_grades]}})
       
     end
 
     if params.has_key?('course_subjects')
-      @resources &= Resource.find(:all, :joins => :course_subjects, :conditions=>{:user_id => @current_user.id, :course_subjects=>{:id => params[:course_subjects]}})
+      @resources &= Resource.find(:all, joins: :course_subjects, conditions: {user_id: @current_user.id, course_subjects: {id: params[:course_subjects]}})
     end
 
-    Rails.logger.info(@resources);
-    render :partial => 'maps/table_map_assessment_resources'
+    render partial: 'maps/table_map_assessment_resources'
 	end
 
 
-	def ajax_new_resource
+	def create_resource
 
 	    Rails.logger.info(params)
-	    @map_assessment = MapAssessment.find(params[:map_assessment_id])
+	    @map_assessment = MapAssessment.find(params[:id])
 	    @resource = Resource.find(params[:resource_id])
 
 	    if !@map_assessment or !@resource
-	      Rails.logger.info("Could not locate either map assessment #{params[:map_assessment_id]} or resource #{params[:resource_id]}") 
+	      Rails.logger.info("Could not locate either map assessment #{params[:id]} or resource #{params[:resource_id]}") 
 	      return render :nothing => true, :status => 404
 	    end
 
-	    Rails.logger.info("User: #{@current_user.id} MapAssessment: #{@map_assessment.user_id} Resource: #{@resource.user_id}")
 	    if @map_assessment.user_id != @current_user.id or @resource.user_id != @current_user.id
 	      Rails.logger.info("User does not have permission to add this resource") 
 	      return render :nothing => true, :status => 403
@@ -147,13 +141,13 @@ class MapAssessmentsController < ApplicationController
 	    end
 	end
 
-	def ajax_destroy_resource
+	def destroy_resource
 		Rails.logger.info(params)
-	    @map_assessment = MapAssessment.find(params[:map_assessment_id])
+	    @map_assessment = MapAssessment.find(params[:id])
 	    @resource = Resource.find(params[:resource_id])
 
 	    if !@map_assessment or !@resource
-	      Rails.logger.info("Could not locate either map assessment #{params[:map_assessment_id]} or resource #{params[:resource_id]}") 
+	      Rails.logger.info("Could not locate either map assessment #{params[:id]} or resource #{params[:resource_id]}") 
 	      return render :nothing => true, :status => 404
 	    end
 
