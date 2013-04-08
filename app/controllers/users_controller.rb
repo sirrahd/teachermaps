@@ -13,14 +13,12 @@ class UsersController < ApplicationController
     # Users can only sign in to their own account; ignore params
     @user = @current_user
 
-
     @maps = Map.where( user_id: @current_user ).order('id DESC')
     @resources = Resource.where( user_id: @current_user.id )
 
     @filter_course_types = ResourceType.where( id: @resources.map { |resource| resource.resource_type.id } )
     @filter_course_grades = CourseGrade.where( id: @resources.map { |resource| resource.course_grades.collect(&:id) } )
     @filter_course_subjects = CourseSubject.where( id: @resources.map { |resource| resource.course_subjects.collect(&:id) } )
-
 
     # For rendering Ajax "Upload Resource" form
     @resource = Resource.new
