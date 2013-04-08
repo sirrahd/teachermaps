@@ -18,6 +18,10 @@ class MapAssessment < ActiveRecord::Base
   validates :text, length: {maximum: 2048}
   validates_uniqueness_of :slug, allow_nil: true, case_sensitive: true
 
+  def owned_by?( user )
+    self.user_id == user.id
+  end
+
   private 
 
   def clean_attrs

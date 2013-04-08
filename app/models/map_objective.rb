@@ -25,8 +25,8 @@ class MapObjective < ActiveRecord::Base
   
   before_create :before_creation
 
-  def owned_by?( user_id )
-    self.user_id == user_id
+  def owned_by?( user )
+    self.user_id == user.id
   end
 
   private 

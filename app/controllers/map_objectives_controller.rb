@@ -174,7 +174,7 @@ class MapObjectivesController < ApplicationController
     end
 
     Rails.logger.info("User: #{@current_user.id} Map Objective: #{@map_objective.user_id} Resource: #{@resource.user_id}")
-    if !@map_objective.owned_by?(@current_user.id) or !@resource.owned_by?(@current_user.id)
+    if !@map_objective.owned_by?(@current_user) or !@resource.owned_by?(@current_user)
       Rails.logger.info("User does not have permission to remove this resource") 
       return render :nothing => true, :status => 403
     end

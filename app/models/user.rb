@@ -54,7 +54,7 @@ class User < ActiveRecord::Base
   def has_drop_box_account?
     !drop_box_account.nil? and !drop_box_account.session_token.nil?
   end
-
+  
   def to_param
     self.account_name
   end

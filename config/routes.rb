@@ -37,7 +37,7 @@ Teachermaps::Application.routes.draw do
   match '/resources/ajax/filter' => 'resources#ajax_filter', :as => 'resources_ajax_filter'
   resources :resources
   
-  match '/ajax/map_assessments/:id/resources/filter' => 'map_assessments#ajax_filter_resources', as: 'map_assessment_resources_ajax_filter'
+  # match '/ajax/map_assessments/:id/resources/filter' => 'map_assessments#ajax_filter_resources', as: 'map_assessment_resources_ajax_filter'
   # match '/ajax/map_assessments/:map_assessment_id/map_resources/:resource_id/new' => 'map_assessments#ajax_new_resource', as: 'map_assessments_ajax_new_resource'
   # match '/ajax/map_assessments/:map_assessment_id/map_resources/:resource_id/destroy' => 'map_assessments#ajax_destroy_resource', as: 'map_assessments_ajax_destroy_resource'
   resources :map_assessments do

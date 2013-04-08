@@ -106,81 +106,75 @@ class MapAssessmentsController < ApplicationController
 
 	def create_resource
 
-	    Rails.logger.info(params)
-	    @map_assessment = MapAssessment.find(params[:id])
-	    @resource = Resource.find(params[:resource_id])
+    Rails.logger.info(params)
+    @map_assessment = MapAssessment.find params[:id]
+    @resource = Resource.find params[:resource_id]
 
-	    if !@map_assessment or !@resource
-	      Rails.logger.info("Could not locate either map assessment #{params[:id]} or resource #{params[:resource_id]}") 
-	      return render :nothing => true, :status => 404
-	    end
+    if !@map_assessment or !@resource
+      Rails.logger.info("404 Error, either Map Assessment #{params[:id]} or Resource #{params[:resource_id]}") 
+      return render :nothing => true, :status => 404
+    end
 
-	    if @map_assessment.user_id != @current_user.id or @resource.user_id != @current_user.id
-	      Rails.logger.info("User does not have permission to add this resource") 
-	      return render :nothing => true, :status => 403
-	    end
+    if !@map_assessment.owned_by?(@current_user) or !@resource.owned_by?(@current_user)
+      Rails.logger.info('User does not have permission to add this resource') 
+      return render :nothing => true, :status => 403
+    end
 
-	    @map = @map_assessment.map
+    if !MapResource.find_by_map_assessment_id_and_resource_id(@map_assessment, @resource)
+    	@map_resource = MapAssessmentResource.new
+    	@map_resource.user = @current_user
+    	@map_resource.map = @map_assessment.map
+    	@map_resource.resource = @resource
+    	@map_resource.map_assessment = @map_assessment
+   	end
 
-	    if !MapResource.find_by_map_assessment_id_and_resource_id(@map_assessment, @resource)
-	    	@map_resource = MapAssessmentResource.new
-	    	@map_resource.user = @current_user
-	    	@map_resource.map = @map
-	    	@map_resource.resource = @resource
-	    	@map_resource.map_assessment = @map_assessment
-
-	   	end
-
-	    respond_to do |format|
-	      if @map_resource.save and @map_assessment.save
-	      	format.html { render :partial => 'maps/list_map_assessments'}
-	      else
-	      	Rails.logger.info("Errors: #{@map_resource.errors.inspect} #{@map_assessment.errors.inspect}")
-	      	format.html { render nothing: true, status: 500 }
-	      end
-	    end
+    respond_to do |format|
+      if @map_resource.save and @map_assessment.save
+        @map = @map_resource.map
+      	format.html { render partial: 'maps/list_map_assessments'}
+      else
+      	Rails.logger.info("Errors: #{@map_resource.errors.inspect} #{@map_assessment.errors.inspect}")
+      	format.html { render nothing: true, status: 500 }
+      end
+    end
 	end
 
 	def destroy_resource
 		Rails.logger.info(params)
-	    @map_assessment = MapAssessment.find(params[:id])
-	    @resource = Resource.find(params[:resource_id])
+    @map_assessment = MapAssessment.find params[:id]
+    @resource = Resource.find params[:resource_id]
 
-	    if !@map_assessment or !@resource
-	      Rails.logger.info("Could not locate either map assessment #{params[:id]} or resource #{params[:resource_id]}") 
-	      return render :nothing => true, :status => 404
-	    end
+    if !@map_assessment or !@resource
+      Rails.logger.info("404 Error, either Map Assessment #{params[:id]} or resource #{params[:resource_id]}") 
+      return render :nothing => true, :status => 404
+    end
 
-	    Rails.logger.info("User: #{@current_user.id} MapAssessment: #{@map_assessment.user_id} Resource: #{@resource.user_id}")
-	    if @map_assessment.user_id != @current_user.id or @resource.user_id != @current_user.id
-	      Rails.logger.info("User does not have permission to add this resource") 
-	      return render :nothing => true, :status => 403
-	    end
+    if !@map_assessment.owned_by?(@current_user) or !@resource.owned_by?(@current_user)
+      Rails.logger.info('User does not have permission to add this resource') 
+      return render :nothing => true, :status => 403
+    end
 
-	    @map = @map_assessment.map
+    @map_resource = MapResource.find_by_map_assessment_id_and_resource_id(@map_assessment, @resource)
+    @map_resource.destroy if @map_resource
 
-	    @map_resource = MapResource.find_by_map_assessment_id_and_resource_id(@map_assessment, @resource)
-	    @map_resource.destroy
-
-	    Rails.logger.info("Deleted map resource @map_resource.name")
-
-	    respond_to do |format|
-	      if @map_resource.destroyed? and @map.save
-	      	format.html { render :partial => 'maps/list_map_assessments', :locals => { :object => @map } }
-	      else
-	      	Rails.logger.info("Errors: #{@map_resource.errors.inspect}")
-	      	format.html { render nothing: true, status: 500 }
-	      end
-	    end
+    respond_to do |format|
+      if @map_resource.destroyed?
+        @map = @map_assessment.map
+      	format.html { render partial: 'maps/list_map_assessments' }
+      else
+      	Rails.logger.info("Errors: #{@map_resource.errors.inspect}")
+      	format.html { render nothing: true, status: 500 }
+      end
+    end
 	end
 
 	private
 
-  	# Requires user session
-  	def require_session
-    	unless current_user
-      		redirect_to signin_path
-    	end
+	# Requires user session
+	def require_session
+  	unless current_user
+    		redirect_to signin_path
   	end
+	end
 
 end

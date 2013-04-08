@@ -31,8 +31,8 @@ class Resource < ActiveRecord::Base
     MapResource.destroy_all( user_id: self.user_id, resource_id: self.id )
   end
 
-  def owned_by?( user_id )
-    self.user_id == user_id
+  def owned_by?( user )
+    self.user_id == user.id
   end
 
   def assign_type

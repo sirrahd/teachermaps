@@ -175,7 +175,7 @@ $(document).ready(function() {
   //
   //////////////////////////////
 
-  $(document).on('click', '#maps_map_assessments_resources_table .map_assessment_resource_selected', function(e) {
+  $(document).on('click', '.map_assessment_resource_selected', function(e) {
 
     // /map_assessments/:id/destroy_resource
     var mapAssessmentId = $(this).attr('map-assessment-id');
@@ -204,7 +204,7 @@ $(document).ready(function() {
     e.stopPropagation();
   });
 
-  $(document).on('click', '#maps_map_assessments_resources_table .map_assessment_resource_default', function(e) {
+  $(document).on('click', '.map_assessment_resource_default', function(e) {
       
     // /map_assessments/:id/create_resource
     var mapAssessmentId = $(this).attr('map-assessment-id');
