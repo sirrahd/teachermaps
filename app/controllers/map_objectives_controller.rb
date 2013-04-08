@@ -111,13 +111,12 @@ class MapObjectivesController < ApplicationController
       @resource = Resource.find_by_id_and_user_id params[:resource_id], @current_user.id
 
       if !@map_objective or !@resource
-        Rails.logger.info("Could not locate either map objective #{params[:id]} or resource #{params[:resource_id]}") 
+        Rails.logger.info("404 Error, either map objective #{params[:id]} or resource #{params[:resource_id]}") 
         return render nothing: true, status: 404
       end
-      
+
       @map_standard = @map_objective.map_standard
-  
-      Rails.logger.info("User: #{@current_user.id} MapObjective: #{@map_objective.id} Resource: #{@resource.id}")
+
       if !MapResource.find_by_map_objective_id_and_resource_id(@map_objective, @resource)
         @map_resource = MapObjectiveResource.new
         @map_resource.user = @current_user
@@ -130,7 +129,7 @@ class MapObjectivesController < ApplicationController
         if @map_resource.save
           format.html { render partial: 'map_standards/list_map_objectives'}
         else
-          Rails.logger.info("Errors: #{@map_resource.errors.inspect} #{@map_objective.errors.inspect}")
+          Rails.logger.info("Errors: #{@map_resource.errors.inspect}")
           format.html { render nothing: true, status: 500 }
         end
       end
@@ -147,15 +146,11 @@ class MapObjectivesController < ApplicationController
     end
 
     @map_standard = @map_objective.map_standard
-    Rails.logger.info @map_objective.id
-    Rails.logger.info @resource.id
-    @map_resource = MapResource.find_by_map_objective_id_and_resource_id( @map_objective.id, @resource.id )
+    @map_resource = MapResource.find_by_map_objective_id_and_resource_id  @map_objective.id, @resource.id
     @map_resource.destroy if @map_resource
 
-    Rails.logger.info("Deleted map resource")
-
     respond_to do |format|
-      if @map_resource.destroyed?# and @map.save
+      if @map_resource.destroyed?
         format.html { render partial: 'map_standards/list_map_objectives' }
       else
         Rails.logger.info("Errors: #{@map_resource.errors.inspect}")
