@@ -3,13 +3,16 @@ class AddCourseSubjectToResources < ActiveRecord::Migration
     create_table :course_subjects_resources, :id => false do |t|
 	  t.integer :course_subject_id
       t.integer :resource_id
-	end
+  	end
 
-	add_index :course_subjects_resources, [:course_subject_id,:resource_id], :name => 'course_subjects_resources_index'
-	add_index :course_subjects_resources, [:resource_id,:course_subject_id], :name => 'resources_course_subjects_index'
+  	add_index :course_subjects_resources, [:course_subject_id,:resource_id], :name => 'course_subjects_resources_index'
+  	add_index :course_subjects_resources, [:resource_id,:course_subject_id], :name => 'resources_course_subjects_index'
   end
 
   def self.down
+    remove_index :course_subjects_resources, :name => :course_subjects_resources_index
+    remove_index :course_subjects_resources, :name => :resources_course_subjects_index
+
     drop_table :course_subjects_resources
   end
 end

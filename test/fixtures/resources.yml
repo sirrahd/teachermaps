@@ -1,0 +1,18 @@
+resource_one:
+ slug: HocusPocusSlug1000
+ link: http://whatchaMaCallIt.com
+ type: LinkResource
+ user: bjkiller
+ resource_type: web
+ course_grades: one,two,three
+ course_subjects: math
+ title: Frankinstien
+resource_two:
+ slug: HiggalyJigaloBigalo
+ link: http://deFame.com
+ type: LinkResource
+ user: bjkiller
+ resource_type: web
+ course_grades: two
+ course_subjects: math,physics
+ title: Bouncing Balls Link

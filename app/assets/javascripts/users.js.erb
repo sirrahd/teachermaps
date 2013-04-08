@@ -1,0 +1,64 @@
+$(document).ready(function(){
+
+  $('#users_maps_table ul li').live("click", function(e) {
+  
+      var mapURI = $(this).attr('action-url');
+      window.location = mapURI;
+      return;
+  });
+  
+  // Hide by default
+  $('#resource-controls').hide();
+  // Shows resource controls when viewing resources
+  $('#toggle-resources').click(function(){
+  	$('#resource-controls').show();
+  });
+  // Hides resource controls when viewing map
+  $('#toggle-maps').click(function(){
+  	$('#resource-controls').hide()
+  });
+
+
+  $(".users_map_destroy")
+  .live("ajax:error", function(event, data, status, xhr) {
+      pushFlash({message:"Error deleting Map", state: 'error', fadeOut: 5000});
+  })
+  .live("ajax:success", function(event, data, status, xhr) {
+      $('#users_maps_table').html(data);
+  });
+
+
+    //////////////////////////////
+    //
+    // Add Map
+    //
+    //////////////////////////////
+
+
+    $('#users_create_map').live("click", function(e) {
+
+        var actionUrl = $(this).attr('action-url');
+
+        if(actionUrl == undefined) return false;
+
+        console.log("Adding Map via path " + actionUrl);
+
+        $.ajax({
+            type: 'POST',
+            url: actionUrl,
+            dataType: 'html',
+            success: function (response) {
+                $('#users_maps_table').html(response);
+            },
+            error: function (xhr, ajaxOptions, thrownError) {
+                pushFlash({message:"Error adding a Map Assessment", state: 'error', fadeOut: 5000});
+            }
+        });
+
+        e.stopPropagation();
+    });
+
+});
+
+
+

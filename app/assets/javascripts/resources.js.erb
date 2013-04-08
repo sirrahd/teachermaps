@@ -1,4 +1,4 @@
-jQuery(function($) {    
+$(document).ready(function(){    
 
     
     //////////////////////////////
@@ -19,11 +19,9 @@ jQuery(function($) {
 
         if (data != undefined) {
             if (data.resources != undefined) {
-                console.log("Reloading resources");
                 $("#resources_table").html(data.resources);
             }
             if (data.filters != undefined) {
-                console.log("Reloading filters");
                 $('#resource_filter').html(data.filters);
             }
         }
@@ -72,10 +70,90 @@ jQuery(function($) {
     .live("ajax:success", function(event, data, status, xhr) {
         // Update the resources table
         $("#resources_table").html(data);  
-        console.log(data);
+    });
+
+    var map_timer;
+    $("#maps_filter_resource_form").live('keyup input',function() {
+        var form = $(this);
+        // Prevents ajax request till N milliseconds 
+        timer && clearTimeout(timer);
+        timer = setTimeout(function(){ 
+            form.submit();
+        }, 500);
+    });
+
+    // Needed for browser compatibility 
+    $('#maps_filter_resource_form').live('change', function() {
+        $(this).submit();
+    });
+
+    $("#maps_filter_resource_form")
+    .live("ajax:error", function(event, data, status, xhr) {
+        pushFlash({message:"<%= I18n.t('resources.filter_failure') %>", state: 'success', fadeOut: 5000});
+    })
+    .live("ajax:success", function(event, data, status, xhr) {
+        // Update the resources table
+        $("#map_resource_table").html(data);  
     });
 
 
+    //////////////////////////////
+    //
+    // Adding/Removing  Resource
+    //
+    //////////////////////////////
+
+
+    $('#map_resource_list .resource-selected').live("click", function(e) {
+
+        var standardId = $(this).attr('standard-id');
+        var mapId = $('#map-id').attr('map-id');
+        if(standardId == undefined || mapId == undefined) return false;
+
+        console.log("Removing Standard from Map: " + standardId + " From Map: " + mapId);
+
+        var requestURL = '/ajax/maps/'+mapId+'/map_standards/'+standardId+'/destroy';
+
+        $.ajax({
+          url: requestURL,
+          dataType: 'html'
+        }).done(function(data) {
+          console.log("Removed Standard from Map: " + standardId + " From Map: " + mapId);
+          $('#map_standards_list').html(data);
+        });   
+
+        $(this).attr('class','standard-default');
+
+        e.stopPropagation();
+    });
+
+    $('#map_resource_list .resource-default').live("click", function(e) {
+    
+        var standardId = $(this).attr('standard-id');
+        var mapId = $('#map-id').attr('map-id');
+        if(standardId == undefined || mapId == undefined) return false;
+
+        console.log("Adding Standard from Map: " + standardId + " From Map: " + mapId);
+
+        var requestURL = '/ajax/maps/'+mapId+'/map_standards/'+standardId+'/new';
+
+        $.ajax({
+          url: requestURL,
+          dataType: 'html'
+        }).done(function(data) {
+          console.log("Added Standard from Map: " + standardId + " From Map: " + mapId);
+          $('#map_standards_list').html(data);
+        });   
+
+        // Mark all children standards as selected
+        $(this).find('.standard-default').each(function() {
+            $(this).attr('class','standard-selected');
+        });
+
+        $(this).attr('class','standard-selected');
+
+        e.stopPropagation();
+    });
 
 
     //////////////////////////////
@@ -86,6 +164,9 @@ jQuery(function($) {
 
 
     $("#edit_resource_link_form")
+    .live("ajax:beforeSend", function(xhr, settings) {
+        // Blah!!!
+    })
     .live("ajax:error", function(event, data, status, xhr) {
         // Not sure why I have to use the responseText here
         $("#edit_resource_link_errors").html(data.responseText);      
@@ -97,12 +178,10 @@ jQuery(function($) {
         pushFlash({message:"<%= I18n.t('resources.edit_success') %>", state: 'success', fadeOut: 5000});
         $("#uploadResourcesErrors").html('');  
         closeModalOnSubmit();
-        console.log("Success Edit" + "<%= I18n.t('resources.edit_success') %>");
     });
 
     $("#edit_resource_link_view")
     .live("click", function() {
-        console.log("Editing view: ");
 
         var resourceId = $(this).attr('resource-id');
         
@@ -116,7 +195,6 @@ jQuery(function($) {
             $('#edit_resource_link_modal_body').html(data);
             $('#edit_resource_link_modal').modal('show');
             $('#show_resource_link_modal').modal('hide');
-            console.log("Loaded Resource:"+resourceId);
         });   
 
     });
@@ -135,7 +213,6 @@ jQuery(function($) {
 
 
     $('#resources_table a').live("click", function(e) {
-        console.log('Clicked link');
         e.stopPropagation();
     });
 
@@ -147,8 +224,6 @@ jQuery(function($) {
         var resourceURI = $(this).attr('resource-url');
 
         if(resourceURI == undefined) return false;
-
-        console.log("Showing view: "+resourceURI);
         
         // Confirm form data exists
         if (resourceURI == undefined) return false;
@@ -157,10 +232,8 @@ jQuery(function($) {
           url: resourceURI,
           dataType: 'html'
         }).done(function(data) {
-          console.log(data);
           $('#show_resource_link_modal_body').html(data);
           $('#show_resource_link_modal').modal('show');
-          console.log("Loaded Resource:"+resourceURI);
         });   
 
         e.stopPropagation();
@@ -171,8 +244,6 @@ jQuery(function($) {
         var resourceURI = $(this).attr('resource-url');
 
         if(resourceURI == undefined) return false;
-
-        console.log("Showing view: "+resourceURI);
         
         // Confirm form data exists
         if (resourceURI == undefined) return false;
@@ -181,10 +252,8 @@ jQuery(function($) {
           url: resourceURI,
           dataType: 'html'
         }).done(function(data) {
-          console.log(data);
           $('#show_resource_link_modal_body').html(data);
           $('#show_resource_link_modal').modal('show');
-          console.log("Loaded Resource:"+resourceURI);
         });   
 
         e.stopPropagation();

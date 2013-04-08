@@ -1,0 +1,47 @@
+<div class="row">
+  <input type="hidden" id="map_standard_id" value=<%= @map_standard.id %> />
+  
+  <div class="span10" style="">
+    
+
+      <div>
+        <!-- Breadcrumb -->
+        <%= link_to "My Maps", user_path(@map_standard.map.user) %> / <%= link_to "#{@map_standard.map.name.titlecase.truncate(40)}", user_map_path(@map_standard.map.user, @map_standard.map) %> / <%= link_to "#{@map_standard.standard.name.truncate(40)}", "JavaScript:void(0);" %> /
+      </div>
+
+      <div>
+        <h2><%= @map_standard.standard.name %></h2>
+      
+
+      	<!-- Map Content -->
+        <p><%= raw(@map_standard.standard.text) %></p>
+	  </div>
+
+      <div class="editable-btn">
+       
+        <span class="pull-right">
+          <%= link_to 'Add Objective', "JavaScript:void(0);", :class => 'btn', id: 'create_map_objective', 'action-url' => map_objectives_path %>
+        </span> 
+        <h3>Objectives</h3>
+        <div id="map_standards_objectives_list">
+
+          <!-- Map Objectives -->
+          <%= render 'map_standards/list_map_objectives' %>
+
+        </div>
+      </div>
+
+  </div>
+</div>
+
+
+<div id="filter_map_objectives_resources_modal" class="resource-modal modal hide fade" >
+  <div class="filter_map_resources_modal_header modal-header">
+    <button type="button" class="close" data-dismiss="modal" style="margin-right:10px;">&times;</button>
+    <h3>Loading...</h3>
+  </div>
+  <div class="filter_map_resources_modal_body modal-body center">
+      <%= image_tag "loading.gif", :alt => "loading"%>
+  </div>
+  <div class="modal-footer">&nbsp;</div>
+</div>

@@ -1,0 +1,33 @@
+<% if !@map_standard.map_objectives.empty? %>
+  <% @map_standard.map_objectives.order("created_at DESC").each do |map_objective| %>
+    <div class="hover">
+      <div class="editable">
+        
+        <span>
+          <%= link_to map_objective, :confirm => "Delete \"#{map_objective.name.titlecase}\"?",  :method => :delete, :class=>"map_standards_map_objective_destroy pull-right", remote: true do %>
+            <i class="icon-trash"></i>
+          <% end %>
+          <br/>
+          <%= link_to  map_objectives_show_resources_path(map_objective), {:remote => true, 'data-toggle' => "modal", 'data-target' =>  "#filter_map_objectives_resources_modal", :class => 'maps_objectives_show_resources pull-right'} do %>
+            <i class="icon-pencil"></i>
+          <% end %>
+        </span>
+         <span>
+          <b><%= best_in_place map_objective, :name, :type => :input %></b>
+          <p><%= best_in_place map_objective, :text, :type => :textarea %></p>
+        </span>
+      
+        <% if !map_objective.map_resources.empty? %>
+          <% map_objective.map_resources.each do |map_resource| %>
+            <div style="padding-left:50px;">
+              <div>
+                <span title="<%= map_resource.resource.get_type %>" style="width:35px;"><%= raw map_resource.resource.get_thumbnail %></span>
+                <span><b><%= link_to map_resource.resource.title.titlecase, resource_path(map_resource.resource.slug),  :target => "_blank" %></b><span> <%= best_in_place map_resource, :text, :type => :textarea %>
+              </div>
+            </div>
+          <% end %>
+        <% end %>
+      </div>
+    </div>
+  <% end %>
+<% end %>
