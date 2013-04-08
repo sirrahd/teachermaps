@@ -8,7 +8,7 @@ class MapAssessmentsController < ApplicationController
 
     @map = Map.find_by_id_and_user_id params[:map_id], @current_user.id 
     return render nothing: true, status: 404 if !@map
-    
+
     @map_assessment = MapAssessment.new map_id: @map.id, user_id: @current_user.id
     
     respond_to do |format|
@@ -22,7 +22,8 @@ class MapAssessmentsController < ApplicationController
 	end
 
 	def update
-		@map_assessment = MapAssessment.find params[:id]
+		@map_assessment = MapAssessment.find_by_id_and_user_id( params[:id], @current_user.id )
+    return render nothing: true, status: 404 if !@map_assessment
 
   	respond_to do |format|
     	if @map_assessment.update_attributes(params[:map_assessment])
@@ -109,17 +110,12 @@ class MapAssessmentsController < ApplicationController
 	def create_resource
 
     Rails.logger.info(params)
-    @map_assessment = MapAssessment.find params[:id]
-    @resource = Resource.find params[:resource_id]
+    @map_assessment = MapAssessment.find_by_id_and_user_id params[:id], @current_user.id
+    @resource = Resource.find_by_id_and_user_id params[:resource_id], @current_user.id
 
     if !@map_assessment or !@resource
       Rails.logger.info("404 Error, either Map Assessment #{params[:id]} or Resource #{params[:resource_id]}") 
       return render :nothing => true, :status => 404
-    end
-
-    if !@map_assessment.owned_by?(@current_user) or !@resource.owned_by?(@current_user)
-      Rails.logger.info('User does not have permission to add this resource') 
-      return render :nothing => true, :status => 403
     end
 
     if !MapResource.find_by_map_assessment_id_and_resource_id(@map_assessment, @resource)
@@ -131,7 +127,7 @@ class MapAssessmentsController < ApplicationController
    	end
 
     respond_to do |format|
-      if @map_resource.save and @map_assessment.save
+      if @map_resource.save
         @map = @map_resource.map
       	format.html { render partial: 'maps/list_map_assessments'}
       else
@@ -143,19 +139,14 @@ class MapAssessmentsController < ApplicationController
 
 	def destroy_resource
 		Rails.logger.info(params)
-    @map_assessment = MapAssessment.find params[:id]
-    @resource = Resource.find params[:resource_id]
+    @map_assessment = MapAssessment.find_by_id_and_user_id params[:id], @current_user.id
+    @resource = Resource.find_by_id_and_user_id params[:resource_id], @current_user.id
 
     if !@map_assessment or !@resource
       Rails.logger.info("404 Error, either Map Assessment #{params[:id]} or resource #{params[:resource_id]}") 
       return render :nothing => true, :status => 404
     end
-
-    if !@map_assessment.owned_by?(@current_user) or !@resource.owned_by?(@current_user)
-      Rails.logger.info('User does not have permission to add this resource') 
-      return render :nothing => true, :status => 403
-    end
-
+    
     @map_resource = MapResource.find_by_map_assessment_id_and_resource_id(@map_assessment, @resource)
     @map_resource.destroy if @map_resource
 
