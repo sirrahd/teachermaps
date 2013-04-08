@@ -6,8 +6,6 @@ class MapObjectivesController < ApplicationController
   def create
 
     Rails.logger.info(params)
-   
-    return render :nothing => true, :status => 403 if !@current_user 
     
     @map_standard = MapStandard.find_by_id_and_user_id(params[:map_standard_id], @current_user.id) 
     if !@map_standard

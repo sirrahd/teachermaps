@@ -5,10 +5,12 @@ class MapAssessmentsController < ApplicationController
 
 	def create
 		Rails.logger.info(params)
-    @map_assessment = MapAssessment.new( map_id: params[:map_id] )
-    @map_assessment.user = @current_user
-    @map = @map_assessment.map
-  
+
+    @map = Map.find_by_id_and_user_id params[:map_id], @current_user.id 
+    return render nothing: true, status: 404 if !@map
+    
+    @map_assessment = MapAssessment.new map_id: @map.id, user_id: @current_user.id
+    
     respond_to do |format|
       if @map_assessment.save
       	format.html { render partial: 'maps/list_map_assessments'}
