@@ -25,6 +25,7 @@ class User < ActiveRecord::Base
   before_save do |user|
     user.email = user.email.downcase
     user.account_name = user.account_name.downcase
+    user.confirmed = 0 if user.email_changed?
   end
 
   before_save :create_remember_token
@@ -44,8 +45,7 @@ class User < ActiveRecord::Base
                     format: { with: VALID_ACCOUNT_NAME_REGEX },
                     uniqueness: { case_sensitive: false }
 
-  validates :password, presence: true, length: { minimum: 6 }
-  validates :password_confirmation, presence: true
+  validates :password, presence: true, length: { minimum: 6 }, confirmation: true, if: :password_digest_changed?
 
   def has_google_account?
     !google_account.nil? and !google_account.folder_id.nil?
