@@ -11,13 +11,21 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130228131249) do
+ActiveRecord::Schema.define(:version => 20130303003444) do
 
   create_table "course_grades", :force => true do |t|
     t.string   "name"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
+
+  create_table "course_grades_maps", :id => false, :force => true do |t|
+    t.integer "course_grade_id"
+    t.integer "map_id"
+  end
+
+  add_index "course_grades_maps", ["course_grade_id", "map_id"], :name => "course_grades_maps_index"
+  add_index "course_grades_maps", ["map_id", "course_grade_id"], :name => "maps_course_grades_index"
 
   create_table "course_grades_resources", :id => false, :force => true do |t|
     t.integer "course_grade_id"
@@ -27,11 +35,27 @@ ActiveRecord::Schema.define(:version => 20130228131249) do
   add_index "course_grades_resources", ["course_grade_id", "resource_id"], :name => "course_grades_resources_index"
   add_index "course_grades_resources", ["resource_id", "course_grade_id"], :name => "resources_course_grades_index"
 
+  create_table "course_grades_standards", :id => false, :force => true do |t|
+    t.integer "course_grade_id"
+    t.integer "standard_id"
+  end
+
+  add_index "course_grades_standards", ["course_grade_id", "standard_id"], :name => "course_grades_standards_index"
+  add_index "course_grades_standards", ["standard_id", "course_grade_id"], :name => "standards_course_grades_index"
+
   create_table "course_subjects", :force => true do |t|
     t.string   "name"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
+
+  create_table "course_subjects_maps", :id => false, :force => true do |t|
+    t.integer "course_subject_id"
+    t.integer "map_id"
+  end
+
+  add_index "course_subjects_maps", ["course_subject_id", "map_id"], :name => "course_subjects_maps_index"
+  add_index "course_subjects_maps", ["map_id", "course_subject_id"], :name => "maps_course_subjects_index"
 
   create_table "course_subjects_resources", :id => false, :force => true do |t|
     t.integer "course_subject_id"
@@ -62,6 +86,61 @@ ActiveRecord::Schema.define(:version => 20130228131249) do
     t.datetime "updated_at",        :null => false
   end
 
+  create_table "map_assessments", :force => true do |t|
+    t.string   "slug"
+    t.string   "name"
+    t.text     "text"
+    t.integer  "user_id"
+    t.integer  "map_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "map_objectives", :force => true do |t|
+    t.string   "name"
+    t.text     "text"
+    t.string   "slug"
+    t.integer  "map_standard_id"
+    t.integer  "user_id"
+    t.integer  "map_id"
+    t.datetime "created_at",      :null => false
+    t.datetime "updated_at",      :null => false
+  end
+
+  create_table "map_resources", :force => true do |t|
+    t.text     "text"
+    t.integer  "resource_id"
+    t.integer  "user_id"
+    t.integer  "map_id"
+    t.integer  "map_objective_id"
+    t.integer  "map_assessment_id"
+    t.string   "type"
+    t.datetime "created_at",        :null => false
+    t.datetime "updated_at",        :null => false
+  end
+
+  create_table "map_standards", :force => true do |t|
+    t.string   "slug"
+    t.integer  "standard_id"
+    t.integer  "map_id"
+    t.integer  "user_id"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+  end
+
+  create_table "maps", :force => true do |t|
+    t.string   "name"
+    t.string   "slug"
+    t.text     "text"
+    t.text     "thumbnail"
+    t.integer  "resources_count"
+    t.integer  "objectives_count"
+    t.integer  "standards_count"
+    t.integer  "user_id"
+    t.datetime "created_at",       :null => false
+    t.datetime "updated_at",       :null => false
+  end
+
   create_table "resource_types", :force => true do |t|
     t.string "name"
     t.string "thumbnail"
@@ -89,6 +168,22 @@ ActiveRecord::Schema.define(:version => 20130228131249) do
     t.string   "upload_to"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+  end
+
+  create_table "standard_types", :force => true do |t|
+    t.string "name"
+  end
+
+  create_table "standards", :force => true do |t|
+    t.string  "name"
+    t.text    "text"
+    t.string  "domain"
+    t.string  "sub_subject"
+    t.string  "slug"
+    t.integer "course_subject_id"
+    t.integer "standard_type_id"
+    t.integer "parent_standard_id"
+    t.boolean "is_parent_standard"
   end
 
   create_table "users", :force => true do |t|

@@ -8,27 +8,31 @@ class Resource < ActiveRecord::Base
 	attr_accessible :slug
 
 	# Common attributes shared accross each Cloud Storage Services
-	attr_accessible :file_size, :title, :mime_type, :file_upload
+	attr_accessible :file_size, :title, :mime_type
 
-  	belongs_to :user
-    belongs_to :resource_type
+  belongs_to :user
+  belongs_to :resource_type
 
-  	has_and_belongs_to_many :course_subjects, :uniq => true, :order => 'name ASC'
-  	has_and_belongs_to_many :course_grades, :uniq => true, :order => 'id ASC'
+  has_and_belongs_to_many :course_subjects, uniq: true, order: 'name ASC'
+  has_and_belongs_to_many :course_grades, uniq: true, order: 'id ASC'
 
 
-  	# TeacherMaps specific attributes can be listed here
-  	validates :title, :presence => {:message => I18n.t('resources.title_blank_error')}, :length => {:minimum => 2, :maximum => 2048}
+  # TeacherMaps specific attributes can be listed here
+  validates :title, presence: {:message => I18n.t('resources.title_blank_error')}, length: {minimum: 2, maximum: 250}
 
-  	before_create :default_values
-  	def default_values
-  		# Random, need to check for uniuqness
+  before_create :default_values
+  def default_values
+  	# Random, need to check for uniuqness
 		self.slug ||= SecureRandom.urlsafe_base64.downcase
 	end
 
 	def to_param
 		self.slug
 	end
+
+  def owned_by?( user_id )
+    self.user_id == user_id
+  end
 
   def assign_type
       conversion_table = ResourceType::MIME_TYPE_CONVERSIONS

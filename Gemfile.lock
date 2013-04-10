@@ -38,6 +38,9 @@ GEM
       multi_json (>= 1.0.0)
     bcrypt-ruby (3.0.1)
     bcrypt-ruby (3.0.1-x86-mingw32)
+    best_in_place (2.1.0)
+      jquery-rails
+      rails (~> 3.1)
     bootstrap-sass (2.3.0.1)
       sass (~> 3.2)
     builder (3.0.4)
@@ -174,6 +177,7 @@ PLATFORMS
 DEPENDENCIES
   annotate (~> 2.5.0)
   bcrypt-ruby (~> 3.0.1)
+  best_in_place (~> 2.1.0)
   bootstrap-sass (~> 2.3.0.1)
   capybara (~> 2.0.2)
   coffee-rails (~> 3.2.2)
@@ -181,7 +185,8 @@ DEPENDENCIES
   execjs (~> 1.4.0)
   google-api-client (~> 0.6.2)
   i18n-js (~> 2.1.2)
-  jquery-rails (~> 2.0.3)
+  jquery-rails (~> 2.0.2)
+  nokogiri (~> 1.5.6)
   pg (~> 0.14.1)
   rails (~> 3.2.12)
   sass-rails (~> 3.2.6)
