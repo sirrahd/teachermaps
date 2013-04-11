@@ -78,6 +78,8 @@ en:
     storage_title:              "Storage settings"
     user_title:                 "User settings"
     change_password_link:       "%{action} to change your password."
+    email_not_confirmed:        "Waiting for confirmation"
+    email_confirmed:            "Confirmed"
   resources:
     link:                       "Resources"
     web_link:                   "Link"
@@ -156,3 +158,6 @@ en:
     email_sent:                 "Check your email inbox to confirm your identity and reset your password"
     title:                      "Reset your password"
     link:                       "Forgot your password?"
+  change_email:
+    subject:                    "Please confirm your new email address"
+    content_textonly:           "Please help us confirm your identity by clicking the link below:"

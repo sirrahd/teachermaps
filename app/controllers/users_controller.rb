@@ -67,6 +67,10 @@ class UsersController < ApplicationController
     # If request is already authenticated
     @user = current_user
     if @user.update_attributes(params[:user])
+      if params[:user][:email]
+        @user.update_attribute(:confirmed, 0)
+        UserMailer.change_email(@user, request.env['HTTP_HOST']).deliver
+      end
       flash[:success] = "Profile updated"
       sign_in @user
       redirect_to @user
