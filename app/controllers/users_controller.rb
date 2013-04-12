@@ -40,7 +40,7 @@ class UsersController < ApplicationController
       flash[:success] = t('signup.welcome', app_name: t('global.app_name'))
       redirect_to @user
     else
-      redirect_to 'settings/index'
+      render 'new'
     end
   end
 
