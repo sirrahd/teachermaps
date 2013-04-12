@@ -66,11 +66,21 @@ class UsersController < ApplicationController
 
     # If request is already authenticated
     @user = current_user
-    if @user.update_attributes(params[:user])
-      if params[:user][:email]
-        @user.update_attribute(:confirmed, 0)
-        UserMailer.change_email(@user, request.env['HTTP_HOST']).deliver
+
+    # If user's email changes unconfirm them and send a confirmation email
+    if params[:user] and params[:user][:email]
+     unless params[:user][:email] == @user.email
+        @user.email = params[:user][:email]
+        if @user.save
+          @user.update_attribute(:confirmed, 0)
+          UserMailer.change_email(@user, request.env['HTTP_HOST']).deliver
+          sign_in @user
+        end
       end
+    end
+
+    # Update any other attributes
+    if @user.update_attributes(params[:user])
       flash[:success] = "Profile updated"
       sign_in @user
       redirect_to @user
