@@ -11,4 +11,10 @@ class UserMailer < ActionMailer::Base
     @host = host
     mail( to: user.email, subject: t('reset_password.subject') )
   end
+
+  def change_email(user, host)
+    @user = user
+    @host = host
+    mail( to: user.email, subject: t('change_email.subject') )
+  end
 end

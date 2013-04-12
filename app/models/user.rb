@@ -25,7 +25,6 @@ class User < ActiveRecord::Base
   before_save do |user|
     user.email = user.email.downcase
     user.account_name = user.account_name.downcase
-    user.confirmed = 0 if user.email_changed?
   end
 
   before_save :create_remember_token
