@@ -3,9 +3,7 @@ require 'base64'
 
 class MapStandard < ActiveRecord::Base
 
-  before_create :default_values
-  # Core components	
-  attr_accessible :slug
+  attr_accessible :slug, :resources_count, :objectives_count
 
   belongs_to :user
   belongs_to :map
@@ -18,16 +16,15 @@ class MapStandard < ActiveRecord::Base
   validates :map, presence: true
   validates_uniqueness_of :slug, allow_nil: true, case_sensitive: true
 
+  before_create :default_values
   before_destroy :before_deletion
   before_create :before_creation
   
-
   def owned_by?( user_id )
     self.user_id == user_id
   end
   
   private 
-
 
   def before_deletion
     Map.decrement_counter :standards_count, self.map.id

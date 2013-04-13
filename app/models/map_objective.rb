@@ -31,11 +31,13 @@ class MapObjective < ActiveRecord::Base
 
   def before_deletion
     Map.decrement_counter :objectives_count, self.map.id
+    MapStandard.decrement_counter :objectives_count, self.map_standard.id
   end
 
   def before_creation
     if self.map.id
       Map.increment_counter :objectives_count, self.map.id 
+      MapStandard.increment_counter :objectives_count, self.map_standard.id
     end
   end
 
