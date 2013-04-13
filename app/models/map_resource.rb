@@ -15,6 +15,10 @@ class MapResource < ActiveRecord::Base
   before_validation	:clean_attrs
   after_initialize :default_values
 
+  def owned_by?( user )
+    self.user_id == user.id
+  end
+
   private 
 
   def before_deletion

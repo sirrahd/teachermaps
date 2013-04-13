@@ -3,8 +3,7 @@ require 'base64'
 
 class MapAssessment < ActiveRecord::Base
 
-  after_initialize :default_values
-  before_validation :clean_attrs
+  
 
   attr_accessible :name, :text, :map_id, :user_id
 
@@ -18,6 +17,10 @@ class MapAssessment < ActiveRecord::Base
   validates :name, length: {minimum: 2, maximum: 250}
   validates :text, length: {minimum: 2, maximum: 2048}
   validates_uniqueness_of :slug, case_sensitive: true
+
+  after_initialize :default_values
+  before_validation :clean_attrs
+  
 
   def owned_by?( user )
     self.user_id == user.id

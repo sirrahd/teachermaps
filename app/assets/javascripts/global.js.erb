@@ -18,4 +18,19 @@ $(document).ready(function() {
     $('a[href="' + window.location.hash + '"]').click()
   }
 
+
+
+  //////////////////////////////
+  //
+  // Best in place error messaging 
+  //
+  //////////////////////////////
+  $(document).on('best_in_place:error', function(event, request, error) {
+    // Display all error messages from server side validation
+    jQuery.each(jQuery.parseJSON(request.responseText), function(index, value) {
+      if( typeof(value) == "object") {value = index + " " + value.toString(); }
+      pushFlash({message: value, state:'success', fadeOut: 3000});
+    });
+});
+
 });
