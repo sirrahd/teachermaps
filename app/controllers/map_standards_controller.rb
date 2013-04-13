@@ -16,7 +16,7 @@ class MapStandardsController < ApplicationController
     @standard = Standard.find params[:standard_id]
 
     if !@map or !@standard
-      Rails.logger.info("Could not locate either map #{params[:map_id]} or standard #{params[:standard_id]}") 
+      Rails.logger.info("error 404 map #{params[:map_id]} or standard #{params[:standard_id]}") 
       return render nothing: true, status: 404
     end
 
@@ -26,6 +26,11 @@ class MapStandardsController < ApplicationController
       @map_standard.map = @map
       @map_standard.user = @current_user
       @map_standard.save
+
+      if !@map_standard.save
+        Rails.logger.info("500 error map_standard") 
+        return render json: @map_standard.errors, status: :unprocessable_entity
+      end
     end
 
     # Add any children standards
@@ -36,7 +41,11 @@ class MapStandardsController < ApplicationController
         @map_standard.standard = child_standard
         @map_standard.map = @map
         @map_standard.user = @current_user
-        @map_standard.save
+      
+        if !@map_standard.save
+          Rails.logger.info("500 error map_standard") 
+          return render json: @map_standard.errors, status: :unprocessable_entity
+        end
       end
     end
 
@@ -49,7 +58,7 @@ class MapStandardsController < ApplicationController
     @map_standard = MapStandard.find_by_id_and_user_id params[:id], @current_user.id
 
     if !@map_standard
-      Rails.logger.info("404 Error, Could not locate map standard #{params[:id]}") 
+      Rails.logger.info("404 error map_standard #{params[:id]}") 
       return render nothing: true, status: 404
     end
 
@@ -57,10 +66,10 @@ class MapStandardsController < ApplicationController
     @map_standard.destroy
 
     respond_to do |format|
-      if @map_standard.destroyed?            
+      if @map_standard.destroyed?       
         return render partial: 'maps/list_map_standards'
       else
-        Rails.logger.info("error delete map_standard #{@map_standard.errors.inspect}")
+        Rails.logger.info("500 error delete map_standard #{@map_standard.errors.inspect}")
         format.html { render json: @map_standard.errors, status: :unprocessable_entity  }
       end 
     end
