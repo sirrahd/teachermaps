@@ -27,6 +27,9 @@ class MapStandardsController < ApplicationController
       @map_standard.user = @current_user
       @map_standard.save
 
+      @map.course_grades << @standard.course_grades
+      @map.course_subjects << @standard.course_subject
+
       if !@map_standard.save
         Rails.logger.info("error create map_standard") 
         return render json: @map_standard.errors, status: :unprocessable_entity
@@ -41,6 +44,9 @@ class MapStandardsController < ApplicationController
         @map_standard.standard = child_standard
         @map_standard.map = @map
         @map_standard.user = @current_user
+
+        @map.course_grades << child_standard.course_grades
+        @map.course_subjects << child_standard.course_subject
       
         if !@map_standard.save
           Rails.logger.info("error create map_standard") 
@@ -63,7 +69,14 @@ class MapStandardsController < ApplicationController
     end
 
     @map = @map_standard.map
+
+    # Delete metadata
+    @map.course_grades -= @map_standard.standard.course_grades
+    @map.course_subjects -= [@map_standard.standard.course_subject]
     @map_standard.destroy
+
+    # Update metadata
+    @map.update_metadata
 
     respond_to do |format|
       if @map_standard.destroyed?       

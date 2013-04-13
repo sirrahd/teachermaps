@@ -13,6 +13,11 @@ class AddCountersToMapStandards < ActiveRecord::Migration
 
     end
 
+    # Separate from map_standard_counters, this updates maps metadata
+    Map.all.each do |map|
+      map.update_metadata
+    end
+
   end
   
   def self.down

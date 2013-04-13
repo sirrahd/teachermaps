@@ -143,6 +143,13 @@ class Map < ActiveRecord::Base
     self.map_standards.all(:order => :standard_id)
   end
 
+  def update_metadata
+    self.map_standards.each do |map_standard|
+      self.course_grades << map_standard.standard.course_grades
+      self.course_subjects << map_standard.standard.course_subject
+    end
+  end
+
   private 
 
   def clean_attrs
