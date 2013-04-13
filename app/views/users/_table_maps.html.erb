@@ -20,8 +20,8 @@
       
       <div class="row">
       
-        <div class="span6">
-          <ul class="inline">
+        <div class="span11">
+          <ul class="inline gray">
             <li>
               <label><%= t('shared.standards') %>: <%= map.standards_count %> </label>
             </li>
@@ -31,11 +31,9 @@
             <li>
               <label><%= t('shared.resources') %>: <%= map.resources_count %></label>
             </li>
-          </ul>
-        </div>
-
-        <div class="span5 pull-right">
-          <ul class="inline">
+            <li>
+              <% if map.course_subjects.any? or map.course_grades.any? %> &mdash; <% end %>
+            </li>
             <li>
               <% if map.course_subjects.any? %>
                 <label><%= t('resources.subjects') %>: <%= map.course_subjects.map(&:name).join(", ") %></label>
@@ -48,6 +46,8 @@
             </li>
           </ul>
         </div>
+
+    
 
       </div>
     </li>
