@@ -1,4 +1,5 @@
 billy_joe:
  email: billy.joe@gmail.com
- name: Billy Joe
- account_name: billy_joe
+ name: "Billy Joe"
+ account_name: billyjoe
+ 
