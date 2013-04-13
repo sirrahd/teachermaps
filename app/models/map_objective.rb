@@ -14,14 +14,14 @@ class MapObjective < ActiveRecord::Base
   validates :map_standard, presence: true
   validates :user, presence: true
   validates :map, presence: true
-  validates :name, length: {maximum: 250}
-  validates :text, length: {maximum: 2048}
-  validates_uniqueness_of :slug, allow_nil: true, case_sensitive: true
+  validates :name, length: {minimum: 2, maximum: 250}
+  validates :text, length: {minimum: 2, maximum: 2048}
+  validates_uniqueness_of :slug, case_sensitive: true
 
-  before_create :default_values
-  before_validation	:clean_attrs
-  before_destroy :before_deletion
+  after_initialize :default_values
+  before_validation :clean_attrs
   before_create :before_creation
+  before_destroy :before_deletion  
 
   def owned_by?( user )
     self.user_id == user.id
@@ -47,7 +47,7 @@ class MapObjective < ActiveRecord::Base
 
   def default_values
     self.slug ||= (Base64.strict_encode64 UUIDTools::UUID.random_create).downcase
-    self.text = 'Description of the Map Objective'
-    self.name = 'Untitled Map Objective'
+    self.name ||= 'Untitled Map Objective'
+    self.text ||= 'Description of the Map Objective'
   end
 end

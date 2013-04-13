@@ -10,11 +10,11 @@ class MapResource < ActiveRecord::Base
   validates :map, presence: true
   validates :text, length: {minimum: 2, maximum: 2048}
 
-  before_destroy :before_deletion
-  before_create :before_creation
-  before_validation	:clean_attrs
   after_initialize :default_values
-
+  before_validation :clean_attrs
+  before_create :before_creation
+  before_destroy :before_deletion
+  
   def owned_by?( user )
     self.user_id == user.id
   end

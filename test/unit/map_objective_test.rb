@@ -16,8 +16,6 @@ class MapObjectiveTest < ActiveSupport::TestCase
 
   # Basic checks for name existence and length
   test "name must have valid format" do
-    # @map_objective.name = nil
-    # assert !(@map_objective.valid?), "Map Objective created without name."
 
     @map_objective.name = "a"
     assert !(@map_objective.valid?), "Map Objective created with invalid name."
@@ -45,14 +43,15 @@ class MapObjectiveTest < ActiveSupport::TestCase
 
     @map_objective.name = "a"*250
     assert @map_objective.valid?, "Map Objective not created with valid name."
+
+    @map_objective.name = nil
+    assert @map_objective.valid?, "Map Objective not created without name."
   end  
 
 
   # Basic checks for text existence and length
   test "text must have valid format" do
-    @map_objective.text = nil
-    assert !(@map_objective.valid?), "Map Objective created without text."
-
+    
     @map_objective.text = "a"
     assert !(@map_objective.valid?), "Map Objective created with invalid text."
 
@@ -79,6 +78,9 @@ class MapObjectiveTest < ActiveSupport::TestCase
 
     @map_objective.text = "a"*2048
     assert @map_objective.valid?, "Map Objective not created with valid text."
+
+    @map_objective.text = nil
+    assert @map_objective.valid?, "Map Objective not created without text."
   end  
 
 
@@ -121,7 +123,7 @@ class MapObjectiveTest < ActiveSupport::TestCase
   
   def initialize_user
                       
-    @map_objective = MapObjective.new name: 'Test Map Objective', text: 'Woke up quick at about noon; Just thought that i had to be in compton soon; I gotta get drunk before the day begin'
+    @map_objective = MapObjective.new
     @map_objective.map_standard = map_standards(:map_standard_one)
     @map_objective.map = maps(:map_one)        
     @map_objective.user = users(:billy_joe)
