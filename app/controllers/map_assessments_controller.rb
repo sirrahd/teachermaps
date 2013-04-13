@@ -50,8 +50,8 @@ class MapAssessmentsController < ApplicationController
       if @map_assessment.destroyed?
       	format.html { render partial: 'maps/list_map_assessments' }
       else
-        Rails.logger.info("Destroy Map Assessment errror #{@map_assessment.errors.messages}")
-      	format.html { render :json => @map_assessment.errors, :status => :unprocessable_entity }
+        Rails.logger.info("error delete map_assessment #{@map_assessment.errors.messages}")
+      	format.html { render json: @map_assessment.errors, status: :unprocessable_entity }
       end
     end
 	end 
@@ -71,7 +71,7 @@ class MapAssessmentsController < ApplicationController
 
     respond_to do |format|
       if @resources and @map_resources_by_resource_id
-        format.html { render :partial => 'maps/modal_map_assessment_resources' }
+        format.html { render partial: 'maps/modal_map_assessment_resources' }
       else
         Rails.logger.info("error show map_assessment_resources")
         format.html { render nothing: true, status: :unprocessable_entity }
@@ -85,7 +85,6 @@ class MapAssessmentsController < ApplicationController
 
     Rails.logger.info(params)
     @map_assessment = MapAssessment.find params[:map_assessment_id]
-
     return render nothing: true, status: 404 if !@map_assessment
     
     @map_resources_by_resource_id = Hash[@map_assessment.map_resources.map { |p| [p['resource_id'], p] }]

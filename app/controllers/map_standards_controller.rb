@@ -28,7 +28,7 @@ class MapStandardsController < ApplicationController
       @map_standard.save
 
       if !@map_standard.save
-        Rails.logger.info("500 error map_standard") 
+        Rails.logger.info("error create map_standard") 
         return render json: @map_standard.errors, status: :unprocessable_entity
       end
     end
@@ -43,7 +43,7 @@ class MapStandardsController < ApplicationController
         @map_standard.user = @current_user
       
         if !@map_standard.save
-          Rails.logger.info("500 error map_standard") 
+          Rails.logger.info("error create map_standard") 
           return render json: @map_standard.errors, status: :unprocessable_entity
         end
       end
@@ -58,7 +58,7 @@ class MapStandardsController < ApplicationController
     @map_standard = MapStandard.find_by_id_and_user_id params[:id], @current_user.id
 
     if !@map_standard
-      Rails.logger.info("404 error map_standard #{params[:id]}") 
+      Rails.logger.info("error 404 map_standard #{params[:id]}") 
       return render nothing: true, status: 404
     end
 
@@ -69,7 +69,7 @@ class MapStandardsController < ApplicationController
       if @map_standard.destroyed?       
         return render partial: 'maps/list_map_standards'
       else
-        Rails.logger.info("500 error delete map_standard #{@map_standard.errors.inspect}")
+        Rails.logger.info("error delete map_standard #{@map_standard.errors.inspect}")
         format.html { render json: @map_standard.errors, status: :unprocessable_entity  }
       end 
     end

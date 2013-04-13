@@ -27,7 +27,7 @@ $(document).ready(function(){
 
   $(document)
   .on('ajax:error', '.users_map_destroy', function(event, data, status, xhr) {
-    pushFlash({message:"Error deleting Map", state: 'error', fadeOut: 5000});
+    pushFlash({message:"<%= I18n.t('users.delete_map_error') %>", state: 'error', fadeOut: 5000});
   })
   .on('ajax:success', '.users_map_destroy', function(event, data, status, xhr) {
     $('#users_maps_table').html(data);
@@ -53,7 +53,7 @@ $(document).ready(function(){
               $('#users_maps_table').html(response);
           },
           error: function (xhr, ajaxOptions, thrownError) {
-              pushFlash({message:'Error adding a Map Assessment', state: 'error', fadeOut: 5000});
+              pushFlash({message:"<%= I18n.t('users.create_map_error') %>", state: 'error', fadeOut: 5000});
           }
       });
 

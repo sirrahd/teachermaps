@@ -8,7 +8,7 @@ class StandardsController < ApplicationController
 
     if !params.has_key?('standard_type') or !params.has_key?('course_subject')
       Rails.logger.info("Dude, you forgot the standard type or course subject #{params[:course_subject]} #{params[:standard_type]}")
-      return render :partial => 'standards/list'
+      return render partial: 'standards/list'
     end
 
     @map = Map.find(params[:map_id])
@@ -31,7 +31,7 @@ class StandardsController < ApplicationController
       @map_standards_by_standard_id = Hash[@map_standards.map { |p| [p['standard_id'], p] }]
     end
     
-    render :partial => 'maps/list_standards'
+    render partial:  'maps/list_standards'
   end
 
   private 

@@ -5,7 +5,7 @@ class MapsController < ApplicationController
 
   def show
 
-  	@map = Map.find_by_slug_and_user_id( params[:id], @current_user.id )
+  	@map = Map.find_by_slug_and_user_id params[:id], @current_user.id
 
     # Used for rendering standards filter
     @filter_standard_types = StandardType.all
@@ -23,10 +23,10 @@ class MapsController < ApplicationController
     respond_to do |format|
       if @map.save
         @maps = @current_user.maps
-        format.html { render :partial => 'users/table_maps'}
+        format.html { render partial: 'users/table_maps'}
       else
-        Rails.logger.info("Map creation failure!!! #{@map.errors.inspect}")
-        format.html { render :json => @map.errors, :status => :unprocessable_entity  }
+        Rails.logger.info("error create map #{@map.errors.inspect}")
+        format.html { render json: @map.errors, status: :unprocessable_entity  }
       end
     end
   end
@@ -40,10 +40,10 @@ class MapsController < ApplicationController
     respond_to do |format|
       if @map.destroyed?
         @maps = @current_user.maps
-        format.html { render :partial => 'users/table_maps'}
+        format.html { render partial: 'users/table_maps'}
       else
-        Rails.logger.info("Map deletion failure!!! #{@map.errors.inspect}")
-        format.html { render :json => @map.errors, :status => :unprocessable_entity  }
+        Rails.logger.info("error delete map #{@map.errors.inspect}")
+        format.html { render json: @map.errors, status: :unprocessable_entity  }
       end 
     end
   end
@@ -51,6 +51,10 @@ class MapsController < ApplicationController
 
   def update
     @map = Map.find_by_id_and_user_id params[:id], @current_user.id
+    if !@map
+      Rails.logger.info("error 404 map #{params[:id]}") 
+      return render nothing: true, status: 404
+    end
 
     respond_to do |format|
       if @map.update_attributes(params[:map])

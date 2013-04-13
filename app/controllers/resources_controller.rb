@@ -60,9 +60,9 @@ class ResourcesController < ApplicationController
     respond_to do |format|
       if @resource.save
         @resources = Resource.where user_id: @current_user.id
-        format.html { render :partial => 'resources/table_resources' }
+        format.html { render partial:  'resources/table_resources' }
       else
-        format.html { render :partial => 'shared/error_messages', :locals => { :object => @resource }, :status => 500  }
+        format.html { render partial:  'shared/error_messages', :locals => { :object => @resource }, :status => 500  }
       end
     end
   end
@@ -144,7 +144,7 @@ class ResourcesController < ApplicationController
       @resources &= Resource.find(:all, joins: :course_subjects, conditions: { user_id: @current_user.id, course_subjects: { id:params[:course_subjects]}})
     end
 
-    render :partial => 'resources/table_resources'
+    render partial:  'resources/table_resources'
   end
 
   def create_link
@@ -178,14 +178,14 @@ class ResourcesController < ApplicationController
         @filter_course_subjects = CourseSubject.where(:id => @resources.map { |resource| resource.course_subjects.collect(&:id) } )
         # Render filter and resources to dictionary
         response = { 
-          :filters => render_to_string(:partial => 'resources/filter_resources', :layout => false,  :locals => {:resources => @resources, :filter_course_types => @filter_course_types, :filter_course_grades=>@filter_course_grades, :filter_course_subjects=>@filter_course_subjects}),
-          :resources => render_to_string(:partial => 'resources/table_resources', :layout => false,  :locals => {:resources => @resources})
+          :filters => render_to_string(partial:  'resources/filter_resources', :layout => false,  :locals => {:resources => @resources, :filter_course_types => @filter_course_types, :filter_course_grades=>@filter_course_grades, :filter_course_subjects=>@filter_course_subjects}),
+          :resources => render_to_string(partial:  'resources/table_resources', :layout => false,  :locals => {:resources => @resources})
         }
         # Send resource and fitlers back via JSON format
         format.js { render :json => response }
         
       else
-        format.js { render :partial => 'shared/error_messages', :locals => { :object => @resource }, :status => 500  }
+        format.js { render partial:  'shared/error_messages', :locals => { :object => @resource }, :status => 500  }
       end
 
     end

@@ -5,6 +5,7 @@ class MapResourcesController < ApplicationController
 
 	def update
 		@map_resource = MapResource.find_by_id_and_user_id params[:id], @current_user.id
+    return render nothing: true, status: 404 if !@map_resource
 
   	respond_to do |format|
     	if @map_resource.update_attributes params[:map_resource] 

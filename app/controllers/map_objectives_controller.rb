@@ -8,7 +8,7 @@ class MapObjectivesController < ApplicationController
     @map_standard = MapStandard.find_by_id_and_user_id(params[:map_standard_id], @current_user.id) 
     
     if !@map_standard
-      Rails.logger.info("Could not locate map standard #{params[:map_standard_id]}") 
+      Rails.logger.info("error 404 map_standard #{params[:map_standard_id]}") 
       return render nothing: true, status: 404
     end
 
@@ -80,8 +80,7 @@ class MapObjectivesController < ApplicationController
     return render nothing: true, status: 404 if !@map_objective
     
     @map_resources_by_resource_id = Hash[@map_objective.map_resources.map { |p| [p['resource_id'], p] }]
-    Rails.logger.info("Map Objective Ressource: #{@map_resources_by_resource_id.inspect}")
-
+    
     filter = {}
     @resources = Resource.where( user_id: @current_user.id )
 
@@ -112,7 +111,7 @@ class MapObjectivesController < ApplicationController
       @resource = Resource.find_by_id_and_user_id params[:resource_id], @current_user.id
 
       if !@map_objective or !@resource
-        Rails.logger.info("404 Error, either map objective #{params[:id]} or resource #{params[:resource_id]}") 
+        Rails.logger.info("error 404 map_objective #{params[:id]} or resource #{params[:resource_id]}") 
         return render nothing: true, status: 404
       end
 
@@ -142,7 +141,7 @@ class MapObjectivesController < ApplicationController
     @resource = Resource.find_by_id_and_user_id params[:resource_id], @current_user.id
 
     if !@map_objective or !@resource
-      Rails.logger.info("Could not locate either map objective #{params[:id]} or resource #{params[:resource_id]}") 
+      Rails.logger.info("error 404 map_objective #{params[:id]} or resource #{params[:resource_id]}") 
       return render nothing: true, status: 404
     end
 

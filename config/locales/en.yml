@@ -161,10 +161,13 @@ en:
     show_map_assessment_resources_error: "Error fetching Map Assessment Resources"
     create_map_assessment_error: "Error creating Map Assessment"
     delete_map_assessment_error: "Error deleting Map Assessment"
-    create_map_standard_error:   "Error adding a Map Standard"
+    create_map_standard_error:   "Error creating Map Standard"
     delete_map_standard_error:   "Error deleting Map Standard"
     create_map_assessment_resource_error: "Error creating Map Assessment Resource"
     delete_map_assessment_resource_error: "Error deleting Map Assessment Resource"
+  users:
+    create_map_error:           "Error creating Map"
+    delete_map_error:           "Error deleting Map"
 
 
 
