@@ -1,5 +1,9 @@
-billy_joe:
- email: billy.joe@gmail.com
- name: "Billy Joe"
- account_name: billyjoe
+user_one:
+ email: mario@gmail.com
+ name: "Mario Mario"
+ account_name: mario
+user_two:
+ email: luigi@gmail.com
+ name: "Luigi Mario"
+ account_name: luigi
  

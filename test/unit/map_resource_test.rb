@@ -49,7 +49,7 @@ class MapResourceTest < ActiveSupport::TestCase
   def initialize_user
 
     @map_resource = MapResource.new
-    @map_resource.user = users(:billy_joe)
+    @map_resource.user = users(:user_one)
     @map_resource.map = maps(:map_one)
     @map_resource.resource = resources(:resource_one)
 

@@ -126,7 +126,7 @@ class MapObjectiveTest < ActiveSupport::TestCase
     @map_objective = MapObjective.new
     @map_objective.map_standard = map_standards(:map_standard_one)
     @map_objective.map = maps(:map_one)        
-    @map_objective.user = users(:billy_joe)
+    @map_objective.user = users(:user_one)
 
     assert @map_objective.valid?, "Initialized map standard was not valid."
     assert @map_objective.save, "Unable to save valid map standard." 

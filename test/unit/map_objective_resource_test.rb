@@ -50,7 +50,7 @@ class MapObjectiveResourceTest < ActiveSupport::TestCase
   def initialize_user
 
     @map_resource = MapObjectiveResource.new text: 'This is a sample text description for a map resource.'
-    @map_resource.user = users(:billy_joe)
+    @map_resource.user = users(:user_one)
     @map_resource.map = maps(:map_one)
     @map_resource.map_objective = map_objectives(:map_objective_one)
     @map_resource.resource = resources(:resource_one)

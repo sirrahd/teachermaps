@@ -115,7 +115,7 @@ class MapAssessmentTest < ActiveSupport::TestCase
 
     @map_assessment = MapAssessment.new
     @map_assessment.map = maps(:map_one)        
-    @map_assessment.user = users(:billy_joe)
+    @map_assessment.user = users(:user_one)
 
     assert @map_assessment.valid?, "Initialized map standard was not valid."
     assert @map_assessment.save, "Unable to save valid map standard." 

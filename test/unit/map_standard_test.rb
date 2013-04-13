@@ -55,7 +55,7 @@ class MapStandardTest < ActiveSupport::TestCase
     @map_standard = MapStandard.new
     @map_standard.standard = standards(:standard_8051b7d8d2cc77b2e3a73b0d7428454a71f1c011)
     @map_standard.map = maps(:map_one)        
-    @map_standard.user = users(:billy_joe)
+    @map_standard.user = users(:user_one)
 
     assert @map_standard.valid?, "Initialized map standard was not valid."
     assert @map_standard.save, "Unable to save valid map standard." 

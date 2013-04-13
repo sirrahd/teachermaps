@@ -1,10 +1,10 @@
 map_standard_one:
  slug: QWERTYUIOP1
- user: billy_joe
+ user: user_one
  map: map_one
  standard: standard_8051b7d8d2cc77b2e3a73b0d7428454a71f1c011
 map_standard_two:
  slug: QWERTYUIOP2
- user: billy_joe
+ user: user_one
  map: map_two
  standard: standard_0c58b3a43cd6b87290672514bce1afec3f471d18

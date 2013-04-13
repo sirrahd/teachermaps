@@ -2,7 +2,7 @@ resource_one:
  slug: HocusPocusSlug1000
  link: http://whatchaMaCallIt.com
  type: LinkResource
- user: billy_joe
+ user: user_one
  resource_type: web
  course_grades: one,two,three
  course_subjects: math
@@ -11,7 +11,7 @@ resource_two:
  slug: HiggalyJigaloBigalo
  link: http://deFame.com
  type: LinkResource
- user: billy_joe
+ user: user_one
  resource_type: web
  course_grades: two
  course_subjects: math,physics

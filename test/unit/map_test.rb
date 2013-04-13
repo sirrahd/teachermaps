@@ -146,7 +146,7 @@ class MapTest < ActiveSupport::TestCase
 
     @map = Map.new name: 'Map Unit Test',
                    text: 'This is a sample text description.'
-    @map.user = users(:billy_joe)
+    @map.user = users(:user_one)
 
 
     assert @map.valid?, "Initialized map was not valid."

@@ -50,7 +50,7 @@ class MapAssessmentResourceTest < ActiveSupport::TestCase
   def initialize_user
 
     @map_resource = MapAssessmentResource.new text: 'This is a sample text description for a map assessment resource.'
-    @map_resource.user = users(:billy_joe)
+    @map_resource.user = users(:user_one)
     @map_resource.map = maps(:map_one)
     @map_resource.map_assessment = map_assessments(:map_assessment_one)
     @map_resource.resource = resources(:resource_one)
