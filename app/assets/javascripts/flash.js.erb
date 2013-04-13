@@ -45,11 +45,11 @@ var pushFlash = function(options){
 	
 	// Apply custom state to flash notification
 	if (config.fadeOut) {
-		// Sets timer to fade out in N milliseconds
-		window.setInterval( function() {flashContainer.fadeOut('slow');}, config.fadeOut );
-	} else {
-		window.setInterval( function() {flashContainer.fadeOut('slow');}, 3000 );
-	}
+		config.fadeOut = 3000;
+	} 
+
+	// Sets timer to fade out in N milliseconds
+	window.setInterval( function() {flashContainer.fadeOut('slow');}, config.fadeOut );
 
 	return true;
 }

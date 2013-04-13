@@ -20,9 +20,7 @@ class MapObjective < ActiveRecord::Base
 
   before_create :default_values
   before_validation	:clean_attrs
-
   before_destroy :before_deletion
-  
   before_create :before_creation
 
   def owned_by?( user )
@@ -42,13 +40,14 @@ class MapObjective < ActiveRecord::Base
   end
 
   def clean_attrs
-    if self.name then self.name = self.name.strip end
-    if self.text then self.text = self.text.strip end
+    default_values
+    self.name = self.name.strip
+    self.text = self.text.strip
   end
 
   def default_values
     self.slug ||= (Base64.strict_encode64 UUIDTools::UUID.random_create).downcase
-    self.text = 'Description of the Map Map Objective'
+    self.text = 'Description of the Map Objective'
     self.name = 'Untitled Map Objective'
   end
 end
