@@ -21,8 +21,8 @@ class MapObjectivesController < ApplicationController
       if @map_objective.save
         format.html { render partial: 'map_standards/list_map_objectives'}
       else
-        Rails.logger.info("Failure in creating Map Objective!!! #{@map_objectives.errors.inspect}")
-        format.html { render json: @map_assessment.errors, status: :unprocessable_entity  }
+        Rails.logger.info("error create map_objective #{@map_objective.id}")
+        format.html { render json: @map_objective.errors, status: :unprocessable_entity  }
       end
     end
 
@@ -37,10 +37,11 @@ class MapObjectivesController < ApplicationController
     @map_objective.destroy
 
     respond_to do |format|
-      if @map.save
+      if @map_objective.destroyed?
         format.html { render partial: 'map_standards/list_map_objectives'}
       else
-        format.html { render nothing: true, status: 500 }
+        Rails.logger.info("error delete map_objective #{@map_objective.id}")
+        format.html { render json: @map_objective.errors, status: :unprocessable_entity  }
       end
     end
   end 
@@ -129,8 +130,8 @@ class MapObjectivesController < ApplicationController
         if @map_resource.save
           format.html { render partial: 'map_standards/list_map_objectives'}
         else
-          Rails.logger.info("Errors: #{@map_resource.errors.inspect}")
-          format.html { render nothing: true, status: 500 }
+          Rails.logger.info("error create map_objective_map_resource: #{@map_resource.id}")
+          format.html { render json: @map_resource.errors, status: :unprocessable_entity  }
         end
       end
   end
@@ -153,8 +154,8 @@ class MapObjectivesController < ApplicationController
       if @map_resource.destroyed?
         format.html { render partial: 'map_standards/list_map_objectives' }
       else
-        Rails.logger.info("Errors: #{@map_resource.errors.inspect}")
-        format.html { render nothing: true, status: 500 }
+        Rails.logger.info("error delete map_objective_map_resource: #{@map_resource.id}")
+        format.html { render json: @map_resource.errors, status: :unprocessable_entity  }
       end
     end
   end

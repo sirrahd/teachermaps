@@ -151,3 +151,20 @@ en:
     email_sent:                 "Check your email inbox to confirm your identity and reset your password"
     title:                      "Reset your password"
     link:                       "Forgot your password?"
+  map_standards:
+    create_map_objective_error: "Error creating Map Objective"
+    delete_map_objective_error: "Error deleting Map Objective"
+    show_map_objective_resources_error:  "Error fetching Map Objective Resources"
+    create_map_objective_resource_error: "Error creating Map Objective Resource"
+    delete_map_objective_resource_error: "Error deleting Map Objective Resource"
+  maps:
+    show_map_assessment_resources_error: "Error fetching Map Assessment Resources"
+    create_map_assessment_error: "Error creating Map Assessment"
+    delete_map_assessment_error: "Error deleting Map Assessment"
+    create_map_standard_error:   "Error adding a Map Standard"
+    delete_map_standard_error:   "Error deleting Map Standard"
+    create_map_assessment_resource_error: "Error creating Map Assessment Resource"
+    delete_map_assessment_resource_error: "Error deleting Map Assessment Resource"
+
+
+

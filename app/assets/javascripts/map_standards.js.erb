@@ -21,8 +21,8 @@ $(document).ready(function(){
       success: function (response) {
         $('#map_standards_objectives_list').html(response);
       },
-      error: function (xhr, ajaxOptions, thrownError) {
-        pushFlash({message:"Error adding a Map Objective", state: 'error', fadeOut: 5000});
+      error: function (response) {
+        pushFlash({message:"<%= I18n.t('map_standards.create_map_objective_error') %>", state: 'error', fadeOut: 5000});
       }
     });
 
@@ -37,7 +37,7 @@ $(document).ready(function(){
 
   $(document)
   .on('ajax:error', '.map_standards_map_objective_destroy', function(event, data, status, xhr) {
-      pushFlash({message:"Error deleting Map Assessment", state: 'error', fadeOut: 5000});
+      pushFlash({message:"<%= I18n.t('map_standards.delete_map_objective_error') %>", state: 'error', fadeOut: 5000});
   })
   .on('ajax:success', '.map_standards_map_objective_destroy',function(event, data, status, xhr) {
       $('#map_standards_objectives_list').html(data);
@@ -46,7 +46,7 @@ $(document).ready(function(){
 
   $(document)
   .on('ajax:error', '.maps_objectives_show_resources', function(event, data, status, xhr) {
-      pushFlash({message:"Error fetching Map Objective Resources", state: 'error', fadeOut: 5000});
+      pushFlash({message:"<%= I18n.t('map_standards.show_map_objective_resources_error') %>", state: 'error', fadeOut: 5000});
   })
   .on('ajax:success', '.maps_objectives_show_resources', function(event, data, status, xhr) {
       $('#filter_map_objectives_resources_modal').html(data);        
@@ -107,7 +107,7 @@ $(document).ready(function(){
         resourceElem.attr('class','map_objectives_resource_default');
       },
       error: function (xhr, ajaxOptions, thrownError) {
-        pushFlash({message:'Error removing resource to Map Objective', state: 'error', fadeOut: 5000});
+        pushFlash({message:"<%= I18n.t('map_standards.delete_map_objective_resource_error') %>", state: 'error', fadeOut: 5000});
       }
     });  
 
@@ -134,7 +134,7 @@ $(document).ready(function(){
         resourceElem.attr('class','map_objectives_resource_selected');
       },
       error: function (xhr, ajaxOptions, thrownError) {
-        pushFlash({message:"Error adding resource to Map Objective", state: 'error', fadeOut: 5000});
+        pushFlash({message:"<%= I18n.t('map_standards.create_map_objective_resource_error') %>", state: 'error', fadeOut: 5000});
       }
     });   
     

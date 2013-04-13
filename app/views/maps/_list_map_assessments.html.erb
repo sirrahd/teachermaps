@@ -3,12 +3,12 @@
     <div class="hover">
       <div class="editable">
         
-        <span>
-          <%= link_to map_asssessment, :confirm => "Delete \"#{map_asssessment.name.titlecase}\"?",  :method => :delete, :class=>"maps_map_assessments_destroy pull-right", remote: true do %>
+        <span class="pull-right">
+          <%= link_to map_asssessment, :confirm => "Delete \"#{map_asssessment.name.titlecase}\"?",  :method => :delete, :class=>"maps_map_assessments_destroy", remote: true do %>
             <i class="icon-trash"></i>
           <% end %>
-          
-          <%= link_to  show_resources_map_assessment_path(map_asssessment), {:remote => true, 'data-toggle' => "modal", 'data-target' =>  "#filter_map_resources_modal", :class => 'maps_map_assessments_show_resources pull-right'} do %>
+          <br/>
+          <%= link_to  show_resources_map_assessment_path(map_asssessment), {:remote => true, 'data-toggle' => "modal", 'data-target' =>  "#filter_map_resources_modal", :class => 'maps_map_assessments_show_resources'} do %>
             <i class="icon-pencil"></i>
           <% end %>
         </span>
@@ -27,6 +27,7 @@
             </div>
           <% end %>
         <% end %>
+        <br/>
       </div>
     </div>
   <% end %>

@@ -60,7 +60,7 @@ class MapStandardsController < ApplicationController
       if @map_standard.destroyed?            
         return render partial: 'maps/list_map_standards'
       else
-        Rails.logger.info("Map Standard deletion failure!!! #{@map_standard.errors.inspect}")
+        Rails.logger.info("error delete map_standard #{@map_standard.errors.inspect}")
         format.html { render json: @map_standard.errors, status: :unprocessable_entity  }
       end 
     end
