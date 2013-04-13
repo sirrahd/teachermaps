@@ -2,9 +2,6 @@ require 'uuidtools'
 require 'base64'
 
 class MapAssessment < ActiveRecord::Base
-
-  
-
   attr_accessible :name, :text, :map_id, :user_id
 
   belongs_to :user
@@ -21,7 +18,6 @@ class MapAssessment < ActiveRecord::Base
   after_initialize :default_values
   before_validation :clean_attrs
   
-
   def owned_by?( user )
     self.user_id == user.id
   end

@@ -127,11 +127,11 @@ class Map < ActiveRecord::Base
   belongs_to :user
 
   validates :user, presence: true
-  validates :name, length: {maximum: 250}
-  validates :text, length: {maximum: 2048}
+  validates :name, length: {minimum: 2, maximum: 250}
+  validates :text, length: {minimum: 2, maximum: 2048}
   validates_uniqueness_of :slug, allow_nil: true, case_sensitive: true
 
-  before_create :default_values
+  after_initialize :default_values
   before_validation	:clean_attrs
 
   def title_titlecase
@@ -146,15 +146,16 @@ class Map < ActiveRecord::Base
   private 
 
   def clean_attrs
-    if self.name then self.name = self.name.strip end
-    if self.text then self.text = self.text.strip end
+    default_values
+    self.name = self.name.strip
+    self.text = self.text.strip
   end
 
   def default_values
     self.slug ||= (Base64.strict_encode64 UUIDTools::UUID.random_create).downcase
     
-    self.name = 'New Untitled Map'  
-    self.text = 'Description of the Map'
+    self.name ||= 'New Untitled Map'  
+    self.text ||= 'Description of the Map'
     self.resources_count  ||= 0
     self.standards_count  ||= 0
     self.objectives_count ||= 0

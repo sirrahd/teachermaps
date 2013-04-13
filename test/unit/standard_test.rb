@@ -59,7 +59,7 @@ class StandardTest < ActiveSupport::TestCase
     @standard.text = "a\t"
     assert !(@standard.valid?), "Standard created with invalid text."
 
-    @standard.text = "a"*2049
+    @standard.text = "a"*3501
     assert !(@standard.valid?), "Standard created with to long of a text."
 
     @standard.text = "a"*2
@@ -68,7 +68,7 @@ class StandardTest < ActiveSupport::TestCase
     @standard.text = "a"*3
     assert @standard.valid?, "Standard not created with valid text."
 
-    @standard.text = "a"*2048
+    @standard.text = "a"*3499
     assert @standard.valid?, "Standard not created with valid text."
   end
 
