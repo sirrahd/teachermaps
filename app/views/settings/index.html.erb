@@ -1,67 +1,82 @@
-<table>
-  <tr>
-    <th>Settings</th>
-    <th></th>
-    <th></th>
-  </tr>
+<h1><%= t 'settings.title' %></h1>
 
-  <tr>
-    <td>
+<h2><%= t 'settings.storage_title' %></h2>
+<div class="row">
+  <div class="span6">
+    <div>
       <% if @google_account.nil?  %>
-        <%= link_to t('google_drive.link'), new_google_account_path %> 
+        <%= link_to t('google_drive.add_drive'), new_google_account_path %>
       <% else %>
         <%= link_to t('google_drive.open_folder'), @google_account.drive_folder_link , :target => "_blank" %>
       <% end %>
-    </td>
-    <td>
+
       <% if !@google_account.nil? %>
       &#124;
       <%= link_to t('google_drive.remove'), @google_account, :confirm => t('google_drive.remove_confirmation'), :method => :delete %>
       <% end %>
-    </td>
-    <td></td>
-  </tr>
-
-  <tr>
-    <td>
+    </div>
+    <div>
       <% if @drop_box_account.nil?  %>
-        <%= link_to t('drop_box_add'), new_drop_box_accounts_path %>
+        <%= link_to t('drop_box.add'), new_drop_box_accounts_path %>
       <% else %>
-        <%= link_to t('drop_box.open_folder'), @drop_box_account.folder_link , :target => "_blank" %> 
+        <%= link_to t('drop_box.open_folder'), @drop_box_account.folder_link , :target => "_blank" %>
       <% end %>
-    </td>
-    <td>
+
       <% if !@drop_box_account.nil? %>
       &#124;
       <%= link_to t('drop_box.remove'), @drop_box_account, :confirm => t('drop_box.remove_confirmation'), :method => :delete %>
       <% end %>
-    </td>
-    <td></td>
-  </tr>
+    </div>
+  </div>
+</div>
+
+<h2><%= t 'settings.user_title' %></h2>
+
+<div class="row">
+  <div class="span12">
+    <%= form_for(@user) do |f| %>
+
+      <%= render 'shared/error_messages', object: f.object %>
+
+      <%= f.label :name %>
+      <%= f.text_field :name, {class: "span5"} %>
+
+      <%= f.label :email %>
+      <%= f.text_field :email, {class: "span5"} %>
+      <% if @user.confirmed == 1 %>
+        <span class="label label-success"><i class="icon-ok"></i> <%= t 'settings.email_confirmed' %></span>
+      <% else %>
+        <span class="label label-warning"><%= t 'settings.email_not_confirmed' %></span>
+      <% end %>
+
+      <div><%= f.submit "Save changes", class: "btn" %></div>
+
+    <% end %>
+    <%= raw t('settings.change_password_link', action: link_to(t('reset_password.action'), controller: 'users', action: 'reset_password', params: { account_name: @user.account_name, key: @user.request_key })) %>
+  </div>
+</div>
 
 
+<% if false #disabling below %>
 
-</table>
+  <% if !@drop_box_account.nil? and !@google_account.nil? %>
 
-<br />
+    <%= form_for @setting, remote: true, html: { :'data-type' => 'html', id: 'update_setting_form' }  do |f| %>
+      <%= label_tag(:upload_to, t('settings.upload_to')) %>
+      <%= f.select(:upload_to, [ [t('google_drive.link'), GoogleResource::TYPE], [ t('drop_box.link'), DropBoxResource::TYPE ]], {}, {:onchange => '$(this.form).submit();', :style=>"width:200px;"} )  %>
+    <% end %>
 
-<% if !@drop_box_account.nil? and !@google_account.nil? and false # Disabling for now  %>
-       
-  <%= form_for @setting, remote: true, html: { :'data-type' => 'html', id: 'update_setting_form' }  do |f| %>
-    <%= label_tag(:upload_to, t('settings.upload_to')) %>
-    <%= f.select(:upload_to, [ [t('google_drive.link'), GoogleResource::TYPE], [ t('drop_box.link'), DropBoxResource::TYPE ]], {}, {:onchange => '$(this.form).submit();', :style=>"width:200px;"} )  %>
+  <% elsif  @drop_box_account.nil? and !@google_account.nil?  and false # Disabling for now %>
+    <div style="width: 200px;">
+    <%= select_tag "setting_form", options_for_select([t('google_drive.link'), GoogleResource::TYPE]), :disabled => true %>
+    </div>
+
+  <% elsif  !@drop_box_account.nil? and @google_account.nil? and false # Disabling for now %>
+
+    <div style="width: 200px;">
+      <%= select_tag "setting_form", options_for_select([ t('drop_box.link'), DropBoxResource::TYPE ]), :disabled => true %>
+    </div>
+
   <% end %>
-  
-<% elsif  @drop_box_account.nil? and !@google_account.nil?  and false # Disabling for now %>  
-  <div style="width: 200px;">
-  <%= select_tag "setting_form", options_for_select([t('google_drive.link'), GoogleResource::TYPE]), :disabled => true %>
-  </div>
-
-<% elsif  !@drop_box_account.nil? and @google_account.nil? and false # Disabling for now %>  
-  
-  <div style="width: 200px;">
-    <%= select_tag "setting_form", options_for_select([ t('drop_box.link'), DropBoxResource::TYPE ]), :disabled => true %>
-  </div>
 
 <% end %>
-

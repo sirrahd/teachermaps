@@ -44,8 +44,7 @@ class User < ActiveRecord::Base
                     format: { with: VALID_ACCOUNT_NAME_REGEX },
                     uniqueness: { case_sensitive: false }
 
-  validates :password, presence: true, length: { minimum: 6 }
-  validates :password_confirmation, presence: true
+  validates :password, presence: true, length: { minimum: 6 }, confirmation: true, if: :password_digest_changed?
 
   def has_google_account?
     !google_account.nil? and !google_account.folder_id.nil?

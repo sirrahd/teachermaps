@@ -75,11 +75,18 @@ en:
     submit:                     "Sending..."
     generic_error:              "Please reload the page and try again"
     success:                    "Thank you!"
+    anonymous:                  "Send anonymously"
   settings:
+    title:                      "Settings"
     upload_to:                  "Default Upload To:"
     save_success:               "Settings saved"
     save_error:                 "Error in saving settings"
     select_storage_service:     "In order to upload a resource, you must select a storage service."
+    storage_title:              "Storage settings"
+    user_title:                 "User settings"
+    change_password_link:       "%{action} to change your password."
+    email_not_confirmed:        "Waiting for confirmation"
+    email_confirmed:            "Confirmed"
   resources:
     link:                       "Resources"
     web_link:                   "Link"
@@ -158,6 +165,9 @@ en:
     email_sent:                 "Check your email inbox to confirm your identity and reset your password"
     title:                      "Reset your password"
     link:                       "Forgot your password?"
+  change_email:
+    subject:                    "Please confirm your new email address"
+    content_textonly:           "Please help us confirm your identity by clicking the link below:"
   map_standards:
     create_map_objective_error: "Error creating Map Objective"
     delete_map_objective_error: "Error deleting Map Objective"

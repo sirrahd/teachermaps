@@ -4,6 +4,7 @@ class SettingsController < ApplicationController
 
 
   def index
+    @user = @current_user
     @setting = @current_user.setting
 
     @google_account = nil

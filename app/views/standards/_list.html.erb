@@ -1,0 +1,35 @@
+<ul id="standards_list"  style="cursor:pointer;list-style-type: none;">
+	<% if @standards %>
+		<% @standards.each do |standard| %>
+		    <li style="margin-bottom:10px;">
+
+		    	<% if @map_standards_by_standard_id.has_key?(standard.id) %>
+		    		<div class="standard-selected" standard-id="<%= standard.id %>">
+              	<% else %>
+                	<div class="standard-default hover" standard-id="<%= standard.id %>">
+              	<% end %> 
+
+              	<b><%= standard.name %></b> <%= raw(standard.text) %>
+	    		
+		    	<% if standard.is_parent_standard %>
+		    		<ul style="cursor:pointer;">
+			    		<% standard.children_standards.each do |child| %>
+			    			<li>
+						    	<% if @map_standards_by_standard_id.has_key?(child.id) %>
+						    		<div class="standard-selected" standard-id="<%= child.id %>">
+				              	<% else %>
+				                	<div class="standard-default" standard-id="<%= child.id %>">
+				              	<% end %> 
+						    		<b><%= child.name %></b> <%= raw(child.text) %>
+						    	</div>
+					    	</li>
+				    	<% end %>
+			    	</ul>	
+				<% end %>	
+				
+				</div> 		
+		    </li>
+		    
+		<% end %>
+    <% end %>
+</ul>

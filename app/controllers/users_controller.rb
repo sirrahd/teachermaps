@@ -50,8 +50,34 @@ class UsersController < ApplicationController
     if params[:key]
       @user = User.find_by_account_name(params[:account_name])
       @user = nil unless @user.request_key == params[:key]
+
+      if @user.update_attributes(params[:user])
+        flash[:success] = "Profile updated"
+        sign_in @user
+        redirect_to @user
+      else
+        flash[:warning] = t 'reset_password.error'
+        redirect_to :back
+      end
+      return
     end
 
+    # If request is already authenticated
+    @user = current_user
+
+    # If user's email changes unconfirm them and send a confirmation email
+    if params[:user] and params[:user][:email]
+     unless params[:user][:email] == @user.email
+        @user.email = params[:user][:email]
+        if @user.save
+          @user.update_attribute(:confirmed, 0)
+          UserMailer.change_email(@user, request.env['HTTP_HOST']).deliver
+          sign_in @user
+        end
+      end
+    end
+
+    # Update any other attributes
     if @user.update_attributes(params[:user])
       flash[:success] = "Profile updated"
       sign_in @user
