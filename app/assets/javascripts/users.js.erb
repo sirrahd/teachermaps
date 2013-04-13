@@ -1,7 +1,12 @@
 $(document).ready(function(){
 
 
-
+  //////////////////////////////
+  //
+  // Bootstrap initializations for Maps/Resources tabs 
+  //
+  //////////////////////////////
+  
   // Hide by default
   $('#resource-controls').hide();
   if(window.location.hash == "#resources"){ $('#resource-controls').show(); }  
@@ -13,7 +18,6 @@ $(document).ready(function(){
   $('.map-toggle-control').click(function(){
   	$('#resource-controls').hide()
   });
-
 
   //////////////////////////////
   //

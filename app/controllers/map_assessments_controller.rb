@@ -15,7 +15,7 @@ class MapAssessmentsController < ApplicationController
       if @map_assessment.save
       	format.html { render partial: 'maps/list_map_assessments'}
       else
-      	Rails.logger.info("Create Map Assessment errror #{@map_assessment.errors.messages}")
+      	Rails.logger.info("error create map_assessment #{@map_assessment.errors.messages}")
       	format.html { render json: @map_assessment.errors, status: :unprocessable_entity  }
       end
     end
@@ -69,7 +69,15 @@ class MapAssessmentsController < ApplicationController
 
     @map_resources_by_resource_id = Hash[@map_assessment.map_resources.map { |p| [p['resource_id'], p] }]
 
-		return render :partial => 'maps/modal_map_assessment_resources'
+    respond_to do |format|
+      if @resources and @map_resources_by_resource_id
+        format.html { render :partial => 'maps/modal_map_assessment_resources' }
+      else
+        Rails.logger.info("error show map_assessment_resources")
+        format.html { render nothing: true, status: :unprocessable_entity }
+      end
+    end
+
 	end
 
 
@@ -102,7 +110,15 @@ class MapAssessmentsController < ApplicationController
       @resources &= Resource.find(:all, joins: :course_subjects, conditions: {user_id: @current_user.id, course_subjects: {id: params[:course_subjects]}})
     end
 
-    render partial: 'maps/table_map_assessment_resources'
+    respond_to do |format|
+      if @resources
+        format.html { render partial: 'maps/table_map_assessment_resources' }
+      else
+        Rails.logger.info("error filter map_assessment_resources")
+        format.html { render nothing: true, status: :unprocessable_entity }
+      end
+    end
+
 	end
 
 
@@ -113,7 +129,7 @@ class MapAssessmentsController < ApplicationController
     @resource = Resource.find_by_id_and_user_id params[:resource_id], @current_user.id
 
     if !@map_assessment or !@resource
-      Rails.logger.info("404 Error, either Map Assessment #{params[:id]} or Resource #{params[:resource_id]}") 
+      Rails.logger.info("error 404 map_assessment #{params[:id]} or resource #{params[:resource_id]}") 
       return render :nothing => true, :status => 404
     end
 
@@ -130,8 +146,8 @@ class MapAssessmentsController < ApplicationController
         @map = @map_resource.map
       	format.html { render partial: 'maps/list_map_assessments'}
       else
-      	Rails.logger.info("Errors: #{@map_resource.errors.inspect} #{@map_assessment.errors.inspect}")
-      	format.html { render nothing: true, status: 500 }
+      	Rails.logger.info("error create map_assessment_resource: #{@map_resource.errors.inspect}")
+      	format.html { render json: @map_resource.errors, status: 500 }
       end
     end
 	end
@@ -142,11 +158,11 @@ class MapAssessmentsController < ApplicationController
     @resource = Resource.find_by_id_and_user_id params[:resource_id], @current_user.id
 
     if !@map_assessment or !@resource
-      Rails.logger.info("404 Error, either Map Assessment #{params[:id]} or resource #{params[:resource_id]}") 
+      Rails.logger.info("error 404 map_ssessment #{params[:id]} or resource #{params[:resource_id]}") 
       return render :nothing => true, :status => 404
     end
 
-    @map_resource = MapResource.find_by_map_assessment_id_and_resource_id(@map_assessment, @resource)
+    @map_resource = MapResource.find_by_map_assessment_id_and_resource_id @map_assessment, @resource
     @map_resource.destroy if @map_resource
 
     respond_to do |format|
@@ -154,8 +170,8 @@ class MapAssessmentsController < ApplicationController
         @map = @map_assessment.map
       	format.html { render partial: 'maps/list_map_assessments' }
       else
-      	Rails.logger.info("Errors: #{@map_resource.errors.inspect}")
-      	format.html { render nothing: true, status: 500 }
+      	Rails.logger.info("error delete map_assessment_resource #{@map_resource.errors.inspect}")
+      	format.html { render json: @map_resource.errors, status: 500 }
       end
     end
 	end
@@ -165,7 +181,7 @@ class MapAssessmentsController < ApplicationController
 	# Requires user session
 	def require_session
   	unless current_user
-    		redirect_to signin_path
+    	redirect_to signin_path
   	end
 	end
 

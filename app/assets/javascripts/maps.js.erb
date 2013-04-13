@@ -36,7 +36,7 @@ $(document).ready(function() {
   //////////////////////////////
 
   $(document)
-  .on('ajax:error', ".maps_map_assessments_destroy", function(event, data, status, xhr) {
+  .on('ajax:error', '.maps_map_assessments_destroy', function(event, data, status, xhr) {
     pushFlash({message:"<%= I18n.t('maps.delete_map_assessment_error') %>", state: 'error', fadeOut: 5000});
   })
   .on('ajax:success', ".maps_map_assessments_destroy", function(event, data, status, xhr) {
@@ -44,10 +44,10 @@ $(document).ready(function() {
   });
 
   $(document)
-  .on('ajax:error', ".maps_map_assessments_show_resources", function(event, data, status, xhr) {
+  .on('ajax:error', '.maps_map_assessments_show_resources', function(event, data, status, xhr) {
     pushFlash({message:"<%= I18n.t('maps.show_map_assessment_resources_error') %>", state: 'error', fadeOut: 5000});
   })
-  .on('ajax:success', ".maps_map_assessments_show_resources", function(event, data, status, xhr) {
+  .on('ajax:success', '.maps_map_assessments_show_resources', function(event, data, status, xhr) {
     $('#filter_map_resources_modal').html(data);        
   });
 
