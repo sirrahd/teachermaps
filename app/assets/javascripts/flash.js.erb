@@ -39,15 +39,17 @@ var pushFlash = function(options){
 	} 
 
 	// Render the flash notificaiton
-	mainContainer.prepend('<div id="flash-container" class="alert'+customState+'">'+cancelButton+config.message+'</div>');
-
+	mainContainer.prepend('<div id="flash-container" class="alert'+customState+' alert-float">'+cancelButton+config.message+'</div>');
+	// Get access to newly created container
+	flashContainer = $("#flash-container");
+	
 	// Apply custom state to flash notification
 	if (config.fadeOut) {
-		// Update flashContainer
-		flashContainer = $("#flash-container");
 		// Sets timer to fade out in N milliseconds
-		window.setInterval( function() {flashContainer.fadeOut('slow'); }, config.fadeOut );
-	} 
+		window.setInterval( function() {flashContainer.fadeOut('slow');}, config.fadeOut );
+	} else {
+		window.setInterval( function() {flashContainer.fadeOut('slow');}, 3000 );
+	}
 
 	return true;
 }
