@@ -17,8 +17,8 @@ class MapTest < ActiveSupport::TestCase
   
   # Basic checks for name existence and length
   test "name must have valid format" do
-    @map.name = nil
-    assert !(@map.valid?), "Map created without name."
+    # @map.name = nil
+    # assert !(@map.valid?), "Map created without name."
 
     @map.name = "a"
     assert !(@map.valid?), "Map created with invalid name."
@@ -52,8 +52,8 @@ class MapTest < ActiveSupport::TestCase
 
   # Basic checks for name existence and length
   test "text must have valid format" do
-    @map.text = nil
-    assert !(@map.valid?), "Map created without text."
+    # @map.text = nil
+    # assert !(@map.valid?), "Map created without text."
 
     @map.text = "a"
     assert !(@map.valid?), "Map created with invalid text."
@@ -145,7 +145,7 @@ class MapTest < ActiveSupport::TestCase
 
     @map = Map.new name: 'Map Unit Test',
                    text: 'This is a sample text description.'
-    @map.user = users(:bjkiller)
+    @map.user = users(:billy_joe)
 
 
     assert @map.valid?, "Initialized map was not valid."

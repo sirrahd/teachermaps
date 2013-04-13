@@ -16,8 +16,8 @@ class MapObjectiveTest < ActiveSupport::TestCase
 
   # Basic checks for name existence and length
   test "name must have valid format" do
-    @map_objective.name = nil
-    assert !(@map_objective.valid?), "Map Objective created without name."
+    # @map_objective.name = nil
+    # assert !(@map_objective.valid?), "Map Objective created without name."
 
     @map_objective.name = "a"
     assert !(@map_objective.valid?), "Map Objective created with invalid name."
@@ -124,7 +124,7 @@ class MapObjectiveTest < ActiveSupport::TestCase
     @map_objective = MapObjective.new name: 'Test Map Objective', text: 'Woke up quick at about noon; Just thought that i had to be in compton soon; I gotta get drunk before the day begin'
     @map_objective.map_standard = map_standards(:map_standard_one)
     @map_objective.map = maps(:map_one)        
-    @map_objective.user = users(:bjkiller)
+    @map_objective.user = users(:billy_joe)
 
     assert @map_objective.valid?, "Initialized map standard was not valid."
     assert @map_objective.save, "Unable to save valid map standard." 
