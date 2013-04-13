@@ -5,15 +5,15 @@
       
       <div class="row editable">
         <span>
-          <%= link_to map, :confirm => "Delete \"#{map.name.titlecase}\"?",  :method => :delete, :class=>"users_map_destroy pull-right", remote: true do %>
+          <%= link_to map, confirm: t('users.delete_map_confirmation', title: map.name), method: :delete, title: t('users.delete_map'), :class=>"users_map_destroy pull-right", remote: true do %>
             <i class="icon-trash"></i>
           <% end %>
         </span>
 
         <div class="span11" id="resource_filter">
-          <h4><%= truncate(map.name, :length => Map::MAX_NAME_RENDER_LEN) %></h4>
+          <h4><%= truncate(map.name, length: Map::MAX_NAME_RENDER_LEN) %></h4>
           <span>
-            <%= truncate(map.text, :length => Map::MAX_TEXT_RENDER_LEN) %>
+            <%= truncate(map.text, length: Map::MAX_TEXT_RENDER_LEN) %>
           </span>
         </div>
       </div>
@@ -23,13 +23,13 @@
         <div class="span6">
           <ul class="inline">
             <li>
-              <label>Standards: <%= map.standards_count %> </label>
+              <label><%= t('shared.standards') %>: <%= map.standards_count %> </label>
             </li>
             <li>
-              <label>Objectives: <%= map.objectives_count %></label>
+              <label><%= t('shared.objectives') %>: <%= map.objectives_count %></label>
             </li>
             <li>
-              <label>Resources: <%= map.resources_count %></label>
+              <label><%= t('shared.resources') %>: <%= map.resources_count %></label>
             </li>
           </ul>
         </div>
@@ -38,12 +38,12 @@
           <ul class="inline">
             <li>
               <% if map.course_subjects.any? %>
-                <label>Subjects: <%= map.course_subjects.map(&:name).join(", ") %></label>
+                <label><%= t('resources.subjects') %>: <%= map.course_subjects.map(&:name).join(", ") %></label>
               <% end %>    
             </li>
             <li>
               <% if map.course_grades.any? %>
-                <label>Grades: <%= map.course_grades.map(&:name).join(", ") %></label>
+                <label><%= t('resources.grades') %>: <%= map.course_grades.map(&:name).join(", ") %></label>
               <% end %>
             </li>
           </ul>

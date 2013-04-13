@@ -21,12 +21,15 @@
     <%= link_to t('resources.sync'), "#loading_modal",'data-toggle' => "modal", :onclick => "window.location=\"#{resources_sync_path}\"", :class => 'btn'  %>
     <%= link_to "Add Link", "#put_resource_link_modal",'data-toggle' => "modal", :class=>'btn' %>
   </div>
+  <div class="span3" id="maps-controls">
+    <%= link_to t('maps.create_map'), "JavaScript:void(0);", 'action-url'=> maps_path, :class => 'btn', id: "users_create_map"%>
+  </div>
 </div>
 
 <div class="tab-content">
   <div class="tab-pane active" id="maps">
     <div class="row">
-      <%= link_to 'Create Map', "JavaScript:void(0);", 'action-url'=> maps_path, :class => 'pull-right btn', id: "users_create_map"%>
+      
       <div class="span12" id="users_maps_table">
         <%= render 'users/table_maps' %>
       </div>
