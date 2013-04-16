@@ -41,7 +41,7 @@
             </li>
             <li>
               <% if map.course_grades.any? %>
-                <label><%= t('resources.grades') %>: <%= raw(map.course_grade_ranges) %></label>
+                <label><%= t('resources.grades') %>: <%= raw(course_grade_ranges(map.course_grades) ) %></label>
               <% end %>
             </li>
           </ul>

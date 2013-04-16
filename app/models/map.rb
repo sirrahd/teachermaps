@@ -150,54 +150,6 @@ class Map < ActiveRecord::Base
     end
   end
 
-  def course_grade_ranges
-
-    return '' if self.course_grades.empty?
-
-    grades = self.course_grades.map do |grade|
-      if grade.name == 'K'
-        0
-      else 
-        Integer(grade.name)
-      end
-    end
-
-    ranges = grades.sort.uniq.inject([]) do |spans, n|
-      if spans.empty? || spans.last.last.succ != n
-        spans + [n..n]
-      else
-        spans[0..-2] + [spans.last.first..n]
-      end
-    end
-    Rails.logger.info(ranges)
-
-    result = []
-    ranges.each do |range|
-      Rails.logger.info("#{range.first} #{range.last}")
-      if range.last == (range.first+1)
-        if range.first == 0
-          result << "K, #{range.last}"
-        else
-          result << "#{range.first}, #{range.last}"
-        end
-      elsif range.first != range.last
-        if range.first == 0
-          result << "K&mdash;#{range.last}"
-        else
-          result << "#{range.first}&mdash;#{range.last}"
-        end
-      else range.first == range.last
-        if range.first == 0
-          result << "K"
-        else
-          result << "#{range.first}"
-        end
-      end
-    end
-
-    result.join ', '
-  end
-
   private 
 
   def clean_attrs

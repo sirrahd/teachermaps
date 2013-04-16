@@ -20,7 +20,7 @@
       <td><%= link_to truncate(resource.title, :length => Resource::MAX_TITLE_RENDER_LEN), 'JavaScript:void();', {:class => 'action-blank-link', 'action-url' => resource_path(resource) } %></td>
       <td>
         <% if resource.course_grades.any? %>
-          <%= raw(resource.course_grade_ranges) %>
+          <%= raw(course_grade_ranges(resource.course_grades) ) %>
         <% end %>     
       </td>
       <td>
