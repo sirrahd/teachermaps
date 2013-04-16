@@ -2,12 +2,12 @@
 <%= form_tag standards_ajax_filter_path, id: 'filter_standards_form', :class=>"form-inline", :remote=>true do %>
 
   <%= hidden_field_tag "map_id", @map.id %>
-  <%= select_tag("standard_type", options_for_select(@filter_standard_types.map {|x| [x.name, x.id]}), { :id=>'filter_standard_types', :style=>'min-width:160px;'}) %>
-  <%= select_tag("course_grades", options_for_select(@filter_course_grades.map {|x| [x.name, x.id]}), { :multiple=>true, :id=>'filter_course_grades', :style=>'min-width:160px;'}) %>
-  <%= select_tag("course_subject", options_for_select(@filter_course_subjects.map {|x| [x.name, x.id]}), { :id=>'filter_course_subjects', :style=>'min-width:160px;'}) %>
+  <%= select_tag("standard_type", options_for_select(@filter_standard_types.map {|x| [x.name, x.id]}), { :id=>'filter_standard_types', :style=>'min-width:205px;'}) %>
+  <%= select_tag("course_grades", options_for_select(@filter_course_grades.map {|x| [x.name, x.id]}), { :multiple=>true, :id=>'filter_course_grades', :style=>'min-width:205px;'}) %>
+  <%= select_tag("course_subject", options_for_select(@filter_course_subjects.map {|x| [x.name, x.id]}), { :id=>'filter_course_subjects', :style=>'min-width:205px;'}) %>
  
   <br/>
-  <%= text_field_tag 'filter_standards_search', '', :maxlength => 15, :placeholder=>t('shared.search'), :name=>'q', :class => 'search-query', :style=>'width:500px;' %>
+  <%= text_field_tag 'filter_standards_search', '', :maxlength => 15, :placeholder=>t('shared.search'), :name=>'q', :class => 'search-query', :style=>'width:90%;margin-top:5px;' %>
 
 <% end %>
 

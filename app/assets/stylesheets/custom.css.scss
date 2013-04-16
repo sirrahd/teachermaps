@@ -119,9 +119,15 @@ input {
   margin: -50px 0px 0px -360px;
 }
 
+
+.standard-modal .modal-body {
+  max-height: 500px;
+}
 .standard-modal {
-  min-width: 600px; 
-  margin: -50px 0px 0px -300px;
+  /*min-width: 600px; 
+  margin: -50px 0px 0px -300px;*/
+  min-width: 720px; 
+  margin: -50px 0px 0px -360px;
 }
 
 /* Map Standard Filter */
