@@ -152,7 +152,6 @@ class Map < ActiveRecord::Base
 
   def course_grade_ranges
 
-
     return '' if self.course_grades.empty?
 
     grades = self.course_grades.map do |grade|
@@ -164,26 +163,39 @@ class Map < ActiveRecord::Base
     end
 
     ranges = grades.sort.uniq.inject([]) do |spans, n|
-      Rails.logger.info("#{spans} #{n}")
       if spans.empty? || spans.last.last.succ != n
-        Rails.logger.info("\t#{spans.last} #{n}")
         spans + [n..n]
       else
         spans[0..-2] + [spans.last.first..n]
       end
     end
-
     Rails.logger.info(ranges)
+
     result = []
     ranges.each do |range|
-      if range.first != range.last
-        result << "#{range.first}&mdash;#{range.last}"
-      elsif range.first == range.last and range.first
-        result << "#{range.first}"
+      Rails.logger.info("#{range.first} #{range.last}")
+      if range.last == (range.first+1)
+        if range.first == 0
+          result << "K, #{range.last}"
+        else
+          result << "#{range.first}, #{range.last}"
+        end
+      elsif range.first != range.last
+        if range.first == 0
+          result << "K&mdash;#{range.last}"
+        else
+          result << "#{range.first}&mdash;#{range.last}"
+        end
+      else range.first == range.last
+        if range.first == 0
+          result << "K"
+        else
+          result << "#{range.first}"
+        end
       end
     end
 
-    result.join(', ').sub('0', 'K')
+    result.join ', '
   end
 
   private 

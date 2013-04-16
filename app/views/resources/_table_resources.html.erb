@@ -15,7 +15,7 @@
       <td><%= link_to truncate(resource.title, :length => Resource::MAX_TITLE_RENDER_LEN), resource_url(resource), :target => "_blank" %></td>
       <td>
         <% if resource.course_grades.any? %>
-          <%= resource.course_grades.map(&:name).join(", ") %>
+          <%= raw(resource.course_grade_ranges) %>
         <% end %>     
       </td>
       <td>
