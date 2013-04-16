@@ -2,6 +2,8 @@ module HtmlHelper
 
   def course_grade_ranges course_grades
 
+    divider = '-'
+
     return '' if course_grades.empty?
 
     grades = course_grades.map do |grade|
@@ -32,9 +34,9 @@ module HtmlHelper
         end
       elsif range.first != range.last
         if range.first == 0
-          result << "K&mdash;#{range.last}"
+          result << "K #{divider} #{range.last}"
         else
-          result << "#{range.first}&mdash;#{range.last}"
+          result << "#{range.first} #{divider} #{range.last}"
         end
       else range.first == range.last
         if range.first == 0
