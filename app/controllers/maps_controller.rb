@@ -5,11 +5,9 @@ class MapsController < ApplicationController
 
   def show
 
-  	print "Showing map #{params[:id]}"
-  	@map = Map.find_by_slug_and_user_id( params[:id], @current_user.id )
+  	@map = Map.find_by_slug_and_user_id params[:id], @current_user.id
 
-
-    @resources = Resource.where user_id: @current_user.id
+    # Used for rendering standards filter
     @filter_standard_types = StandardType.all
     @filter_resource_types = ResourceType.all
     @filter_course_grades = CourseGrade.all
@@ -18,56 +16,50 @@ class MapsController < ApplicationController
   end
 
   def create
-      Rails.logger.info(params)
-      @map = Map.new()
-      @map.user = @current_user
+    Rails.logger.info(params)
 
-
-      respond_to do |format|
-        if @map.save
-          # @maps = Map.find(:all, conditions: {user_id: @current_user.id})
-          # Rails.logger.info("#{current_user.account_name} created a new map #{@map}")
-          @maps = @current_user.maps
-          Rails.logger.info("#{@maps.inspect}")
-          format.html { render :partial => 'users/table_maps'}
-        else
-          Rails.logger.info("Map creation failure!!!")
-          format.html { render :json => @map.errors, :status => :unprocessable_entity  }
-        end
+    @map = Map.new user_id: @current_user.id
+    
+    respond_to do |format|
+      if @map.save
+        @maps = @current_user.maps
+        format.html { render partial: 'users/table_maps'}
+      else
+        Rails.logger.info("error create map #{@map.errors.inspect}")
+        format.html { render json: @map.errors, status: :unprocessable_entity  }
       end
+    end
   end
 
   def destroy
     Rails.logger.info(params)
-    @map = Map.find_by_slug params[:id]
-
-    @map.destroy if @map.user_id == @current_user.id
+    
+    @map = Map.find_by_id_and_user_id params[:id], @current_user.id
+    @map.destroy if @map
   
     respond_to do |format|
       if @map.destroyed?
-        # @maps = Map.find(:all, conditions: {user_id: @current_user.id})
         @maps = @current_user.maps
-        Rails.logger.info("#{current_user.account_name} destroyed a map #{@map.name}")
-        format.html { render :partial => 'users/table_maps', :locals => { :object => @maps } }
+        format.html { render partial: 'users/table_maps'}
       else
-        Rails.logger.info("Map deletion failure!!!")
-        format.html { render :json => @map.errors, :status => :unprocessable_entity  }
+        Rails.logger.info("error delete map #{@map.errors.inspect}")
+        format.html { render json: @map.errors, status: :unprocessable_entity  }
       end 
     end
   end
 
-  
-
 
   def update
-    @map = Map.find_by_slug params[:id]
+    @map = Map.find_by_id_and_user_id params[:id], @current_user.id
+    if !@map
+      Rails.logger.info("error 404 map #{params[:id]}") 
+      return render nothing: true, status: 404
+    end
 
     respond_to do |format|
       if @map.update_attributes(params[:map])
-        format.html { redirect_to(@map, :notice => 'Map was successfully updated.') }
         format.json { respond_with_bip(@map) }
       else
-        format.html { render :action => "edit" }
         format.json { respond_with_bip(@map) }
       end
     end

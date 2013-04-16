@@ -1,7 +1,7 @@
 class Resource < ActiveRecord::Base
 
 	TYPE = 'Resource'
-  MAX_TITLE_RENDER_LEN = 35
+  MAX_TITLE_RENDER_LEN = 65
   
   
 	# TeacherMaps generated slug linking to a GoogleDrive/DropBox Resource 
@@ -16,7 +16,6 @@ class Resource < ActiveRecord::Base
   has_and_belongs_to_many :course_subjects, uniq: true, order: 'name ASC'
   has_and_belongs_to_many :course_grades, uniq: true, order: 'id ASC'
 
-
   # TeacherMaps specific attributes can be listed here
   validates :title, presence: {:message => I18n.t('resources.title_blank_error')}, length: {minimum: 2, maximum: 250}
 
@@ -26,12 +25,14 @@ class Resource < ActiveRecord::Base
 		self.slug ||= SecureRandom.urlsafe_base64.downcase
 	end
 
-	def to_param
-		self.slug
-	end
+  before_destroy :deletion_cleanup
+  def deletion_cleanup
+    Rails.logger.info("Deleting all Map Resources with #{self.user_id} #{self.id}")
+    MapResource.destroy_all( user_id: self.user_id, resource_id: self.id )
+  end
 
-  def owned_by?( user_id )
-    self.user_id == user_id
+  def owned_by?( user )
+    self.user_id == user.id
   end
 
   def assign_type
@@ -51,8 +52,6 @@ class Resource < ActiveRecord::Base
       end
       self.save
   end
-
-
 
   def self.inherited(child)
     # http://www.alexreisner.com/code/single-table-inheritance-in-rails

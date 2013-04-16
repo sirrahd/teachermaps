@@ -5,16 +5,18 @@
   <%= form_for @resource, :url=>resource_path, html: { :remote=>true, :multipart => true, :'data-type' => 'html', id: 'edit_resource_link_form' }  do |f| %>
     
 
-    <%= label_tag(:title, t('resources.title')) %>
-    <%= f.text_field :title, :disabled=>'disabled'  %>
-    <%= f.hidden_field :title, :value => @resource.title %>
+  <h2><%= @resource.title %></h2>
 
 
     <% if @resource.type == LinkResource::TYPE %>
+      <%= label_tag(:title, t('resources.title')) %>
+      <%= f.text_field :title  %>
+
       <%= label_tag(:link, t('resources.link')) %>
-    <%= f.text_field :link  %>
+      <%= f.text_field :link  %>
+    <% else %>
+      <%= f.hidden_field :title, :value => @resource.title %>
     <% end %>
-    
     
     <%= label_tag(:course_grades, t('resources.grades')) %>
     <%= select_tag("resource[course_grades]", options_for_select(CourseGrade.find(:all).collect { |cat| [cat.name, cat.id] }, @resource.course_grades.collect { |cat| cat.id}), {:multiple=>true, :id=>'select_edit_course_grades'})%>
@@ -41,12 +43,13 @@
 
 <script type="text/javascript">
 $(document).ready(function() { 
-  //Manually configure on load
   $("#select_edit_course_grades").select2({
-    width : 'resolve'
+    width : 'resolve',
+    placeholder: '<%= t("resources.grades") %>'
   });
   $("#select_edit_course_subjects").select2({
-    width : 'resolve'
+    width : 'resolve',
+    placeholder: '<%= t("resources.subjects") %>'
   });
 });
 

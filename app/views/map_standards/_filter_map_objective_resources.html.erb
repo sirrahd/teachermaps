@@ -1,4 +1,4 @@
-<%= form_tag map_objectives_resources_filter_path( @map_objective ), id: 'map_standards_filter_resource_form', :class=>"form-inline", :remote=>true do %>
+<%= form_tag filter_resources_map_objective_path( @map_objective ), id: 'map_standards_filter_resource_form', :class=>"form-inline", :remote=>true do %>
   
   <%= hidden_field_tag "map_objective_id", @map_objective.id %>
 
@@ -16,15 +16,15 @@
 $(document).ready(function() { 
   
   $("#map_standards_filter_resource_types").select2({
-    width : '200px',
+    width : '205px',
     placeholder: '<%= t("resources.all_types") %>'
   });
   $("#map_standards_filter_course_grades").select2({
-    width : '200px',
+    width : '205px',
     placeholder: '<%= t("resources.all_grades") %>'
   });
   $("#map_standards_filter_course_subjects").select2({
-      width : '250px',
+      width : '205px',
       placeholder: '<%= t("resources.all_subjects") %>'
   });
 }); 

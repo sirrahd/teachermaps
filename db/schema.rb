@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130303003444) do
+ActiveRecord::Schema.define(:version => 20130413041404) do
 
   create_table "course_grades", :force => true do |t|
     t.string   "name"
@@ -124,8 +124,10 @@ ActiveRecord::Schema.define(:version => 20130303003444) do
     t.integer  "standard_id"
     t.integer  "map_id"
     t.integer  "user_id"
-    t.datetime "created_at",  :null => false
-    t.datetime "updated_at",  :null => false
+    t.datetime "created_at",                      :null => false
+    t.datetime "updated_at",                      :null => false
+    t.integer  "resources_count",  :default => 0
+    t.integer  "objectives_count", :default => 0
   end
 
   create_table "maps", :force => true do |t|

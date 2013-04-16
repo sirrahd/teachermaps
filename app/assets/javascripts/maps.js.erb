@@ -1,71 +1,227 @@
 $(document).ready(function() {    
+   
+  //////////////////////////////
+  //
+  // Create Map Assessment
+  //
+  //////////////////////////////
 
-    $(".best_in_place").best_in_place();
+  $(document).on('click', '#create_map_assessment', function(e) {
 
+    var mapId = $('#map-id').val();
+    var actionUrl = $(this).attr('action-url');
 
-    $('#map_standards_list ul li').live("click", function(e) {
-        var mapURI = $(this).attr('action-url');
-        window.location = mapURI;
-        return;
+    if( mapId == undefined || actionUrl == undefined) return false;
+
+    $.ajax({
+      data: { 'map_id' : mapId },
+      type: 'POST',
+      url: actionUrl,
+      dataType: 'html',
+      success: function (response) {
+        $('#maps_list_map_assessments').html(response);
+      },
+      error: function (xhr, ajaxOptions, thrownError) {
+        pushFlash({message:"<%= I18n.t('maps.create_map_assessment_error') %>", state: 'error', fadeOut: 5000});
+      }
     });
 
-    //////////////////////////////
-    //
-    // Add Unit Assessment to Map
-    //
-    //////////////////////////////
+    e.stopPropagation();
+  });
 
+  //////////////////////////////
+  //
+  // Remove Map Assessment
+  //
+  //////////////////////////////
 
-    $('#create_map_assessment').live("click", function(e) {
+  $(document)
+  .on('ajax:error', '.maps_map_assessments_destroy', function(event, data, status, xhr) {
+    pushFlash({message:"<%= I18n.t('maps.delete_map_assessment_error') %>", state: 'error', fadeOut: 5000});
+  })
+  .on('ajax:success', ".maps_map_assessments_destroy", function(event, data, status, xhr) {
+    $('#maps_list_map_assessments').html(data);
+  });
 
-        var userId = $('#user-id').val();
-        var mapId = $('#map-id').val();
-        var actionUrl = $(this).attr('action-url');
+  $(document)
+  .on('ajax:error', '.maps_map_assessments_show_resources', function(event, data, status, xhr) {
+    pushFlash({message:"<%= I18n.t('maps.show_map_assessment_resources_error') %>", state: 'error', fadeOut: 5000});
+  })
+  .on('ajax:success', '.maps_map_assessments_show_resources', function(event, data, status, xhr) {
+    $('#filter_map_resources_modal').html(data);        
+  });
 
-        if(userId == undefined || mapId == undefined || actionUrl == undefined) return false;
+  //////////////////////////////
+  //
+  // Filter Standards 
+  //
+  //////////////////////////////
 
-        console.log("Adding assessment to Map: " + mapId + " owned by " + userId + " via path " + actionUrl);
+  var timer;
+  $(document).on('keyup input', '#filter_standards_search', function() {
+    var form = $(this);
+    // Prevents ajax request till N milliseconds 
+    timer && clearTimeout(timer);
+    timer = setTimeout(function(){ 
+      form.submit();
+    }, 500);
+  });
 
-        $.ajax({
-            data: { 
-                'map_assessment': { 'user_id' : userId, 'map_id' : mapId }
-            },
-            type: 'POST',
-            url: actionUrl,
-            dataType: 'html',
-            success: function (response) {
-                $('#maps_list_map_assessments').html(response);
-            },
-            error: function (xhr, ajaxOptions, thrownError) {
-                pushFlash({message:"Error adding a Map Assessment", state: 'error', fadeOut: 5000});
-            }
+  $(document).on('change', '#filter_standards_form', function() {
+    $(this).submit();
+  });
+
+  $(document)
+  .on('ajax:error', "#filter_standards_form", function(event, data, status, xhr) {
+    pushFlash({message:"<%= I18n.t('resources.filter_failure') %>", state: 'success', fadeOut: 5000});
+  })
+  .on('ajax:success', "#filter_standards_form", function(event, data, status, xhr) {
+    // Update the resources table
+    $("#standards_table").html(data);  
+  });
+
+  //////////////////////////////
+  //
+  // Create Map Standards
+  //
+  //////////////////////////////
+
+  $(document).on('click', '.standard-default', function(e) {
+    
+    var element = $(this);
+    var standardId = $(this).attr('standard-id');
+    var actionUrl = $(this).attr('action-url');
+    if(actionUrl == undefined || standardId == undefined) return false;
+
+    $.ajax({
+      data: {standard_id: standardId},
+      url: actionUrl,
+      dataType: 'html',
+      type: 'POST',
+      success: function (response) {
+        $('#map_standards_list').html(response);
+
+        // Mark all children standards as selected
+        element.find('.standard-default').each(function() {
+            element.attr('class','standard-selected');
         });
 
-        e.stopPropagation();
-    });
+        element.attr('class','standard-selected');
+      },
+      error: function (xhr, ajaxOptions, thrownError) {
+        pushFlash({message:"<%= I18n.t('maps.create_map_standard_error') %>", state: 'error', fadeOut: 5000});
+      }
+    }); 
 
-    //////////////////////////////
-    //
-    // Remove Unit Assessment to Map
-    //
-    //////////////////////////////
+    e.stopPropagation();
+
+  });
 
 
-    $(".maps_map_assessments_destroy")
-    .live("ajax:error", function(event, data, status, xhr) {
-        pushFlash({message:"Error deleting Map Assessment", state: 'error', fadeOut: 5000});
-    })
-    .live("ajax:success", function(event, data, status, xhr) {
-        $('#maps_list_map_assessments').html(data);
-    });
+  //////////////////////////////
+  //
+  // Remove Map Standard from Map
+  //
+  //////////////////////////////
 
-    $(".maps_map_assessments_show_resources")
-    .live("ajax:error", function(event, data, status, xhr) {
-        pushFlash({message:"Error fetching Map Assessment resources", state: 'error', fadeOut: 5000});
-    })
-    .live("ajax:success", function(event, data, status, xhr) {
-        $('#filter_map_resources_modal').html(data);        
-    });
+  $(document)
+  .on('ajax:error', ".maps_map_standard_destroy", function(event, data, status, xhr) {
+    pushFlash({message:"<%= I18n.t('maps.delete_map_standard_error') %>", state: 'error', fadeOut: 5000});
+  })
+  .on('ajax:success', ".maps_map_standard_destroy", function(event, data, status, xhr) {
+    $('#map_standards_list').html(data);
+  });
+
+
+  //////////////////////////////
+  //
+  // Filter Map Assessment Resources
+  //
+  //////////////////////////////
+
+  var timer;
+  $(document).on('keyup input', '#maps_filter_resource_search', function() {
+    var form = $(this);
+    // Prevents ajax request till N milliseconds 
+    timer && clearTimeout(timer);
+    timer = setTimeout(function(){ 
+        form.submit();
+    }, 500);
+  });
+
+  // Needed for browser compatibility 
+  $(document).on('change', '#maps_filter_resource_form', function() {
+    $(this).submit();
+  });
+
+  $(document)
+  .on('ajax:error', '#maps_filter_resource_form', function(event, data, status, xhr) {
+    pushFlash({message:"<%= I18n.t('resources.filter_failure') %>", state: 'success', fadeOut: 5000});
+  })
+  .on('ajax:success', '#maps_filter_resource_form', function(event, data, status, xhr) {
+    // Update the resources table
+    $("#maps_map_assessments_resources_table").html(data);  
+  });
+
+  //////////////////////////////
+  //
+  // Adding/Removing Map Assessment Resources
+  //
+  //////////////////////////////
+
+  $(document).on('click', '.map_assessment_resource_selected', function(e) {
+
+    // /map_assessments/:id/destroy_resource
+    var mapAssessmentId = $(this).attr('map-assessment-id');
+    var resourceId = $(this).attr('resource-id'); 
+    var actionUrl = '/map_assessments/'+mapAssessmentId+'/destroy_resource'
+    var resourceElem = $(this);
+
+    if(mapAssessmentId == undefined || resourceId == undefined) return false;
+
+    $.ajax({
+      data: { resource_id: resourceId },
+      url: actionUrl,
+      dataType: 'html',
+      type: 'DELETE',
+      success: function (response) {
+        $('#maps_list_map_assessments').html(response);
+        resourceElem.attr('class','map_assessment_resource_default');
+      },
+      error: function (xhr, ajaxOptions, thrownError) {
+        pushFlash({message:"<%= I18n.t('maps.delete_map_assessment_resource_error') %>", state: 'error', fadeOut: 5000});
+      }
+    });  
+
+    e.stopPropagation();
+  });
+
+  $(document).on('click', '.map_assessment_resource_default', function(e) {
+      
+    // /map_assessments/:id/create_resource
+    var mapAssessmentId = $(this).attr('map-assessment-id');
+    var resourceId = $(this).attr('resource-id'); 
+    var actionUrl = '/map_assessments/'+mapAssessmentId+'/create_resource'
+    var resourceElem = $(this);
+
+    if(mapAssessmentId == undefined || resourceId == undefined) return false;
+
+    $.ajax({
+      data: { resource_id: resourceId },
+      url: actionUrl,
+      dataType: 'html',
+      type: 'POST',
+      success: function (response) {
+        $('#maps_list_map_assessments').html(response);
+        resourceElem.attr('class','map_assessment_resource_selected');
+      },
+      error: function (xhr, ajaxOptions, thrownError) {
+        pushFlash({message:"<%= I18n.t('maps.create_map_assessment_resource_error') %>", state: 'error', fadeOut: 5000});
+      }
+    });   
+    
+    e.stopPropagation();
+  });
 
 
 });

@@ -64,7 +64,7 @@ class LinkResourceTest < ActiveSupport::TestCase
   	
   	@resource = LinkResource.create :title => 'TestLinkResource', :link =>'http://valid-link.com'
     @resource.assign_type
-  	@resource.user = users(:bjkiller)
+  	@resource.user = users(:user_one)
 
   	assert @resource.valid?, 'Initialized resource was not valid.'
     assert @resource.save, 'Initialized resource was not saved.'

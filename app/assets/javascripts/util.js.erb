@@ -1,0 +1,25 @@
+$(document).ready(function(){
+
+  //////////////////////////////
+  //
+  // Javascript Open Link Listeners
+  //
+  //////////////////////////////
+  
+  $(document).on('click', '.action-link', function(e) {
+    e.stopPropagation();
+    var actionUrl = $(this).attr('action-url');
+    if (actionUrl == undefined) return false;
+    window.location.href = actionUrl;
+  });
+
+  $(document).on('click', '.action-blank-link', function(e) {
+    e.stopPropagation();
+
+    var actionUrl = $(this).attr('action-url');
+    if (actionUrl == undefined) return false;
+    window.open( $(this).attr('action-url'), '_blank' );
+  });
+
+});
+

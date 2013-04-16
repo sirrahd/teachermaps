@@ -1,161 +1,144 @@
 $(document).ready(function(){
 
-    //////////////////////////////
-    //
-    // Add Map Objective to Map Standard
-    //
-    //////////////////////////////
+  //////////////////////////////
+  //
+  // Create Map Objective to Map Standard
+  //
+  //////////////////////////////
 
+  $(document).on('click', '#create_map_objective', function(e) {
 
-    $('#create_map_objective').live("click", function(e) {
+    var mapStandardId = $('#map_standard_id').val();
+    var actionUrl = $(this).attr('action-url');
 
-        var mapStandardId = $('#map_standard_id').val();
-        var actionUrl = $(this).attr('action-url');
+    if(map_standard_id == undefined || actionUrl == undefined) return false;
 
-        console.log("Adding Objective to Map Standard: " + mapStandardId + " via path " + actionUrl);
-
-        if(map_standard_id == undefined || actionUrl == undefined) return false;
-
-        $.ajax({
-            data: { 
-                'map_standard_id' : mapStandardId
-            },
-            type: 'POST',
-            url: actionUrl,
-            dataType: 'html',
-            success: function (response) {
-                $('#map_standards_objectives_list').html(response);
-            },
-            error: function (xhr, ajaxOptions, thrownError) {
-                pushFlash({message:"Error adding a Map Objective", state: 'error', fadeOut: 5000});
-            }
-        });
-
-        e.stopPropagation();
+    $.ajax({
+      data: { map_standard_id : mapStandardId },
+      type: 'POST',
+      url: actionUrl,
+      dataType: 'html',
+      success: function (response) {
+        $('#map_standards_objectives_list').html(response);
+      },
+      error: function (response) {
+        pushFlash({message:"<%= I18n.t('map_standards.create_map_objective_error') %>", state: 'error', fadeOut: 5000});
+      }
     });
 
-    //////////////////////////////
-    //
-    // Remove Unit Assessment to Map
-    //
-    //////////////////////////////
+    e.stopPropagation();
+  });
+
+  //////////////////////////////
+  //
+  // Remove Map Objective from Map Standard
+  //
+  //////////////////////////////
+
+  $(document)
+  .on('ajax:error', '.map_standards_map_objective_destroy', function(event, data, status, xhr) {
+      pushFlash({message:"<%= I18n.t('map_standards.delete_map_objective_error') %>", state: 'error', fadeOut: 5000});
+  })
+  .on('ajax:success', '.map_standards_map_objective_destroy',function(event, data, status, xhr) {
+      $('#map_standards_objectives_list').html(data);
+  });
 
 
-    $(".map_standards_map_objective_destroy")
-    .live("ajax:error", function(event, data, status, xhr) {
-        pushFlash({message:"Error deleting Map Assessment", state: 'error', fadeOut: 5000});
-    })
-    .live("ajax:success", function(event, data, status, xhr) {
-        $('#map_standards_objectives_list').html(data);
-    });
+  $(document)
+  .on('ajax:error', '.maps_objectives_show_resources', function(event, data, status, xhr) {
+      pushFlash({message:"<%= I18n.t('map_standards.show_map_objective_resources_error') %>", state: 'error', fadeOut: 5000});
+  })
+  .on('ajax:success', '.maps_objectives_show_resources', function(event, data, status, xhr) {
+      $('#filter_map_objectives_resources_modal').html(data);        
+  });
 
+  //////////////////////////////
+  //
+  // Filter Map Resouces of Map Objectives
+  //
+  //////////////////////////////
 
-    $(".maps_objectives_show_resources")
-    .live("ajax:error", function(event, data, status, xhr) {
-        pushFlash({message:"Error fetching Map Objective Resources", state: 'error', fadeOut: 5000});
-    })
-    .live("ajax:success", function(event, data, status, xhr) {
-        $('#filter_map_objectives_resources_modal').html(data);        
-    });
+  var timer;
+  $(document).on('keyup input', '#map_standards_filter_resource_search', function() {
+      var form = $(this);
+      // Prevents ajax request till N milliseconds 
+      timer && clearTimeout(timer);
+      timer = setTimeout(function(){ 
+          form.submit();
+      }, 500);
+  });
 
+  $(document).on('change', '#map_standards_filter_resource_form', function() {
+      $(this).submit();
+  });
 
+  $(document)
+  .on('ajax:error', '#map_standards_filter_resource_form', function(event, data, status, xhr) {
+      pushFlash({message:"<%= I18n.t('resources.filter_failure') %>", state: 'success', fadeOut: 5000});
+  })
+  .on('ajax:success', '#map_standards_filter_resource_form', function(event, data, status, xhr) {
+      // Update the resources table
+      $('#map_standards_resources_table').html(data);  
+  });
 
+  //////////////////////////////
+  //
+  // Adding/Removing Map Objective Resources
+  //
+  //////////////////////////////
 
+  $(document).on('click', '.map_objectives_resource_selected', function(e) {
 
+    // /map_objectives/:id/create_resource
+    var mapObjectiveId = $(this).attr('map-objective-id');
+    var resourceId = $(this).attr('resource-id'); 
+    var actionUrl = '/map_objectives/'+mapObjectiveId+'/destroy_resource'
+    var resourceElem = $(this);
 
-    //////////////////////////////
-    //
-    // Filter Resources for Map Resources
-    //
-    //////////////////////////////
+    if(mapObjectiveId == undefined || resourceId == undefined) return false;
 
-    var timer;
-    $("#map_standards_filter_resource_search").live('keyup input',function() {
-        var form = $(this);
-        // Prevents ajax request till N milliseconds 
-        timer && clearTimeout(timer);
-        timer = setTimeout(function(){ 
-            form.submit();
-        }, 500);
-    });
+    $.ajax({
+      data: { resource_id: resourceId },
+      url: actionUrl,
+      dataType: 'html',
+      type: 'DELETE',
+      success: function (response) {
+        $('#map_standards_objectives_list').html(response);
+        resourceElem.attr('class','map_objectives_resource_default');
+      },
+      error: function (xhr, ajaxOptions, thrownError) {
+        pushFlash({message:"<%= I18n.t('map_standards.delete_map_objective_resource_error') %>", state: 'error', fadeOut: 5000});
+      }
+    });  
 
-    // Needed for browser compatibility 
-    $('#map_standards_filter_resource_form').live('change', function() {
-        $(this).submit();
-    });
+    e.stopPropagation();
+  });
 
-    $("#map_standards_filter_resource_form")
-    .live("ajax:error", function(event, data, status, xhr) {
-        pushFlash({message:"<%= I18n.t('resources.filter_failure') %>", state: 'success', fadeOut: 5000});
-    })
-    .live("ajax:success", function(event, data, status, xhr) {
-        // Update the resources table
-        $("#map_standards_resources_table").html(data);  
-    });
+  $(document).on('click', '.map_objectives_resource_default', function(e) {
+      
+    // /map_objectives/:id/destroy_resource
+    var mapObjectiveId = $(this).attr('map-objective-id');
+    var resourceId = $(this).attr('resource-id'); 
+    var actionUrl = '/map_objectives/'+mapObjectiveId+'/create_resource'
+    var resourceElem = $(this);
 
-    //////////////////////////////
-    //
-    // Adding/Removing Map Standards
-    //
-    //////////////////////////////
+    if(mapObjectiveId == undefined || resourceId == undefined) return false;
 
-
-    $('#map_standards_resources_table .map_objectives_resource_selected').live("click", function(e) {
-
-        // /map_objectives/:map_objective_id/resource/:map_resource_id/destroy
-        var mapObjectiveId = $(this).attr('map-objective-id');
-        var resourceId = $(this).attr('resource-id'); 
-        var actionUrl = '/map_objectives/'+mapObjectiveId+'/resources/'+resourceId+'/destroy'
-        var resourceElem = $(this);
-
-        console.log("Removing map resource from objective: "+actionUrl)
-
-        if(mapObjectiveId == undefined || resourceId == undefined) return false;
-
-        $.ajax({
-            url: actionUrl,
-            dataType: 'html',
-            success: function (response) {
-                console.log("Removed map resource to assessment: "+actionUrl)
-                $('#map_standards_objectives_list').html(response);
-
-                resourceElem.attr('class','map_objectives_resource_default');
-            },
-            error: function (xhr, ajaxOptions, thrownError) {
-                pushFlash({message:"Error removing resource to Map Objective", state: 'error', fadeOut: 5000});
-            }
-        });  
-
-        e.stopPropagation();
-    });
-
-    $('#map_standards_resources_table .map_objectives_resource_default').live("click", function(e) {
-        
-        // /map_objectives/:map_objective_id/resource/:map_resource_id/new
-        var mapObjectiveId = $(this).attr('map-objective-id');
-        var resourceId = $(this).attr('resource-id'); 
-        var actionUrl = '/map_objectives/'+mapObjectiveId+'/resources/'+resourceId+'/new'
-        var resourceElem = $(this);
-
-        console.log("Removing map resource from Map Objective: "+actionUrl)
-
-        if(mapObjectiveId == undefined || resourceId == undefined) return false;
-
-        $.ajax({
-            url: actionUrl,
-            dataType: 'html',
-            success: function (response) {
-                console.log("Added map resource to assessment: "+actionUrl)
-                $('#map_standards_objectives_list').html(response);
-
-                resourceElem.attr('class','map_objectives_resource_selected');
-            },
-            error: function (xhr, ajaxOptions, thrownError) {
-                pushFlash({message:"Error adding resource to Map Objective", state: 'error', fadeOut: 5000});
-            }
-        });   
-        
-        e.stopPropagation();
-    });
+    $.ajax({
+      data: { resource_id: resourceId },
+      url: actionUrl,
+      dataType: 'html',
+      type: 'POST',
+      success: function (response) {
+        $('#map_standards_objectives_list').html(response);
+        resourceElem.attr('class','map_objectives_resource_selected');
+      },
+      error: function (xhr, ajaxOptions, thrownError) {
+        pushFlash({message:"<%= I18n.t('map_standards.create_map_objective_resource_error') %>", state: 'error', fadeOut: 5000});
+      }
+    });   
+    
+    e.stopPropagation();
+  });
 
 });

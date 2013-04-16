@@ -5,7 +5,7 @@
     <div>
       <div>
         <!-- Breadcrumb -->
-        <%= link_to "My Maps", user_path(@map.user) %> / <%= link_to "#{@map.name.titlecase.truncate(40)}", "JavaScript:void(0);" %> /
+        <%= link_to t('shared.my_maps'), user_path(@map.user) %> / <%= link_to "#{@map.name.titlecase.truncate(40)}", "JavaScript:void(0);" %> /
       </div>
       <div>
         <h2><%= best_in_place @map, :name, :type => :input, :display_as => :title_titlecase %></h2>
@@ -17,13 +17,13 @@
 
       <div class="editable-btn">
         <span class="pull-right">
-          <%= link_to 'Edit Standards', "#filter_map_standards_modal",'data-toggle' => "modal",  :class => 'btn'  %>
+          <%= link_to t('maps.edit_map_standards'), "#filter_map_standards_modal",'data-toggle' => "modal",  :class => 'btn'  %>
         </span> 
-        <h3>Standards</h3>
+        <h3><%= t('shared.standards') %></h3>
         <div id="map_standards_list">
 
           <!-- Map Standards -->
-          <%= render 'maps/map_standards_list' %>
+          <%= render 'maps/list_map_standards' %>
 
         </div>
       </div>
@@ -33,7 +33,7 @@
         <span class="pull-right">
             <%= link_to 'Add Assessment', "JavaScript:void(0);", :class => 'btn', id: 'create_map_assessment', 'action-url' => map_assessments_path %>
         </span>  
-        <h3>Assessments</h3>
+        <h3><%= t('shared.assessments') %></h3>
         <div id="maps_list_map_assessments">
           <!-- Map Assessments -->
           <%= render 'maps/list_map_assessments' %>
@@ -43,18 +43,20 @@
   </div>
 
 
-  <div id="filter_map_standards_modal" class="modal hide fade in">
-    <div class="modal-body">
+  <div id="filter_map_standards_modal" class="standard-modal  modal hide fade in">
+    <div class="modal-header">
       <button type="button" class="close" data-dismiss="modal" style="margin-right:10px;">&times;</button>
-      <div><H3>Standards Filter</H3></div>
+      <div><H3><%= t('shared.standards') %></H3></div>
+    </div>
+    <div class="modal-body">
         <div class="row">
-          <div class="span7" id="standards_filter">
-          <%= render 'standards/form_filter' %>
+          <div class="span9" id="standards_filter">
+          <%= render 'maps/filter_standards' %>
           </div>
         </div>
         <div class="row">
-          <div class="span6" id="standards_table">
-            <%= render 'standards/list' %>
+          <div  id="standards_table" style="margin: 0px 20px 0px 20px;">
+            <%= render 'maps/list_standards' %>
           </div>
         </div>
     </div>
@@ -63,9 +65,9 @@
   <div id="filter_map_resources_modal" class="resource-modal modal hide fade" >
     <div class="filter_map_resources_modal_header modal-header">
       <button type="button" class="close" data-dismiss="modal" style="margin-right:10px;">&times;</button>
-      <h3>Loading...</h3>
+      <h3><%= t('resources.loading') %></h3>
     </div>
-    <div class="filter_map_resources_modal_body modal-body center">
+    <div class="span9 filter_map_resources_modal_body modal-body center">
         <%= image_tag "loading.gif", :alt => "loading"%>
     </div>
     <div class="modal-footer">&nbsp;</div>

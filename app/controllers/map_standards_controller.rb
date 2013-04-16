@@ -8,79 +8,84 @@ class MapStandardsController < ApplicationController
     @map_standard = MapStandard.find_by_slug params[:id]
   end
 
-  def ajax_new
+  def create
 
     Rails.logger.info(params)
    
-    if !@current_user 
-      return render :nothing => true, :status => 403
+    @map = Map.find_by_id_and_user_id params[:map_id], @current_user.id
+    @standard = Standard.find params[:standard_id]
+
+    if !@map or !@standard
+      Rails.logger.info("error 404 map #{params[:map_id]} or standard #{params[:standard_id]}") 
+      return render nothing: true, status: 404
     end
 
-    @map = Map.find_by_id_and_user_id(params[:map_id], @current_user.id)
-    standard = Standard.find(params[:standard_id])
+    if !MapStandard.find_by_standard_id_and_map_id @standard.id, @map.id
+      @map_standard = MapStandard.new
+      @map_standard.standard = @standard
+      @map_standard.map = @map
+      @map_standard.user = @current_user
+      @map_standard.save
 
-    if !@map or !standard
-      Rails.logger.info("Could not locate either map #{params[:map_id]} or standard #{params[:standard_id]}") 
-      return render :nothing => true, :status => 404
-    end
+      @map.course_grades << @standard.course_grades
+      @map.course_subjects << @standard.course_subject
 
-    Rails.logger.info("Located Map #{@map} and Standard #{standard}")
-
-    if !MapStandard.find_by_standard_id_and_map_id_and_user_id(standard.id, @map.id, @current_user.id)
-        new_map_standard = MapStandard.new
-        new_map_standard.standard = standard
-        new_map_standard.map = @map
-        new_map_standard.user = @current_user
-        @map.map_standards << new_map_standard
-
-        @map.standards_count += 1
-        @map.save
-    end
-
-    # Add any children standards
-    standard.children_standards.each do |child_standard|
-      # Enforce prevention of the same standard being added twice
-      if !MapStandard.find_by_standard_id_and_map_id_and_user_id(child_standard.id, @map.id, @current_user.id)
-        new_map_standard = MapStandard.new
-        new_map_standard.standard = child_standard
-        new_map_standard.map = @map
-        new_map_standard.user = @current_user
-        @map.map_standards << new_map_standard
-
-        @map.standards_count += 1
-        @map.save
+      if !@map_standard.save
+        Rails.logger.info("error create map_standard") 
+        return render json: @map_standard.errors, status: :unprocessable_entity
       end
     end
 
-    return render partial: 'maps/map_standards_list'
+    # Add any children standards
+    @standard.children_standards.each do |child_standard|
+      # Enforce prevention of the same standard being added twice
+      if !MapStandard.find_by_standard_id_and_map_id child_standard.id, @map.id
+        @map_standard = MapStandard.new
+        @map_standard.standard = child_standard
+        @map_standard.map = @map
+        @map_standard.user = @current_user
+
+        @map.course_grades << child_standard.course_grades
+        @map.course_subjects << child_standard.course_subject
+      
+        if !@map_standard.save
+          Rails.logger.info("error create map_standard") 
+          return render json: @map_standard.errors, status: :unprocessable_entity
+        end
+      end
+    end
+
+    return render partial: 'maps/list_map_standards'
   end
 
-  def ajax_destroy
-    if !@current_user 
-      return render :nothing => true, :status => 403
-    end
-    if !params.has_key?('map_id') or !params.has_key?('standard_id')
-      return render :nothing => true, :status => 404
-    end
+  def destroy
+    Rails.logger.info(params)
+    
+    @map_standard = MapStandard.find_by_id_and_user_id params[:id], @current_user.id
 
-    @map = Map.find_by_id_and_user_id(params[:map_id], @current_user.id)
-    standard = Standard.find(params[:standard_id])
-    map_standard = MapStandard.find_by_standard_id_and_map_id_and_user_id(params[:standard_id], @map.id, @current_user.id)
-
-    if !@map or !standard or !map_standard
-      Rails.logger.info("Could not locate either map standard from given data") 
-      return render :nothing => true, :status => 404
+    if !@map_standard
+      Rails.logger.info("error 404 map_standard #{params[:id]}") 
+      return render nothing: true, status: 404
     end
 
-    map_standard.destroy
+    @map = @map_standard.map
 
-    @map.standards_count -= 1
-    @map.objectives_count -= map_standard.map_objectives.count
-    @map.save
+    # Delete metadata
+    @map.course_grades -= @map_standard.standard.course_grades
+    @map.course_subjects -= [@map_standard.standard.course_subject]
+    @map_standard.destroy
 
-    Rails.logger.info("Deleted map standard")
+    # Update metadata
+    @map.update_metadata
 
-    return render partial: 'maps/map_standards_list'
+    respond_to do |format|
+      if @map_standard.destroyed?       
+        return render partial: 'maps/list_map_standards'
+      else
+        Rails.logger.info("error delete map_standard #{@map_standard.errors.inspect}")
+        format.html { render json: @map_standard.errors, status: :unprocessable_entity  }
+      end 
+    end
   end
 
   private 

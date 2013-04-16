@@ -3,12 +3,12 @@ map_objective_one:
  name: The best Objective!!
  text: hit me baby one more time
  map_standard: map_standard_one
- user: bjkiller
+ user: user_one
  map: map_one
 map_objective_two:
  slug: OneTwoSkipAFew100
  name: Objective - Black Ops
  text: Covering me I am reloading!!!
  map_standard: map_standard_two
- user: bjkiller
+ user: user_one
  map: map_one

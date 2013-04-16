@@ -113,7 +113,7 @@ class Map < ActiveRecord::Base
   MAX_NAME_RENDER_LEN = 100
 
   # Core components	
-  attr_accessible :name, :slug, :text, :thumbnail
+  attr_accessible :name, :slug, :text, :thumbnail, :user_id
 
   # For quick rendering of item counts
   attr_accessible :resources_count, :standards_count, :objectives_count
@@ -121,25 +121,21 @@ class Map < ActiveRecord::Base
   has_and_belongs_to_many :course_subjects, uniq: true, order: 'name ASC'
   has_and_belongs_to_many :course_grades, uniq: true, order: 'id ASC'
   
-  has_many :map_standards
-  has_many :map_assessments
+  has_many :map_standards, dependent: :destroy
+  has_many :map_assessments, dependent: :destroy
 
   belongs_to :user
 
   validates :user, presence: true
-  validates :name, length: {maximum: 250}
-  validates :text, length: {maximum: 2048}
+  validates :name, length: {minimum: 2, maximum: 250}
+  validates :text, length: {minimum: 2, maximum: 2048}
   validates_uniqueness_of :slug, allow_nil: true, case_sensitive: true
 
-  before_create :default_values
+  after_initialize :default_values
   before_validation	:clean_attrs
 
   def title_titlecase
     self.name.titlecase
-  end
-
-  def to_param
-	  self.slug
   end
 
   def sorted_map_standards
@@ -147,18 +143,26 @@ class Map < ActiveRecord::Base
     self.map_standards.all(:order => :standard_id)
   end
 
+  def update_metadata
+    self.map_standards.each do |map_standard|
+      self.course_grades << map_standard.standard.course_grades
+      self.course_subjects << map_standard.standard.course_subject
+    end
+  end
+
   private 
 
   def clean_attrs
-    if self.name then self.name = self.name.strip end
-    if self.text then self.text = self.text.strip end
+    default_values
+    self.name = self.name.strip
+    self.text = self.text.strip
   end
 
   def default_values
     self.slug ||= (Base64.strict_encode64 UUIDTools::UUID.random_create).downcase
     
-    self.name = 'New Untitled Map'  
-    self.text = 'Description of the Map'
+    self.name ||= 'New Untitled Map'  
+    self.text ||= 'Description of the Map'
     self.resources_count  ||= 0
     self.standards_count  ||= 0
     self.objectives_count ||= 0

@@ -119,6 +119,11 @@ input {
   margin: -50px 0px 0px -360px;
 }
 
+.standard-modal {
+  min-width: 600px; 
+  margin: -50px 0px 0px -300px;
+}
+
 /* Map Standard Filter */
 
 .map_assessment_resource_selected {
@@ -144,3 +149,17 @@ input {
 .editable:hover span a i {
    visibility: visible;
 } 
+
+/* Push Flash Alert */
+
+.alert-float {
+  margin-top: 15px;
+  position:fixed;
+  top:0;
+  width:80%;
+  z-index:100;
+}
+
+.gray {
+  color: #947F87;
+}

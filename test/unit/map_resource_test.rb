@@ -14,7 +14,7 @@ class MapResourceTest < ActiveSupport::TestCase
   # Basic checks for name existence and length
   test "text must have valid format" do
     @map_resource.text = nil
-    assert !(@map_resource.valid?), "Map Resource created without text."
+    assert @map_resource.valid?, "Map Resource not created without text."
 
     @map_resource.text = "a"
     assert !(@map_resource.valid?), "Map Resource created with invalid text."
@@ -48,19 +48,9 @@ class MapResourceTest < ActiveSupport::TestCase
   
   def initialize_user
 
-    @user = User.new  name: "Example User", 
-                      email: "user@example.org",
-                      account_name: "example",
-                      password: "foobar",
-                      password_confirmation: "foobar"
-                      
-    assert @user.valid?, "Initialized user was not valid."
-    assert @user.save, "Unable to save valid user."
-
-    @map_resource = MapResource.new text: 'This is a sample text description for a map resource.'
-    @map_resource.user = @user
+    @map_resource = MapResource.new
+    @map_resource.user = users(:user_one)
     @map_resource.map = maps(:map_one)
-    #@map_resource.map_objective = map_objectives(:map_objective_one)
     @map_resource.resource = resources(:resource_one)
 
     assert @map_resource.valid?, "Initialized map objresourceective was not valid."
