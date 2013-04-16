@@ -43,17 +43,19 @@
   </div>
 
 
-  <div id="filter_map_standards_modal" class="modal hide fade in">
-    <div class="modal-body">
+  <div id="filter_map_standards_modal" class="standard-modal  modal hide fade in">
+    <div class="modal-header">
       <button type="button" class="close" data-dismiss="modal" style="margin-right:10px;">&times;</button>
       <div><H3><%= t('shared.standards') %></H3></div>
+    </div>
+    <div class="modal-body">
         <div class="row">
-          <div class="span7" id="standards_filter">
+          <div class="span9" id="standards_filter">
           <%= render 'maps/filter_standards' %>
           </div>
         </div>
         <div class="row">
-          <div class="span6" id="standards_table">
+          <div  id="standards_table" style="margin: 0px 20px 0px 20px;">
             <%= render 'maps/list_standards' %>
           </div>
         </div>
@@ -63,9 +65,9 @@
   <div id="filter_map_resources_modal" class="resource-modal modal hide fade" >
     <div class="filter_map_resources_modal_header modal-header">
       <button type="button" class="close" data-dismiss="modal" style="margin-right:10px;">&times;</button>
-      <h3><H3><%= t('resources.loading') %></h3>
+      <h3><%= t('resources.loading') %></h3>
     </div>
-    <div class="filter_map_resources_modal_body modal-body center">
+    <div class="span9 filter_map_resources_modal_body modal-body center">
         <%= image_tag "loading.gif", :alt => "loading"%>
     </div>
     <div class="modal-footer">&nbsp;</div>

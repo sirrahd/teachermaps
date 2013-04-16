@@ -1,11 +1,8 @@
 <%= form_tag filter_resources_map_assessment_path( @map_assessment ), id: 'maps_filter_resource_form', :class=>"form-inline", :remote=>true do %>
   
   <%= hidden_field_tag "map_assessment_id", @map_assessment.id %>
-
   <%= select_tag("resource_types", options_for_select(@filter_resource_types.map {|x| [x.name, x.id]}), :multiple=>true, :id=>'maps_filter_resource_types') %>
-
   <%= select_tag("course_grades", options_for_select(@filter_course_grades.map {|x| [x.name, x.id]}), {:multiple=>true, :id=>'maps_filter_course_grades'}) %>
-
   <%= select_tag("course_subjects", options_for_select(@filter_course_subjects.map {|x| [x.name, x.id]}), {:multiple=>true, :id=>'maps_filter_course_subjects'}) %>
   <br/>
   <%= text_field_tag 'maps_filter_resource_search', '', :maxlength => 15, :placeholder=>t('shared.search'), :style=>'width:90%;margin-top:5px;', :name=>'q', :class => 'search-query' %>
@@ -16,15 +13,15 @@
 $(document).ready(function() { 
   
   $("#maps_filter_resource_types").select2({
-    width : '200px',
+    width : '160px',
     placeholder: '<%= t("resources.all_types") %>'
   });
   $("#maps_filter_course_grades").select2({
-    width : '200px',
+    width : '160px',
     placeholder: '<%= t("resources.all_grades") %>'
   });
   $("#maps_filter_course_subjects").select2({
-      width : '250px',
+      width : '160px',
       placeholder: '<%= t("resources.all_subjects") %>'
   });
 }); 
