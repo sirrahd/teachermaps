@@ -21,11 +21,9 @@ module HtmlHelper
         spans[0..-2] + [spans.last.first..n]
       end
     end
-    Rails.logger.info(ranges)
 
     result = []
     ranges.each do |range|
-      Rails.logger.info("#{range.first} #{range.last}")
       if range.last == (range.first+1)
         if range.first == 0
           result << "K, #{range.last}"
