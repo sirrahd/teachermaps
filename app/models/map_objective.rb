@@ -15,7 +15,7 @@ class MapObjective < ActiveRecord::Base
   validates :user, presence: true
   validates :map, presence: true
   validates :name, length: {minimum: 2, maximum: 250}
-  validates :text, length: {minimum: 2, maximum: 2048}
+  validates :text, length: {maximum: 2048}
   validates_uniqueness_of :slug, case_sensitive: true
 
   after_initialize :default_values
