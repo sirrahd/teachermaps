@@ -4,11 +4,11 @@
 <%= form_for Resource.new, :remote => true, :url => resources_create_link_path, html: { :multipart => true, :'data-type' => 'html', id: 'create_resource_link_form' }  do |f| %>
 
   <%= label_tag(:title, t('resources.title')) %>
-  <%= f.text_field :title  %>
+  <%= f.text_field :title, :placeholder=>'Untitled Web Link' %>
 
 
   <%= label_tag(:link, t('resources.web_link')) %>
-  <%= f.text_field :link  %>
+  <%= f.text_field :link, :placeholder=>'http://www.example.com'  %>
 
   
   <%= label_tag(:course_grades, t('resources.grades')) %>
@@ -29,10 +29,12 @@
 <script type="text/javascript">
 $(document).ready(function() {  
   $("#create_resource_grades").select2({
-    width : '100%'
+    width : '100%',
+    placeholder: '<%= t("resources.all_grades") %>'
   });
   $("#create_resource_subjects").select2({
-    width : '100%'
+    width : '100%',
+    placeholder: '<%= t("resources.all_subjects") %>'
   });
 });
 </script>

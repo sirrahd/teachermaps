@@ -12,7 +12,7 @@
       <%= f.text_field :title  %>
 
       <%= label_tag(:link, t('resources.link')) %>
-      <%= f.text_field :link  %>
+      <%= f.text_field :link %>
     <% else %>
       <%= f.hidden_field :title, :value => @resource.title %>
     <% end %>
