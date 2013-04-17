@@ -12,9 +12,9 @@
       </div>
       <!-- Map Content -->
       </div>
-        <p ><%= best_in_place @map, :text, :type => :textarea, :nil => raw('<span class="gray">Description</span>') %></p>
+        <p ><%= best_in_place @map, :text, :type => :textarea, :classes=>'best_in_place_selector', :nil => raw('<span class="gray">Description</span>') %></p>
       <div>
-
+        
       <div class="editable-btn">
         <span class="pull-right">
           <%= link_to t('maps.edit_map_standards'), "#filter_map_standards_modal",'data-toggle' => "modal",  :class => 'btn'  %>
