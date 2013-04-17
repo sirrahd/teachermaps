@@ -162,10 +162,6 @@ class Map < ActiveRecord::Base
     self.slug ||= (Base64.strict_encode64 UUIDTools::UUID.random_create).downcase
     
     self.name ||= 'New Untitled Map'  
-
-    # if self.text.nil? or self.text.empty?
-    #   self.text = 'Description'
-    # end
     self.text ||= ''
     self.resources_count  ||= 0
     self.standards_count  ||= 0
