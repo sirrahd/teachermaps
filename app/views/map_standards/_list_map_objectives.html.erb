@@ -14,7 +14,7 @@
         </span>
         <span>
           <b><%= best_in_place map_objective, :name, type: :input %></b>
-          <p><%= best_in_place map_objective, :text, type: :textarea %></p>
+          <p><%= best_in_place map_objective, :text, type: :textarea, :nil => raw('<span class="gray">Description</span>') %></p>
         </span>
       
         <% if !map_objective.map_resources.empty? %>

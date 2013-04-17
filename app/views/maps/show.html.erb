@@ -12,7 +12,7 @@
       </div>
       <!-- Map Content -->
       </div>
-        <p ><%= best_in_place @map, :text, :type => :textarea %></p>
+        <p ><%= best_in_place @map, :text, :type => :textarea, :nil => raw('<span class="gray">Description</span>') %></p>
       <div>
 
       <div class="editable-btn">

@@ -39,9 +39,7 @@ class MapResource < ActiveRecord::Base
   end
 
   def default_values
-    if self.text.nil? or self.text.empty?
-      self.text = 'Description of the Resource'
-    end
+    self.text ||= ''
   end
 
   def self.inherited(child)
