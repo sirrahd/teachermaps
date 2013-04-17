@@ -35,11 +35,13 @@ class MapResource < ActiveRecord::Base
 
   def clean_attrs
     default_values
-    self.text = self.text.strip
+    if self.text
+      self.text = self.text.strip
+    end
   end
 
   def default_values
-    self.text ||= ''
+    # self.text = 'Description'
   end
 
   def self.inherited(child)
