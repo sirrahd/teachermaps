@@ -33,7 +33,10 @@ class MapAssessment < ActiveRecord::Base
   def default_values
     self.slug ||= (Base64.strict_encode64 UUIDTools::UUID.random_create).downcase
     self.name ||= 'Untitled Map Assessment'
-    self.text ||= 'Description of the Map Assessment'
+    
+    if self.text.nil? or self.text.empty?
+      self.text ||= 'Description of the Map Assessment'
+    end
   end
 
 end

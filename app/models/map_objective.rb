@@ -50,6 +50,8 @@ class MapObjective < ActiveRecord::Base
   def default_values
     self.slug ||= (Base64.strict_encode64 UUIDTools::UUID.random_create).downcase
     self.name ||= 'Untitled Map Objective'
-    self.text ||= 'Description of the Map Objective'
+    if self.text.nil? or self.text.empty?
+      self.text ||= 'Description of the Map Objective'
+    end
   end
 end
