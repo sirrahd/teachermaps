@@ -35,7 +35,7 @@ class MapAssessment < ActiveRecord::Base
     self.name ||= 'Untitled Map Assessment'
     
     if self.text.nil? or self.text.empty?
-      self.text ||= 'Description of the Map Assessment'
+      self.text = 'Description of the Map Assessment'
     end
   end
 

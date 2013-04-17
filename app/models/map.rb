@@ -164,7 +164,7 @@ class Map < ActiveRecord::Base
     self.name ||= 'New Untitled Map'  
 
     if self.text.nil? or self.text.empty?
-      self.text ||= 'Description of the Map'
+      self.text = 'Description'
     end
     self.resources_count  ||= 0
     self.standards_count  ||= 0
