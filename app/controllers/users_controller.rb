@@ -67,7 +67,7 @@ class UsersController < ApplicationController
       sign_in @user #updates invalidate current sign in
       render 'settings/index'
     else
-      flash[:warning] = t 'reset_password.error'
+      render 'settings/index'
     end
   end
 
