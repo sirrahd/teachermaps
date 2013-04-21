@@ -1,0 +1,100 @@
+$(document).ready(function(){
+
+
+  //////////////////////////////
+  //
+  // Bootstrap initializations for Maps/Resources tabs 
+  //
+  //////////////////////////////
+  
+  // Hide by default
+  $('#resource-controls').hide();
+  if(window.location.hash == "#resources"){ $('#resource-controls').show(); }  
+  // Shows resource controls when viewing resources
+  $('.resource-toggle-control').click(function(){
+  	$('#resource-controls').show();
+    $('#maps-controls').hide();
+  });
+  // Hides resource controls when viewing map
+  $('.map-toggle-control').click(function(){
+  	$('#resource-controls').hide();
+    $('#maps-controls').show();
+  });
+
+  //////////////////////////////
+  //
+  // Remove Map
+  //
+  //////////////////////////////
+
+  $(document)
+  .on('ajax:error', '.users_map_destroy', function(event, data, status, xhr) {
+    pushFlash({message:"<%= I18n.t('users.delete_map_error') %>", state: 'error', fadeOut: 5000});
+  })
+  .on('ajax:success', '.users_map_destroy', function(event, data, status, xhr) {
+    $('#users_maps_table').html(data);
+  });
+
+  //////////////////////////////
+  //
+  // Add Map
+  //
+  //////////////////////////////
+
+  $(document).on('click', '#users_create_map', function(e) {
+
+      var actionUrl = $(this).attr('action-url');
+
+      if(actionUrl == undefined) return false;
+
+      $.ajax({
+          type: 'POST',
+          url: actionUrl,
+          dataType: 'html',
+          success: function (response) {
+              $('#users_maps_table').html(response);
+          },
+          error: function (xhr, ajaxOptions, thrownError) {
+              pushFlash({message:"<%= I18n.t('users.create_map_error') %>", state: 'error', fadeOut: 5000});
+          }
+      });
+
+      e.stopPropagation();
+  });
+
+
+
+
+  //////////////////////////////
+  //
+  // Filter Resources 
+  //
+  //////////////////////////////
+
+  var timer;
+  $(document).on('keyup input', '#filter_resource_search', function() {
+      var form = $(this);
+      // Prevents ajax request till N milliseconds 
+      timer && clearTimeout(timer);
+      timer = setTimeout(function(){ 
+          form.submit();
+      }, 500);
+  });
+
+  $(document).on('change', '#filter_resource_form', function() {
+      $(this).submit();
+  });
+
+  $(document)
+  .on('ajax:error', '#filter_resource_form', function(event, data, status, xhr) {
+      pushFlash({message:"<%= I18n.t('resources.filter_failure') %>", state: 'success', fadeOut: 5000});
+  })
+  .on('ajax:success', '#filter_resource_form', function(event, data, status, xhr) {
+      // Update the resources table
+      $('#resources_table').html(data);  
+  });
+
+});
+
+
+

@@ -1,22 +1,8 @@
 Teachermaps::Application.routes.draw do
-  
 
-  resources :drop_box_accounts
-  resources :google_accounts
-
+    
   resources :settings
 
-
-  # Sync Google Drive and/or DropBox resources
-  match 'resources/sync' => 'resources#sync', :as => 'sync_resources'
-  match '/resources/ajax/create/link' => 'resources#ajax_upload_link'
-  match '/resources/ajax/show/:slug' => 'resources#ajax_show', :as => 'resources_ajax_show'
-  match '/resources/ajax/filter' => 'resources#ajax_filter', :as => 'resources_ajax_filter'
-  resources :resources
-  
-  
-
-  resources :users
   resources :sessions, only: [:new, :create, :destroy]
   resources :feedbacks, only: [:create]
 
@@ -30,13 +16,57 @@ Teachermaps::Application.routes.draw do
   match '/about',   to: 'static_pages#about'
   match '/contact', to: 'static_pages#contact'
 
+  match '/confirm', to: 'users#confirm_email'
+  match '/reset', to: 'users#reset_password'
+
+  # Sync Google Drive and/or DropBox resources
+  match '/resources/sync' => 'resources#sync'
+  match '/resources/create/link' => 'resources#create_link'
+  match '/resources/filter' => 'resources#filter'
+  resources :resources
+
+  resources :map_standards, only: [:update, :destroy]
+  resources :maps, only: [:update, :create, :destroy]
+  resources :maps do
+    resources :map_standards, only: [:create]
+  end
+
+  resources :users do
+    resources :maps
+    resources :map_standards, :path => 'standards', only: [:show]
+  end
+  
+  resources :map_assessments do
+    member do
+      get    'show_resources'
+      post   'filter_resources'
+      post   'create_resource'
+      delete 'destroy_resource'
+    end
+  end
+  resources :map_resources
+
+  resources :map_objectives do
+    member do
+      get    'show_resources'
+      post   'filter_resources'
+      post   'create_resource'
+      delete 'destroy_resource'
+    end
+  end
+
+  match '/standards/ajax/filter' => 'standards#ajax_filter'
+  resources :standards
+  
   # Google API
   match 'google/oauth_callback' => 'google_accounts#oauth_callback'
+  resources :google_accounts
 
   # DropBox API
   match 'dropbox/new' => 'drop_box_accounts#new', :as => 'new_drop_box_accounts'
   match 'dropbox/preview/:path' => 'drop_box_accounts#preview', :as => 'drop_box_accounts_preview', :constraints => {:path => /[\w.\/]+/}
   match 'dropbox/oauth_callback' => 'drop_box_accounts#oauth_callback'
+  resources :drop_box_accounts
 
 
   # The priority is based upon order of creation:

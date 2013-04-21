@@ -17,4 +17,4 @@
 //= require i18n
 //= require i18n/translations
 //= require select2
-
+//= require best_in_place

@@ -1,194 +1,82 @@
-jQuery(function($) {    
+$(document).ready(function(){    
 
-    
-    //////////////////////////////
-    //
-    // Create Resources 
-    //
-    //////////////////////////////
+  
+
+  //////////////////////////////
+  //
+  // Create Resources 
+  //
+  //////////////////////////////
 
 
-    $("#create_resource_link_form")
-    .live("ajax:error", function(event, data, status, xhr) {
-        // Not sure why I have to use the responseText here
-        $("#put_resource_link_errors").html(data.responseText);      
-    })
-    .live("ajax:success", function(event, response, status, xhr) {
-        
-        data = $.parseJSON(response);
+  $(document)
+  .on('ajax:error', "#create_resource_link_form", function(event, data, status, xhr) {
+      $("#put_resource_link_errors").html(data.responseText);      
+  })
+  .on('ajax:success', "#create_resource_link_form", function(event, response, status, xhr) {
+      
+      data = $.parseJSON(response);
 
-        if (data != undefined) {
-            if (data.resources != undefined) {
-                console.log("Reloading resources");
-                $("#resources_table").html(data.resources);
-            }
-            if (data.filters != undefined) {
-                console.log("Reloading filters");
-                $('#resource_filter').html(data.filters);
-            }
-        }
+      if (data != undefined) {
+          if (data.resources != undefined) {
+              $("#resources_table").html(data.resources);
+          }
+          if (data.filters != undefined) {
+              $('#resource_filter').html(data.filters);
+          }
+      }
 
-        // Flash user of the success
-        pushFlash({message:"<%= I18n.t('resources.upload_success') %>", state: 'success', fadeOut: 5000});
-        // Hide all modals
-        $('.modal.in').modal('hide');   
-        // Rest form
-        $(this)[0].reset();
-        // Clear any error notification
-        $("#uploadResourcesErrors").html('');  
-        closeModalOnSubmit();
-    });
+      // Flash user of the success
+      pushFlash({message:"<%= I18n.t('resources.upload_success') %>", state: 'success', fadeOut: 5000});
+      // Hide all modals
+      $('.modal.in').modal('hide');   
+      // Rest form
+      $(this)[0].reset();
+      // Clear any error notification
+      $("#uploadResourcesErrors").html('');  
+      closeModalOnSubmit();
+  });
 
 
 
+  //////////////////////////////
+  //
+  // Edit Resources 
+  //
+  //////////////////////////////
 
 
+  $(document)
+  .on('ajax:error', "#edit_resource_link_form", function(event, data, status, xhr) {
+      // Not sure why I have to use the responseText here
+      $("#edit_resource_link_errors").html(data.responseText);      
+  })
+  .on('ajax:success', "#edit_resource_link_form", function(event, data, status, xhr) {
+      // Update the resources table
+      $("#resources_table").html(data);  
+      // Flash user of the success
+      pushFlash({message:"<%= I18n.t('resources.edit_success') %>", state: 'success', fadeOut: 5000});
+      $("#uploadResourcesErrors").html('');  
+      closeModalOnSubmit();
+  });
 
-    //////////////////////////////
-    //
-    // Filter Resources 
-    //
-    //////////////////////////////
+  $(document).on('click', ".edit_resource_link_view", function(e) {
 
-    var timer;
-    $("#filter_resource_search").live('keyup input',function() {
-        var form = $(this);
-        // Prevents ajax request till N milliseconds 
-        timer && clearTimeout(timer);
-        timer = setTimeout(function(){ 
-            form.submit();
-        }, 500);
-    });
+      var resourceId = $(this).attr('resource-id');
+      
+      if (resourceId == undefined) return false;
 
-    // Needed for browser compatibility 
-    $('#filter_resource_form').live('change', function() {
-        $(this).submit();
-    });
+      $.ajax({
+        url: '/resources/'+resourceId+'/edit',
+        dataType: 'html'
+      }).done(function(data) {
+          $('#edit_resource_link_modal_body').html(data);
+          $('#edit_resource_link_modal').modal('show');
+          $('#show_resource_link_modal').modal('hide');
+      });   
 
-    $("#filter_resource_form")
-    .live("ajax:error", function(event, data, status, xhr) {
-        pushFlash({message:"<%= I18n.t('resources.filter_failure') %>", state: 'success', fadeOut: 5000});
-    })
-    .live("ajax:success", function(event, data, status, xhr) {
-        // Update the resources table
-        $("#resources_table").html(data);  
-        console.log(data);
-    });
-
-
-
-
-    //////////////////////////////
-    //
-    // Edit Resources 
-    //
-    //////////////////////////////
-
-
-    $("#edit_resource_link_form")
-    .live("ajax:error", function(event, data, status, xhr) {
-        // Not sure why I have to use the responseText here
-        $("#edit_resource_link_errors").html(data.responseText);      
-    })
-    .live("ajax:success", function(event, data, status, xhr) {
-        // Update the resources table
-        $("#resources_table").html(data);  
-        // Flash user of the success
-        pushFlash({message:"<%= I18n.t('resources.edit_success') %>", state: 'success', fadeOut: 5000});
-        $("#uploadResourcesErrors").html('');  
-        closeModalOnSubmit();
-        console.log("Success Edit" + "<%= I18n.t('resources.edit_success') %>");
-    });
-
-    $("#edit_resource_link_view")
-    .live("click", function() {
-        console.log("Editing view: ");
-
-        var resourceId = $(this).attr('resource-id');
-        
-        // Confirm form data exists
-        if (resourceId == undefined) return false;
-
-        $.ajax({
-          url: '/resources/'+resourceId+'/edit',
-          dataType: 'html'
-        }).done(function(data) {
-            $('#edit_resource_link_modal_body').html(data);
-            $('#edit_resource_link_modal').modal('show');
-            $('#show_resource_link_modal').modal('hide');
-            console.log("Loaded Resource:"+resourceId);
-        });   
-
-    });
-
-
-
-
-
-
-
-    //////////////////////////////
-    //
-    // Show Resources 
-    //
-    //////////////////////////////
-
-
-    $('#resources_table a').live("click", function(e) {
-        console.log('Clicked link');
-        e.stopPropagation();
-    });
-
-    // This is currently duplicated, will update when we decide
-    // weather we are going to click a resource row or click an 
-    // edit button. 
-    $('#resources_table tr').live("click", function(e) {
-    
-        var resourceURI = $(this).attr('resource-url');
-
-        if(resourceURI == undefined) return false;
-
-        console.log("Showing view: "+resourceURI);
-        
-        // Confirm form data exists
-        if (resourceURI == undefined) return false;
-
-        $.ajax({
-          url: resourceURI,
-          dataType: 'html'
-        }).done(function(data) {
-          console.log(data);
-          $('#show_resource_link_modal_body').html(data);
-          $('#show_resource_link_modal').modal('show');
-          console.log("Loaded Resource:"+resourceURI);
-        });   
-
-        e.stopPropagation();
-    });
-
-    $('.show_resource').live("click", function(e) {
-    
-        var resourceURI = $(this).attr('resource-url');
-
-        if(resourceURI == undefined) return false;
-
-        console.log("Showing view: "+resourceURI);
-        
-        // Confirm form data exists
-        if (resourceURI == undefined) return false;
-
-        $.ajax({
-          url: resourceURI,
-          dataType: 'html'
-        }).done(function(data) {
-          console.log(data);
-          $('#show_resource_link_modal_body').html(data);
-          $('#show_resource_link_modal').modal('show');
-          console.log("Loaded Resource:"+resourceURI);
-        });   
-
-        e.stopPropagation();
-    });
+      e.stopPropagation();
+  });
     
 });
 

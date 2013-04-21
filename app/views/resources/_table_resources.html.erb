@@ -1,4 +1,4 @@
-<table class="table table-condensed table-hover"  id="resources_table"  style="cursor:pointer;">
+<table class="table table-condensed table-hover"  id="resources_table">
   <tbody>
   <thead>
     <tr>
@@ -10,20 +10,20 @@
   </thead>
 
   <% @resources.each do |resource| %>
-    <tr resource-url="<%= resources_ajax_show_path resource.slug %>"> 
+    <tr> 
       <td title="<%= resource.get_type %>" style="width:35px;"><%= raw resource.get_thumbnail %></td>
       <td><%= link_to truncate(resource.title, :length => Resource::MAX_TITLE_RENDER_LEN), resource_url(resource), :target => "_blank" %></td>
       <td>
         <% if resource.course_grades.any? %>
-          <%= resource.course_grades.map(&:name).join(", ") %>
+          <%= raw(course_grade_ranges(resource.course_grades) ) %>
         <% end %>     
       </td>
       <td>
         <% if resource.course_subjects.any? %>
           <%= resource.course_subjects.map(&:name).join(", ") %>
-        <% end %>    
+        <% end %> 
       </td>
-      <td><%= link_to t('shared.edit'), '#', 'resource-url'=>resources_ajax_show_path(resource.slug), :class=>'btn show_resource', :style=>"height:18px;" %></td>
+      <td><%= link_to t('shared.edit'), 'JavaScript:void(0);', 'resource-id'=>resource.id, :class=>'btn edit_resource_link_view', :style=>"height:18px;" %></td>
     </tr>
   <% end %>
 </tbody>
@@ -39,7 +39,6 @@
 
 <div id="put_resource_link_modal" class="modal hide fade in" >
   <div class="modal-body">
-    <%= render 'resources/form_create_link' %>
+    <%= render 'resources/create_link' %>
   </div>
 </div>
-

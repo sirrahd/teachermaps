@@ -1,0 +1,144 @@
+$(document).ready(function(){
+
+  //////////////////////////////
+  //
+  // Create Map Objective to Map Standard
+  //
+  //////////////////////////////
+
+  $(document).on('click', '#create_map_objective', function(e) {
+
+    var mapStandardId = $('#map_standard_id').val();
+    var actionUrl = $(this).attr('action-url');
+
+    if(map_standard_id == undefined || actionUrl == undefined) return false;
+
+    $.ajax({
+      data: { map_standard_id : mapStandardId },
+      type: 'POST',
+      url: actionUrl,
+      dataType: 'html',
+      success: function (response) {
+        $('#map_standards_objectives_list').html(response);
+      },
+      error: function (response) {
+        pushFlash({message:"<%= I18n.t('map_standards.create_map_objective_error') %>", state: 'error', fadeOut: 5000});
+      }
+    });
+
+    e.stopPropagation();
+  });
+
+  //////////////////////////////
+  //
+  // Remove Map Objective from Map Standard
+  //
+  //////////////////////////////
+
+  $(document)
+  .on('ajax:error', '.map_standards_map_objective_destroy', function(event, data, status, xhr) {
+      pushFlash({message:"<%= I18n.t('map_standards.delete_map_objective_error') %>", state: 'error', fadeOut: 5000});
+  })
+  .on('ajax:success', '.map_standards_map_objective_destroy',function(event, data, status, xhr) {
+      $('#map_standards_objectives_list').html(data);
+  });
+
+
+  $(document)
+  .on('ajax:error', '.maps_objectives_show_resources', function(event, data, status, xhr) {
+      pushFlash({message:"<%= I18n.t('map_standards.show_map_objective_resources_error') %>", state: 'error', fadeOut: 5000});
+  })
+  .on('ajax:success', '.maps_objectives_show_resources', function(event, data, status, xhr) {
+      $('#filter_map_objectives_resources_modal').html(data);        
+  });
+
+  //////////////////////////////
+  //
+  // Filter Map Resouces of Map Objectives
+  //
+  //////////////////////////////
+
+  var timer;
+  $(document).on('keyup input', '#map_standards_filter_resource_search', function() {
+      var form = $(this);
+      // Prevents ajax request till N milliseconds 
+      timer && clearTimeout(timer);
+      timer = setTimeout(function(){ 
+          form.submit();
+      }, 500);
+  });
+
+  $(document).on('change', '#map_standards_filter_resource_form', function() {
+      $(this).submit();
+  });
+
+  $(document)
+  .on('ajax:error', '#map_standards_filter_resource_form', function(event, data, status, xhr) {
+      pushFlash({message:"<%= I18n.t('resources.filter_failure') %>", state: 'success', fadeOut: 5000});
+  })
+  .on('ajax:success', '#map_standards_filter_resource_form', function(event, data, status, xhr) {
+      // Update the resources table
+      $('#map_standards_resources_table').html(data);  
+  });
+
+  //////////////////////////////
+  //
+  // Adding/Removing Map Objective Resources
+  //
+  //////////////////////////////
+
+  $(document).on('click', '.map_objectives_resource_selected', function(e) {
+
+    // /map_objectives/:id/create_resource
+    var mapObjectiveId = $(this).attr('map-objective-id');
+    var resourceId = $(this).attr('resource-id'); 
+    var actionUrl = '/map_objectives/'+mapObjectiveId+'/destroy_resource'
+    var resourceElem = $(this);
+
+    if(mapObjectiveId == undefined || resourceId == undefined) return false;
+
+    $.ajax({
+      data: { resource_id: resourceId },
+      url: actionUrl,
+      dataType: 'html',
+      type: 'DELETE',
+      success: function (response) {
+        $('#map_standards_objectives_list').html(response);
+        resourceElem.attr('class','map_objectives_resource_default');
+      },
+      error: function (xhr, ajaxOptions, thrownError) {
+        pushFlash({message:"<%= I18n.t('map_standards.delete_map_objective_resource_error') %>", state: 'error', fadeOut: 5000});
+      }
+    });  
+
+    e.stopPropagation();
+  });
+
+  $(document).on('click', '.map_objectives_resource_default', function(e) {
+      
+    // /map_objectives/:id/destroy_resource
+    var mapObjectiveId = $(this).attr('map-objective-id');
+    var resourceId = $(this).attr('resource-id'); 
+    var actionUrl = '/map_objectives/'+mapObjectiveId+'/create_resource'
+    var resourceElem = $(this);
+
+    if(mapObjectiveId == undefined || resourceId == undefined) return false;
+
+    $.ajax({
+      data: { resource_id: resourceId },
+      url: actionUrl,
+      dataType: 'html',
+      type: 'POST',
+      success: function (response) {
+        $('#map_standards_objectives_list').html(response);
+        resourceElem.attr('class','map_objectives_resource_selected');
+      },
+      error: function (xhr, ajaxOptions, thrownError) {
+        pushFlash({message:"<%= I18n.t('map_standards.create_map_objective_resource_error') %>", state: 'error', fadeOut: 5000});
+      }
+    });   
+    
+    e.stopPropagation();
+  });
+
+});

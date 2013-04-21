@@ -1,0 +1,12 @@
+map_assessment_one:
+ slug: 'thisIsAUniqueSlug001100'
+ name: 'Super cool name.'
+ text: 'Super cool text.'
+ user: bjKiller
+ map: map_one
+map_assessment_two:
+ slug: 'thisIsAUniqueSlug001101'
+ name: 'The is an assessment to assess your map.'
+ text: 'Wicked cool text.'
+ user: bjKiller
+ map: map_two

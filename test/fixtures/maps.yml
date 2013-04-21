@@ -1,0 +1,16 @@
+map_one:
+ name: Welcome to the Matrix
+ slug: "thisIsSomeUniqueSlug12345"
+ user: user_one
+ text: This is the content of the map-a-roo
+ course_grades: six,seven,eight
+ course_subjects: science
+map_two:
+ name: Super Mario World
+ slug: "MarioAndLuigiSlug12346"
+ user: user_one
+ text: Gots to save the Princess!!
+ course_grades: nine,ten
+ course_subjects: math,physics	
+
+

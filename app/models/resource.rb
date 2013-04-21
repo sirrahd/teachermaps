@@ -1,34 +1,39 @@
 class Resource < ActiveRecord::Base
 
 	TYPE = 'Resource'
-  MAX_TITLE_RENDER_LEN = 35
+  MAX_TITLE_RENDER_LEN = 65
   
   
 	# TeacherMaps generated slug linking to a GoogleDrive/DropBox Resource 
 	attr_accessible :slug
 
 	# Common attributes shared accross each Cloud Storage Services
-	attr_accessible :file_size, :title, :mime_type, :file_upload
+	attr_accessible :file_size, :title, :mime_type
 
-  	belongs_to :user
-    belongs_to :resource_type
+  belongs_to :user
+  belongs_to :resource_type
 
-  	has_and_belongs_to_many :course_subjects, :uniq => true, :order => 'name ASC'
-  	has_and_belongs_to_many :course_grades, :uniq => true, :order => 'id ASC'
+  has_and_belongs_to_many :course_subjects, uniq: true, order: 'name ASC'
+  has_and_belongs_to_many :course_grades, uniq: true, order: 'id ASC'
 
+  # TeacherMaps specific attributes can be listed here
+  validates :title, presence: {:message => I18n.t('resources.title_blank_error')}, length: {minimum: 2, maximum: 250}
 
-  	# TeacherMaps specific attributes can be listed here
-  	validates :title, :presence => {:message => I18n.t('resources.title_blank_error')}, :length => {:minimum => 2, :maximum => 2048}
-
-  	before_create :default_values
-  	def default_values
-  		# Random, need to check for uniuqness
+  before_create :default_values
+  def default_values
+  	# Random, need to check for uniuqness
 		self.slug ||= SecureRandom.urlsafe_base64.downcase
 	end
 
-	def to_param
-		self.slug
-	end
+  before_destroy :deletion_cleanup
+  def deletion_cleanup
+    Rails.logger.info("Deleting all Map Resources with #{self.user_id} #{self.id}")
+    MapResource.destroy_all( user_id: self.user_id, resource_id: self.id )
+  end
+
+  def owned_by?( user )
+    self.user_id == user.id
+  end
 
   def assign_type
       conversion_table = ResourceType::MIME_TYPE_CONVERSIONS
@@ -47,8 +52,6 @@ class Resource < ActiveRecord::Base
       end
       self.save
   end
-
-
 
   def self.inherited(child)
     # http://www.alexreisner.com/code/single-table-inheritance-in-rails

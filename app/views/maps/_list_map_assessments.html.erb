@@ -1,0 +1,35 @@
+<% if !@map.map_assessments.empty? %>
+  <% @map.map_assessments.order("created_at DESC").each do |map_asssessment| %>
+    <div class="hover">
+      <div class="editable">
+        
+        <span class="pull-right">
+          <%= link_to map_asssessment, confirm: t('maps.delete_map_assessment_confirmation', title: map_asssessment.name),  method: :delete, title: t('maps.delete_map_assessment'), :class=>"maps_map_assessments_destroy", remote: true do %>
+            <i class="icon-trash"></i>
+          <% end %>
+          <br/>
+          <%= link_to show_resources_map_assessment_path(map_asssessment), {remote: true, 'data-toggle' => "modal", 'data-target' =>  "#filter_map_resources_modal", title: t('maps.edit_map_assessment_resources'), :class => 'maps_map_assessments_show_resources'} do %>
+            <i class="icon-pencil"></i>
+          <% end %>
+        </span>
+         <span>
+          <b><%= best_in_place map_asssessment, :name, :type => :input %></b>
+          <p><%= best_in_place map_asssessment, :text, :type => :textarea %></p>
+        </span>
+      
+        <% if !map_asssessment.map_resources.empty? %>
+          <% map_asssessment.map_resources.each do |map_resource| %>
+            <div style="padding-left:50px;">
+              <div>
+                <span title="<%= map_resource.resource.get_type %>" style="width:35px;"><%= raw map_resource.resource.get_thumbnail %></span>
+                <span><b><%= link_to map_resource.resource.title.titlecase, resource_path(map_resource.resource),  :target => "_blank" %></b></span>: <%= best_in_place map_resource, :text, :type => :textarea %>
+              </div>
+            </div>
+          <% end %>
+        <% end %>
+        <br/>
+
+      </div>
+    </div>
+  <% end %>
+<% end %> 

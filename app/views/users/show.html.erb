@@ -13,27 +13,37 @@
 <div class="row">
   <div class="span9">
     <ul class="nav nav-tabs">
-      <!-- <li><a href="#maps" data-toggle="tab">Maps</a></li> -->
-      <li class="active"><a href="#resources" data-toggle="tab">Resources</a></li>
+      <li class="active"><a href="#maps" data-toggle="tab" class="map-toggle-control">Maps</a></li>
+      <li><a href="#resources" data-toggle="tab" class="resource-toggle-control">Resources</a></li>
     </ul>
   </div>
-  <div class="span3">
-    <%= link_to t('resources.sync'), "#loading_modal",'data-toggle' => "modal", :onclick => "window.location=\"#{sync_resources_path}\"", :class => 'btn'  %>
+  <div class="span3" id="resource-controls">
+    <%= link_to t('resources.sync'), "#loading_modal",'data-toggle' => "modal", :onclick => "window.location=\"#{resources_sync_path}\"", :class => 'btn'  %>
     <%= link_to "Add Link", "#put_resource_link_modal",'data-toggle' => "modal", :class=>'btn' %>
+  </div>
+  <div class="span3" id="maps-controls">
+    <%= link_to t('maps.create_map'), "JavaScript:void(0);", 'action-url'=> maps_path, :class => 'btn', id: "users_create_map"%>
   </div>
 </div>
 
 <div class="tab-content">
-  <!-- <div class="tab-pane" id="maps"></div> -->
-  <div class="tab-pane active" id="resources">
+  <div class="tab-pane active" id="maps">
+    <div class="row">
+      
+      <div class="span12" id="users_maps_table">
+        <%= render 'users/table_maps' %>
+      </div>
+    </div>
+  </div>
+  <div class="tab-pane" id="resources">
     <div class="row">
       <div class="span12" id="resource_filter">
-      <%= render 'resources/form_filter_resource' %>
+      <%= render 'resources/filter_resources' %>
       </div>
     </div>
     <div class="row">
       <div class="span12">
-        <%= render 'resources/resources_table' %>
+        <%= render 'resources/table_resources' %>
       </div>
     </div>
   </div>

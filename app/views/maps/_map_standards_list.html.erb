@@ -1,0 +1,24 @@
+<% if !@map.map_standards.empty? %>
+	<% @map.sorted_map_standards.each do |map_standard| %>
+   	<ul style="list-style-type:none;">
+
+			<li action-url="<%= user_map_standard_path map_standard.user, map_standard %>" class="hover clickable">    
+	       		
+     		<b><%= map_standard.standard.name %>: </b>
+     		<p><%= raw(map_standard.standard.text) %></p>
+
+		    <ul class="inline">
+			  	<li>
+			  	  <label>Objectives: <%= map_standard.map_objectives.count %></label>
+		        </li>
+		        <li>
+		        	<!-- I know, do not look the resource counter.... -->
+		        	<label>Resources: <%= map_standard.map_objectives.map{|a| a.map_resources.count}.sum %></label>
+		        </li>
+	        </ul>
+
+			</li>
+
+		</ul>
+  	<% end %>
+<% end %>

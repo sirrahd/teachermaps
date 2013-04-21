@@ -1,0 +1,15 @@
+#'Mathematics', 'Physics', 'Science', 'History', 'Social Studies', 'Foreign Languages'
+math:
+ name: Mathematics
+physics:
+ name: Physics
+science:
+ name: Science
+history:
+ name: History
+social_studies:
+ name: Social Studies
+foreign_language:
+ name: Foreign Languages
+english:
+ name: English

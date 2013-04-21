@@ -25,7 +25,7 @@ class UserTest < ActiveSupport::TestCase
     assert_respond_to @user, :password_digest, "User missing password digest."
     assert_respond_to @user, :password, "User missing password."
     assert_respond_to @user, :password_confirmation, "User missing confirmation."
-    end
+  end
   
   # Basic checks for name existence and length
   test "name must have valid format" do
