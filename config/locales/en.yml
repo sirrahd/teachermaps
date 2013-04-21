@@ -87,6 +87,7 @@ en:
     change_password_link:       "%{action} to change your password."
     email_not_confirmed:        "Waiting for confirmation"
     email_confirmed:            "Confirmed"
+    profile_updated:            "Profile updated!"
   resources:
     link:                       "Resources"
     web_link:                   "Link"

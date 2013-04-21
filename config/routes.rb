@@ -1,6 +1,6 @@
 Teachermaps::Application.routes.draw do
 
-    
+
   resources :settings
 
   resources :sessions, only: [:new, :create, :destroy]
@@ -16,8 +16,9 @@ Teachermaps::Application.routes.draw do
   match '/about',   to: 'static_pages#about'
   match '/contact', to: 'static_pages#contact'
 
-  match '/confirm', to: 'users#confirm_email'
-  match '/reset', to: 'users#reset_password'
+  match '/confirm',         to: 'users#confirm_email'
+  match '/reset',           to: 'users#reset_password'
+  match '/update_password', to: 'users#update_password'
 
   # Sync Google Drive and/or DropBox resources
   match '/resources/sync' => 'resources#sync'
@@ -35,7 +36,7 @@ Teachermaps::Application.routes.draw do
     resources :maps
     resources :map_standards, :path => 'standards', only: [:show]
   end
-  
+
   resources :map_assessments do
     member do
       get    'show_resources'
@@ -57,7 +58,7 @@ Teachermaps::Application.routes.draw do
 
   match '/standards/ajax/filter' => 'standards#ajax_filter'
   resources :standards
-  
+
   # Google API
   match 'google/oauth_callback' => 'google_accounts#oauth_callback'
   resources :google_accounts
