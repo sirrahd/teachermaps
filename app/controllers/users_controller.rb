@@ -94,7 +94,15 @@ class UsersController < ApplicationController
   end
 
   def confirm_email
-    @user = User.find_by_account_name(params[:account])
+    @user = current_user
+
+    # If there's no logged in user, take them to the login form first
+    unless @user
+      @key = params[:key]
+      flash[:warning] = t 'confirmation.login'
+      render 'sessions/new'
+      return
+    end
 
     if @user.request_key == params[:key]
       @user.update_attribute(:confirmed, 1)
@@ -102,7 +110,8 @@ class UsersController < ApplicationController
       flash[:success] = t 'confirmation.success'
       redirect_to @user
     else
-      redirect_to signin_url
+      flash[:error] = t 'confirmation.error'
+      redirect_to @user
     end
   end
 

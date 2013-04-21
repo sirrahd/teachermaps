@@ -4,6 +4,10 @@
   <div class="span6 offset3">
     <%= form_for(:session, url: sessions_path) do |f| %>
 
+      <% if @key %>
+        <%= hidden_field_tag :email_request_key, @key %>
+      <% end %>
+
       <%= f.label :name, t('signin.name_label') %>
       <%= f.text_field :name %>
 

@@ -152,6 +152,8 @@ en:
     activation_link:            "Click here"
   confirmation:
     success:                    "Thanks! We confirmed your email address."
+    error:                      "Sorry, we couldn't verify your email address."
+    login:                      "You need to sign in so we can verify your email address."
   reset_password:
     subject:                    "Forgot your password?"
     content_textonly:           "Click the link below to change your password:"

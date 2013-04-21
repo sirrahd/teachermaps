@@ -1,2 +1,2 @@
 <%= t 'change_email.content_textonly' %>
-<%= url_for( controller: 'users', action: 'confirm_email', params: { account: @user.account_name, key: @user.request_key }, only_path: false, host: @host) %>
+<%= url_for( controller: 'users', action: 'confirm_email', params: { key: @user.request_key }, only_path: false, host: @host) %>
