@@ -1,8 +1,9 @@
 <h1><%= t 'settings.title' %></h1>
+<div><br /></div>
+<legend><%= t 'settings.storage_title' %></legend>
 
-<h2><%= t 'settings.storage_title' %></h2>
 <div class="row">
-  <div class="span6">
+  <div class="span5">
     <div>
       <% if @google_account.nil?  %>
         <%= link_to t('google_drive.add_drive'), new_google_account_path %>
@@ -30,7 +31,9 @@
   </div>
 </div>
 
-<h2><%= t 'settings.user_title' %></h2>
+<div><br /></div>
+
+<legend><%= t 'settings.user_title' %></legend>
 
 <div class="row">
   <div class="span5">
@@ -41,7 +44,7 @@
       <%= f.label :name %>
       <%= f.text_field :name %>
 
-      <%= f.label :email, {class: "pull-left", style:"margin-right:5px"} %>
+      <%= f.label :email, {class: "pull-left", style:"margin-right:10px"} %>
       <% if @user.confirmed == 1 %>
         <div class="label label-success"><i class="icon-ok"></i> <%= t 'settings.email_confirmed' %></div>
       <% else %>
