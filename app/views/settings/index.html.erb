@@ -33,23 +33,24 @@
 <h2><%= t 'settings.user_title' %></h2>
 
 <div class="row">
-  <div class="span12">
+  <div class="span5">
     <%= form_for(@user) do |f| %>
 
       <%= render 'shared/error_messages', object: f.object %>
 
       <%= f.label :name %>
-      <%= f.text_field :name, {class: "span5"} %>
+      <%= f.text_field :name %>
 
-      <%= f.label :email %>
-      <%= f.text_field :email, {class: "span5"} %>
+      <%= f.label :email, {class: "pull-left", style:"margin-right:5px"} %>
       <% if @user.confirmed == 1 %>
-        <span class="label label-success"><i class="icon-ok"></i> <%= t 'settings.email_confirmed' %></span>
+        <div class="label label-success"><i class="icon-ok"></i> <%= t 'settings.email_confirmed' %></div>
       <% else %>
-        <span class="label label-warning"><%= t 'settings.email_not_confirmed' %></span>
+        <div class="label label-warning"><%= t 'settings.email_not_confirmed' %></div>
       <% end %>
 
-      <div><%= f.submit "Save changes", class: "btn" %></div>
+      <%= f.text_field :email %>
+
+      <%= f.submit "Save changes", class: "btn" %>
 
     <% end %>
 
