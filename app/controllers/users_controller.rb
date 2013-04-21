@@ -65,7 +65,7 @@ class UsersController < ApplicationController
     if @user.update_attributes(params[:user])
       flash[:success] = t 'settings.profile_updated'
       sign_in @user #updates invalidate current sign in
-      render @user
+      render 'settings/index'
     else
       flash[:warning] = t 'reset_password.error'
     end
