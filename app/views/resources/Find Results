@@ -1,0 +1,33 @@
+Searching 658 files for "style="margin-right:10px;""
+
+/Users/cevaris/Documents/workspace-aptana/teachermaps/teachermaps/app/views/map_standards/_modal_map_objective_resources.html.erb:
+    1  <div class="modal-header">
+    2:   <button type="button" class="close" data-dismiss="modal" style="margin-right:10px;">&times;</button>
+    3    <h3><%= t('shared.my_resources')%></h3>
+    4  </div>
+
+/Users/cevaris/Documents/workspace-aptana/teachermaps/teachermaps/app/views/map_standards/show.html.erb:
+   38  <div id="filter_map_objectives_resources_modal" class="resource-modal modal hide fade" >
+   39    <div class="filter_map_resources_modal_header modal-header">
+   40:     <button type="button" class="close" data-dismiss="modal" style="margin-right:10px;">&times;</button>
+   41      <h3><%= t('resources.loading') %></h3>
+   42    </div>
+
+/Users/cevaris/Documents/workspace-aptana/teachermaps/teachermaps/app/views/maps/show.html.erb:
+   46    <div id="filter_map_standards_modal" class="standard-modal  modal hide fade in">
+   47      <div class="modal-header">
+   48:       <button type="button" class="close" data-dismiss="modal" style="margin-right:10px;">&times;</button>
+   49        <div><H3><%= t('shared.standards') %></H3></div>
+   50      </div>
+
+/Users/cevaris/Documents/workspace-aptana/teachermaps/teachermaps/app/views/resources/_create_link.html.erb:
+    1: <button type="button" class="close" data-dismiss="modal" style="margin-right:10px;">&times;</button>
+    2  <div id="put_resource_link_errors"></div>
+    3    
+
+/Users/cevaris/Documents/workspace-aptana/teachermaps/teachermaps/app/views/resources/_edit.html.erb:
+    1: <button type="button" class="close" data-dismiss="modal" style="margin-right:10px;">&times;</button>
+    2  <div >
+    3    <div id="edit_resource_link_errors"></div>
+
+5 matches across 5 files

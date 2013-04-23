@@ -45,20 +45,20 @@
 
   <div id="filter_map_standards_modal" class="standard-modal  modal hide fade in">
     <div class="modal-header">
-      <button type="button" class="close" data-dismiss="modal" style="margin-right:10px;">&times;</button>
+      <button type="button" class="close" data-dismiss="modal">&times;</button>
       <div><H3><%= t('shared.standards') %></H3></div>
     </div>
     <div class="modal-body">
-        <div class="row">
-          <div id="standards_filter" class="center" >
-          <%= render 'maps/filter_standards' %>
-          </div>
+      <div class="row">
+        <div id="standards_filter" class="center" >
+        <%= render 'maps/filter_standards' %>
         </div>
-        <div class="row">
-          <div  id="standards_table" style="margin: 0px 20px 0px 20px;">
-            <%= render 'maps/list_standards' %>
-          </div>
+      </div>
+      <div class="row">
+        <div  id="standards_table" style="margin: 0px 20px 0px 20px;">
+          <%= render 'maps/list_standards' %>
         </div>
+      </div>
     </div>
   </div>
 
