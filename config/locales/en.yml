@@ -81,7 +81,7 @@ en:
     upload_to:                  "Default Upload To:"
     save_success:               "Settings saved"
     save_error:                 "Error in saving settings"
-    select_storage_service:     "In order to upload a resource, you must select a storage service."
+    select_storage_service:     "In order to upload resources, you must select a storage service below."
     storage_title:              "Storage settings"
     user_title:                 "User settings"
     change_password_link:       "%{action} to change your password."
@@ -175,7 +175,7 @@ en:
     create_map_objective_resource_error: "Error creating Map Objective Resource"
     delete_map_objective_resource_error: "Error deleting Map Objective Resource"
     delete_map_objective_confirmation:   "Delete Map Objecitve \"%{title}?\""
-    create_map_objective:                "Create Map Objective"
+    add_map_objective:                   "Add Objective"
     delete_map_objective:                "Delete Map Objective"
     edit_map_objective_resources:        "Edit Map Objective Resources"
   maps:
@@ -191,7 +191,7 @@ en:
     delete_map_assessment_confirmation:   "Delete Map Assessment \"%{title}?\""
     delete_map_assessment:                "Delete Map Assessment"
     edit_map_assessment_resources:        "Edit Map Assessment Resources"
-    edit_map_standards:                   "Edit Standards"
+    add_map_standards:                    "Add Standards"
   users:
     create_map_error:           "Error creating Map"
     delete_map_error:           "Error deleting Map"

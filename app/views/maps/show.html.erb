@@ -15,9 +15,9 @@
         <p ><%= best_in_place @map, :text, :type => :textarea, :classes=>'best_in_place_selector', :nil => raw('<span class="gray">Description</span>') %></p>
       <div>
         
-      <div class="editable-btn">
+      <div>
         <span class="pull-right">
-          <%= link_to t('maps.edit_map_standards'), "#filter_map_standards_modal",'data-toggle' => "modal",  :class => 'btn'  %>
+          <%= link_to t('maps.add_map_standards'), "#filter_map_standards_modal",'data-toggle' => "modal",  :class => 'btn'  %>
         </span> 
         <h3><%= t('shared.standards') %></h3>
         <div id="map_standards_list">
@@ -29,7 +29,7 @@
       </div>
 
 
-      <div class="editable-btn">
+      <div>
         <span class="pull-right">
             <%= link_to 'Add Assessment', "JavaScript:void(0);", :class => 'btn', id: 'create_map_assessment', 'action-url' => map_assessments_path %>
         </span>  
