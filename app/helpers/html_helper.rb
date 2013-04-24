@@ -1,5 +1,14 @@
 module HtmlHelper
 
+  def apply_google_analytics?
+
+    prodcution_domain = 'dev-james.herokuapp.com:80'
+    Rails.logger.info("#{request.host_with_port}")
+
+    prodcution_domain == request.host_with_port
+    
+  end
+
   def course_grade_ranges course_grades
 
     divider = '-'
