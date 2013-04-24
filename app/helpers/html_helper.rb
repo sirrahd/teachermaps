@@ -2,11 +2,16 @@ module HtmlHelper
 
   def apply_google_analytics?
 
-    prodcution_domain = 'dev-james.herokuapp.com:80'
-    Rails.logger.info("#{request.host_with_port}")
 
-    prodcution_domain == request.host_with_port
-    
+    Rails.logger.info("#{request.host_with_port}")
+    Rails.application.config.respond_to? 'PRODUCTION_DOMAIN_PORT' and Rails.application.config.PRODUCTION_DOMAIN_PORT == request.host_with_port
+
+    # if Rails.application.config.respond_to? 'PRODUCTION_DOMAIN_PORT'
+    #   prodcution_domain = Rails.application.config.PRODUCTION_DOMAIN_PORT
+    #   Rails.logger.info("#{request.host_with_port} == #{prodcution_domain}")
+    #   prodcution_domain == request.host_with_port
+    # end
+
   end
 
   def course_grade_ranges course_grades
