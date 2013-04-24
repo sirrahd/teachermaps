@@ -4,7 +4,7 @@ module HtmlHelper
 
 
     Rails.logger.info("#{request.host_with_port}")
-    Rails.application.config.respond_to? 'PRODUCTION_DOMAIN_PORT' and Rails.application.config.PRODUCTION_DOMAIN_PORT == request.host_with_port
+    Rails.application.config.respond_to? 'PRODUCTION_DOMAIN' and Rails.application.config.PRODUCTION_DOMAIN == request.host_with_port
 
     # if Rails.application.config.respond_to? 'PRODUCTION_DOMAIN_PORT'
     #   prodcution_domain = Rails.application.config.PRODUCTION_DOMAIN_PORT
