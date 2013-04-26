@@ -1,29 +1,56 @@
 <% if !@map.map_standards.empty? %>
-	<% @map.sorted_map_standards.each do |map_standard| %>
-   	<ul style="list-style-type:none;">
 
-			<li action-url="<%= user_map_standard_path map_standard.user, map_standard.slug %>" class="hover clickable action-link editable">    
-					
-	      <span>
-	        <%= link_to map_standard_path(map_standard), confirm: t('maps.delete_map_standard_confirmation', title: map_standard.standard.name),  method: :delete, title: t('maps.delete_map_standard'), :class=>"maps_map_standard_destroy pull-right", remote: true do %>
-	          <i class="icon-trash"></i>
-	        <% end %>
-	      </span>
-	     		
-	   		<b><%= map_standard.standard.name %>: </b>
-	   		<p><%= raw(map_standard.standard.text) %></p>
+		<ul style="list-style-type:none;" id="sortable_map_standards">
+			<% @map.sorted_map_standards.each do |map_standard| %>
+   	
 
-		    <ul class="inline gray">
-			  	<li>
-		  	  <label><%= t('shared.objectives') %>: <%= map_standard.objectives_count %></label>
-	        </li>
-	        <li>
-	        	<label><%= t('shared.resources') %>: <%= map_standard.resources_count %></label>
-	        </li>
-	      </ul>
+			<li id="map_standard_<%= map_standard.id %>" action-url="<%= user_map_standard_path map_standard.user, map_standard.slug %>" class="hover clickable action-link">    
+				
+				<div class="row editable">
+					<div class="handle pull-left" style="cursor:move;"><%= image_tag 'large-click-drag-handle.png', alt: 'handle', size: '20x60' %></div>
+		      
+		     	<div class="span7">	
+			   		<b><%= map_standard.standard.name %>: </b>
+			   		<p><%= raw(map_standard.standard.text) %></p>
+
+				    <ul class="inline gray">
+					  	<li>
+				  	  <label><%= t('shared.objectives') %>: <%= map_standard.objectives_count %></label>
+			        </li>
+			        <li>
+			        	<label><%= t('shared.resources') %>: <%= map_standard.resources_count %></label>
+			        </li>
+			      </ul>
+		    	</div>
+
+		    	<div class="pull-right">
+		        <%= link_to map_standard_path(map_standard), confirm: t('maps.delete_map_standard_confirmation', title: map_standard.standard.name),  method: :delete, title: t('maps.delete_map_standard'), :class=>"maps_map_standard_destroy", remote: true do %>
+		          <i class="icon-trash"></i>
+		        <% end %>
+		      </div>
+	    	</div>
 
 			</li>
 
-		</ul>
-	<% end %>
+		<% end %>
+	</ul>
 <% end %>
+
+
+<script type="text/javascript">
+$(document).ready(function() {    
+  $( "#sortable_map_standards" ).sortable({
+  	axis: 'y',
+		dropOnEmpty: false,
+		handle: '.handle',
+		cursor: 'crosshair',
+		items: 'li',
+		opacity: 0.4,
+		scroll: true,
+  });
+  // $( "#sortable_map_standards" ).disableSelection();
+});
+</script>
+
+
+

@@ -140,6 +140,10 @@ input {
   background-color: #DBDBFF; 
 }
 
+
+
+
+
 .editable-btn span .btn {
    visibility: hidden;
 }  
@@ -155,6 +159,21 @@ input {
 .editable:hover span a i {
    visibility: visible;
 } 
+
+
+.editable div a i {
+   visibility: hidden;
+}  
+
+.editable:hover div a i {
+   visibility: visible;
+} 
+
+
+
+
+
+
 
 /* Push Flash Alert */
 
