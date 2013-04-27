@@ -25,6 +25,7 @@ Teachermaps::Application.routes.draw do
   match '/resources/filter' => 'resources#filter'
   resources :resources
 
+  match '/map_standards/sort' => 'map_standards#sort'
   resources :map_standards, only: [:update, :destroy]
   resources :maps, only: [:update, :create, :destroy]
   resources :maps do

@@ -88,6 +88,26 @@ class MapStandardsController < ApplicationController
     end
   end
 
+  def sort
+
+
+    
+
+    @map = Map.find params[:id]
+    @map.sorted_map_standards.each do |map_standard|
+      Rails.logger.info params[:new_positions].index(map_standard.id.to_s)+1
+      map_standard.position = params[:new_positions].index(map_standard.id.to_s)+1
+      map_standard.save
+    end
+
+
+
+    # params[:map_standards].each_with_index do |id, index|
+    #   MapStandard.update_all(['position=?', index+1], ['id=?', id])
+    # end
+    render :nothing => true
+  end
+
   private 
   
   # Requires user session

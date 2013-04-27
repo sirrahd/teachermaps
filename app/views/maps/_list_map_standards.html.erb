@@ -1,8 +1,7 @@
 <% if !@map.map_standards.empty? %>
-
-		<ul style="list-style-type:none;" id="sortable_map_standards">
-			<% @map.sorted_map_standards.each do |map_standard| %>
-   	
+	
+	<ul style="list-style-type:none;" id="sortable_map_standards" action-id="<%= @map.id %>">
+		<% @map.sorted_map_standards.each do |map_standard| %>
 
 			<li id="map_standard_<%= map_standard.id %>" action-url="<%= user_map_standard_path map_standard.user, map_standard.slug %>" class="hover clickable action-link">    
 				
@@ -39,7 +38,7 @@
 
 <script type="text/javascript">
 $(document).ready(function() {    
-  $( "#sortable_map_standards" ).sortable({
+  $("#sortable_map_standards").sortable({
   	axis: 'y',
 		dropOnEmpty: false,
 		handle: '.handle',
@@ -47,7 +46,21 @@ $(document).ready(function() {
 		items: 'li',
 		opacity: 0.4,
 		scroll: true,
-  });
+		update: function(){
+			var actionId = $(this).attr('action-id');
+			var orderedData = $('#sortable_map_standards').sortable('serialize');
+
+			$.ajax({
+				type: 'post',
+				data: {id: actionId, new_positions: orderedData},
+				dataType: 'script',
+				complete: function(request){
+					$('#sortable_map_standards').effect('highlight');
+				},
+				url: '/map_standards/sort'
+			})
+		}
+	});
   // $( "#sortable_map_standards" ).disableSelection();
 });
 </script>
