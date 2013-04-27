@@ -52,7 +52,11 @@ $(document).ready(function() {
     items: 'li',
     opacity: 0.4,
     scroll: true,
-    update: function(){
+    receive: function(event, ui) {
+      
+    },
+    update: function(event, ui){
+      var droppedItem = ui.item;
       var actionId = $(this).attr('action-id');
       var orderedData = $('#sortable_map_assessments').sortable('serialize');
 
@@ -61,7 +65,7 @@ $(document).ready(function() {
         data: {id: actionId, new_positions: orderedData},
         dataType: 'script',
         complete: function(request){
-          $('#sortable_map_assessments').effect('highlight');
+          $(droppedItem).effect('highlight',{color:'#DBDBFF'},2000);
         },
         url: '/map_assessments/sort'
       })
