@@ -12,6 +12,7 @@
             <i class="icon-pencil"></i>
           <% end %>
         </span>
+        
         <span>
           <b><%= best_in_place map_objective, :name, type: :input, html_attrs: { style: "width:90%" } %></b>
           <p style="width:95%"><%= best_in_place map_objective, :text, type: :textarea, :nil => raw('<span class="gray">Description</span>') %></p>
