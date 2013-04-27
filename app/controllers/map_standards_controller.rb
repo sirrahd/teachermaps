@@ -88,18 +88,18 @@ class MapStandardsController < ApplicationController
     end
   end
 
-  # def sort
+  def sort_objectives
 
-  #   @map = Map.find params[:id]
-  #   return render nothing: true, status: 404 if !@map
+    @map_standard = MapStandard.find params[:map_standard_id]
+    return render nothing: true, status: 404 if !@map_standard
 
-  #   @map.map_standards.each do |map_standard|
-  #     map_standard.position = params[:new_positions].index(map_standard.id.to_s)+1
-  #     map_standard.save
-  #   end
+    @map_standard.map_objectives.each do |map_objective|
+      map_objective.position = params[:map_objective].index(map_objective.id.to_s)+1
+      map_objective.save
+    end
 
-  #   render :nothing => true
-  # end
+    render :nothing => true
+  end
 
   private 
   

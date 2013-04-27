@@ -1,5 +1,5 @@
 <% if !@map_standard.map_objectives.empty? %>
-  <ul style="list-style-type:none;" id="sortable_map_objectives" action-id="<%= @map_standard.id %>">
+  <ul style="list-style-type:none;" id="sortable_map_objectives">
 
     <% @map_standard.map_objectives.each do |map_objective| %>
       <li id="map_objective_<%= map_objective.id %>" class="hover">
@@ -53,13 +53,10 @@ $(document).ready(function() {
     scroll: true,
     update: function(event, ui){
       var droppedItem = ui.item;
-      var actionId = $(this).attr('action-id');
-      var orderedData = $('#sortable_map_objectives').sortable('serialize');
-
       $.ajax({
-        url: '/map_objectives/sort',
+        url: '/map_standards/<%= @map_standard.id %>/sort_objectives',
         type: 'post',
-        data: {id: actionId, new_positions: orderedData},
+        data: $('#sortable_map_objectives').sortable('serialize'),
         dataType: 'script',
         complete: function(request){
           $(droppedItem).effect('highlight',{color:'#DBDBFF'},2000);
