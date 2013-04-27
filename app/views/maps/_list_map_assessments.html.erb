@@ -16,9 +16,10 @@
               <i class="icon-pencil"></i>
             <% end %>
           </span>
+
           <span>
-            <b><%= best_in_place map_assessment, :name, :type => :input %></b>
-            <p><%= best_in_place map_assessment, :text, :type => :textarea, :nil => raw('<span class="gray">Description</span>') %></p>
+            <b><%= best_in_place map_assessment, :name, :type => :input, html_attrs: { style: "width:90%" } %></b>
+            <p style="width:90%"><%= best_in_place map_assessment, :text, :type => :textarea, :nil => raw('<span class="gray">Description</span>') %></p>
           </span>
         
           <% if !map_assessment.map_resources.empty? %>
@@ -26,7 +27,9 @@
               <div style="padding-left:50px;">
                 <div>
                   <span title="<%= map_resource.resource.get_type %>" style="width:35px;"><%= raw map_resource.resource.get_thumbnail %></span>
-                  <span><b><%= link_to map_resource.resource.title.titlecase, resource_path(map_resource.resource),  :target => "_blank" %></b></span>: <%= best_in_place map_resource, :text, :type => :textarea, :nil => raw('<span class="gray">Description</span>') %>
+                  <span><b><%= link_to map_resource.resource.title.titlecase, resource_path(map_resource.resource),  :target => "_blank" %>:</b></span>
+                  <br/>
+                  <span><%= best_in_place map_resource, :text, :type => :textarea, :nil => raw('<span class="gray">Description</span>'), html_attrs: { style: "width:90%" } %></span>
                 </div>
               </div>
             <% end %>

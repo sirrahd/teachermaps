@@ -138,11 +138,6 @@ class Map < ActiveRecord::Base
     self.name.titlecase
   end
 
-  # def sorted_map_standards
-  #   # Sorts by standards
-  #   self.map_standards.all(:order => :position)
-  # end
-
   def update_metadata
     self.map_standards.each do |map_standard|
       self.course_grades << map_standard.standard.course_grades
