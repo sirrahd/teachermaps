@@ -52,9 +52,6 @@ $(document).ready(function() {
     items: 'li',
     opacity: 0.4,
     scroll: true,
-    receive: function(event, ui) {
-      
-    },
     update: function(event, ui){
       var droppedItem = ui.item;
       var actionId = $(this).attr('action-id');
@@ -71,7 +68,5 @@ $(document).ready(function() {
       })
     }
   });
-  // $( "#sortable_map_standards" ).disableSelection();
-
 });
 </script>

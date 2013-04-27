@@ -93,7 +93,7 @@ class MapStandardsController < ApplicationController
     @map = Map.find params[:id]
     return render nothing: true, status: 404 if !@map
 
-    @map.sorted_map_standards.each do |map_standard|
+    @map.map_standards.each do |map_standard|
       map_standard.position = params[:new_positions].index(map_standard.id.to_s)+1
       map_standard.save
     end
