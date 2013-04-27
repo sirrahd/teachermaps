@@ -46,8 +46,10 @@ Teachermaps::Application.routes.draw do
       delete 'destroy_resource'
     end
   end
+  
   resources :map_resources
 
+  match '/map_objectives/sort' => 'map_objectives#sort'
   resources :map_objectives do
     member do
       get    'show_resources'
