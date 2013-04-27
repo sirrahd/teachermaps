@@ -175,6 +175,19 @@ class MapAssessmentsController < ApplicationController
     end
 	end
 
+  def sort
+
+    @map = Map.find params[:id]
+    return render nothing: true, status: 404 if !@map
+
+    @map.map_assessments.each do |map_assessment|
+      map_assessment.position = params[:new_positions].index(map_assessment.id.to_s)+1
+      map_assessment.save
+    end
+
+    render :nothing => true
+  end
+
 	private
 
 	# Requires user session

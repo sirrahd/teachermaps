@@ -37,6 +37,7 @@ Teachermaps::Application.routes.draw do
     resources :map_standards, :path => 'standards', only: [:show]
   end
   
+  match '/map_assessments/sort' => 'map_assessments#sort'
   resources :map_assessments do
     member do
       get    'show_resources'
