@@ -1,6 +1,6 @@
 <% if !@map.map_assessments.empty? %>
   
-  <ul style="list-style-type:none;" id="sortable_map_assessments" action-id="<%= @map.id %>">
+  <ul style="list-style-type:none;" id="sortable_map_assessments">
 
     <% @map.map_assessments.each do |map_assessment| %>
       <li id="map_assessment_<%= map_assessment.id %>" class="hover">
@@ -44,7 +44,6 @@
 
 <script type="text/javascript">
 $(document).ready(function() {    
-  
   $('.best_in_place').best_in_place();
 
   $("#sortable_map_assessments").sortable({
@@ -57,17 +56,17 @@ $(document).ready(function() {
     scroll: true,
     update: function(event, ui){
       var droppedItem = ui.item;
-      var actionId = $(this).attr('action-id');
-      var orderedData = $('#sortable_map_assessments').sortable('serialize');
-
       $.ajax({
+        url: '/maps/<%= @map.id %>/sort_assessments',
         type: 'post',
-        data: {id: actionId, new_positions: orderedData},
+        data: $('#sortable_map_assessments').sortable('serialize'),
         dataType: 'script',
         complete: function(request){
           $(droppedItem).effect('highlight',{color:'#DBDBFF'},2000);
         },
-        url: '/map_assessments/sort'
+        error: function (xhr, ajaxOptions, thrownError) {
+          pushFlash({message:"Error saving order of Map Assessment", state: 'error', fadeOut: 5000});
+        }
       })
     }
   });

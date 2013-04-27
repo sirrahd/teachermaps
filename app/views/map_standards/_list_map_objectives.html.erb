@@ -57,13 +57,16 @@ $(document).ready(function() {
       var orderedData = $('#sortable_map_objectives').sortable('serialize');
 
       $.ajax({
+        url: '/map_objectives/sort',
         type: 'post',
         data: {id: actionId, new_positions: orderedData},
         dataType: 'script',
         complete: function(request){
           $(droppedItem).effect('highlight',{color:'#DBDBFF'},2000);
         },
-        url: '/map_objectives/sort'
+        error: function (xhr, ajaxOptions, thrownError) {
+          pushFlash({message:"Error saving order of Map Objective", state: 'error', fadeOut: 5000});
+        }
       })
     }
   });

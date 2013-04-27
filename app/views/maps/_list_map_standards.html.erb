@@ -1,6 +1,6 @@
 <% if !@map.map_standards.empty? %>
 	
-	<ul style="list-style-type:none;" id="sortable_map_standards" action-id="<%= @map.id %>">
+	<ul style="list-style-type:none;" id="sortable_map_standards">
 		<% @map.map_standards.each do |map_standard| %>
 
 			<li id="map_standard_<%= map_standard.id %>" action-url="<%= user_map_standard_path map_standard.user, map_standard.slug %>" class="hover clickable action-link">    
@@ -47,18 +47,18 @@ $(document).ready(function() {
 		opacity: 0.4,
 		scroll: true,
 		update: function(event, ui){
-      		var droppedItem = ui.item;
-			var actionId = $(this).attr('action-id');
-			var orderedData = $('#sortable_map_standards').sortable('serialize');
-
+  		var droppedItem = ui.item;
 			$.ajax({
+				url: '/maps/<%= @map.id %>/sort_standards',
 				type: 'post',
-				data: {id: actionId, new_positions: orderedData},
+				data: $('#sortable_map_standards').sortable('serialize'),
 				dataType: 'script',
 				complete: function(request){
 					$(droppedItem).effect('highlight',{color:'#DBDBFF'},2000);
 				},
-				url: '/map_standards/sort'
+        error: function (xhr, ajaxOptions, thrownError) {
+          pushFlash({message:"Error saving order of Map Standard", state: 'error', fadeOut: 5000});
+        }
 			})
 		}
 	});
