@@ -169,6 +169,14 @@ input {
    visibility: visible;
 } 
 
+.editable div.handle {
+   visibility: hidden;
+}  
+
+.editable:hover div.handle {
+   visibility: visible;
+} 
+
 
 
 
