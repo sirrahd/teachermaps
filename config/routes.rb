@@ -26,7 +26,6 @@ Teachermaps::Application.routes.draw do
   resources :resources
 
 
-
   resources :users do
     resources :maps
     resources :map_standards, :path => 'standards', only: [:show]
@@ -56,6 +55,7 @@ Teachermaps::Application.routes.draw do
       post   'filter_resources'
       post   'create_resource'
       delete 'destroy_resource'
+      post 'sort_resources'
     end
   end
   
