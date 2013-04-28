@@ -3,14 +3,14 @@
   <% @maps.each do |map| %>
     <li action-url="<%= user_map_path map.user,map.slug  %>"  style="cursor:pointer;" class="action-link hover">
       
-      <div class="row editable">
+      <div class="editable">
         <span>
           <%= link_to map, confirm: t('users.delete_map_confirmation', title: map.name), method: :delete, title: t('users.delete_map'), :class=>"users_map_destroy pull-right", remote: true do %>
             <i class="icon-trash"></i>
           <% end %>
         </span>
 
-        <div class="span11" id="resource_filter">
+        <div id="resource_filter">
           <h4><%= truncate(map.name, length: Map::MAX_NAME_RENDER_LEN) %></h4>
           <span>
             <%= truncate(map.text, length: Map::MAX_TEXT_RENDER_LEN) %>
@@ -18,9 +18,9 @@
         </div>
       </div>
       
-      <div class="row">
+      <div>
       
-        <div class="span11">
+        <div>
           <ul class="inline gray">
             <li>
               <label><%= t('shared.standards') %>: <%= map.standards_count %> </label>

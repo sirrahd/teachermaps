@@ -12,12 +12,12 @@
       </div>
       <!-- Map Content -->
       </div>
-        <p ><%= best_in_place @map, :text, :type => :textarea %></p>
+        <p ><%= best_in_place @map, :text, :type => :textarea, :classes=>'best_in_place_selector', :nil => raw('<span class="gray">Description</span>') %></p>
       <div>
-
-      <div class="editable-btn">
+        
+      <div>
         <span class="pull-right">
-          <%= link_to t('maps.edit_map_standards'), "#filter_map_standards_modal",'data-toggle' => "modal",  :class => 'btn'  %>
+          <%= link_to t('maps.add_map_standards'), "#filter_map_standards_modal",'data-toggle' => "modal",  :class => 'btn'  %>
         </span> 
         <h3><%= t('shared.standards') %></h3>
         <div id="map_standards_list">
@@ -29,7 +29,7 @@
       </div>
 
 
-      <div class="editable-btn">
+      <div>
         <span class="pull-right">
             <%= link_to 'Add Assessment', "JavaScript:void(0);", :class => 'btn', id: 'create_map_assessment', 'action-url' => map_assessments_path %>
         </span>  
@@ -45,32 +45,37 @@
 
   <div id="filter_map_standards_modal" class="standard-modal  modal hide fade in">
     <div class="modal-header">
-      <button type="button" class="close" data-dismiss="modal" style="margin-right:10px;">&times;</button>
+      <button type="button" class="close" data-dismiss="modal">&times;</button>
       <div><H3><%= t('shared.standards') %></H3></div>
     </div>
     <div class="modal-body">
-        <div class="row">
-          <div id="standards_filter" class="center" >
-          <%= render 'maps/filter_standards' %>
-          </div>
+      <div class="row">
+        <div id="standards_filter" class="center" >
+        <%= render 'maps/filter_standards' %>
         </div>
-        <div class="row">
-          <div  id="standards_table" style="margin: 0px 20px 0px 20px;">
-            <%= render 'maps/list_standards' %>
-          </div>
+      </div>
+      <div class="row">
+        <div  id="standards_table" style="margin: 0px 20px 0px 20px;">
+          <%= render 'maps/list_standards' %>
         </div>
+      </div>
     </div>
   </div>
 
   <div id="filter_map_resources_modal" class="resource-modal modal hide fade" >
     <div class="filter_map_resources_modal_header modal-header">
-      <button type="button" class="close" data-dismiss="modal" style="margin-right:10px;">&times;</button>
+      <button type="button" class="close" data-dismiss="modal">&times;</button>
       <h3><%= t('resources.loading') %></h3>
     </div>
-    <div class="span9 filter_map_resources_modal_body modal-body center">
+    <div class="filter_map_resources_modal_body modal-body center">
         <%= image_tag "loading.gif", :alt => "loading"%>
     </div>
-    <div class="modal-footer">&nbsp;</div>
   </div>
 
 </div>
+
+<script type="text/javascript">
+$(document).ready(function() {    
+  $('.best_in_place').best_in_place();
+});
+</script>
