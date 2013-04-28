@@ -9,7 +9,7 @@ class MapObjective < ActiveRecord::Base
   belongs_to :user
   belongs_to :map
 
-  has_many :map_resources, :uniq => true, dependent: :destroy
+  has_many :map_resources, :uniq => true, dependent: :destroy, order: 'position ASC'
 
   validates :map_standard, presence: true
   validates :user, presence: true

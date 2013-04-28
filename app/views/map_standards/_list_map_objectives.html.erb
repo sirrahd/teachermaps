@@ -12,15 +12,20 @@
             <p style="width:95%"><%= best_in_place map_objective, :text, type: :textarea, :nil => raw('<span class="gray">Description</span>') %></p>
 
             <% if !map_objective.map_resources.empty? %>
-              <% map_objective.map_resources.each do |map_resource| %>
-                <div style="padding-left:50px;">
-                  <div>
-                    <span title="<%= map_resource.resource.get_type %>" style="width:35px;"><%= raw map_resource.resource.get_thumbnail %></span>
-                    <span><b><%= link_to map_resource.resource.title.titlecase, resource_path(map_resource.resource),  target: "_blank" %>:</b></span>
-                    <p><%= best_in_place map_resource, :text, type: :textarea, :nil => raw('<span class="gray">Description</span>'), html_attrs: { style: "width:90%" } %></p>
-                  </div>
-                </div>
-              <% end %>
+              <div style="padding-left:30px;">
+                <ul style="list-style-type:none;" class="sortable_map_objective_resources_<%= map_objective.id %>">
+                  <% map_objective.map_resources.each do |map_resource| %>
+                    
+                    <li id="map_resource_<%= map_resource.id %>" class="sortable-inner editable-inner">
+                      <div class="handle-inner pull-left" style="cursor:move;"><%= image_tag 'large-click-drag-handle.png', alt: 'handle', size: '15x40' %></div>
+                      <span title="<%= map_resource.resource.get_type %>" style="width:35px;"><%= raw map_resource.resource.get_thumbnail %></span>
+                      <span><b><%= link_to map_resource.resource.title.titlecase, resource_path(map_resource.resource),  target: "_blank" %>:</b></span>
+                      <p><%= best_in_place map_resource, :text, type: :textarea, :nil => raw('<span class="gray">Description</span>'), html_attrs: { style: "width:90%" } %></p>
+                    </li>
+                    
+                  <% end %>
+                </ul>
+              </div>
             <% end %>
           </div>
 
@@ -35,6 +40,35 @@
           </div>
         </div>
         <br/>
+
+        <script type="text/javascript">
+          $(document).ready(function() { 
+            $('.sortable_map_objective_resources_<%= map_objective.id %>').sortable({
+              axis: 'y',
+              dropOnEmpty: false,
+              handle: '.handle-inner',
+              cursor: 'move',
+              items: '.sortable-inner',
+              opacity: 0.4,
+              scroll: true,
+              update: function(event, ui){
+                var droppedItem = ui.item;
+                $.ajax({
+                  url: '/map_objectives/<%= map_objective.id %>/sort_resources',
+                  type: 'post',
+                  data: $('.sortable_map_objective_resources_<%= map_objective.id %>').sortable('serialize'),
+                  dataType: 'script',
+                  complete: function(request){
+                    $(droppedItem).effect('highlight',{color:'#DBDBFF'},2000);
+                  },
+                  error: function (xhr, ajaxOptions, thrownError) {
+                    pushFlash({message:"Error saving order of Map Assessment Resource", state: 'error', fadeOut: 5000});
+                  }
+                })
+              }
+            }).disableSelection();
+          });
+        </script>
       </li>
     <% end %>
 <% end %>

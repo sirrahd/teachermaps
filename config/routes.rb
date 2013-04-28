@@ -66,6 +66,7 @@ Teachermaps::Application.routes.draw do
       post   'filter_resources'
       post   'create_resource'
       delete 'destroy_resource'
+      post   'sort_resources'
     end
   end
 
