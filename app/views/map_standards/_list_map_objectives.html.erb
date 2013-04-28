@@ -5,7 +5,7 @@
       <li id="map_objective_<%= map_objective.id %>" class="hover">
         <div class="row editable">
           
-          <div class="handle pull-left" style="cursor:move;"><%= image_tag 'large-click-drag-handle.png', alt: 'handle', size: '20x60' %></div>
+          <div class="handle pull-left" style="cursor:move;margin-right:-15px;"><%= image_tag 'large-click-drag-handle.png', alt: 'handle', size: '20x60' %></div>
           
           <div class="span9">
             <b><%= best_in_place map_objective, :name, type: :input, html_attrs: { style: "width:90%" } %></b>
@@ -16,13 +16,17 @@
                 <ul style="list-style-type:none;" class="sortable_map_objective_resources_<%= map_objective.id %>">
                   <% map_objective.map_resources.each do |map_resource| %>
                     
-                    <li id="map_resource_<%= map_resource.id %>" class="sortable-inner editable-inner">
-                      <div class="handle-inner pull-left" style="cursor:move;"><%= image_tag 'large-click-drag-handle.png', alt: 'handle', size: '15x40' %></div>
-                      <span title="<%= map_resource.resource.get_type %>" style="width:35px;"><%= raw map_resource.resource.get_thumbnail %></span>
-                      <span><b><%= link_to map_resource.resource.title.titlecase, resource_path(map_resource.resource),  target: "_blank" %>:</b></span>
-                      <p><%= best_in_place map_resource, :text, type: :textarea, :nil => raw('<span class="gray">Description</span>'), html_attrs: { style: "width:90%" } %></p>
-                    </li>
-                    
+                        <li id="map_resource_<%= map_resource.id %>" class="sortable-inner editable-inner">
+                          <div class="row">
+                            <div class="handle-inner pull-left" style="cursor:move;margin-right:-20px;"><%= image_tag 'large-click-drag-handle.png', alt: 'handle', size: '15x40' %></div>
+                            <div class="span8">
+                              <span title="<%= map_resource.resource.get_type %>"><%= raw map_resource.resource.get_thumbnail %></span>
+                              <span><b><%= link_to map_resource.resource.title.titlecase, resource_path(map_resource.resource),  target: "_blank" %>:</b></span>
+                              <p><%= best_in_place map_resource, :text, type: :textarea, :nil => raw('<span class="gray">Description</span>'), html_attrs: { style: "width:90%" } %></p>
+                            </div>
+                          </div>
+                        </li>
+
                   <% end %>
                 </ul>
               </div>
