@@ -1,4 +1,12 @@
-$(document).ready(function() {    
+$(document).ready(function() {  
+
+
+  $(document).on('mouseenter', '.editable div.handle-innner', function(e) {  
+    $(this).toggle();
+  });
+  $(document).on('mouseleave', '.editable div.handle-innner', function(e) {  
+    $(this).toggle();
+  });
    
   //////////////////////////////
   //

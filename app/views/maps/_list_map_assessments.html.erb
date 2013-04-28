@@ -13,7 +13,7 @@
             <p><%= best_in_place map_assessment, :text, :type => :textarea, :nil => raw('<span class="gray">Description</span>') %></p>
 
             <% if !map_assessment.map_resources.empty? %>
-              <div style="padding-left:50px;">
+              <div style="padding-left:30px;">
                 <ul style="list-style-type:none;" class="sortable_map_assessment_resources_<%= map_assessment.id %>">
                   <% map_assessment.map_resources.each do |map_resource| %>
                     <li id="map_resource_<%= map_resource.id %>" class="sortable-inner">
@@ -39,7 +39,7 @@
           </div>
         </div>
         <br/>
-
+    
         <script type="text/javascript">
           $(document).ready(function() { 
             $(".sortable_map_assessment_resources_<%= map_assessment.id %>").sortable({
@@ -104,5 +104,5 @@ $(document).ready(function() {
       })
     }
   }).disableSelection();
-
+});
 </script>
