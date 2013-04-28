@@ -13,6 +13,30 @@ class MapsController < ApplicationController
     @filter_course_grades = CourseGrade.all
     @filter_course_subjects = CourseSubject.all   
 
+
+    # @map_standards_by_id = Hash[@map.map_standards.map { |p| [p['id'], p] }]
+      
+    # @map_standard_children = {}
+    # @map.map_standards.each do |map_standard|
+    #   if not map_standard.standard.is_parent_standard
+        
+    #     if not @map_standard_children.has_key?(map_standard.standard.id)
+    #       @map_standard_children[map_standard.standard.id] = []
+    #     end
+
+
+
+    #     @map_standard_children[map_standard.standard.id] << map_standard
+
+    #   end
+    # end
+
+    # @parent_child_standards = Hash[@map_standards.map { |p| [p['standard_id'], [p.standard.parent_standard]] }]
+    # @standards = Standard.where(parent_standard_id: nil)
+    # Rails.logger.info @parent_child_standards
+    # @map_standards_by_standard_id = Hash[@map_standards.map { |p| [p['standard_id'], p] }]
+
+
   end
 
   def create

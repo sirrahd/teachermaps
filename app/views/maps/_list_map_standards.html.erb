@@ -6,9 +6,9 @@
 			<li id="map_standard_<%= map_standard.id %>" action-url="<%= user_map_standard_path map_standard.user, map_standard.slug %>" class="hover clickable action-link">    
 				
 				<div class="row editable">
-					<div class="handle pull-left" style="cursor:move;"><%= image_tag 'large-click-drag-handle.png', alt: 'handle', size: '20x60' %></div>
+					<div class="handle pull-left" style="cursor:move;margin-right:-15px;"><%= image_tag 'large-click-drag-handle.png', alt: 'handle', size: '20x60' %></div>
 		      
-		     	<div class="span7">	
+		     	<div class="span7">
 			   		<b><%= map_standard.standard.name %>: </b>
 			   		<p><%= raw(map_standard.standard.text) %></p>
 
