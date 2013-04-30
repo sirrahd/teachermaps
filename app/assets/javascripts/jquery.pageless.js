@@ -106,6 +106,7 @@
       '</div>';
   };
 
+
   // settings params: totalPages
   function init(opts) {
     if (settings.inited) {
@@ -133,7 +134,7 @@
 
   $.fn.pageless = function (opts) {
     var $el = $(this);
-    var $loader = $(opts.loader);
+    var $loader = $(opts.loader, $el);
 
     init(opts);
     element = $el;
