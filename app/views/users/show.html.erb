@@ -41,7 +41,7 @@
     <div class="row">
       <div class="span12">
 
-        <table class="table table-condensed table-hover"  id="resources_table">
+        <table class="table table-condensed table-hover" id="resources_table">
           <thead>
             <tr>
               <th><%= t('shared.type') %></th>
@@ -52,6 +52,7 @@
           </thead>
           <tbody class="table-resources">
             <%= render 'resources/table_resources' %>
+            <tr colspan="4" class="table-resources-loader"> </tr>
           </tbody>
         </table>
       </div>
@@ -79,10 +80,10 @@
 <script type="text/javascript">
 $(document).ready(function() { 
   $('.table-resources').pageless({ 
-    loader: '.table-resources',
-    totalPages: 10 , 
+    loader: '.table-resources-loader',
+    totalPages: <%= @num_of_pages %> , 
     url: "<%= resources_page_path %>",
-    loaderMsg: 'Loading more results'
+    loaderMsg: 'Loading more results' 
   });
 });
 </script>

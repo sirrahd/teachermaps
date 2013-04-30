@@ -133,7 +133,7 @@
 
   $.fn.pageless = function (opts) {
     var $el = $(this);
-    var $loader = $(opts.loader, $el);
+    var $loader = $(opts.loader);
 
     init(opts);
     element = $el;
