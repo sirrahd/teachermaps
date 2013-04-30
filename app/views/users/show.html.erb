@@ -40,8 +40,50 @@
     </div>
     <div class="row">
       <div class="span12">
-        <%= render 'resources/table_resources' %>
+
+        <table class="table table-condensed table-hover"  id="resources_table">
+          <thead>
+            <tr>
+              <th><%= t('shared.type') %></th>
+              <th><%= t('resources.title') %></th>
+              <th><%= t('resources.grades') %></th>
+              <th><%= t('resources.subjects') %></th>
+            </tr>
+          </thead>
+          <tbody class="table-resources">
+            <%= render 'resources/table_resources' %>
+          </tbody>
+        </table>
       </div>
     </div>
   </div>
 </div>
+
+
+<div id="edit_resource_link_modal" class="modal hide fade in" >
+  <div class="modal-body" id="edit_resource_link_modal_body"></div>
+</div>
+
+<div id="show_resource_link_modal" class="modal hide fade in"  >
+    <div class="modal-body" id="show_resource_link_modal_body"></div>
+</div>
+
+<div id="put_resource_link_modal" class="modal hide fade in" >
+  <div class="modal-body">
+    <%= render 'resources/create_link' %>
+  </div>
+</div>
+
+
+<%= will_paginate(@resources) %>
+<script type="text/javascript">
+$(document).ready(function() { 
+  $('.table-resources').pageless({ 
+    loader: '.table-resources',
+    totalPages: 10 , 
+    url: "<%= resources_page_path %>",
+    loaderMsg: 'Loading more results'
+  });
+});
+</script>
+

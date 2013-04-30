@@ -232,6 +232,12 @@ class ResourcesController < ApplicationController
   end
 
 
+  def page
+    @resources = Resource.where( user_id: @current_user.id ).paginate(:page => params[:page], :per_page => 5)
+    render partial: 'resources/table_resources'
+  end 
+
+
   private
 
   # Requires user session
