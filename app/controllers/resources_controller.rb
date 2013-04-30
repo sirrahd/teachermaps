@@ -125,7 +125,7 @@ class ResourcesController < ApplicationController
     Rails.logger.info(params)
 
     filter = {}
-    @resources = Resource.where user_id: @current_user.id
+    @resources = Resource.where(user_id: @current_user.id)
 
     if params.has_key?('q') and !params[:q].empty?
       @resources &= Resource.where( Resource.arel_table[:title].matches("%#{params[:q].strip}%") )
