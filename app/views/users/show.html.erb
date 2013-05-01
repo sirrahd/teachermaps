@@ -56,11 +56,14 @@
             <tr class="table-resources-loader">
               <td colspan="4" style="text-align:center;">
                 <div id="pageless-loader" style="width:100%;">
-                <div class="msg" style="color:#e9e9e9;font-size:2em"></div>
-                <%= image_tag "loading.gif", alt: "loading", size: "50x50" %>
+                <span class="msg" style="color:gray;font-size:2em"></span>
+                &nbsp;&nbsp;&nbsp;
+                <%= image_tag "loading.gif", alt: "loading", size: "30x30" %>
+                
               </div>
               </td>
             </tr>
+
           </tbody>
           <tfoot></tfoot>
         </table>
@@ -98,6 +101,7 @@ $(document).ready(function() {
       console.log("Loaded all pages");
     }
   });
+
 });
 </script>
 
