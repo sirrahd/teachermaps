@@ -48,23 +48,24 @@
               <th><%= t('resources.title') %></th>
               <th><%= t('resources.grades') %></th>
               <th><%= t('resources.subjects') %></th>
+              <th></th>
             </tr>
           </thead>
           <tbody class="table-resources">
             <%= render 'resources/table_resources' %>
             
             <tr class="table-resources-loader">
-              <td colspan="4" style="text-align:center;">
+              <td colspan="5" style="text-align:center;">
                 <div id="pageless-loader" style="width:100%; margin-top:5px;">
                 <span class="msg" style="color:gray;font-size:2em"></span>
                 &nbsp;&nbsp;&nbsp;
-                <%= image_tag "loading.gif", alt: "loading", size: "30x30", :class => 'table-resources-wheel'%>
+                <%= image_tag "loading.gif", alt: "loading", size: "20x20", :class => 'table-resources-wheel'%>
               </div>
               </td>
             </tr>
             <tr>
               <td colspan="5">
-                <div style="width:90%;text-align:center;display:none;color:gray;font-size:1.5em;height:40px;padding:10px;"  class="table-resources-stopper">No more resources to load.</div>
+                <div style="width:100%;text-align:center;display:none;color:gray;font-size:1.5em;height:40px;padding:10px 0px 10px 0px;"  class="table-resources-stopper">No more resources to load.</div>
               </td>
             </tr>
           </tbody>
