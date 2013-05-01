@@ -138,16 +138,10 @@
 
     init(opts);
     element = $el;
-    console.log("opts.loader " + opts.loader);
-    console.log("$loader ");
-    console.log($loader);
-    console.log($loader.length);
     // loader element
     if (opts.loader && $loader.length) {
-      console.log("using custom loader");
       loader = $loader;
     } else {
-      console.log("using default loader");
       loader = $(loaderHtml());
       $el.append(loader);
     }
@@ -155,8 +149,6 @@
     if (!opts.loaderHtml) {
       $('#pageless-loader .msg').html(opts.loaderMsg).css(opts.msgStyles || {});
     }
-
-    console.log(loader);
   };
 
   //

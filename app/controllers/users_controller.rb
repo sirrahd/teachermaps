@@ -18,7 +18,7 @@ class UsersController < ApplicationController
 
     @maps = Map.where( user_id: @current_user ).order('id DESC')
     @resources = Resource.where( user_id: @current_user.id ).paginate(:page => params[:page], :per_page => 2)
-    @num_of_pages = Resource.where( user_id: @current_user.id ).count / 2 + 1
+    @num_of_pages = Resource.where( user_id: @current_user.id ).count / 2
     Rails.logger.info @resources.count
 
     @filter_course_types = ResourceType.where( id: @resources.map { |resource| resource.resource_type.id } )
