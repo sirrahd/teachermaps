@@ -150,10 +150,10 @@
       console.log("using default loader");
       loader = $(loaderHtml());
       $el.append(loader);
-      // if we use the default loader, set the message
-      if (!opts.loaderHtml) {
-        $('#pageless-loader .msg').html(opts.loaderMsg).css(opts.msgStyles || {});
-      }
+    }
+    // if we use the default loader, set the message
+    if (!opts.loaderHtml) {
+      $('#pageless-loader .msg').html(opts.loaderMsg).css(opts.msgStyles || {});
     }
 
     console.log(loader);

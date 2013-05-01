@@ -52,6 +52,15 @@
           </thead>
           <tbody class="table-resources">
             <%= render 'resources/table_resources' %>
+            
+            <tr class="table-resources-loader">
+              <td colspan="4" style="text-align:center;">
+                <div id="pageless-loader" style="width:100%;">
+                <div class="msg" style="color:#e9e9e9;font-size:2em"></div>
+                <%= image_tag "loading.gif", alt: "loading", size: "50x50" %>
+              </div>
+              </td>
+            </tr>
           </tbody>
           <tfoot></tfoot>
         </table>
@@ -80,14 +89,8 @@
 <script type="text/javascript">
 $(document).ready(function() { 
 
-  var tableLoader = 
-    '<tr><td colspan="4" style="text-align" ><div id="pageless-loader" style="display:none;text-align:center;width:100%;">' +
-    '<div class="msg" style="color:#e9e9e9;font-size:2em"></div>' +
-    '<%= image_tag "loading.gif", alt: "loading", size: "50x50" %>' +
-    '</div></td></tr>';
-
   $('.table-resources').pageless({ 
-    loadHtml: tableLoader,
+    loader: '.table-resources-loader',
     totalPages: <%= @num_of_pages %> , 
     url: "<%= resources_page_path %>",
     loaderMsg: 'Loading next page...',
