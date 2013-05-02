@@ -65,8 +65,10 @@ class UsersController < ApplicationController
     if @user.update_attributes(params[:user])
       flash[:success] = t 'settings.profile_updated'
       sign_in @user #updates invalidate current sign in
+      flash[:user_info] = @user
       redirect_to settings_path
     else
+      flash[:user_info] = @user
       redirect_to settings_path
     end
   end
