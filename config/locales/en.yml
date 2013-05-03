@@ -81,12 +81,13 @@ en:
     upload_to:                  "Default Upload To:"
     save_success:               "Settings saved"
     save_error:                 "Error in saving settings"
-    select_storage_service:     "In order to upload resources, you must select a storage service below."
+    select_storage_service:     "To upload resources, select a storage service."
     storage_title:              "Storage settings"
     user_title:                 "User settings"
     change_password_link:       "%{action} to change your password."
     email_not_confirmed:        "Waiting for confirmation"
     email_confirmed:            "Confirmed"
+    profile_updated:            "Profile updated!"
   resources:
     link:                       "Resources"
     web_link:                   "Link"
@@ -151,6 +152,8 @@ en:
     activation_link:            "Click here"
   confirmation:
     success:                    "Thanks! We confirmed your email address."
+    error:                      "Sorry, we couldn't verify your email address."
+    login:                      "You need to sign in so we can verify your email address."
   reset_password:
     subject:                    "Forgot your password?"
     content_textonly:           "Click the link below to change your password:"

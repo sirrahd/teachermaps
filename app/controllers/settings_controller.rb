@@ -4,7 +4,13 @@ class SettingsController < ApplicationController
 
 
   def index
-    @user = @current_user
+    # This allows us to carry over failed user form data.
+    unless flash[:user_info].blank?
+      @user = flash[:user_info]
+    else
+      @user = @current_user
+    end
+
     @setting = @current_user.setting
 
     @google_account = nil
