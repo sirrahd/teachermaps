@@ -65,6 +65,33 @@ class MapsController < ApplicationController
     end
   end
 
+
+  def sort_assessments
+
+    @map = Map.find params[:map_id]
+    return render nothing: true, status: 404 if !@map
+
+    @map.map_assessments.each do |map_assessment|
+      map_assessment.position = params[:map_assessment].index(map_assessment.id.to_s)+1
+      map_assessment.save
+    end
+
+    render :nothing => true
+  end
+
+  def sort_standards
+
+    @map = Map.find params[:map_id]
+    return render nothing: true, status: 404 if !@map
+
+    @map.map_standards.each do |map_standard|
+      map_standard.position = params[:map_standard].index(map_standard.id.to_s)+1
+      map_standard.save
+    end
+
+    render :nothing => true
+  end
+
   private 
   
   # Requires user session

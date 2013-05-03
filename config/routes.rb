@@ -26,15 +26,23 @@ Teachermaps::Application.routes.draw do
   match '/resources/filter' => 'resources#filter'
   resources :resources
 
-  resources :map_standards, only: [:update, :destroy]
-  resources :maps, only: [:update, :create, :destroy]
-  resources :maps do
-    resources :map_standards, only: [:create]
-  end
-
   resources :users do
     resources :maps
     resources :map_standards, :path => 'standards', only: [:show]
+  end
+
+  resources :map_resources
+
+  resources :maps, only: [:update, :create, :destroy]
+  resources :maps do
+    resources :map_standards, only: [:create]
+    post 'sort_assessments'
+    post 'sort_standards'
+  end
+
+  resources :map_standards, only: [:update, :destroy]
+  resources :map_standards do
+    post 'sort_objectives'
   end
 
   resources :map_assessments do
@@ -43,9 +51,9 @@ Teachermaps::Application.routes.draw do
       post   'filter_resources'
       post   'create_resource'
       delete 'destroy_resource'
+      post   'sort_resources'
     end
   end
-  resources :map_resources
 
   resources :map_objectives do
     member do
@@ -53,6 +61,7 @@ Teachermaps::Application.routes.draw do
       post   'filter_resources'
       post   'create_resource'
       delete 'destroy_resource'
+      post   'sort_resources'
     end
   end
 

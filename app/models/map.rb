@@ -121,8 +121,8 @@ class Map < ActiveRecord::Base
   has_and_belongs_to_many :course_subjects, uniq: true, order: 'name ASC'
   has_and_belongs_to_many :course_grades, uniq: true, order: 'id ASC'
   
-  has_many :map_standards, dependent: :destroy
-  has_many :map_assessments, dependent: :destroy
+  has_many :map_standards, dependent: :destroy, order: 'position ASC'
+  has_many :map_assessments, dependent: :destroy, order: 'position ASC'
 
   belongs_to :user
 
@@ -136,11 +136,6 @@ class Map < ActiveRecord::Base
 
   def title_titlecase
     self.name.titlecase
-  end
-
-  def sorted_map_standards
-    # Sorts by standards
-    self.map_standards.all(:order => :standard_id)
   end
 
   def update_metadata

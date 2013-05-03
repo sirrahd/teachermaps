@@ -9,7 +9,7 @@ class MapStandard < ActiveRecord::Base
   belongs_to :map
   belongs_to :standard
 
-  has_many :map_objectives, dependent: :destroy
+  has_many :map_objectives, dependent: :destroy, order: 'position ASC'
 
   validates :standard, presence: true
   validates :user, presence: true
