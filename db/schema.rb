@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130413041404) do
+ActiveRecord::Schema.define(:version => 20130426191905) do
 
   create_table "course_grades", :force => true do |t|
     t.string   "name"
@@ -92,8 +92,9 @@ ActiveRecord::Schema.define(:version => 20130413041404) do
     t.text     "text"
     t.integer  "user_id"
     t.integer  "map_id"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",                :null => false
+    t.datetime "updated_at",                :null => false
+    t.integer  "position",   :default => 0
   end
 
   create_table "map_objectives", :force => true do |t|
@@ -103,8 +104,9 @@ ActiveRecord::Schema.define(:version => 20130413041404) do
     t.integer  "map_standard_id"
     t.integer  "user_id"
     t.integer  "map_id"
-    t.datetime "created_at",      :null => false
-    t.datetime "updated_at",      :null => false
+    t.datetime "created_at",                     :null => false
+    t.datetime "updated_at",                     :null => false
+    t.integer  "position",        :default => 0
   end
 
   create_table "map_resources", :force => true do |t|
@@ -115,8 +117,9 @@ ActiveRecord::Schema.define(:version => 20130413041404) do
     t.integer  "map_objective_id"
     t.integer  "map_assessment_id"
     t.string   "type"
-    t.datetime "created_at",        :null => false
-    t.datetime "updated_at",        :null => false
+    t.datetime "created_at",                       :null => false
+    t.datetime "updated_at",                       :null => false
+    t.integer  "position",          :default => 0
   end
 
   create_table "map_standards", :force => true do |t|
@@ -128,6 +131,7 @@ ActiveRecord::Schema.define(:version => 20130413041404) do
     t.datetime "updated_at",                      :null => false
     t.integer  "resources_count",  :default => 0
     t.integer  "objectives_count", :default => 0
+    t.integer  "position",         :default => 0
   end
 
   create_table "maps", :force => true do |t|
