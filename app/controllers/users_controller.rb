@@ -10,8 +10,11 @@ class UsersController < ApplicationController
     # Users must be signed in to view a profile
     redirect_to signin_url if !signed_in?
 
-    # Users can only sign in to their own account; ignore params
-    @user = @current_user
+    @user = User.find_by_account_name params[:id]
+    if !@user
+      Rails.logger.info 'Could not locate user '
+      return render :status => 404
+    end
 
     @maps = Map.where( user_id: @current_user ).order('id DESC')
     @resources = Resource.where( user_id: @current_user.id )

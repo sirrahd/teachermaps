@@ -12,7 +12,7 @@ class MapAssessment < ActiveRecord::Base
   validates :map, presence: true
   validates :user, presence: true
   validates :name, length: {minimum: 2, maximum: 250}
-  validates :text, length: {minimum: 2, maximum: 2048}
+  validates :text, length: {maximum: 2048}
   validates_uniqueness_of :slug, case_sensitive: true
 
   after_initialize :default_values
@@ -33,7 +33,8 @@ class MapAssessment < ActiveRecord::Base
   def default_values
     self.slug ||= (Base64.strict_encode64 UUIDTools::UUID.random_create).downcase
     self.name ||= 'Untitled Map Assessment'
-    self.text ||= 'Description of the Map Assessment'
+    
+    self.text ||= ''
   end
 
 end
