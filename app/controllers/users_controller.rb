@@ -11,7 +11,7 @@ class UsersController < ApplicationController
     redirect_to signin_url if !signed_in?
 
     @user = User.find_by_account_name params[:id]
-    if !@user
+    unless @user
       Rails.logger.info 'Could not locate user '
       return render :status => 404
     end

@@ -12,7 +12,7 @@ class ResourcesController < ApplicationController
   def show
     Rails.logger.info(params)
     @resource = Resource.find_by_id_and_user_id params[:id], @current_user.id
-    if !@resource
+    unless @resource
       return redirect_to resources_url, flash:  { error: t('resources.does_not_exist') }
     end
 
@@ -29,14 +29,14 @@ class ResourcesController < ApplicationController
 
   def edit
     @resource = Resource.find_by_id_and_user_id params[:id], @current_user.id
-    return render nothing: true, status: 404 if !@resource
+    return render nothing: true, status: 404 unless @resource
     render partial: "resources/edit"
   end
 
   def update
     Rails.logger.info(params)
     @resource = Resource.find_by_id_and_user_id params[:id], @current_user.id
-    return render nothing: true, status: 404 if !@resource
+    return render nothing: true, status: 404 unless @resource
 
     @resource.title = params[:resource][:title]
 
@@ -72,7 +72,7 @@ class ResourcesController < ApplicationController
 
     @resource = Resource.find_by_id_and_user_id params[:id], @current_user.id
 
-    if !@resource
+    unless @resource
       Rails.logger.info("404 Error, Resource not found #{@resource.errors.inspect}")
       return redirect_to resources_url, :flash => { :error =>  t('resources.does_not_exist') }
     end
