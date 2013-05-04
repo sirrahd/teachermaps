@@ -13,6 +13,6 @@
         <%= resource.course_subjects.map(&:name).join(", ") %>
       <% end %> 
     </td>
-    <td><%= link_to t('shared.edit'), 'JavaScript:void(0);', 'resource-id'=>resource.id, :class=>'btn edit_resource_link_view', :style=>"height:18px;" %></td>
+    <td style="text-align:center;"><%= link_to t('shared.edit'), 'JavaScript:void(0);', 'resource-id'=>resource.id, :class=>'btn edit_resource_link_view', :style=>"height:18px;" %></td>
   </tr>
 <% end %>

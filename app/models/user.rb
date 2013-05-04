@@ -62,6 +62,10 @@ class User < ActiveRecord::Base
     Digest::MD5.hexdigest(self.email + self.account_name + self.confirmed.to_s + self.password_digest + self.created_at.iso8601)
   end
 
+  def total_resources_count
+    Resource.where( user_id: self.id ).count
+  end
+
   private
 
   def default_values
