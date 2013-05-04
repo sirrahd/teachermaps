@@ -233,7 +233,6 @@ class ResourcesController < ApplicationController
 
 
   def page
-    sleep(1)
     @resources = @current_user.resources.paginate(page: params[:page])
     render partial: 'resources/table_resources'
   end 

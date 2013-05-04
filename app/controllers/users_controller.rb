@@ -17,7 +17,6 @@ class UsersController < ApplicationController
     end
 
     @maps = Map.where( user_id: @current_user ).order('id DESC')
-    #@resources = Resource.where( user_id: @current_user.id ).order('id DESC')
     @resources = @current_user.resources.paginate(page: params[:page]).order('id DESC')
     @num_of_pages = @user.total_resources_count / 20 + 2
 
