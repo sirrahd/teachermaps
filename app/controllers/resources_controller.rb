@@ -234,7 +234,7 @@ class ResourcesController < ApplicationController
 
   def page
     sleep(1)
-    @resources = Resource.where( user_id: @current_user.id ).paginate(page: params[:page])
+    @resources = @current_user.resources.paginate(page: params[:page])
     render partial: 'resources/table_resources'
   end 
 

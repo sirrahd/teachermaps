@@ -93,21 +93,21 @@
 </div>
 
 
-
+<%= will_paginate(@resources) %>
 <script type="text/javascript">
 $(document).ready(function() { 
 
-  // $('.table-resources').pageless({ 
-  //   loader: '.table-resources-loader',
-  //   totalPages: <%= @num_of_pages %> , 
-  //   url: "<%= resources_page_path %>",
-  //   loaderMsg: 'Loading next page...',
-  //   end: function () {
-  //     $('.table-resources-loader').remove();
-  //     $('.table-resources-stopper').show();
-  //     $('.table-resources-stopper').effect('highlight', {color:'#DBDBFF'}, 2000);
-  //   }
-  // });
+  $('.table-resources').pageless({ 
+    loader: '.table-resources-loader',
+    totalPages: <%= @num_of_pages %> , 
+    url: "<%= resources_page_path %>",
+    loaderMsg: 'Loading next page...',
+    end: function () {
+      $('.table-resources-loader').remove();
+      $('.table-resources-stopper').show();
+      $('.table-resources-stopper').effect('highlight', {color:'#DBDBFF'}, 2000);
+    }
+  });
 
 });
 </script>
