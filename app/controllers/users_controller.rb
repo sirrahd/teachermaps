@@ -19,11 +19,10 @@ class UsersController < ApplicationController
     @maps = Map.where( user_id: @current_user ).order('id DESC')
     @resources = Resource.where( user_id: @current_user.id ).paginate(page: params[:page])
     @num_of_pages = @user.total_resources_count / 20 + 2
-    Rails.logger.info @resources.count
 
-    @filter_course_types = ResourceType.where( id: @resources.map { |resource| resource.resource_type.id } )
-    @filter_course_grades = CourseGrade.where( id: @resources.map { |resource| resource.course_grades.collect(&:id) } )
-    @filter_course_subjects = CourseSubject.where( id: @resources.map { |resource| resource.course_subjects.collect(&:id) } )
+    @filter_course_types = ResourceType.where( id: @resources.collect { |resource| resource.resource_type.id } )
+    @filter_course_grades = CourseGrade.where( id: @resources.collect { |resource| resource.course_grades.collect(&:id) } )
+    @filter_course_subjects = CourseSubject.where( id: @resources.collect { |resource| resource.course_subjects.collect(&:id) } )
 
     # For rendering Ajax "Upload Resource" form
     @resource = Resource.new
@@ -33,7 +32,6 @@ class UsersController < ApplicationController
 
   def new
     redirect_to @current_user if signed_in?
-
     @user = User.new
   end
 
