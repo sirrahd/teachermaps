@@ -17,8 +17,9 @@ class UsersController < ApplicationController
     end
 
     @maps = Map.where( user_id: @current_user ).order('id DESC')
-    @resources = Resource.where( user_id: @current_user.id ).paginate(page: params[:page])
-    @num_of_pages = @user.total_resources_count / 20 + 2
+    @resources = Resource.where( user_id: @current_user.id )
+    # @resources = Resource.where( user_id: @current_user.id ).paginate(page: params[:page])
+    # @num_of_pages = @user.total_resources_count / 20 + 3
 
     @filter_course_types = ResourceType.where( id: @resources.collect { |resource| resource.resource_type.id } )
     @filter_course_grades = CourseGrade.where( id: @resources.collect { |resource| resource.course_grades.collect(&:id) } )
