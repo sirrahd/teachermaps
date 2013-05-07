@@ -13,6 +13,7 @@ gem 'best_in_place', '~> 2.1.0'
 gem 'nokogiri', '~> 1.5.6'
 gem 'jquery-ui-rails', '~> 4.0.2'
 gem 'will_paginate', '~> 3.0'
+gem 'gibbon', '~> 0.4.6'
 
 
 group :development, :test do
