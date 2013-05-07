@@ -1,9 +1,5 @@
 module HtmlHelper
 
-  def is_main_proudction?
-    Rails.application.config.respond_to? 'PRODUCTION_DOMAIN' and Rails.application.config.PRODUCTION_DOMAIN.include? request.host_with_port 
-  end
-
   def course_grade_ranges course_grades
 
     divider = '-'
