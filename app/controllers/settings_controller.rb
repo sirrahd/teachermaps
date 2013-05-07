@@ -1,5 +1,4 @@
 class SettingsController < ApplicationController
-  include MailchimpHelper
 
   before_filter :require_session
 
@@ -20,8 +19,6 @@ class SettingsController < ApplicationController
     if @google_account.nil? and @drop_box_account.nil?
       flash['info'] = t('settings.select_storage_service')
     end
-
-    Rails.logger.info "List ID: #{get_mailing_list}"
 
     respond_to do |format|
       format.html # index.html.erb

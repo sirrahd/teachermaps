@@ -18,6 +18,19 @@ module MailchimpHelper
     false
   end
 
+  def subscribe_to_list( list_id, email_address )
+    Rails.logger.info "Subscribing #{email_address} to mailing list #{list_id}"
+    @mailchimp = Gibbon.new
+    @val = @mailchimp.list_subscribe({
+        id: list_id, 
+        email_address: email_address,
+        update_existing: true, 
+        double_optin: false,
+        merge_vars: {}
+    })
+    Rails.logger.info "Completed Subscription #{@val}"
+  end
+
 
 
 
