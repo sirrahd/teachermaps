@@ -173,9 +173,9 @@ class ResourcesController < ApplicationController
         @resources = Resource.where user_id: @current_user.id
 
         # Need to re-generate filters
-        @filter_course_types = ResourceType.where(:id => @resources.map { |resource| resource.resource_type.id } )
-        @filter_course_grades = CourseGrade.where(:id => @resources.map { |resource| resource.course_grades.collect(&:id) } )
-        @filter_course_subjects = CourseSubject.where(:id => @resources.map { |resource| resource.course_subjects.collect(&:id) } )
+        @filter_course_types = ResourceType.where(:id => @resources.collect { |resource| resource.resource_type.id } )
+        @filter_course_grades = CourseGrade.where(:id => @resources.collect { |resource| resource.course_grades.collect(&:id) } )
+        @filter_course_subjects = CourseSubject.where(:id => @resources.collect { |resource| resource.course_subjects.collect(&:id) } )
         # Render filter and resources to dictionary
         response = { 
           :filters => render_to_string(partial:  'resources/filter_resources', :layout => false,  :locals => {:resources => @resources, :filter_course_types => @filter_course_types, :filter_course_grades=>@filter_course_grades, :filter_course_subjects=>@filter_course_subjects}),

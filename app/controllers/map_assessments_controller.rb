@@ -63,9 +63,9 @@ class MapAssessmentsController < ApplicationController
 
 		@map = @map_assessment.map
     @resources = Resource.where user_id: @current_user.id
-    @filter_resource_types = ResourceType.where( id: @resources.map { |resource| resource.resource_type.id } )
-    @filter_course_grades = CourseGrade.where( id: @resources.map { |resource| resource.course_grades.collect(&:id) } )
-    @filter_course_subjects = CourseSubject.where( id: @resources.map { |resource| resource.course_subjects.collect(&:id) } )
+    @filter_resource_types = ResourceType.where( id: @resources.collect { |resource| resource.resource_type.id } )
+    @filter_course_grades = CourseGrade.where( id: @resources.collect { |resource| resource.course_grades.collect(&:id) } )
+    @filter_course_subjects = CourseSubject.where( id: @resources.collect { |resource| resource.course_subjects.collect(&:id) } )
 
     @map_resources_by_resource_id = Hash[@map_assessment.map_resources.map { |p| [p['resource_id'], p] }]
 
