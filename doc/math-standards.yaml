@@ -2106,8 +2106,8 @@ standard_5034064ea78474827b7774de903c98f2aab5287d:
  sub_subject: "Mathematics"
  is_parent_standard: "false"
  parent_standard: "CCSS.Math.Content.6.NS.C.7"
- standard_type: "&ndash;30"
- text: "Understand the absolute value of a rational number as its distance from 0 on the number line; interpret absolute value as magnitude for a positive or negative quantity in a real-world situation. For example, for an account balance of &ndash;30 dollars, write "
+ standard_type: "Common Core"
+ text: "Understand the absolute value of a rational number as its distance from 0 on the number line; interpret absolute value as magnitude for a positive or negative quantity in a real-world situation. For example, for an account balance of Common Core dollars, write "
 standard_847310b4f782a8c66fd35a4760f2d23afc24197a:
  slug: "847310b4f782a8c66fd35a4760f2d23afc24197a"
  name: "CCSS.Math.Content.6.NS.C.7d"
@@ -2116,8 +2116,8 @@ standard_847310b4f782a8c66fd35a4760f2d23afc24197a:
  sub_subject: "Mathematics"
  is_parent_standard: "false"
  parent_standard: "CCSS.Math.Content.6.NS.C.7"
- standard_type: "&ndash;30"
- text: "Distinguish comparisons of absolute value from statements about order. For example, recognize that an account balance less than &ndash;30 dollars represents a debt greater than 30 dollars."
+ standard_type: "Common Core"
+ text: "Distinguish comparisons of absolute value from statements about order. For example, recognize that an account balance less than Common Core dollars represents a debt greater than 30 dollars."
 standard_6992ebea4d10744df36ac317792cf6b38300fb92:
  slug: "6992ebea4d10744df36ac317792cf6b38300fb92"
  name: "CCSS.Math.Content.6.NS.C.8"
@@ -2126,7 +2126,7 @@ standard_6992ebea4d10744df36ac317792cf6b38300fb92:
  sub_subject: "Mathematics"
  is_parent_standard: "false"
  parent_standard: ""
- standard_type: "&ndash;30"
+ standard_type: "Common Core"
  text: "Solve real-world and mathematical problems by graphing points in all four quadrants of the coordinate plane. Include use of coordinates and absolute value to find distances between points with the same first coordinate or the same second coordinate."
 standard_632e5602b19b127b967672ac39a623835aac0e9b:
  slug: "632e5602b19b127b967672ac39a623835aac0e9b"
@@ -2136,7 +2136,7 @@ standard_632e5602b19b127b967672ac39a623835aac0e9b:
  sub_subject: "Mathematics"
  is_parent_standard: "false"
  parent_standard: ""
- standard_type: "&ndash;30"
+ standard_type: "Common Core"
  text: "Write and evaluate numerical expressions involving whole-number exponents."
 standard_c6d8ce2ea9e516a93acacebb3feecacee1e9f919:
  slug: "c6d8ce2ea9e516a93acacebb3feecacee1e9f919"
@@ -2146,7 +2146,7 @@ standard_c6d8ce2ea9e516a93acacebb3feecacee1e9f919:
  sub_subject: "Mathematics"
  is_parent_standard: "true"
  parent_standard: ""
- standard_type: "&ndash;30"
+ standard_type: "Common Core"
  text: "Write, read, and evaluate expressions in which letters stand for numbers."
 standard_c29f0643abad1c1423132bc174f6d05a8477d0cd:
  slug: "c29f0643abad1c1423132bc174f6d05a8477d0cd"
@@ -2156,7 +2156,7 @@ standard_c29f0643abad1c1423132bc174f6d05a8477d0cd:
  sub_subject: "Mathematics"
  is_parent_standard: "false"
  parent_standard: "CCSS.Math.Content.6.EE.A.2"
- standard_type: "&ndash;30"
+ standard_type: "Common Core"
  text: "Write expressions that record operations with numbers and with letters standing for numbers. For example, express the calculation &ldquo;Subtract y from 5&rdquo; as 5 &ndash; y."
 standard_f5c88edf0d87db00b5fab86478605bf2c0315ac6:
  slug: "f5c88edf0d87db00b5fab86478605bf2c0315ac6"
@@ -2166,7 +2166,7 @@ standard_f5c88edf0d87db00b5fab86478605bf2c0315ac6:
  sub_subject: "Mathematics"
  is_parent_standard: "false"
  parent_standard: "CCSS.Math.Content.6.EE.A.2"
- standard_type: "&ndash;30"
+ standard_type: "Common Core"
  text: "Identify parts of an expression using mathematical terms (sum, term, product, factor, quotient, coefficient); view one or more parts of an expression as a single entity. For example, describe the expression 2 (8 + 7) as a product of two factors; view (8 + 7) as both a single entity and a sum of two terms."
 standard_fcf5527649141f06dfd2ca6a996a2fcc8b668e12:
  slug: "fcf5527649141f06dfd2ca6a996a2fcc8b668e12"
@@ -2176,7 +2176,7 @@ standard_fcf5527649141f06dfd2ca6a996a2fcc8b668e12:
  sub_subject: "Mathematics"
  is_parent_standard: "false"
  parent_standard: "CCSS.Math.Content.6.EE.A.2"
- standard_type: "&ndash;30"
+ standard_type: "Common Core"
  text: "Evaluate expressions at specific values of their variables. Include expressions that arise from formulas used in real-world problems. Perform arithmetic operations, including those involving whole-number exponents, in the conventional order when there are no parentheses to specify a particular order (Order of Operations). For example, use the formulas V = s3 and A = 6 s2 to find the volume and surface area of a cube with sides of length s = 1/2."
 standard_a5914fa3a5212a039e122b27a7520d910a9442d5:
  slug: "a5914fa3a5212a039e122b27a7520d910a9442d5"
@@ -2186,7 +2186,7 @@ standard_a5914fa3a5212a039e122b27a7520d910a9442d5:
  sub_subject: "Mathematics"
  is_parent_standard: "false"
  parent_standard: ""
- standard_type: "&ndash;30"
+ standard_type: "Common Core"
  text: "Apply the properties of operations to generate equivalent expressions. For example, apply the distributive property to the expression 3 (2 + x) to produce the equivalent expression 6 + 3x; apply the distributive property to the expression 24x + 18y to produce the equivalent expression 6 (4x + 3y); apply properties of operations to y + y + y to produce the equivalent expression 3y."
 standard_818c37d85b99ef133d53a6fb1abca05640bda68b:
  slug: "818c37d85b99ef133d53a6fb1abca05640bda68b"
@@ -2196,7 +2196,7 @@ standard_818c37d85b99ef133d53a6fb1abca05640bda68b:
  sub_subject: "Mathematics"
  is_parent_standard: "false"
  parent_standard: ""
- standard_type: "&ndash;30"
+ standard_type: "Common Core"
  text: "Identify when two expressions are equivalent (i.e., when the two expressions name the same number regardless of which value is substituted into them). For example, the expressions y + y + y and 3y are equivalent because they name the same number regardless of which number y stands for.."
 standard_3bbf0720db229e767c2f32f00e5ee9a951280d41:
  slug: "3bbf0720db229e767c2f32f00e5ee9a951280d41"
@@ -2206,7 +2206,7 @@ standard_3bbf0720db229e767c2f32f00e5ee9a951280d41:
  sub_subject: "Mathematics"
  is_parent_standard: "false"
  parent_standard: ""
- standard_type: "&ndash;30"
+ standard_type: "Common Core"
  text: "Understand solving an equation or inequality as a process of answering a question: which values from a specified set, if any, make the equation or inequality true? Use substitution to determine whether a given number in a specified set makes an equation or inequality true."
 standard_d42682cdfc8e780ff57cf2919d9508d8caf4a2f0:
  slug: "d42682cdfc8e780ff57cf2919d9508d8caf4a2f0"
@@ -2216,7 +2216,7 @@ standard_d42682cdfc8e780ff57cf2919d9508d8caf4a2f0:
  sub_subject: "Mathematics"
  is_parent_standard: "false"
  parent_standard: ""
- standard_type: "&ndash;30"
+ standard_type: "Common Core"
  text: "Use variables to represent numbers and write expressions when solving a real-world or mathematical problem; understand that a variable can represent an unknown number, or, depending on the purpose at hand, any number in a specified set."
 standard_d0f712d5aa742cbb3449fab6a1daef566a23592a:
  slug: "d0f712d5aa742cbb3449fab6a1daef566a23592a"
@@ -2226,7 +2226,7 @@ standard_d0f712d5aa742cbb3449fab6a1daef566a23592a:
  sub_subject: "Mathematics"
  is_parent_standard: "false"
  parent_standard: ""
- standard_type: "&ndash;30"
+ standard_type: "Common Core"
  text: "Solve real-world and mathematical problems by writing and solving equations of the form x + p = q and px = q for cases in which p, q and x are all nonnegative rational numbers."
 standard_dc8b939bbe49b6b9d65735669b28807641215d76:
  slug: "dc8b939bbe49b6b9d65735669b28807641215d76"
@@ -2236,7 +2236,7 @@ standard_dc8b939bbe49b6b9d65735669b28807641215d76:
  sub_subject: "Mathematics"
  is_parent_standard: "false"
  parent_standard: ""
- standard_type: "&ndash;30"
+ standard_type: "Common Core"
  text: "Write an inequality of the form x &gt; c or x &lt; c to represent a constraint or condition in a real-world or mathematical problem. Recognize that inequalities of the form x &gt; c or x &lt; c have infinitely many solutions; represent solutions of such inequalities on number line diagrams."
 standard_222b8586344bcd224fa8f20dd8b82373ec8fc986:
  slug: "222b8586344bcd224fa8f20dd8b82373ec8fc986"
@@ -2246,7 +2246,7 @@ standard_222b8586344bcd224fa8f20dd8b82373ec8fc986:
  sub_subject: "Mathematics"
  is_parent_standard: "false"
  parent_standard: ""
- standard_type: "&ndash;30"
+ standard_type: "Common Core"
  text: "Use variables to represent two quantities in a real-world problem that change in relationship to one another; write an equation to express one quantity, thought of as the dependent variable, in terms of the other quantity, thought of as the independent variable. Analyze the relationship between the dependent and independent variables using graphs and tables, and relate these to the equation. For example, in a problem involving motion at constant speed, list and graph ordered pairs of distances and times, and write the equation d = 65t to represent the relationship between distance and time."
 standard_57a4637fbc8b83d5fb3c0be64cc5c3efabaa6116:
  slug: "57a4637fbc8b83d5fb3c0be64cc5c3efabaa6116"
@@ -2256,7 +2256,7 @@ standard_57a4637fbc8b83d5fb3c0be64cc5c3efabaa6116:
  sub_subject: "Mathematics"
  is_parent_standard: "false"
  parent_standard: ""
- standard_type: "&ndash;30"
+ standard_type: "Common Core"
  text: "Find the area of right triangles, other triangles, special quadrilaterals, and polygons by composing into rectangles or decomposing into triangles and other shapes; apply these techniques in the context of solving real-world and mathematical problems."
 standard_5c299d38c2bb72272e7893392481b561a7534eb8:
  slug: "5c299d38c2bb72272e7893392481b561a7534eb8"
@@ -2266,7 +2266,7 @@ standard_5c299d38c2bb72272e7893392481b561a7534eb8:
  sub_subject: "Mathematics"
  is_parent_standard: "false"
  parent_standard: ""
- standard_type: "&ndash;30"
+ standard_type: "Common Core"
  text: "Find the volume of a right rectangular prism with fractional edge lengths by packing it with unit cubes of the appropriate unit fraction edge lengths, and show that the volume is the same as would be found by multiplying the edge lengths of the prism. Apply the formulas V = l w h and V = b h to find volumes of right rectangular prisms with fractional edge lengths in the context of solving real-world and mathematical problems."
 standard_714e4ef346c2d3b342991abbe2c2e08be67aa21e:
  slug: "714e4ef346c2d3b342991abbe2c2e08be67aa21e"
@@ -2276,7 +2276,7 @@ standard_714e4ef346c2d3b342991abbe2c2e08be67aa21e:
  sub_subject: "Mathematics"
  is_parent_standard: "false"
  parent_standard: ""
- standard_type: "&ndash;30"
+ standard_type: "Common Core"
  text: "Draw polygons in the coordinate plane given coordinates for the vertices; use coordinates to find the length of a side joining points with the same first coordinate or the same second coordinate. Apply these techniques in the context of solving real-world and mathematical problems."
 standard_b5d3df3e899b976f184eb008b45a0859904ac381:
  slug: "b5d3df3e899b976f184eb008b45a0859904ac381"
@@ -2286,7 +2286,7 @@ standard_b5d3df3e899b976f184eb008b45a0859904ac381:
  sub_subject: "Mathematics"
  is_parent_standard: "false"
  parent_standard: ""
- standard_type: "&ndash;30"
+ standard_type: "Common Core"
  text: "Represent three-dimensional figures using nets made up of rectangles and triangles, and use the nets to find the surface area of these figures. Apply these techniques in the context of solving real-world and mathematical problems."
 standard_fc550abe2286db9c90aa6e903d132a308d7f3b88:
  slug: "fc550abe2286db9c90aa6e903d132a308d7f3b88"
@@ -2296,7 +2296,7 @@ standard_fc550abe2286db9c90aa6e903d132a308d7f3b88:
  sub_subject: "Mathematics"
  is_parent_standard: "false"
  parent_standard: ""
- standard_type: "&ndash;30"
+ standard_type: "Common Core"
  text: "Recognize a statistical question as one that anticipates variability in the data related to the question and accounts for it in the answers. For example, &ldquo;How old am I?&rdquo; is not a statistical question, but &ldquo;How old are the students in my school?&rdquo; is a statistical question because one anticipates variability in students&rsquo; ages."
 standard_b02543346764b89387b97bf6511219c5be28342c:
  slug: "b02543346764b89387b97bf6511219c5be28342c"
@@ -2306,7 +2306,7 @@ standard_b02543346764b89387b97bf6511219c5be28342c:
  sub_subject: "Mathematics"
  is_parent_standard: "false"
  parent_standard: ""
- standard_type: "&ndash;30"
+ standard_type: "Common Core"
  text: "Understand that a set of data collected to answer a statistical question has a distribution which can be described by its center, spread, and overall shape."
 standard_8fba758c922840ab9063a93980069087fa624696:
  slug: "8fba758c922840ab9063a93980069087fa624696"
@@ -2316,7 +2316,7 @@ standard_8fba758c922840ab9063a93980069087fa624696:
  sub_subject: "Mathematics"
  is_parent_standard: "false"
  parent_standard: ""
- standard_type: "&ndash;30"
+ standard_type: "Common Core"
  text: "Recognize that a measure of center for a numerical data set summarizes all of its values with a single number, while a measure of variation describes how its values vary with a single number."
 standard_2a176b1ce460ef59a88cf1450bd6327a8481a2db:
  slug: "2a176b1ce460ef59a88cf1450bd6327a8481a2db"
@@ -2326,7 +2326,7 @@ standard_2a176b1ce460ef59a88cf1450bd6327a8481a2db:
  sub_subject: "Mathematics"
  is_parent_standard: "false"
  parent_standard: ""
- standard_type: "&ndash;30"
+ standard_type: "Common Core"
  text: "Display numerical data in plots on a number line, including dot plots, histograms, and box plots."
 standard_c4dae3db8104f00ae5cc231d1951be9cd0b52343:
  slug: "c4dae3db8104f00ae5cc231d1951be9cd0b52343"
@@ -2336,7 +2336,7 @@ standard_c4dae3db8104f00ae5cc231d1951be9cd0b52343:
  sub_subject: "Mathematics"
  is_parent_standard: "true"
  parent_standard: ""
- standard_type: "&ndash;30"
+ standard_type: "Common Core"
  text: "Summarize numerical data sets in relation to their context, such as by:"
 standard_a1d8d514192a2633863c0105a0b475f268c2cdc8:
  slug: "a1d8d514192a2633863c0105a0b475f268c2cdc8"
@@ -2346,7 +2346,7 @@ standard_a1d8d514192a2633863c0105a0b475f268c2cdc8:
  sub_subject: "Mathematics"
  is_parent_standard: "false"
  parent_standard: "CCSS.Math.Content.6.SP.B.5"
- standard_type: "&ndash;30"
+ standard_type: "Common Core"
  text: "Reporting the number of observations."
 standard_3995bcaa26f8af3d46704c6d86111cb58b656b49:
  slug: "3995bcaa26f8af3d46704c6d86111cb58b656b49"
@@ -2356,7 +2356,7 @@ standard_3995bcaa26f8af3d46704c6d86111cb58b656b49:
  sub_subject: "Mathematics"
  is_parent_standard: "false"
  parent_standard: "CCSS.Math.Content.6.SP.B.5"
- standard_type: "&ndash;30"
+ standard_type: "Common Core"
  text: "Describing the nature of the attribute under investigation, including how it was measured and its units of measurement."
 standard_58f7afe6204b5b3abfcec1fab97689406a637c29:
  slug: "58f7afe6204b5b3abfcec1fab97689406a637c29"
@@ -2366,7 +2366,7 @@ standard_58f7afe6204b5b3abfcec1fab97689406a637c29:
  sub_subject: "Mathematics"
  is_parent_standard: "false"
  parent_standard: "CCSS.Math.Content.6.SP.B.5"
- standard_type: "&ndash;30"
+ standard_type: "Common Core"
  text: "Giving quantitative measures of center (median and/or mean) and variability (interquartile range and/or mean absolute deviation), as well as describing any overall pattern and any striking deviations from the overall pattern with reference to the context in which the data were gathered."
 standard_74267f355913633bd29693850cd6651329a9cb60:
  slug: "74267f355913633bd29693850cd6651329a9cb60"
@@ -2376,7 +2376,7 @@ standard_74267f355913633bd29693850cd6651329a9cb60:
  sub_subject: "Mathematics"
  is_parent_standard: "false"
  parent_standard: "CCSS.Math.Content.6.SP.B.5"
- standard_type: "&ndash;30"
+ standard_type: "Common Core"
  text: "Relating the choice of measures of center and variability to the shape of the data distribution and the context in which the data were gathered."
 standard_c2bab3ccbc2e7d76022509801f539c15fd585682:
  slug: "c2bab3ccbc2e7d76022509801f539c15fd585682"
@@ -2386,7 +2386,7 @@ standard_c2bab3ccbc2e7d76022509801f539c15fd585682:
  sub_subject: "Mathematics"
  is_parent_standard: "false"
  parent_standard: ""
- standard_type: "&ndash;30"
+ standard_type: "Common Core"
  text: "Compute unit rates associated with ratios of fractions, including ratios of lengths, areas and other quantities measured in like or different units. For example, if a person walks 1/2 mile in each 1/4 hour, compute the unit rate as the complex fraction 1/2/1/4 miles per hour, equivalently 2 miles per hour."
 standard_27039412fd686359806d203588de405af8048d9b:
  slug: "27039412fd686359806d203588de405af8048d9b"
@@ -2396,7 +2396,7 @@ standard_27039412fd686359806d203588de405af8048d9b:
  sub_subject: "Mathematics"
  is_parent_standard: "true"
  parent_standard: ""
- standard_type: "&ndash;30"
+ standard_type: "Common Core"
  text: "Recognize and represent proportional relationships between quantities."
 standard_e0196bfa1976eb7a89806109b9e40e0f551c020d:
  slug: "e0196bfa1976eb7a89806109b9e40e0f551c020d"
@@ -2406,7 +2406,7 @@ standard_e0196bfa1976eb7a89806109b9e40e0f551c020d:
  sub_subject: "Mathematics"
  is_parent_standard: "false"
  parent_standard: "CCSS.Math.Content.7.RP.A.2"
- standard_type: "&ndash;30"
+ standard_type: "Common Core"
  text: "Decide whether two quantities are in a proportional relationship, e.g., by testing for equivalent ratios in a table or graphing on a coordinate plane and observing whether the graph is a straight line through the origin."
 standard_243d1aaa408573276b387bc54d595ccd84b585ac:
  slug: "243d1aaa408573276b387bc54d595ccd84b585ac"
@@ -2416,7 +2416,7 @@ standard_243d1aaa408573276b387bc54d595ccd84b585ac:
  sub_subject: "Mathematics"
  is_parent_standard: "false"
  parent_standard: "CCSS.Math.Content.7.RP.A.2"
- standard_type: "&ndash;30"
+ standard_type: "Common Core"
  text: "Identify the constant of proportionality (unit rate) in tables, graphs, equations, diagrams, and verbal descriptions of proportional relationships."
 standard_a129fee8cc4f61ecf2620f25806ac492e6f93385:
  slug: "a129fee8cc4f61ecf2620f25806ac492e6f93385"
@@ -2426,7 +2426,7 @@ standard_a129fee8cc4f61ecf2620f25806ac492e6f93385:
  sub_subject: "Mathematics"
  is_parent_standard: "false"
  parent_standard: "CCSS.Math.Content.7.RP.A.2"
- standard_type: "&ndash;30"
+ standard_type: "Common Core"
  text: "Represent proportional relationships by equations. For example, if total cost t is proportional to the number n of items purchased at a constant price p, the relationship between the total cost and the number of items can be expressed as t = pn."
 standard_bb92c2e79a8dc0886360a44c795c83b38089a2c0:
  slug: "bb92c2e79a8dc0886360a44c795c83b38089a2c0"
@@ -2436,7 +2436,7 @@ standard_bb92c2e79a8dc0886360a44c795c83b38089a2c0:
  sub_subject: "Mathematics"
  is_parent_standard: "false"
  parent_standard: "CCSS.Math.Content.7.RP.A.2"
- standard_type: "&ndash;30"
+ standard_type: "Common Core"
  text: "Explain what a point (x, y) on the graph of a proportional relationship means in terms of the situation, with special attention to the points (0, 0) and (1, r) where r is the unit rate."
 standard_83dfa0c83f7c7584fd71ac05911e3f8bbbe6db17:
  slug: "83dfa0c83f7c7584fd71ac05911e3f8bbbe6db17"
@@ -2446,7 +2446,7 @@ standard_83dfa0c83f7c7584fd71ac05911e3f8bbbe6db17:
  sub_subject: "Mathematics"
  is_parent_standard: "false"
  parent_standard: ""
- standard_type: "&ndash;30"
+ standard_type: "Common Core"
  text: "Use proportional relationships to solve multistep ratio and percent problems. Examples: simple interest, tax, markups and markdowns, gratuities and commissions, fees, percent increase and decrease, percent error."
 standard_e87038cf9c75af364e168d404567ec2dcfa51bc5:
  slug: "e87038cf9c75af364e168d404567ec2dcfa51bc5"
@@ -2456,7 +2456,7 @@ standard_e87038cf9c75af364e168d404567ec2dcfa51bc5:
  sub_subject: "Mathematics"
  is_parent_standard: "true"
  parent_standard: ""
- standard_type: "&ndash;30"
+ standard_type: "Common Core"
  text: "Apply and extend previous understandings of addition and subtraction to add and subtract rational numbers; represent addition and subtraction on a horizontal or vertical number line diagram."
 standard_f99e131721021956d683506db7d1feced53db7d6:
  slug: "f99e131721021956d683506db7d1feced53db7d6"
@@ -2466,7 +2466,7 @@ standard_f99e131721021956d683506db7d1feced53db7d6:
  sub_subject: "Mathematics"
  is_parent_standard: "false"
  parent_standard: "CCSS.Math.Content.7.NS.A.1"
- standard_type: "&ndash;30"
+ standard_type: "Common Core"
  text: "Describe situations in which opposite quantities combine to make 0. For example, a hydrogen atom has 0 charge because its two constituents are oppositely charged."
 standard_88b969aac74d970026c374d06f8385ff89041ff7:
  slug: "88b969aac74d970026c374d06f8385ff89041ff7"
@@ -2476,7 +2476,7 @@ standard_88b969aac74d970026c374d06f8385ff89041ff7:
  sub_subject: "Mathematics"
  is_parent_standard: "false"
  parent_standard: "CCSS.Math.Content.7.NS.A.1"
- standard_type: "q"
+ standard_type: "Common Core"
  text: "Understand p + q as the number located a distance "
 standard_212484df5a665ec0c88565a09119f33379ea6c29:
  slug: "212484df5a665ec0c88565a09119f33379ea6c29"
@@ -2486,7 +2486,7 @@ standard_212484df5a665ec0c88565a09119f33379ea6c29:
  sub_subject: "Mathematics"
  is_parent_standard: "false"
  parent_standard: "CCSS.Math.Content.7.NS.A.1"
- standard_type: "q"
+ standard_type: "Common Core"
  text: "Understand subtraction of rational numbers as adding the additive inverse, p &ndash; q = p + (&ndash;q). Show that the distance between two rational numbers on the number line is the absolute value of their difference, and apply this principle in real-world contexts."
 standard_51714c8b2fed6ab6b4927eb964760f9b6a16cffc:
  slug: "51714c8b2fed6ab6b4927eb964760f9b6a16cffc"
@@ -2496,7 +2496,7 @@ standard_51714c8b2fed6ab6b4927eb964760f9b6a16cffc:
  sub_subject: "Mathematics"
  is_parent_standard: "false"
  parent_standard: "CCSS.Math.Content.7.NS.A.1"
- standard_type: "q"
+ standard_type: "Common Core"
  text: "Apply properties of operations as strategies to add and subtract rational numbers."
 standard_b26216e8a661307ee5eb8c022314f55b57998b8d:
  slug: "b26216e8a661307ee5eb8c022314f55b57998b8d"
@@ -2506,7 +2506,7 @@ standard_b26216e8a661307ee5eb8c022314f55b57998b8d:
  sub_subject: "Mathematics"
  is_parent_standard: "true"
  parent_standard: ""
- standard_type: "q"
+ standard_type: "Common Core"
  text: "Apply and extend previous understandings of multiplication and division and of fractions to multiply and divide rational numbers."
 standard_eaf622c8dfe6e85041eaa3eccabeb41b6d9c8734:
  slug: "eaf622c8dfe6e85041eaa3eccabeb41b6d9c8734"
@@ -2516,7 +2516,7 @@ standard_eaf622c8dfe6e85041eaa3eccabeb41b6d9c8734:
  sub_subject: "Mathematics"
  is_parent_standard: "false"
  parent_standard: "CCSS.Math.Content.7.NS.A.2"
- standard_type: "q"
+ standard_type: "Common Core"
  text: "Understand that multiplication is extended from fractions to rational numbers by requiring that operations continue to satisfy the properties of operations, particularly the distributive property, leading to products such as (&ndash;1)(&ndash;1) = 1 and the rules for multiplying signed numbers. Interpret products of rational numbers by describing real-world contexts."
 standard_2f539963f29569a5da709afae4484794627b9698:
  slug: "2f539963f29569a5da709afae4484794627b9698"
@@ -2526,7 +2526,7 @@ standard_2f539963f29569a5da709afae4484794627b9698:
  sub_subject: "Mathematics"
  is_parent_standard: "false"
  parent_standard: "CCSS.Math.Content.7.NS.A.2"
- standard_type: "q"
+ standard_type: "Common Core"
  text: "Understand that integers can be divided, provided that the divisor is not zero, and every quotient of integers (with non-zero divisor) is a rational number. If p and q are integers, then &ndash;(p/q) = (&ndash;p)/q = p/(&ndash;q). Interpret quotients of rational numbers by describing real-world contexts."
 standard_f7a36488fb398412b57e7a80970cc723472f3156:
  slug: "f7a36488fb398412b57e7a80970cc723472f3156"
@@ -2536,7 +2536,7 @@ standard_f7a36488fb398412b57e7a80970cc723472f3156:
  sub_subject: "Mathematics"
  is_parent_standard: "false"
  parent_standard: "CCSS.Math.Content.7.NS.A.2"
- standard_type: "q"
+ standard_type: "Common Core"
  text: "Apply properties of operations as strategies to multiply and divide rational numbers."
 standard_e2798657d8c551fb38f22a3e545b273795eb6364:
  slug: "e2798657d8c551fb38f22a3e545b273795eb6364"
@@ -2546,7 +2546,7 @@ standard_e2798657d8c551fb38f22a3e545b273795eb6364:
  sub_subject: "Mathematics"
  is_parent_standard: "false"
  parent_standard: "CCSS.Math.Content.7.NS.A.2"
- standard_type: "q"
+ standard_type: "Common Core"
  text: "Convert a rational number to a decimal using long division; know that the decimal form of a rational number terminates in 0s or eventually repeats."
 standard_fdbe55fbca62bee71d77d19ddae5084b5ac52219:
  slug: "fdbe55fbca62bee71d77d19ddae5084b5ac52219"
@@ -2556,7 +2556,7 @@ standard_fdbe55fbca62bee71d77d19ddae5084b5ac52219:
  sub_subject: "Mathematics"
  is_parent_standard: "false"
  parent_standard: ""
- standard_type: "q"
+ standard_type: "Common Core"
  text: "Solve real-world and mathematical problems involving the four operations with rational numbers.1"
 standard_524f8c792c3d60d5e66983a1df2a692b15a54b80:
  slug: "524f8c792c3d60d5e66983a1df2a692b15a54b80"
@@ -2566,7 +2566,7 @@ standard_524f8c792c3d60d5e66983a1df2a692b15a54b80:
  sub_subject: "Mathematics"
  is_parent_standard: "false"
  parent_standard: ""
- standard_type: "q"
+ standard_type: "Common Core"
  text: "Apply properties of operations as strategies to add, subtract, factor, and expand linear expressions with rational coefficients."
 standard_657889a366d633df2dec648901ec94842d30b094:
  slug: "657889a366d633df2dec648901ec94842d30b094"
@@ -2576,7 +2576,7 @@ standard_657889a366d633df2dec648901ec94842d30b094:
  sub_subject: "Mathematics"
  is_parent_standard: "false"
  parent_standard: ""
- standard_type: "q"
+ standard_type: "Common Core"
  text: "Understand that rewriting an expression in different forms in a problem context can shed light on the problem and how the quantities in it are related. For example, a + 0.05a = 1.05a means that &ldquo;increase by 5%&rdquo; is the same as &ldquo;multiply by 1.05.&rdquo;"
 standard_0192cf7fdccb7486c5ca4c5e69c620785301ce69:
  slug: "0192cf7fdccb7486c5ca4c5e69c620785301ce69"
@@ -2586,7 +2586,7 @@ standard_0192cf7fdccb7486c5ca4c5e69c620785301ce69:
  sub_subject: "Mathematics"
  is_parent_standard: "false"
  parent_standard: ""
- standard_type: "q"
+ standard_type: "Common Core"
  text: "Solve multi-step real-life and mathematical problems posed with positive and negative rational numbers in any form (whole numbers, fractions, and decimals), using tools strategically. Apply properties of operations to calculate with numbers in any form; convert between forms as appropriate; and assess the reasonableness of answers using mental computation and estimation strategies. For example: If a woman making $25 an hour gets a 10% raise, she will make an additional 1/10 of her salary an hour, or $2.50, for a new salary of $27.50. If you want to place a towel bar 9 3/4 inches long in the center of a door that is 27 1/2 inches wide, you will need to place the bar about 9 inches from each edge; this estimate can be used as a check on the exact computation. "
 standard_90a87fb7d6545d132c701c32ae6a31d3c5ee8767:
  slug: "90a87fb7d6545d132c701c32ae6a31d3c5ee8767"
@@ -2596,7 +2596,7 @@ standard_90a87fb7d6545d132c701c32ae6a31d3c5ee8767:
  sub_subject: "Mathematics"
  is_parent_standard: "true"
  parent_standard: ""
- standard_type: "q"
+ standard_type: "Common Core"
  text: "Use variables to represent quantities in a real-world or mathematical problem, and construct simple equations and inequalities to solve problems by reasoning about the quantities."
 standard_0b806ae801b49f0d0c0d30205240f0e79031db4e:
  slug: "0b806ae801b49f0d0c0d30205240f0e79031db4e"
@@ -2606,7 +2606,7 @@ standard_0b806ae801b49f0d0c0d30205240f0e79031db4e:
  sub_subject: "Mathematics"
  is_parent_standard: "false"
  parent_standard: "CCSS.Math.Content.7.EE.B.4"
- standard_type: "q"
+ standard_type: "Common Core"
  text: "Solve word problems leading to equations of the form px + q = r and p(x + q) = r, where p, q, and r are specific rational numbers. Solve equations of these forms fluently. Compare an algebraic solution to an arithmetic solution, identifying the sequence of the operations used in each approach. For example, the perimeter of a rectangle is 54 cm. Its length is 6 cm. What is its width?"
 standard_435edf43ca4a4a378b436a48284b1a9aafeac4a7:
  slug: "435edf43ca4a4a378b436a48284b1a9aafeac4a7"
@@ -2616,7 +2616,7 @@ standard_435edf43ca4a4a378b436a48284b1a9aafeac4a7:
  sub_subject: "Mathematics"
  is_parent_standard: "false"
  parent_standard: "CCSS.Math.Content.7.EE.B.4"
- standard_type: "q"
+ standard_type: "Common Core"
  text: "Solve word problems leading to inequalities of the form px + q &gt; r or px + q &lt; r, where p, q, and r are specific rational numbers. Graph the solution set of the inequality and interpret it in the context of the problem. For example: As a salesperson, you are paid $50 per week plus $3 per sale. This week you want your pay to be at least $100. Write an inequality for the number of sales you need to make, and describe the solutions."
 standard_81aeaef8c2ffab7f98d528f47bc29ee5cfe647f0:
  slug: "81aeaef8c2ffab7f98d528f47bc29ee5cfe647f0"
@@ -2626,7 +2626,7 @@ standard_81aeaef8c2ffab7f98d528f47bc29ee5cfe647f0:
  sub_subject: "Mathematics"
  is_parent_standard: "false"
  parent_standard: ""
- standard_type: "q"
+ standard_type: "Common Core"
  text: "Solve problems involving scale drawings of geometric figures, including computing actual lengths and areas from a scale drawing and reproducing a scale drawing at a different scale."
 standard_45f413a3a98be42f72feae9ed737ddffcd1bbdc8:
  slug: "45f413a3a98be42f72feae9ed737ddffcd1bbdc8"
@@ -2636,7 +2636,7 @@ standard_45f413a3a98be42f72feae9ed737ddffcd1bbdc8:
  sub_subject: "Mathematics"
  is_parent_standard: "false"
  parent_standard: ""
- standard_type: "q"
+ standard_type: "Common Core"
  text: "Draw (freehand, with ruler and protractor, and with technology) geometric shapes with given conditions. Focus on constructing triangles from three measures of angles or sides, noticing when the conditions determine a unique triangle, more than one triangle, or no triangle."
 standard_dbda8588b01baedc351d67df8daa33e6130f900f:
  slug: "dbda8588b01baedc351d67df8daa33e6130f900f"
@@ -2646,7 +2646,7 @@ standard_dbda8588b01baedc351d67df8daa33e6130f900f:
  sub_subject: "Mathematics"
  is_parent_standard: "false"
  parent_standard: ""
- standard_type: "q"
+ standard_type: "Common Core"
  text: "Describe the two-dimensional figures that result from slicing three-dimensional figures, as in plane sections of right rectangular prisms and right rectangular pyramids."
 standard_89b3aaa52398b082dcde96cc0de9037157c2a017:
  slug: "89b3aaa52398b082dcde96cc0de9037157c2a017"
@@ -2656,7 +2656,7 @@ standard_89b3aaa52398b082dcde96cc0de9037157c2a017:
  sub_subject: "Mathematics"
  is_parent_standard: "false"
  parent_standard: ""
- standard_type: "q"
+ standard_type: "Common Core"
  text: "Know the formulas for the area and circumference of a circle and use them to solve problems; give an informal derivation of the relationship between the circumference and area of a circle."
 standard_9f0ce02e9beaa7f6c34ce0d7940f685e17f7d967:
  slug: "9f0ce02e9beaa7f6c34ce0d7940f685e17f7d967"
@@ -2666,7 +2666,7 @@ standard_9f0ce02e9beaa7f6c34ce0d7940f685e17f7d967:
  sub_subject: "Mathematics"
  is_parent_standard: "false"
  parent_standard: ""
- standard_type: "q"
+ standard_type: "Common Core"
  text: "Use facts about supplementary, complementary, vertical, and adjacent angles in a multi-step problem to write and solve simple equations for an unknown angle in a figure."
 standard_6e9ae5a0f2b893fe2f0ebc92675d7ba8738568ac:
  slug: "6e9ae5a0f2b893fe2f0ebc92675d7ba8738568ac"
@@ -2676,7 +2676,7 @@ standard_6e9ae5a0f2b893fe2f0ebc92675d7ba8738568ac:
  sub_subject: "Mathematics"
  is_parent_standard: "false"
  parent_standard: ""
- standard_type: "q"
+ standard_type: "Common Core"
  text: "Solve real-world and mathematical problems involving area, volume and surface area of two- and three-dimensional objects composed of triangles, quadrilaterals, polygons, cubes, and right prisms."
 standard_e43bde16f6b71dd3ab588e37e24da728a0b434f9:
  slug: "e43bde16f6b71dd3ab588e37e24da728a0b434f9"
@@ -2686,7 +2686,7 @@ standard_e43bde16f6b71dd3ab588e37e24da728a0b434f9:
  sub_subject: "Mathematics"
  is_parent_standard: "false"
  parent_standard: ""
- standard_type: "q"
+ standard_type: "Common Core"
  text: "Understand that statistics can be used to gain information about a population by examining a sample of the population; generalizations about a population from a sample are valid only if the sample is representative of that population. Understand that random sampling tends to produce representative samples and support valid inferences."
 standard_0242c91438dd463d5573f7ee4d36c7fc16133fd6:
  slug: "0242c91438dd463d5573f7ee4d36c7fc16133fd6"
@@ -2696,7 +2696,7 @@ standard_0242c91438dd463d5573f7ee4d36c7fc16133fd6:
  sub_subject: "Mathematics"
  is_parent_standard: "false"
  parent_standard: ""
- standard_type: "q"
+ standard_type: "Common Core"
  text: "Use data from a random sample to draw inferences about a population with an unknown characteristic of interest. Generate multiple samples (or simulated samples) of the same size to gauge the variation in estimates or predictions. For example, estimate the mean word length in a book by randomly sampling words from the book; predict the winner of a school election based on randomly sampled survey data. Gauge how far off the estimate or prediction might be."
 standard_9b5d8590b2ca6e802e5869961f6031e489de48ab:
  slug: "9b5d8590b2ca6e802e5869961f6031e489de48ab"
@@ -2706,7 +2706,7 @@ standard_9b5d8590b2ca6e802e5869961f6031e489de48ab:
  sub_subject: "Mathematics"
  is_parent_standard: "false"
  parent_standard: ""
- standard_type: "q"
+ standard_type: "Common Core"
  text: "Informally assess the degree of visual overlap of two numerical data distributions with similar variabilities, measuring the difference between the centers by expressing it as a multiple of a measure of variability. For example, the mean height of players on the basketball team is 10 cm greater than the mean height of players on the soccer team, about twice the variability (mean absolute deviation) on either team; on a dot plot, the separation between the two distributions of heights is noticeable."
 standard_fdabc77763702ba21d01e5b3b1fab3522a7cca38:
  slug: "fdabc77763702ba21d01e5b3b1fab3522a7cca38"
@@ -2716,7 +2716,7 @@ standard_fdabc77763702ba21d01e5b3b1fab3522a7cca38:
  sub_subject: "Mathematics"
  is_parent_standard: "false"
  parent_standard: ""
- standard_type: "q"
+ standard_type: "Common Core"
  text: "Use measures of center and measures of variability for numerical data from random samples to draw informal comparative inferences about two populations. For example, decide whether the words in a chapter of a seventh-grade science book are generally longer than the words in a chapter of a fourth-grade science book."
 standard_cdca8dcacdde6871c7764f501d1aabf753c342ae:
  slug: "cdca8dcacdde6871c7764f501d1aabf753c342ae"
@@ -2726,7 +2726,7 @@ standard_cdca8dcacdde6871c7764f501d1aabf753c342ae:
  sub_subject: "Mathematics"
  is_parent_standard: "false"
  parent_standard: ""
- standard_type: "q"
+ standard_type: "Common Core"
  text: "Understand that the probability of a chance event is a number between 0 and 1 that expresses the likelihood of the event occurring. Larger numbers indicate greater likelihood. A probability near 0 indicates an unlikely event, a probability around 1/2 indicates an event that is neither unlikely nor likely, and a probability near 1 indicates a likely event."
 standard_f53816a756bcbe1a57ee3666fe9910e0d21c6af5:
  slug: "f53816a756bcbe1a57ee3666fe9910e0d21c6af5"
@@ -2736,7 +2736,7 @@ standard_f53816a756bcbe1a57ee3666fe9910e0d21c6af5:
  sub_subject: "Mathematics"
  is_parent_standard: "false"
  parent_standard: ""
- standard_type: "q"
+ standard_type: "Common Core"
  text: "Approximate the probability of a chance event by collecting data on the chance process that produces it and observing its long-run relative frequency, and predict the approximate relative frequency given the probability. For example, when rolling a number cube 600 times, predict that a 3 or 6 would be rolled roughly 200 times, but probably not exactly 200 times."
 standard_437a66ee6c018124dd2eddaf7e9429bdd176f349:
  slug: "437a66ee6c018124dd2eddaf7e9429bdd176f349"
@@ -2746,7 +2746,7 @@ standard_437a66ee6c018124dd2eddaf7e9429bdd176f349:
  sub_subject: "Mathematics"
  is_parent_standard: "true"
  parent_standard: ""
- standard_type: "q"
+ standard_type: "Common Core"
  text: "Develop a probability model and use it to find probabilities of events. Compare probabilities from a model to observed frequencies; if the agreement is not good, explain possible sources of the discrepancy."
 standard_424df643dea82a7f813aa0a2d48c52d496f9d7e2:
  slug: "424df643dea82a7f813aa0a2d48c52d496f9d7e2"
@@ -2756,7 +2756,7 @@ standard_424df643dea82a7f813aa0a2d48c52d496f9d7e2:
  sub_subject: "Mathematics"
  is_parent_standard: "false"
  parent_standard: "CCSS.Math.Content.7.SP.C.7"
- standard_type: "q"
+ standard_type: "Common Core"
  text: "Develop a uniform probability model by assigning equal probability to all outcomes, and use the model to determine probabilities of events. For example, if a student is selected at random from a class, find the probability that Jane will be selected and the probability that a girl will be selected."
 standard_c49d502ba83a06bd6b74ac7dba0e9e9c4533a121:
  slug: "c49d502ba83a06bd6b74ac7dba0e9e9c4533a121"
@@ -2766,7 +2766,7 @@ standard_c49d502ba83a06bd6b74ac7dba0e9e9c4533a121:
  sub_subject: "Mathematics"
  is_parent_standard: "false"
  parent_standard: "CCSS.Math.Content.7.SP.C.7"
- standard_type: "q"
+ standard_type: "Common Core"
  text: "Develop a probability model (which may not be uniform) by observing frequencies in data generated from a chance process. For example, find the approximate probability that a spinning penny will land heads up or that a tossed paper cup will land open-end down. Do the outcomes for the spinning penny appear to be equally likely based on the observed frequencies?"
 standard_2dd96de02e693b08f93fdc8e536b1c5b63a6bedb:
  slug: "2dd96de02e693b08f93fdc8e536b1c5b63a6bedb"
@@ -2776,7 +2776,7 @@ standard_2dd96de02e693b08f93fdc8e536b1c5b63a6bedb:
  sub_subject: "Mathematics"
  is_parent_standard: "true"
  parent_standard: ""
- standard_type: "q"
+ standard_type: "Common Core"
  text: "Find probabilities of compound events using organized lists, tables, tree diagrams, and simulation."
 standard_15892222bda8fd14f112b35260466957e1df0743:
  slug: "15892222bda8fd14f112b35260466957e1df0743"
@@ -2786,7 +2786,7 @@ standard_15892222bda8fd14f112b35260466957e1df0743:
  sub_subject: "Mathematics"
  is_parent_standard: "false"
  parent_standard: "CCSS.Math.Content.7.SP.C.8"
- standard_type: "q"
+ standard_type: "Common Core"
  text: "Understand that, just as with simple events, the probability of a compound event is the fraction of outcomes in the sample space for which the compound event occurs."
 standard_b9a59c44b463a4e4a927b29357e5d905fa5156ad:
  slug: "b9a59c44b463a4e4a927b29357e5d905fa5156ad"
@@ -2796,7 +2796,7 @@ standard_b9a59c44b463a4e4a927b29357e5d905fa5156ad:
  sub_subject: "Mathematics"
  is_parent_standard: "false"
  parent_standard: "CCSS.Math.Content.7.SP.C.8"
- standard_type: "q"
+ standard_type: "Common Core"
  text: "Represent sample spaces for compound events using methods such as organized lists, tables and tree diagrams. For an event described in everyday language (e.g., &ldquo;rolling double sixes&rdquo;), identify the outcomes in the sample space which compose the event."
 standard_b881f367c0bb37be8dc327326bdfa4f8aa647282:
  slug: "b881f367c0bb37be8dc327326bdfa4f8aa647282"
@@ -2806,7 +2806,7 @@ standard_b881f367c0bb37be8dc327326bdfa4f8aa647282:
  sub_subject: "Mathematics"
  is_parent_standard: "false"
  parent_standard: "CCSS.Math.Content.7.SP.C.8"
- standard_type: "q"
+ standard_type: "Common Core"
  text: "Design and use a simulation to generate frequencies for compound events. For example, use random digits as a simulation tool to approximate the answer to the question: If 40% of donors have type A blood, what is the probability that it will take at least 4 donors to find one with type A blood?"
 standard_cfe4980024f0dcc95ce3d1b81bcabe99265b90a7:
  slug: "cfe4980024f0dcc95ce3d1b81bcabe99265b90a7"
@@ -2816,7 +2816,7 @@ standard_cfe4980024f0dcc95ce3d1b81bcabe99265b90a7:
  sub_subject: "Mathematics"
  is_parent_standard: "false"
  parent_standard: ""
- standard_type: "q"
+ standard_type: "Common Core"
  text: "Know that numbers that are not rational are called irrational. Understand informally that every number has a decimal expansion; for rational numbers show that the decimal expansion repeats eventually, and convert a decimal expansion which repeats eventually into a rational number."
 standard_27edd7da001481a1afdf4f1ff4699fd26c3d3f2b:
  slug: "27edd7da001481a1afdf4f1ff4699fd26c3d3f2b"
@@ -2826,7 +2826,7 @@ standard_27edd7da001481a1afdf4f1ff4699fd26c3d3f2b:
  sub_subject: "Mathematics"
  is_parent_standard: "false"
  parent_standard: ""
- standard_type: "q"
+ standard_type: "Common Core"
  text: "Use rational approximations of irrational numbers to compare the size of irrational numbers, locate them approximately on a number line diagram, and estimate the value of expressions (e.g., &pi;2). For example, by truncating the decimal expansion of &radic;2, show that &radic;2 is between 1 and 2, then between 1.4 and 1.5, and explain how to continue on to get better approximations."
 standard_2f74e8b2851f50feebc30634084f7cc973f95741:
  slug: "2f74e8b2851f50feebc30634084f7cc973f95741"
@@ -2836,7 +2836,7 @@ standard_2f74e8b2851f50feebc30634084f7cc973f95741:
  sub_subject: "Mathematics"
  is_parent_standard: "false"
  parent_standard: ""
- standard_type: "q"
+ standard_type: "Common Core"
  text: "Know and apply the properties of integer exponents to generate equivalent numerical expressions. For example, 32&nbsp;&times;&nbsp;3&ndash;5 = 3&ndash;3 = 1/33 = 1/27."
 standard_6051b6055f22cae1152cfba3a0be17dd6d62a16f:
  slug: "6051b6055f22cae1152cfba3a0be17dd6d62a16f"
@@ -2846,7 +2846,7 @@ standard_6051b6055f22cae1152cfba3a0be17dd6d62a16f:
  sub_subject: "Mathematics"
  is_parent_standard: "false"
  parent_standard: ""
- standard_type: "q"
+ standard_type: "Common Core"
  text: "Use square root and cube root symbols to represent solutions to equations of the form x2 = p and x3 = p, where p is a positive rational number. Evaluate square roots of small perfect squares and cube roots of small perfect cubes. Know that &radic;2 is irrational."
 standard_5ace42394f85061e1fe75360c7e7e083b53e0674:
  slug: "5ace42394f85061e1fe75360c7e7e083b53e0674"
@@ -2856,7 +2856,7 @@ standard_5ace42394f85061e1fe75360c7e7e083b53e0674:
  sub_subject: "Mathematics"
  is_parent_standard: "false"
  parent_standard: ""
- standard_type: "q"
+ standard_type: "Common Core"
  text: "Use numbers expressed in the form of a single digit times an integer power of 10 to estimate very large or very small quantities, and to express how many times as much one is than the other. For example, estimate the population of the United States as 3 times 108 and the population of the world as 7 times 109, and determine that the world population is more than 20 times larger."
 standard_7f6e6e9a8fb14056da9f637616d62321204a51d6:
  slug: "7f6e6e9a8fb14056da9f637616d62321204a51d6"
@@ -2866,7 +2866,7 @@ standard_7f6e6e9a8fb14056da9f637616d62321204a51d6:
  sub_subject: "Mathematics"
  is_parent_standard: "false"
  parent_standard: ""
- standard_type: "q"
+ standard_type: "Common Core"
  text: "Perform operations with numbers expressed in scientific notation, including problems where both decimal and scientific notation are used. Use scientific notation and choose units of appropriate size for measurements of very large or very small quantities (e.g., use millimeters per year for seafloor spreading). Interpret scientific notation that has been generated by technology"
 standard_ae68aad9d304c115f9a22d49535eab35686e1e8f:
  slug: "ae68aad9d304c115f9a22d49535eab35686e1e8f"
@@ -2876,7 +2876,7 @@ standard_ae68aad9d304c115f9a22d49535eab35686e1e8f:
  sub_subject: "Mathematics"
  is_parent_standard: "false"
  parent_standard: ""
- standard_type: "q"
+ standard_type: "Common Core"
  text: "Graph proportional relationships, interpreting the unit rate as the slope of the graph. Compare two different proportional relationships represented in different ways. For example, compare a distance-time graph to a distance-time equation to determine which of two moving objects has greater speed."
 standard_2a8cd4835220e064498d95a6078e7a372443cc4f:
  slug: "2a8cd4835220e064498d95a6078e7a372443cc4f"
@@ -2886,7 +2886,7 @@ standard_2a8cd4835220e064498d95a6078e7a372443cc4f:
  sub_subject: "Mathematics"
  is_parent_standard: "false"
  parent_standard: ""
- standard_type: "q"
+ standard_type: "Common Core"
  text: "Use similar triangles to explain why the slope m is the same between any two distinct points on a non-vertical line in the coordinate plane; derive the equation y = mx for a line through the origin and the equation y = mx + b for a line intercepting the vertical axis at b."
 standard_08b200cb9d7af91ced3933e4061b5d0529908b6e:
  slug: "08b200cb9d7af91ced3933e4061b5d0529908b6e"
@@ -2896,7 +2896,7 @@ standard_08b200cb9d7af91ced3933e4061b5d0529908b6e:
  sub_subject: "Mathematics"
  is_parent_standard: "true"
  parent_standard: ""
- standard_type: "q"
+ standard_type: "Common Core"
  text: "Solve linear equations in one variable."
 standard_c3b16b590eba11efdf0e96d9d99903fc62db9f3e:
  slug: "c3b16b590eba11efdf0e96d9d99903fc62db9f3e"
@@ -2906,7 +2906,7 @@ standard_c3b16b590eba11efdf0e96d9d99903fc62db9f3e:
  sub_subject: "Mathematics"
  is_parent_standard: "false"
  parent_standard: "CCSS.Math.Content.8.EE.C.7"
- standard_type: "q"
+ standard_type: "Common Core"
  text: "Give examples of linear equations in one variable with one solution, infinitely many solutions, or no solutions. Show which of these possibilities is the case by successively transforming the given equation into simpler forms, until an equivalent equation of the form x = a, a = a, or a = b results (where a and b are different numbers)."
 standard_9ed9ac8ef3acfe2c8a60594aafd2f18a4a40d619:
  slug: "9ed9ac8ef3acfe2c8a60594aafd2f18a4a40d619"
@@ -2916,7 +2916,7 @@ standard_9ed9ac8ef3acfe2c8a60594aafd2f18a4a40d619:
  sub_subject: "Mathematics"
  is_parent_standard: "false"
  parent_standard: "CCSS.Math.Content.8.EE.C.7"
- standard_type: "q"
+ standard_type: "Common Core"
  text: "Solve linear equations with rational number coefficients, including equations whose solutions require expanding expressions using the distributive property and collecting like terms."
 standard_228b0464cc6084cf3a422a1262b468e35e83d2e4:
  slug: "228b0464cc6084cf3a422a1262b468e35e83d2e4"
@@ -2926,7 +2926,7 @@ standard_228b0464cc6084cf3a422a1262b468e35e83d2e4:
  sub_subject: "Mathematics"
  is_parent_standard: "true"
  parent_standard: ""
- standard_type: "q"
+ standard_type: "Common Core"
  text: "Analyze and solve pairs of simultaneous linear equations."
 standard_d6bc8fa2009472cd57723a0eddfcc8bb52eab861:
  slug: "d6bc8fa2009472cd57723a0eddfcc8bb52eab861"
@@ -2936,7 +2936,7 @@ standard_d6bc8fa2009472cd57723a0eddfcc8bb52eab861:
  sub_subject: "Mathematics"
  is_parent_standard: "false"
  parent_standard: "CCSS.Math.Content.8.EE.C.8"
- standard_type: "q"
+ standard_type: "Common Core"
  text: "Understand that solutions to a system of two linear equations in two variables correspond to points of intersection of their graphs, because points of intersection satisfy both equations simultaneously."
 standard_b772d5816095cb5ce280279931c2afd2ae913095:
  slug: "b772d5816095cb5ce280279931c2afd2ae913095"
@@ -2946,7 +2946,7 @@ standard_b772d5816095cb5ce280279931c2afd2ae913095:
  sub_subject: "Mathematics"
  is_parent_standard: "false"
  parent_standard: "CCSS.Math.Content.8.EE.C.8"
- standard_type: "q"
+ standard_type: "Common Core"
  text: "Solve systems of two linear equations in two variables algebraically, and estimate solutions by graphing the equations. Solve simple cases by inspection. For example, 3x + 2y = 5 and 3x + 2y = 6 have no solution because 3x + 2y cannot simultaneously be 5 and 6."
 standard_c5fd3428aa31cf4a4d20a00dcbf58615417c7b8e:
  slug: "c5fd3428aa31cf4a4d20a00dcbf58615417c7b8e"
@@ -2956,7 +2956,7 @@ standard_c5fd3428aa31cf4a4d20a00dcbf58615417c7b8e:
  sub_subject: "Mathematics"
  is_parent_standard: "false"
  parent_standard: "CCSS.Math.Content.8.EE.C.8"
- standard_type: "q"
+ standard_type: "Common Core"
  text: "Solve real-world and mathematical problems leading to two linear equations in two variables. For example, given coordinates for two pairs of points, determine whether the line through the first pair of points intersects the line through the second pair."
 standard_6b5ee6a904c989c78bfd74e5010420987287ffe1:
  slug: "6b5ee6a904c989c78bfd74e5010420987287ffe1"
@@ -2966,7 +2966,7 @@ standard_6b5ee6a904c989c78bfd74e5010420987287ffe1:
  sub_subject: "Mathematics"
  is_parent_standard: "false"
  parent_standard: ""
- standard_type: "q"
+ standard_type: "Common Core"
  text: "Understand that a function is a rule that assigns to each input exactly one output. The graph of a function is the set of ordered pairs consisting of an input and the corresponding output.1"
 standard_1f4dbca0a19700c1612fc4db843292d6ed92f40d:
  slug: "1f4dbca0a19700c1612fc4db843292d6ed92f40d"
@@ -2976,7 +2976,7 @@ standard_1f4dbca0a19700c1612fc4db843292d6ed92f40d:
  sub_subject: "Mathematics"
  is_parent_standard: "false"
  parent_standard: ""
- standard_type: "q"
+ standard_type: "Common Core"
  text: "Compare properties of two functions each represented in a different way (algebraically, graphically, numerically in tables, or by verbal descriptions). For example, given a linear function represented by a table of values and a linear function represented by an algebraic expression, determine which function has the greater rate of change."
 standard_49672a1a49a07f7ace9908b423fad736073f9bc7:
  slug: "49672a1a49a07f7ace9908b423fad736073f9bc7"
@@ -2986,7 +2986,7 @@ standard_49672a1a49a07f7ace9908b423fad736073f9bc7:
  sub_subject: "Mathematics"
  is_parent_standard: "false"
  parent_standard: ""
- standard_type: "q"
+ standard_type: "Common Core"
  text: "Interpret the equation y = mx + b as defining a linear function, whose graph is a straight line; give examples of functions that are not linear. For example, the function A = s2 giving the area of a square as a function of its side length is not linear because its graph contains the points (1,1), (2,4) and (3,9), which are not on a straight line. "
 standard_d3ac1499c4e18e1f3178ebaca875b01882e2a249:
  slug: "d3ac1499c4e18e1f3178ebaca875b01882e2a249"
@@ -2996,7 +2996,7 @@ standard_d3ac1499c4e18e1f3178ebaca875b01882e2a249:
  sub_subject: "Mathematics"
  is_parent_standard: "false"
  parent_standard: ""
- standard_type: "q"
+ standard_type: "Common Core"
  text: "Construct a function to model a linear relationship between two quantities. Determine the rate of change&nbsp; and initial value of the function from a description of a relationship or from two (x, y) values, including reading these from a table or from a graph. Interpret the rate of change and initial value of a linear function in terms of the situation it models, and in terms of its graph or a table of values."
 standard_637f871ba3d2ae1a1a17013508f092a90ff2003f:
  slug: "637f871ba3d2ae1a1a17013508f092a90ff2003f"
@@ -3006,7 +3006,7 @@ standard_637f871ba3d2ae1a1a17013508f092a90ff2003f:
  sub_subject: "Mathematics"
  is_parent_standard: "false"
  parent_standard: ""
- standard_type: "q"
+ standard_type: "Common Core"
  text: "Describe qualitatively the functional relationship between two quantities by analyzing a graph (e.g., where the function is increasing or decreasing, linear or nonlinear). Sketch a graph that exhibits the qualitative features of a function that has been described verbally."
 standard_998bd113fd5e1b61a51c75cdb33d52bc56684ba5:
  slug: "998bd113fd5e1b61a51c75cdb33d52bc56684ba5"
@@ -3016,7 +3016,7 @@ standard_998bd113fd5e1b61a51c75cdb33d52bc56684ba5:
  sub_subject: "Mathematics"
  is_parent_standard: "true"
  parent_standard: ""
- standard_type: "q"
+ standard_type: "Common Core"
  text: "Verify experimentally the properties of rotations, reflections, and translations:"
 standard_344677e5fcdf586f232cad9d38cddb92239aa762:
  slug: "344677e5fcdf586f232cad9d38cddb92239aa762"
@@ -3026,7 +3026,7 @@ standard_344677e5fcdf586f232cad9d38cddb92239aa762:
  sub_subject: "Mathematics"
  is_parent_standard: "false"
  parent_standard: "CCSS.Math.Content.8.G.A.1"
- standard_type: "q"
+ standard_type: "Common Core"
  text: "Lines are taken to lines, and line segments to line segments of the same length."
 standard_1d3d5fb97accfbd57a43e43787249a7a89d2001d:
  slug: "1d3d5fb97accfbd57a43e43787249a7a89d2001d"
@@ -3036,7 +3036,7 @@ standard_1d3d5fb97accfbd57a43e43787249a7a89d2001d:
  sub_subject: "Mathematics"
  is_parent_standard: "false"
  parent_standard: "CCSS.Math.Content.8.G.A.1"
- standard_type: "q"
+ standard_type: "Common Core"
  text: "Angles are taken to angles of the same measure."
 standard_24083da912c4f07d964bc078c6ade53fc5943bb6:
  slug: "24083da912c4f07d964bc078c6ade53fc5943bb6"
@@ -3046,7 +3046,7 @@ standard_24083da912c4f07d964bc078c6ade53fc5943bb6:
  sub_subject: "Mathematics"
  is_parent_standard: "false"
  parent_standard: "CCSS.Math.Content.8.G.A.1"
- standard_type: "q"
+ standard_type: "Common Core"
  text: "Parallel lines are taken to parallel lines."
 standard_fb6cf3a90d106f1a27fab6e8a1d1afa1564c845d:
  slug: "fb6cf3a90d106f1a27fab6e8a1d1afa1564c845d"
@@ -3056,7 +3056,7 @@ standard_fb6cf3a90d106f1a27fab6e8a1d1afa1564c845d:
  sub_subject: "Mathematics"
  is_parent_standard: "false"
  parent_standard: ""
- standard_type: "q"
+ standard_type: "Common Core"
  text: "Understand that a two-dimensional figure is congruent to another if the second can be obtained from the first by a sequence of rotations, reflections, and translations; given two congruent figures, describe a sequence that exhibits the congruence between them."
 standard_ebcd5907f21da5fabc932f81b22550e7cd8b4e4e:
  slug: "ebcd5907f21da5fabc932f81b22550e7cd8b4e4e"
@@ -3066,7 +3066,7 @@ standard_ebcd5907f21da5fabc932f81b22550e7cd8b4e4e:
  sub_subject: "Mathematics"
  is_parent_standard: "false"
  parent_standard: ""
- standard_type: "q"
+ standard_type: "Common Core"
  text: "Describe the effect of dilations, translations, rotations, and reflections on two-dimensional figures using coordinates."
 standard_fb3c16234e3f3ec9d7e430b6869027f60fab6adf:
  slug: "fb3c16234e3f3ec9d7e430b6869027f60fab6adf"
@@ -3076,7 +3076,7 @@ standard_fb3c16234e3f3ec9d7e430b6869027f60fab6adf:
  sub_subject: "Mathematics"
  is_parent_standard: "false"
  parent_standard: ""
- standard_type: "q"
+ standard_type: "Common Core"
  text: "Understand that a two-dimensional figure is similar to another if the second can be obtained from the first by a sequence of rotations, reflections, translations, and dilations; given two similar two-dimensional figures, describe a sequence that exhibits the similarity between them."
 standard_6403fd3f7a99d98e8dac3e4526defc804a1c27c8:
  slug: "6403fd3f7a99d98e8dac3e4526defc804a1c27c8"
@@ -3086,7 +3086,7 @@ standard_6403fd3f7a99d98e8dac3e4526defc804a1c27c8:
  sub_subject: "Mathematics"
  is_parent_standard: "false"
  parent_standard: ""
- standard_type: "q"
+ standard_type: "Common Core"
  text: "Use informal arguments to establish facts about the angle sum and exterior angle of triangles, about the angles created when parallel lines are cut by a transversal, and the angle-angle criterion for similarity of triangles. For example, arrange three copies of the same triangle so that the sum of the three angles appears to form a line, and give an argument in terms of transversals why this is so."
 standard_e4067cb49a0a740bd893e418d73b68c1d8e3f6cd:
  slug: "e4067cb49a0a740bd893e418d73b68c1d8e3f6cd"
@@ -3096,7 +3096,7 @@ standard_e4067cb49a0a740bd893e418d73b68c1d8e3f6cd:
  sub_subject: "Mathematics"
  is_parent_standard: "false"
  parent_standard: ""
- standard_type: "q"
+ standard_type: "Common Core"
  text: "Explain a proof of the Pythagorean Theorem and its converse."
 standard_93976f6605505b0df61a7b4cfe7328889ccc3482:
  slug: "93976f6605505b0df61a7b4cfe7328889ccc3482"
@@ -3106,7 +3106,7 @@ standard_93976f6605505b0df61a7b4cfe7328889ccc3482:
  sub_subject: "Mathematics"
  is_parent_standard: "false"
  parent_standard: ""
- standard_type: "q"
+ standard_type: "Common Core"
  text: "Apply the Pythagorean Theorem to determine unknown side lengths in right triangles in real-world and mathematical problems in two and three dimensions."
 standard_78980d654576b4dc23433037106a87ec1e0957cc:
  slug: "78980d654576b4dc23433037106a87ec1e0957cc"
@@ -3116,7 +3116,7 @@ standard_78980d654576b4dc23433037106a87ec1e0957cc:
  sub_subject: "Mathematics"
  is_parent_standard: "false"
  parent_standard: ""
- standard_type: "q"
+ standard_type: "Common Core"
  text: "Apply the Pythagorean Theorem to find the distance between two points in a coordinate system."
 standard_75c1dcb94e7f05e5267682e6637010c5c52d0a5d:
  slug: "75c1dcb94e7f05e5267682e6637010c5c52d0a5d"
@@ -3126,7 +3126,7 @@ standard_75c1dcb94e7f05e5267682e6637010c5c52d0a5d:
  sub_subject: "Mathematics"
  is_parent_standard: "false"
  parent_standard: ""
- standard_type: "q"
+ standard_type: "Common Core"
  text: "Know the formulas for the volumes of cones, cylinders, and spheres and use them to solve real-world and mathematical problems."
 standard_df739aab1778559255c6d495a825f5e415f65b86:
  slug: "df739aab1778559255c6d495a825f5e415f65b86"
@@ -3136,7 +3136,7 @@ standard_df739aab1778559255c6d495a825f5e415f65b86:
  sub_subject: "Mathematics"
  is_parent_standard: "false"
  parent_standard: ""
- standard_type: "q"
+ standard_type: "Common Core"
  text: "Construct and interpret scatter plots for bivariate measurement data to investigate patterns of association between two quantities. Describe patterns such as clustering, outliers, positive or negative association, linear association, and nonlinear association."
 standard_c34e558c4305e95c528f8f6d1b009b570641bfcf:
  slug: "c34e558c4305e95c528f8f6d1b009b570641bfcf"
@@ -3146,7 +3146,7 @@ standard_c34e558c4305e95c528f8f6d1b009b570641bfcf:
  sub_subject: "Mathematics"
  is_parent_standard: "false"
  parent_standard: ""
- standard_type: "q"
+ standard_type: "Common Core"
  text: "Know that straight lines are widely used to model relationships between two quantitative variables. For scatter plots that suggest a linear association, informally fit a straight line, and informally assess the model fit by judging the closeness of the data points to the line."
 standard_26a73d2fc0b8814030485b3af77a9fb03e420261:
  slug: "26a73d2fc0b8814030485b3af77a9fb03e420261"
@@ -3156,7 +3156,7 @@ standard_26a73d2fc0b8814030485b3af77a9fb03e420261:
  sub_subject: "Mathematics"
  is_parent_standard: "false"
  parent_standard: ""
- standard_type: "q"
+ standard_type: "Common Core"
  text: "Use the equation of a linear model to solve problems in the context of bivariate measurement data, interpreting the slope and intercept. For example, in a linear model for a biology experiment, interpret a slope of 1.5 cm/hr as meaning that an additional hour of sunlight each day is associated with an additional 1.5 cm in mature plant height."
 standard_55f7e46ff29d5ace976155799ed0e9cf7180c375:
  slug: "55f7e46ff29d5ace976155799ed0e9cf7180c375"
@@ -3166,7 +3166,7 @@ standard_55f7e46ff29d5ace976155799ed0e9cf7180c375:
  sub_subject: "Mathematics"
  is_parent_standard: "false"
  parent_standard: ""
- standard_type: "q"
+ standard_type: "Common Core"
  text: "Understand that patterns of association can also be seen in bivariate categorical data by displaying frequencies and relative frequencies in a two-way table. Construct and interpret a two-way table summarizing data on two categorical variables collected from the same subjects. Use relative frequencies calculated for rows or columns to describe possible association between the two variables. For example, collect data from students in your class on whether or not they have a curfew on school nights and whether or not they have assigned chores at home. Is there evidence that those who have a curfew also tend to have chores?"
 standard_c044038a21e86b3ce5124592c21060a150d00176:
  slug: "c044038a21e86b3ce5124592c21060a150d00176"
@@ -3176,7 +3176,7 @@ standard_c044038a21e86b3ce5124592c21060a150d00176:
  sub_subject: "Mathematics"
  is_parent_standard: "false"
  parent_standard: ""
- standard_type: "q"
+ standard_type: "Common Core"
  text: "Explain how the definition of the meaning of rational exponents follows from extending the properties of integer exponents to those values, allowing for a notation for radicals in terms of rational exponents. For example, we define 51/3 to be the cube root of 5 because we want (51/3)3 = 5(1/3)3 to hold, so (51/3)3 must equal 5."
 standard_db752795e4556e694d83684159a91d55d08b276a:
  slug: "db752795e4556e694d83684159a91d55d08b276a"
@@ -3186,7 +3186,7 @@ standard_db752795e4556e694d83684159a91d55d08b276a:
  sub_subject: "Mathematics"
  is_parent_standard: "false"
  parent_standard: ""
- standard_type: "q"
+ standard_type: "Common Core"
  text: "Rewrite expressions involving radicals and rational exponents using the properties of exponents."
 standard_facd5334a4c0b31415c7d8c674d0f7219f515946:
  slug: "facd5334a4c0b31415c7d8c674d0f7219f515946"
@@ -3196,7 +3196,7 @@ standard_facd5334a4c0b31415c7d8c674d0f7219f515946:
  sub_subject: "Mathematics"
  is_parent_standard: "false"
  parent_standard: ""
- standard_type: "q"
+ standard_type: "Common Core"
  text: "Explain why the sum or product of two rational numbers is rational; that the sum of a rational number and an irrational number is irrational; and that the product of a nonzero rational number and an irrational number is irrational."
 standard_3d95ba8850be3c7d9e5b6700c8a7508140574ee1:
  slug: "3d95ba8850be3c7d9e5b6700c8a7508140574ee1"
@@ -3206,7 +3206,7 @@ standard_3d95ba8850be3c7d9e5b6700c8a7508140574ee1:
  sub_subject: "Mathematics"
  is_parent_standard: "false"
  parent_standard: ""
- standard_type: "q"
+ standard_type: "Common Core"
  text: "Use units as a way to understand problems and to guide the solution of multi-step problems; choose and interpret units consistently in formulas; choose and interpret the scale and the origin in graphs and data displays."
 standard_55e583976fa60ef2ddba048cf94097d19bd7f953:
  slug: "55e583976fa60ef2ddba048cf94097d19bd7f953"
@@ -3216,7 +3216,7 @@ standard_55e583976fa60ef2ddba048cf94097d19bd7f953:
  sub_subject: "Mathematics"
  is_parent_standard: "false"
  parent_standard: ""
- standard_type: "q"
+ standard_type: "Common Core"
  text: "Define appropriate quantities for the purpose of descriptive modeling."
 standard_d8a201f7009c3bb61f5d6bb30368cc0394e06086:
  slug: "d8a201f7009c3bb61f5d6bb30368cc0394e06086"
@@ -3226,7 +3226,7 @@ standard_d8a201f7009c3bb61f5d6bb30368cc0394e06086:
  sub_subject: "Mathematics"
  is_parent_standard: "false"
  parent_standard: ""
- standard_type: "q"
+ standard_type: "Common Core"
  text: "Choose a level of accuracy appropriate to limitations on measurement when reporting quantities."
 standard_771cc10b1bbb92b7ab8cf52a9487bf41f39040a9:
  slug: "771cc10b1bbb92b7ab8cf52a9487bf41f39040a9"
@@ -3236,7 +3236,7 @@ standard_771cc10b1bbb92b7ab8cf52a9487bf41f39040a9:
  sub_subject: "Mathematics"
  is_parent_standard: "false"
  parent_standard: ""
- standard_type: "q"
+ standard_type: "Common Core"
  text: "Know there is a complex number i such that i2 = &ndash;1, and every complex number has the form a + bi with a and b real."
 standard_a22672b3cb95502620974f1003f672b559ccab2a:
  slug: "a22672b3cb95502620974f1003f672b559ccab2a"
@@ -3246,7 +3246,7 @@ standard_a22672b3cb95502620974f1003f672b559ccab2a:
  sub_subject: "Mathematics"
  is_parent_standard: "false"
  parent_standard: ""
- standard_type: "q"
+ standard_type: "Common Core"
  text: "Use the relation i2 = &ndash;1 and the commutative, associative, and distributive properties to add, subtract, and multiply complex numbers."
 standard_8e6c47c267a13fc97491c7a3a4918ef90112cfda:
  slug: "8e6c47c267a13fc97491c7a3a4918ef90112cfda"
@@ -3256,7 +3256,7 @@ standard_8e6c47c267a13fc97491c7a3a4918ef90112cfda:
  sub_subject: "Mathematics"
  is_parent_standard: "false"
  parent_standard: ""
- standard_type: "q"
+ standard_type: "Common Core"
  text: "(+) Find the conjugate of a complex number; use conjugates to find moduli and quotients of complex numbers."
 standard_83a3521df01835db9c034212d38a378d24ef4151:
  slug: "83a3521df01835db9c034212d38a378d24ef4151"
@@ -3266,7 +3266,7 @@ standard_83a3521df01835db9c034212d38a378d24ef4151:
  sub_subject: "Mathematics"
  is_parent_standard: "false"
  parent_standard: ""
- standard_type: "q"
+ standard_type: "Common Core"
  text: "(+) Represent complex numbers on the complex plane in rectangular and polar form (including real and imaginary numbers), and explain why the rectangular and polar forms of a given complex number represent the same number."
 standard_8398da25f57b201fdb8b8df05213a510e2093023:
  slug: "8398da25f57b201fdb8b8df05213a510e2093023"
@@ -3276,7 +3276,7 @@ standard_8398da25f57b201fdb8b8df05213a510e2093023:
  sub_subject: "Mathematics"
  is_parent_standard: "false"
  parent_standard: ""
- standard_type: "q"
+ standard_type: "Common Core"
  text: "(+) Calculate the distance between numbers in the complex plane as the modulus of the difference, and the midpoint of a segment as the average of the numbers at its endpoints."
 standard_6b1c0d725787572a382963862f34e7b18fe88f66:
  slug: "6b1c0d725787572a382963862f34e7b18fe88f66"
@@ -3286,7 +3286,7 @@ standard_6b1c0d725787572a382963862f34e7b18fe88f66:
  sub_subject: "Mathematics"
  is_parent_standard: "false"
  parent_standard: ""
- standard_type: "q"
+ standard_type: "Common Core"
  text: "(+) Represent addition, subtraction, multiplication, and conjugation of complex numbers geometrically on the complex plane; use properties of this representation for computation. For example, (-1 + &radic;3 i)3 = 8 because (-1 + &radic;3 i) has modulus 2 and argument 120&deg;."
 standard_e4da57df043f698fef9642948c1d8ad800f6185a:
  slug: "e4da57df043f698fef9642948c1d8ad800f6185a"
@@ -3296,7 +3296,7 @@ standard_e4da57df043f698fef9642948c1d8ad800f6185a:
  sub_subject: "Mathematics"
  is_parent_standard: "false"
  parent_standard: ""
- standard_type: "q"
+ standard_type: "Common Core"
  text: "Solve quadratic equations with real coefficients that have complex solutions."
 standard_bcaacf54ce80118ca55615f3c16009111cd5a134:
  slug: "bcaacf54ce80118ca55615f3c16009111cd5a134"
@@ -3306,7 +3306,7 @@ standard_bcaacf54ce80118ca55615f3c16009111cd5a134:
  sub_subject: "Mathematics"
  is_parent_standard: "false"
  parent_standard: ""
- standard_type: "q"
+ standard_type: "Common Core"
  text: "(+) Extend polynomial identities to the complex numbers. For example, rewrite x2 + 4 as (x + 2i)(x &ndash; 2i)."
 standard_e4d83ce8f4ead118a3e6533492d387b17af20b8a:
  slug: "e4d83ce8f4ead118a3e6533492d387b17af20b8a"
@@ -3316,7 +3316,7 @@ standard_e4d83ce8f4ead118a3e6533492d387b17af20b8a:
  sub_subject: "Mathematics"
  is_parent_standard: "false"
  parent_standard: ""
- standard_type: "q"
+ standard_type: "Common Core"
  text: "(+) Know the Fundamental Theorem of Algebra; show that it is true for quadratic polynomials."
 standard_d62b5e98a16b73a2a06f9e109750a2392a86baab:
  slug: "d62b5e98a16b73a2a06f9e109750a2392a86baab"
@@ -3326,7 +3326,7 @@ standard_d62b5e98a16b73a2a06f9e109750a2392a86baab:
  sub_subject: "Mathematics"
  is_parent_standard: "false"
  parent_standard: ""
- standard_type: "v"
+ standard_type: "Common Core"
  text: "(+) Recognize vector quantities as having both magnitude and direction. Represent vector quantities by directed line segments, and use appropriate symbols for vectors and their magnitudes (e.g., v, "
 standard_e7953975a32cccbfe6c2bd0ab2110c2090ca3f05:
  slug: "e7953975a32cccbfe6c2bd0ab2110c2090ca3f05"
@@ -3336,7 +3336,7 @@ standard_e7953975a32cccbfe6c2bd0ab2110c2090ca3f05:
  sub_subject: "Mathematics"
  is_parent_standard: "false"
  parent_standard: ""
- standard_type: "v"
+ standard_type: "Common Core"
  text: "(+) Find the components of a vector by subtracting the coordinates of an initial point from the coordinates of a terminal point."
 standard_df01fc09cbe732d13208e5b58175d27372b6d7bc:
  slug: "df01fc09cbe732d13208e5b58175d27372b6d7bc"
@@ -3346,7 +3346,7 @@ standard_df01fc09cbe732d13208e5b58175d27372b6d7bc:
  sub_subject: "Mathematics"
  is_parent_standard: "false"
  parent_standard: ""
- standard_type: "v"
+ standard_type: "Common Core"
  text: "(+) Solve problems involving velocity and other quantities that can be represented by vectors."
 standard_3989265fcd943f3f762178ad5a951143b3369b88:
  slug: "3989265fcd943f3f762178ad5a951143b3369b88"
@@ -3356,7 +3356,7 @@ standard_3989265fcd943f3f762178ad5a951143b3369b88:
  sub_subject: "Mathematics"
  is_parent_standard: "true"
  parent_standard: ""
- standard_type: "v"
+ standard_type: "Common Core"
  text: "(+) Add and subtract vectors."
 standard_12a6ac17dbede70c806afaef720f863083f90125:
  slug: "12a6ac17dbede70c806afaef720f863083f90125"
@@ -3366,7 +3366,7 @@ standard_12a6ac17dbede70c806afaef720f863083f90125:
  sub_subject: "Mathematics"
  is_parent_standard: "false"
  parent_standard: "CCSS.Math.Content.HSN-VM.B.4"
- standard_type: "v"
+ standard_type: "Common Core"
  text: "Add vectors end-to-end, component-wise, and by the parallelogram rule. Understand that the magnitude of a sum of two vectors is typically not the sum of the magnitudes."
 standard_b79ca1987ea808a899509e4b96e57dcd30236fad:
  slug: "b79ca1987ea808a899509e4b96e57dcd30236fad"
@@ -3376,7 +3376,7 @@ standard_b79ca1987ea808a899509e4b96e57dcd30236fad:
  sub_subject: "Mathematics"
  is_parent_standard: "false"
  parent_standard: "CCSS.Math.Content.HSN-VM.B.4"
- standard_type: "v"
+ standard_type: "Common Core"
  text: "Given two vectors in magnitude and direction form, determine the magnitude and direction of their sum."
 standard_2462c2ffe45f3cee01eed7a48b59658c6de25c61:
  slug: "2462c2ffe45f3cee01eed7a48b59658c6de25c61"
@@ -3386,7 +3386,7 @@ standard_2462c2ffe45f3cee01eed7a48b59658c6de25c61:
  sub_subject: "Mathematics"
  is_parent_standard: "false"
  parent_standard: "CCSS.Math.Content.HSN-VM.B.4"
- standard_type: "v"
+ standard_type: "Common Core"
  text: "Understand vector subtraction v &ndash; w as v + (&ndash;w), where &ndash;w is the additive inverse of w, with the same magnitude as w and pointing in the opposite direction. Represent vector subtraction graphically by connecting the tips in the appropriate order, and perform vector subtraction component-wise."
 standard_fa2140e60af99b9b432f2af57807fb75d36d43a3:
  slug: "fa2140e60af99b9b432f2af57807fb75d36d43a3"
@@ -3396,7 +3396,7 @@ standard_fa2140e60af99b9b432f2af57807fb75d36d43a3:
  sub_subject: "Mathematics"
  is_parent_standard: "true"
  parent_standard: ""
- standard_type: "v"
+ standard_type: "Common Core"
  text: "(+) Multiply a vector by a scalar."
 standard_f09758d30e75443358682218da8b09ce5e94ff00:
  slug: "f09758d30e75443358682218da8b09ce5e94ff00"
@@ -3406,7 +3406,7 @@ standard_f09758d30e75443358682218da8b09ce5e94ff00:
  sub_subject: "Mathematics"
  is_parent_standard: "false"
  parent_standard: "CCSS.Math.Content.HSN-VM.B.5"
- standard_type: "v"
+ standard_type: "Common Core"
  text: "Represent scalar multiplication graphically by scaling vectors and possibly reversing their direction; perform scalar multiplication component-wise, e.g., as c(vx, vy) = (cvx, cvy)."
 standard_aa36718f8cb36fb817100a62dfd7c7a779c4b147:
  slug: "aa36718f8cb36fb817100a62dfd7c7a779c4b147"
@@ -3416,7 +3416,7 @@ standard_aa36718f8cb36fb817100a62dfd7c7a779c4b147:
  sub_subject: "Mathematics"
  is_parent_standard: "false"
  parent_standard: "CCSS.Math.Content.HSN-VM.B.5"
- standard_type: "v"
+ standard_type: "Common Core"
  text: "Compute the magnitude of a scalar multiple cv using "
 standard_8be54776b455245b0b4e7950cc7d65ce99e77200:
  slug: "8be54776b455245b0b4e7950cc7d65ce99e77200"
@@ -3426,7 +3426,7 @@ standard_8be54776b455245b0b4e7950cc7d65ce99e77200:
  sub_subject: "Mathematics"
  is_parent_standard: "false"
  parent_standard: ""
- standard_type: "v"
+ standard_type: "Common Core"
  text: "(+) Use matrices to represent and manipulate data, e.g., to represent payoffs or incidence relationships in a network."
 standard_041fc9b0693c8fefa503ee4b8d402eef4966a4a9:
  slug: "041fc9b0693c8fefa503ee4b8d402eef4966a4a9"
@@ -3436,7 +3436,7 @@ standard_041fc9b0693c8fefa503ee4b8d402eef4966a4a9:
  sub_subject: "Mathematics"
  is_parent_standard: "false"
  parent_standard: ""
- standard_type: "v"
+ standard_type: "Common Core"
  text: "(+) Multiply matrices by scalars to produce new matrices, e.g., as when all of the payoffs in a game are doubled."
 standard_7341c2cd4f77af2553b7ade2c994bcca4f8d7446:
  slug: "7341c2cd4f77af2553b7ade2c994bcca4f8d7446"
@@ -3446,7 +3446,7 @@ standard_7341c2cd4f77af2553b7ade2c994bcca4f8d7446:
  sub_subject: "Mathematics"
  is_parent_standard: "false"
  parent_standard: ""
- standard_type: "v"
+ standard_type: "Common Core"
  text: "(+) Add, subtract, and multiply matrices of appropriate dimensions."
 standard_0b2fb340bfbaa082e7f8867a6abc9434fb8608ed:
  slug: "0b2fb340bfbaa082e7f8867a6abc9434fb8608ed"
@@ -3456,7 +3456,7 @@ standard_0b2fb340bfbaa082e7f8867a6abc9434fb8608ed:
  sub_subject: "Mathematics"
  is_parent_standard: "false"
  parent_standard: ""
- standard_type: "v"
+ standard_type: "Common Core"
  text: "(+) Understand that, unlike multiplication of numbers, matrix multiplication for square matrices is not a commutative operation, but still satisfies the associative and distributive properties."
 standard_4f42b761e0fc569d2499dc50585d517f6f66ed5c:
  slug: "4f42b761e0fc569d2499dc50585d517f6f66ed5c"
@@ -3466,7 +3466,7 @@ standard_4f42b761e0fc569d2499dc50585d517f6f66ed5c:
  sub_subject: "Mathematics"
  is_parent_standard: "false"
  parent_standard: ""
- standard_type: "v"
+ standard_type: "Common Core"
  text: "(+) Understand that the zero and identity matrices play a role in matrix addition and multiplication similar to the role of 0 and 1 in the real numbers. The determinant of a square matrix is nonzero if and only if the matrix has a multiplicative inverse."
 standard_ca84fca40272acd2469a25142ba4cb07cc9d6d15:
  slug: "ca84fca40272acd2469a25142ba4cb07cc9d6d15"
@@ -3476,7 +3476,7 @@ standard_ca84fca40272acd2469a25142ba4cb07cc9d6d15:
  sub_subject: "Mathematics"
  is_parent_standard: "false"
  parent_standard: ""
- standard_type: "v"
+ standard_type: "Common Core"
  text: "(+) Multiply a vector (regarded as a matrix with one column) by a matrix of suitable dimensions to produce another vector. Work with matrices as transformations of vectors."
 standard_1b958c1d0c012a7fb7ce8295500976c78ad65592:
  slug: "1b958c1d0c012a7fb7ce8295500976c78ad65592"
@@ -3486,7 +3486,7 @@ standard_1b958c1d0c012a7fb7ce8295500976c78ad65592:
  sub_subject: "Mathematics"
  is_parent_standard: "false"
  parent_standard: ""
- standard_type: "v"
+ standard_type: "Common Core"
  text: "(+) Work with 2 &times; 2 matrices as a transformations of the plane, and interpret the absolute value of the determinant in terms of area."
 standard_e80eb5bd6f5d467fb9e21b317a61c1b7535b07c3:
  slug: "e80eb5bd6f5d467fb9e21b317a61c1b7535b07c3"
@@ -3496,7 +3496,7 @@ standard_e80eb5bd6f5d467fb9e21b317a61c1b7535b07c3:
  sub_subject: "Mathematics"
  is_parent_standard: "true"
  parent_standard: ""
- standard_type: "v"
+ standard_type: "Common Core"
  text: "Interpret expressions that represent a quantity in terms of its context."
 standard_553acb607bc1d24b92fd0c57e3f57126b8008c23:
  slug: "553acb607bc1d24b92fd0c57e3f57126b8008c23"
@@ -3506,7 +3506,7 @@ standard_553acb607bc1d24b92fd0c57e3f57126b8008c23:
  sub_subject: "Mathematics"
  is_parent_standard: "false"
  parent_standard: "CCSS.Math.Content.HSA-SSE.A.1"
- standard_type: "v"
+ standard_type: "Common Core"
  text: "Interpret parts of an expression, such as terms, factors, and coefficients."
 standard_0f76ddce6e44f75a32f54b4001fc7c191b242363:
  slug: "0f76ddce6e44f75a32f54b4001fc7c191b242363"
@@ -3516,7 +3516,7 @@ standard_0f76ddce6e44f75a32f54b4001fc7c191b242363:
  sub_subject: "Mathematics"
  is_parent_standard: "false"
  parent_standard: "CCSS.Math.Content.HSA-SSE.A.1"
- standard_type: "v"
+ standard_type: "Common Core"
  text: "Interpret complicated expressions by viewing one or more of their parts as a single entity. For example, interpret P(1+r)n as the product of P and a factor not depending on P."
 standard_4f61964ab99547ab9177775b0add842b7cc211af:
  slug: "4f61964ab99547ab9177775b0add842b7cc211af"
@@ -3526,7 +3526,7 @@ standard_4f61964ab99547ab9177775b0add842b7cc211af:
  sub_subject: "Mathematics"
  is_parent_standard: "false"
  parent_standard: ""
- standard_type: "v"
+ standard_type: "Common Core"
  text: "Use the structure of an expression to identify ways to rewrite it. For example, see x4 &ndash; y4 as (x2)2 &ndash; (y2)2, thus recognizing it as a difference of squares that can be factored as (x2 &ndash; y2)(x2 + y2)."
 standard_10ac0699f0c4ef4d5a4847bc98ddfd3c5fd9925e:
  slug: "10ac0699f0c4ef4d5a4847bc98ddfd3c5fd9925e"
@@ -3536,7 +3536,7 @@ standard_10ac0699f0c4ef4d5a4847bc98ddfd3c5fd9925e:
  sub_subject: "Mathematics"
  is_parent_standard: "true"
  parent_standard: ""
- standard_type: "v"
+ standard_type: "Common Core"
  text: "Choose and produce an equivalent form of an expression to reveal and explain properties of the quantity represented by the expression."
 standard_978a0453f54dd70555f47954c8f4bbad83a0d8e5:
  slug: "978a0453f54dd70555f47954c8f4bbad83a0d8e5"
@@ -3546,7 +3546,7 @@ standard_978a0453f54dd70555f47954c8f4bbad83a0d8e5:
  sub_subject: "Mathematics"
  is_parent_standard: "false"
  parent_standard: "CCSS.Math.Content.HSA-SSE.B.3"
- standard_type: "v"
+ standard_type: "Common Core"
  text: "Factor a quadratic expression to reveal the zeros of the function it defines."
 standard_f7eaeeb31356379034d8ac930488354816e780df:
  slug: "f7eaeeb31356379034d8ac930488354816e780df"
@@ -3556,7 +3556,7 @@ standard_f7eaeeb31356379034d8ac930488354816e780df:
  sub_subject: "Mathematics"
  is_parent_standard: "false"
  parent_standard: "CCSS.Math.Content.HSA-SSE.B.3"
- standard_type: "v"
+ standard_type: "Common Core"
  text: "Complete the square in a quadratic expression to reveal the maximum or minimum value of the function it defines."
 standard_40a1970f00d2c35400a80f934a14b5d35f7f98b4:
  slug: "40a1970f00d2c35400a80f934a14b5d35f7f98b4"
@@ -3566,7 +3566,7 @@ standard_40a1970f00d2c35400a80f934a14b5d35f7f98b4:
  sub_subject: "Mathematics"
  is_parent_standard: "false"
  parent_standard: "CCSS.Math.Content.HSA-SSE.B.3"
- standard_type: "v"
+ standard_type: "Common Core"
  text: "Use the properties of exponents to transform expressions for exponential functions. For example the expression 1.15t can be rewritten as (1.151/12)12t &asymp; 1.01212t to reveal the approximate equivalent monthly interest rate if the annual rate is 15%."
 standard_c751bcd4f3930c232d8d8672155adb6a941fced2:
  slug: "c751bcd4f3930c232d8d8672155adb6a941fced2"
@@ -3576,7 +3576,7 @@ standard_c751bcd4f3930c232d8d8672155adb6a941fced2:
  sub_subject: "Mathematics"
  is_parent_standard: "false"
  parent_standard: ""
- standard_type: "v"
+ standard_type: "Common Core"
  text: "Derive the formula for the sum of a finite geometric series (when the common ratio is not 1), and use the formula to solve problems. For example, calculate mortgage payments."
 standard_6249eb4c458efeae7942ab85a07564b43ef39eec:
  slug: "6249eb4c458efeae7942ab85a07564b43ef39eec"
@@ -3586,7 +3586,7 @@ standard_6249eb4c458efeae7942ab85a07564b43ef39eec:
  sub_subject: "Mathematics"
  is_parent_standard: "false"
  parent_standard: ""
- standard_type: "v"
+ standard_type: "Common Core"
  text: "Understand that polynomials form a system analogous to the integers, namely, they are closed under the operations of addition, subtraction, and multiplication; add, subtract, and multiply polynomials."
 standard_a0babf2cf16f92040229c747ca06c7c96602ab5e:
  slug: "a0babf2cf16f92040229c747ca06c7c96602ab5e"
@@ -3596,7 +3596,7 @@ standard_a0babf2cf16f92040229c747ca06c7c96602ab5e:
  sub_subject: "Mathematics"
  is_parent_standard: "false"
  parent_standard: ""
- standard_type: "v"
+ standard_type: "Common Core"
  text: "Know and apply the Remainder Theorem: For a polynomial p(x) and a number a, the remainder on division by x &ndash; a is p(a), so p(a) = 0 if and only if (x &ndash; a) is a factor of p(x)."
 standard_729817a03229a8fce8c0d9a139620c99f059f2b6:
  slug: "729817a03229a8fce8c0d9a139620c99f059f2b6"
@@ -3606,7 +3606,7 @@ standard_729817a03229a8fce8c0d9a139620c99f059f2b6:
  sub_subject: "Mathematics"
  is_parent_standard: "false"
  parent_standard: ""
- standard_type: "v"
+ standard_type: "Common Core"
  text: "Identify zeros of polynomials when suitable factorizations are available, and use the zeros to construct a rough graph of the function defined by the polynomial."
 standard_4e27d7364bc35011a9a4c14e6fc15d594dcb5856:
  slug: "4e27d7364bc35011a9a4c14e6fc15d594dcb5856"
@@ -3616,7 +3616,7 @@ standard_4e27d7364bc35011a9a4c14e6fc15d594dcb5856:
  sub_subject: "Mathematics"
  is_parent_standard: "false"
  parent_standard: ""
- standard_type: "v"
+ standard_type: "Common Core"
  text: "Prove polynomial identities and use them to describe numerical relationships. For example, the polynomial identity (x2 + y2)2 = (x2 &ndash; y2)2 + (2xy)2 can be used to generate Pythagorean triples."
 standard_a3577370e3397250d8de31448da0f95e1ba539f2:
  slug: "a3577370e3397250d8de31448da0f95e1ba539f2"
@@ -3626,7 +3626,7 @@ standard_a3577370e3397250d8de31448da0f95e1ba539f2:
  sub_subject: "Mathematics"
  is_parent_standard: "false"
  parent_standard: ""
- standard_type: "v"
+ standard_type: "Common Core"
  text: "(+) Know and apply the Binomial Theorem for the expansion of (x + y)n in powers of x and y for a positive integer n, where x and y are any numbers, with coefficients determined for example by Pascal&rsquo;s Triangle.1"
 standard_a2a8d0b4c38d75637b71a27d24db0a0e3b750471:
  slug: "a2a8d0b4c38d75637b71a27d24db0a0e3b750471"
@@ -3636,7 +3636,7 @@ standard_a2a8d0b4c38d75637b71a27d24db0a0e3b750471:
  sub_subject: "Mathematics"
  is_parent_standard: "false"
  parent_standard: ""
- standard_type: "v"
+ standard_type: "Common Core"
  text: "Rewrite simple rational expressions in different forms; write a(x)/b(x) in the form q(x) + r(x)/b(x), where a(x), b(x), q(x), and r(x) are polynomials with the degree of r(x) less than the degree of b(x), using inspection, long division, or, for the more complicated examples, a computer algebra system."
 standard_87ba606cfec8b8d771744cfea5032dafc54ccb22:
  slug: "87ba606cfec8b8d771744cfea5032dafc54ccb22"
@@ -3646,7 +3646,7 @@ standard_87ba606cfec8b8d771744cfea5032dafc54ccb22:
  sub_subject: "Mathematics"
  is_parent_standard: "false"
  parent_standard: ""
- standard_type: "v"
+ standard_type: "Common Core"
  text: "(+) Understand that rational expressions form a system analogous to the rational numbers, closed under addition, subtraction, multiplication, and division by a nonzero rational expression; add, subtract, multiply, and divide rational expressions."
 standard_421bed25a6241c6845a40522e42533c703d190db:
  slug: "421bed25a6241c6845a40522e42533c703d190db"
@@ -3656,7 +3656,7 @@ standard_421bed25a6241c6845a40522e42533c703d190db:
  sub_subject: "Mathematics"
  is_parent_standard: "false"
  parent_standard: ""
- standard_type: "v"
+ standard_type: "Common Core"
  text: "Create equations and inequalities in one variable and use them to solve problems. Include equations arising from linear and quadratic functions, and simple rational and exponential functions."
 standard_f1615925bb243ba301838be77618dc71c23e11be:
  slug: "f1615925bb243ba301838be77618dc71c23e11be"
@@ -3666,7 +3666,7 @@ standard_f1615925bb243ba301838be77618dc71c23e11be:
  sub_subject: "Mathematics"
  is_parent_standard: "false"
  parent_standard: ""
- standard_type: "v"
+ standard_type: "Common Core"
  text: "Create equations in two or more variables to represent relationships between quantities; graph equations on coordinate axes with labels and scales."
 standard_35163133f43965c23445fbca6f7769f9c12d909d:
  slug: "35163133f43965c23445fbca6f7769f9c12d909d"
@@ -3676,7 +3676,7 @@ standard_35163133f43965c23445fbca6f7769f9c12d909d:
  sub_subject: "Mathematics"
  is_parent_standard: "false"
  parent_standard: ""
- standard_type: "v"
+ standard_type: "Common Core"
  text: "Represent constraints by equations or inequalities, and by systems of equations and/or inequalities, and interpret solutions as viable or nonviable options in a modeling context. For example, represent inequalities describing nutritional and cost constraints on combinations of different foods."
 standard_1bdf756d5f6be4c1782d4d8e56cefa5220f7086a:
  slug: "1bdf756d5f6be4c1782d4d8e56cefa5220f7086a"
@@ -3686,7 +3686,7 @@ standard_1bdf756d5f6be4c1782d4d8e56cefa5220f7086a:
  sub_subject: "Mathematics"
  is_parent_standard: "false"
  parent_standard: ""
- standard_type: "v"
+ standard_type: "Common Core"
  text: "Rearrange formulas to highlight a quantity of interest, using the same reasoning as in solving equations. For example, rearrange Ohm&rsquo;s law V = IR to highlight resistance R."
 standard_9b91123b5ba742d55e7873e443f5705870adb0ad:
  slug: "9b91123b5ba742d55e7873e443f5705870adb0ad"
@@ -3696,7 +3696,7 @@ standard_9b91123b5ba742d55e7873e443f5705870adb0ad:
  sub_subject: "Mathematics"
  is_parent_standard: "false"
  parent_standard: ""
- standard_type: "v"
+ standard_type: "Common Core"
  text: "Explain each step in solving a simple equation as following from the equality of numbers asserted at the previous step, starting from the assumption that the original equation has a solution. Construct a viable argument to justify a solution method."
 standard_585a965198b030a65d8c8d1a99433ca799752e97:
  slug: "585a965198b030a65d8c8d1a99433ca799752e97"
@@ -3706,7 +3706,7 @@ standard_585a965198b030a65d8c8d1a99433ca799752e97:
  sub_subject: "Mathematics"
  is_parent_standard: "false"
  parent_standard: ""
- standard_type: "v"
+ standard_type: "Common Core"
  text: "Solve simple rational and radical equations in one variable, and give examples showing how extraneous solutions may arise."
 standard_d8888d80737f88460308c9364774f20d36aa0676:
  slug: "d8888d80737f88460308c9364774f20d36aa0676"
@@ -3716,7 +3716,7 @@ standard_d8888d80737f88460308c9364774f20d36aa0676:
  sub_subject: "Mathematics"
  is_parent_standard: "false"
  parent_standard: ""
- standard_type: "v"
+ standard_type: "Common Core"
  text: "Solve linear equations and inequalities in one variable, including equations with coefficients represented by letters."
 standard_455830effc0783eddc9d66ad78a62c3bb49717bf:
  slug: "455830effc0783eddc9d66ad78a62c3bb49717bf"
@@ -3726,7 +3726,7 @@ standard_455830effc0783eddc9d66ad78a62c3bb49717bf:
  sub_subject: "Mathematics"
  is_parent_standard: "true"
  parent_standard: ""
- standard_type: "v"
+ standard_type: "Common Core"
  text: "Solve quadratic equations in one variable."
 standard_2f8d408c16b0edec8e4acf36011ba6f628eb8103:
  slug: "2f8d408c16b0edec8e4acf36011ba6f628eb8103"
@@ -3736,7 +3736,7 @@ standard_2f8d408c16b0edec8e4acf36011ba6f628eb8103:
  sub_subject: "Mathematics"
  is_parent_standard: "false"
  parent_standard: "CCSS.Math.Content.HSA-REI.B.4"
- standard_type: "v"
+ standard_type: "Common Core"
  text: "Use the method of completing the square to transform any quadratic equation in x into an equation of the form (x &ndash; p)2 = q that has the same solutions. Derive the quadratic formula from this form."
 standard_513be40b6a10595d2bdcf406f253f0c00a9a66f9:
  slug: "513be40b6a10595d2bdcf406f253f0c00a9a66f9"
@@ -3746,7 +3746,7 @@ standard_513be40b6a10595d2bdcf406f253f0c00a9a66f9:
  sub_subject: "Mathematics"
  is_parent_standard: "false"
  parent_standard: "CCSS.Math.Content.HSA-REI.B.4"
- standard_type: "v"
+ standard_type: "Common Core"
  text: "Solve quadratic equations by inspection (e.g., for x2 = 49), taking square roots, completing the square, the quadratic formula and factoring, as appropriate to the initial form of the equation. Recognize when the quadratic formula gives complex solutions and write them as a &plusmn; bi for real numbers a and b."
 standard_ab3fcf1a9579218db37afe25e698028d87c2df8d:
  slug: "ab3fcf1a9579218db37afe25e698028d87c2df8d"
@@ -3756,7 +3756,7 @@ standard_ab3fcf1a9579218db37afe25e698028d87c2df8d:
  sub_subject: "Mathematics"
  is_parent_standard: "false"
  parent_standard: ""
- standard_type: "v"
+ standard_type: "Common Core"
  text: "Prove that, given a system of two equations in two variables, replacing one equation by the sum of that equation and a multiple of the other produces a system with the same solutions."
 standard_26fcf635838f292556daddc67f57c8d4fc7e4cb9:
  slug: "26fcf635838f292556daddc67f57c8d4fc7e4cb9"
@@ -3766,7 +3766,7 @@ standard_26fcf635838f292556daddc67f57c8d4fc7e4cb9:
  sub_subject: "Mathematics"
  is_parent_standard: "false"
  parent_standard: ""
- standard_type: "v"
+ standard_type: "Common Core"
  text: "Solve systems of linear equations exactly and approximately (e.g., with graphs), focusing on pairs of linear equations in two variables."
 standard_aa2f5b10e00ca9a938d01a151c8c9cd92a0bd714:
  slug: "aa2f5b10e00ca9a938d01a151c8c9cd92a0bd714"
@@ -3776,7 +3776,7 @@ standard_aa2f5b10e00ca9a938d01a151c8c9cd92a0bd714:
  sub_subject: "Mathematics"
  is_parent_standard: "false"
  parent_standard: ""
- standard_type: "v"
+ standard_type: "Common Core"
  text: "Solve a simple system consisting of a linear equation and a quadratic equation in two variables algebraically and graphically. For example, find the points of intersection between the line y = &ndash;3x and the circle x2 + y2 = 3."
 standard_cc4ed1472b13691077f4d0be4fea3aa4c56b2d37:
  slug: "cc4ed1472b13691077f4d0be4fea3aa4c56b2d37"
@@ -3786,7 +3786,7 @@ standard_cc4ed1472b13691077f4d0be4fea3aa4c56b2d37:
  sub_subject: "Mathematics"
  is_parent_standard: "false"
  parent_standard: ""
- standard_type: "v"
+ standard_type: "Common Core"
  text: "(+) Represent a system of linear equations as a single matrix equation in a vector variable."
 standard_af1881f80349a06c7511013a5a8cddfd3041ebea:
  slug: "af1881f80349a06c7511013a5a8cddfd3041ebea"
@@ -3796,7 +3796,7 @@ standard_af1881f80349a06c7511013a5a8cddfd3041ebea:
  sub_subject: "Mathematics"
  is_parent_standard: "false"
  parent_standard: ""
- standard_type: "v"
+ standard_type: "Common Core"
  text: "(+) Find the inverse of a matrix if it exists and use it to solve systems of linear equations (using technology for matrices of dimension 3 &times; 3 or greater)."
 standard_d136c8dba192890a77f6279ff781d363c7ca0a59:
  slug: "d136c8dba192890a77f6279ff781d363c7ca0a59"
@@ -3806,7 +3806,7 @@ standard_d136c8dba192890a77f6279ff781d363c7ca0a59:
  sub_subject: "Mathematics"
  is_parent_standard: "false"
  parent_standard: ""
- standard_type: "v"
+ standard_type: "Common Core"
  text: "Understand that the graph of an equation in two variables is the set of all its solutions plotted in the coordinate plane, often forming a curve (which could be a line)."
 standard_c4d0e6ab6ac2b44a3075d8402f95d9578ae7c26a:
  slug: "c4d0e6ab6ac2b44a3075d8402f95d9578ae7c26a"
@@ -3816,7 +3816,7 @@ standard_c4d0e6ab6ac2b44a3075d8402f95d9578ae7c26a:
  sub_subject: "Mathematics"
  is_parent_standard: "false"
  parent_standard: ""
- standard_type: "v"
+ standard_type: "Common Core"
  text: "Explain why the x-coordinates of the points where the graphs of the equations y = f(x) and y = g(x) intersect are the solutions of the equation f(x) = g(x); find the solutions approximately, e.g., using technology to graph the functions, make tables of values, or find successive approximations. Include cases where f(x) and/or g(x) are linear, polynomial, rational, absolute value, exponential, and logarithmic functions."
 standard_71991d7812556b865de991cedf7a196a0d286f6b:
  slug: "71991d7812556b865de991cedf7a196a0d286f6b"
@@ -3826,7 +3826,7 @@ standard_71991d7812556b865de991cedf7a196a0d286f6b:
  sub_subject: "Mathematics"
  is_parent_standard: "false"
  parent_standard: ""
- standard_type: "v"
+ standard_type: "Common Core"
  text: "Graph the solutions to a linear inequality in two variables as a half-plane (excluding the boundary in the case of a strict inequality), and graph the solution set to a system of linear inequalities in two variables as the intersection of the corresponding half-planes."
 standard_030fa39b68aee3512deab38b23e4819dc0d12da8:
  slug: "030fa39b68aee3512deab38b23e4819dc0d12da8"
@@ -3836,7 +3836,7 @@ standard_030fa39b68aee3512deab38b23e4819dc0d12da8:
  sub_subject: "Mathematics"
  is_parent_standard: "false"
  parent_standard: ""
- standard_type: "v"
+ standard_type: "Common Core"
  text: "Understand that a function from one set (called the domain) to another set (called the range) assigns to each element of the domain exactly one element of the range. If f is a function and x is an element of its domain, then f(x) denotes the output of f corresponding to the input x. The graph of f is the graph of the equation y = f(x)."
 standard_7700235e683f88bf6838b854ea619abd8ca1106b:
  slug: "7700235e683f88bf6838b854ea619abd8ca1106b"
@@ -3846,7 +3846,7 @@ standard_7700235e683f88bf6838b854ea619abd8ca1106b:
  sub_subject: "Mathematics"
  is_parent_standard: "false"
  parent_standard: ""
- standard_type: "v"
+ standard_type: "Common Core"
  text: "Use function notation, evaluate functions for inputs in their domains, and interpret statements that use function notation in terms of a context."
 standard_cd5ad1b1c6cc39a9a77cf0153caf65746f551fb1:
  slug: "cd5ad1b1c6cc39a9a77cf0153caf65746f551fb1"
@@ -3856,7 +3856,7 @@ standard_cd5ad1b1c6cc39a9a77cf0153caf65746f551fb1:
  sub_subject: "Mathematics"
  is_parent_standard: "false"
  parent_standard: ""
- standard_type: "v"
+ standard_type: "Common Core"
  text: "Recognize that sequences are functions, sometimes defined recursively, whose domain is a subset of the integers. For example, the Fibonacci sequence is defined recursively by f(0) = f(1) = 1, f(n+1) = f(n) + f(n-1) for n &ge; 1."
 standard_1f5b72f85b21590d90c04c3e85b028ee114c7f3d:
  slug: "1f5b72f85b21590d90c04c3e85b028ee114c7f3d"
@@ -3866,7 +3866,7 @@ standard_1f5b72f85b21590d90c04c3e85b028ee114c7f3d:
  sub_subject: "Mathematics"
  is_parent_standard: "false"
  parent_standard: ""
- standard_type: "v"
+ standard_type: "Common Core"
  text: "For a function that models a relationship between two quantities, interpret key features of graphs and tables in terms of the quantities, and sketch graphs showing key features given a verbal description of the relationship. Key features include: intercepts; intervals where the function is increasing, decreasing, positive, or negative; relative maximums and minimums; symmetries; end behavior; and periodicity."
 standard_da7b1c80746bb669ec6ea434551a4f8ae4c39c08:
  slug: "da7b1c80746bb669ec6ea434551a4f8ae4c39c08"
@@ -3876,7 +3876,7 @@ standard_da7b1c80746bb669ec6ea434551a4f8ae4c39c08:
  sub_subject: "Mathematics"
  is_parent_standard: "false"
  parent_standard: ""
- standard_type: "v"
+ standard_type: "Common Core"
  text: "Relate the domain of a function to its graph and, where applicable, to the quantitative relationship it describes. For example, if the function h(n) gives the number of person-hours it takes to assemble n engines in a factory, then the positive integers would be an appropriate domain for the function."
 standard_58e4fc203165ed82f47675361bcbc28c44834b8e:
  slug: "58e4fc203165ed82f47675361bcbc28c44834b8e"
@@ -3886,7 +3886,7 @@ standard_58e4fc203165ed82f47675361bcbc28c44834b8e:
  sub_subject: "Mathematics"
  is_parent_standard: "false"
  parent_standard: ""
- standard_type: "v"
+ standard_type: "Common Core"
  text: "Calculate and interpret the average rate of change of a function (presented symbolically or as a table) over a specified interval. Estimate the rate of change from a graph."
 standard_529d798121cc34e4e0aa21c6f86047513f915031:
  slug: "529d798121cc34e4e0aa21c6f86047513f915031"
@@ -3896,7 +3896,7 @@ standard_529d798121cc34e4e0aa21c6f86047513f915031:
  sub_subject: "Mathematics"
  is_parent_standard: "true"
  parent_standard: ""
- standard_type: "v"
+ standard_type: "Common Core"
  text: "Graph functions expressed symbolically and show key features of the graph, by hand in simple cases and using technology for more complicated cases."
 standard_8f275647bcb0215e6726b706bf2448aa7a64a140:
  slug: "8f275647bcb0215e6726b706bf2448aa7a64a140"
@@ -3906,7 +3906,7 @@ standard_8f275647bcb0215e6726b706bf2448aa7a64a140:
  sub_subject: "Mathematics"
  is_parent_standard: "false"
  parent_standard: "CCSS.Math.Content.HSF-IF.C.7"
- standard_type: "v"
+ standard_type: "Common Core"
  text: "Graph linear and quadratic functions and show intercepts, maxima, and minima."
 standard_8472ccb967e82ee464461baa943a8cabb8b9f7c1:
  slug: "8472ccb967e82ee464461baa943a8cabb8b9f7c1"
@@ -3916,7 +3916,7 @@ standard_8472ccb967e82ee464461baa943a8cabb8b9f7c1:
  sub_subject: "Mathematics"
  is_parent_standard: "false"
  parent_standard: "CCSS.Math.Content.HSF-IF.C.7"
- standard_type: "v"
+ standard_type: "Common Core"
  text: "Graph square root, cube root, and piecewise-defined functions, including step functions and absolute value functions."
 standard_81438edcf1ba25a92591391ea2c91b4a00e22ec7:
  slug: "81438edcf1ba25a92591391ea2c91b4a00e22ec7"
@@ -3926,7 +3926,7 @@ standard_81438edcf1ba25a92591391ea2c91b4a00e22ec7:
  sub_subject: "Mathematics"
  is_parent_standard: "false"
  parent_standard: "CCSS.Math.Content.HSF-IF.C.7"
- standard_type: "v"
+ standard_type: "Common Core"
  text: "Graph polynomial functions, identifying zeros when suitable factorizations are available, and showing end behavior."
 standard_f89b14cc5dc0f8d6e743a6935994e7f2fc17aab1:
  slug: "f89b14cc5dc0f8d6e743a6935994e7f2fc17aab1"
@@ -3936,7 +3936,7 @@ standard_f89b14cc5dc0f8d6e743a6935994e7f2fc17aab1:
  sub_subject: "Mathematics"
  is_parent_standard: "false"
  parent_standard: "CCSS.Math.Content.HSF-IF.C.7"
- standard_type: "v"
+ standard_type: "Common Core"
  text: "(+) Graph rational functions, identifying zeros and asymptotes when suitable factorizations are available, and showing end behavior."
 standard_a8eccd0fe02ba56c12557ad4ff150f46435e4eef:
  slug: "a8eccd0fe02ba56c12557ad4ff150f46435e4eef"
@@ -3946,7 +3946,7 @@ standard_a8eccd0fe02ba56c12557ad4ff150f46435e4eef:
  sub_subject: "Mathematics"
  is_parent_standard: "false"
  parent_standard: "CCSS.Math.Content.HSF-IF.C.7"
- standard_type: "v"
+ standard_type: "Common Core"
  text: "Graph exponential and logarithmic functions, showing intercepts and end behavior, and trigonometric functions, showing period, midline, and amplitude."
 standard_a5965da6fa2dc3877c4b052e509b9ebeb3d56f3b:
  slug: "a5965da6fa2dc3877c4b052e509b9ebeb3d56f3b"
@@ -3956,7 +3956,7 @@ standard_a5965da6fa2dc3877c4b052e509b9ebeb3d56f3b:
  sub_subject: "Mathematics"
  is_parent_standard: "true"
  parent_standard: ""
- standard_type: "v"
+ standard_type: "Common Core"
  text: "Write a function defined by an expression in different but equivalent forms to reveal and explain different properties of the function."
 standard_f20ee5ffc80fbf940eb3e72857d317b8ce5de9ac:
  slug: "f20ee5ffc80fbf940eb3e72857d317b8ce5de9ac"
@@ -3966,7 +3966,7 @@ standard_f20ee5ffc80fbf940eb3e72857d317b8ce5de9ac:
  sub_subject: "Mathematics"
  is_parent_standard: "false"
  parent_standard: "CCSS.Math.Content.HSF-IF.C.8"
- standard_type: "v"
+ standard_type: "Common Core"
  text: "Use the process of factoring and completing the square in a quadratic function to show zeros, extreme values, and symmetry of the graph, and interpret these in terms of a context."
 standard_4631f5a47156f3ac5d9fb88203aa52cebd187a9d:
  slug: "4631f5a47156f3ac5d9fb88203aa52cebd187a9d"
@@ -3976,7 +3976,7 @@ standard_4631f5a47156f3ac5d9fb88203aa52cebd187a9d:
  sub_subject: "Mathematics"
  is_parent_standard: "false"
  parent_standard: "CCSS.Math.Content.HSF-IF.C.8"
- standard_type: "v"
+ standard_type: "Common Core"
  text: "Use the properties of exponents to interpret expressions for exponential functions. For example, identify percent rate of change in functions such as y = (1.02)t, y = (0.97)t, y = (1.01)12t, y = (1.2)t/10, and classify them as representing exponential growth or decay."
 standard_840b69f31156f83210c1c29f36f4429abfb3079f:
  slug: "840b69f31156f83210c1c29f36f4429abfb3079f"
@@ -3986,7 +3986,7 @@ standard_840b69f31156f83210c1c29f36f4429abfb3079f:
  sub_subject: "Mathematics"
  is_parent_standard: "false"
  parent_standard: ""
- standard_type: "v"
+ standard_type: "Common Core"
  text: "Compare properties of two functions each represented in a different way (algebraically, graphically, numerically in tables, or by verbal descriptions). For example, given a graph of one quadratic function and an algebraic expression for another, say which has the larger maximum."
 standard_ed654fa66a48223ad4868f471a6e92c3c7e75c2a:
  slug: "ed654fa66a48223ad4868f471a6e92c3c7e75c2a"
@@ -3996,7 +3996,7 @@ standard_ed654fa66a48223ad4868f471a6e92c3c7e75c2a:
  sub_subject: "Mathematics"
  is_parent_standard: "true"
  parent_standard: ""
- standard_type: "v"
+ standard_type: "Common Core"
  text: "Write a function that describes a relationship between two quantities."
 standard_c9af6d80a8cce487f59c224970cd7e2cbf1c74ea:
  slug: "c9af6d80a8cce487f59c224970cd7e2cbf1c74ea"
@@ -4006,7 +4006,7 @@ standard_c9af6d80a8cce487f59c224970cd7e2cbf1c74ea:
  sub_subject: "Mathematics"
  is_parent_standard: "false"
  parent_standard: "CCSS.Math.Content.HSF-BF.A.1"
- standard_type: "v"
+ standard_type: "Common Core"
  text: "Determine an explicit expression, a recursive process, or steps for calculation from a context."
 standard_6f6d0a60fcaac3f567ff982debdfe27163b14de8:
  slug: "6f6d0a60fcaac3f567ff982debdfe27163b14de8"
@@ -4016,7 +4016,7 @@ standard_6f6d0a60fcaac3f567ff982debdfe27163b14de8:
  sub_subject: "Mathematics"
  is_parent_standard: "false"
  parent_standard: "CCSS.Math.Content.HSF-BF.A.1"
- standard_type: "v"
+ standard_type: "Common Core"
  text: "Combine standard function types using arithmetic operations. For example, build a function that models the temperature of a cooling body by adding a constant function to a decaying exponential, and relate these functions to the model."
 standard_9ec24bc3236353894f514a0afbe21838fdfa8b17:
  slug: "9ec24bc3236353894f514a0afbe21838fdfa8b17"
@@ -4026,7 +4026,7 @@ standard_9ec24bc3236353894f514a0afbe21838fdfa8b17:
  sub_subject: "Mathematics"
  is_parent_standard: "false"
  parent_standard: "CCSS.Math.Content.HSF-BF.A.1"
- standard_type: "v"
+ standard_type: "Common Core"
  text: "(+) Compose functions. For example, if T(y) is the temperature in the atmosphere as a function of height, and h(t) is the height of a weather balloon as a function of time, then T(h(t)) is the temperature at the location of the weather balloon as a function of time. "
 standard_9c7c4a460435a705646ce9ebd2753ec5e3596e41:
  slug: "9c7c4a460435a705646ce9ebd2753ec5e3596e41"
@@ -4036,7 +4036,7 @@ standard_9c7c4a460435a705646ce9ebd2753ec5e3596e41:
  sub_subject: "Mathematics"
  is_parent_standard: "false"
  parent_standard: ""
- standard_type: "v"
+ standard_type: "Common Core"
  text: "Write arithmetic and geometric sequences both recursively and with an explicit formula, use them to model situations, and translate between the two forms."
 standard_9d25f9cc160c4c2f9dd3280a37abb19942e71444:
  slug: "9d25f9cc160c4c2f9dd3280a37abb19942e71444"
@@ -4046,7 +4046,7 @@ standard_9d25f9cc160c4c2f9dd3280a37abb19942e71444:
  sub_subject: "Mathematics"
  is_parent_standard: "false"
  parent_standard: ""
- standard_type: "v"
+ standard_type: "Common Core"
  text: "Identify the effect on the graph of replacing f(x) by f(x) + k, k f(x), f(kx), and f(x + k) for specific values of k (both positive and negative); find the value of k given the graphs. Experiment with cases and illustrate an explanation of the effects on the graph using technology. Include recognizing even and odd functions from their graphs and algebraic expressions for them."
 standard_18e4bfd4dc3e10e1b0d148e1455a8e845bb30d96:
  slug: "18e4bfd4dc3e10e1b0d148e1455a8e845bb30d96"
@@ -4056,7 +4056,7 @@ standard_18e4bfd4dc3e10e1b0d148e1455a8e845bb30d96:
  sub_subject: "Mathematics"
  is_parent_standard: "true"
  parent_standard: ""
- standard_type: "v"
+ standard_type: "Common Core"
  text: " Find inverse functions."
 standard_c828830292ba8e297853567b60655835bc903771:
  slug: "c828830292ba8e297853567b60655835bc903771"
@@ -4066,7 +4066,7 @@ standard_c828830292ba8e297853567b60655835bc903771:
  sub_subject: "Mathematics"
  is_parent_standard: "false"
  parent_standard: "CCSS.Math.Content.HSF-BF.B.4"
- standard_type: "v"
+ standard_type: "Common Core"
  text: "Solve an equation of the form f(x) = c for a simple function f that has an inverse and write an expression for the inverse. For example, f(x) =2 x3 or f(x) = (x+1)/(x&ndash;1) for x &ne; 1."
 standard_66d2a309094f5b9bfbeb1a89c4bbeda37d272f27:
  slug: "66d2a309094f5b9bfbeb1a89c4bbeda37d272f27"
@@ -4076,7 +4076,7 @@ standard_66d2a309094f5b9bfbeb1a89c4bbeda37d272f27:
  sub_subject: "Mathematics"
  is_parent_standard: "false"
  parent_standard: "CCSS.Math.Content.HSF-BF.B.4"
- standard_type: "v"
+ standard_type: "Common Core"
  text: "(+) Verify by composition that one function is the inverse of another."
 standard_547865edbc3d749f6d0b6cb2a29f44fc8de5592f:
  slug: "547865edbc3d749f6d0b6cb2a29f44fc8de5592f"
@@ -4086,7 +4086,7 @@ standard_547865edbc3d749f6d0b6cb2a29f44fc8de5592f:
  sub_subject: "Mathematics"
  is_parent_standard: "false"
  parent_standard: "CCSS.Math.Content.HSF-BF.B.4"
- standard_type: "v"
+ standard_type: "Common Core"
  text: "(+) Read values of an inverse function from a graph or a table, given that the function has an inverse."
 standard_3bc725a784f881a33618dc9dbd334c79d2b99f2e:
  slug: "3bc725a784f881a33618dc9dbd334c79d2b99f2e"
@@ -4096,7 +4096,7 @@ standard_3bc725a784f881a33618dc9dbd334c79d2b99f2e:
  sub_subject: "Mathematics"
  is_parent_standard: "false"
  parent_standard: "CCSS.Math.Content.HSF-BF.B.4"
- standard_type: "v"
+ standard_type: "Common Core"
  text: "(+) Produce an invertible function from a non-invertible function by restricting the domain."
 standard_f35900d726d23f8174e01b764e4ee61aca565890:
  slug: "f35900d726d23f8174e01b764e4ee61aca565890"
@@ -4106,7 +4106,7 @@ standard_f35900d726d23f8174e01b764e4ee61aca565890:
  sub_subject: "Mathematics"
  is_parent_standard: "false"
  parent_standard: ""
- standard_type: "v"
+ standard_type: "Common Core"
  text: "(+) Understand the inverse relationship between exponents and logarithms and use this relationship to solve problems involving logarithms and exponents."
 standard_44891774e5270d7a4d06f006ad5a02175146223d:
  slug: "44891774e5270d7a4d06f006ad5a02175146223d"
@@ -4116,7 +4116,7 @@ standard_44891774e5270d7a4d06f006ad5a02175146223d:
  sub_subject: "Mathematics"
  is_parent_standard: "true"
  parent_standard: ""
- standard_type: "v"
+ standard_type: "Common Core"
  text: "Distinguish between situations that can be modeled with linear functions and with exponential functions."
 standard_ef14d68d50f00fd57949837ccfa4d6ca1f2b5a05:
  slug: "ef14d68d50f00fd57949837ccfa4d6ca1f2b5a05"
@@ -4126,7 +4126,7 @@ standard_ef14d68d50f00fd57949837ccfa4d6ca1f2b5a05:
  sub_subject: "Mathematics"
  is_parent_standard: "false"
  parent_standard: "CCSS.Math.Content.HSF-LE.A.1"
- standard_type: "v"
+ standard_type: "Common Core"
  text: "Prove that linear functions grow by equal differences over equal intervals, and that exponential functions grow by equal factors over equal intervals."
 standard_7efa7184651d962f78df800698b6a819d38ee6e3:
  slug: "7efa7184651d962f78df800698b6a819d38ee6e3"
@@ -4136,7 +4136,7 @@ standard_7efa7184651d962f78df800698b6a819d38ee6e3:
  sub_subject: "Mathematics"
  is_parent_standard: "false"
  parent_standard: "CCSS.Math.Content.HSF-LE.A.1"
- standard_type: "v"
+ standard_type: "Common Core"
  text: "Recognize situations in which one quantity changes at a constant rate per unit interval relative to another."
 standard_f3e5cd9e07a5a0288f47f25d48f4ca15224a7a1d:
  slug: "f3e5cd9e07a5a0288f47f25d48f4ca15224a7a1d"
@@ -4146,7 +4146,7 @@ standard_f3e5cd9e07a5a0288f47f25d48f4ca15224a7a1d:
  sub_subject: "Mathematics"
  is_parent_standard: "false"
  parent_standard: "CCSS.Math.Content.HSF-LE.A.1"
- standard_type: "v"
+ standard_type: "Common Core"
  text: "Recognize situations in which a quantity grows or decays by a constant percent rate per unit interval relative to another."
 standard_87be4f23919dd77d61cb78ce50bd222e4af39955:
  slug: "87be4f23919dd77d61cb78ce50bd222e4af39955"
@@ -4156,7 +4156,7 @@ standard_87be4f23919dd77d61cb78ce50bd222e4af39955:
  sub_subject: "Mathematics"
  is_parent_standard: "false"
  parent_standard: ""
- standard_type: "v"
+ standard_type: "Common Core"
  text: "Construct linear and exponential functions, including arithmetic and geometric sequences, given a graph, a description of a relationship, or two input-output pairs (include reading these from a table)."
 standard_1abce6a3a0dc66963c2322f7dbe95a6a73774786:
  slug: "1abce6a3a0dc66963c2322f7dbe95a6a73774786"
@@ -4166,7 +4166,7 @@ standard_1abce6a3a0dc66963c2322f7dbe95a6a73774786:
  sub_subject: "Mathematics"
  is_parent_standard: "false"
  parent_standard: ""
- standard_type: "v"
+ standard_type: "Common Core"
  text: "Observe using graphs and tables that a quantity increasing exponentially eventually exceeds a quantity increasing linearly, quadratically, or (more generally) as a polynomial function."
 standard_0b0523bcd375344a6d1642b45adb6b43871bc3db:
  slug: "0b0523bcd375344a6d1642b45adb6b43871bc3db"
@@ -4176,7 +4176,7 @@ standard_0b0523bcd375344a6d1642b45adb6b43871bc3db:
  sub_subject: "Mathematics"
  is_parent_standard: "false"
  parent_standard: ""
- standard_type: "v"
+ standard_type: "Common Core"
  text: "For exponential models, express as a logarithm the solution to abct = d where a, c, and d are numbers and the base b is 2, 10, or e; evaluate the logarithm using technology."
 standard_4da1323724399dbcafdf77e095b4fd2cac0da0a4:
  slug: "4da1323724399dbcafdf77e095b4fd2cac0da0a4"
@@ -4186,7 +4186,7 @@ standard_4da1323724399dbcafdf77e095b4fd2cac0da0a4:
  sub_subject: "Mathematics"
  is_parent_standard: "false"
  parent_standard: ""
- standard_type: "v"
+ standard_type: "Common Core"
  text: "Interpret the parameters in a linear or exponential function in terms of a context."
 standard_6347a0747a772bcc0a4501abb693a8e20e6dfdb3:
  slug: "6347a0747a772bcc0a4501abb693a8e20e6dfdb3"
@@ -4196,7 +4196,7 @@ standard_6347a0747a772bcc0a4501abb693a8e20e6dfdb3:
  sub_subject: "Mathematics"
  is_parent_standard: "false"
  parent_standard: ""
- standard_type: "v"
+ standard_type: "Common Core"
  text: "Understand radian measure of an angle as the length of the arc on the unit circle subtended by the angle."
 standard_26923cb93b9bd65de0d6bae5f47828a667d21080:
  slug: "26923cb93b9bd65de0d6bae5f47828a667d21080"
@@ -4206,7 +4206,7 @@ standard_26923cb93b9bd65de0d6bae5f47828a667d21080:
  sub_subject: "Mathematics"
  is_parent_standard: "false"
  parent_standard: ""
- standard_type: "v"
+ standard_type: "Common Core"
  text: "Explain how the unit circle in the coordinate plane enables the extension of trigonometric functions to all real numbers, interpreted as radian measures of angles traversed counterclockwise around the unit circle."
 standard_2355b0b31f213d493e1ad07e3097502812d0606a:
  slug: "2355b0b31f213d493e1ad07e3097502812d0606a"
@@ -4216,7 +4216,7 @@ standard_2355b0b31f213d493e1ad07e3097502812d0606a:
  sub_subject: "Mathematics"
  is_parent_standard: "false"
  parent_standard: ""
- standard_type: "v"
+ standard_type: "Common Core"
  text: "(+) Use special triangles to determine geometrically the values of sine, cosine, tangent for &pi;/3, &pi;/4 and &pi;/6, and use the unit circle to express the values of sine, cosine, and tangent for x, &pi; + x, and 2&pi; &ndash; x in terms of their values for x, where x is any real number."
 standard_226ccaf0c4fcc244fb9c0d739f5ffe6a5c469e54:
  slug: "226ccaf0c4fcc244fb9c0d739f5ffe6a5c469e54"
@@ -4226,7 +4226,7 @@ standard_226ccaf0c4fcc244fb9c0d739f5ffe6a5c469e54:
  sub_subject: "Mathematics"
  is_parent_standard: "false"
  parent_standard: ""
- standard_type: "v"
+ standard_type: "Common Core"
  text: "(+) Use the unit circle to explain symmetry (odd and even) and periodicity of trigonometric functions."
 standard_b517edeb13f92350634bf856f161c8889d695290:
  slug: "b517edeb13f92350634bf856f161c8889d695290"
@@ -4236,7 +4236,7 @@ standard_b517edeb13f92350634bf856f161c8889d695290:
  sub_subject: "Mathematics"
  is_parent_standard: "false"
  parent_standard: ""
- standard_type: "v"
+ standard_type: "Common Core"
  text: "Choose trigonometric functions to model periodic phenomena with specified amplitude, frequency, and midline."
 standard_f6fead4538ee7fe6df6f71599c53be3d791fbc95:
  slug: "f6fead4538ee7fe6df6f71599c53be3d791fbc95"
@@ -4246,7 +4246,7 @@ standard_f6fead4538ee7fe6df6f71599c53be3d791fbc95:
  sub_subject: "Mathematics"
  is_parent_standard: "false"
  parent_standard: ""
- standard_type: "v"
+ standard_type: "Common Core"
  text: "(+) Understand that restricting a trigonometric function to a domain on which it is always increasing or always decreasing allows its inverse to be constructed."
 standard_897c6123ac62701435d124b35609c6209912a918:
  slug: "897c6123ac62701435d124b35609c6209912a918"
@@ -4256,7 +4256,7 @@ standard_897c6123ac62701435d124b35609c6209912a918:
  sub_subject: "Mathematics"
  is_parent_standard: "false"
  parent_standard: ""
- standard_type: "v"
+ standard_type: "Common Core"
  text: "(+) Use inverse functions to solve trigonometric equations that arise in modeling contexts; evaluate the solutions using technology, and interpret them in terms of the context."
 standard_13e257cd90238c8867460c2a0bbda89c687726c7:
  slug: "13e257cd90238c8867460c2a0bbda89c687726c7"
@@ -4266,7 +4266,7 @@ standard_13e257cd90238c8867460c2a0bbda89c687726c7:
  sub_subject: "Mathematics"
  is_parent_standard: "false"
  parent_standard: ""
- standard_type: "v"
+ standard_type: "Common Core"
  text: "Prove the Pythagorean identity sin2(&theta;) + cos2(&theta;) = 1 and use it to find  sin(&theta;), cos(&theta;), or tan(&theta;) given sin(&theta;), cos(&theta;), or tan(&theta;) and the  quadrant of the angle."
 standard_7d50aca30d7e50a2e3a01fe3a22e13a9c1652a6a:
  slug: "7d50aca30d7e50a2e3a01fe3a22e13a9c1652a6a"
@@ -4276,7 +4276,7 @@ standard_7d50aca30d7e50a2e3a01fe3a22e13a9c1652a6a:
  sub_subject: "Mathematics"
  is_parent_standard: "false"
  parent_standard: ""
- standard_type: "v"
+ standard_type: "Common Core"
  text: "(+) Prove the addition and subtraction formulas for sine, cosine, and tangent and use them to solve problems."
 standard_56e7ad6615120819beec20ab2d66e6ff39c1e7fb:
  slug: "56e7ad6615120819beec20ab2d66e6ff39c1e7fb"
@@ -4286,7 +4286,7 @@ standard_56e7ad6615120819beec20ab2d66e6ff39c1e7fb:
  sub_subject: "Mathematics"
  is_parent_standard: "false"
  parent_standard: ""
- standard_type: "v"
+ standard_type: "Common Core"
  text: "Know precise definitions of angle, circle, perpendicular line, parallel line, and line segment, based on the undefined notions of point, line, distance along a line, and distance around a circular arc."
 standard_8e38d6aa8b7975794340aaecf87d287ff4d3f51a:
  slug: "8e38d6aa8b7975794340aaecf87d287ff4d3f51a"
@@ -4296,7 +4296,7 @@ standard_8e38d6aa8b7975794340aaecf87d287ff4d3f51a:
  sub_subject: "Mathematics"
  is_parent_standard: "false"
  parent_standard: ""
- standard_type: "v"
+ standard_type: "Common Core"
  text: "Represent transformations in the plane using, e.g., transparencies and geometry software; describe transformations as functions that take points in the plane as inputs and give other points as outputs. Compare transformations that preserve distance and angle to those that do not (e.g., translation versus horizontal stretch)."
 standard_d980598a2241dac87945f096447886e18c73f7a7:
  slug: "d980598a2241dac87945f096447886e18c73f7a7"
@@ -4306,7 +4306,7 @@ standard_d980598a2241dac87945f096447886e18c73f7a7:
  sub_subject: "Mathematics"
  is_parent_standard: "false"
  parent_standard: ""
- standard_type: "v"
+ standard_type: "Common Core"
  text: "Given a rectangle, parallelogram, trapezoid, or regular polygon, describe the rotations and reflections that carry it onto itself."
 standard_13f0238277ea647e11f06fb64d4cdb4c9a6ad802:
  slug: "13f0238277ea647e11f06fb64d4cdb4c9a6ad802"
@@ -4316,7 +4316,7 @@ standard_13f0238277ea647e11f06fb64d4cdb4c9a6ad802:
  sub_subject: "Mathematics"
  is_parent_standard: "false"
  parent_standard: ""
- standard_type: "v"
+ standard_type: "Common Core"
  text: "Develop definitions of rotations, reflections, and translations in terms of angles, circles, perpendicular lines, parallel lines, and line segments."
 standard_167829486c0800aa9d567e83af173772b3430e99:
  slug: "167829486c0800aa9d567e83af173772b3430e99"
@@ -4326,7 +4326,7 @@ standard_167829486c0800aa9d567e83af173772b3430e99:
  sub_subject: "Mathematics"
  is_parent_standard: "false"
  parent_standard: ""
- standard_type: "v"
+ standard_type: "Common Core"
  text: "Given a geometric figure and a rotation, reflection, or translation, draw the transformed figure using, e.g., graph paper, tracing paper, or geometry software. Specify a sequence of transformations that will carry a given figure onto another."
 standard_7d387a826af6aeb8b8c2ff774ba7d615ce47e690:
  slug: "7d387a826af6aeb8b8c2ff774ba7d615ce47e690"
@@ -4336,7 +4336,7 @@ standard_7d387a826af6aeb8b8c2ff774ba7d615ce47e690:
  sub_subject: "Mathematics"
  is_parent_standard: "false"
  parent_standard: ""
- standard_type: "v"
+ standard_type: "Common Core"
  text: "Use geometric descriptions of rigid motions to transform figures and to predict the effect of a given rigid motion on a given figure; given two figures, use the definition of congruence in terms of rigid motions to decide if they are congruent."
 standard_b0c5ad8ecb84b98dd05058293aaf27591c31b17d:
  slug: "b0c5ad8ecb84b98dd05058293aaf27591c31b17d"
@@ -4346,7 +4346,7 @@ standard_b0c5ad8ecb84b98dd05058293aaf27591c31b17d:
  sub_subject: "Mathematics"
  is_parent_standard: "false"
  parent_standard: ""
- standard_type: "v"
+ standard_type: "Common Core"
  text: "Use the definition of congruence in terms of rigid motions to show that two triangles are congruent if and only if corresponding pairs of sides and corresponding pairs of angles are congruent."
 standard_b21082ab342d658f9ec8cdc67be5d08ad21314dd:
  slug: "b21082ab342d658f9ec8cdc67be5d08ad21314dd"
@@ -4356,7 +4356,7 @@ standard_b21082ab342d658f9ec8cdc67be5d08ad21314dd:
  sub_subject: "Mathematics"
  is_parent_standard: "false"
  parent_standard: ""
- standard_type: "v"
+ standard_type: "Common Core"
  text: "Explain how the criteria for triangle congruence (ASA, SAS, and SSS) follow from the definition of congruence in terms of rigid motions."
 standard_4ee02310b8e0672e77b6fb3c57e465b9d3e37ec2:
  slug: "4ee02310b8e0672e77b6fb3c57e465b9d3e37ec2"
@@ -4366,7 +4366,7 @@ standard_4ee02310b8e0672e77b6fb3c57e465b9d3e37ec2:
  sub_subject: "Mathematics"
  is_parent_standard: "false"
  parent_standard: ""
- standard_type: "v"
+ standard_type: "Common Core"
  text: "Prove theorems about lines and angles. Theorems include: vertical angles are congruent; when a transversal crosses parallel lines, alternate interior angles are congruent and corresponding angles are congruent; points on a perpendicular bisector of a line segment are exactly those equidistant from the segment&rsquo;s endpoints."
 standard_2e589ab476879f01a3bba8adb2aa1093e1ec533b:
  slug: "2e589ab476879f01a3bba8adb2aa1093e1ec533b"
@@ -4376,7 +4376,7 @@ standard_2e589ab476879f01a3bba8adb2aa1093e1ec533b:
  sub_subject: "Mathematics"
  is_parent_standard: "false"
  parent_standard: ""
- standard_type: "v"
+ standard_type: "Common Core"
  text: " Prove theorems about triangles. Theorems include: measures of interior angles of a triangle sum to 180&deg;; base angles of isosceles triangles are congruent; the segment joining midpoints of two sides of a triangle is parallel to the third side and half the length; the medians of a triangle meet at a point."
 standard_fa23191b68c2a87ed794532d32bc5baca79abfa8:
  slug: "fa23191b68c2a87ed794532d32bc5baca79abfa8"
@@ -4386,7 +4386,7 @@ standard_fa23191b68c2a87ed794532d32bc5baca79abfa8:
  sub_subject: "Mathematics"
  is_parent_standard: "false"
  parent_standard: ""
- standard_type: "v"
+ standard_type: "Common Core"
  text: "Prove theorems about parallelograms. Theorems include: opposite sides are congruent, opposite angles are congruent, the diagonals of a parallelogram bisect each other, and conversely, rectangles are parallelograms with congruent diagonals."
 standard_1e8c2229a5d63f14251dfa28f5cf5d81a701446c:
  slug: "1e8c2229a5d63f14251dfa28f5cf5d81a701446c"
@@ -4396,7 +4396,7 @@ standard_1e8c2229a5d63f14251dfa28f5cf5d81a701446c:
  sub_subject: "Mathematics"
  is_parent_standard: "false"
  parent_standard: ""
- standard_type: "v"
+ standard_type: "Common Core"
  text: "Make formal geometric constructions with a variety of tools and methods (compass and straightedge, string, reflective devices, paper folding, dynamic geometric software, etc.). Copying a segment; copying an angle; bisecting a segment; bisecting an angle; constructing perpendicular lines, including the perpendicular bisector of a line segment; and constructing a line parallel to a given line through a point not on the line."
 standard_db9b0384e9fa34f93d274b868076c448145440e4:
  slug: "db9b0384e9fa34f93d274b868076c448145440e4"
@@ -4406,7 +4406,7 @@ standard_db9b0384e9fa34f93d274b868076c448145440e4:
  sub_subject: "Mathematics"
  is_parent_standard: "false"
  parent_standard: ""
- standard_type: "v"
+ standard_type: "Common Core"
  text: "Construct an equilateral triangle, a square, and a regular hexagon inscribed in a circle."
 standard_ac425faf12e46dbfed64e1b6d70070b8d1a11840:
  slug: "ac425faf12e46dbfed64e1b6d70070b8d1a11840"
@@ -4416,7 +4416,7 @@ standard_ac425faf12e46dbfed64e1b6d70070b8d1a11840:
  sub_subject: "Mathematics"
  is_parent_standard: "true"
  parent_standard: ""
- standard_type: "v"
+ standard_type: "Common Core"
  text: "Verify experimentally the properties of dilations given by a center and a scale factor:"
 standard_abeb19a254eb081eaa7b010b554169b650e5afc6:
  slug: "abeb19a254eb081eaa7b010b554169b650e5afc6"
@@ -4426,7 +4426,7 @@ standard_abeb19a254eb081eaa7b010b554169b650e5afc6:
  sub_subject: "Mathematics"
  is_parent_standard: "false"
  parent_standard: "CCSS.Math.Content.HSG-SRT.A.1"
- standard_type: "v"
+ standard_type: "Common Core"
  text: "A dilation takes a line not passing through the center of the dilation to a parallel line, and leaves a line passing through the center unchanged."
 standard_147d9bd3d5ce73159e4d15ff5ad154b4a3bcc977:
  slug: "147d9bd3d5ce73159e4d15ff5ad154b4a3bcc977"
@@ -4436,7 +4436,7 @@ standard_147d9bd3d5ce73159e4d15ff5ad154b4a3bcc977:
  sub_subject: "Mathematics"
  is_parent_standard: "false"
  parent_standard: "CCSS.Math.Content.HSG-SRT.A.1"
- standard_type: "v"
+ standard_type: "Common Core"
  text: "The dilation of a line segment is longer or shorter in the ratio given by the scale factor."
 standard_c17da92d6eb13d1a537b26235541c3a71b65bd6b:
  slug: "c17da92d6eb13d1a537b26235541c3a71b65bd6b"
@@ -4446,7 +4446,7 @@ standard_c17da92d6eb13d1a537b26235541c3a71b65bd6b:
  sub_subject: "Mathematics"
  is_parent_standard: "false"
  parent_standard: ""
- standard_type: "v"
+ standard_type: "Common Core"
  text: "Given two figures, use the definition of similarity in terms of similarity transformations to decide if they are similar; explain using similarity transformations the meaning of similarity for triangles as the equality of all corresponding pairs of angles and the proportionality of all corresponding pairs of sides."
 standard_fc294aff9466861f485667a830a4c7ea58f4ad6e:
  slug: "fc294aff9466861f485667a830a4c7ea58f4ad6e"
@@ -4456,7 +4456,7 @@ standard_fc294aff9466861f485667a830a4c7ea58f4ad6e:
  sub_subject: "Mathematics"
  is_parent_standard: "false"
  parent_standard: ""
- standard_type: "v"
+ standard_type: "Common Core"
  text: " Use the properties of similarity transformations to establish the AA criterion for two triangles to be similar."
 standard_5c4ce83c4d237dd796396b166694e9932bfa2e12:
  slug: "5c4ce83c4d237dd796396b166694e9932bfa2e12"
@@ -4466,7 +4466,7 @@ standard_5c4ce83c4d237dd796396b166694e9932bfa2e12:
  sub_subject: "Mathematics"
  is_parent_standard: "false"
  parent_standard: ""
- standard_type: "v"
+ standard_type: "Common Core"
  text: "Prove theorems about triangles. Theorems include: a line parallel to one side of a triangle divides the other two proportionally, and conversely; the Pythagorean Theorem proved using triangle similarity."
 standard_c14b04f774c0ccf0f6110c22d9b0efa4e64e08c5:
  slug: "c14b04f774c0ccf0f6110c22d9b0efa4e64e08c5"
@@ -4476,7 +4476,7 @@ standard_c14b04f774c0ccf0f6110c22d9b0efa4e64e08c5:
  sub_subject: "Mathematics"
  is_parent_standard: "false"
  parent_standard: ""
- standard_type: "v"
+ standard_type: "Common Core"
  text: "Use congruence and similarity criteria for triangles to solve problems and to prove relationships in geometric figures."
 standard_fc43844d805194ab91c52c6222959f7c44394982:
  slug: "fc43844d805194ab91c52c6222959f7c44394982"
@@ -4486,7 +4486,7 @@ standard_fc43844d805194ab91c52c6222959f7c44394982:
  sub_subject: "Mathematics"
  is_parent_standard: "false"
  parent_standard: ""
- standard_type: "v"
+ standard_type: "Common Core"
  text: "Understand that by similarity, side ratios in right triangles are properties of the angles in the triangle, leading to definitions of trigonometric ratios for acute angles."
 standard_be04bb39fa65c9c6f80a91dbaa6175a3428c362f:
  slug: "be04bb39fa65c9c6f80a91dbaa6175a3428c362f"
@@ -4496,7 +4496,7 @@ standard_be04bb39fa65c9c6f80a91dbaa6175a3428c362f:
  sub_subject: "Mathematics"
  is_parent_standard: "false"
  parent_standard: ""
- standard_type: "v"
+ standard_type: "Common Core"
  text: "Explain and use the relationship between the sine and cosine of complementary angles."
 standard_3254565c7856a1d742329830beca1e9a63209868:
  slug: "3254565c7856a1d742329830beca1e9a63209868"
@@ -4506,7 +4506,7 @@ standard_3254565c7856a1d742329830beca1e9a63209868:
  sub_subject: "Mathematics"
  is_parent_standard: "false"
  parent_standard: ""
- standard_type: "v"
+ standard_type: "Common Core"
  text: "Use trigonometric ratios and the Pythagorean Theorem to solve right triangles in applied problems."
 standard_cbf5929c895ce305858db31c6c15872cfc65a37e:
  slug: "cbf5929c895ce305858db31c6c15872cfc65a37e"
@@ -4516,7 +4516,7 @@ standard_cbf5929c895ce305858db31c6c15872cfc65a37e:
  sub_subject: "Mathematics"
  is_parent_standard: "false"
  parent_standard: ""
- standard_type: "v"
+ standard_type: "Common Core"
  text: "(+) Derive the formula A = 1/2 ab sin(C) for the area of a triangle by drawing an auxiliary line from a vertex perpendicular to the opposite side."
 standard_988156529a0ac5f526f732b85034ce0898237013:
  slug: "988156529a0ac5f526f732b85034ce0898237013"
@@ -4526,7 +4526,7 @@ standard_988156529a0ac5f526f732b85034ce0898237013:
  sub_subject: "Mathematics"
  is_parent_standard: "false"
  parent_standard: ""
- standard_type: "v"
+ standard_type: "Common Core"
  text: "(+) Prove the Laws of Sines and Cosines and use them to solve problems."
 standard_567e094f6130f7f27fee9c1cd246f21579d013df:
  slug: "567e094f6130f7f27fee9c1cd246f21579d013df"
@@ -4536,7 +4536,7 @@ standard_567e094f6130f7f27fee9c1cd246f21579d013df:
  sub_subject: "Mathematics"
  is_parent_standard: "false"
  parent_standard: ""
- standard_type: "v"
+ standard_type: "Common Core"
  text: "(+) Understand and apply the Law of Sines and the Law of Cosines to find unknown measurements in right and non-right triangles (e.g., surveying problems, resultant forces)."
 standard_07d13d7adfa5df0b476b37e069703f579084bea3:
  slug: "07d13d7adfa5df0b476b37e069703f579084bea3"
@@ -4546,7 +4546,7 @@ standard_07d13d7adfa5df0b476b37e069703f579084bea3:
  sub_subject: "Mathematics"
  is_parent_standard: "false"
  parent_standard: ""
- standard_type: "v"
+ standard_type: "Common Core"
  text: "Prove that all circles are similar."
 standard_88289866e629c1c38d15b0ade67d3d73a1e7d1cd:
  slug: "88289866e629c1c38d15b0ade67d3d73a1e7d1cd"
@@ -4556,7 +4556,7 @@ standard_88289866e629c1c38d15b0ade67d3d73a1e7d1cd:
  sub_subject: "Mathematics"
  is_parent_standard: "false"
  parent_standard: ""
- standard_type: "v"
+ standard_type: "Common Core"
  text: "Identify and describe relationships among inscribed angles, radii, and chords. Include the relationship between central, inscribed, and circumscribed angles; inscribed angles on a diameter are right angles; the radius of a circle is perpendicular to the tangent where the radius intersects the circle."
 standard_c1cf15a1061a065550e997b0f7324082effea743:
  slug: "c1cf15a1061a065550e997b0f7324082effea743"
@@ -4566,7 +4566,7 @@ standard_c1cf15a1061a065550e997b0f7324082effea743:
  sub_subject: "Mathematics"
  is_parent_standard: "false"
  parent_standard: ""
- standard_type: "v"
+ standard_type: "Common Core"
  text: "Construct the inscribed and circumscribed circles of a triangle, and prove properties of angles for a quadrilateral inscribed in a circle."
 standard_9c760a6488272ecb87ad9e6cb48811dd7e914006:
  slug: "9c760a6488272ecb87ad9e6cb48811dd7e914006"
@@ -4576,7 +4576,7 @@ standard_9c760a6488272ecb87ad9e6cb48811dd7e914006:
  sub_subject: "Mathematics"
  is_parent_standard: "false"
  parent_standard: ""
- standard_type: "v"
+ standard_type: "Common Core"
  text: "(+) Construct a tangent line from a point outside a given circle to the circle."
 standard_ee58a98ccaaa40088cfe262323cf152ca4f8c10b:
  slug: "ee58a98ccaaa40088cfe262323cf152ca4f8c10b"
@@ -4586,7 +4586,7 @@ standard_ee58a98ccaaa40088cfe262323cf152ca4f8c10b:
  sub_subject: "Mathematics"
  is_parent_standard: "false"
  parent_standard: ""
- standard_type: "v"
+ standard_type: "Common Core"
  text: "Derive using similarity the fact that the length of the arc intercepted by an angle is proportional to the radius, and define the radian measure of the angle as the constant of proportionality; derive the formula for the area of a sector."
 standard_f2b68df12868321d349cf29c31304cccab70133d:
  slug: "f2b68df12868321d349cf29c31304cccab70133d"
@@ -4596,7 +4596,7 @@ standard_f2b68df12868321d349cf29c31304cccab70133d:
  sub_subject: "Mathematics"
  is_parent_standard: "false"
  parent_standard: ""
- standard_type: "v"
+ standard_type: "Common Core"
  text: "Derive the equation of a circle of given center and radius using the Pythagorean Theorem; complete the square to find the center and radius of a circle given by an equation."
 standard_bc76a72f20d99c3235fa1b83175bb3039e002fa0:
  slug: "bc76a72f20d99c3235fa1b83175bb3039e002fa0"
@@ -4606,7 +4606,7 @@ standard_bc76a72f20d99c3235fa1b83175bb3039e002fa0:
  sub_subject: "Mathematics"
  is_parent_standard: "false"
  parent_standard: ""
- standard_type: "v"
+ standard_type: "Common Core"
  text: "Derive the equation of a parabola given a focus and directrix."
 standard_94549cbc2a9f5ea13bede5a2c136f3d125c4a3a0:
  slug: "94549cbc2a9f5ea13bede5a2c136f3d125c4a3a0"
@@ -4616,7 +4616,7 @@ standard_94549cbc2a9f5ea13bede5a2c136f3d125c4a3a0:
  sub_subject: "Mathematics"
  is_parent_standard: "false"
  parent_standard: ""
- standard_type: "v"
+ standard_type: "Common Core"
  text: "(+) Derive the equations of ellipses and hyperbolas given the foci, using the fact that the sum or difference of distances from the foci is constant."
 standard_85e17874769c924aa4da7bf5005c2b9cb6fda916:
  slug: "85e17874769c924aa4da7bf5005c2b9cb6fda916"
@@ -4626,7 +4626,7 @@ standard_85e17874769c924aa4da7bf5005c2b9cb6fda916:
  sub_subject: "Mathematics"
  is_parent_standard: "false"
  parent_standard: ""
- standard_type: "v"
+ standard_type: "Common Core"
  text: "Use coordinates to prove simple geometric theorems algebraically. For example, prove or disprove that a figure defined by four given points in the coordinate plane is a rectangle; prove or disprove that the point (1, &radic;3) lies on the circle centered at the origin and containing the point (0, 2)."
 standard_006a69dac2bd627e8fa773e826327fdbcca0ac92:
  slug: "006a69dac2bd627e8fa773e826327fdbcca0ac92"
@@ -4636,7 +4636,7 @@ standard_006a69dac2bd627e8fa773e826327fdbcca0ac92:
  sub_subject: "Mathematics"
  is_parent_standard: "false"
  parent_standard: ""
- standard_type: "v"
+ standard_type: "Common Core"
  text: "Prove the slope criteria for parallel and perpendicular lines and use them to solve geometric problems (e.g., find the equation of a line parallel or perpendicular to a given line that passes through a given point)."
 standard_b9858c42ab0bb4d051c77c52c861555775513349:
  slug: "b9858c42ab0bb4d051c77c52c861555775513349"
@@ -4646,7 +4646,7 @@ standard_b9858c42ab0bb4d051c77c52c861555775513349:
  sub_subject: "Mathematics"
  is_parent_standard: "false"
  parent_standard: ""
- standard_type: "v"
+ standard_type: "Common Core"
  text: "Find the point on a directed line segment between two given points that partitions the segment in a given ratio."
 standard_1e18bcfef224949d32a5b5cc186983489cdfe49d:
  slug: "1e18bcfef224949d32a5b5cc186983489cdfe49d"
@@ -4656,7 +4656,7 @@ standard_1e18bcfef224949d32a5b5cc186983489cdfe49d:
  sub_subject: "Mathematics"
  is_parent_standard: "false"
  parent_standard: ""
- standard_type: "v"
+ standard_type: "Common Core"
  text: "Use coordinates to compute perimeters of polygons and areas of triangles and rectangles, e.g., using the distance formula."
 standard_5bba7201a6eaeb2ab72a0597f5e80c77b5010852:
  slug: "5bba7201a6eaeb2ab72a0597f5e80c77b5010852"
@@ -4666,7 +4666,7 @@ standard_5bba7201a6eaeb2ab72a0597f5e80c77b5010852:
  sub_subject: "Mathematics"
  is_parent_standard: "false"
  parent_standard: ""
- standard_type: "v"
+ standard_type: "Common Core"
  text: "Give an informal argument for the formulas for the circumference of a circle, area of a circle, volume of a cylinder, pyramid, and cone. Use dissection arguments, Cavalieri&rsquo;s principle, and informal limit arguments."
 standard_929c3f216663765ac5fb663379709fb6cfa37770:
  slug: "929c3f216663765ac5fb663379709fb6cfa37770"
@@ -4676,7 +4676,7 @@ standard_929c3f216663765ac5fb663379709fb6cfa37770:
  sub_subject: "Mathematics"
  is_parent_standard: "false"
  parent_standard: ""
- standard_type: "v"
+ standard_type: "Common Core"
  text: "(+) Give an informal argument using Cavalieri&rsquo;s principle for the formulas for the volume of a sphere and other solid figures."
 standard_e65cbabf2116f636a962931be622b06bf43a7a01:
  slug: "e65cbabf2116f636a962931be622b06bf43a7a01"
@@ -4686,7 +4686,7 @@ standard_e65cbabf2116f636a962931be622b06bf43a7a01:
  sub_subject: "Mathematics"
  is_parent_standard: "false"
  parent_standard: ""
- standard_type: "v"
+ standard_type: "Common Core"
  text: "Use volume formulas for cylinders, pyramids, cones, and spheres to solve problems."
 standard_ec79afe1f4f4fc507befb9808a5cd76ef99bc3dc:
  slug: "ec79afe1f4f4fc507befb9808a5cd76ef99bc3dc"
@@ -4696,7 +4696,7 @@ standard_ec79afe1f4f4fc507befb9808a5cd76ef99bc3dc:
  sub_subject: "Mathematics"
  is_parent_standard: "false"
  parent_standard: ""
- standard_type: "v"
+ standard_type: "Common Core"
  text: "Identify the shapes of two-dimensional cross-sections of three-dimensional objects, and identify three-dimensional objects generated by rotations of two-dimensional objects."
 standard_39a1ad0e77d8d3607bd8c2785c3fb07961f3529b:
  slug: "39a1ad0e77d8d3607bd8c2785c3fb07961f3529b"
@@ -4706,7 +4706,7 @@ standard_39a1ad0e77d8d3607bd8c2785c3fb07961f3529b:
  sub_subject: "Mathematics"
  is_parent_standard: "false"
  parent_standard: ""
- standard_type: "v"
+ standard_type: "Common Core"
  text: "Use geometric shapes, their measures, and their properties to describe objects (e.g., modeling a tree trunk or a human torso as a cylinder)."
 standard_033ec4c43296019ddf7233eb268796ee05ed0ffa:
  slug: "033ec4c43296019ddf7233eb268796ee05ed0ffa"
@@ -4716,7 +4716,7 @@ standard_033ec4c43296019ddf7233eb268796ee05ed0ffa:
  sub_subject: "Mathematics"
  is_parent_standard: "false"
  parent_standard: ""
- standard_type: "v"
+ standard_type: "Common Core"
  text: "Apply concepts of density based on area and volume in modeling situations (e.g., persons per square mile, BTUs per cubic foot)."
 standard_231ca517420e1fa5904171b3a4f079b8a63de608:
  slug: "231ca517420e1fa5904171b3a4f079b8a63de608"
@@ -4726,7 +4726,7 @@ standard_231ca517420e1fa5904171b3a4f079b8a63de608:
  sub_subject: "Mathematics"
  is_parent_standard: "false"
  parent_standard: ""
- standard_type: "v"
+ standard_type: "Common Core"
  text: "Apply geometric methods to solve design problems (e.g., designing an object or structure to satisfy physical constraints or minimize cost; working with typographic grid systems based on ratios)."
 standard_90c671e3d7bb126a0c99828129cad05c023621cb:
  slug: "90c671e3d7bb126a0c99828129cad05c023621cb"
@@ -4736,7 +4736,7 @@ standard_90c671e3d7bb126a0c99828129cad05c023621cb:
  sub_subject: "Mathematics"
  is_parent_standard: "false"
  parent_standard: ""
- standard_type: "v"
+ standard_type: "Common Core"
  text: "Represent data with plots on the real number line (dot plots, histograms, and box plots)."
 standard_75f3d4f5536580fa95473c0e30eba463c506b09c:
  slug: "75f3d4f5536580fa95473c0e30eba463c506b09c"
@@ -4746,7 +4746,7 @@ standard_75f3d4f5536580fa95473c0e30eba463c506b09c:
  sub_subject: "Mathematics"
  is_parent_standard: "false"
  parent_standard: ""
- standard_type: "v"
+ standard_type: "Common Core"
  text: "Use statistics appropriate to the shape of the data distribution to compare center (median, mean) and spread (interquartile range, standard deviation) of two or more different data sets."
 standard_3caac5c35291b34cb01b70646c40af7d9b8c5e9b:
  slug: "3caac5c35291b34cb01b70646c40af7d9b8c5e9b"
@@ -4756,7 +4756,7 @@ standard_3caac5c35291b34cb01b70646c40af7d9b8c5e9b:
  sub_subject: "Mathematics"
  is_parent_standard: "false"
  parent_standard: ""
- standard_type: "v"
+ standard_type: "Common Core"
  text: "Interpret differences in shape, center, and spread in the context of the data sets, accounting for possible effects of extreme data points (outliers)."
 standard_10a0f89b791d30b6eb20acca75cf0738d07c13cc:
  slug: "10a0f89b791d30b6eb20acca75cf0738d07c13cc"
@@ -4766,7 +4766,7 @@ standard_10a0f89b791d30b6eb20acca75cf0738d07c13cc:
  sub_subject: "Mathematics"
  is_parent_standard: "false"
  parent_standard: ""
- standard_type: "v"
+ standard_type: "Common Core"
  text: "Use the mean and standard deviation of a data set to fit it to a normal distribution and to estimate population percentages. Recognize that there are data sets for which such a procedure is not appropriate. Use calculators, spreadsheets, and tables to estimate areas under the normal curve."
 standard_a279aa410e1c2fd832e01b9d56d5d07a626648c1:
  slug: "a279aa410e1c2fd832e01b9d56d5d07a626648c1"
@@ -4776,7 +4776,7 @@ standard_a279aa410e1c2fd832e01b9d56d5d07a626648c1:
  sub_subject: "Mathematics"
  is_parent_standard: "false"
  parent_standard: ""
- standard_type: "v"
+ standard_type: "Common Core"
  text: "Summarize categorical data for two categories in two-way frequency tables. Interpret relative frequencies in the context of the data (including joint, marginal, and conditional relative frequencies). Recognize possible associations and trends in the data."
 standard_4aaf8afc247558d68c017e190b244981a1a6b783:
  slug: "4aaf8afc247558d68c017e190b244981a1a6b783"
@@ -4786,7 +4786,7 @@ standard_4aaf8afc247558d68c017e190b244981a1a6b783:
  sub_subject: "Mathematics"
  is_parent_standard: "true"
  parent_standard: ""
- standard_type: "v"
+ standard_type: "Common Core"
  text: "Represent data on two quantitative variables on a scatter plot, and describe how the variables are related."
 standard_3b494f325c2b726620ebea6bbaada3a866702892:
  slug: "3b494f325c2b726620ebea6bbaada3a866702892"
@@ -4796,7 +4796,7 @@ standard_3b494f325c2b726620ebea6bbaada3a866702892:
  sub_subject: "Mathematics"
  is_parent_standard: "false"
  parent_standard: "CCSS.Math.Content.HSS-ID.B.6"
- standard_type: "v"
+ standard_type: "Common Core"
  text: "Fit a function to the data; use functions fitted to data to solve problems in the context of the data. Use given functions or choose a function suggested by the context. Emphasize linear, quadratic, and exponential models."
 standard_5c4e038161c0ed35f054cd336edf45ecb00c9ddb:
  slug: "5c4e038161c0ed35f054cd336edf45ecb00c9ddb"
@@ -4806,7 +4806,7 @@ standard_5c4e038161c0ed35f054cd336edf45ecb00c9ddb:
  sub_subject: "Mathematics"
  is_parent_standard: "false"
  parent_standard: "CCSS.Math.Content.HSS-ID.B.6"
- standard_type: "v"
+ standard_type: "Common Core"
  text: "Informally assess the fit of a function by plotting and analyzing residuals."
 standard_0b418c4dcc30c690b7792358a6cc3d48fc0f5bf2:
  slug: "0b418c4dcc30c690b7792358a6cc3d48fc0f5bf2"
@@ -4816,7 +4816,7 @@ standard_0b418c4dcc30c690b7792358a6cc3d48fc0f5bf2:
  sub_subject: "Mathematics"
  is_parent_standard: "false"
  parent_standard: "CCSS.Math.Content.HSS-ID.B.6"
- standard_type: "v"
+ standard_type: "Common Core"
  text: "Fit a linear function for a scatter plot that suggests a linear association."
 standard_a98f56cf112c1c7a510e153c2a9b3fc12d5a3eb5:
  slug: "a98f56cf112c1c7a510e153c2a9b3fc12d5a3eb5"
@@ -4826,7 +4826,7 @@ standard_a98f56cf112c1c7a510e153c2a9b3fc12d5a3eb5:
  sub_subject: "Mathematics"
  is_parent_standard: "false"
  parent_standard: ""
- standard_type: "v"
+ standard_type: "Common Core"
  text: " Interpret the slope (rate of change) and the intercept (constant term) of a linear model in the context of the data."
 standard_1094f5488eec32d59efe27fc8e102b1b3580d20b:
  slug: "1094f5488eec32d59efe27fc8e102b1b3580d20b"
@@ -4836,7 +4836,7 @@ standard_1094f5488eec32d59efe27fc8e102b1b3580d20b:
  sub_subject: "Mathematics"
  is_parent_standard: "false"
  parent_standard: ""
- standard_type: "v"
+ standard_type: "Common Core"
  text: "Compute (using technology) and interpret the correlation coefficient of a linear fit."
 standard_e3a279b04750144b9142521a302fc0e34dc2102d:
  slug: "e3a279b04750144b9142521a302fc0e34dc2102d"
@@ -4846,7 +4846,7 @@ standard_e3a279b04750144b9142521a302fc0e34dc2102d:
  sub_subject: "Mathematics"
  is_parent_standard: "false"
  parent_standard: ""
- standard_type: "v"
+ standard_type: "Common Core"
  text: "Distinguish between correlation and causation."
 standard_4e8a2f7fbf9d377155d8eba267fd1534ae4e5ef2:
  slug: "4e8a2f7fbf9d377155d8eba267fd1534ae4e5ef2"
@@ -4856,7 +4856,7 @@ standard_4e8a2f7fbf9d377155d8eba267fd1534ae4e5ef2:
  sub_subject: "Mathematics"
  is_parent_standard: "false"
  parent_standard: ""
- standard_type: "v"
+ standard_type: "Common Core"
  text: "Understand statistics as a process for making inferences about population parameters based on a random sample from that population."
 standard_5467b9c0b055b4e156a4407a1e0ea907afa017c3:
  slug: "5467b9c0b055b4e156a4407a1e0ea907afa017c3"
@@ -4866,7 +4866,7 @@ standard_5467b9c0b055b4e156a4407a1e0ea907afa017c3:
  sub_subject: "Mathematics"
  is_parent_standard: "false"
  parent_standard: ""
- standard_type: "v"
+ standard_type: "Common Core"
  text: "Decide if a specified model is consistent with results from a given data-generating process, e.g., using simulation. For example, a model says a spinning coin falls heads up with probability 0.5. Would a result of 5 tails in a row cause you to question the model?"
 standard_b494d409d69ff2921a674b78c480240bc13e78b1:
  slug: "b494d409d69ff2921a674b78c480240bc13e78b1"
@@ -4876,7 +4876,7 @@ standard_b494d409d69ff2921a674b78c480240bc13e78b1:
  sub_subject: "Mathematics"
  is_parent_standard: "false"
  parent_standard: ""
- standard_type: "v"
+ standard_type: "Common Core"
  text: "Recognize the purposes of and differences among sample surveys, experiments, and observational studies; explain how randomization relates to each."
 standard_516c081f94cb5f718df93b3a820f840e90524f20:
  slug: "516c081f94cb5f718df93b3a820f840e90524f20"
@@ -4886,7 +4886,7 @@ standard_516c081f94cb5f718df93b3a820f840e90524f20:
  sub_subject: "Mathematics"
  is_parent_standard: "false"
  parent_standard: ""
- standard_type: "v"
+ standard_type: "Common Core"
  text: "Use data from a sample survey to estimate a population mean or proportion; develop a margin of error through the use of simulation models for random sampling."
 standard_02ea472291dc08a7594f8c22147d63eb541a300e:
  slug: "02ea472291dc08a7594f8c22147d63eb541a300e"
@@ -4896,7 +4896,7 @@ standard_02ea472291dc08a7594f8c22147d63eb541a300e:
  sub_subject: "Mathematics"
  is_parent_standard: "false"
  parent_standard: ""
- standard_type: "v"
+ standard_type: "Common Core"
  text: "Use data from a randomized experiment to compare two treatments; use simulations to decide if differences between parameters are significant."
 standard_bc3f2f741cc6e30a087cda3ff82efa95755e4145:
  slug: "bc3f2f741cc6e30a087cda3ff82efa95755e4145"
@@ -4906,7 +4906,7 @@ standard_bc3f2f741cc6e30a087cda3ff82efa95755e4145:
  sub_subject: "Mathematics"
  is_parent_standard: "false"
  parent_standard: ""
- standard_type: "v"
+ standard_type: "Common Core"
  text: "Evaluate reports based on data."
 standard_9d5c817d928d9d932f4d40bfaa6e0e0e173f7a54:
  slug: "9d5c817d928d9d932f4d40bfaa6e0e0e173f7a54"
@@ -4916,7 +4916,7 @@ standard_9d5c817d928d9d932f4d40bfaa6e0e0e173f7a54:
  sub_subject: "Mathematics"
  is_parent_standard: "false"
  parent_standard: ""
- standard_type: "v"
+ standard_type: "Common Core"
  text: " Describe events as subsets of a sample space (the set of outcomes) using characteristics (or categories) of the outcomes, or as unions, intersections, or complements of other events (&ldquo;or,&rdquo; &ldquo;and,&rdquo; &ldquo;not&rdquo;)."
 standard_5ff011d8207c7099dfa75e463617dc6d293c60ac:
  slug: "5ff011d8207c7099dfa75e463617dc6d293c60ac"
@@ -4926,7 +4926,7 @@ standard_5ff011d8207c7099dfa75e463617dc6d293c60ac:
  sub_subject: "Mathematics"
  is_parent_standard: "false"
  parent_standard: ""
- standard_type: "v"
+ standard_type: "Common Core"
  text: "Understand that two events A and B are independent if the probability of A and B occurring together is the product of their probabilities, and use this characterization to determine if they are independent."
 standard_205dbe8ce5e3096cb963da97a1f8c5896a1c7d11:
  slug: "205dbe8ce5e3096cb963da97a1f8c5896a1c7d11"
@@ -4936,7 +4936,7 @@ standard_205dbe8ce5e3096cb963da97a1f8c5896a1c7d11:
  sub_subject: "Mathematics"
  is_parent_standard: "false"
  parent_standard: ""
- standard_type: "v"
+ standard_type: "Common Core"
  text: "Understand the conditional probability of A given B as P(A and B)/P(B), and interpret independence of A and B as saying that the conditional probability of A given B is the same as the probability of A, and the conditional probability of B given A is the same as the probability of B."
 standard_46aa97fbedda8b67dd19eaa6d3c7dd1b52d341bb:
  slug: "46aa97fbedda8b67dd19eaa6d3c7dd1b52d341bb"
@@ -4946,7 +4946,7 @@ standard_46aa97fbedda8b67dd19eaa6d3c7dd1b52d341bb:
  sub_subject: "Mathematics"
  is_parent_standard: "false"
  parent_standard: ""
- standard_type: "v"
+ standard_type: "Common Core"
  text: "Construct and interpret two-way frequency tables of data when two categories are associated with each object being classified. Use the two-way table as a sample space to decide if events are independent and to approximate conditional probabilities. For example, collect data from a random sample of students in your school on their favorite subject among math, science, and English. Estimate the probability that a randomly selected student from your school will favor science given that the student is in tenth grade. Do the same for other subjects and compare the results."
 standard_8f24a98a35d9b57dfedf75d9eb7f8a8f5cea2a39:
  slug: "8f24a98a35d9b57dfedf75d9eb7f8a8f5cea2a39"
@@ -4956,7 +4956,7 @@ standard_8f24a98a35d9b57dfedf75d9eb7f8a8f5cea2a39:
  sub_subject: "Mathematics"
  is_parent_standard: "false"
  parent_standard: ""
- standard_type: "v"
+ standard_type: "Common Core"
  text: " Recognize and explain the concepts of conditional probability and independence in everyday language and everyday situations. For example, compare the chance of having lung cancer if you are a smoker with the chance of being a smoker if you have lung cancer."
 standard_fc791e4a728f2b4e2d9f1ab3dfe4fa118965bf1e:
  slug: "fc791e4a728f2b4e2d9f1ab3dfe4fa118965bf1e"
@@ -4966,7 +4966,7 @@ standard_fc791e4a728f2b4e2d9f1ab3dfe4fa118965bf1e:
  sub_subject: "Mathematics"
  is_parent_standard: "false"
  parent_standard: ""
- standard_type: "v"
+ standard_type: "Common Core"
  text: "Find the conditional probability of A given B as the fraction of B&rsquo;s outcomes that also belong to A, and interpret the answer in terms of the model."
 standard_989b782b50d26142567bd48e6891e260aea55dcf:
  slug: "989b782b50d26142567bd48e6891e260aea55dcf"
@@ -4976,7 +4976,7 @@ standard_989b782b50d26142567bd48e6891e260aea55dcf:
  sub_subject: "Mathematics"
  is_parent_standard: "false"
  parent_standard: ""
- standard_type: "v"
+ standard_type: "Common Core"
  text: "Apply the Addition Rule, P(A or B) = P(A) + P(B) &ndash; P(A and B), and interpret the answer in terms of the model."
 standard_9089bfd87dc3c078826cd359b99fc9d010158fa7:
  slug: "9089bfd87dc3c078826cd359b99fc9d010158fa7"
@@ -4986,7 +4986,7 @@ standard_9089bfd87dc3c078826cd359b99fc9d010158fa7:
  sub_subject: "Mathematics"
  is_parent_standard: "false"
  parent_standard: ""
- standard_type: "A) = P(B)P(A"
+ standard_type: "Common Core"
  text: "(+) Apply the general Multiplication Rule in a uniform probability model, P(A and B) = P(A)P(B"
 standard_8cafd8c866bb48dd1afed7e34f5a715ba3f0d513:
  slug: "8cafd8c866bb48dd1afed7e34f5a715ba3f0d513"
@@ -4996,7 +4996,7 @@ standard_8cafd8c866bb48dd1afed7e34f5a715ba3f0d513:
  sub_subject: "Mathematics"
  is_parent_standard: "false"
  parent_standard: ""
- standard_type: "A) = P(B)P(A"
+ standard_type: "Common Core"
  text: "(+) Use permutations and combinations to compute probabilities of compound events and solve problems."
 standard_4b1ea8a9c18e0ba3ce4713d491a274425ee0f90e:
  slug: "4b1ea8a9c18e0ba3ce4713d491a274425ee0f90e"
@@ -5006,7 +5006,7 @@ standard_4b1ea8a9c18e0ba3ce4713d491a274425ee0f90e:
  sub_subject: "Mathematics"
  is_parent_standard: "false"
  parent_standard: ""
- standard_type: "A) = P(B)P(A"
+ standard_type: "Common Core"
  text: "(+) Define a random variable for a quantity of interest by assigning a numerical value to each event in a sample space; graph the corresponding probability distribution using the same graphical displays as for data distributions."
 standard_730322db52fb4da27f4eea74deb1525e1621861f:
  slug: "730322db52fb4da27f4eea74deb1525e1621861f"
@@ -5016,7 +5016,7 @@ standard_730322db52fb4da27f4eea74deb1525e1621861f:
  sub_subject: "Mathematics"
  is_parent_standard: "false"
  parent_standard: ""
- standard_type: "A) = P(B)P(A"
+ standard_type: "Common Core"
  text: "(+) Calculate the expected value of a random variable; interpret it as the mean of the probability distribution."
 standard_b57bbf5897846a2945b6b7d7cc451e0e6d0da4f5:
  slug: "b57bbf5897846a2945b6b7d7cc451e0e6d0da4f5"
@@ -5026,7 +5026,7 @@ standard_b57bbf5897846a2945b6b7d7cc451e0e6d0da4f5:
  sub_subject: "Mathematics"
  is_parent_standard: "false"
  parent_standard: ""
- standard_type: "A) = P(B)P(A"
+ standard_type: "Common Core"
  text: "(+) Develop a probability distribution for a random variable defined for a sample space in which theoretical probabilities can be calculated; find the expected value. For example, find the theoretical probability distribution for the number of correct answers obtained by guessing on all five questions of a multiple-choice test where each question has four choices, and find the expected grade under various grading schemes."
 standard_0df4307a9a3be9f09f08baba2eb0ca0499d86bd6:
  slug: "0df4307a9a3be9f09f08baba2eb0ca0499d86bd6"
@@ -5036,7 +5036,7 @@ standard_0df4307a9a3be9f09f08baba2eb0ca0499d86bd6:
  sub_subject: "Mathematics"
  is_parent_standard: "false"
  parent_standard: ""
- standard_type: "A) = P(B)P(A"
+ standard_type: "Common Core"
  text: "(+) Develop a probability distribution for a random variable defined for a sample space in which probabilities are assigned empirically; find the expected value. For example, find a current data distribution on the number of TV sets per household in the United States, and calculate the expected number of sets per household. How many TV sets would you expect to find in 100 randomly selected households?"
 standard_1020f52b7848566a4a575b941a4a3db9e00afec7:
  slug: "1020f52b7848566a4a575b941a4a3db9e00afec7"
@@ -5046,7 +5046,7 @@ standard_1020f52b7848566a4a575b941a4a3db9e00afec7:
  sub_subject: "Mathematics"
  is_parent_standard: "true"
  parent_standard: ""
- standard_type: "A) = P(B)P(A"
+ standard_type: "Common Core"
  text: "(+) Weigh the possible outcomes of a decision by assigning probabilities to payoff values and finding expected values."
 standard_211a38fe8c5eecdea54503a497e2426286dc4476:
  slug: "211a38fe8c5eecdea54503a497e2426286dc4476"
@@ -5056,7 +5056,7 @@ standard_211a38fe8c5eecdea54503a497e2426286dc4476:
  sub_subject: "Mathematics"
  is_parent_standard: "false"
  parent_standard: "CCSS.Math.Content.HSS-MD.B.5"
- standard_type: "A) = P(B)P(A"
+ standard_type: "Common Core"
  text: "Find the expected payoff for a game of chance. For example, find the expected winnings from a state lottery ticket or a game at a fast-food restaurant."
 standard_6dced7a6de5754742176f9343e3076817b13d07c:
  slug: "6dced7a6de5754742176f9343e3076817b13d07c"
@@ -5066,7 +5066,7 @@ standard_6dced7a6de5754742176f9343e3076817b13d07c:
  sub_subject: "Mathematics"
  is_parent_standard: "false"
  parent_standard: "CCSS.Math.Content.HSS-MD.B.5"
- standard_type: "A) = P(B)P(A"
+ standard_type: "Common Core"
  text: "Evaluate and compare strategies on the basis of expected values. For example, compare a high-deductible versus a low-deductible automobile insurance policy using various, but reasonable, chances of having a minor or a major accident."
 standard_dc7ec148a4e545723d4e58c6d9edb9320c1fb0be:
  slug: "dc7ec148a4e545723d4e58c6d9edb9320c1fb0be"
@@ -5076,7 +5076,7 @@ standard_dc7ec148a4e545723d4e58c6d9edb9320c1fb0be:
  sub_subject: "Mathematics"
  is_parent_standard: "false"
  parent_standard: ""
- standard_type: "A) = P(B)P(A"
+ standard_type: "Common Core"
  text: "(+) Use probabilities to make fair decisions (e.g., drawing by lots, using a random number generator)."
 standard_365d0e9ff9b619352a96e6032b76f55b8bcc7012:
  slug: "365d0e9ff9b619352a96e6032b76f55b8bcc7012"
@@ -5086,7 +5086,7 @@ standard_365d0e9ff9b619352a96e6032b76f55b8bcc7012:
  sub_subject: "Mathematics"
  is_parent_standard: "false"
  parent_standard: ""
- standard_type: "A) = P(B)P(A"
+ standard_type: "Common Core"
  text: "(+) Analyze decisions and strategies using probability concepts (e.g., product testing, medical testing, pulling a hockey goalie at the end of a game)."
 standard_fed426f67fefec47976da90cb1b96da2f05bcfea:
  slug: "fed426f67fefec47976da90cb1b96da2f05bcfea"
@@ -5096,7 +5096,7 @@ standard_fed426f67fefec47976da90cb1b96da2f05bcfea:
  sub_subject: "Mathematics"
  is_parent_standard: "false"
  parent_standard: ""
- standard_type: "A) = P(B)P(A"
+ standard_type: "Common Core"
  text: "Mathematically proficient students start by explaining to themselves the meaning of a problem and looking for entry points to its solution. They analyze givens, constraints, relationships, and goals. They make conjectures about the form and meaning of the solution and plan a solution pathway rather than simply jumping into a solution attempt. They consider analogous problems, and try special cases and simpler forms of the original problem in order to gain insight into its solution. They monitor and evaluate their progress and change course if necessary. Older students might, depending on the context of the problem, transform algebraic expressions or change the viewing window on their graphing calculator to get the information they need. Mathematically proficient students can explain correspondences between equations, verbal descriptions, tables, and graphs or draw diagrams of important features and relationships, graph data, and search for regularity or trends. Younger students might rely on using concrete objects or pictures to help conceptualize and solve a problem. Mathematically proficient students check their answers to problems using a different method, and they continually ask themselves, &ldquo;Does this make sense?&rdquo; They can understand the approaches of others to solving complex problems and identify correspondences between different approaches."
 standard_3ddb9a06614c6f911b44cf457759147e4157e5a6:
  slug: "3ddb9a06614c6f911b44cf457759147e4157e5a6"
@@ -5106,7 +5106,7 @@ standard_3ddb9a06614c6f911b44cf457759147e4157e5a6:
  sub_subject: "Mathematics"
  is_parent_standard: "false"
  parent_standard: ""
- standard_type: "A) = P(B)P(A"
+ standard_type: "Common Core"
  text: "Mathematically proficient students make sense of quantities and their relationships in problem situations. They bring two complementary abilities to bear on problems involving quantitative relationships: the ability to decontextualize&mdash;to abstract a given situation and represent it symbolically and manipulate the representing symbols as if they have a life of their own, without necessarily attending to their referents&mdash;and the ability to contextualize, to pause as needed during the manipulation process in order to probe into the referents for the symbols involved. Quantitative reasoning entails habits of creating a coherent representation of the problem at hand; considering the units involved; attending to the meaning of quantities, not just how to compute them; and knowing and flexibly using different properties of operations and objects."
 standard_3b42d0a09fa72b5bc6acc1da9fc36dba1db4c171:
  slug: "3b42d0a09fa72b5bc6acc1da9fc36dba1db4c171"
@@ -5116,7 +5116,7 @@ standard_3b42d0a09fa72b5bc6acc1da9fc36dba1db4c171:
  sub_subject: "Mathematics"
  is_parent_standard: "false"
  parent_standard: ""
- standard_type: "A) = P(B)P(A"
+ standard_type: "Common Core"
  text: "Mathematically proficient students understand and use stated assumptions, definitions, and previously established results in constructing arguments. They make conjectures and build a logical progression of statements to explore the truth of their conjectures. They are able to analyze situations by breaking them into cases, and can recognize and use counterexamples. They justify their conclusions, communicate them to others, and respond to the arguments of others. They reason inductively about data, making plausible arguments that take into account the context from which the data arose. Mathematically proficient students are also able to compare the effectiveness of two plausible arguments, distinguish correct logic or reasoning from that which is flawed, and&mdash;if there is a flaw in an argument&mdash;explain what it is. Elementary students can construct arguments using concrete referents such as objects, drawings, diagrams, and actions. Such arguments can make sense and be correct, even though they are not generalized or made formal until later grades. Later, students learn to determine domains to which an argument applies. Students at all grades can listen or read the arguments of others, decide whether they make sense, and ask useful questions to clarify or improve the arguments."
 standard_39b09d87ee43a210303a97e14e041758893f86dd:
  slug: "39b09d87ee43a210303a97e14e041758893f86dd"
@@ -5126,7 +5126,7 @@ standard_39b09d87ee43a210303a97e14e041758893f86dd:
  sub_subject: "Mathematics"
  is_parent_standard: "false"
  parent_standard: ""
- standard_type: "A) = P(B)P(A"
+ standard_type: "Common Core"
  text: "Mathematically proficient students can apply the mathematics they know to solve problems arising in everyday life, society, and the workplace. In early grades, this might be as simple as writing an addition equation to describe a situation. In middle grades, a student might apply proportional reasoning to plan a school event or analyze a problem in the community. By high school, a student might use geometry to solve a design problem or use a function to describe how one quantity of interest depends on another. Mathematically proficient students who can apply what they know are comfortable making assumptions and approximations to simplify a complicated situation, realizing that these may need revision later. They are able to identify important quantities in a practical situation and map their relationships using such tools as diagrams, two-way tables, graphs, flowcharts and formulas. They can analyze those relationships mathematically to draw conclusions. They routinely interpret their mathematical results in the context of the situation and reflect on whether the results make sense, possibly improving the model if it has not served its purpose."
 standard_a5ec371ec0c9eb8ba484a205d5fde23626356b90:
  slug: "a5ec371ec0c9eb8ba484a205d5fde23626356b90"
@@ -5136,7 +5136,7 @@ standard_a5ec371ec0c9eb8ba484a205d5fde23626356b90:
  sub_subject: "Mathematics"
  is_parent_standard: "false"
  parent_standard: ""
- standard_type: "A) = P(B)P(A"
+ standard_type: "Common Core"
  text: "Mathematically proficient students consider the available tools when solving a mathematical problem. These tools might include pencil and paper, concrete models, a ruler, a protractor, a calculator, a spreadsheet, a computer algebra system, a statistical package, or dynamic geometry software. Proficient students are sufficiently familiar with tools appropriate for their grade or course to make sound decisions about when each of these tools might be helpful, recognizing both the insight to be gained and their limitations. For example, mathematically proficient high school students analyze graphs of functions and solutions generated using a graphing calculator. They detect possible errors by strategically using estimation and other mathematical knowledge. When making mathematical models, they know that technology can enable them to visualize the results of varying assumptions, explore consequences, and compare predictions with data. Mathematically proficient students at various grade levels are able to identify relevant external mathematical resources, such as digital content located on a website, and use them to pose or solve problems. They are able to use technological tools to explore and deepen their understanding of concepts."
 standard_39abe9df03bf771e8462675f0281844dc30af892:
  slug: "39abe9df03bf771e8462675f0281844dc30af892"
@@ -5146,7 +5146,7 @@ standard_39abe9df03bf771e8462675f0281844dc30af892:
  sub_subject: "Mathematics"
  is_parent_standard: "false"
  parent_standard: ""
- standard_type: "A) = P(B)P(A"
+ standard_type: "Common Core"
  text: "Mathematically proficient students try to communicate precisely to others. They try to use clear definitions in discussion with others and in their own reasoning. They state the meaning of the symbols they choose, including using the equal sign consistently and appropriately. They are careful about specifying units of measure, and labeling axes to clarify the correspondence with quantities in a problem. They calculate accurately and efficiently, express numerical answers with a degree of precision appropriate for the problem context. In the elementary grades, students give carefully formulated explanations to each other. By the time they reach high school they have learned to examine claims and make explicit use of definitions."
 standard_1cffce75d84bbf40e83b45d1b116a3536459e43f:
  slug: "1cffce75d84bbf40e83b45d1b116a3536459e43f"
@@ -5156,7 +5156,7 @@ standard_1cffce75d84bbf40e83b45d1b116a3536459e43f:
  sub_subject: "Mathematics"
  is_parent_standard: "false"
  parent_standard: ""
- standard_type: "A) = P(B)P(A"
+ standard_type: "Common Core"
  text: "Mathematically proficient students look closely to discern a pattern or structure. Young students, for example, might notice that three and seven more is the same amount as seven and three more, or they may sort a collection of shapes according to how many sides the shapes have. Later, students will see 7 &times; 8 equals the well remembered 7 &times; 5 + 7 &times; 3, in preparation for learning about the distributive property. In the expression x2 + 9x + 14, older students can see the 14 as 2 &times; 7 and the 9 as 2 + 7. They recognize the significance of an existing line in a geometric figure and can use the strategy of drawing an auxiliary line for solving problems. They also can step back for an overview and shift perspective. They can see complicated things, such as some algebraic expressions, as single objects or as being composed of several objects. For example, they can see 5 &ndash; 3(x &ndash; y)2 as 5 minus a positive number times a square and use that to realize that its value cannot be more than 5 for any real numbers x and y."
 standard_e4534bc6bb6089cf1958b91734908a1df8840e43:
  slug: "e4534bc6bb6089cf1958b91734908a1df8840e43"
@@ -5166,5 +5166,5 @@ standard_e4534bc6bb6089cf1958b91734908a1df8840e43:
  sub_subject: "Mathematics"
  is_parent_standard: "false"
  parent_standard: ""
- standard_type: "A) = P(B)P(A"
+ standard_type: "Common Core"
  text: "Mathematically proficient students notice if calculations are repeated, and look both for general methods and for shortcuts. Upper elementary students might notice when dividing 25 by 11 that they are repeating the same calculations over and over again, and conclude they have a repeating decimal. By paying attention to the calculation of slope as they repeatedly check whether points are on the line through (1, 2) with slope 3, middle school students might abstract the equation (y &ndash; 2)/(x &ndash; 1) = 3. Noticing the regularity in the way terms cancel when expanding (x &ndash; 1)(x + 1), (x &ndash; 1)(x2 + x + 1), and (x &ndash; 1)(x3 + x2 + x + 1) might lead them to the general formula for the sum of a geometric series. As they work to solve a problem, mathematically proficient students maintain oversight of the process, while attending to the details. They continually evaluate the reasonableness of their intermediate results.Connecting the Standards for Mathematical Practice to the Standards for Mathematical ContentThe Standards for Mathematical Practice describe ways in which developing student practitioners of the discipline of mathematics increasingly ought to engage with the subject matter as they grow in mathematical maturity and expertise throughout the elementary, middle and high school years. Designers of curricula, assessments, and professional development should all attend to the need to connect the mathematical practices to mathematical content in mathematics instruction.The Standards for Mathematical Content are a balanced combination of procedure and understanding. Expectations that begin with the word &ldquo;understand&rdquo; are often especially good opportunities to connect the practices to the content. Students who lack understanding of a topic may rely on procedures too heavily. Without a flexible base from which to work, they may be less likely to consider analogous problems, represent problems coherently, justify conclusions, apply the mathematics to practical situations, use technology mindfully to work with the mathematics, explain the mathematics accurately to other students, step back for an overview, or deviate from a known procedure to find a shortcut. In short, a lack of understanding effectively prevents a student from engaging in the mathematical practices.In this respect, those content standards which set an expectation of understanding are potential &ldquo;points of intersection&rdquo; between the Standards for Mathematical Content and the Standards for Mathematical Practice. These points of intersection are intended to be weighted toward central and generative concepts in the school mathematics curriculum that most merit the time, resources, innovative energies, and focus necessary to qualitatively improve the curriculum, instruction, assessment, professional development, and student achievement in mathematics."

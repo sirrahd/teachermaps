@@ -5,7 +5,6 @@ class DeleteUnusedStandardMetadata < ActiveRecord::Migration
     standard = StandardType.find_by_name 'California Content Standards'
     standard.delete if standard
 
-
   end
 
   def down
