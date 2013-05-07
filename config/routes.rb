@@ -26,6 +26,7 @@ Teachermaps::Application.routes.draw do
   match '/resources/sync' => 'resources#sync'
   match '/resources/create/link' => 'resources#create_link'
   match '/resources/filter' => 'resources#filter'
+  match '/resources/page' => 'resources#page'
   resources :resources
 
   resources :users do

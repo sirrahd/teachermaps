@@ -15,7 +15,7 @@ class MapStandardsController < ApplicationController
     @map = Map.find_by_id_and_user_id params[:map_id], @current_user.id
     @standard = Standard.find params[:standard_id]
 
-    if !@map or !@standard
+    unless @map and @standard
       Rails.logger.info("error 404 map #{params[:map_id]} or standard #{params[:standard_id]}") 
       return render nothing: true, status: 404
     end
@@ -30,7 +30,7 @@ class MapStandardsController < ApplicationController
       @map.course_grades << @standard.course_grades
       @map.course_subjects << @standard.course_subject
 
-      if !@map_standard.save
+      unless @map_standard.save
         Rails.logger.info("error create map_standard") 
         return render json: @map_standard.errors, status: :unprocessable_entity
       end
@@ -48,7 +48,7 @@ class MapStandardsController < ApplicationController
         @map.course_grades << child_standard.course_grades
         @map.course_subjects << child_standard.course_subject
       
-        if !@map_standard.save
+        unless @map_standard.save
           Rails.logger.info("error create map_standard") 
           return render json: @map_standard.errors, status: :unprocessable_entity
         end
@@ -63,7 +63,7 @@ class MapStandardsController < ApplicationController
     
     @map_standard = MapStandard.find_by_id_and_user_id params[:id], @current_user.id
 
-    if !@map_standard
+    unless @map_standard
       Rails.logger.info("error 404 map_standard #{params[:id]}") 
       return render nothing: true, status: 404
     end
@@ -91,14 +91,14 @@ class MapStandardsController < ApplicationController
   def sort_objectives
 
     @map_standard = MapStandard.find params[:map_standard_id]
-    return render nothing: true, status: 404 if !@map_standard
+    return render nothing: true, status: 404 unless @map_standard
 
     @map_standard.map_objectives.each do |map_objective|
       map_objective.position = params[:map_objective].index(map_objective.id.to_s)+1
       map_objective.save
     end
 
-    render :nothing => true
+    render nothing: true
   end
 
   private 

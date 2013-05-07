@@ -7,7 +7,7 @@ class MapObjectivesController < ApplicationController
     Rails.logger.info(params)
     @map_standard = MapStandard.find_by_id_and_user_id(params[:map_standard_id], @current_user.id) 
     
-    if !@map_standard
+    unless @map_standard
       Rails.logger.info("error 404 map_standard #{params[:map_standard_id]}") 
       return render nothing: true, status: 404
     end
@@ -30,7 +30,7 @@ class MapObjectivesController < ApplicationController
 
   def destroy
     @map_objective = MapObjective.find_by_id_and_user_id params[:id], @current_user.id
-    return render nothing: true, status: 404 if !@map_objective
+    return render nothing: true, status: 404 unless @map_objective
 
     @map_standard = @map_objective.map_standard
     @map = @map_objective.map
@@ -60,7 +60,7 @@ class MapObjectivesController < ApplicationController
 
   def show_resources
     @map_objective = MapObjective.find_by_id_and_user_id params[:id], @current_user.id
-    return render nothing: true, status: 404 if !@map_objective
+    return render nothing: true, status: 404 unless @map_objective
 
     @map = @map_objective.map
     @resources = Resource.where user_id: @current_user.id
@@ -77,7 +77,7 @@ class MapObjectivesController < ApplicationController
 
     Rails.logger.info(params)
     @map_objective = MapObjective.find_by_id_and_user_id params[:id], @current_user.id
-    return render nothing: true, status: 404 if !@map_objective
+    return render nothing: true, status: 404 unless @map_objective
     
     @map_resources_by_resource_id = Hash[@map_objective.map_resources.map { |p| [p['resource_id'], p] }]
     
@@ -110,7 +110,7 @@ class MapObjectivesController < ApplicationController
       @map_objective = MapObjective.find_by_id_and_user_id params[:id], @current_user.id
       @resource = Resource.find_by_id_and_user_id params[:resource_id], @current_user.id
 
-      if !@map_objective or !@resource
+      unless @map_objective and @resource
         Rails.logger.info("error 404 map_objective #{params[:id]} or resource #{params[:resource_id]}") 
         return render nothing: true, status: 404
       end
@@ -140,7 +140,7 @@ class MapObjectivesController < ApplicationController
     @map_objective = MapObjective.find_by_id_and_user_id params[:id], @current_user.id
     @resource = Resource.find_by_id_and_user_id params[:resource_id], @current_user.id
 
-    if !@map_objective or !@resource
+    unless @map_objective and @resource
       Rails.logger.info("error 404 map_objective #{params[:id]} or resource #{params[:resource_id]}") 
       return render nothing: true, status: 404
     end
@@ -163,14 +163,14 @@ class MapObjectivesController < ApplicationController
     Rails.logger.info params
 
     @map_objective = MapObjective.find params[:id]
-    return render nothing: true, status: 404 if !@map_objective
+    return render nothing: true, status: 404 unless @map_objective
 
     @map_objective.map_resources.each do |map_resource|
       map_resource.position = params[:map_resource].index(map_resource.id.to_s)+1
       map_resource.save
     end
 
-    render :nothing => true
+    render nothing: true
   end
 
   private 
