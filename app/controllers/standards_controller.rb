@@ -23,7 +23,8 @@ class StandardsController < ApplicationController
     end
 
     if params.has_key?('q') and !params[:q].empty?
-      @standards &= Standard.find(:all, conditions: ['text LIKE ?', "%#{params[:q].strip}%"])
+      #@standards &= Standard.where("lower(text) LIKE ?", "%#{params[:q].strip.downcase}%")
+      @standards &= Standard.where( Standard.arel_table[:text].matches("%#{params[:q].strip}%") )
     end
     
     if @current_user
