@@ -6,7 +6,7 @@ class StandardsController < ApplicationController
   def ajax_filter
     Rails.logger.info(params)
 
-    if !params.has_key?('standard_type') or !params.has_key?('course_subject')
+    unless params.has_key?('standard_type') and params.has_key?('course_subject')
       Rails.logger.info("Dude, you forgot the standard type or course subject #{params[:course_subject]} #{params[:standard_type]}")
       return render partial: 'standards/list'
     end
