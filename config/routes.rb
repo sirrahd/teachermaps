@@ -22,6 +22,8 @@ Teachermaps::Application.routes.draw do
   match '/reset',           to: 'users#reset_password'
   match '/update_password', to: 'users#update_password'
 
+  match '/subscribe/email' => 'mail_chimp#subscribe'
+
   # Sync Google Drive and/or DropBox resources
   match '/resources/sync' => 'resources#sync'
   match '/resources/create/link' => 'resources#create_link'

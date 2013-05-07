@@ -1,10 +1,5 @@
 module HtmlHelper
 
-  def apply_google_analytics?
-    Rails.logger.info("#{request.host_with_port}")
-    Rails.application.config.respond_to? 'PRODUCTION_DOMAIN' and Rails.application.config.PRODUCTION_DOMAIN == request.host_with_port
-  end
-
   def course_grade_ranges course_grades
 
     divider = '-'

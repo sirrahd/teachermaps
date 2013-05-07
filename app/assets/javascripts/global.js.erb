@@ -30,10 +30,19 @@ $(document).ready(function() {
     });
   });
 
-
-
   $('.best_in_place form').focus(function(){
     this.children().select();
   });
+
+
+
+
+  //////////////////////////////
+  //
+  // Global Regex Constants
+  //
+  //////////////////////////////
+  var emailRegex = new RegExp(/^([\w\.\-]+)@([\w\-]+)((\.(\w){2,3})+)$/i);
+   
 
 });
