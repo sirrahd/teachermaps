@@ -29,6 +29,7 @@ module MailChimpHelper
         merge_vars: {}
     })
     Rails.logger.info "Completed Subscription #{@result}"
+    @result
   end
 
 
