@@ -11,25 +11,26 @@ class UsersController < ApplicationController
     redirect_to signin_url if !signed_in?
 
     @user = User.find_by_account_name params[:id]
-    if !@user
+    unless @user
       Rails.logger.info 'Could not locate user '
       return render :status => 404
     end
 
     @maps = Map.where( user_id: @current_user ).order('id DESC')
-    @resources = Resource.where( user_id: @current_user.id )
+    @resources = @current_user.resources.paginate(page: params[:page]).order('id DESC')
+    @num_of_pages = @user.total_resources_count / 20 + 2
 
-    @filter_course_types = ResourceType.where( id: @resources.map { |resource| resource.resource_type.id } )
-    @filter_course_grades = CourseGrade.where( id: @resources.map { |resource| resource.course_grades.collect(&:id) } )
-    @filter_course_subjects = CourseSubject.where( id: @resources.map { |resource| resource.course_subjects.collect(&:id) } )
+    @filter_course_types = ResourceType.where( id: @current_user.resources.collect { |resource| resource.resource_type.id } )
+    @filter_course_grades = CourseGrade.where( id: @current_user.resources.collect { |resource| resource.course_grades.collect(&:id) } )
+    @filter_course_subjects = CourseSubject.where( id: @current_user.resources.collect { |resource| resource.course_subjects.collect(&:id) } )
 
     # For rendering Ajax "Upload Resource" form
     @resource = Resource.new
+
   end
 
   def new
     redirect_to @current_user if signed_in?
-
     @user = User.new
   end
 

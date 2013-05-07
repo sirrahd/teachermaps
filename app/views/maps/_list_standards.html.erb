@@ -1,9 +1,9 @@
-<ul id="standards_list"  style="cursor:pointer;list-style-type: none;">
+<ul id="standards_list" style="cursor:pointer;list-style-type: none;">
 	<% if @standards %>
 		<% @standards.each do |standard| %>
-	    <li style="margin-bottom:10px;">
+		  <li style="margin-bottom:10px;">
 
-	    	<% if @map_standards_by_standard_id.has_key?(standard.id) %>
+		  	<% if @map_standards_by_standard_id.has_key?(standard.id) %>
 	    		<div class="standard-selected" >
       	<% else %>
         	<div class="standard-default hover"  standard-id="<%= standard.id %>" action-url="<%= map_map_standards_path(@map.id) %>">

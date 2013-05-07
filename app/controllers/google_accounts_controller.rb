@@ -6,7 +6,7 @@ class GoogleAccountsController < ApplicationController
   
   def new
 
-    if !@current_user.has_google_account?
+    unless @current_user.has_google_account?
       
       # No account exists, create one
       google_account = GoogleAccount.new
@@ -29,11 +29,11 @@ class GoogleAccountsController < ApplicationController
     @google_account = GoogleAccount.find(params[:id])
     @setting = Setting.find(@current_user.id)
 
-    if !@google_account.owned_by?(@current_user)
+    unless @google_account.owned_by?(@current_user)
       return redirect_to settings_url, flash: {error: 'Invalid Google account'}
     end
 
-    if !@current_user.has_google_account?
+    unless @current_user.has_google_account?
       # User does not have a dropbox account
       return redirect_to settings_url, flash: {error: 'User does not have a Google account'}
     end 
@@ -70,7 +70,7 @@ class GoogleAccountsController < ApplicationController
 
     @google_account = @current_user.google_account || false
 
-    if !@google_account
+    unless @google_account
       return redirect_to settings_url, flash: {error: 'Google account not found'}
     end
 

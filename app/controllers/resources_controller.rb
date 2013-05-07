@@ -12,7 +12,7 @@ class ResourcesController < ApplicationController
   def show
     Rails.logger.info(params)
     @resource = Resource.find_by_id_and_user_id params[:id], @current_user.id
-    if !@resource
+    unless @resource
       return redirect_to resources_url, flash:  { error: t('resources.does_not_exist') }
     end
 
@@ -29,14 +29,14 @@ class ResourcesController < ApplicationController
 
   def edit
     @resource = Resource.find_by_id_and_user_id params[:id], @current_user.id
-    return render nothing: true, status: 404 if !@resource
+    return render nothing: true, status: 404 unless @resource
     render partial: "resources/edit"
   end
 
   def update
     Rails.logger.info(params)
     @resource = Resource.find_by_id_and_user_id params[:id], @current_user.id
-    return render nothing: true, status: 404 if !@resource
+    return render nothing: true, status: 404 unless @resource
 
     @resource.title = params[:resource][:title]
 
@@ -72,7 +72,7 @@ class ResourcesController < ApplicationController
 
     @resource = Resource.find_by_id_and_user_id params[:id], @current_user.id
 
-    if !@resource
+    unless @resource
       Rails.logger.info("404 Error, Resource not found #{@resource.errors.inspect}")
       return redirect_to resources_url, :flash => { :error =>  t('resources.does_not_exist') }
     end
@@ -125,7 +125,7 @@ class ResourcesController < ApplicationController
     Rails.logger.info(params)
 
     filter = {}
-    @resources = Resource.where user_id: @current_user.id
+    @resources = Resource.where(user_id: @current_user.id)
 
     if params.has_key?('q') and !params[:q].empty?
       @resources &= Resource.where( Resource.arel_table[:title].matches("%#{params[:q].strip}%") )
@@ -173,9 +173,9 @@ class ResourcesController < ApplicationController
         @resources = Resource.where user_id: @current_user.id
 
         # Need to re-generate filters
-        @filter_course_types = ResourceType.where(:id => @resources.map { |resource| resource.resource_type.id } )
-        @filter_course_grades = CourseGrade.where(:id => @resources.map { |resource| resource.course_grades.collect(&:id) } )
-        @filter_course_subjects = CourseSubject.where(:id => @resources.map { |resource| resource.course_subjects.collect(&:id) } )
+        @filter_course_types = ResourceType.where(:id => @resources.collect { |resource| resource.resource_type.id } )
+        @filter_course_grades = CourseGrade.where(:id => @resources.collect { |resource| resource.course_grades.collect(&:id) } )
+        @filter_course_subjects = CourseSubject.where(:id => @resources.collect { |resource| resource.course_subjects.collect(&:id) } )
         # Render filter and resources to dictionary
         response = { 
           :filters => render_to_string(partial:  'resources/filter_resources', :layout => false,  :locals => {:resources => @resources, :filter_course_types => @filter_course_types, :filter_course_grades=>@filter_course_grades, :filter_course_subjects=>@filter_course_subjects}),
@@ -230,6 +230,12 @@ class ResourcesController < ApplicationController
        format.html { redirect_to user_path(@current_user, anchor: 'resources'), :flash => { :success => t('resources.synced_n_files', :sync_count => sync_count) } }
     end
   end
+
+
+  def page
+    @resources = @current_user.resources.paginate(page: params[:page])
+    render partial: 'resources/table_resources'
+  end 
 
 
   private

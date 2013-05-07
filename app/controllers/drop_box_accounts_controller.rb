@@ -6,7 +6,7 @@ class DropBoxAccountsController < ApplicationController
 
   def new
 
-    if !@current_user.has_drop_box_account?
+    unless @current_user.has_drop_box_account?
       @current_user.drop_box_account = DropBoxAccount.new
       @current_user.save()
 
@@ -36,7 +36,7 @@ class DropBoxAccountsController < ApplicationController
 
     @drop_box_account = @current_user.drop_box_account || false
 
-    if !@drop_box_account
+    unless @drop_box_account
       return redirect_to settings_url, flash: {error: 'Dropbox account not found'}
     end
 
@@ -65,11 +65,11 @@ class DropBoxAccountsController < ApplicationController
     @drop_box_account = DropBoxAccount.find(params[:id])
     @setting = Setting.find(@current_user.id)
 
-    if !@drop_box_account.owned_by?(@current_user)
+    unless @drop_box_account.owned_by?(@current_user)
       return redirect_to settings_url, flash: {error: 'Invalid Dropbox account'}
     end
 
-    if !@current_user.has_drop_box_account?
+    unless @current_user.has_drop_box_account?
       # User does not have a dropbox account
       return redirect_to settings_url, flash: {error: 'User does not have a Dropbox account'}
     end 
