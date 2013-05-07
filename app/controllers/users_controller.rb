@@ -27,6 +27,8 @@ class UsersController < ApplicationController
     # For rendering Ajax "Upload Resource" form
     @resource = Resource.new
 
+    
+
   end
 
   def new
