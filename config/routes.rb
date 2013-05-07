@@ -19,6 +19,8 @@ Teachermaps::Application.routes.draw do
   match '/confirm', to: 'users#confirm_email'
   match '/reset', to: 'users#reset_password'
 
+  match '/subscribe/email' => 'mail_chimp#subscribe'
+
   # Sync Google Drive and/or DropBox resources
   match '/resources/sync' => 'resources#sync'
   match '/resources/create/link' => 'resources#create_link'
@@ -31,7 +33,6 @@ Teachermaps::Application.routes.draw do
     resources :maps
     resources :map_standards, :path => 'standards', only: [:show]
   end
-
 
   resources :map_resources
 
