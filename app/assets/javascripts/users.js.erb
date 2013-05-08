@@ -9,7 +9,10 @@ $(document).ready(function(){
   
   // Hide by default
   $('#resource-controls').hide();
-  if(window.location.hash == "#resources"){ $('#resource-controls').show(); }  
+  if(window.location.hash == "#resources"){ 
+    $('#maps-controls').hide();
+    $('#resource-controls').show(); 
+  }  
   // Shows resource controls when viewing resources
   $('.resource-toggle-control').click(function(){
   	$('#resource-controls').show();

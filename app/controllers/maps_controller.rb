@@ -11,7 +11,8 @@ class MapsController < ApplicationController
     @filter_standard_types = StandardType.all
     @filter_resource_types = ResourceType.all
     @filter_course_grades = CourseGrade.all
-    @filter_course_subjects = CourseSubject.all   
+    # Currently only have CCSS ELA and Math
+    @filter_course_subjects = CourseSubject.where name: ['English', 'Mathematics']
 
   end
 
@@ -51,7 +52,7 @@ class MapsController < ApplicationController
 
   def update
     @map = Map.find_by_id_and_user_id params[:id], @current_user.id
-    if !@map
+    unless @map
       Rails.logger.info("error 404 map #{params[:id]}") 
       return render nothing: true, status: 404
     end
@@ -63,6 +64,33 @@ class MapsController < ApplicationController
         format.json { respond_with_bip(@map) }
       end
     end
+  end
+
+
+  def sort_assessments
+
+    @map = Map.find params[:map_id]
+    return render nothing: true, status: 404 unless @map
+
+    @map.map_assessments.each do |map_assessment|
+      map_assessment.position = params[:map_assessment].index(map_assessment.id.to_s)+1
+      map_assessment.save
+    end
+
+    render :nothing => true
+  end
+
+  def sort_standards
+
+    @map = Map.find params[:map_id]
+    return render nothing: true, status: 404 unless @map
+
+    @map.map_standards.each do |map_standard|
+      map_standard.position = params[:map_standard].index(map_standard.id.to_s)+1
+      map_standard.save
+    end
+
+    render :nothing => true
   end
 
   private 

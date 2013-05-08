@@ -1,6 +1,6 @@
 Teachermaps::Application.routes.draw do
 
-    
+
   resources :settings
 
   resources :sessions, only: [:new, :create, :destroy]
@@ -15,36 +15,50 @@ Teachermaps::Application.routes.draw do
   match '/help',    to: 'static_pages#help'
   match '/about',   to: 'static_pages#about'
   match '/contact', to: 'static_pages#contact'
+  match '/privacy', to: 'static_pages#privacy'
+  match '/terms',   to: 'static_pages#tos'
 
-  match '/confirm', to: 'users#confirm_email'
-  match '/reset', to: 'users#reset_password'
+  match '/confirm',         to: 'users#confirm_email'
+  match '/reset',           to: 'users#reset_password'
+  match '/update_password', to: 'users#update_password'
+
+  match '/subscribe/email' => 'mail_chimp#subscribe'
 
   # Sync Google Drive and/or DropBox resources
   match '/resources/sync' => 'resources#sync'
   match '/resources/create/link' => 'resources#create_link'
   match '/resources/filter' => 'resources#filter'
+  match '/resources/page' => 'resources#page'
   resources :resources
-
-  resources :map_standards, only: [:update, :destroy]
-  resources :maps, only: [:update, :create, :destroy]
-  resources :maps do
-    resources :map_standards, only: [:create]
-  end
 
   resources :users do
     resources :maps
     resources :map_standards, :path => 'standards', only: [:show]
   end
-  
+
+  resources :map_resources
+
+  resources :maps, only: [:update, :create, :destroy]
+  resources :maps do
+    resources :map_standards, only: [:create]
+    post 'sort_assessments'
+    post 'sort_standards'
+  end
+
+  resources :map_standards, only: [:update, :destroy]
+  resources :map_standards do
+    post 'sort_objectives'
+  end
+
   resources :map_assessments do
     member do
       get    'show_resources'
       post   'filter_resources'
       post   'create_resource'
       delete 'destroy_resource'
+      post   'sort_resources'
     end
   end
-  resources :map_resources
 
   resources :map_objectives do
     member do
@@ -52,12 +66,13 @@ Teachermaps::Application.routes.draw do
       post   'filter_resources'
       post   'create_resource'
       delete 'destroy_resource'
+      post   'sort_resources'
     end
   end
 
   match '/standards/ajax/filter' => 'standards#ajax_filter'
   resources :standards
-  
+
   # Google API
   match 'google/oauth_callback' => 'google_accounts#oauth_callback'
   resources :google_accounts

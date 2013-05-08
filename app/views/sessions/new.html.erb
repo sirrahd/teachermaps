@@ -4,13 +4,17 @@
   <div class="span6 offset3">
     <%= form_for(:session, url: sessions_path) do |f| %>
 
+      <% if @key %>
+        <%= hidden_field_tag :email_request_key, @key %>
+      <% end %>
+
       <%= f.label :name, t('signin.name_label') %>
       <%= f.text_field :name %>
 
       <%= f.label :password, t('signin.password_label') %>
       <%= f.password_field :password %>
 
-      <%= f.submit t('signin.link'), class: "btn btn-large btn-primary" %>
+      <%= f.submit t('signin.link'), class: "btn btn-primary" %>
     <% end %>
     <p>
       <%= link_to(t('signup.link'), signup_path) %>

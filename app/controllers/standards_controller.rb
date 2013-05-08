@@ -6,7 +6,7 @@ class StandardsController < ApplicationController
   def ajax_filter
     Rails.logger.info(params)
 
-    if !params.has_key?('standard_type') or !params.has_key?('course_subject')
+    unless params.has_key?('standard_type') and params.has_key?('course_subject')
       Rails.logger.info("Dude, you forgot the standard type or course subject #{params[:course_subject]} #{params[:standard_type]}")
       return render partial: 'standards/list'
     end
@@ -23,7 +23,8 @@ class StandardsController < ApplicationController
     end
 
     if params.has_key?('q') and !params[:q].empty?
-      @standards &= Standard.find(:all, conditions: ['text LIKE ?', "%#{params[:q].strip}%"])
+      #@standards &= Standard.where("lower(text) LIKE ?", "%#{params[:q].strip.downcase}%")
+      @standards &= Standard.where( Standard.arel_table[:text].matches("%#{params[:q].strip}%") )
     end
     
     if @current_user

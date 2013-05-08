@@ -48,6 +48,8 @@ var pushFlash = function(options){
 		config.fadeOut = 3000;
 	} 
 
+	flashContainer.effect('highlight',{},2000);
+
 	// Sets timer to fade out in N milliseconds
 	window.setInterval( function() {flashContainer.fadeOut('slow');}, config.fadeOut );
 

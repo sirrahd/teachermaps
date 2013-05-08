@@ -10,23 +10,27 @@ class UsersController < ApplicationController
     # Users must be signed in to view a profile
     redirect_to signin_url if !signed_in?
 
-    # Users can only sign in to their own account; ignore params
-    @user = @current_user
+    @user = User.find_by_account_name params[:id]
+    unless @user
+      Rails.logger.info 'Could not locate user '
+      return render :status => 404
+    end
 
     @maps = Map.where( user_id: @current_user ).order('id DESC')
-    @resources = Resource.where( user_id: @current_user.id )
+    @resources = @current_user.resources.paginate(page: params[:page]).order('id DESC')
+    @num_of_pages = @user.total_resources_count / 20 + 2
 
-    @filter_course_types = ResourceType.where( id: @resources.map { |resource| resource.resource_type.id } )
-    @filter_course_grades = CourseGrade.where( id: @resources.map { |resource| resource.course_grades.collect(&:id) } )
-    @filter_course_subjects = CourseSubject.where( id: @resources.map { |resource| resource.course_subjects.collect(&:id) } )
+    @filter_course_types = ResourceType.where( id: @current_user.resources.collect { |resource| resource.resource_type.id } )
+    @filter_course_grades = CourseGrade.where( id: @current_user.resources.collect { |resource| resource.course_grades.collect(&:id) } )
+    @filter_course_subjects = CourseSubject.where( id: @current_user.resources.collect { |resource| resource.course_subjects.collect(&:id) } )
 
     # For rendering Ajax "Upload Resource" form
     @resource = Resource.new
+
   end
 
   def new
     redirect_to @current_user if signed_in?
-
     @user = User.new
   end
 
@@ -46,23 +50,7 @@ class UsersController < ApplicationController
   end
 
   def update
-    # If the request includes a key, use it
-    if params[:key]
-      @user = User.find_by_account_name(params[:account_name])
-      @user = nil unless @user.request_key == params[:key]
-
-      if @user.update_attributes(params[:user])
-        flash[:success] = "Profile updated"
-        sign_in @user
-        redirect_to @user
-      else
-        flash[:warning] = t 'reset_password.error'
-        redirect_to :back
-      end
-      return
-    end
-
-    # If request is already authenticated
+    # User is always authenticated before an update
     @user = current_user
 
     # If user's email changes unconfirm them and send a confirmation email
@@ -79,17 +67,48 @@ class UsersController < ApplicationController
 
     # Update any other attributes
     if @user.update_attributes(params[:user])
-      flash[:success] = "Profile updated"
+      flash[:success] = t 'settings.profile_updated'
+      sign_in @user #updates invalidate current sign in
+      flash[:user_info] = @user
+      redirect_to settings_path
+    else
+      flash[:user_info] = @user
+      redirect_to settings_path
+    end
+  end
+
+  def update_password
+    @user = current_user
+
+    # Password can't be blank, but I can't seem to use validations for
+    # this without causing any updates that DON'T include a password
+    # to fail, so we'll check it here.
+    # Note: Passwords are never made blank, but erroneously show success.
+    if params[:user][:password] == ""
+      @user.errors.add :Password, "can't be blank."
+      render 'password_reset'
+      return
+    end
+
+    if @user.update_attributes(params[:user])
+      flash[:success] = t 'settings.profile_updated'
       sign_in @user
       redirect_to @user
     else
-      flash[:warning] = t 'reset_password.error'
-      redirect_to :back
+      render 'password_reset'
     end
   end
 
   def confirm_email
-    @user = User.find_by_account_name(params[:account])
+    @user = current_user
+
+    # If there's no logged in user, take them to the login form first
+    unless @user
+      @key = params[:key]
+      flash[:warning] = t 'confirmation.login'
+      render 'sessions/new'
+      return
+    end
 
     if @user.request_key == params[:key]
       @user.update_attribute(:confirmed, 1)
@@ -97,7 +116,8 @@ class UsersController < ApplicationController
       flash[:success] = t 'confirmation.success'
       redirect_to @user
     else
-      redirect_to signin_url
+      flash[:error] = t 'confirmation.error'
+      redirect_to @user
     end
   end
 
@@ -107,6 +127,7 @@ class UsersController < ApplicationController
       @user = User.find_by_account_name(params[:account_name])
       if @user.request_key == params[:key]
         render 'password_reset'
+        sign_in @user
         return
       else
         flash[:warning] = t 'reset_password.error'
@@ -123,6 +144,13 @@ class UsersController < ApplicationController
           # Fails, re-render reset confirmation with the flash
           flash[:warning] = t 'reset_password.error'
       end
+    end
+
+    # User is already signed in
+    if current_user
+      @user = current_user
+      render 'password_reset'
+      return
     end
 
     # Stage 1: User enters email address

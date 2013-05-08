@@ -2,7 +2,9 @@ class Resource < ActiveRecord::Base
 
 	TYPE = 'Resource'
   MAX_TITLE_RENDER_LEN = 65
-  
+
+  # will_paginate default
+  self.per_page = 20
   
 	# TeacherMaps generated slug linking to a GoogleDrive/DropBox Resource 
 	attr_accessible :slug

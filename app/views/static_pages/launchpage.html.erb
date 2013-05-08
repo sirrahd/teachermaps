@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= t 'global.app_name' %></title>
+    <%= favicon_link_tag 'favicon.ico', :rel=>'icon', :type=>'image/ico' %>
+    <%= stylesheet_link_tag    "application", media: "all" %>
+    <%= javascript_include_tag "application" %>
+    <%= csrf_meta_tags %>
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <script type="text/javascript">
+      I18n.defaultLocale = "<%= I18n.default_locale %>";
+      I18n.locale = "<%= I18n.locale %>";
+    </script>
+  </head>
+  <body>
+
+
+    <div class="container" id="main-container">
+      <div class="center">
+        <h1><%= t('home.title', app_name: t('global.app_name')) %></h1>
+        <h3 class="muted"><%= t 'home.text' %></h3>
+        <div id="mailchimp" style="margin-top:30px;">
+            <%= render 'mail_chimp/subscribe' %>
+        </div>
+      </div>
+    </div>
+
+
+    <% if is_main_proudction? %>
+    <script type="text/javascript">
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-38603370-1']);
+      _gaq.push(['_trackPageview']);
+
+      (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      })();
+    </script>
+    <% end %>
+  </body>
+</html>

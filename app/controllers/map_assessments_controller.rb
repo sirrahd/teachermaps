@@ -7,7 +7,7 @@ class MapAssessmentsController < ApplicationController
 		Rails.logger.info(params)
 
     @map = Map.find_by_id_and_user_id params[:map_id], @current_user.id 
-    return render nothing: true, status: 404 if !@map
+    return render nothing: true, status: 404 unless @map 
 
     @map_assessment = MapAssessment.new map_id: @map.id, user_id: @current_user.id
     
@@ -23,7 +23,7 @@ class MapAssessmentsController < ApplicationController
 
 	def update
 		@map_assessment = MapAssessment.find_by_id_and_user_id( params[:id], @current_user.id )
-    return render nothing: true, status: 404 if !@map_assessment
+    return render nothing: true, status: 404 unless @map_assessment
 
   	respond_to do |format|
     	if @map_assessment.update_attributes(params[:map_assessment])
@@ -38,7 +38,7 @@ class MapAssessmentsController < ApplicationController
 		@map_assessment = MapAssessment.find_by_id_and_user_id( params[:id], @current_user.id )
 
 		# Stop here if map was not found
-		return render nothing: true, status: 404 if !@map_assessment
+		return render nothing: true, status: 404 unless @map_assessment
     
     # Needed to re-render map assessments
     @map = @map_assessment.map    
@@ -59,13 +59,13 @@ class MapAssessmentsController < ApplicationController
 	def show_resources
 		@map_assessment = MapAssessment.find_by_id_and_user_id( params[:id], @current_user.id )
 
-		return render nothing: true, status: 404 if !@map_assessment
+		return render nothing: true, status: 404 unless @map_assessment
 
 		@map = @map_assessment.map
     @resources = Resource.where user_id: @current_user.id
-    @filter_resource_types = ResourceType.where( id: @resources.map { |resource| resource.resource_type.id } )
-    @filter_course_grades = CourseGrade.where( id: @resources.map { |resource| resource.course_grades.collect(&:id) } )
-    @filter_course_subjects = CourseSubject.where( id: @resources.map { |resource| resource.course_subjects.collect(&:id) } )
+    @filter_resource_types = ResourceType.where( id: @resources.collect { |resource| resource.resource_type.id } )
+    @filter_course_grades = CourseGrade.where( id: @resources.collect { |resource| resource.course_grades.collect(&:id) } )
+    @filter_course_subjects = CourseSubject.where( id: @resources.collect { |resource| resource.course_subjects.collect(&:id) } )
 
     @map_resources_by_resource_id = Hash[@map_assessment.map_resources.map { |p| [p['resource_id'], p] }]
 
@@ -85,7 +85,7 @@ class MapAssessmentsController < ApplicationController
 
     Rails.logger.info(params)
     @map_assessment = MapAssessment.find params[:map_assessment_id]
-    return render nothing: true, status: 404 if !@map_assessment
+    return render nothing: true, status: 404 unless @map_assessment
     
     @map_resources_by_resource_id = Hash[@map_assessment.map_resources.map { |p| [p['resource_id'], p] }]
   
@@ -127,9 +127,9 @@ class MapAssessmentsController < ApplicationController
     @map_assessment = MapAssessment.find_by_id_and_user_id params[:id], @current_user.id
     @resource = Resource.find_by_id_and_user_id params[:resource_id], @current_user.id
 
-    if !@map_assessment or !@resource
+    unless @map_assessment and @resource
       Rails.logger.info("error 404 map_assessment #{params[:id]} or resource #{params[:resource_id]}") 
-      return render :nothing => true, :status => 404
+      return render nothing: true, status: 404
     end
 
     if !MapResource.find_by_map_assessment_id_and_resource_id(@map_assessment, @resource)
@@ -156,9 +156,9 @@ class MapAssessmentsController < ApplicationController
     @map_assessment = MapAssessment.find_by_id_and_user_id params[:id], @current_user.id
     @resource = Resource.find_by_id_and_user_id params[:resource_id], @current_user.id
 
-    if !@map_assessment or !@resource
+    unless @map_assessment and @resource
       Rails.logger.info("error 404 map_ssessment #{params[:id]} or resource #{params[:resource_id]}") 
-      return render :nothing => true, :status => 404
+      return render nothing: true, status: 404
     end
 
     @map_resource = MapResource.find_by_map_assessment_id_and_resource_id @map_assessment, @resource
@@ -174,6 +174,20 @@ class MapAssessmentsController < ApplicationController
       end
     end
 	end
+
+  def sort_resources
+    Rails.logger.info params
+
+    @map_assessment = MapAssessment.find params[:id]
+    return render nothing: true, status: 404 unless @map_assessment
+
+    @map_assessment.map_resources.each do |map_resource|
+      map_resource.position = params[:map_resource].index(map_resource.id.to_s)+1
+      map_resource.save
+    end
+
+    render nothing: true
+  end
 
 	private
 

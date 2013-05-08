@@ -19,7 +19,7 @@ class User < ActiveRecord::Base
   has_one :google_account
   has_one :drop_box_account
   has_one :setting
-  has_many :resources
+  has_many :resources, order: 'id DESC'
   has_many :maps, order: 'id DESC'
 
   before_save do |user|
@@ -60,6 +60,10 @@ class User < ActiveRecord::Base
 
   def request_key
     Digest::MD5.hexdigest(self.email + self.account_name + self.confirmed.to_s + self.password_digest + self.created_at.iso8601)
+  end
+
+  def total_resources_count
+    Resource.where( user_id: self.id ).count
   end
 
   private
