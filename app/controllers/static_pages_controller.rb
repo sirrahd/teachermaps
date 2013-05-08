@@ -4,8 +4,10 @@ class StaticPagesController < ApplicationController
       redirect_to @current_user
     elsif params[:mvp]
       render 'static_pages/home'
+    elsif params[:login]
+      render 'launchlogin', layout: false
     else
-      render 'static_pages/launchpage', layout: false
+      render 'launchpage', layout: false
     end
   end
 
