@@ -20,17 +20,27 @@
 
     <div class="container" id="main-container">
 
-      <div class="center">
-        <h1><%= t('home.title', app_name: t('global.app_name')) %></h1>
-        <h3 class="muted"><%= t 'home.text' %></h3>
-        <div id="mailchimp" style="margin-top:30px;">
-            <%= render 'mail_chimp/subscribe' %>
+      <h1 class="center"><%= t 'signin.title' %></h1>
+
+      <div class="row">
+        <div class="span6 offset3">
+          <%= form_for(:session, url: sessions_path) do |f| %>
+
+            <% if @key %>
+              <%= hidden_field_tag :email_request_key, @key %>
+            <% end %>
+
+            <%= f.label :name, t('signin.name_label') %>
+            <%= f.text_field :name %>
+
+            <%= f.label :password, t('signin.password_label') %>
+            <%= f.password_field :password %>
+
+            <%= f.submit t('signin.link'), class: "btn btn-primary" %>
+          <% end %>
         </div>
-        <p>
-          Have an account?
-          <a href="/?login=1">Sign in here</a>
-        </p>
       </div>
+
     </div>
 
 
