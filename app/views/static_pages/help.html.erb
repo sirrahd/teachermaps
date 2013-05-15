@@ -1,2 +1,189 @@
-<h1><%= t 'help.title' %></h1>
-<p><%= t 'help.text' %></p>
+<section class="span12">
+  <h1>Using TeacherMaps</h1>
+  <p>
+    TeacherMaps connects your digital teacher toolbox with national education
+    standards and the backwards planning approach many teachers apply to lesson planning.
+  </p>
+  <p>
+    This document describes how to use TeacherMaps so you can make the most
+    of what our product has to offer.
+  </p>
+</section>
+
+<ul class="nav nav-list well span5">
+  <li class="nav-header">The Basics</li>
+  <li><a href="#whyuse">Why use TeacherMaps?</a></li>
+
+  <li class="nav-header">Creating your account</li>
+  <li><a href="#signup">Sign up</a></li>
+  <li><a href="#dbcon">Connecting with Dropbox</a></li>
+  <li><a href="#gdcon">Connecting with Google Drive</a></li>
+
+  <li class="nav-header">Adding resources</li>
+  <li><a href="#addlink">Adding web links</a></li>
+  <li><a href="#addfile">Adding files from Dropbox and Google Drive</a></li>
+
+  <li class="nav-header">Organizing your Resources</li>
+  <li><a href="#addmap">Creating maps</a></li>
+  <li><a href="#addstandard">Adding standards to maps</a></li>
+  <li><a href="#addassessment">Adding map assessments</a></li>
+  <li><a href="#addobjective">Adding objectives to standards</a></li>
+  <li><a href="#addresource">Adding resources to objectives</a></li>
+
+  <li class="nav-header">Sending feedback</li>
+  <li><a href="#feedback">Let us know what you think</a></li>
+</ul>
+
+<section class="span12">
+  <h3>The Basics</h3>
+  <h4 id="whyuse">Why use TeacherMaps?</h4>
+  <p>
+    TeacherMaps helps you organize your resources and align them to standards
+    to save you time and help you more easily share curriculum with other teachers.
+  </p>
+  <p>
+    Maps are curated collections of resources, organized by standards, that can be
+    used for weeks on end.
+  </p>
+
+  <h3>Creating your account</h3>
+  <h4 id="signup">Sign up</h4>
+  <p>
+    Head over to the sign-up form to create an account. We just need a few
+    bits of information to get you started:
+  </p>
+  <ul>
+    <p>
+      <strong>Username</strong> Your unique ID when using all TeacherMaps
+      services. This must be unique on the service and it can never be changed.
+    </p>
+    <p>
+      <strong>Name</strong> Here you can define how you’d like us to call
+      you. This can be changed at any time via your settings page.
+    </p>
+    <p>
+      <strong>Email</strong> Your email address helps us confirm your identity, provide important information about your account, and (optionally) keep you up-to-date with the latest updates to TeacherMaps. This can be changed at any time via your settings page.
+    </p>
+    <p>
+      <strong>Password</strong> 6 characters or more and anything goes. We recommend choosing something a computer couldn’t quickly guess.
+    </p>
+  </ul>
+  <p>
+    We respect your privacy and will never share your personal information with anyone. For details take a look at our <%= link_to "Privacy Policy", privacy_path %> and <%= link_to "Terms of Service", terms_path %>.
+  </p>
+
+  <h4 id="dbcon">Connecting with Dropbox</h4>
+  <p>
+    Connecting your TeacherMaps account with a Dropbox account allows you
+    to manage your Dropbox files directly within TeacherMaps. You can set
+    it up in a few steps. From your TeacherMaps account, go to your settings
+    page (Click your name in the top right corner and select Settings). On
+    the Settings page under Storage Settings, select Add Dropbox. This will
+    redirect you to the Dropbox signin page. After signing in, Dropbox will
+    ask you if you want to give TeacherMaps access to your account.
+  </p>
+  <p>
+    If you agree to give TeacherMaps access to your Dropbox account, a
+    folder will be created on your Dropbox in /Apps/TeacherMaps. Any files
+    uploaded to that folder can be synced with TeacherMaps by clicking the
+    Sync button on your Resources page. Note that any files that are not
+    in the /Apps/TeacherMaps folder, and any files in subfolders of
+    /Apps/TeacherMaps, will not be accessible to TeacherMaps.
+  </p>
+
+  <h4 id="gdcon">Connecting with Google Drive</h4>
+  <p>
+    Connecting your TeacherMaps account with a Google account allows you
+    to manage your Google Drive files directly within TeacherMaps. You can
+    set it up in a few steps. From your TeacherMaps account, go to your
+    settings page (Click your name in the top right corner and select
+    Settings). On the Settings page under Storage Settings, select Add
+    Google Drive. This will redirect you to the Google signin page. After
+    signing in, Google will ask you if you want to give TeacherMaps access
+    to your Google Drive account.
+  </p>
+  <p>
+    If you agree to give TeacherMaps access to your Google Drive account,
+    a folder will be created on your Google Drive in /Apps/TeacherMaps.
+    Any files uploaded to that folder can be synced with TeacherMaps by
+    clicking the Sync button on your Resources page. Note that any files
+    that are not in the /Apps/TeacherMaps folder, and any files in
+    subfolders of /Apps/TeacherMaps, will not be accessible to TeacherMaps.
+  </p>
+
+  <h3>Adding resources</h3>
+  <h4 id="addlink">Adding web links to TeacherMaps</h4>
+  <p>
+    Links to web resources can be added to TeacherMaps through the
+    Resources page. Your Resources page can be found by logging into your
+    account, and from your homepage clicking the Resources tab.
+  </p>
+  <p>
+    Your Resources pane lists all of the resources (web links, Dropbox,
+    and Google Drive files) you have created. To add new links, click the
+    Add Link button in the upper-right corner of the Resources pane. Enter
+    as much information as you can about the link (only Title and Link
+    fields are required) and select Save to create the link.
+  </p>
+
+  <h4 id="addfile">Adding files from Dropbox and Google Drive to TeacherMaps</h4>
+  <p>
+    Once you’ve connected your Google Drive and/or Dropbox account to
+    TeacherMaps, any files you add to your /Apps/TeacherMaps folder will
+    be added to your TeacherMaps account when you click the Sync button
+    on your Resources page. Note that files that are in any other folder
+    than /Apps/TeacherMaps or in subfolders of /Apps/TeacherMaps will not
+    be added to TeacherMaps.
+  </p>
+
+  <h3>Organizing your resources</h3>
+  <h4 id="addmap">Creating maps</h4>
+  <p>
+    After you log in, your home page is set to the Maps tab. This is
+    where you can view and manage all the maps you’ve created. To create
+    a new map, click the Create Map button at the top-right of the Maps pane.
+  </p>
+  <p>
+    You can edit the title and description of your newly-created map by
+    clicking it, then clicking the title or description to edit. Changes
+    are saved automatically.
+  </p>
+
+  <h4 id="addstandard">Adding standards to maps</h4>
+  <p>
+    Add a standard to a map by selecting the Add Standard button on a map’s
+    page and click on the standard you'd like to add.
+  </p>
+
+  <h4 id="addassessment">Adding map assessments</h4>
+  <p>
+    Add an assessment to a map by selecting the Add Assessment button on
+    the Map’s page. Assessments can be any resources that represent your
+    entire map, for example a unit test.
+  </p>
+
+  <h4 id="addobjective">Adding objectives to standards</h4>
+  <p>
+    After you’ve added a standard to a map, click the standard to view all
+    of the resources you’ve associated with the standard in that map.
+    Click Add Objective to add new objectives.
+  </p>
+
+  <h4 id="addresource">Adding resources to objectives</h4>
+  <p>
+    To add resources to objectives, click on the objective on any
+    standard’s page and select Add Resource. A resource is any web link,
+    Dropbox, or Google Drive file you added to TeacherMaps via your
+    Resources page.
+  </p>
+
+  <h3 id="feedback">Sending feedback</h4>
+  <p>
+    Any time you get stuck (really, any time you have to resort to
+    reading this help document) we want to hear about it! Anything you
+    really like, really don’t like, don’t understand, whatever it is, we
+    want to know. You can easily send us feedback when logged in using
+    the Send Feedback button at the top of every page. If you send us
+    anonymous feedback, it really is anonymous.
+  </p>
+</section>
