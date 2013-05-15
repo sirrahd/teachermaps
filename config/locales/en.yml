@@ -151,7 +151,7 @@ en:
     subject:                    "Welcome to TeacherMaps!"
     title:                      "Let's get started, %{name}"
     content_textonly:           "Activate your account with the link below:"
-    content:                    "%{activation_link} to active your account."
+    content:                    "%{activation_link} to activate your account."
     activation_link:            "Click here"
   confirmation:
     success:                    "Thanks! We confirmed your email address."
