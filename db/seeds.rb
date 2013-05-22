@@ -68,8 +68,14 @@ if ActiveRecord::Base.connection.table_exists? 'standards'
 			s.is_parent_standard = standard['is_parent_standard']
 
 			standard['course_grades'].split(",").each do |grade_name|
-				# Many grades
-				s.course_grades << CourseGrade.find_or_create_by_name( grade_name )
+				
+				g = CourseGrade.find_by_name(grade_name)
+				if s.course_grades.empty? and not s.course_grades.include? g
+					print "Adding #{g} to standard #{s.name}\n"
+					# Many grades
+					s.course_grades << g
+				end
+
 			end
 
 			if standard['parent_standard']
