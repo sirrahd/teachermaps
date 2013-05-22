@@ -16,6 +16,7 @@
 //= require_tree .
 //= require i18n
 //= require i18n/translations
+//= require select2
 //= require best_in_place
 //= require jquery.ui.sortable
 //= require jquery.ui.effect-highlight
