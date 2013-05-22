@@ -67,12 +67,13 @@ if ActiveRecord::Base.connection.table_exists? 'standards'
 			s.sub_subject = standard['sub_subject']
 			s.is_parent_standard = standard['is_parent_standard']
 
-			standard['course_grades'].split(",").each do |grade_name|
+			# print "Found #{standard['course_grades']}\n"
+			standard_grades = standard['course_grades'].delete(' ').split(",")
+			standard_grades.each do |grade_name|
 				
 				g = CourseGrade.find_by_name(grade_name)
-				if s.course_grades.empty? and not s.course_grades.include? g
-					print "Adding #{g} to standard #{s.name}\n"
-					# Many grades
+				if not s.course_grades.include? g
+					print "Adding #{g.name} to standard #{s.name}\n"
 					s.course_grades << g
 				end
 
@@ -88,7 +89,7 @@ if ActiveRecord::Base.connection.table_exists? 'standards'
 		end 
 	end 
 end
-print "Count: #{counter}\n"
+# print "Count: #{counter}\n"
 
 
 
