@@ -3,29 +3,30 @@
 <legend><%= t 'settings.storage_title' %></legend>
 
 <div class="row">
-  <div class="span5">
-    <div>
+  <div class="span10">
+    <div style="margin: 5px;">
       <% if @google_account.nil?  %>
-        <%= link_to t('google_drive.add_drive'), new_google_account_path %>
+        <%= link_to t('google_drive.add_drive'), new_google_account_path, class: 'btn btn-primary' %>
       <% else %>
-        <%= link_to t('google_drive.open_folder'), @google_account.drive_folder_link , :target => "_blank" %>
+        <%= link_to t('google_drive.open_folder'), @google_account.drive_folder_link , :target => "_blank" , class: 'btn'%>
       <% end %>
 
       <% if !@google_account.nil? %>
-      &#124;
-      <%= link_to t('google_drive.remove'), @google_account, :confirm => t('google_drive.remove_confirmation'), :method => :delete %>
+      <%= link_to t('google_drive.remove'), @google_account, :confirm => t('google_drive.remove_confirmation'), :method => :delete , class: 'btn btn-danger'%>
       <% end %>
     </div>
-    <div>
+    <div style="margin: 5px;">
       <% if @drop_box_account.nil?  %>
-        <%= link_to t('drop_box.add'), new_drop_box_accounts_path %>
+        <%= link_to t('drop_box.add'), new_drop_box_accounts_path , class: 'btn btn-primary' %>
       <% else %>
-        <%= link_to t('drop_box.open_folder'), @drop_box_account.folder_link , :target => "_blank" %>
+        <%= link_to t('drop_box.open_folder'), @drop_box_account.folder_link , :target => "_blank", class: 'btn' %>
       <% end %>
 
       <% if !@drop_box_account.nil? %>
-      &#124;
-      <%= link_to t('drop_box.remove'), @drop_box_account, :confirm => t('drop_box.remove_confirmation'), :method => :delete %>
+      <%= link_to t('drop_box.remove'), @drop_box_account, :confirm => t('drop_box.remove_confirmation'), :method => :delete, class: 'btn btn-danger' %>
+      <br/>
+      <i class="icon-warning-sign"></i> Do not rename or move Dropbox files after syncing them with TeacherMaps. 
+      <%= link_to 'More info.', '/help#dropbox-sync'%>
       <% end %>
     </div>
   </div>
