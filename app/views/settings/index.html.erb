@@ -48,7 +48,17 @@
       <% if @user.confirmed == 1 %>
         <div class="label label-success"><i class="icon-ok"></i> <%= t 'settings.email_confirmed' %></div>
       <% else %>
-        <div class="label label-warning"><%= t 'settings.email_not_confirmed' %></div>
+        <div class="label label-warning pull-left" style="margin-right:10px"
+          id="confirm_label">
+          <%= t 'settings.email_not_confirmed' %>
+        </div> 
+        <div>
+          <%= link_to  t('settings.resend'),
+            { controller: 'users', action: 'confirm_email' },
+            params: { resend: 1 },
+            id: 'resend_confirmation',
+            remote: true %>
+        </div>
       <% end %>
 
       <%= f.text_field :email %>
