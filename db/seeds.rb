@@ -11,8 +11,6 @@ require 'yaml'
 
 # Create the seed data 
 
-
-
 # Course Grades 
 seed = YAML::load_file('db/seeds/course_grades.yaml')
 seed.each do |key, grade|  
@@ -47,6 +45,7 @@ if ActiveRecord::Base.connection.table_exists? 'standard_types'
 	end  
 end
 
+counter = 0
 if ActiveRecord::Base.connection.table_exists? 'standards'
 	[
 		'db/seeds/ccss.ela-literacy.yaml',
@@ -57,6 +56,8 @@ if ActiveRecord::Base.connection.table_exists? 'standards'
 		seed = YAML::load_file(file)
 		seed.each_pair do |key,standard|  
 			
+			counter += 1
+
 			s = Standard.find_or_create_by_slug standard['slug']
 			s.slug = standard['slug']
 			s.name = standard['name']
@@ -66,9 +67,16 @@ if ActiveRecord::Base.connection.table_exists? 'standards'
 			s.sub_subject = standard['sub_subject']
 			s.is_parent_standard = standard['is_parent_standard']
 
-			standard['course_grades'].split(",").each do |grade_name|
-				# Many grades
-				s.course_grades << CourseGrade.find_by_name( grade_name.split )
+			# print "Found #{standard['course_grades']}\n"
+			standard_grades = standard['course_grades'].delete(' ').split(",")
+			standard_grades.each do |grade_name|
+				
+				g = CourseGrade.find_by_name(grade_name)
+				if not s.course_grades.include? g
+					print "Adding #{g.name} to standard #{s.name}\n"
+					s.course_grades << g
+				end
+
 			end
 
 			if standard['parent_standard']
@@ -81,6 +89,7 @@ if ActiveRecord::Base.connection.table_exists? 'standards'
 		end 
 	end 
 end
+# print "Count: #{counter}\n"
 
 
 

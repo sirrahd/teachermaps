@@ -10,5 +10,12 @@ $(document).ready(function() {
         // Flash user of the success
         pushFlash({message:"<%= I18n.t('settings.save_success') %>", state:'success', fadeOut:4000});
     });
-    
+
+  $('#resend_confirmation')
+    .bind('click', function() {
+      $('#resend_confirmation').addClass('hidden');
+      $('#confirm_label').html('<%= I18n.t('settings.resend_success') %>');
+      $('#confirm_label').removeClass('label-warning');
+      $('#confirm_label').addClass('label-info');
+    });
 });

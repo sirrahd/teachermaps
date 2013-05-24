@@ -109,12 +109,14 @@ class UsersController < ApplicationController
       render 'sessions/new'
       return
     end
-
+    
     if @user.request_key == params[:key]
       @user.update_attribute(:confirmed, 1)
       sign_in @user
       flash[:success] = t 'confirmation.success'
       redirect_to @user
+    elsif params[:resend]
+      UserMailer.change_email(@user, request.env['HTTP_HOST']).deliver
     else
       flash[:error] = t 'confirmation.error'
       redirect_to @user
