@@ -91,6 +91,8 @@ en:
     email_not_confirmed:        "Waiting for confirmation"
     email_confirmed:            "Confirmed"
     profile_updated:            "Profile updated!"
+    resend_success:             "Confirmation sent"
+    resend:                     "Resend"
   resources:
     link:                       "Resources"
     web_link:                   "Link"
