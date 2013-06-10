@@ -80,6 +80,14 @@ class UsersController < ApplicationController
   def update_password
     @user = current_user
 
+    if params.has_key?(:current_password)
+      if !@user.authenticate(params[:current_password])
+        @user.errors.add :Password, "isn't correct."
+        render 'password_reset'
+        return
+      end
+    end
+
     # Password can't be blank, but I can't seem to use validations for
     # this without causing any updates that DON'T include a password
     # to fail, so we'll check it here.
@@ -109,7 +117,7 @@ class UsersController < ApplicationController
       render 'sessions/new'
       return
     end
-    
+
     if @user.request_key == params[:key]
       @user.update_attribute(:confirmed, 1)
       sign_in @user
@@ -126,6 +134,7 @@ class UsersController < ApplicationController
   def reset_password
     # Stage 3: User navigates from email link
     if params[:account_name]
+      @source = :email
       @user = User.find_by_account_name(params[:account_name])
       if @user.request_key == params[:key]
         render 'password_reset'

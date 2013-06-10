@@ -44,7 +44,7 @@ class User < ActiveRecord::Base
                     format: { with: VALID_ACCOUNT_NAME_REGEX },
                     uniqueness: { case_sensitive: false }
 
-  validates :password, presence: true, length: { minimum: 6 }, confirmation: true, if: :password_digest_changed?
+  validates :password, presence: true, length: { minimum: 6 }
 
   def has_google_account?
     !google_account.nil? and !google_account.folder_id.nil?
@@ -53,7 +53,7 @@ class User < ActiveRecord::Base
   def has_drop_box_account?
     !drop_box_account.nil? and !drop_box_account.session_token.nil?
   end
-  
+
   def to_param
     self.account_name
   end
