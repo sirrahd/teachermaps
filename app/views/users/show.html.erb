@@ -5,7 +5,12 @@
       <br />
       <%= @user.account_name %>
       <br />
-      <%= @user.email %></p>
+      <%= @user.email %>
+      <br />
+      Next task: <%= @progress[:next_task] %>
+      <div class="progress">
+        <div class="bar" style="width: <%= @progress[:status] %>%;"></div>
+      </div>
     </section>
   </aside>
 </div>
@@ -53,7 +58,7 @@
           </thead>
           <tbody class="table-resources">
             <%= render 'resources/table_resources' %>
-            
+
             <tr class="table-resources-loader">
               <td colspan="5" style="text-align:center;">
                 <div id="pageless-loader" style="width:100%; margin-top:5px;">
@@ -71,7 +76,7 @@
           </tbody>
           <tfoot></tfoot>
         </table>
-        
+
       </div>
 
   </div>
@@ -95,11 +100,11 @@
 
 <%= will_paginate(@resources) %>
 <script type="text/javascript">
-$(document).ready(function() { 
+$(document).ready(function() {
 
-  $('.table-resources').pageless({ 
+  $('.table-resources').pageless({
     loader: '.table-resources-loader',
-    totalPages: <%= @num_of_pages %> , 
+    totalPages: <%= @num_of_pages %> ,
     url: "<%= resources_page_path %>",
     loaderMsg: 'Loading next page...',
     end: function () {

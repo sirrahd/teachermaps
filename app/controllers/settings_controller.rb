@@ -13,6 +13,8 @@ class SettingsController < ApplicationController
 
     @setting = @current_user.setting
 
+    @progress = @user.show_progress
+
     @google_account = nil
     if @current_user.has_google_account?
        @google_account = @current_user.google_account

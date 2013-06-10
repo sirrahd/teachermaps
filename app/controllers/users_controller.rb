@@ -15,7 +15,7 @@ class UsersController < ApplicationController
       Rails.logger.info 'Could not locate user '
       return render :status => 404
     end
-
+    @progress = @user.show_progress
     @maps = Map.where( user_id: @current_user ).order('id DESC')
     @resources = @current_user.resources.paginate(page: params[:page]).order('id DESC')
     @num_of_pages = @user.total_resources_count / 20 + 2
@@ -109,7 +109,7 @@ class UsersController < ApplicationController
       render 'sessions/new'
       return
     end
-    
+
     if @user.request_key == params[:key]
       @user.update_attribute(:confirmed, 1)
       sign_in @user

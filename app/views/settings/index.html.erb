@@ -1,5 +1,29 @@
 <h1><%= t 'settings.title' %></h1>
 <div><br /></div>
+<% unless @progress[:status] == 100 %>
+  <legend>Get started</legend>
+  <div class="row">
+    <div class="span5">
+      <div class="progress">
+        <div class="bar" style="width: <%= @progress[:status] %>%;"></div>
+      </div>
+      <% TASKS.each do |key, value| %>
+        <% if @progress[:tasks][key] == :complete %>
+          <p class="text-success"><i class="icon-ok"></i> <%= t 'tasks.' + key.to_s %></p>
+        <% elsif @progress[:tasks][key] == :ignored %>
+          <p class="text-warning"><i class="icon-search"></i> <%= t 'tasks.' + key.to_s %></p>
+          <a class="btn btn-link" href="<%= value[:link] %>">Go</a>
+        <% else %>
+          <p class="text-error pull-left"><i class="icon-remove"></i> <%= t 'tasks.' + key.to_s %>
+          <a class="btn btn-link" href="<%= value[:link] %>">Go</a></p>
+        <% end %>
+      <% end %>
+    </div>
+  </div>
+<% end %>
+
+<div><br /></div>
+
 <legend><%= t 'settings.storage_title' %></legend>
 
 <div class="row">
@@ -51,7 +75,7 @@
         <div class="label label-warning pull-left" style="margin-right:10px"
           id="confirm_label">
           <%= t 'settings.email_not_confirmed' %>
-        </div> 
+        </div>
         <div>
           <%= link_to  t('settings.resend'),
             { controller: 'users', action: 'confirm_email' },

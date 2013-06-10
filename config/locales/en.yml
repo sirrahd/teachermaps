@@ -206,6 +206,9 @@ en:
     delete_map_confirmation:    "Delete Map \"%{title}?\""
     delete_map:                 "Delete Map"
     create_map:                 "Create Map"
-
+  tasks:
+    confirm_email:              "Confirm your email address"
+    cloud_storage:              "Add a cloud storage service"
+    create_map:                 "Create a map"
 
 

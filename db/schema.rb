@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130507051031) do
+ActiveRecord::Schema.define(:version => 20130605231323) do
 
   create_table "course_grades", :force => true do |t|
     t.string   "name"
@@ -201,6 +201,7 @@ ActiveRecord::Schema.define(:version => 20130507051031) do
     t.string   "password_digest"
     t.string   "remember_token"
     t.integer  "confirmed",       :default => 0, :null => false
+    t.text     "options"
   end
 
   add_index "users", ["account_name"], :name => "index_users_on_account_name", :unique => true
