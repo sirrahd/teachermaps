@@ -78,7 +78,13 @@ class UsersController < ApplicationController
   end
 
   def update_password
-    @user = current_user
+    if params.has_key?(:account_name) # Used if user forgot password
+      @key = params[:key]
+      account = User.find_by_account_name(params[:account_name])
+      @user = account if account.request_key == @key
+    else
+      @user = current_user
+    end
 
     if params.has_key?(:current_password)
       if !@user.authenticate(params[:current_password])
@@ -134,11 +140,10 @@ class UsersController < ApplicationController
   def reset_password
     # Stage 3: User navigates from email link
     if params[:account_name]
-      @source = :email
       @user = User.find_by_account_name(params[:account_name])
       if @user.request_key == params[:key]
+        @key = params[:key]
         render 'password_reset'
-        sign_in @user
         return
       else
         flash[:warning] = t 'reset_password.error'
