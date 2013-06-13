@@ -14,6 +14,8 @@ $(document).ready(function(){
     $("#put_resource_link_errors").html(data.responseText);      
   })
   .on('ajax:success', "#create_resource_link_form", function(event, response, status, xhr) {
+
+    $("#resources_table").html(response);
     // Flash user of the success
     pushFlash({message:"<%= I18n.t('resources.upload_success') %>", state: 'success', fadeOut: 5000});
     // Hide all modals
@@ -40,6 +42,10 @@ $(document).ready(function(){
       $("#edit_resource_link_errors").html(data.responseText);      
   })
   .on('ajax:success', "#edit_resource_link_form", function(event, response, status, xhr) {
+
+    $("#resources_table").html(response);
+
+    // console.log(response);
     // Flash user of the success
     pushFlash({message:"<%= I18n.t('resources.edit_success') %>", state: 'success', fadeOut: 5000});
     $("#uploadResourcesErrors").html('');  

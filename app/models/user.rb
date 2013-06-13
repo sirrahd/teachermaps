@@ -19,7 +19,7 @@ class User < ActiveRecord::Base
   has_one :google_account
   has_one :drop_box_account
   has_one :setting
-  has_many :resources, order: 'id DESC'
+  has_many :resources, order: 'title DESC, updated_at DESC'
   has_many :maps, order: 'id DESC'
 
   before_save do |user|
@@ -45,6 +45,12 @@ class User < ActiveRecord::Base
                     uniqueness: { case_sensitive: false }
 
   validates :password, presence: true, length: { minimum: 6 }, confirmation: true, if: :password_digest_changed?
+
+  # after_save :update_model
+
+  # def update_model
+    
+  # end
 
   def has_google_account?
     !google_account.nil? and !google_account.folder_id.nil?
