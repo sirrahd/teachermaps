@@ -22,7 +22,7 @@ $(document).ready(function(){
               $("#resources_table").html(data.resources);
           }
           if (data.filters != undefined) {
-              $('#resource_filter').html(data.filters);
+              $('.resource_filter').html(data.filters);
           }
       }
 
@@ -63,7 +63,7 @@ $(document).ready(function(){
       if (data.filters != undefined) {
         console.log("Updating filters");
         console.log(data.filters);
-        $('#resource_filter').html(data.filters);
+        $('.resource_filter').html(data.filters);
       }
     }
 
