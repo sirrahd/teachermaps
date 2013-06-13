@@ -173,7 +173,6 @@ class ResourcesController < ApplicationController
         @resources = Resource.where user_id: @current_user.id
         format.html { render partial:  'resources/table_resources' }
 
-        
       else
         format.js { render partial:  'shared/error_messages', :locals => { :object => @resource }, :status => 500  }
       end
