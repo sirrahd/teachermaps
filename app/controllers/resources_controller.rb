@@ -60,7 +60,19 @@ class ResourcesController < ApplicationController
     respond_to do |format|
       if @resource.save
         @resources = Resource.where user_id: @current_user.id
-        format.html { render partial:  'resources/table_resources' }
+
+        # Need to re-generate filters
+        @filter_course_types = ResourceType.where(:id => @resources.collect { |resource| resource.resource_type.id } )
+        @filter_course_grades = CourseGrade.where(:id => @resources.collect { |resource| resource.course_grades.collect(&:id) } )
+        @filter_course_subjects = CourseSubject.where(:id => @resources.collect { |resource| resource.course_subjects.collect(&:id) } )
+        # Render filter and resources to dictionary
+        response = { 
+          :filters => render_to_string(partial:  'resources/filter_resources', :layout => false,  :locals => {:resources => @resources, :filter_course_types => @filter_course_types, :filter_course_grades=>@filter_course_grades, :filter_course_subjects=>@filter_course_subjects}),
+          :resources => render_to_string(partial:  'resources/table_resources', :layout => false,  :locals => {:resources => @resources})
+        }
+        # Send resource and fitlers back via JSON format
+        format.js { render :json => response }
+        # format.html { render partial:  'resources/table_resources' }
       else
         format.html { render partial:  'shared/error_messages', :locals => { :object => @resource }, :status => 500  }
       end
