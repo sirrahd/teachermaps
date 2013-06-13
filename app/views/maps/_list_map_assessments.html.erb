@@ -4,7 +4,7 @@
 
     <% @map.map_assessments.each do |map_assessment| %>
       <li id="map_assessment_<%= map_assessment.id %>" class="hover sortable-outer">
-        <div class="row editable">
+        <div class="row editable" style="padding-bottom:15px;">
           
           <div class="handle pull-left" style="cursor:move;margin-right:-15px;"><%= image_tag 'large-click-drag-handle.png', alt: 'handle', size: '20x60' %></div>
 
@@ -43,7 +43,7 @@
             <% end %>
           </div>
         </div>
-        <br/>
+        
     
         <script type="text/javascript">
           $(document).ready(function() { 

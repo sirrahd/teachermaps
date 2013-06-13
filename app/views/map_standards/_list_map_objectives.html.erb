@@ -3,7 +3,7 @@
 
     <% @map_standard.map_objectives.each do |map_objective| %>
       <li id="map_objective_<%= map_objective.id %>" class="hover">
-        <div class="row editable">
+        <div class="row editable" style="padding-bottom:15px;">
           
           <div class="handle pull-left" style="cursor:move;margin-right:-15px;"><%= image_tag 'large-click-drag-handle.png', alt: 'handle', size: '20x60' %></div>
           
@@ -42,7 +42,6 @@
             <% end %>
           </div>
         </div>
-        <br/>
 
         <script type="text/javascript">
           $(document).ready(function() { 
