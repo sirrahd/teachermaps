@@ -38,7 +38,6 @@
             <%= link_to map_assessment, confirm: t('maps.delete_map_assessment_confirmation', title: map_assessment.name),  method: :delete, title: t('maps.delete_map_assessment'), :class=>"maps_map_assessments_destroy", remote: true do %>
               <i class="icon-trash"></i>
             <% end %>
-            <br/>
             <%= link_to show_resources_map_assessment_path(map_assessment), {remote: true, 'data-toggle' => "modal", 'data-target' =>  "#filter_map_resources_modal", title: t('maps.edit_map_assessment_resources'), :class => 'maps_map_assessments_show_resources'} do %>
               <i class="icon-pencil"></i>
             <% end %>
