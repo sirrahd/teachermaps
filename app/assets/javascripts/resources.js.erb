@@ -11,30 +11,18 @@ $(document).ready(function(){
 
   $(document)
   .on('ajax:error', "#create_resource_link_form", function(event, data, status, xhr) {
-      $("#put_resource_link_errors").html(data.responseText);      
+    $("#put_resource_link_errors").html(data.responseText);      
   })
   .on('ajax:success', "#create_resource_link_form", function(event, response, status, xhr) {
-      
-      data = $.parseJSON(response);
-
-      if (data != undefined) {
-          if (data.resources != undefined) {
-              $("#resources_table").html(data.resources);
-          }
-          if (data.filters != undefined) {
-              $('.resource_filter').html(data.filters);
-          }
-      }
-
-      // Flash user of the success
-      pushFlash({message:"<%= I18n.t('resources.upload_success') %>", state: 'success', fadeOut: 5000});
-      // Hide all modals
-      $('.modal.in').modal('hide');   
-      // Rest form
-      $(this)[0].reset();
-      // Clear any error notification
-      $("#uploadResourcesErrors").html('');  
-      closeModalOnSubmit();
+    // Flash user of the success
+    pushFlash({message:"<%= I18n.t('resources.upload_success') %>", state: 'success', fadeOut: 5000});
+    // Hide all modals
+    $('.modal.in').modal('hide');   
+    // Rest form
+    $(this)[0].reset();
+    // Clear any error notification
+    $("#uploadResourcesErrors").html('');  
+    closeModalOnSubmit();
   });
 
 
@@ -52,21 +40,6 @@ $(document).ready(function(){
       $("#edit_resource_link_errors").html(data.responseText);      
   })
   .on('ajax:success', "#edit_resource_link_form", function(event, response, status, xhr) {
-
-    data = $.parseJSON(response);
-
-    if (data != undefined) {
-      if (data.resources != undefined) {
-        // Update the resources table
-        $("#resources_table").html(data.resources);
-      }
-      if (data.filters != undefined) {
-        console.log("Updating filters");
-        console.log(data.filters);
-        $('.resource_filter').html(data.filters);
-      }
-    }
-
     // Flash user of the success
     pushFlash({message:"<%= I18n.t('resources.edit_success') %>", state: 'success', fadeOut: 5000});
     $("#uploadResourcesErrors").html('');  
