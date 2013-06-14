@@ -27,6 +27,7 @@ class User < ActiveRecord::Base
   before_save do |user|
     user.email = user.email.downcase
     user.account_name = user.account_name.downcase
+    user.options = {}
   end
 
   before_save :create_remember_token
