@@ -134,6 +134,7 @@ class User < ActiveRecord::Base
 
   def default_values
     self.setting = Setting.new
+    self.options = Hash.new
   end
 
   def create_remember_token
