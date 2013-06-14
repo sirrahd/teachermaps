@@ -11,14 +11,14 @@
       	
         <h2>
         	<span class="editible-field">
-        			<%= best_in_place @map, :name, :classes=>'text-glow-hovers', :type => :input, :display_as => :title_titlecase %>
+        			<%= best_in_place @map, :name, :type => :input, :display_as => :title_titlecase %>
       		</span>
     		</h2>
       	
       </div>
       <!-- Map Content -->
       </div>
-        <p ><%= best_in_place @map, :text, :type => :textarea, :classes=>'best_in_place_selector text-glow-hover', :nil => raw('<span class="gray">Description</span>') %></p>
+        <p ><%= best_in_place @map, :text, :type => :textarea, :classes=>'best_in_place_selector', :nil => raw('<span class="gray">Description</span>') %></p>
       <div>
         
       <div>

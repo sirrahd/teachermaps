@@ -35,19 +35,15 @@ $(document).ready(function() {
   });
 
   $('.editible-field').mouseenter(function(){
-  	console.log("Going in !!!!");
-  	// $(this).prepend('<i id="icon-hover" class="icon-edit"></i>');
-  	$(this).append('<i id="icon-hover" class="icon-edit"></i>');
-    
+		$(this).append('<i id="icon-hover" class="icon-edit"></i>');
   });
   $('.editible-field').mouseleave(function(){
-
-  	console.log("Coming out !!!!");
 		$('#icon-hover').remove();
-
   });
-
-
+  $('.editible-field').click(function(){
+		$('#icon-hover').remove();
+		return true;
+  });
 
 
   //////////////////////////////
