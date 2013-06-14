@@ -18,7 +18,11 @@
       </div>
       <!-- Map Content -->
       </div>
-        <p ><%= best_in_place @map, :text, :type => :textarea, :classes=>'best_in_place_selector', :nil => raw('<span class="gray">Description</span>') %></p>
+        <p >
+        	<span class="editible-field">
+        		<%= best_in_place @map, :text, :type => :textarea, :classes=>'best_in_place_selector', :nil => raw('<span class="gray">Description</span>') %>
+        	</span>
+      	</p>
       <div>
         
       <div>
