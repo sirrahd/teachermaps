@@ -185,8 +185,11 @@ input {
    visibility: visible;
 }  
 
-
-
+.text-glow-hover:hover{
+	cursor:pointer;
+	text-shadow: 0 0 10px #009999;
+	/* text-shadow: 0 0 10px #947F87; */
+}
 
 
 /* Push Flash Alert */

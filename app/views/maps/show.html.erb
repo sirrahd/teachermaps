@@ -8,11 +8,11 @@
         <%= link_to t('shared.my_maps'), user_path(@map.user) %> / <%= link_to "#{@map.name.titlecase.truncate(40)}", "JavaScript:void(0);" %> /
       </div>
       <div>
-        <h2><%= best_in_place @map, :name, :type => :input, :display_as => :title_titlecase %></h2>
+        <h2><%= best_in_place @map, :name, :classes=>'text-glow-hover', :type => :input, :display_as => :title_titlecase %></h2>
       </div>
       <!-- Map Content -->
       </div>
-        <p ><%= best_in_place @map, :text, :type => :textarea, :classes=>'best_in_place_selector', :nil => raw('<span class="gray">Description</span>') %></p>
+        <p ><%= best_in_place @map, :text, :type => :textarea, :classes=>'best_in_place_selector text-glow-hover', :nil => raw('<span class="gray">Description</span>') %></p>
       <div>
         
       <div>
