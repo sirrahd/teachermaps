@@ -166,6 +166,7 @@ en:
                                 <p>We received a password reset request for your TeacherMaps account.</p>
                                 <p>%{action} to change your password.</p>
     action:                     "Click here"
+    current_password:           "Enter your current password"
     new_password:               "Enter a new password"
     submit:                     "Reset password"
     email:                      "What's your email address?"
