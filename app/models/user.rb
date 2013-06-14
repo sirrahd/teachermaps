@@ -13,7 +13,7 @@
 #
 
 class User < ActiveRecord::Base
-  attr_accessible :email, :name, :account_name, :password, :password_confirmation, :options
+  attr_accessible :email, :name, :account_name, :password, :password_confirmation
   has_secure_password
 
   has_one :google_account
@@ -27,7 +27,6 @@ class User < ActiveRecord::Base
   before_save do |user|
     user.email = user.email.downcase
     user.account_name = user.account_name.downcase
-    user.options = {}
   end
 
   before_save :create_remember_token
