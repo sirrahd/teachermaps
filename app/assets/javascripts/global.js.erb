@@ -19,7 +19,7 @@ $(document).ready(function() {
 
   //////////////////////////////
   //
-  // Best in place error messaging 
+  // Best in place global settings 
   //
   //////////////////////////////
   $(document).on('best_in_place:error', function(event, request, error) {
@@ -32,6 +32,19 @@ $(document).ready(function() {
 
   $('.best_in_place form').focus(function(){
     this.children().select();
+  });
+
+  $('.editible-field').mouseenter(function(){
+  	console.log("Going in !!!!");
+  	// $(this).prepend('<i id="icon-hover" class="icon-edit"></i>');
+  	$(this).append('<i id="icon-hover" class="icon-edit"></i>');
+    
+  });
+  $('.editible-field').mouseleave(function(){
+
+  	console.log("Coming out !!!!");
+		$('#icon-hover').remove();
+
   });
 
 

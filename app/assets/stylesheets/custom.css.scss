@@ -185,6 +185,10 @@ input {
    visibility: visible;
 }  
 
+.editible-field:hover {
+	cursor:pointer;
+}
+
 .text-glow-hover:hover{
 	cursor:pointer;
 	text-shadow: 0 0 10px #009999;

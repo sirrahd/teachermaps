@@ -9,7 +9,9 @@
           <div class="handle pull-left" style="cursor:move;margin-right:-15px;"><%= image_tag 'large-click-drag-handle.png', alt: 'handle', size: '20x60' %></div>
 
           <div class="span9">
+          	<span class="editible-field">
             <b><%= best_in_place map_assessment, :name, :type => :input, html_attrs: { style: "width:90%" } %></b>
+            </span>
             <p><%= best_in_place map_assessment, :text, :type => :textarea, :nil => raw('<span class="gray">Description</span>') %></p>
 
             <% if !map_assessment.map_resources.empty? %>
