@@ -7,13 +7,13 @@
 TASKS = {
   confirm_email:
     { weight: 10,
-      link: '' },
+      link: '/settings' },
 
   cloud_storage:
     { weight: 50,
-      link: '' },
+      link: '/settings' },
 
   create_map:
     { weight: 80,
-      link: '' }
+      link: '/' }
 }

@@ -74,20 +74,23 @@ class User < ActiveRecord::Base
 
     # Check confirm_email
     if self.confirmed?
-      completed += TASKS[:confirm_email][:weight]
       self.options[:confirm_email] = :complete
+    else
+      self.options[:confirm_email] = :incomplete
     end
 
     # Check cloud_storage
     if self.has_google_account? or self.has_drop_box_account?
-      completed += TASKS[:cloud_storage][:weight]
       self.options[:cloud_storage] = :complete
+    else
+      self.options[:cloud_storage] = :incomplete
     end
 
     # Check create_map
     if Map.find_by_user_id(self.id).present?
-      completed += TASKS[:create_map][:weight]
       self.options[:create_map] = :complete
+    else
+      self.options[:create_map] = :incomplete
     end
 
     self.save
@@ -96,9 +99,12 @@ class User < ActiveRecord::Base
   # Returns the next task the user needs to complete
   def show_progress
     progress = {}
+    progress[:next_task] = false
     tasks = {}
     completed = 0
     total = 0
+
+    self.calculate_progress
 
     TASKS.reverse_each do |key, value|
       # Find next_task
@@ -122,21 +128,6 @@ class User < ActiveRecord::Base
     progress[:tasks] = tasks
 
     return progress
-  end
-
-  # Shows all tasks with user's current progress towards each
-  def show_tasks
-    result = {}
-    TASKS.each do |key, value|
-      result[key] = value
-      if self.options.has_key?(key)
-        result[key][:status] = self.options[key]
-      else
-        result[key][:status] = :incomplete
-      end
-    end
-
-    return result
   end
 
   private
