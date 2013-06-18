@@ -12,7 +12,7 @@ class UsersController < ApplicationController
     @user = User.find_by_account_name params[:id]
     unless @user
       Rails.logger.info 'Could not locate user '
-      return render :status => 404
+      return redirect_to page404_url
     end
 
     @is_admin = (signed_in? and @user.is_admin?(@current_user))

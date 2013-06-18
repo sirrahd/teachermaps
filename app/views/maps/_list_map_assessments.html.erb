@@ -26,7 +26,7 @@
                         <% end %>
                         <div class="span8">
                           <span title="<%= map_resource.resource.get_type %>"><%= raw map_resource.resource.get_thumbnail %></span>
-                          <span><b><%= link_to map_resource.resource.title.titlecase, resource_path(map_resource.resource),  :target => "_blank" %>:</b></span>
+                          <span><b><%= link_to map_resource.resource.title.titlecase, map_resource_path(map_resource),  :target => "_blank" %>:</b></span>
                           <p><%= best_in_place_if @is_admin, map_resource, :text, :type => :textarea, :nil => raw('<span class="gray">Description</span>'), html_attrs: { style: "width:90%" } %></p>
                         </div>
                       </div>
