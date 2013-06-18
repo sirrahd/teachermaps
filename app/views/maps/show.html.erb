@@ -3,12 +3,19 @@
   
   <div class="span10">
     <div>
+
+    	<% if @is_admin %>
     	<span class="pull-right">
-	     		<div class="btn-group"  id="" data-toggle="buttons-radio">
-				    <button class="btn" action-url=<% %> id="map-privacy-state">Private</button>
-				    <button class="btn" id="map-privacy-state">Public</button>
-					</div>
-	     	</span>
+  			<button class="btn" id="map-share-modal">Share</button>
+  			<div id="map-privacy-state-switch" class="switch" action-url="<%= user_map_path(@map.user.id, @map) %>"  data-on="danger" data-off="primary" data-on-label="Public" data-off-label="Private">
+			    <% if @map.privacy_state == PrivacyState::PUBLIC %> 
+			    	<input type="checkbox" checked />
+			    <% else %>
+			    	<input type="checkbox" />
+			    <% end %>
+				</div>
+     	</span>
+     	<% end %>
       <div>
       	<% if @is_admin %>
         	<!-- Breadcrumb -->

@@ -77,18 +77,6 @@ class MapsController < ApplicationController
     end
   end
 
-
-  def set_privacy_state
-  	Rails.logger.info params
-		require_session
-    @map = Map.find params[:map_id]
-    return render nothing: true, status: 404 unless @map
-    @is_admin = (signed_in? and @map.is_admin?(@current_user))
-
-
-    render :nothing => true
-  end
-
   def sort_assessments
 		require_session
     @map = Map.find params[:map_id]
