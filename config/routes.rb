@@ -8,6 +8,10 @@ Teachermaps::Application.routes.draw do
 
   root to: 'static_pages#home'
 
+
+  match '/404',  to: 'static_pages#page404', as: 'page404'
+  match '/500',  to: 'static_pages#page500', as: 'page500'
+
   match '/signup',  to: 'users#new'
   match '/signin',  to: 'sessions#new', :as => 'signin'
   match '/signout', to: 'sessions#destroy', via: :delete

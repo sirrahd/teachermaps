@@ -11,6 +11,18 @@ class MapsController < ApplicationController
   	@is_admin = (signed_in? and @map.is_admin?(@current_user))
   	# Rails.logger.info "IS ADMIN? #{@is_admin}"
 
+  	unless @map
+      Rails.logger.info("error 404 map #{params[:id]}") 
+      return redirect_to page404_url
+    end
+
+    # Allows contributor and owner to see the page no matte what
+    # Returns 404 if the page is set to private
+  	if not @is_admin and @map.privacy_state == PrivacyState::PRIVATE
+  		Rails.logger.info("error 404 map #{params[:id]}") 
+  		return redirect_to page404_url
+  	end
+
     # Used for rendering standards filter
     @filter_standard_types = StandardType.all
     @filter_resource_types = ResourceType.all
