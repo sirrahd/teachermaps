@@ -1,7 +1,20 @@
 <div class="row">
   <input type="hidden" id="map_standard_id" value=<%= @map_standard.id %> />
   
-  <div class="span10" style="">
+  <div class="span10">
+
+  	<% if @is_admin %>
+	  	<span class="pull-right">
+				<button class="btn" id="map-share-modal">Share</button>
+				<div id="map-privacy-state-switch" class="switch" action-url="<%= user_map_path(@map.user.id, @map) %>"  data-on="danger" data-off="primary" data-on-label="Public" data-off-label="Private">
+			    <% if @map.privacy_state == PrivacyState::PUBLIC %> 
+			    	<input type="checkbox" checked />
+			    <% else %>
+			    	<input type="checkbox" />
+			    <% end %>
+				</div>
+	   	</span>
+   	<% end %>
     
 
     <div>

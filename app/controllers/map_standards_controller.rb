@@ -6,8 +6,13 @@ class MapStandardsController < ApplicationController
   def show
     Rails.logger.info(params)
     @map_standard = MapStandard.find_by_slug params[:id]
+    @map = @map_standard.map
     @is_admin = (signed_in? and @map_standard.map.is_admin?(@current_user))
-  	Rails.logger.info "IS ADMIN? #{@is_admin}"    
+ 	
+  	if not @is_admin and @map.privacy_state == PrivacyState::PRIVATE
+  		Rails.logger.info("error 404 map #{params[:id]}") 
+  		return redirect_to page404_url
+  	end
   end
 
   def create
