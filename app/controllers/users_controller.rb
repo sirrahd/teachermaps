@@ -2,10 +2,6 @@ class UsersController < ApplicationController
 	include SessionsHelper
 
   def index
-    # /users/ was returning a 404
-    # return_to signin_url if !signed_in?
-    # Rails.logger.info "#{signin_url}"
-    # redirect_to @current_user
     require_session
   end
 
@@ -56,6 +52,7 @@ class UsersController < ApplicationController
   end
 
   def update
+  	require_session
     # User is always authenticated before an update
     @user = current_user
 
@@ -84,6 +81,7 @@ class UsersController < ApplicationController
   end
 
   def update_password
+  	require_session
     @user = current_user
 
     # Password can't be blank, but I can't seem to use validations for
@@ -106,6 +104,7 @@ class UsersController < ApplicationController
   end
 
   def confirm_email
+  	require_session
     @user = current_user
 
     # If there's no logged in user, take them to the login form first
@@ -130,6 +129,7 @@ class UsersController < ApplicationController
   end
 
   def reset_password
+  	require_session
     # Stage 3: User navigates from email link
     if params[:account_name]
       @user = User.find_by_account_name(params[:account_name])

@@ -25,6 +25,7 @@ class MapsController < ApplicationController
     Rails.logger.info(params)
 
     @map = Map.new user_id: @current_user.id
+    @is_admin = (signed_in? and @map.is_admin?(@current_user))
     
     respond_to do |format|
       if @map.save
@@ -41,7 +42,8 @@ class MapsController < ApplicationController
   	require_session
     Rails.logger.info(params)
     
-    @map = Map.find_by_id_and_user_id params[:id], @current_user.id
+    @map = Map.find_by_id params[:id]
+    @is_admin = (signed_in? and @map.is_admin?(@current_user))
     @map.destroy if @map
   
     respond_to do |format|
@@ -63,6 +65,7 @@ class MapsController < ApplicationController
       Rails.logger.info("error 404 map #{params[:id]}") 
       return render nothing: true, status: 404
     end
+    @is_admin = (signed_in? and @map.is_admin?(@current_user))
 
     respond_to do |format|
       if @map.update_attributes(params[:map])
@@ -78,6 +81,7 @@ class MapsController < ApplicationController
 		require_session
     @map = Map.find params[:map_id]
     return render nothing: true, status: 404 unless @map
+    @is_admin = (signed_in? and @map.is_admin?(@current_user))
 
     @map.map_assessments.each do |map_assessment|
       map_assessment.position = params[:map_assessment].index(map_assessment.id.to_s)+1
@@ -91,6 +95,7 @@ class MapsController < ApplicationController
   	require_session
     @map = Map.find params[:map_id]
     return render nothing: true, status: 404 unless @map
+    @is_admin = (signed_in? and @map.is_admin?(@current_user))
 
     @map.map_standards.each do |map_standard|
       map_standard.position = params[:map_standard].index(map_standard.id.to_s)+1

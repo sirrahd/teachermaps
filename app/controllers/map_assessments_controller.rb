@@ -8,6 +8,7 @@ class MapAssessmentsController < ApplicationController
 
     @map = Map.find_by_id_and_user_id params[:map_id], @current_user.id 
     return render nothing: true, status: 404 unless @map 
+    @is_admin = (signed_in? and @map.is_admin?(@current_user))
 
     @map_assessment = MapAssessment.new map_id: @map.id, user_id: @current_user.id
     
@@ -24,6 +25,7 @@ class MapAssessmentsController < ApplicationController
 	def update
 		@map_assessment = MapAssessment.find_by_id_and_user_id( params[:id], @current_user.id )
     return render nothing: true, status: 404 unless @map_assessment
+    @is_admin = (signed_in? and @map_assessment.map.is_admin?(@current_user))
 
   	respond_to do |format|
     	if @map_assessment.update_attributes(params[:map_assessment])
@@ -39,6 +41,7 @@ class MapAssessmentsController < ApplicationController
 
 		# Stop here if map was not found
 		return render nothing: true, status: 404 unless @map_assessment
+		@is_admin = (signed_in? and @map_assessment.map.is_admin?(@current_user))
     
     # Needed to re-render map assessments
     @map = @map_assessment.map    
@@ -60,6 +63,7 @@ class MapAssessmentsController < ApplicationController
 		@map_assessment = MapAssessment.find_by_id_and_user_id( params[:id], @current_user.id )
 
 		return render nothing: true, status: 404 unless @map_assessment
+		@is_admin = (signed_in? and @map_assessment.map.is_admin?(@current_user))
 
 		@map = @map_assessment.map
     @resources = Resource.where user_id: @current_user.id
@@ -86,6 +90,7 @@ class MapAssessmentsController < ApplicationController
     Rails.logger.info(params)
     @map_assessment = MapAssessment.find params[:map_assessment_id]
     return render nothing: true, status: 404 unless @map_assessment
+    @is_admin = (signed_in? and @map_assessment.map.is_admin?(@current_user))
     
     @map_resources_by_resource_id = Hash[@map_assessment.map_resources.map { |p| [p['resource_id'], p] }]
   
@@ -164,6 +169,8 @@ class MapAssessmentsController < ApplicationController
       return render nothing: true, status: 404
     end
 
+    @is_admin = (signed_in? and @map_assessment.map.is_admin?(@current_user))
+
     @map_resource = MapResource.find_by_map_assessment_id_and_resource_id @map_assessment, @resource
     @map_resource.destroy if @map_resource
 
@@ -183,6 +190,7 @@ class MapAssessmentsController < ApplicationController
 
     @map_assessment = MapAssessment.find params[:id]
     return render nothing: true, status: 404 unless @map_assessment
+    @is_admin = (signed_in? and @map_assessment.map.is_admin?(@current_user))
 
     @map_assessment.map_resources.each do |map_resource|
       map_resource.position = params[:map_resource].index(map_resource.id.to_s)+1
