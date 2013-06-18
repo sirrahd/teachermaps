@@ -6,6 +6,10 @@ class MapsController < ApplicationController
   def show
 
   	@map = Map.find_by_slug params[:id]
+  	# Single variable that determines the permissions state
+  	# throughout the html templates
+  	@is_admin = (signed_in? and @map.is_admin?(@current_user))
+  	# Rails.logger.info "IS ADMIN? #{@is_admin}"
 
     # Used for rendering standards filter
     @filter_standard_types = StandardType.all
