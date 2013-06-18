@@ -77,6 +77,10 @@ class User < ActiveRecord::Base
     # Later we can add collaborator/group permission checks in this method
   end
 
+  def public_maps
+  	self.maps.where("privacy_state = #{PrivacyState::PUBLIC}")
+  end
+
   private
 
   def default_values

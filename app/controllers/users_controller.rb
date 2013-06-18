@@ -21,7 +21,7 @@ class UsersController < ApplicationController
     if @is_admin
     	@maps = @user.maps
     else
-    	@maps = @user.maps.where("privacy_state = #{PrivacyState::PUBLIC}")
+    	@maps = @user.public_maps
     end
 
     @resources = @user.resources.paginate(page: params[:page]).order('id DESC')

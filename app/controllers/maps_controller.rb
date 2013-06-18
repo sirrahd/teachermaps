@@ -41,7 +41,12 @@ class MapsController < ApplicationController
     
     respond_to do |format|
       if @map.save
-        @maps = @current_user.maps
+        # @maps = @current_user.maps
+        if @is_admin
+		    	@maps = @current_user.maps
+		    else
+		    	@maps = @current_user.public_maps
+		    end
         format.html { render partial: 'users/table_maps'}
       else
         Rails.logger.info("error create map #{@map.errors.inspect}")
@@ -60,7 +65,12 @@ class MapsController < ApplicationController
   
     respond_to do |format|
       if @map.destroyed?
-        @maps = @current_user.maps
+        # @maps = @current_user.maps
+        if @is_admin
+		    	@maps = @current_user.maps
+		    else
+		    	@maps = @current_user.public_maps
+		    end
         format.html { render partial: 'users/table_maps'}
       else
         Rails.logger.info("error delete map #{@map.errors.inspect}")
