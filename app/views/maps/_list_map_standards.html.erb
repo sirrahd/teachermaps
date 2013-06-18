@@ -6,7 +6,7 @@
 			<li id="map_standard_<%= map_standard.id %>" action-url="<%= user_map_standard_path map_standard.user, map_standard.slug %>" class="hover clickable action-link">    
 				
 				<div class="row editable">
-					<% if (@is_admin) %>
+					<% if @is_admin %>
 						<div class="handle pull-left" style="cursor:move;margin-right:-15px;"><%= image_tag 'large-click-drag-handle.png', alt: 'handle', size: '20x60' %></div>
 					<% end %>
 		      
@@ -24,7 +24,7 @@
 			      </ul>
 		    	</div>
 
-		    	<% if (@is_admin) %>
+		    	<% if @is_admin %>
 			    	<div class="pull-right">
 			        <%= link_to map_standard_path(map_standard), confirm: t('maps.delete_map_standard_confirmation', title: map_standard.standard.name),  method: :delete, title: t('maps.delete_map_standard'), :class=>"maps_map_standard_destroy", remote: true do %>
 			          <i class="icon-trash"></i>
@@ -40,7 +40,7 @@
 <% end %>
 
 
-<% if (@is_admin) %>
+<% if @is_admin %>
 	<script type="text/javascript">
 	$(document).ready(function() {    
 	  $("#sortable_map_standards").sortable({

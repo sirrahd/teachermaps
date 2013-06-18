@@ -148,7 +148,6 @@ class Map < ActiveRecord::Base
   def is_admin?( user )
   	# Admin permission gives a user the abiilty to edit an entity
 
-  	# Check to see if user is signed in
   	# Check to see is user's id matches candidate user's id 
   	# Else check to see if map is public
   	Rails.logger.info "Permissions check: #{self.user_id}:#{user.id} #{self.user_id == user.id}"

@@ -10,11 +10,11 @@
         <% end %>
       </div>
       <div>
-        <h2><%= best_in_place_if (@is_admin),  @map, :name, :type => :input, :display_as => :title_titlecase %></h2>
+        <h2><%= best_in_place_if @is_admin,  @map, :name, :type => :input, :display_as => :title_titlecase %></h2>
       </div>
       <!-- Map Content -->
       </div>
-        <p ><%= best_in_place_if (@is_admin), @map, :text, :type => :textarea, :classes=>'best_in_place_selector', :nil => raw('<span class="gray">Description</span>') %></p>
+        <p ><%= best_in_place_if @is_admin, @map, :text, :type => :textarea, :classes=>'best_in_place_selector', :nil => raw('<span class="gray">Description</span>') %></p>
       <div>
         
       <div>
