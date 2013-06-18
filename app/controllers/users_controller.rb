@@ -2,7 +2,7 @@ class UsersController < ApplicationController
 	include SessionsHelper
 
   def index
-    require_session
+    redirect_to root_url
   end
 
   def show
