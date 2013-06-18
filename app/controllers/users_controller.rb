@@ -1,14 +1,17 @@
 class UsersController < ApplicationController
+	include SessionsHelper
 
   def index
     # /users/ was returning a 404
-    return_to signin_url if !signed_in?
-    redirect_to @current_user
+    # return_to signin_url if !signed_in?
+    # Rails.logger.info "#{signin_url}"
+    # redirect_to @current_user
+    require_session
   end
 
   def show
     # Users must be signed in to view a profile
-    redirect_to signin_url if !signed_in?
+    # redirect_to signin_url if !signed_in?
 
     @user = User.find_by_account_name params[:id]
     unless @user
@@ -16,13 +19,16 @@ class UsersController < ApplicationController
       return render :status => 404
     end
 
-    @maps = Map.where( user_id: @current_user ).order('id DESC')
-    @resources = @current_user.resources.paginate(page: params[:page]).order('id DESC')
+    @is_admin = (signed_in? and @user.is_admin?(@current_user))
+  	# Rails.logger.info "IS ADMIN? #{@is_admin}"
+
+    @maps = @user.maps
+    @resources = @user.resources.paginate(page: params[:page]).order('id DESC')
     @num_of_pages = @user.total_resources_count / 20 + 2
 
-    @filter_course_types = ResourceType.where( id: @current_user.resources.collect { |resource| resource.resource_type.id } )
-    @filter_course_grades = CourseGrade.where( id: @current_user.resources.collect { |resource| resource.course_grades.collect(&:id) } )
-    @filter_course_subjects = CourseSubject.where( id: @current_user.resources.collect { |resource| resource.course_subjects.collect(&:id) } )
+    @filter_course_types = ResourceType.where( id: @user.resources.collect { |resource| resource.resource_type.id } )
+    @filter_course_grades = CourseGrade.where( id: @user.resources.collect { |resource| resource.course_grades.collect(&:id) } )
+    @filter_course_subjects = CourseSubject.where( id: @user.resources.collect { |resource| resource.course_subjects.collect(&:id) } )
 
     # For rendering Ajax "Upload Resource" form
     @resource = Resource.new
@@ -157,6 +163,15 @@ class UsersController < ApplicationController
 
     # Stage 1: User enters email address
     render 'password_reset_confirmation'
+  end
+
+  private
+
+  # Requires user session
+  def require_session
+    unless current_user
+      redirect_to signin_path
+    end
   end
 
 end
