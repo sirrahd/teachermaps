@@ -29,12 +29,14 @@ class ResourcesController < ApplicationController
   end
 
   def edit
+  	require_session
     @resource = Resource.find_by_id_and_user_id params[:id], @current_user.id
     return render nothing: true, status: 404 unless @resource
     render partial: "resources/edit"
   end
 
   def update
+  	require_session
     Rails.logger.info(params)
     @resource = Resource.find_by_id_and_user_id params[:id], @current_user.id
     return render nothing: true, status: 404 unless @resource
@@ -70,6 +72,7 @@ class ResourcesController < ApplicationController
 
 
   def destroy
+  	require_session
 
     @resource = Resource.find_by_id_and_user_id params[:id], @current_user.id
 
@@ -122,7 +125,7 @@ class ResourcesController < ApplicationController
   end 
 
   def filter
-
+  	require_session
     Rails.logger.info(params)
 
     filter = {}
@@ -149,6 +152,7 @@ class ResourcesController < ApplicationController
   end
 
   def create_link
+  	require_session
     Rails.logger.info(params)
 
     @resource = LinkResource.new
@@ -194,6 +198,7 @@ class ResourcesController < ApplicationController
   end  
 
   def sync
+  	require_session
     
     sync_count = 0
 
@@ -234,6 +239,8 @@ class ResourcesController < ApplicationController
 
 
   def page
+  	require_session
+
     @resources = @current_user.resources.paginate(page: params[:page])
     render partial: 'resources/table_resources'
   end 
