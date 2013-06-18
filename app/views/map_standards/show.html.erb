@@ -6,7 +6,7 @@
 
     <div>
       <!-- Breadcrumb -->
-      <%= link_to t('shared.my_maps'), user_path(@map_standard.map.user) %> / <%= link_to "#{@map_standard.map.name.titlecase.truncate(40)}", user_map_path(@map_standard.map.user, @map_standard.map.slug) %> / <%= link_to "#{@map_standard.standard.name.truncate(40)}", "JavaScript:void(0);" %> /
+      <%= link_to t('shared.my_maps'), user_path(@map_standard.map.user) %> / <%= link_to "#{@map_standard.map.name.titlecase.truncate(40)}", user_map_path(@map_standard.map.user, @map_standard.map.slug) %> / <b><%=  "#{@map_standard.standard.name.truncate(40)}"%></b>
     </div>
 
     <div>
