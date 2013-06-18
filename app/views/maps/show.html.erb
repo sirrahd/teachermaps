@@ -4,8 +4,10 @@
   <div class="span10">
     <div>
       <div>
-        <!-- Breadcrumb -->
-        <%= link_to t('shared.my_maps'), user_path(@map.user) %> / <%= link_to "#{@map.name.titlecase.truncate(40)}", "JavaScript:void(0);" %> /
+      	<% if signed_in? and @map.is_admin?(@current_user) %>
+        	<!-- Breadcrumb -->
+        	<%= link_to t('shared.my_maps'), user_path(@map.user) %> / <b><%= "#{@map.name.titlecase.truncate(40)}"%></b>
+        <% end %>
       </div>
       <div>
         <h2><%= best_in_place @map, :name, :type => :input, :display_as => :title_titlecase %></h2>
@@ -17,21 +19,24 @@
         
       <div>
         <span class="pull-right">
-          <%= link_to t('maps.add_map_standards'), "#filter_map_standards_modal",'data-toggle' => "modal",  :class => 'btn'  %>
+        	<% if signed_in? and @map.is_admin?(@current_user) %>
+          	<%= link_to t('maps.add_map_standards'), "#filter_map_standards_modal",'data-toggle' => "modal",  :class => 'btn'  %>
+          <% end %>
         </span> 
         <h3><%= t('shared.standards') %></h3>
         <div id="map_standards_list">
 
           <!-- Map Standards -->
           <%= render 'maps/list_map_standards' %>
-
         </div>
       </div>
 
 
       <div>
         <span class="pull-right">
+        	<% if signed_in? and @map.is_admin?(@current_user) %>
             <%= link_to 'Add Assessment', "JavaScript:void(0);", :class => 'btn', id: 'create_map_assessment', 'action-url' => map_assessments_path %>
+          <% end %>
         </span>  
         <h3><%= t('shared.assessments') %></h3>
         <div id="maps_list_map_assessments">
@@ -62,6 +67,7 @@
     </div>
   </div>
 
+  <% if signed_in? and @map.is_admin?(@current_user) %>
   <div id="filter_map_resources_modal" class="resource-modal modal hide fade" >
     <div class="filter_map_resources_modal_header modal-header">
       <button type="button" class="close" data-dismiss="modal">&times;</button>
@@ -71,11 +77,14 @@
         <%= image_tag "loading.gif", :alt => "loading"%>
     </div>
   </div>
+  <% end %>
 
 </div>
 
+<% if signed_in? and @map.is_admin?(@current_user) %>
 <script type="text/javascript">
 $(document).ready(function() {    
   $('.best_in_place').best_in_place();
 });
 </script>
+<% end %>

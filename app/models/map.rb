@@ -145,6 +145,15 @@ class Map < ActiveRecord::Base
     end
   end
 
+  def is_admin?( user )
+  	# Check to see is user's id matches candidate user's id 
+  	# Else check to see if map is public
+  	Rails.logger.info "Permissions check: #{self.user_id}:#{user.id}"
+    self.user_id == user.id # and self.is_public?
+    
+    # Later we can add collaborator/group permission checks in this method
+  end
+
   private 
 
   def clean_attrs

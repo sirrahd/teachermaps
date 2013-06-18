@@ -1,11 +1,11 @@
 class MapsController < ApplicationController
    include SessionsHelper
 
-  before_filter :require_session
+  # before_filter :require_session
 
   def show
 
-  	@map = Map.find_by_slug_and_user_id params[:id], @current_user.id
+  	@map = Map.find_by_slug params[:id]
 
     # Used for rendering standards filter
     @filter_standard_types = StandardType.all
