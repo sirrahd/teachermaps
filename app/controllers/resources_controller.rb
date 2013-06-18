@@ -2,7 +2,7 @@
 class ResourcesController < ApplicationController
   include SessionsHelper
 
-  before_filter :require_session
+  # before_filter :require_session
 
   def index
     # Currently does not exist
@@ -11,7 +11,8 @@ class ResourcesController < ApplicationController
 
   def show
     Rails.logger.info(params)
-    @resource = Resource.find_by_id_and_user_id params[:id], @current_user.id
+    # @resource = Resource.find_by_id_and_user_id params[:id], @current_user.id
+    @resource = Resource.find_by_id params[:id]
     unless @resource
       return redirect_to resources_url, flash:  { error: t('resources.does_not_exist') }
     end
