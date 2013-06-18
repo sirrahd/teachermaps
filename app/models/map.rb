@@ -113,7 +113,7 @@ class Map < ActiveRecord::Base
   MAX_NAME_RENDER_LEN = 100
 
   # Core components	
-  attr_accessible :name, :slug, :text, :thumbnail, :user_id
+  attr_accessible :name, :slug, :text, :thumbnail, :user_id, :privacy_state
 
   # For quick rendering of item counts
   attr_accessible :resources_count, :standards_count, :objectives_count
@@ -151,7 +151,7 @@ class Map < ActiveRecord::Base
   	# Check to see is user's id matches candidate user's id 
   	# Else check to see if map is public
   	Rails.logger.info "Permissions check: #{self.user_id}:#{user.id} #{self.user_id == user.id}"
-		self.user_id == user.id # and self.is_public?
+		self.user_id == user.id
     
     # Later we can add collaborator/group permission checks in this method
   end
