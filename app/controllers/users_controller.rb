@@ -18,7 +18,12 @@ class UsersController < ApplicationController
     @is_admin = (signed_in? and @user.is_admin?(@current_user))
   	# Rails.logger.info "IS ADMIN? #{@is_admin}"
 
-    @maps = @user.maps
+    if @is_admin
+    	@maps = @user.maps
+    else
+    	@maps = @user.maps.where("privacy_state = #{PrivacyState::PUBLIC}")
+    end
+
     @resources = @user.resources.paginate(page: params[:page]).order('id DESC')
     @num_of_pages = @user.total_resources_count / 20 + 2
 
