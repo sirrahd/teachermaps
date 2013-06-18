@@ -1,14 +1,17 @@
 class MapStandardsController < ApplicationController
   include SessionsHelper
 
-  before_filter :require_session
+  # before_filter :require_session
   
   def show
     Rails.logger.info(params)
     @map_standard = MapStandard.find_by_slug params[:id]
+    @is_admin = (signed_in? and @map_standard.map.is_admin?(@current_user))
+  	Rails.logger.info "IS ADMIN? #{@is_admin}"    
   end
 
   def create
+  	require_session
 
     Rails.logger.info(params)
    
@@ -59,6 +62,7 @@ class MapStandardsController < ApplicationController
   end
 
   def destroy
+  	require_session
     Rails.logger.info(params)
     
     @map_standard = MapStandard.find_by_id_and_user_id params[:id], @current_user.id
@@ -89,6 +93,7 @@ class MapStandardsController < ApplicationController
   end
 
   def sort_objectives
+  	require_session
 
     @map_standard = MapStandard.find params[:map_standard_id]
     return render nothing: true, status: 404 unless @map_standard

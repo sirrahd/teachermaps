@@ -124,8 +124,11 @@ class MapAssessmentsController < ApplicationController
 	def create_resource
 
     Rails.logger.info(params)
-    @map_assessment = MapAssessment.find_by_id_and_user_id params[:id], @current_user.id
+    @map_assessment = MapAssessment.find_by_id params[:id]
     @resource = Resource.find_by_id_and_user_id params[:resource_id], @current_user.id
+
+    @is_admin = (signed_in? and @map_assessment.map.is_admin?(@current_user))
+  	Rails.logger.info "IS ADMIN? #{@is_admin}"
 
     unless @map_assessment and @resource
       Rails.logger.info("error 404 map_assessment #{params[:id]} or resource #{params[:resource_id]}") 

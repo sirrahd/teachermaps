@@ -20,7 +20,9 @@
     <div>
      
       <span class="pull-right">
-        <%= link_to t('map_standards.add_map_objective'), "JavaScript:void(0);", :class => 'btn', id: 'create_map_objective', 'action-url' => map_objectives_path %>
+      	<% if @is_admin %>
+        	<%= link_to t('map_standards.add_map_objective'), "JavaScript:void(0);", :class => 'btn', id: 'create_map_objective', 'action-url' => map_objectives_path %>
+        <% end %>
       </span> 
       <h3><%= t('shared.objectives') %></h3>
       <div id="map_standards_objectives_list">
@@ -34,17 +36,18 @@
   </div>
 </div>
 
-
-<div id="filter_map_objectives_resources_modal" class="resource-modal modal hide fade" >
-  <div class="filter_map_resources_modal_header modal-header">
-    <button type="button" class="close" data-dismiss="modal">&times;</button>
-    <h3><%= t('resources.loading') %></h3>
-  </div>
-  <div class="filter_map_resources_modal_body modal-body center">
-    <%= image_tag "loading.gif", :alt => "loading"%>
-  </div>
-  <div class="modal-footer">&nbsp;</div>
-</div>
+<% if @is_admin %>
+	<div id="filter_map_objectives_resources_modal" class="resource-modal modal hide fade" >
+	  <div class="filter_map_resources_modal_header modal-header">
+	    <button type="button" class="close" data-dismiss="modal">&times;</button>
+	    <h3><%= t('resources.loading') %></h3>
+	  </div>
+	  <div class="filter_map_resources_modal_body modal-body center">
+	    <%= image_tag "loading.gif", :alt => "loading"%>
+	  </div>
+	  <div class="modal-footer">&nbsp;</div>
+	</div>
+<% end %>
 
 
 

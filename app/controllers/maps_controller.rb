@@ -21,6 +21,7 @@ class MapsController < ApplicationController
   end
 
   def create
+  	require_session
     Rails.logger.info(params)
 
     @map = Map.new user_id: @current_user.id
@@ -37,6 +38,7 @@ class MapsController < ApplicationController
   end
 
   def destroy
+  	require_session
     Rails.logger.info(params)
     
     @map = Map.find_by_id_and_user_id params[:id], @current_user.id
@@ -55,6 +57,7 @@ class MapsController < ApplicationController
 
 
   def update
+  	require_session
     @map = Map.find_by_id_and_user_id params[:id], @current_user.id
     unless @map
       Rails.logger.info("error 404 map #{params[:id]}") 
@@ -72,7 +75,7 @@ class MapsController < ApplicationController
 
 
   def sort_assessments
-
+		require_session
     @map = Map.find params[:map_id]
     return render nothing: true, status: 404 unless @map
 
@@ -85,7 +88,7 @@ class MapsController < ApplicationController
   end
 
   def sort_standards
-
+  	require_session
     @map = Map.find params[:map_id]
     return render nothing: true, status: 404 unless @map
 
