@@ -224,4 +224,40 @@ $(document).ready(function() {
   });
 
 
+
+
+
+  //////////////////////////////
+  //
+  // Public/Private Privacy State
+  //
+  //////////////////////////////
+
+  $("#map-privacy-state").click(function() {
+  	var mapId = $('#map-id').val();
+  	var value = $(this).val();
+  	var actionUrl = $(this).attr('action-url');
+
+  	console.log(mapId);
+  	console.log(value);
+  	console.log(actionUrl);
+
+	  $.ajax({
+	    type: "PUT",
+	    url: actionUrl,
+	    data: {
+	    	'id': mapId,
+	    	'value': value
+	    },
+	    success: function(data) {
+	    	console.log("success");
+	    },
+	    error: function(data) {
+	    	console.log("failure");
+	    }
+	  });
+
+	});
+
+
 });

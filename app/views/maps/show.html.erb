@@ -3,6 +3,12 @@
   
   <div class="span10">
     <div>
+    	<span class="pull-right">
+	     		<div class="btn-group"  id="" data-toggle="buttons-radio">
+				    <button class="btn" action-url=<% %> id="map-privacy-state">Private</button>
+				    <button class="btn" id="map-privacy-state">Public</button>
+					</div>
+	     	</span>
       <div>
       	<% if @is_admin %>
         	<!-- Breadcrumb -->
@@ -13,12 +19,12 @@
       </div>
       <div>
         <h2><%= best_in_place_if @is_admin,  @map, :name, :type => :input, :display_as => :title_titlecase %></h2>
-      </div>
+      </div>	
       <!-- Map Content -->
       </div>
         <p ><%= best_in_place_if @is_admin, @map, :text, :type => :textarea, :classes=>'best_in_place_selector', :nil => raw('<span class="gray">Description</span>') %></p>
       <div>
-        
+
       <div>
         <span class="pull-right">
         	<% if @is_admin %>

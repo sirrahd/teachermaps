@@ -43,6 +43,7 @@ Teachermaps::Application.routes.draw do
     resources :map_standards, only: [:create]
     post 'sort_assessments'
     post 'sort_standards'
+    post 'set_privacy_state'
   end
 
   resources :map_standards, only: [:update, :destroy]
