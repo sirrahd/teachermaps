@@ -272,13 +272,11 @@ $(document).ready(function() {
   //////////////////////////////
 
 
-	$(document).on('click', '#share_map_form_submit', function(){
-		$('#share_map_form').submit();
-	});
 
 	$(document)
 	.on('ajax:error', "#share_map_form", function(event, data, status, xhr) {
-  	console.log("Error!!");
+  	console.log("Error!!",data);
+  	$("#share_map_form_errors").html(data.responseText);
   })
   .on('ajax:success', "#share_map_form", function(event, data, status, xhr) {
   	$('#share_map_modal div.modal-body').html('<h2 style="text-align:center;">Success!!!</h2>');

@@ -1,24 +1,34 @@
 class ShareEmailController < ApplicationController
+
   def create
   	Rails.logger.info params
-  	# @email = ShareEmail.new()
-    # @feedback = Feedback.new( message: params[:feedback][:message],
-    #                           time: Time.now,
-    #                           page: params[:feedback][:page],
-    #                           agent: request.env['HTTP_USER_AGENT'],
-    #                           host: request.env['HTTP_HOST'])
+  	require_session
 
-    # if params[:anonymous].nil?
-    #   @feedback.name = params[:feedback][:name]
-    #   @feedback.account_name = params[:feedback][:account_name]
-    #   @feedback.email = params[:feedback][:email]
-    # end
+  	@email = ShareEmail.new(params[:share_email])
+  	Rails.logger.info @email.inspect
+  	Rails.logger.info @email.valid?
+    
 
-    # if @feedback.valid?
-    #   FeedbackMailer.feedback_email(@feedback).deliver
-    #   render json: '', status: :created
-    # else
-    #   render json: @feedback.errors.full_messages, status: :unprocessable_entity
-    # end
+    respond_to do |format|
+
+      if @email.valid?
+      ShareEmailMailer.share_map_email(@current_user).deliver
+      format.js { render json: '', status: :created }
+    else
+    	format.js { render partial:  'shared/error_messages', :locals => { :object => @email }, :status => :unprocessable_entity  }
+    end
+
+    end
+
+    
+  end
+
+  private 
+  
+  # Requires user session
+  def require_session
+    unless current_user
+      redirect_to signin_path
+    end
   end
 end

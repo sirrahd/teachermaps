@@ -120,16 +120,17 @@
     </div>
     
     <div class="modal-body">
-    	<%= form_tag map_share_email_index_path(@map), id: 'share_map_form', :class=>"form-horizontal", :remote=>true do %>
-			  
-			  <!-- <label for="share_email_field">Email</label>
-			  <input type="email" name="share_email_field" id="share_email_field" placeholder="email@example.com" required> -->
-			  <%= label_tag(:email, t('resources.title')) %>
+
+    	<div id="share_map_form_errors"></div>
+
+    	<%= form_for @share_email, url: map_share_email_index_path(@map), html: { :remote=>true, :multipart => true, :class=>"form-horizontal", :'data-type' => 'html', id: 'share_map_form' }  do |f| %>
+    			  
+			  <%= label_tag(:email, "Email Address") %>
   			<%= f.text_field :email, placeholder:'email@example.com', required: true %>
 			  <br/><br/>
 
-			  <label for="share_comments_field">Comments</label>
-			  <%= text_area_tag 'share_comments_field', '', name: 'share_comments_field', :placeholder=>"Leave a comment!!" %>
+			  <%= label_tag(:comment, "Comment") %>
+  			<%= f.text_area :comment, id:'share_comments_field',  placeholder:'Send with a comment!!' %>
 			  <br/><br/>
 
 			  <button type="button" class="btn" data-dismiss="modal">Cancel</button>
