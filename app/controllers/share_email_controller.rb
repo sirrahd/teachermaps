@@ -5,21 +5,23 @@ class ShareEmailController < ApplicationController
   	require_session
 
   	@email = ShareEmail.new(params[:share_email])
-  	Rails.logger.info @email.inspect
+		Rails.logger.info @email.inspect
   	Rails.logger.info @email.valid?
-    
+
+  	@map = Map.find params[:map_id]
+  	unless @map
+  		Rails.logger.info "Could not email map because no map id was given"
+  		format.js { render json: '', status: :unprocessable_entity }
+  	end
 
     respond_to do |format|
-
       if @email.valid?
-      ShareEmailMailer.share_map_email(@current_user).deliver
-      format.js { render json: '', status: :created }
-    else
-    	format.js { render partial:  'shared/error_messages', :locals => { :object => @email }, :status => :unprocessable_entity  }
+	      ShareEmailMailer.share_map_email(@current_user, @email, @map, request.env['HTTP_HOST']).deliver
+	      format.js { render json: '', status: :created }
+	    else
+	    	format.js { render partial:  'shared/error_messages', :locals => { :object => @email }, :status => :unprocessable_entity  }
+	    end
     end
-
-    end
-
     
   end
 
