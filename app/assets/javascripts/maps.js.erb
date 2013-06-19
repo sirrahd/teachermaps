@@ -264,4 +264,29 @@ $(document).ready(function() {
 	});
 
 
+
+	//////////////////////////////
+  //
+  // Public/Private Privacy State
+  //
+  //////////////////////////////
+
+
+	$(document).on('click', '#share_map_form_submit', function(){
+		$('#share_map_form').submit();
+	});
+
+	$(document)
+	.on('ajax:error', "#share_map_form", function(event, data, status, xhr) {
+  	console.log("Error!!");
+  })
+  .on('ajax:success', "#share_map_form", function(event, data, status, xhr) {
+  	$('#share_map_modal div.modal-body').html('<h2 style="text-align:center;">Success!!!</h2>');
+  	setTimeout(function(){
+        $('#share_map_modal').modal("hide");
+    }, 3000);
+
+  });
+
+
 });

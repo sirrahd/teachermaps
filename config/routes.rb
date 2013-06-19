@@ -48,6 +48,7 @@ Teachermaps::Application.routes.draw do
     post 'sort_assessments'
     post 'sort_standards'
     post 'set_privacy_state'
+    post 'share'
   end
 
   resources :map_standards, only: [:update, :destroy]

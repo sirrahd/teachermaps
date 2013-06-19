@@ -32,6 +32,15 @@ class MapsController < ApplicationController
 
   end
 
+  def share 
+  	require_session
+  	Rails.logger.info(params)
+
+  	
+
+  	return render nothing: true, status: 500
+  end
+
   def create
   	require_session
     Rails.logger.info(params)

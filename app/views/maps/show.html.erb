@@ -6,8 +6,9 @@
     <div>
 
     	<% if @is_admin %>
-    	<span class="pull-right">
-  			<button class="btn" id="map-share-modal">Share</button>
+    	<span class="pull-right" >
+    		<%= link_to "Share", "#share_map_modal",'data-toggle' => "modal", :class=>'btn' %>
+
   			<div id="map-privacy-state-switch" class="switch" action-url="<%= user_map_path(@map.user.id, @map) %>"  data-on="danger" data-off="primary" data-on-label="Public" data-off-label="Private">
 			    <% if @map.privacy_state == PrivacyState::PUBLIC %> 
 			    	<input type="checkbox" checked />
@@ -98,8 +99,6 @@
       <button type="button" class="btn btn-primary" data-dismiss="modal">Save</button>
     </div>
   </div>
-
-
 	  
 	  <div id="filter_map_resources_modal" class="resource-modal modal hide fade" >
 	    <div class="filter_map_resources_modal_header modal-header">
@@ -112,12 +111,41 @@
 	  </div>
 	<% end %>
 
+
+	<div id="share_map_modal" class="	modal hide fade in">
+		
+    <div class="modal-header">
+      <button type="button" class="close" data-dismiss="modal">&times;</button>
+      <div><H3>Share <%= @map.name.titlecase.truncate(40) %></H3></div>
+    </div>
+    
+    <div class="modal-body">
+    	<%= form_tag map_share_path(@map), id: 'share_map_form', :class=>"form-horizontal", :remote=>true do %>
+			  
+			  <label for="share_email_field">Email</label>
+			  <input type="email" name="share_email_field" id="share_email_field" placeholder="email@example.com" required>
+			  <br/><br/>
+
+			  <label for="share_comments_field">Comments</label>
+			  <%= text_area_tag 'share_comments_field', '', name: 'share_comments_field', :placeholder=>"Leave a comment!!" %>
+			  <br/><br/>
+
+			  <button type="button" class="btn" data-dismiss="modal">Cancel</button>
+			  <button type="submit" id="share_map_form_submit" class="btn btn-primary">Share</button>
+		  <% end %>
+    </div>
+  </div>
+
 </div>
 
 <% if @is_admin %>
 	<script type="text/javascript">
 	$(document).ready(function() {    
 	  $('.best_in_place').best_in_place();
+	});
+
+	$(document).ready(function(){
+    $('#share_comments_field').autosize();   
 	});
 	</script>
 <% end %>
