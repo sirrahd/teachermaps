@@ -24,6 +24,15 @@
       
         <div>
           <ul class="inline gray">
+          	<% if @is_admin %>
+	          	<li>
+	              <% if map.privacy_state == PrivacyState::PUBLIC %>
+	              	Privacy: <i class="icon-globe" ></i>
+	              <% else %>
+	              	Privacy: <i class="icon-lock" ></i>
+	              <% end %>
+	            </li>
+            <% end %>
             <li>
               <label><%= t('shared.standards') %>: <%= map.standards_count %> </label>
             </li>
