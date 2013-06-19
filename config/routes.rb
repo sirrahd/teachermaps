@@ -45,10 +45,10 @@ Teachermaps::Application.routes.draw do
   resources :maps, only: [:update, :create, :destroy]
   resources :maps do
     resources :map_standards, only: [:create]
+    resources :share_email, only: [:create]
     post 'sort_assessments'
     post 'sort_standards'
     post 'set_privacy_state'
-    post 'share'
   end
 
   resources :map_standards, only: [:update, :destroy]

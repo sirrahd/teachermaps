@@ -30,13 +30,15 @@ class MapsController < ApplicationController
     # Currently only have CCSS ELA and Math
     @filter_course_subjects = CourseSubject.where name: ['English', 'Mathematics']
 
+    @share_email = ShareEmail.new
+
   end
 
   def share 
   	require_session
   	Rails.logger.info(params)
 
-  	
+
 
   	return render nothing: true, status: 500
   end
