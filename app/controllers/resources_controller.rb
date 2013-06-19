@@ -9,24 +9,24 @@ class ResourcesController < ApplicationController
     redirect_to @current_user
   end
 
-  # def show
-  #   Rails.logger.info(params)
-  #   # @resource = Resource.find_by_id_and_user_id params[:id], @current_user.id
-  #   @resource = Resource.find_by_id params[:id]
-  #   unless @resource
-  #     return redirect_to resources_url, flash:  { error: t('resources.does_not_exist') }
-  #   end
+  def show
+  	require_session
+    Rails.logger.info(params)
+    @resource = Resource.find_by_id_and_user_id params[:id], @current_user.id
+    unless @resource
+      return redirect_to resources_url, flash:  { error: t('resources.does_not_exist') }
+    end
 
-  #   resource_link = @resource.open_link()
+    resource_link = @resource.open_link()
 
-  #   # Gracefully handle nil links
-  #   if !resource_link
-  #     redirect_to @current_user, :flash => { :error => t('resources.resource_link_error', :title => @resource.title) }
-  #   else
-  #     redirect_to resource_link
-  #   end
+    # Gracefully handle nil links
+    if !resource_link
+      redirect_to @current_user, :flash => { :error => t('resources.resource_link_error', :title => @resource.title) }
+    else
+      redirect_to resource_link
+    end
     
-  # end
+  end
 
   def edit
   	require_session
