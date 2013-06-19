@@ -28,11 +28,21 @@
         <% end %>
       </div>
       <div>
-        <h2><%= best_in_place_if @is_admin,  @map, :name, :type => :input, :display_as => :title_titlecase %></h2>
-      </div>	
+      	
+        <h2>
+        	<span class="editible-field">
+        			<%= best_in_place @map, :name, :type => :input, :display_as => :title_titlecase %>
+      		</span>
+    		</h2>
+      	
+      </div>
       <!-- Map Content -->
       </div>
-        <p ><%= best_in_place_if @is_admin, @map, :text, :type => :textarea, :classes=>'best_in_place_selector', :nil => raw('<span class="gray">Description</span>') %></p>
+        <p >
+        	<span class="editible-field">
+        		<%= best_in_place @map, :text, :type => :textarea, :classes=>'best_in_place_selector', :nil => raw('<span class="gray">Description</span>') %>
+        	</span>
+      	</p>
       <div>
 
       <div>
@@ -67,25 +77,28 @@
 
 
 	<% if @is_admin %>
+  <div id="filter_map_standards_modal" class="standard-modal  modal hide fade in">
+    <div class="modal-header">
+      <button type="button" class="close" data-dismiss="modal">&times;</button>
+      <div><H3><%= t('shared.standards') %></H3></div>
+    </div>
+    <div class="modal-body">
+      <div class="row">
+        <div id="standards_filter" class="center" >
+        <%= render 'maps/filter_standards' %>
+        </div>
+      </div>
+      <div class="row">
+        <div  id="standards_table" style="margin: 0px 20px 0px 20px;">
+          <%= render 'maps/list_standards' %>
+        </div>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-primary" data-dismiss="modal">Save</button>
+    </div>
+  </div>
 
-	  <div id="filter_map_standards_modal" class="standard-modal  modal hide fade in">
-	    <div class="modal-header">
-	      <button type="button" class="close" data-dismiss="modal">&times;</button>
-	      <div><H3><%= t('shared.standards') %></H3></div>
-	    </div>
-	    <div class="modal-body">
-	      <div class="row">
-	        <div id="standards_filter" class="center" >
-	        <%= render 'maps/filter_standards' %>
-	        </div>
-	      </div>
-	      <div class="row">
-	        <div  id="standards_table" style="margin: 0px 20px 0px 20px;">
-	          <%= render 'maps/list_standards' %>
-	        </div>
-	      </div>
-	    </div>
-	  </div>
 
 	  
 	  <div id="filter_map_resources_modal" class="resource-modal modal hide fade" >

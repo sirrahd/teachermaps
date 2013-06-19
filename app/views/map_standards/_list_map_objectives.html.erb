@@ -3,15 +3,23 @@
 
     <% @map_standard.map_objectives.each do |map_objective| %>
       <li id="map_objective_<%= map_objective.id %>" class="hover">
-        <div class="row editable">
+        <div class="row editable" style="padding-bottom:15px;">
           
           <% if @is_admin %>
           	<div class="handle pull-left" style="cursor:move;margin-right:-15px;"><%= image_tag 'large-click-drag-handle.png', alt: 'handle', size: '20x60' %></div>
           <% end %>
           
           <div class="span9">
-            <b><%= best_in_place_if @is_admin, map_objective, :name, type: :input, html_attrs: { style: "width:90%" } %></b>
-            <p style="width:95%"><%= best_in_place_if @is_admin, map_objective, :text, type: :textarea, :nil => raw('<span class="gray">Description</span>') %></p>
+          	<span class="editible-field">
+            	<b><%= best_in_place_if @is_admin, map_objective, :name, type: :input, html_attrs: { style: "width:90%" } %></b>
+            </span>
+            
+            <p style="width:95%">
+            	<span class="editible-field">
+            		<%= best_in_place_if @is_admin, map_objective, :text, type: :textarea, :nil => raw('<span class="gray">Description</span>') %>
+            		</span>
+          	</p>
+          	
 
             <% if !map_objective.map_resources.empty? %>
               <div style="padding-left:30px;">
@@ -25,8 +33,8 @@
                             <% end %>
                             <div class="span8">
                               <span title="<%= map_resource.resource.get_type %>"><%= raw map_resource.resource.get_thumbnail %></span>
-                              <span><b><%= link_to map_resource.resource.title.titlecase, resource_path(map_resource.resource),  target: "_blank" %>:</b></span>
-                              <p><%= best_in_place_if @is_admin, map_resource, :text, type: :textarea, :nil => raw('<span class="gray">Description</span>'), html_attrs: { style: "width:90%" } %></p>
+                              <span><b><%= link_to map_resource.resource.title.titlecase, map_resource_path(map_resource),  target: "_blank" %>:</b></span>
+                              	<p><span class="editible-field"><%= best_in_place_if @is_admin, map_resource, :text, type: :textarea, :nil => raw('<span class="gray">Description</span>'), html_attrs: { style: "width:90%" } %></span></p>
                             </div>
                           </div>
                         </li>

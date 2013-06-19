@@ -19,7 +19,7 @@
 
     <div>
       <!-- Breadcrumb -->
-      <%= link_to t('shared.my_maps'), user_path(@map_standard.map.user) %> / <%= link_to "#{@map_standard.map.name.titlecase.truncate(40)}", user_map_path(@map_standard.map.user, @map_standard.map.slug) %> / <%= link_to "#{@map_standard.standard.name.truncate(40)}", "JavaScript:void(0);" %> /
+      <%= link_to t('shared.my_maps'), user_path(@map_standard.map.user) %> / <%= link_to "#{@map_standard.map.name.titlecase.truncate(40)}", user_map_path(@map_standard.map.user, @map_standard.map.slug) %> / <b><%=  "#{@map_standard.standard.name.truncate(40)}"%></b>
     </div>
 
     <div>
@@ -62,6 +62,18 @@
 	</div>
 <% end %>
 
+<div id="filter_map_objectives_resources_modal" class="resource-modal modal hide fade" >
+  <div class="filter_map_resources_modal_header modal-header">
+    <button type="button" class="close" data-dismiss="modal">&times;</button>
+    <h3><%= t('resources.loading') %></h3>
+  </div>
+  <div class="filter_map_resources_modal_body modal-body center">
+    <%= image_tag "loading.gif", :alt => "loading"%>
+  </div>
+  <div class="modal-footer">&nbsp;
+    <button type="button" class="save" data-dismiss="modal" />
+  </div>
+</div>
 
 
 
