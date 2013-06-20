@@ -5,7 +5,7 @@
 <div class="row">
     <div  class="span4">
       <% if @google_account.nil?  %>
-        <%= link_to t('google_drive.add_drive'), new_google_account_path, class: 'btn btn-primary btn-block' %>
+        <%= link_to t('google_drive.add_drive'), new_google_account_path, class: 'btn btn btn-block' %>
       <% else %>
         <%= link_to t('google_drive.open_folder'), @google_account.drive_folder_link , :target => "_blank" , class: 'btn btn-block'%>
       <% end %>
@@ -19,7 +19,7 @@
 
     <div class="span4">
       <% if @drop_box_account.nil?  %>
-        <%= link_to t('drop_box.add'), new_drop_box_accounts_path , class: 'btn btn-primary btn-block' %>
+        <%= link_to t('drop_box.add'), new_drop_box_accounts_path , class: 'btn btn btn-block' %>
       <% else %>
         <%= link_to t('drop_box.open_folder'), @drop_box_account.folder_link , :target => "_blank", class: 'btn btn-block' %>
       <% end %>
@@ -27,7 +27,7 @@
       <% if !@drop_box_account.nil? %>
       <%= link_to t('drop_box.remove'), @drop_box_account, :confirm => t('drop_box.remove_confirmation'), :method => :delete, class: 'btn btn-danger btn-block' %>
       <i class="icon-warning-sign"></i> Do not rename or move Dropbox files after syncing them with TeacherMaps. 
-      <%= link_to 'More info.', '/help#dropbox-sync'%>
+      <%= link_to 'More info.', '/help#dropbox-edit'%>
       <% end %>
     </div>
  
