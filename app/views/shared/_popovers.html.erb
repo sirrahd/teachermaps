@@ -1,7 +1,7 @@
 <script type="text/javascript">
-var tour = new Tour({ labels: { end: "Dismiss" } });
 
 <% if @progress[:next_task] == :confirm_email %>
+  var tour = new Tour({ name: "confirm_email", labels: { end: "Dismiss" } });
   tour.addSteps([{
     element: "#fat-menu",
     title: "Confirm your email address",
@@ -14,6 +14,7 @@ var tour = new Tour({ labels: { end: "Dismiss" } });
   });
 
 <% elsif @progress[:next_task] == :cloud_storage %>
+  var tour = new Tour({ name: "cloud_storage", labels: { end: "Dismiss" } });
   tour.addSteps([{
     element: "#fat-menu",
     title: "Add a storage service",
@@ -26,6 +27,7 @@ var tour = new Tour({ labels: { end: "Dismiss" } });
   });
 
 <% elsif @progress[:next_task] == :create_map %>
+  var tour = new Tour({ name: "create_map", labels: { end: "Dismiss" } });
   tour.addSteps([{
     element: "#users_create_map",
     title: "Get started!",
