@@ -1,18 +1,7 @@
 <div class="row">
   <aside class="span8">
     <section>
-      <p id="test"><strong><%= @user.name %></strong>
-      <br />
-      <%= @user.account_name %>
-      <br />
-      <%= @user.email %>
-      <br />
-      <% if @progress[:next_task] %>
-      Next task: <%= t 'tasks.' + @progress[:next_task].to_s %>
-      <div class="progress span3" style="margin-left:0;">
-        <div class="bar" style="width: <%= @progress[:status] %>%;"></div>
-      </div>
-      <% end %>
+      <p><strong><%= @user.name %></strong></p>
     </section>
   </aside>
 </div>

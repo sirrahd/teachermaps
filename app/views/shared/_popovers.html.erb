@@ -4,8 +4,8 @@
   var tour = new Tour({ name: "confirm_email", labels: { end: "Dismiss" } });
   tour.addSteps([{
     element: "#fat-menu",
-    title: "Confirm your email address",
-    content: "If you didn't get our confirmation email, you can re-send it from the settings page.",
+    title: <%= t 'tour.confirm_email_title' %>,
+    content: <%= t 'tour.confirm_email_content' %>,
     placement: "bottom",
   }]);
 
@@ -17,8 +17,8 @@
   var tour = new Tour({ name: "cloud_storage", labels: { end: "Dismiss" } });
   tour.addSteps([{
     element: "#fat-menu",
-    title: "Add a storage service",
-    content: "Go to the settings page to connect TeacherMaps to your Dropbox or Google Drive account.",
+    title: <%= t 'tour.cloud_storage_title' %>,
+    content: <%= t 'tour.cloud_storage_content' %>,
     placement: "bottom",
   }]);
 
@@ -30,8 +30,8 @@
   var tour = new Tour({ name: "create_map", labels: { end: "Dismiss" } });
   tour.addSteps([{
     element: "#users_create_map",
-    title: "Get started!",
-    content: "Click here to create your first map",
+    title: <%= t 'tour.create_map_title' %>,
+    content: <%= t 'tour.create_map_content' %>,
     placement: "bottom",
   }]);
 

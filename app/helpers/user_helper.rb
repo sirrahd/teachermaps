@@ -65,7 +65,7 @@ module UserHelper
 
     show_tasks.reverse_each do |key, value|
       # Find next_task
-      unless self.options[key] == :complete or self.options[key] == :ignored
+      unless self.options[key] == :complete
         progress[:next_task] = key
       end
 
