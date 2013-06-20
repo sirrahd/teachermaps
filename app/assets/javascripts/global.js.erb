@@ -34,13 +34,13 @@ $(document).ready(function() {
     this.children().select();
   });
 
-  $('.editible-field').mouseenter(function(){
+  $('.editable-field').mouseenter(function(){
 		$(this).append('<i id="icon-hover" class="icon-edit"></i>');
   });
-  $('.editible-field').mouseleave(function(){
+  $('.editable-field').mouseleave(function(){
 		$('#icon-hover').remove();
   });
-  $('.editible-field').click(function(){
+  $('.editable-field').click(function(){
 		$('#icon-hover').remove();
 		return true;
   });

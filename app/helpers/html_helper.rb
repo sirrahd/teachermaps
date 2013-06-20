@@ -1,5 +1,13 @@
 module HtmlHelper
 
+	# If condition is true, returns the class
+	# If condition is false, returns blank space
+	# To be used in html templates for conditional 
+	# 		states of html class attributes
+	def set_if(condition, value)
+		condition ? value : ''
+	end
+
   def course_grade_ranges course_grades
 
     divider = '-'
@@ -14,6 +22,8 @@ module HtmlHelper
       end
     end
 
+    # Do not ask me, I do not know.....
+    # A prime example of self documenting code :)
     ranges = grades.sort.uniq.inject([]) do |spans, n|
       if spans.empty? || spans.last.last.succ != n
         spans + [n..n]
