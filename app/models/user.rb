@@ -13,6 +13,8 @@
 #
 
 class User < ActiveRecord::Base
+  include UserHelper
+
   attr_accessible :email, :name, :account_name, :password, :password_confirmation
   has_secure_password
 
@@ -66,68 +68,6 @@ class User < ActiveRecord::Base
 
   def total_resources_count
     Resource.where( user_id: self.id ).count
-  end
-
-  # Returns a number between 0-100 to define user's progress
-  def calculate_progress
-    completed = 0
-
-    # Check confirm_email
-    if self.confirmed?
-      self.options[:confirm_email] = :complete
-    else
-      self.options[:confirm_email] = :incomplete
-    end
-
-    # Check cloud_storage
-    if self.has_google_account? or self.has_drop_box_account?
-      self.options[:cloud_storage] = :complete
-    else
-      self.options[:cloud_storage] = :incomplete
-    end
-
-    # Check create_map
-    if Map.find_by_user_id(self.id).present?
-      self.options[:create_map] = :complete
-    else
-      self.options[:create_map] = :incomplete
-    end
-
-    self.save
-  end
-
-  # Returns the next task the user needs to complete
-  def show_progress
-    progress = {}
-    progress[:next_task] = false
-    tasks = {}
-    completed = 0
-    total = 0
-
-    self.calculate_progress
-
-    TASKS.reverse_each do |key, value|
-      # Find next_task
-      unless self.options[key] == :complete or self.options[key] == :ignored
-        progress[:next_task] = key
-      end
-
-      # Add tasks to task list with status
-      if self.options.has_key?(key)
-        tasks[key] = self.options[key]
-      else
-        tasks[key] = :incomplete
-      end
-
-      # Calculate progress
-      completed += TASKS[key][:weight] if self.options[key] == :complete
-      total += value[:weight]
-    end
-
-    progress[:status] = 100 * completed / total
-    progress[:tasks] = tasks
-
-    return progress
   end
 
   private
