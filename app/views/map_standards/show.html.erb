@@ -23,9 +23,9 @@
       	<!-- Breadcrumb -->
       	<%= link_to t('shared.my_maps'), user_path(@map_standard.map.user) %> / <%= link_to "#{@map_standard.map.name.titlecase.truncate(40)}", user_map_path(@map_standard.map.user, @map_standard.map.slug) %> / <b><%=  "#{@map_standard.standard.name.truncate(40)}"%></b>
     	<% else %>
-    		<%= link_to "#{@map.user.name}'s Map", user_path(@map_standard.map.user) %> / <%= link_to "#{@map_standard.map.name.titlecase.truncate(40)}", user_map_path(@map_standard.map.user, @map_standard.map.slug) %> / <b><%=  "#{@map_standard.standard.name.truncate(40)}"%></b>
+    		<%= link_to "#{@map.user.name}'s Maps", user_path(@map_standard.map.user) %> / <%= link_to "#{@map_standard.map.name.titlecase.truncate(40)}", user_map_path(@map_standard.map.user, @map_standard.map.slug) %> / <b><%=  "#{@map_standard.standard.name.truncate(40)}"%></b>
       <% end %>
-      
+
       <!-- Breadcrumb -->
       
     </div>

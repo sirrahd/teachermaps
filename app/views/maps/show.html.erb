@@ -25,7 +25,7 @@
         	<!-- Breadcrumb -->
         	<%= link_to t('shared.my_maps'), user_path(@map.user) %> / <b><%= "#{@map.name.titlecase.truncate(40)}"%></b>
       	<% else %>
-      		<%= link_to "#{@map.user.name}'s Map", user_path(@map.user) %> / <b><%= "#{@map.name.titlecase.truncate(40)}"%></b>
+      		<%= link_to "#{@map.user.name}'s Maps", user_path(@map.user) %> / <b><%= "#{@map.name.titlecase.truncate(40)}"%></b>
         <% end %>
       </div>
       <div>
