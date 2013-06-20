@@ -120,35 +120,5 @@ $(document).ready(function() {
 </script>
 
 <% if @progress[:next_task] %>
-<script type="text/javascript">
-var tour = new Tour();
-
-<% if @progress[:next_task] == :create_map %>
-  tour.addSteps([
-    {
-      element: "#users_create_map",
-      title: "Get started!",
-      content: "Click here to create your first map"
-    }
-  ]);
-<% elsif @progress[:next_task] == :confirm_email %>
-  tour.addSteps([
-    {
-      element: "#fat-menu",
-      title: "Confirm your email address",
-      content: "If you didn't get our confirmation email, you can re-send it from your settings page."
-    }
-  ]);
-<% elsif @progress[:next_task] == :cloud_storage %>
-  tour.addSteps([
-    {
-      element: "#test",
-      title: "Add a storage service",
-      content: "Go to your settings page to connect with your Dropbox or Google Drive."
-    }
-  ]);
-<% end %>
-tour.start();
-
-</script>
+  <%= render 'shared/popovers' %>
 <% end %>

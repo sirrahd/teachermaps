@@ -1,0 +1,48 @@
+<script type="text/javascript">
+<% if @progress[:next_task] == :confirm_email %>
+  var tour = new Tour({ labels: { end: "Dismiss" } });
+  tour.addSteps([{
+    element: "#fat-menu",
+    title: "Confirm your email address",
+    content: "If you didn't get our confirmation email, you can re-send it from the settings page.",
+    placement: "bottom",
+  }]);
+
+  tour.start(true);
+
+  $("#fat-menu").click(function() {
+    tour.end();
+  });
+
+<% elsif @progress[:next_task] == :cloud_storage %>
+  var tour = new Tour({ labels: { end: "Dismiss" } });
+  tour.addSteps([{
+    element: "#fat-menu",
+    title: "Add a storage service",
+    content: "Go to the settings page to connect TeacherMaps to your Dropbox or Google Drive account.",
+    placement: "bottom",
+  }]);
+
+  tour.start(true);
+
+  $("#fat-menu").click(function() {
+    tour.end();
+  });
+
+<% elsif @progress[:next_task] == :create_map %>
+  var tour = new Tour({ labels: { end: "Dismiss" } });
+  tour.addSteps([{
+    element: "#users_create_map",
+    title: "Get started!",
+    content: "Click here to create your first map",
+    placement: "bottom",
+  }]);
+
+  tour.start(true);
+
+  $("#users_create_map").click(function() {
+    tour.end();
+  });
+
+<% end %>
+</script>
