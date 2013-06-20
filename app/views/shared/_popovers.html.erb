@@ -1,6 +1,7 @@
 <script type="text/javascript">
+var tour = new Tour({ labels: { end: "Dismiss" } });
+
 <% if @progress[:next_task] == :confirm_email %>
-  var tour = new Tour({ labels: { end: "Dismiss" } });
   tour.addSteps([{
     element: "#fat-menu",
     title: "Confirm your email address",
@@ -8,14 +9,11 @@
     placement: "bottom",
   }]);
 
-  tour.start(true);
-
   $("#fat-menu").click(function() {
     tour.end();
   });
 
 <% elsif @progress[:next_task] == :cloud_storage %>
-  var tour = new Tour({ labels: { end: "Dismiss" } });
   tour.addSteps([{
     element: "#fat-menu",
     title: "Add a storage service",
@@ -23,14 +21,11 @@
     placement: "bottom",
   }]);
 
-  tour.start(true);
-
   $("#fat-menu").click(function() {
     tour.end();
   });
 
 <% elsif @progress[:next_task] == :create_map %>
-  var tour = new Tour({ labels: { end: "Dismiss" } });
   tour.addSteps([{
     element: "#users_create_map",
     title: "Get started!",
@@ -38,11 +33,11 @@
     placement: "bottom",
   }]);
 
-  tour.start(true);
-
   $("#users_create_map").click(function() {
     tour.end();
   });
 
 <% end %>
+
+tour.start();
 </script>
