@@ -47,11 +47,11 @@ class User < ActiveRecord::Base
 
   validates :password, presence: true, length: { minimum: 6 }, confirmation: true, if: :password_digest_changed?
 
-  # after_save :update_model
+  after_save :update_model
 
-  # def update_model
+  def update_model
 
-  # end
+  end
 
   def has_google_account?
     !google_account.nil? and !google_account.folder_id.nil?
