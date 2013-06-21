@@ -1,12 +1,11 @@
 <%= form_tag resources_filter_path, id: 'filter_resource_form', :class=>"form-inline", :remote=>true do %>
   
-  <%= select_tag("resource_types", options_for_select(@filter_course_types.map {|x| [x.name, x.id]}), :multiple=>true, :id=>'filter_resource_types') %>
-  <%= select_tag("course_grades", options_for_select(@filter_course_grades.map {|x| [x.name, x.id]}), {:multiple=>true, :id=>'filter_course_grades'}) %>
+  <%= select_tag("resource_types", options_for_select(ResourceType.all.map {|x| [x.name, x.id]}), :multiple=>true, :id=>'filter_resource_types') %>
+  <%= select_tag("course_grades", options_for_select(CourseGrade.all.map {|x| [x.name, x.id]}), {:multiple=>true, :id=>'filter_course_grades'}) %>
   
-  <%= select_tag("course_subjects", options_for_select(@filter_course_subjects.map {|x| [x.name, x.id]}), {:multiple=>true, :id=>'filter_course_subjects'}) %>
+  <%= select_tag("course_subjects", options_for_select(CourseSubject.all.map {|x| [x.name, x.id]}), {:multiple=>true, :id=>'filter_course_subjects'}) %>
   <br/>
   <%= text_field_tag 'filter_resource_search', '', :maxlength => 15, :placeholder=>t('shared.search'), :style=>'width:91%;margin-top:5px;', :name=>'q', :class => 'search-query' %>
-  
 
 <% end %>
 
@@ -25,5 +24,6 @@ $(document).ready(function() {
       width : '30%',
       placeholder: '<%= t("resources.all_subjects") %>'
   });
+
 }); 
 </script>

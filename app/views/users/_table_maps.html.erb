@@ -10,13 +10,13 @@
           <% end %>
         </span>
 
-        <div id="resource_filter">
+        <div class="resource_filter">
           <h4><%= truncate(map.name, length: Map::MAX_NAME_RENDER_LEN) %></h4>
           <span>
             <%= truncate(map.text, length: Map::MAX_TEXT_RENDER_LEN) %>
           </span>
         </div>
-      </div>
+      
       
       <div>
       
@@ -49,6 +49,7 @@
 
     
 
+      </div>
       </div>
     </li>
   <% end %>

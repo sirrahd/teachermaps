@@ -34,14 +34,14 @@
   </div>
   <div class="tab-pane" id="resources">
 
-      <div class="" id="resource_filter">
+      <div class="resource_filter">
       <%= render 'resources/filter_resources' %>
       </div>
 
 
       <div >
 
-        <table class="table table-condensed table-hover" id="resources_table">
+        <table class="table table-condensed table-hover">
           <thead>
             <tr>
               <th><%= t('shared.type') %></th>
@@ -51,7 +51,7 @@
               <th></th>
             </tr>
           </thead>
-          <tbody class="table-resources">
+          <tbody class="table-resources"  id="resources_table">
             <%= render 'resources/table_resources' %>
             
             <tr class="table-resources-loader">

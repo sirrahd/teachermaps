@@ -19,7 +19,8 @@ class User < ActiveRecord::Base
   has_one :google_account
   has_one :drop_box_account
   has_one :setting
-  has_many :resources, order: 'id DESC'
+  #has_many :resources, order: 'title ASC, updated_at DESC'
+  has_many :resources, order: 'updated_at DESC'
   has_many :maps, order: 'id DESC'
 
   before_save do |user|

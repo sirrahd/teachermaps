@@ -59,8 +59,13 @@ class ResourcesController < ApplicationController
 
     respond_to do |format|
       if @resource.save
-        @resources = Resource.where user_id: @current_user.id
+        #@resources = Resource.where user_id: @current_user.id
+
+        # @current_user.update_attributes resources: Resource.where( user_id: @current_user.id )
+        # @current_user = User.find @current_user.id
+        @resources = @current_user.resources
         format.html { render partial:  'resources/table_resources' }
+
       else
         format.html { render partial:  'shared/error_messages', :locals => { :object => @resource }, :status => 500  }
       end
@@ -125,7 +130,8 @@ class ResourcesController < ApplicationController
     Rails.logger.info(params)
 
     filter = {}
-    @resources = Resource.where(user_id: @current_user.id)
+    #@resources = Resource.where user_id: @current_user.id
+    @resources = @current_user.resources
 
     if params.has_key?('q') and !params[:q].empty?
       @resources &= Resource.where( Resource.arel_table[:title].matches("%#{params[:q].strip}%") )
@@ -170,20 +176,10 @@ class ResourcesController < ApplicationController
     respond_to do |format|
 
       if @resource.save
-        @resources = Resource.where user_id: @current_user.id
+        #@resources = Resource.where user_id: @current_user.id
+        @resources = @current_user.resources
+        format.html { render partial:  'resources/table_resources' }
 
-        # Need to re-generate filters
-        @filter_course_types = ResourceType.where(:id => @resources.collect { |resource| resource.resource_type.id } )
-        @filter_course_grades = CourseGrade.where(:id => @resources.collect { |resource| resource.course_grades.collect(&:id) } )
-        @filter_course_subjects = CourseSubject.where(:id => @resources.collect { |resource| resource.course_subjects.collect(&:id) } )
-        # Render filter and resources to dictionary
-        response = { 
-          :filters => render_to_string(partial:  'resources/filter_resources', :layout => false,  :locals => {:resources => @resources, :filter_course_types => @filter_course_types, :filter_course_grades=>@filter_course_grades, :filter_course_subjects=>@filter_course_subjects}),
-          :resources => render_to_string(partial:  'resources/table_resources', :layout => false,  :locals => {:resources => @resources})
-        }
-        # Send resource and fitlers back via JSON format
-        format.js { render :json => response }
-        
       else
         format.js { render partial:  'shared/error_messages', :locals => { :object => @resource }, :status => 500  }
       end
@@ -224,7 +220,8 @@ class ResourcesController < ApplicationController
     end
 
     # After all syncing is done, re-query the resources to render
-    @resources = Resource.where( :user_id => @current_user.id )
+    #@resources = Resource.where user_id: @current_user.id
+    @resources = @current_user.resources
 
     respond_to do |format|
        format.html { redirect_to user_path(@current_user, anchor: 'resources'), :flash => { :success => t('resources.synced_n_files', :sync_count => sync_count) } }
