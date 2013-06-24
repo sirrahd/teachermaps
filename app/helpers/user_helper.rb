@@ -9,15 +9,15 @@ module UserHelper
   def show_tasks
   {
     confirm_email:
-      { weight: 10,
+      { weight: 100,
         link: '/settings' },
 
     cloud_storage:
-      { weight: 50,
+      { weight: 100,
         link: '/settings' },
 
     create_map:
-      { weight: 80,
+      { weight: 100,
         link: '/' },
   }
   end

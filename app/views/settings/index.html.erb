@@ -12,11 +12,9 @@
         <% if @progress[:tasks][key] == :complete %>
           <p class="text-success"><i class="icon-ok"></i> <%= t 'tasks.' + key.to_s %></p>
         <% elsif @progress[:tasks][key] == :ignored %>
-          <p class="text-warning"><i class="icon-search"></i> <%= t 'tasks.' + key.to_s %>
-          <a class="btn btn-link" href="<%= value[:link] %>">Go</a></p>
+          <p class="text-warning"><i class="icon-search"></i> <a href="<%= value[:link] %>"><%= t 'tasks.' + key.to_s %></a></p>
         <% else %>
-          <p class="text-error"><i class="icon-remove"></i> <%= t 'tasks.' + key.to_s %>
-          <a class="btn btn-link" href="<%= value[:link] %>">Go</a></p>
+          <p class="text-error"><i class="icon-remove"></i> <a href="<%= value[:link] %>"><%= t 'tasks.' + key.to_s %></a></p>
         <% end %>
       <% end %>
     </div>
