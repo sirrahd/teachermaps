@@ -6,22 +6,25 @@
     <div>
 
     	<% if @is_admin %>
-    	<span class="pull-right" >
-    		<%= link_to "Share", "#share_map_modal",'data-toggle' => "modal", :class=>'btn' %>
 
-  			<div id="map-privacy-state-switch" class="switch" action-url="<%= user_map_path(@map.user.id, @map) %>"  data-on="danger" data-off="primary" data-on-label="Public" data-off-label="Private">
+     	<% end %>
+
+     
+    	<% if @is_admin %>
+    	<span class="pull-right" >
+   
+    		<%= link_to "Share", "#share_map_modal",'data-toggle' => "modal", :class=>'btn', style: '' %>
+
+  			<span id="map-privacy-state-switch" class="switch" action-url="<%= user_map_path(@map.user.id, @map) %>"  data-on="danger" data-off="primary" data-on-label="Public" data-off-label="Private">
 			    <% if @map.privacy_state == PrivacyState::PUBLIC %> 
 			    	<input type="checkbox" checked />
 			    <% else %>
 			    	<input type="checkbox" />
 			    <% end %>
-				</div>
+				</span>
      	</span>
-     	<% end %>
 
-     	
       <div>
-      	<% if @is_admin %>
         	<!-- Breadcrumb -->
         	<%= link_to t('shared.my_maps'), user_path(@map.user) %> / <b><%= "#{@map.name.titlecase.truncate(40)}"%></b>
       	<% else %>
@@ -29,13 +32,11 @@
         <% end %>
       </div>
       <div>
-      	
         <h2>
         	<span class="<%= set_if @is_admin, 'editable-field' %>">
         			<%= best_in_place_if @is_admin, @map, :name, :type => :input, :display_as => :title_titlecase %>
       		</span>
     		</h2>
-      	
       </div>
       <!-- Map Content -->
       </div>

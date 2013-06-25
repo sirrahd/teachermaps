@@ -280,6 +280,7 @@ $(document).ready(function() {
   })
   .on('ajax:success', "#share_map_form", function(event, data, status, xhr) {
   	$('#share_map_modal div.modal-body').html('<h2 style="text-align:center;">Success!!!</h2>');
+  	$('#map-privacy-state-switch').bootstrapSwitch('setState', true);
   	setTimeout(function(){
         $('#share_map_modal').modal("hide");
     }, 3000);

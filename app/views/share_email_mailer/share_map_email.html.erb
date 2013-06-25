@@ -5,7 +5,7 @@
   </head>
   <body>
 
-    <p><%= link_to(@sender.name, user_path(@sender, only_path: false, host: @host), target: '_blank') %> sent you a map!!</p>
+    <p><%= link_to(@sender.name, user_path(@sender, only_path: false, host: @host), target: '_blank') %> sent you a map!</p>
 
     <h2><%= link_to(@map.name.titlecase, map_path(@map.slug, only_path: false, host: @host), target: '_blank') %></h2>
     <p><%=  link_to(map_path(@map.slug, only_path: false, host: @host), map_path(@map.slug, only_path: false, host: @host), target: '_blank')    %></p>
