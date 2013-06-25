@@ -8,6 +8,24 @@ module HtmlHelper
 		condition ? value : ''
 	end
 
+	def client_browser_name 
+    user_agent = request.env['HTTP_USER_AGENT'].downcase 
+    Rails.logger.info user_agent
+    if user_agent =~ /msie/i 
+            "Internet Explorer" 
+    elsif user_agent =~ /firefox/i 
+            "Firefox" 
+    elsif user_agent =~ /gecko/i 
+            "Mozilla" 
+    elsif user_agent =~ /opera/i 
+            "Opera" 
+    elsif user_agent =~ /applewebkit/i 
+            "Safari" 
+    else 
+            "Unknown" 
+    end 
+	end 
+
   def course_grade_ranges course_grades
 
     divider = '-'

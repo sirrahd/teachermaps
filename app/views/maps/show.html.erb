@@ -13,15 +13,22 @@
     	<% if @is_admin %>
     	<span class="pull-right" >
    
-    		<%= link_to "Share", "#share_map_modal",'data-toggle' => "modal", :class=>'btn', style: '' %>
-
-  			<span id="map-privacy-state-switch" class="switch" action-url="<%= user_map_path(@map.user.id, @map) %>"  data-on="danger" data-off="primary" data-on-label="Public" data-off-label="Private">
+    		
+    		<%= link_to "Share", "#share_map_modal",'data-toggle' => "modal", :class=>'btn'%>
+    		<% if client_browser_name == 'Firefox' %>
+    			<span id="map-privacy-state-switch" class="switch" action-url="<%= user_map_path(@map.user.id, @map) %>"  data-on="danger" data-off="primary" data-on-label="Public" data-off-label="Private" style="top:10px;">
+				<% else %>  	
+					<span id="map-privacy-state-switch" class="switch" action-url="<%= user_map_path(@map.user.id, @map) %>"  data-on="danger" data-off="primary" data-on-label="Public" data-off-label="Private">
+				<% end %>
+					
 			    <% if @map.privacy_state == PrivacyState::PUBLIC %> 
 			    	<input type="checkbox" checked />
 			    <% else %>
 			    	<input type="checkbox" />
 			    <% end %>
 				</span>
+
+
      	</span>
 
       <div>
@@ -123,6 +130,10 @@
     <div class="modal-body">
 
     	<div id="share_map_form_errors"></div>
+
+    	<p>
+    		<%= text_field_tag('', map_path(@map.slug, only_path: false, host: request.env['HTTP_HOST'])) %>
+    	<p>
 
     	<%= form_for @share_email, url: map_share_email_index_path(@map), html: { :remote=>true, :multipart => true, :class=>"form-horizontal", :'data-type' => 'html', id: 'share_map_form' }  do |f| %>
     			  

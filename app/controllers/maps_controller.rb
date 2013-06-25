@@ -1,5 +1,6 @@
 class MapsController < ApplicationController
    include SessionsHelper
+   include HtmlHelper
 
   # before_filter :require_session
 
@@ -31,6 +32,8 @@ class MapsController < ApplicationController
     @filter_course_subjects = CourseSubject.where name: ['English', 'Mathematics']
 
     @share_email = ShareEmail.new
+
+    Rails.logger.info "Browser rendering #{client_browser_name}"
 
   end
 
