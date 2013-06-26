@@ -32,7 +32,7 @@ class MapsController < ApplicationController
     @filter_course_subjects = CourseSubject.where name: ['English', 'Mathematics']
 
     @share_email = ShareEmail.new
-
+ 		@share_map_url = 
     Rails.logger.info "Browser rendering #{client_browser_name}"
 
   end

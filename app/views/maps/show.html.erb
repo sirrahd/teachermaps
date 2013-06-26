@@ -132,7 +132,7 @@
     	<div id="share_map_form_errors"></div>
 
     	<p>
-    		<%= text_field_tag('', map_path(@map.slug, only_path: false, host: request.env['HTTP_HOST'])) %>
+    		<%= text_field_tag('', map_path(@map.slug, only_path: false, host: request.host)) %>
     	<p>
 
     	<%= form_for @share_email, url: map_share_email_index_path(@map), html: { :remote=>true, :multipart => true, :class=>"form-horizontal", :'data-type' => 'html', id: 'share_map_form' }  do |f| %>
