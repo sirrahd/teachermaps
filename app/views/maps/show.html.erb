@@ -5,14 +5,9 @@
   <div class="span10">
     <div>
 
-    	<% if @is_admin %>
-
-     	<% end %>
-
-     
+      
     	<% if @is_admin %>
     	<span class="pull-right" >
-   
     		
     		<%= link_to "Share", "#share_map_modal",'data-toggle' => "modal", :class=>'btn'%>
     		<% if client_browser_name == 'Firefox' %>
@@ -38,6 +33,7 @@
       		<%= link_to "#{@map.user.name}'s Maps", user_path(@map.user) %> / <b><%= "#{@map.name.titlecase.truncate(40)}"%></b>
         <% end %>
       </div>
+
       <div>
         <h2>
         	<span class="<%= set_if @is_admin, 'editable-field' %>">
@@ -45,14 +41,15 @@
       		</span>
     		</h2>
       </div>
+
       <!-- Map Content -->
-      </div>
-        <p >
+      <div>
+        <p>
         	<span class="<%= set_if @is_admin, 'editable-field' %>">
         		<%= best_in_place_if @is_admin, @map, :text, :type => :textarea, :classes=>'best_in_place_selector', :nil => raw('<span class="gray">Description</span>') %>
         	</span>
       	</p>
-      <div>
+      </div>
 
       <div>
         <span class="pull-right">
