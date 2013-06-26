@@ -139,7 +139,7 @@
 			  <br/><br/>
 
 			  <%= label_tag(:comment, "Comment") %>
-  			<%= f.text_area :comment, id:'share_comments_field',  placeholder:'Send with a comment!!' %>
+  			<%= f.text_area :comment, class:'share_comments_field', placeholder:'Send with a comment!!', rows: "3" %>
 			  <br/><br/>
 
 			  <button type="button" class="btn" data-dismiss="modal">Cancel</button>
@@ -154,10 +154,8 @@
 	<script type="text/javascript">
 	$(document).ready(function() {    
 	  $('.best_in_place').best_in_place();
+	  $('.share_comments_field').autosize();   
 	});
 
-	$(document).ready(function(){
-    $('#share_comments_field').autosize();   
-	});
 	</script>
 <% end %>

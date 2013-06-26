@@ -1,5 +1,6 @@
 class MapStandardsController < ApplicationController
   include SessionsHelper
+  include HtmlHelper
 
   # before_filter :require_session
   
@@ -8,6 +9,7 @@ class MapStandardsController < ApplicationController
     @map_standard = MapStandard.find_by_slug params[:id]
     @map = @map_standard.map
     @is_admin = (signed_in? and @map_standard.map.is_admin?(@current_user))
+    @share_email = ShareEmail.new
  	
   	if not @is_admin and @map.privacy_state == PrivacyState::PRIVATE
   		Rails.logger.info("error 404 map #{params[:id]}") 
