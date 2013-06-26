@@ -15,7 +15,7 @@ var pushFlash = function(options){
 
 	var config = {
 		state  : false,
-		fadeOut : false,
+		fadeOut : 3000,
 		message : false,
 	};
 
@@ -44,11 +44,11 @@ var pushFlash = function(options){
 	flashContainer = $("#flash-container");
 	
 	// Apply custom state to flash notification
-	if (config.fadeOut) {
-		config.fadeOut = 3000;
-	} 
+	// if (config.fadeOut == undefined) {
+	// 	config.fadeOut = 3000;
+	// } 
 
-	flashContainer.effect('highlight',{},2000);
+	flashContainer.effect('highlight',{},config.fadeOut);
 
 	// Sets timer to fade out in N milliseconds
 	window.setInterval( function() {flashContainer.fadeOut('slow');}, config.fadeOut );

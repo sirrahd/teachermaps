@@ -67,6 +67,21 @@ class User < ActiveRecord::Base
     Resource.where( user_id: self.id ).count
   end
 
+  def is_admin?( user )
+  	# Admin permission gives a user the abiilty to edit an entity
+
+  	# Check to see is user's id matches candidate user's id 
+  	# Else check to see if map is public
+  	Rails.logger.info "Permissions check: #{self.id}:#{user.id} #{self.id == user.id}"
+		self.id == user.id # and self.is_public?
+    
+    # Later we can add collaborator/group permission checks in this method
+  end
+
+  def public_maps
+  	self.maps.where("privacy_state = #{PrivacyState::PUBLIC}")
+  end
+
   private
 
   def default_values

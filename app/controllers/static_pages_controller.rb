@@ -25,4 +25,10 @@ class StaticPagesController < ApplicationController
 
   def tos
   end
+
+  def page404
+  end
+
+  def page500
+  end
 end

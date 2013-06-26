@@ -4,8 +4,10 @@
       <p><strong><%= @user.name %></strong>
       <br />
       <%= @user.account_name %>
-      <br />
-      <%= @user.email %></p>
+      <% if @is_admin %>
+	      <br />
+	      <%= @user.email %></p>
+      <% end %>
     </section>
   </aside>
 </div>
@@ -14,9 +16,12 @@
   <div class="span9">
     <ul class="nav nav-tabs">
       <li class="active"><a href="#maps" data-toggle="tab" class="map-toggle-control">Maps</a></li>
+      <% if @is_admin %>
       <li><a href="#resources" data-toggle="tab" class="resource-toggle-control">Resources</a></li>
+      <% end %>
     </ul>
   </div>
+  <% if @is_admin %>
   <div class="span3" id="resource-controls">
     <%= link_to t('resources.sync'), "#loading_modal",'data-toggle' => "modal", :onclick => "window.location=\"#{resources_sync_path}\"", :class => 'btn'  %>
     <%= link_to "Add Link", "#put_resource_link_modal",'data-toggle' => "modal", :class=>'btn' %>
@@ -24,6 +29,7 @@
   <div class="span3" id="maps-controls">
     <%= link_to t('maps.create_map'), "JavaScript:void(0);", 'action-url'=> maps_path, :class => 'btn', id: "users_create_map"%>
   </div>
+  <% end %>
 </div>
 
 <div class="tab-content">
@@ -32,6 +38,7 @@
       <%= render 'users/table_maps' %>
     </div>
   </div>
+  <% if @is_admin %>
   <div class="tab-pane" id="resources">
 
       <div class="resource_filter">
@@ -75,9 +82,10 @@
       </div>
 
   </div>
+  <% end %>
 </div>
 
-
+<% if @is_admin %>
 <div id="edit_resource_link_modal" class="modal hide fade in" >
   <div class="modal-body" id="edit_resource_link_modal_body"></div>
 </div>
@@ -91,7 +99,6 @@
     <%= render 'resources/create_link' %>
   </div>
 </div>
-
 
 <%= will_paginate(@resources) %>
 <script type="text/javascript">
@@ -111,4 +118,5 @@ $(document).ready(function() {
 
 });
 </script>
+<% end %>
 

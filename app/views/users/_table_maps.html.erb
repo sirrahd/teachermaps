@@ -4,11 +4,13 @@
     <li action-url="<%= user_map_path map.user,map.slug  %>"  style="cursor:pointer;" class="action-link hover">
       
       <div class="editable">
-        <span>
-          <%= link_to map, confirm: t('users.delete_map_confirmation', title: map.name), method: :delete, title: t('users.delete_map'), :class=>"users_map_destroy pull-right", remote: true do %>
-            <i class="icon-trash"></i>
-          <% end %>
-        </span>
+      	<% if @is_admin %>
+	        <span>
+	          <%= link_to map, confirm: t('users.delete_map_confirmation', title: map.name), method: :delete, title: t('users.delete_map'), :class=>"users_map_destroy pull-right", remote: true do %>
+	            <i class="icon-trash"></i>
+	          <% end %>
+	        </span>
+        <% end %>
 
         <div class="resource_filter">
           <h4><%= truncate(map.name, length: Map::MAX_NAME_RENDER_LEN) %></h4>
@@ -22,6 +24,16 @@
       
         <div>
           <ul class="inline gray">
+          	<% if @is_admin %>
+	          	<li>
+	              <% if map.privacy_state == PrivacyState::PUBLIC %>
+	              	Privacy: <i class="icon-globe" ></i>
+	              <% else %>
+	              	Privacy: <i class="icon-lock" ></i>
+	              <% end %>
+	              &nbsp; &mdash; 
+	            </li>
+            <% end %>
             <li>
               <label><%= t('shared.standards') %>: <%= map.standards_count %> </label>
             </li>
