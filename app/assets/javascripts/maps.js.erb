@@ -59,6 +59,9 @@ $(document).ready(function() {
 
   var timer;
   $(document).on('keyup input', '#filter_standards_search', function() {
+  	$("#standards_table").html('');  
+    $('#filter_map_standards_loading_wheel').show();
+    
     var form = $(this);
     // Prevents ajax request till N milliseconds 
     timer && clearTimeout(timer);
@@ -69,6 +72,8 @@ $(document).ready(function() {
 
   $(document).on('change', '#filter_standards_form', function() {
     $(this).submit();
+    $("#standards_table").html('');  
+    $('#filter_map_standards_loading_wheel').show();
   });
 
   $(document)
@@ -78,6 +83,7 @@ $(document).ready(function() {
   .on('ajax:success', "#filter_standards_form", function(event, data, status, xhr) {
     // Update the resources table
     $("#standards_table").html(data);  
+    $('#filter_map_standards_loading_wheel').hide();
   });
 
   //////////////////////////////

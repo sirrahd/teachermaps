@@ -83,27 +83,30 @@
 
 
 	<% if @is_admin %>
-  <div id="filter_map_standards_modal" class="standard-modal  modal hide fade in">
-    <div class="modal-header">
-      <button type="button" class="close" data-dismiss="modal">&times;</button>
-      <div><H3><%= t('shared.standards') %></H3></div>
-    </div>
-    <div class="modal-body">
-      <div class="row">
-        <div id="standards_filter" class="center" >
-        <%= render 'maps/filter_standards' %>
-        </div>
-      </div>
-      <div class="row">
-        <div  id="standards_table" style="margin: 0px 20px 0px 20px;">
-          <%= render 'maps/list_standards' %>
-        </div>
-      </div>
-    </div>
-    <div class="modal-footer">
-      <button type="button" class="btn btn-primary" data-dismiss="modal">Save</button>
-    </div>
-  </div>
+	  <div id="filter_map_standards_modal" class="standard-modal  modal hide fade in">
+	    <div class="modal-header">
+	      <button type="button" class="close" data-dismiss="modal">&times;</button>
+	      <span><H3><%= t('shared.standards') %></H3></span>
+	    </div>
+	    <div class="modal-body">
+	      <div class="row">
+	        <div id="standards_filter" class="center" >
+	        	<%= render 'maps/filter_standards' %>
+	        	<span id="filter_map_standards_loading_wheel" style="display:none;" >
+				    	<%= image_tag "loading.gif", :alt => "loading" %>
+				    </span>
+	        </div>
+	      </div>
+	      <div class="row">
+	        <div  id="standards_table" style="margin: 0px 20px 0px 20px;">
+	          <%= render 'maps/list_standards' %>
+	        </div>
+	      </div>
+	    </div>
+	    <div class="modal-footer">
+	      <button type="button" class="btn btn-primary" data-dismiss="modal">Save</button>
+	    </div>
+	  </div>
 	  
 	  <div id="filter_map_resources_modal" class="resource-modal modal hide fade" >
 	    <div class="filter_map_resources_modal_header modal-header">
