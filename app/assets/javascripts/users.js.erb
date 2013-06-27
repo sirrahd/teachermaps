@@ -86,6 +86,8 @@ $(document).ready(function(){
 
   $(document).on('change', '#filter_resource_form', function() {
       $(this).submit();
+      // Shows spinning wheel
+      $('#resource-loading-wheel').show();
   });
 
   $(document)
@@ -95,6 +97,7 @@ $(document).ready(function(){
   .on('ajax:success', '#filter_resource_form', function(event, data, status, xhr) {
       // Update the resources table
       $('#resources_table').html(data);  
+      $('#resource-loading-wheel').hide();
   });
 
 });
