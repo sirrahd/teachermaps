@@ -60,6 +60,8 @@ $(document).ready(function(){
 
   var timer;
   $(document).on('keyup input', '#map_standards_filter_resource_search', function() {
+  	$('#filter_map_standard_resource_loading_wheel').show();
+      $('#map_standards_resources_table').html('');  
       var form = $(this);
       // Prevents ajax request till N milliseconds 
       timer && clearTimeout(timer);
@@ -70,6 +72,8 @@ $(document).ready(function(){
 
   $(document).on('change', '#map_standards_filter_resource_form', function() {
       $(this).submit();
+      $('#filter_map_standard_resource_loading_wheel').show();
+      $('#map_standards_resources_table').html('');  
   });
 
   $(document)
@@ -79,6 +83,7 @@ $(document).ready(function(){
   .on('ajax:success', '#map_standards_filter_resource_form', function(event, data, status, xhr) {
       // Update the resources table
       $('#map_standards_resources_table').html(data);  
+      $('#filter_map_standard_resource_loading_wheel').hide();
   });
 
   //////////////////////////////

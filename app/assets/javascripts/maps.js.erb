@@ -147,6 +147,8 @@ $(document).ready(function() {
 
   var timer;
   $(document).on('keyup input', '#maps_filter_resource_search', function() {
+  	$("#maps_map_assessments_resources_table").html('');  
+    $('#filter_map_assessment_resource_loading_wheel').show();
     var form = $(this);
     // Prevents ajax request till N milliseconds 
     timer && clearTimeout(timer);
@@ -158,6 +160,8 @@ $(document).ready(function() {
   // Needed for browser compatibility 
   $(document).on('change', '#maps_filter_resource_form', function() {
     $(this).submit();
+    $("#maps_map_assessments_resources_table").html('');  
+    $('#filter_map_assessment_resource_loading_wheel').show();
   });
 
   $(document)
@@ -166,6 +170,7 @@ $(document).ready(function() {
   })
   .on('ajax:success', '#maps_filter_resource_form', function(event, data, status, xhr) {
     // Update the resources table
+    $('#filter_map_assessment_resource_loading_wheel').hide();
     $("#maps_map_assessments_resources_table").html(data);  
   });
 

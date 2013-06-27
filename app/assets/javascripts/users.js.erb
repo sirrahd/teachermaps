@@ -76,6 +76,7 @@ $(document).ready(function(){
 
   var timer;
   $(document).on('keyup input', '#filter_resource_search', function() {
+  		$('#resource-loading-wheel').show();
       var form = $(this);
       // Prevents ajax request till N milliseconds 
       timer && clearTimeout(timer);
