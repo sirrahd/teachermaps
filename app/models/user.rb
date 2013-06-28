@@ -13,6 +13,8 @@
 #
 
 class User < ActiveRecord::Base
+  include UserHelper
+
   attr_accessible :email, :name, :account_name, :password, :password_confirmation
   has_secure_password
 
@@ -22,6 +24,8 @@ class User < ActiveRecord::Base
   #has_many :resources, order: 'title ASC, updated_at DESC'
   has_many :resources, order: 'updated_at DESC'
   has_many :maps, order: 'id DESC'
+
+  serialize :options, Hash
 
   before_save do |user|
     user.email = user.email.downcase
@@ -86,6 +90,7 @@ class User < ActiveRecord::Base
 
   def default_values
     self.setting = Setting.new
+    self.options = Hash.new
   end
 
   def create_remember_token

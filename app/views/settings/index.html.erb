@@ -1,5 +1,28 @@
 <h1><%= t 'settings.title' %></h1>
+<% if @progress[:next_task] %>
 <div><br /></div>
+  <legend><%= t 'settings.progress_title' %></legend>
+  <div class="row">
+    <div class="span5">
+      <div class="progress span4" style="margin-left:0;">
+        <div class="bar" style="width: <%= @progress[:status] %>%;"></div>
+      </div>
+      <div class="row"></div>
+      <% show_tasks.each do |key, value| %>
+        <% if @progress[:tasks][key] == :complete %>
+          <p class="text-success"><i class="icon-ok"></i> <%= t 'tasks.' + key.to_s %></p>
+        <% elsif @progress[:tasks][key] == :ignored %>
+          <p class="text-warning"><i class="icon-search"></i> <a href="<%= value[:link] %>"><%= t 'tasks.' + key.to_s %></a></p>
+        <% else %>
+          <p class="text-error"><i class="icon-remove"></i> <a href="<%= value[:link] %>"><%= t 'tasks.' + key.to_s %></a></p>
+        <% end %>
+      <% end %>
+    </div>
+  </div>
+
+<div><br /></div>
+<% end %>
+
 <legend><%= t 'settings.storage_title' %></legend>
 
 <div class="row">
@@ -26,11 +49,11 @@
 
       <% if !@drop_box_account.nil? %>
       <%= link_to t('drop_box.remove'), @drop_box_account, :confirm => t('drop_box.remove_confirmation'), :method => :delete, class: 'btn btn-danger btn-block' %>
-      <i class="icon-warning-sign"></i> Do not rename or move Dropbox files after syncing them with TeacherMaps. 
-      <%= link_to 'More info.', '/help#dropbox-edit'%>
+      <i class="icon-warning-sign"></i> Do not rename or move Dropbox files after syncing them with TeacherMaps.
+      <%= link_to 'More info.', '/help#dropbox-edit' %>
       <% end %>
     </div>
- 
+
 </div>
 
 <div><br /></div>
@@ -53,7 +76,7 @@
         <div class="label label-warning pull-left" style="margin-right:10px"
           id="confirm_label">
           <%= t 'settings.email_not_confirmed' %>
-        </div> 
+        </div>
         <div>
           <%= link_to  t('settings.resend'),
             { controller: 'users', action: 'confirm_email' },

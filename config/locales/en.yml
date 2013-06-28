@@ -93,6 +93,7 @@ en:
     profile_updated:            "Profile updated!"
     resend_success:             "Confirmation sent"
     resend:                     "Resend"
+    progress_title:             "Get started"
   resources:
     link:                       "Resources"
     web_link:                   "Link"
@@ -207,6 +208,15 @@ en:
     delete_map_confirmation:    "Delete Map \"%{title}?\""
     delete_map:                 "Delete Map"
     create_map:                 "Create Map"
-
-
+  tasks:
+    confirm_email:              "Confirm your email address"
+    cloud_storage:              "Add a cloud storage service"
+    create_map:                 "Create a map"
+  tour:
+    confirm_email_title:        "Confirm your email address"
+    confirm_email_content:      "If you didn't get our confirmation email, you can re-send it from the settings page."
+    cloud_storage_title:        "Add a storage service"
+    cloud_storage_content:      "Go to the settings page to connect TeacherMaps to your Dropbox or Google Drive account."
+    create_map_title:           "Get started!"
+    create_map_content:         "Click here to create your first map."
 

@@ -1,13 +1,7 @@
 <div class="row">
   <aside class="span8">
     <section>
-      <p><strong><%= @user.name %></strong>
-      <br />
-      <%= @user.account_name %>
-      <% if @is_admin %>
-	      <br />
-	      <%= @user.email %></p>
-      <% end %>
+      <p><strong><%= @user.name %></strong></p>
     </section>
   </aside>
 </div>
@@ -60,7 +54,7 @@
           </thead>
           <tbody class="table-resources"  id="resources_table">
             <%= render 'resources/table_resources' %>
-            
+
             <tr class="table-resources-loader">
               <td colspan="5" style="text-align:center;">
                 <div id="pageless-loader" style="width:100%; margin-top:5px;">
@@ -78,7 +72,7 @@
           </tbody>
           <tfoot></tfoot>
         </table>
-        
+
       </div>
 
   </div>
@@ -102,11 +96,11 @@
 
 <%= will_paginate(@resources) %>
 <script type="text/javascript">
-$(document).ready(function() { 
+$(document).ready(function() {
 
-  $('.table-resources').pageless({ 
+  $('.table-resources').pageless({
     loader: '.table-resources-loader',
-    totalPages: <%= @num_of_pages %> , 
+    totalPages: <%= @num_of_pages %> ,
     url: "<%= resources_page_path %>",
     loaderMsg: 'Loading next page...',
     end: function () {
@@ -120,3 +114,6 @@ $(document).ready(function() {
 </script>
 <% end %>
 
+<% if @progress[:next_task] %>
+  <%= render 'shared/popovers' %>
+<% end %>
