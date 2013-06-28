@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
+  </head>
+  <body>
+
+    <p><%= link_to(@sender.name, user_path(@sender, only_path: false, host: @host), target: '_blank') %> sent you a map!</p>
+
+    <h2><%= link_to(@map.name.titlecase, map_path(@map.slug, only_path: false, host: @host), target: '_blank') %></h2>
+    <p><%=  link_to(map_path(@map.slug, only_path: false, host: @host), map_path(@map.slug, only_path: false, host: @host), target: '_blank')    %></p>
+
+
+    <% if @share_email.comment.length > 0 %>
+    	<p><%= @share_email.comment %></p>
+    <% end %>
+
+    <p>Sent from <%= link_to 'TeacherMaps', root_path(only_path: false, host: @host), target: '_blank' %></p>
+    <p>Have a great day!</p>
+
+  </body>
+</html>

@@ -1,5 +1,31 @@
 module HtmlHelper
 
+	# If condition is true, returns the class
+	# If condition is false, returns blank space
+	# To be used in html templates for conditional 
+	# 		states of html class attributes
+	def set_if(condition, value)
+		condition ? value : ''
+	end
+
+	def client_browser_name 
+    user_agent = request.env['HTTP_USER_AGENT'].downcase 
+    Rails.logger.info user_agent
+    if user_agent =~ /msie/i 
+            "Internet Explorer" 
+    elsif user_agent =~ /firefox/i 
+            "Firefox" 
+    elsif user_agent =~ /gecko/i 
+            "Mozilla" 
+    elsif user_agent =~ /opera/i 
+            "Opera" 
+    elsif user_agent =~ /applewebkit/i 
+            "Safari" 
+    else 
+            "Unknown" 
+    end 
+	end 
+
   def course_grade_ranges course_grades
 
     divider = '-'
@@ -14,6 +40,8 @@ module HtmlHelper
       end
     end
 
+    # Do not ask me, I do not know.....
+    # A prime example of self documenting code :)
     ranges = grades.sort.uniq.inject([]) do |spans, n|
       if spans.empty? || spans.last.last.succ != n
         spans + [n..n]

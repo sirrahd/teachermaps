@@ -1,12 +1,40 @@
 <div class="row">
   <input type="hidden" id="map_standard_id" value=<%= @map_standard.id %> />
   
-  <div class="span10" style="">
-    
+  <div class="span10">
+
+  	<% if @is_admin %>
+  	<span class="pull-right" >
+  		
+  		<%= link_to "Share", "#share_map_modal",'data-toggle' => "modal", :class=>'btn'%>
+  		<% if client_browser_name == 'Firefox' %>
+  			<span id="map-privacy-state-switch" class="switch" action-url="<%= user_map_path(@map.user.id, @map) %>"  data-on="danger" data-off="primary" data-on-label="Public" data-off-label="Private" style="top:10px;">
+			<% else %>  	
+				<span id="map-privacy-state-switch" class="switch" action-url="<%= user_map_path(@map.user.id, @map) %>"  data-on="danger" data-off="primary" data-on-label="Public" data-off-label="Private">
+			<% end %>
+				
+	    <% if @map.privacy_state == PrivacyState::PUBLIC %> 
+	    	<input type="checkbox" checked />
+	    <% else %>
+	    	<input type="checkbox" />
+	    <% end %>
+		</span>	
+		<% end %>
+
+
+   	</span>
 
     <div>
+
+  		<% if @is_admin %>
+      	<!-- Breadcrumb -->
+      	<%= link_to t('shared.my_maps'), user_path(@map_standard.map.user) %> / <%= link_to "#{@map_standard.map.name.titlecase.truncate(40)}", user_map_path(@map_standard.map.user, @map_standard.map.slug) %> / <b><%=  "#{@map_standard.standard.name.truncate(40)}"%></b>
+    	<% else %>
+    		<%= link_to "#{@map.user.name}'s Maps", user_path(@map_standard.map.user) %> / <%= link_to "#{@map_standard.map.name.titlecase.truncate(40)}", user_map_path(@map_standard.map.user, @map_standard.map.slug) %> / <b><%=  "#{@map_standard.standard.name.truncate(40)}"%></b>
+      <% end %>
+
       <!-- Breadcrumb -->
-      <%= link_to t('shared.my_maps'), user_path(@map_standard.map.user) %> / <%= link_to "#{@map_standard.map.name.titlecase.truncate(40)}", user_map_path(@map_standard.map.user, @map_standard.map.slug) %> / <%= link_to "#{@map_standard.standard.name.truncate(40)}", "JavaScript:void(0);" %> /
+      
     </div>
 
     <div>
@@ -20,7 +48,9 @@
     <div>
      
       <span class="pull-right">
-        <%= link_to t('map_standards.add_map_objective'), "JavaScript:void(0);", :class => 'btn', id: 'create_map_objective', 'action-url' => map_objectives_path %>
+      	<% if @is_admin %>
+        	<%= link_to t('map_standards.add_map_objective'), "JavaScript:void(0);", :class => 'btn', id: 'create_map_objective', 'action-url' => map_objectives_path %>
+        <% end %>
       </span> 
       <h3><%= t('shared.objectives') %></h3>
       <div id="map_standards_objectives_list">
@@ -34,6 +64,50 @@
   </div>
 </div>
 
+<% if @is_admin %>
+	<div id="filter_map_objectives_resources_modal" class="resource-modal modal hide fade" >
+	  <div class="filter_map_resources_modal_header modal-header">
+	    <button type="button" class="close" data-dismiss="modal">&times;</button>
+	    <h3><%= t('resources.loading') %></h3>
+	  </div>
+	  <div class="filter_map_resources_modal_body modal-body center">
+	    <%= image_tag "loading.gif", :alt => "loading"%>
+	  </div>
+	  <div class="modal-footer">&nbsp;</div>
+	</div>
+
+	<div id="share_map_modal" class="	modal hide fade in">
+		
+    <div class="modal-header">
+      <button type="button" class="close" data-dismiss="modal">&times;</button>
+      <div><H3>Share "<%= @map.name.titlecase.truncate(40) %>"</H3></div>
+    </div>
+    
+    <div class="modal-body">
+
+    	<div id="share_map_form_errors"></div>
+
+    	<p>
+    		<%= text_field_tag('', map_path(@map.slug, only_path: false, host: request.host)) %>
+    	<p>
+
+    	<%= form_for @share_email, url: map_share_email_index_path(@map), html: { :remote=>true, :multipart => true, :class=>"form-horizontal", :'data-type' => 'html', id: 'share_map_form' }  do |f| %>
+    			  
+			  <%= label_tag(:email, "Email Address") %>
+  			<%= f.text_field :email, placeholder:'email@example.com', required: true %>
+			  <br/><br/>
+
+			  <%= label_tag(:comment, "Comment") %>
+  			<%= f.text_area :comment, class:'share_comments_field', placeholder:'Send with a comment!!', rows: "3" %>
+			  <br/><br/>
+
+			  <button type="button" class="btn" data-dismiss="modal">Cancel</button>
+			  <button type="submit" id="share_map_form_submit" class="btn btn-primary">Share</button>
+		  <% end %>
+    </div>
+  </div>
+
+<% end %>
 
 <div id="filter_map_objectives_resources_modal" class="resource-modal modal hide fade" >
   <div class="filter_map_resources_modal_header modal-header">
@@ -43,9 +117,20 @@
   <div class="filter_map_resources_modal_body modal-body center">
     <%= image_tag "loading.gif", :alt => "loading"%>
   </div>
-  <div class="modal-footer">&nbsp;</div>
+  <div class="modal-footer">&nbsp;
+    <button type="button" class="save" data-dismiss="modal" />
+  </div>
 </div>
 
+
+<% if @is_admin %>
+	<script type="text/javascript">
+	$(document).ready(function() {    
+	  $('.share_comments_field').autosize();   
+	});
+
+	</script>
+<% end %>
 
 
 

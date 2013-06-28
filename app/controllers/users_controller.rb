@@ -1,28 +1,38 @@
 class UsersController < ApplicationController
+	include SessionsHelper
 
   def index
-    # /users/ was returning a 404
-    return_to signin_url if !signed_in?
-    redirect_to @current_user
+    redirect_to root_url
   end
 
   def show
     # Users must be signed in to view a profile
-    redirect_to signin_url if !signed_in?
+    # redirect_to signin_url if !signed_in?
 
     @user = User.find_by_account_name params[:id]
     unless @user
       Rails.logger.info 'Could not locate user '
-      return render :status => 404
+      return redirect_to page404_url
     end
     @progress = @user.show_progress
     @maps = Map.where( user_id: @current_user ).order('id DESC')
     @resources = @current_user.resources.paginate(page: params[:page]).order('id DESC')
+
+    @is_admin = (signed_in? and @user.is_admin?(@current_user))
+  	# Rails.logger.info "IS ADMIN? #{@is_admin}"
+
+    if @is_admin
+    	@maps = @user.maps
+    else
+    	@maps = @user.public_maps
+    end
+
+    @resources = @user.resources.paginate(page: params[:page]).order('id DESC')
     @num_of_pages = @user.total_resources_count / 20 + 2
 
-    @filter_course_types = ResourceType.where( id: @current_user.resources.collect { |resource| resource.resource_type.id } )
-    @filter_course_grades = CourseGrade.where( id: @current_user.resources.collect { |resource| resource.course_grades.collect(&:id) } )
-    @filter_course_subjects = CourseSubject.where( id: @current_user.resources.collect { |resource| resource.course_subjects.collect(&:id) } )
+    @filter_course_types = ResourceType.where( id: @user.resources.collect { |resource| resource.resource_type.id } )
+    @filter_course_grades = CourseGrade.where( id: @user.resources.collect { |resource| resource.course_grades.collect(&:id) } )
+    @filter_course_subjects = CourseSubject.where( id: @user.resources.collect { |resource| resource.course_subjects.collect(&:id) } )
 
     # For rendering Ajax "Upload Resource" form
     @resource = Resource.new
@@ -50,6 +60,7 @@ class UsersController < ApplicationController
   end
 
   def update
+  	require_session
     # User is always authenticated before an update
     @user = current_user
 
@@ -114,6 +125,7 @@ class UsersController < ApplicationController
   end
 
   def confirm_email
+  	require_session
     @user = current_user
 
     # If there's no logged in user, take them to the login form first
@@ -138,6 +150,7 @@ class UsersController < ApplicationController
   end
 
   def reset_password
+  	require_session
     # Stage 3: User navigates from email link
     if params[:account_name]
       @user = User.find_by_account_name(params[:account_name])
@@ -171,6 +184,15 @@ class UsersController < ApplicationController
 
     # Stage 1: User enters email address
     render 'password_reset_confirmation'
+  end
+
+  private
+
+  # Requires user session
+  def require_session
+    unless current_user
+      redirect_to signin_path
+    end
   end
 
 end

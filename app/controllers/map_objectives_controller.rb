@@ -6,6 +6,7 @@ class MapObjectivesController < ApplicationController
   def create
     Rails.logger.info(params)
     @map_standard = MapStandard.find_by_id_and_user_id(params[:map_standard_id], @current_user.id) 
+    @is_admin = (signed_in? and @map_standard.map.is_admin?(@current_user))
     
     unless @map_standard
       Rails.logger.info("error 404 map_standard #{params[:map_standard_id]}") 
@@ -31,6 +32,7 @@ class MapObjectivesController < ApplicationController
   def destroy
     @map_objective = MapObjective.find_by_id_and_user_id params[:id], @current_user.id
     return render nothing: true, status: 404 unless @map_objective
+    @is_admin = (signed_in? and @map_objective.map.is_admin?(@current_user))
 
     @map_standard = @map_objective.map_standard
     @map = @map_objective.map
@@ -48,6 +50,7 @@ class MapObjectivesController < ApplicationController
 
   def update
     @map_objective = MapObjective.find_by_id_and_user_id params[:id], @current_user.id
+    @is_admin = (signed_in? and @map_objective.map.is_admin?(@current_user))
 
     respond_to do |format|
       if @map_objective.update_attributes(params[:map_objective])
@@ -59,8 +62,9 @@ class MapObjectivesController < ApplicationController
   end
 
   def show_resources
-    @map_objective = MapObjective.find_by_id_and_user_id params[:id], @current_user.id
+    @map_objective = MapObjective.find_by_id params[:id]
     return render nothing: true, status: 404 unless @map_objective
+    @is_admin = (signed_in? and @map_objective.map.is_admin?(@current_user))
 
     @map = @map_objective.map
     @resources = Resource.where user_id: @current_user.id
@@ -109,6 +113,7 @@ class MapObjectivesController < ApplicationController
       Rails.logger.info(params)
       @map_objective = MapObjective.find_by_id_and_user_id params[:id], @current_user.id
       @resource = Resource.find_by_id_and_user_id params[:resource_id], @current_user.id
+      @is_admin = (signed_in? and @map_objective.map.is_admin?(@current_user))
 
       unless @map_objective and @resource
         Rails.logger.info("error 404 map_objective #{params[:id]} or resource #{params[:resource_id]}") 
@@ -139,6 +144,7 @@ class MapObjectivesController < ApplicationController
     Rails.logger.info params
     @map_objective = MapObjective.find_by_id_and_user_id params[:id], @current_user.id
     @resource = Resource.find_by_id_and_user_id params[:resource_id], @current_user.id
+    @is_admin = (signed_in? and @map_objective.map.is_admin?(@current_user))
 
     unless @map_objective and @resource
       Rails.logger.info("error 404 map_objective #{params[:id]} or resource #{params[:resource_id]}") 
@@ -162,8 +168,10 @@ class MapObjectivesController < ApplicationController
   def sort_resources
     Rails.logger.info params
 
+
     @map_objective = MapObjective.find params[:id]
     return render nothing: true, status: 404 unless @map_objective
+    @is_admin = (signed_in? and @map_objective.map.is_admin?(@current_user))
 
     @map_objective.map_resources.each do |map_resource|
       map_resource.position = params[:map_resource].index(map_resource.id.to_s)+1
