@@ -13,6 +13,8 @@ class SettingsController < ApplicationController
 
     @setting = @current_user.setting
 
+    @progress = @user.show_progress
+
     @google_account = nil
     if @current_user.has_google_account?
        @google_account = @current_user.google_account
@@ -20,10 +22,6 @@ class SettingsController < ApplicationController
     @drop_box_account = nil
     if @current_user.has_drop_box_account?
       @drop_box_account = @current_user.drop_box_account
-    end
-
-    if @google_account.nil? and @drop_box_account.nil?
-      flash['info'] = t('settings.select_storage_service')
     end
 
     respond_to do |format|

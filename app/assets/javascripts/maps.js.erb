@@ -224,4 +224,68 @@ $(document).ready(function() {
   });
 
 
+
+
+
+  //////////////////////////////
+  //
+  // Public/Private Privacy State
+  //
+  //////////////////////////////
+
+
+  $('#map-privacy-state-switch').on('switch-change', function (e, data) {
+		var $el = $(data.el), value = data.value;
+		var actionUrl = $(this).attr('action-url');
+
+    if( value == undefined ) return false;
+
+    // 0=Private,1=Public
+    value = value ? 1 : 0;
+    body = { 'privacy_state': value };
+
+    $.ajax({
+	    type: "PUT",
+	    url: actionUrl,
+	    data: {'map':body},
+	    success: function(data) {
+	    	console.log("success");
+	    	if (value) {
+	    		pushFlash({message:"Map is now public!", state: 'info'});
+	    	} else {
+	    		pushFlash({message:"Map is now private!", state: 'info'});
+	    	}
+	    },
+	    error: function(data) {
+	    	console.log("failure");
+	    	pushFlash({message:"Setting map privacy failed.", state: 'error', fadeOut: 15000});
+	    }
+	  });
+	});
+
+
+
+	//////////////////////////////
+  //
+  // Public/Private Privacy State
+  //
+  //////////////////////////////
+
+
+
+	$(document)
+	.on('ajax:error', "#share_map_form", function(event, data, status, xhr) {
+  	console.log("Error!!",data);
+  	$("#share_map_form_errors").html(data.responseText);
+  })
+  .on('ajax:success', "#share_map_form", function(event, data, status, xhr) {
+  	$('#share_map_modal div.modal-body').html('<h2 style="text-align:center;">Success!!!</h2>');
+  	$('#map-privacy-state-switch').bootstrapSwitch('setState', true);
+  	setTimeout(function(){
+        $('#share_map_modal').modal("hide");
+    }, 3000);
+
+  });
+
+
 });

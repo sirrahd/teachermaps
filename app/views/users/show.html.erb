@@ -1,11 +1,7 @@
 <div class="row">
   <aside class="span8">
     <section>
-      <p><strong><%= @user.name %></strong>
-      <br />
-      <%= @user.account_name %>
-      <br />
-      <%= @user.email %></p>
+      <p><strong><%= @user.name %></strong></p>
     </section>
   </aside>
 </div>
@@ -14,9 +10,12 @@
   <div class="span9">
     <ul class="nav nav-tabs">
       <li class="active"><a href="#maps" data-toggle="tab" class="map-toggle-control">Maps</a></li>
+      <% if @is_admin %>
       <li><a href="#resources" data-toggle="tab" class="resource-toggle-control">Resources</a></li>
+      <% end %>
     </ul>
   </div>
+  <% if @is_admin %>
   <div class="span3" id="resource-controls">
     <%= link_to t('resources.sync'), "#loading_modal",'data-toggle' => "modal", :onclick => "window.location=\"#{resources_sync_path}\"", :class => 'btn'  %>
     <%= link_to "Add Link", "#put_resource_link_modal",'data-toggle' => "modal", :class=>'btn' %>
@@ -24,6 +23,7 @@
   <div class="span3" id="maps-controls">
     <%= link_to t('maps.create_map'), "JavaScript:void(0);", 'action-url'=> maps_path, :class => 'btn', id: "users_create_map"%>
   </div>
+  <% end %>
 </div>
 
 <div class="tab-content">
@@ -32,16 +32,17 @@
       <%= render 'users/table_maps' %>
     </div>
   </div>
+  <% if @is_admin %>
   <div class="tab-pane" id="resources">
 
-      <div class="" id="resource_filter">
+      <div class="resource_filter">
       <%= render 'resources/filter_resources' %>
       </div>
 
 
       <div >
 
-        <table class="table table-condensed table-hover" id="resources_table">
+        <table class="table table-condensed table-hover">
           <thead>
             <tr>
               <th><%= t('shared.type') %></th>
@@ -51,9 +52,9 @@
               <th></th>
             </tr>
           </thead>
-          <tbody class="table-resources">
+          <tbody class="table-resources"  id="resources_table">
             <%= render 'resources/table_resources' %>
-            
+
             <tr class="table-resources-loader">
               <td colspan="5" style="text-align:center;">
                 <div id="pageless-loader" style="width:100%; margin-top:5px;">
@@ -71,13 +72,14 @@
           </tbody>
           <tfoot></tfoot>
         </table>
-        
+
       </div>
 
   </div>
+  <% end %>
 </div>
 
-
+<% if @is_admin %>
 <div id="edit_resource_link_modal" class="modal hide fade in" >
   <div class="modal-body" id="edit_resource_link_modal_body"></div>
 </div>
@@ -92,14 +94,13 @@
   </div>
 </div>
 
-
 <%= will_paginate(@resources) %>
 <script type="text/javascript">
-$(document).ready(function() { 
+$(document).ready(function() {
 
-  $('.table-resources').pageless({ 
+  $('.table-resources').pageless({
     loader: '.table-resources-loader',
-    totalPages: <%= @num_of_pages %> , 
+    totalPages: <%= @num_of_pages %> ,
     url: "<%= resources_page_path %>",
     loaderMsg: 'Loading next page...',
     end: function () {
@@ -111,4 +112,8 @@ $(document).ready(function() {
 
 });
 </script>
+<% end %>
 
+<% if @progress[:next_task] %>
+  <%= render 'shared/popovers' %>
+<% end %>

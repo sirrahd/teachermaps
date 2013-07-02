@@ -1,0 +1,45 @@
+<script type="text/javascript">
+
+<% if @progress[:next_task] == :confirm_email %>
+  var tour = new Tour({ name: "confirm_email", labels: { end: "Dismiss" } });
+  tour.addSteps([{
+    element: "#fat-menu",
+    title: "<%= t 'tour.confirm_email_title' %>",
+    content: "<%= t 'tour.confirm_email_content' %>",
+    placement: "bottom",
+  }]);
+
+  $("#fat-menu").click(function() {
+    tour.end();
+  });
+
+<% elsif @progress[:next_task] == :cloud_storage %>
+  var tour = new Tour({ name: "cloud_storage", labels: { end: "Dismiss" } });
+  tour.addSteps([{
+    element: "#fat-menu",
+    title: "<%= t 'tour.cloud_storage_title' %>",
+    content: "<%= t 'tour.cloud_storage_content' %>",
+    placement: "bottom",
+  }]);
+
+  $("#fat-menu").click(function() {
+    tour.end();
+  });
+
+<% elsif @progress[:next_task] == :create_map %>
+  var tour = new Tour({ name: "create_map", labels: { end: "Dismiss" } });
+  tour.addSteps([{
+    element: "#users_create_map",
+    title: "<%= t 'tour.create_map_title' %>",
+    content: "<%= t 'tour.create_map_content' %>",
+    placement: "bottom",
+  }]);
+
+  $("#users_create_map").click(function() {
+    tour.end();
+  });
+
+<% end %>
+
+tour.start();
+</script>

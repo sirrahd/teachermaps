@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130507051031) do
+ActiveRecord::Schema.define(:version => 20130618051540) do
 
   create_table "course_grades", :force => true do |t|
     t.string   "name"
@@ -143,8 +143,9 @@ ActiveRecord::Schema.define(:version => 20130507051031) do
     t.integer  "objectives_count"
     t.integer  "standards_count"
     t.integer  "user_id"
-    t.datetime "created_at",       :null => false
-    t.datetime "updated_at",       :null => false
+    t.datetime "created_at",                      :null => false
+    t.datetime "updated_at",                      :null => false
+    t.integer  "privacy_state",    :default => 0
   end
 
   create_table "resource_types", :force => true do |t|
@@ -201,6 +202,7 @@ ActiveRecord::Schema.define(:version => 20130507051031) do
     t.string   "password_digest"
     t.string   "remember_token"
     t.integer  "confirmed",       :default => 0, :null => false
+    t.text     "options"
   end
 
   add_index "users", ["account_name"], :name => "index_users_on_account_name", :unique => true

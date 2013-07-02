@@ -13,14 +13,19 @@
 #
 
 class User < ActiveRecord::Base
+  include UserHelper
+
   attr_accessible :email, :name, :account_name, :password, :password_confirmation
   has_secure_password
 
   has_one :google_account
   has_one :drop_box_account
   has_one :setting
-  has_many :resources, order: 'id DESC'
-  has_many :maps, order: 'id DESC'
+  #has_many :resources, order: 'title ASC, updated_at DESC'
+  has_many :resources, order: 'updated_at DESC'
+  has_many :maps, order: 'name ASC'
+
+  serialize :options, Hash
 
   before_save do |user|
     user.email = user.email.downcase
@@ -53,7 +58,7 @@ class User < ActiveRecord::Base
   def has_drop_box_account?
     !drop_box_account.nil? and !drop_box_account.session_token.nil?
   end
-  
+
   def to_param
     self.account_name
   end
@@ -66,10 +71,26 @@ class User < ActiveRecord::Base
     Resource.where( user_id: self.id ).count
   end
 
+  def is_admin?( user )
+    # Admin permission gives a user the abiilty to edit an entity
+
+    # Check to see is user's id matches candidate user's id
+    # Else check to see if map is public
+    Rails.logger.info "Permissions check: #{self.id}:#{user.id} #{self.id == user.id}"
+    self.id == user.id # and self.is_public?
+
+    # Later we can add collaborator/group permission checks in this method
+  end
+
+  def public_maps
+    self.maps.where("privacy_state = #{PrivacyState::PUBLIC}")
+  end
+
   private
 
   def default_values
     self.setting = Setting.new
+    self.options = Hash.new
   end
 
   def create_remember_token

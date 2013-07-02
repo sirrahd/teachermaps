@@ -12,6 +12,7 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require jquery.cookie
 //= require bootstrap
 //= require_tree .
 //= require i18n
@@ -20,3 +21,4 @@
 //= require best_in_place
 //= require jquery.ui.sortable
 //= require jquery.ui.effect-highlight
+//= require bootstrap-tour
