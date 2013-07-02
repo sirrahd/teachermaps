@@ -15,8 +15,6 @@ class UsersController < ApplicationController
       return redirect_to page404_url
     end
     @progress = @user.show_progress
-    @maps = Map.where( user_id: @current_user ).order('id DESC')
-    @resources = @user.resources.paginate(page: params[:page]).order('id DESC')
 
     @is_admin = (signed_in? and @user.is_admin?(@current_user))
     # Rails.logger.info "IS ADMIN? #{@is_admin}"
