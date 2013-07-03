@@ -8,7 +8,7 @@ class SettingsController < ApplicationController
     # unless flash[:user_info].blank?
     #   @user = flash[:user_info]
     # else
-    #   @user = @current_user
+    @user = @current_user
     # end
 
     @setting = @current_user.setting
