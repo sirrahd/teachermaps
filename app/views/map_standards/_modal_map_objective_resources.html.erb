@@ -5,7 +5,10 @@
 <div class="modal-body center">
 	<div id="map_resource_filter">
 	  <%= render 'map_standards/filter_map_objective_resources' %>
-  	</div>
+	</div>
+	<span id="filter_map_standard_resource_loading_wheel" style="display:none;" >
+  	<%= image_tag "loading.gif", :alt => "loading" %>
+  </span>
   <div id="map_standards_resource_table" style="margin: 0px 20px 0px 20px;">
     <%= render 'map_standards/table_map_objective_resources' %>
   </div>

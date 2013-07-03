@@ -1,5 +1,5 @@
 <ul id="standards_list" style="cursor:pointer;list-style-type: none;">
-	<% if @standards %>
+	<% if @standards and @standards.any? %>
 		<% @standards.each do |standard| %>
 		  <li style="margin-bottom:10px;">
 
@@ -31,5 +31,9 @@
 	    </li>
 		    
 		<% end %>
+	<% else %>
+
+		<li class="center"><h2> No Results Found </h2></li>
+
   <% end %>
 </ul>
