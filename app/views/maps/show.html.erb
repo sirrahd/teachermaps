@@ -9,7 +9,7 @@
     	<% if @is_admin %>
     	<span class="pull-right" >
     		
-    		<%= link_to "Share", "#share_map_modal",'data-toggle' => "modal", :class=>'btn'%>
+    		<%= link_to "Share", "#share_map_modal",'data-toggle' => "modal", :class=>'btn', id: 'share_map_modal_btn'%>
     		<% if client_browser_name == 'Firefox' %>
     			<span id="map-privacy-state-switch" class="switch" action-url="<%= user_map_path(@map.user.id, @map) %>"  data-on="danger" data-off="primary" data-on-label="Public" data-off-label="Private" style="top:10px;">
 				<% else %>  	
@@ -83,27 +83,30 @@
 
 
 	<% if @is_admin %>
-  <div id="filter_map_standards_modal" class="standard-modal  modal hide fade in">
-    <div class="modal-header">
-      <button type="button" class="close" data-dismiss="modal">&times;</button>
-      <div><H3><%= t('shared.standards') %></H3></div>
-    </div>
-    <div class="modal-body">
-      <div class="row">
-        <div id="standards_filter" class="center" >
-        <%= render 'maps/filter_standards' %>
-        </div>
-      </div>
-      <div class="row">
-        <div  id="standards_table" style="margin: 0px 20px 0px 20px;">
-          <%= render 'maps/list_standards' %>
-        </div>
-      </div>
-    </div>
-    <div class="modal-footer">
-      <button type="button" class="btn btn-primary" data-dismiss="modal">Save</button>
-    </div>
-  </div>
+	  <div id="filter_map_standards_modal" class="standard-modal  modal hide fade in">
+	    <div class="modal-header">
+	      <button type="button" class="close" data-dismiss="modal">&times;</button>
+	      <span><H3><%= t('shared.standards') %></H3></span>
+	    </div>
+	    <div class="modal-body">
+	      <div class="row">
+	        <div id="standards_filter" class="center" >
+	        	<%= render 'maps/filter_standards' %>
+	        	<span id="filter_map_standards_loading_wheel" style="display:none;" >
+				    	<%= image_tag "loading.gif", :alt => "loading" %>
+				    </span>
+	        </div>
+	      </div>
+	      <div class="row">
+	        <div  id="standards_table" style="margin: 0px 20px 0px 20px;">
+	          <%= render 'maps/list_standards' %>
+	        </div>
+	      </div>
+	    </div>
+	    <div class="modal-footer">
+	      <button type="button" class="btn btn-primary" data-dismiss="modal">Save</button>
+	    </div>
+	  </div>
 	  
 	  <div id="filter_map_resources_modal" class="resource-modal modal hide fade" >
 	    <div class="filter_map_resources_modal_header modal-header">
@@ -117,7 +120,7 @@
 	<% end %>
 
 
-	<div id="share_map_modal" class="	modal hide fade in">
+	<div id="share_map_modal" class="modal hide fade in">
 		
     <div class="modal-header">
       <button type="button" class="close" data-dismiss="modal">&times;</button>
@@ -129,7 +132,8 @@
     	<div id="share_map_form_errors"></div>
 
     	<p>
-    		<%= text_field_tag('', map_path(@map.slug, only_path: false, host: request.host)) %>
+    		<%= label_tag('map_share_url', "Share Map URL") %>
+    		<%= text_field_tag('map_share_url', map_path(@map.slug, only_path: false, host: request.host)) %>
     	<p>
 
     	<%= form_for @share_email, url: map_share_email_index_path(@map), html: { :remote=>true, :multipart => true, :class=>"form-horizontal", :'data-type' => 'html', id: 'share_map_form' }  do |f| %>
@@ -150,11 +154,16 @@
 
 </div>
 
+
 <% if @is_admin %>
 	<script type="text/javascript">
 	$(document).ready(function() {    
 	  $('.best_in_place').best_in_place();
-	  $('.share_comments_field').autosize();   
+	  $('.share_comments_field').autosize();
+
+	  <% if @map.privacy_state == PrivacyState::PRIVATE %> 
+		  $('#share_map_modal_btn').hide();
+		<% end %>
 	});
 
 	</script>

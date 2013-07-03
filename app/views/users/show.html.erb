@@ -19,6 +19,9 @@
   <div class="span3" id="resource-controls">
     <%= link_to t('resources.sync'), "#loading_modal",'data-toggle' => "modal", :onclick => "window.location=\"#{resources_sync_path}\"", :class => 'btn'  %>
     <%= link_to "Add Link", "#put_resource_link_modal",'data-toggle' => "modal", :class=>'btn' %>
+    <span id="resource-loading-wheel" style="display:none;">
+    	<img alt="loading" width="40px" src="/assets/loading.gif" />
+    </span>
   </div>
   <div class="span3" id="maps-controls">
     <%= link_to t('maps.create_map'), "JavaScript:void(0);", 'action-url'=> maps_path, :class => 'btn', id: "users_create_map"%>
