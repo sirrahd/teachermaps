@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-	include SessionsHelper
+  include SessionsHelper
 
   def index
     redirect_to root_url
@@ -14,14 +14,15 @@ class UsersController < ApplicationController
       Rails.logger.info 'Could not locate user '
       return redirect_to page404_url
     end
+    @progress = @user.show_progress
 
     @is_admin = (signed_in? and @user.is_admin?(@current_user))
-  	# Rails.logger.info "IS ADMIN? #{@is_admin}"
+    # Rails.logger.info "IS ADMIN? #{@is_admin}"
 
     if @is_admin
-    	@maps = @user.maps
+      @maps = @user.maps
     else
-    	@maps = @user.public_maps
+      @maps = @user.public_maps
     end
 
     @resources = @user.resources.paginate(page: params[:page]).order('id DESC')
@@ -57,7 +58,7 @@ class UsersController < ApplicationController
   end
 
   def update
-  	require_session
+    require_session
     # User is always authenticated before an update
     @user = current_user
 
@@ -122,7 +123,7 @@ class UsersController < ApplicationController
   end
 
   def confirm_email
-  	require_session
+    require_session
     @user = current_user
 
     # If there's no logged in user, take them to the login form first
@@ -147,7 +148,7 @@ class UsersController < ApplicationController
   end
 
   def reset_password
-  	require_session
+    require_session
     # Stage 3: User navigates from email link
     if params[:account_name]
       @user = User.find_by_account_name(params[:account_name])

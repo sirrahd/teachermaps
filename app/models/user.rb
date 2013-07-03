@@ -13,6 +13,8 @@
 #
 
 class User < ActiveRecord::Base
+  include UserHelper
+
   attr_accessible :email, :name, :account_name, :password, :password_confirmation
   has_secure_password
 
@@ -21,7 +23,9 @@ class User < ActiveRecord::Base
   has_one :setting
   #has_many :resources, order: 'title ASC, updated_at DESC'
   has_many :resources, order: 'updated_at DESC'
-  has_many :maps, order: 'id DESC'
+  has_many :maps, order: 'name ASC'
+
+  serialize :options, Hash
 
   before_save do |user|
     user.email = user.email.downcase
@@ -68,24 +72,25 @@ class User < ActiveRecord::Base
   end
 
   def is_admin?( user )
-  	# Admin permission gives a user the abiilty to edit an entity
+    # Admin permission gives a user the abiilty to edit an entity
 
-  	# Check to see is user's id matches candidate user's id 
-  	# Else check to see if map is public
-  	Rails.logger.info "Permissions check: #{self.id}:#{user.id} #{self.id == user.id}"
-		self.id == user.id # and self.is_public?
-    
+    # Check to see is user's id matches candidate user's id
+    # Else check to see if map is public
+    Rails.logger.info "Permissions check: #{self.id}:#{user.id} #{self.id == user.id}"
+    self.id == user.id # and self.is_public?
+
     # Later we can add collaborator/group permission checks in this method
   end
 
   def public_maps
-  	self.maps.where("privacy_state = #{PrivacyState::PUBLIC}")
+    self.maps.where("privacy_state = #{PrivacyState::PUBLIC}")
   end
 
   private
 
   def default_values
     self.setting = Setting.new
+    self.options = Hash.new
   end
 
   def create_remember_token
