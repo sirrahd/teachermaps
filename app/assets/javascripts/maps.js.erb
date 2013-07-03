@@ -263,8 +263,10 @@ $(document).ready(function() {
 	    	console.log("success");
 	    	if (value) {
 	    		pushFlash({message:"Map is now public!", state: 'info'});
+	    		$('#share_map_modal_btn').show();
 	    	} else {
 	    		pushFlash({message:"Map is now private!", state: 'info'});
+	    		$('#share_map_modal_btn').hide();
 	    	}
 	    },
 	    error: function(data) {
@@ -297,6 +299,28 @@ $(document).ready(function() {
     }, 3000);
 
   });
+
+
+
+
+
+  //////////////////////////////
+  //
+  // Share Map Url 
+  //
+  //////////////////////////////
+  $('#share_map_modal').on('show', function() {
+  	setTimeout(function(){
+  		// Race condition hack, but it works
+        $('#map_share_url').select();	
+    }, 200);
+    
+  })
+
+  $('#map_share_url').click(function() {
+	  $('#map_share_url').select();
+	});
+
 
 
 });
