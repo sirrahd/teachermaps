@@ -6,11 +6,13 @@
 		  	<% if @map_standards_by_standard_id.has_key?(standard.id) %>
 	    		<div class="standard-selected" >
       	<% else %>
-        	<div class="standard-default hover"  standard-id="<%= standard.id %>" action-url="<%= map_map_standards_path(@map.id) %>">
+        	<div class="standard-default "  standard-id="<%= standard.id %>" action-url="<%= map_map_standards_path(@map.id) %>">
       	<% end %> 
 
-      	<b><%= standard.name %></b> <%= raw(standard.text) %>
-    		
+	      	<div class="hover-parent" >
+	      		<b><%= standard.name %></b> <%= raw(standard.text) %>
+	      	</div>
+	    		
 	    	<% if standard.is_parent_standard %>
 	    		<ul style="cursor:pointer;">
 		    		<% standard.children_standards.each do |child| %>
@@ -20,7 +22,9 @@
               	<% else %>
                 	<div class="standard-default" standard-id="<%= child.id %>" action-url="<%= map_map_standards_path(@map.id) %>">
               	<% end %> 
-					    		<b><%= child.name %></b> <%= raw(child.text) %>
+	              		<div class="hover-child" >
+						    			<b><%= child.name %></b> <%= raw(child.text) %>
+						    		</div>
 					    		</div>
 				    	</li>
 			    	<% end %>
@@ -37,3 +41,31 @@
 
   <% end %>
 </ul>
+
+
+<script type="text/javascript">
+$(document).ready(function() { 
+
+  $('.hover-parent').mouseleave(function(){
+  	$(this).toggleClass('hover');
+  	$(this).parent().find('.hover-child').toggleClass('hover-active');
+  	console.log("High Five out!!",$(this).find('.hover-child'));
+  });
+  $('.hover-parent').mouseenter(function(){
+  	$(this).toggleClass('hover');
+  	$(this).parent().find('.hover-child').toggleClass('hover-active');
+  	console.log("High Five in!!",$(this).find('.hover-child'));
+  });
+
+  $('.hover-child').mouseleave(function(){
+  	$(this).toggleClass('hover');
+  	console.log("High Five out!!");
+  });
+  $('.hover-child').mouseenter(function(){
+  	$(this).toggleClass('hover');
+  	
+  	console.log("High Five in!!");
+  });
+
+}); 
+</script>
