@@ -1,4 +1,5 @@
 class StaticPagesController < ApplicationController
+	include ApplicationHelper
 
   def home
     if signed_in?
@@ -18,7 +19,7 @@ class StaticPagesController < ApplicationController
   def about
   end
 
-  def contact
+  def contact	
   end
 
   def privacy
@@ -35,10 +36,11 @@ class StaticPagesController < ApplicationController
 
   def robots
   	if is_main_proudction?
-	  	robots = File.read(Rails.root + "config/robots.production.txt")
+	  	robots = File.read(Rails.root + "config/robots/production.txt")
 	  else
-	  	robots = File.read(Rails.root + "config/robots.development.txt")
+	  	robots = File.read(Rails.root + "config/robots/development.txt")
 	  end
+	  Rails.logger.info "Is is_main_proudction? #{is_main_proudction?}"
 	  render :text => robots, :layout => false, :content_type => "text/plain"
 	end
 end
