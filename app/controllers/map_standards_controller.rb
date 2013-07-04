@@ -65,6 +65,7 @@ class MapStandardsController < ApplicationController
       end
     end
 
+    @is_admin = (signed_in? and @map_standard.map.is_admin?(@current_user))
     return render partial: 'maps/list_map_standards'
   end
 
