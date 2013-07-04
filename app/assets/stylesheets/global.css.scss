@@ -1,0 +1,64 @@
+/* Global CSS */
+
+
+.clickable {
+  cursor:pointer;
+}
+
+.hover:hover {
+  background-color: #F5F5F5;
+}
+
+.hover-active {
+  background-color: #F5F5F5;
+}
+
+
+
+
+
+
+.editable-btn span .btn {
+   visibility: hidden;
+}  
+
+.editable-btn:hover span .btn{
+   visibility: visible;
+} 
+
+.editable span a i {
+   visibility: hidden;
+}  
+
+.editable:hover span a i {
+   visibility: visible;
+} 
+
+
+.editable div a i {
+   visibility: hidden;
+}  
+
+.editable:hover div a i {
+   visibility: visible;
+} 
+
+.editable div.handle {
+   visibility: hidden;
+}  
+
+.editable:hover div.handle {
+   visibility: visible;
+} 
+
+.editable-inner div.handle-inner {
+   visibility: hidden;
+} 
+
+.editable-inner:hover div.handle-inner {
+   visibility: visible;
+}  
+
+.editable-field:hover {
+	cursor:pointer;
+}
