@@ -107,14 +107,8 @@ $(document).ready(function() {
       success: function (response) {
         $('#map_standards_list').html(response);
 
-        // Mark all children standards as selected
-        // element.parent().find('.standard-default').each(function(e) {
-        		// console.log(element);
-            // element.attr('class','standard-selected');
-        // });
+        // Select any children standards
     		element.parent().find('.standard-default').attr('class','standard-selected');
-
-        console.log(element.parent());
 
         element.attr('class','standard-selected');
       },
