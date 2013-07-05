@@ -11,9 +11,9 @@
         		<i class="icon-plus pull-right"></i>
       	<% end %> 
 
-	      	<div class="hover-parent" >
-	      		<b><%= standard.name %></b> <%= raw(standard.text) %>
-	      	</div>
+		      	<div class="hover-parent" >
+		      		<b><%= standard.name %></b> <%= raw(standard.text) %>
+		      	</div>
 	    		</div> 
 	    		
 	    	<% if standard.is_parent_standard %>
@@ -52,19 +52,27 @@
 $(document).ready(function() { 
 
   $('.hover-parent').mouseleave(function(){
-  	$(this).toggleClass('hover');
-  	$(this).parent().toggleClass('hover-active');
+  	// if(!$(this).parent().hasClass('standard-selected')){
+	  	$(this).toggleClass('hover');
+	  	$(this).parent().toggleClass('hover-active');
+  	// }
   });
   $('.hover-parent').mouseenter(function(){
-  	$(this).toggleClass('hover');
-  	$(this).parent().toggleClass('hover-active');
+  	// if(!$(this).parent().hasClass('standard-selected')){
+	  	$(this).toggleClass('hover');
+	  	$(this).parent().toggleClass('hover-active');
+  	// }
   });
 
   $('.hover-child').mouseleave(function(){
-  	$(this).toggleClass('hover');
+  	// if(!$(this).parent().hasClass('standard-selected')){
+  		$(this).toggleClass('hover');
+  	// }
   });
   $('.hover-child').mouseenter(function(){
-  	$(this).toggleClass('hover');
+  	// if(!$(this).parent().hasClass('standard-selected')){
+  		$(this).toggleClass('hover');
+  	// }
   });
 
 }); 
