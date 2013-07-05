@@ -109,8 +109,10 @@ $(document).ready(function() {
 
         // Select any children standards
     		element.parent().find('.standard-default').attr('class','standard-selected');
+    		element.parent().find('.icon-plus').attr('class','icon-check pull-right');
 
         element.attr('class','standard-selected');
+        element.find('.icon-plus').attr('class','icon-check pull-right');
       },
       error: function (xhr, ajaxOptions, thrownError) {
         pushFlash({message:"<%= I18n.t('maps.create_map_standard_error') %>", state: 'error', fadeOut: 5000});
