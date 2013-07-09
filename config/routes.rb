@@ -21,6 +21,8 @@ Teachermaps::Application.routes.draw do
   match '/privacy', to: 'static_pages#privacy'
   match '/terms',   to: 'static_pages#tos'
 
+  match '/robots.txt', to: 'static_pages#robots'
+
   match '/confirm',         to: 'users#confirm_email'
   match '/reset',           to: 'users#reset_password'
   match '/update_password', to: 'users#update_password'

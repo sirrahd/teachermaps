@@ -65,6 +65,7 @@ class MapStandardsController < ApplicationController
       end
     end
 
+    @is_admin = (signed_in? and @map_standard.map.is_admin?(@current_user))
     return render partial: 'maps/list_map_standards'
   end
 
@@ -73,6 +74,7 @@ class MapStandardsController < ApplicationController
     Rails.logger.info(params)
     
     @map_standard = MapStandard.find_by_id_and_user_id params[:id], @current_user.id
+    @is_admin = (signed_in? and @map_standard.map.is_admin?(@current_user))
 
     unless @map_standard
       Rails.logger.info("error 404 map_standard #{params[:id]}") 
