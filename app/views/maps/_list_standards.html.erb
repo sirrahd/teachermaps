@@ -51,29 +51,29 @@
 <script type="text/javascript">
 $(document).ready(function() { 
 
+	$('.hover-parent').mouseenter(function(){
+  	$(this).toggleClass('hover');
+  	// Highlight self
+  	$(this).parent().toggleClass('hover-active');
+  	// Highlight all children standards
+  	$(this).parent().parent().find('.hover-child').toggleClass('hover-active');
+  });
   $('.hover-parent').mouseleave(function(){
-  	// if(!$(this).parent().hasClass('standard-selected')){
-	  	$(this).toggleClass('hover');
-	  	$(this).parent().toggleClass('hover-active');
-  	// }
+  	$(this).toggleClass('hover');
+  	// Remvove highlight self
+  	$(this).parent().toggleClass('hover-active');
+  	// Remove highlight all children standards
+  	$(this).parent().parent().find('.hover-child').toggleClass('hover-active');
   });
-  $('.hover-parent').mouseenter(function(){
-  	// if(!$(this).parent().hasClass('standard-selected')){
-	  	$(this).toggleClass('hover');
-	  	$(this).parent().toggleClass('hover-active');
-  	// }
-  });
+  
 
-  $('.hover-child').mouseleave(function(){
-  	// if(!$(this).parent().hasClass('standard-selected')){
-  		$(this).toggleClass('hover');
-  	// }
-  });
   $('.hover-child').mouseenter(function(){
-  	// if(!$(this).parent().hasClass('standard-selected')){
-  		$(this).toggleClass('hover');
-  	// }
+		$(this).toggleClass('hover');	
   });
+  $('.hover-child').mouseleave(function(){
+		$(this).toggleClass('hover');
+  });
+  
 
 }); 
 </script>
