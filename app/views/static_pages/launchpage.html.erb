@@ -8,7 +8,9 @@
     <%= javascript_include_tag "application" %>
 
     <%= stylesheet_link_tag    "bootstrap-extension", media: "all" %>
-
+    <%= stylesheet_link_tag    "font-awesome.min", media: "all" %>
+    
+		<!-- <link rel="stylesheet" href="http://www.responsivewebmobile.com/rwm_orange_clean/css/font-awesome/css/font-awesome.min.css"> -->
     <%= csrf_meta_tags %>
     <!--[if lt IE 9]>
       <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
@@ -16,6 +18,9 @@
     <script type="text/javascript">
       I18n.defaultLocale = "<%= I18n.default_locale %>";
       I18n.locale = "<%= I18n.locale %>";
+    </script>
+    <script type="text/css">
+    	font-family: 'FontAwesome';
     </script>
   </head>
   <body>
