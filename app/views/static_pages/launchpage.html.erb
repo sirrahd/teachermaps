@@ -6,6 +6,9 @@
     <%= favicon_link_tag 'favicon.ico', :rel=>'icon', :type=>'image/ico' %>
     <%= stylesheet_link_tag    "application", media: "all" %>
     <%= javascript_include_tag "application" %>
+
+    <%= stylesheet_link_tag    "bootstrap-extension", media: "all" %>
+
     <%= csrf_meta_tags %>
     <!--[if lt IE 9]>
       <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
@@ -17,21 +20,295 @@
   </head>
   <body>
 
+    <div class="vspace70~ center">
 
-    <div class="container" id="main-container">
+			<div class="row">
+				<span class="span6 vspace50">
+					<h1>Welcome to <br/> TeacherMaps.</h1>
+					<p class="lead">Start Planning today! Sign up now.</p>
+				</span>
+				<span class="span5">
+					<embed src="http://www.youtube.com/v/YlL3OtHKrcs&hl=en_US&start=7" type="application/x-shockwave-flash" allowscriptaccess="always" width="500" height="300"></embed>
+				</span>
+			</div>
+		</div>
 
-      <div class="center">
-        <h1 style="font-size:550%;margin:15px;"><b><%= t('home.title', app_name: t('global.app_name')) %></b></h1>
-        <h3 class="muted"><%= t 'home.text' %></h3>
-        <div id="mailchimp" style="margin-top:30px;">
-            <%= render 'mail_chimp/subscribe' %>
-        </div>
-        <p>
-          Have an account?
-          <a href="/?login=1">Sign in here</a>
-        </p>
-      </div>
-    </div>
+		<div class="content">
+			<div class="container theme">
+
+				<!-- Pay Off -->
+				<div class="row center vspace30">
+					<div class="span12">
+						<h1><span>Turpis! Habitasse turpis lacus!</span></h1>
+						<p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur,</p>
+					</div>
+				</div>
+				<!-- /Pay Off -->
+
+				<!-- Services -->
+				<div class="row vspace30">
+					<div class="span4 service center">
+						<p><i class="icon-4x icon-beaker"></i></p>
+						<h3>Discover</h3>
+						<p>Nemo enim ipsam <strong>voluptatem quia</strong> voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt.
+						<a href="http://www.responsivewebmobile.com/rwm_orange_clean/#">continue&nbsp;»</a>
+					</p>
+
+					</div>
+
+					<div class="span4 service center">
+						<p><i class="icon-4x icon-facetime-video"></i></p>
+						<h3>Create</h3>
+						<p>Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed <strong>quia consequuntur</strong> magni dolores eos qui ratione voluptatem sequi nesciunt.
+						<a href="http://www.responsivewebmobile.com/rwm_orange_clean/#">continue&nbsp;»</a>
+						</p>
+					</div>
+
+					<div class="span4 service center">
+						<p><i class="icon-4x icon-cloud-upload"></i></p>
+						<h3>Share</h3>
+						<p>Nemo enim ipsam voluptatem quia voluptas sit aspernatur <strong>aut odit aut fugit</strong>, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt.
+						<a href="http://www.responsivewebmobile.com/rwm_orange_clean/#">continue&nbsp;»</a>
+						</p>
+					</div>
+
+				</div>
+				<!-- /Services -->
+
+				<!-- Content -->
+				<div class="row vspace30">
+					<div class="span5">
+						<img src="assets/image_01.jpg" alt="">
+					</div>
+
+					<div class="span5">
+						<h2>Google Drive - Dropbox Intergration</h2>
+						<div>
+							<p>Bacon ipsum dolor sit amet nulla ham qui sint <a href="http://www.responsivewebmobile.com/rwm_orange_clean/#">exercitation eiusmod commodo</a>, chuck duis velit. Aute in reprehenderit, dolore <a href="http://www.responsivewebmobile.com/rwm_orange_clean/#">aliqua</a> non est magna in labore pig pork biltong.</p>
+							<p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur</p>
+							<a class="btn-theme">Read more</a>
+						</div>
+					</div>
+				</div>
+
+				<div class="row vspace30">
+					<div class="span5">
+						<h2>Standard Aligned</h2>
+						<div>
+							<p>Bacon ipsum dolor sit amet nulla ham qui sint <a href="http://www.responsivewebmobile.com/rwm_orange_clean/#">exercitation eiusmod commodo</a>, chuck duis velit. Aute in reprehenderit, dolore <a href="http://www.responsivewebmobile.com/rwm_orange_clean/#">aliqua</a> non est magna in labore pig pork biltong.</p>
+							<p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. 
+							</p>
+							<blockquote><p>Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit<br><small>CEO John White</small></p></blockquote>
+							<a class="btn-theme">Read more</a>
+						</div>
+					</div>
+
+					<div class="span5">
+						<img src="assets/image_03.jpg" alt="">
+					</div>
+				</div>
+				<!-- /Content -->
+
+
+				
+
+				<!-- Last Works -->
+				<div class="row center vspace30">
+					<h1><span>Hot Maps!</span></h1>
+					<p>Here are some maps that star teachers have made!</p>
+				</div>
+
+				<div class="row vspace30">
+					<div class="span12">
+						<ul class="thumbnails">
+							<li class="span3">
+								<div class="thumbnail center">
+									<a href="http://www.responsivewebmobile.com/rwm_orange_clean/portfolio-item.html" class="thumbnail-overlay" style="opacity: 0;"></a>
+									<img src="assets/work_01.jpg" alt="">
+									<div class="caption">
+										<h5>Work label</h5>
+										<i>Sed ut perspiciatis unde omnis iste.</i>
+									</div>
+								</div>
+							</li>
+
+							<li class="span3">
+								<div class="thumbnail center">
+									<a href="http://www.responsivewebmobile.com/rwm_orange_clean/portfolio-item.html" class="thumbnail-overlay" style="opacity: 0;"></a>
+									<img src="assets/work_02.jpg" alt="">
+									<div class="caption">
+										<h5>Project label</h5>
+										<i>Sed ut perspiciatis unde omnis iste.</i>
+									</div>
+								</div>
+							</li>
+
+							<li class="span3">
+								<div class="thumbnail center">
+									<a href="http://www.responsivewebmobile.com/rwm_orange_clean/portfolio-item.html" class="thumbnail-overlay" style="opacity: 0;"></a>
+									<img src="assets/work_03.jpg" alt="">
+									<div class="caption">
+										<h5>Something label</h5>
+										<i>Sed ut perspiciatis unde omnis iste.</i>
+									</div>
+								</div>
+							</li>
+
+							<li class="span3">
+								<div class="thumbnail center">
+									<a href="http://www.responsivewebmobile.com/rwm_orange_clean/portfolio-item.html" class="thumbnail-overlay" style="opacity: 0;"></a>
+									<img src="assets/work_01.jpg" alt="">
+									<div class="caption">
+										<h5>Something Else</h5>
+										<i>Sed ut perspiciatis unde omnis iste.</i>
+									</div>
+								</div>
+							</li>
+						</ul>
+					</div>
+				</div>
+				<!-- /Last Works -->
+
+				<!-- Clients -->
+				<div class="row center vspace30">
+					<h1><span>Star/Rising Teachers</span></h1>
+					<p>here are some of the teacher who are awesome at creating Maps!</p>
+				</div>
+
+				<div class="row vspace30">
+					<div class="span2">
+						<div class="customer"><img src="assets/client.png" width="120" alt=""></div>
+					</div>
+
+					<div class="span2">
+						<div class="customer"><img src="assets/client.png" width="120" alt=""></div>
+					</div>
+
+					<div class="span2">
+						<div class="customer"><img src="assets/client.png" width="120" alt=""></div>
+					</div>
+
+					<div class="span2">
+						<div class="customer"><img src="assets/client.png" width="120" alt=""></div>
+					</div>
+
+					<div class="span2">
+						<div class="customer"><img src="assets/client.png" width="120" alt=""></div>
+					</div>
+
+					<div class="span2">
+						<div class="customer"><img src="assets/client.png" width="120" alt=""></div>
+					</div>
+				</div>
+				<!-- /Clients -->
+
+			</div>
+		</div>
+
+		<footer id="footer">
+			<div id="post-footer">
+				<div class="container">		
+					<div class="row center">
+						<div class="span12">
+							<div class="vspace10">
+								<a href="http://www.responsivewebmobile.com/rwm_orange_clean/#"><img src="assets/Facebook.png" alt=""></a>
+								<a href="http://www.responsivewebmobile.com/rwm_orange_clean/#"><img src="assets/Twitter.png" alt=""></a>
+								<a href="http://www.responsivewebmobile.com/rwm_orange_clean/#"><img src="assets/Linkedin.png" alt=""></a>
+								<a href="http://www.responsivewebmobile.com/rwm_orange_clean/#"><img src="assets/Pinterest.png" alt=""></a>
+								<a href="http://www.responsivewebmobile.com/rwm_orange_clean/#"><img src="assets/Google+.png" alt=""></a>
+								<a href="http://www.responsivewebmobile.com/rwm_orange_clean/#"><img src="assets/Youtube.png" alt=""></a>
+								<br><br>
+								<p>© Copyright 2013.</p>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</footer>
+
+		<!-- Sign In Modal -->
+		<div id="signIn" class="modal hide fade theme" tabindex="-1" role="dialog" aria-hidden="true">
+		  <div class="modal-header">
+		    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+		    <h3>Use Socials or Register to Sign In</h3>
+		  </div>
+		  <div class="modal-body center">
+		    <div class="">
+		    	<a href="http://www.responsivewebmobile.com/rwm_orange_clean/#"><img src="assets/Facebook(1).png" alt=""></a>
+		    	<a href="http://www.responsivewebmobile.com/rwm_orange_clean/#"><img src="assets/Twitter(1).png" alt=""></a>
+		    	<a href="http://www.responsivewebmobile.com/rwm_orange_clean/#"><img src="assets/Google+(1).png" alt=""></a>
+		    	<br><br>
+		    	OR
+		    	<br><br>
+		    	<form id="signin-form" class="form form-horizontal">
+		    		<div class="control-group">
+		    			<input id="SignInEmail" name="SignInEmail" type="text" placeholder="Email" class="span3">
+		    		</div>
+		    		<div class="control-group">
+		    			<input id="SignInPassword" name="SignInPassword" type="password" placeholder="Password" class="span3">
+		    		</div>
+		    		<label class="checkbox inline">
+		  				<input id="SignInRememberMe" name="SignInRememberMe" type="checkbox" value="">
+		  					Remember Me
+					</label>
+		    	</form>
+		    	Don’t yet registered? <a href="http://www.responsivewebmobile.com/rwm_orange_clean/#">Sign up</a>
+		    	<br>
+		    	<a href="http://www.responsivewebmobile.com/rwm_orange_clean/#">Forgot Password?</a>
+		    </div>
+		  </div>
+		  <div class="modal-footer">
+		    <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+		    <button class="btn btn-primary">Sign In</button>
+		  </div>
+		</div>
+
+		<!-- Sign Up Modal -->
+		<div id="signUp" class="modal hide fade theme" tabindex="-1" role="dialog" aria-hidden="true">
+		  <div class="modal-header">
+		    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+		    <h3>Fill the Form to Sign Up</h3>
+		  </div>
+		  <div class="modal-body">
+		    <div class="modal-container">
+		    	<div class="center"> 
+		    		<a href="http://www.responsivewebmobile.com/rwm_orange_clean/#"><img src="assets/Facebook(1).png" alt=""></a>
+		    		<a href="http://www.responsivewebmobile.com/rwm_orange_clean/#"><img src="assets/Twitter(1).png" alt=""></a>
+		    		<a href="http://www.responsivewebmobile.com/rwm_orange_clean/#"><img src="assets/Google+(1).png" alt=""></a>
+		    		<br><br>
+		    		OR
+		    		<br><br>
+		    	</div>
+		    	<form id="signup-form" class="form">
+		    		<div class="controls controls-row">
+		    			<input id="FirstName" name="FirstName" type="text" placeholder="First Name" class="span2">
+		    			<input id="LastName" name="LastName" type="text" placeholder="Last Name" class="span2">
+		    		</div>
+		    		<div class="controls">
+		    			<input id="SignUpEmail" name="SignUpEmail" type="text" placeholder="Email" class="span4">
+		    		</div>
+		    		<div class="controls">
+		    			<input id="SignUpPassword" name="SignUpPassword" type="password" placeholder="Password" class="span4">
+		    		</div>
+		    		<div class="controls">
+		    			<input id="PasswordConfirm" name="PasswordConfirm" type="password" placeholder="Confirm Password" class="span4">
+		    		</div>
+		    		<label class="controls checkbox inline">
+		  				<input id="TermsAndConds" name="TermsAndConds" type="checkbox" value="">
+		  					<a href="http://www.responsivewebmobile.com/rwm_orange_clean/#">I agree to terms and conditions</a>
+					</label>
+		    	</form>
+		    	Already registered? <a href="http://www.responsivewebmobile.com/rwm_orange_clean/#">Sign In</a>
+		    </div>
+		  </div>
+		  <div class="modal-footer">
+		    <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+		    <button class="btn btn-primary">Sign In</button>
+		  </div>
+		</div>
+
+
+		<a class="scrolltotop" href="http://www.responsivewebmobile.com/rwm_orange_clean/#" style="display: none;"></a>
 
 
     <% if is_main_proudction? %>
