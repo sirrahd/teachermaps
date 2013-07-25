@@ -5,10 +5,9 @@
     <title><%= t 'global.app_name' %></title>
     <%= favicon_link_tag 'favicon.ico', :rel=>'icon', :type=>'image/ico' %>
     <%= stylesheet_link_tag    "application", media: "all" %>
-    <%= javascript_include_tag "application" %>
+		<%= javascript_include_tag "application" %>
+		<%= stylesheet_link_tag    "font_awesome.min", media: "all" %>
 
-    <%= stylesheet_link_tag    "bootstrap-extension", media: "all" %>
-    <%= stylesheet_link_tag    "font-awesome.min", media: "all" %>
     <%= csrf_meta_tags %>
     <!--[if lt IE 9]>
       <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
@@ -16,9 +15,6 @@
     <script type="text/javascript">
       I18n.defaultLocale = "<%= I18n.default_locale %>";
       I18n.locale = "<%= I18n.locale %>";
-    </script>
-    <script type="text/css">
-    	font-family: 'FontAwesome';
     </script>
   </head>
   <body>
@@ -244,3 +240,6 @@
     <% end %>
   </body>
 </html>
+
+
+
