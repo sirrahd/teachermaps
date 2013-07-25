@@ -9,7 +9,8 @@ class StaticPagesController < ApplicationController
     elsif params[:login]
       render 'launchlogin', layout: false
     else
-      render 'launchpage', layout: false
+      # render 'launchpage', layout: false
+      render 'launchpage'
     end
   end
 
