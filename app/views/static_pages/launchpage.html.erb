@@ -1,245 +1,208 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><%= t 'global.app_name' %></title>
-    <%= favicon_link_tag 'favicon.ico', :rel=>'icon', :type=>'image/ico' %>
-    <%= stylesheet_link_tag    "application", media: "all" %>
-		<%= javascript_include_tag "application" %>
-		<%= stylesheet_link_tag    "font_awesome.min", media: "all" %>
+<div class="center">
 
-    <%= csrf_meta_tags %>
-    <!--[if lt IE 9]>
-      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
-    <![endif]-->
-    <script type="text/javascript">
-      I18n.defaultLocale = "<%= I18n.default_locale %>";
-      I18n.locale = "<%= I18n.locale %>";
-    </script>
-  </head>
-  <body>
+	<div class="row">
+		<span class="span6 vspace90 large">
+			<h1 style="font-size:400%;">TeacherMaps</h1>
+			<h3 style="font-weight:normal;">Start Planning today! Sign up now.</h3>
+		</span>
+		<span class="span6">
+			<div class="video-container">
+         <!-- <iframe src="http://www.youtube.com/embed/dFVxGRekRSg" frameborder="0" width="500" height="300"></iframe> -->
+				<embed src="http://www.youtube.com/v/YlL3OtHKrcs&hl=en_US&start=7" type="application/x-shockwave-flash" allowscriptaccess="always" width="500" height="300"></embed>
+			</div>
+		</span>
+	</div>
+</div>
 
-    <div class="vspace70~ center">
+<div class="content vspace50">
+	<div class="container theme">
 
-			<div class="row">
-				<span class="span6 vspace50">
-					<h1>Welcome to <br/> TeacherMaps.</h1>
-					<p class="lead">Start Planning today! Sign up now.</p>
-				</span>
-				<span class="span5">
-					<embed src="http://www.youtube.com/v/YlL3OtHKrcs&hl=en_US&start=7" type="application/x-shockwave-flash" allowscriptaccess="always" width="500" height="300"></embed>
-				</span>
+		<!-- Pay Off -->
+		<div class="row center">
+			<div class="span12">
+				<h1><span>Turpis! Habitasse turpis lacus!</span></h1>
+				<p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur,</p>
+			</div>
+		</div>
+		<!-- /Pay Off -->
+
+		<!-- Services -->
+		<div class="row vspace30">
+			<div class="span4 service center">
+				<p><i class="icon-4x icon-beaker"></i></p>
+				<h3>Discover</h3>
+				<p>Nemo enim ipsam <strong>voluptatem quia</strong> voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt.
+				<a href="http://www.responsivewebmobile.com/rwm_orange_clean/#">continue&nbsp;»</a>
+			</p>
+
+			</div>
+
+			<div class="span4 service center">
+				<p><i class="icon-4x icon-facetime-video"></i></p>
+				<h3>Create</h3>
+				<p>Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed <strong>quia consequuntur</strong> magni dolores eos qui ratione voluptatem sequi nesciunt.
+				<a href="http://www.responsivewebmobile.com/rwm_orange_clean/#">continue&nbsp;»</a>
+				</p>
+			</div>
+
+			<div class="span4 service center">
+				<p><i class="icon-4x icon-cloud-upload"></i></p>
+				<h3>Share</h3>
+				<p>Nemo enim ipsam voluptatem quia voluptas sit aspernatur <strong>aut odit aut fugit</strong>, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt.
+				<a href="http://www.responsivewebmobile.com/rwm_orange_clean/#">continue&nbsp;»</a>
+				</p>
+			</div>
+
+		</div>
+		<!-- /Services -->
+
+		<!-- Content -->
+		<div class="row vspace30">
+			<div class="span6 center well well-small">
+				<img src="assets/cloud-storage.png" alt="">
+			</div>
+
+			<div class="span5">
+				<h2>Google Drive &amp; Dropbox Intergration</h2>
+				<div>
+					<p>Bacon ipsum dolor sit amet nulla ham qui sint <a href="http://www.responsivewebmobile.com/rwm_orange_clean/#">exercitation eiusmod commodo</a>, chuck duis velit. Aute in reprehenderit, dolore <a href="http://www.responsivewebmobile.com/rwm_orange_clean/#">aliqua</a> non est magna in labore pig pork biltong.</p>
+					<p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur</p>
+					<a class="btn-theme">Read more</a>
+				</div>
 			</div>
 		</div>
 
-		<div class="content">
-			<div class="container theme">
-
-				<!-- Pay Off -->
-				<div class="row center vspace30">
-					<div class="span12">
-						<h1><span>Turpis! Habitasse turpis lacus!</span></h1>
-						<p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur,</p>
-					</div>
-				</div>
-				<!-- /Pay Off -->
-
-				<!-- Services -->
-				<div class="row vspace30">
-					<div class="span4 service center">
-						<p><i class="icon-4x icon-beaker"></i></p>
-						<h3>Discover</h3>
-						<p>Nemo enim ipsam <strong>voluptatem quia</strong> voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt.
-						<a href="http://www.responsivewebmobile.com/rwm_orange_clean/#">continue&nbsp;»</a>
+		<div class="row vspace30">
+			<div class="span5">
+				<h2>Standard Aligned</h2>
+				<div>
+					<p>Bacon ipsum dolor sit amet nulla ham qui sint <a href="http://www.responsivewebmobile.com/rwm_orange_clean/#">exercitation eiusmod commodo</a>, chuck duis velit. Aute in reprehenderit, dolore <a href="http://www.responsivewebmobile.com/rwm_orange_clean/#">aliqua</a> non est magna in labore pig pork biltong.</p>
+					<p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. 
 					</p>
-
-					</div>
-
-					<div class="span4 service center">
-						<p><i class="icon-4x icon-facetime-video"></i></p>
-						<h3>Create</h3>
-						<p>Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed <strong>quia consequuntur</strong> magni dolores eos qui ratione voluptatem sequi nesciunt.
-						<a href="http://www.responsivewebmobile.com/rwm_orange_clean/#">continue&nbsp;»</a>
-						</p>
-					</div>
-
-					<div class="span4 service center">
-						<p><i class="icon-4x icon-cloud-upload"></i></p>
-						<h3>Share</h3>
-						<p>Nemo enim ipsam voluptatem quia voluptas sit aspernatur <strong>aut odit aut fugit</strong>, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt.
-						<a href="http://www.responsivewebmobile.com/rwm_orange_clean/#">continue&nbsp;»</a>
-						</p>
-					</div>
-
+					<blockquote><p>Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit<br><small>CEO John White</small></p></blockquote>
+					<a class="btn-theme">Read more</a>
 				</div>
-				<!-- /Services -->
+			</div>
 
-				<!-- Content -->
-				<div class="row vspace30">
-					<div class="span6 center">
-						<img src="assets/image_01.jpg" alt="">
-					</div>
-
-					<div class="span6">
-						<h2>Google Drive - Dropbox Intergration</h2>
-						<div>
-							<p>Bacon ipsum dolor sit amet nulla ham qui sint <a href="http://www.responsivewebmobile.com/rwm_orange_clean/#">exercitation eiusmod commodo</a>, chuck duis velit. Aute in reprehenderit, dolore <a href="http://www.responsivewebmobile.com/rwm_orange_clean/#">aliqua</a> non est magna in labore pig pork biltong.</p>
-							<p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur</p>
-							<a class="btn-theme">Read more</a>
-						</div>
-					</div>
-				</div>
-
-				<div class="row vspace30">
-					<div class="span6">
-						<h2>Standard Aligned</h2>
-						<div>
-							<p>Bacon ipsum dolor sit amet nulla ham qui sint <a href="http://www.responsivewebmobile.com/rwm_orange_clean/#">exercitation eiusmod commodo</a>, chuck duis velit. Aute in reprehenderit, dolore <a href="http://www.responsivewebmobile.com/rwm_orange_clean/#">aliqua</a> non est magna in labore pig pork biltong.</p>
-							<p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. 
-							</p>
-							<blockquote><p>Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit<br><small>CEO John White</small></p></blockquote>
-							<a class="btn-theme">Read more</a>
-						</div>
-					</div>
-
-					<div class="span6 center">
-						<img src="assets/image_03.jpg" alt="">
-					</div>
-				</div>
-				<!-- /Content -->
-
-
-				
-
-				<!-- Last Works -->
-				<div class="row center vspace30">
-					<h1><span>Hot Maps!</span></h1>
-					<p>Here are some maps that star teachers have made!</p>
-				</div>
-
-				<div class="row vspace30">
-					<div class="span12">
-						<ul class="thumbnails">
-							<li class="span3">
-								<div class="thumbnail center">
-									<a href="http://www.responsivewebmobile.com/rwm_orange_clean/portfolio-item.html" class="thumbnail-overlay" style="opacity: 0;"></a>
-									<img src="assets/work_01.jpg" alt="">
-									<div class="caption">
-										<h5>Work label</h5>
-										<i>Sed ut perspiciatis unde omnis iste.</i>
-									</div>
-								</div>
-							</li>
-
-							<li class="span3">
-								<div class="thumbnail center">
-									<a href="http://www.responsivewebmobile.com/rwm_orange_clean/portfolio-item.html" class="thumbnail-overlay" style="opacity: 0;"></a>
-									<img src="assets/work_02.jpg" alt="">
-									<div class="caption">
-										<h5>Project label</h5>
-										<i>Sed ut perspiciatis unde omnis iste.</i>
-									</div>
-								</div>
-							</li>
-
-							<li class="span3">
-								<div class="thumbnail center">
-									<a href="http://www.responsivewebmobile.com/rwm_orange_clean/portfolio-item.html" class="thumbnail-overlay" style="opacity: 0;"></a>
-									<img src="assets/work_03.jpg" alt="">
-									<div class="caption">
-										<h5>Something label</h5>
-										<i>Sed ut perspiciatis unde omnis iste.</i>
-									</div>
-								</div>
-							</li>
-
-							<li class="span3">
-								<div class="thumbnail center">
-									<a href="http://www.responsivewebmobile.com/rwm_orange_clean/portfolio-item.html" class="thumbnail-overlay" style="opacity: 0;"></a>
-									<img src="assets/work_01.jpg" alt="">
-									<div class="caption">
-										<h5>Something Else</h5>
-										<i>Sed ut perspiciatis unde omnis iste.</i>
-									</div>
-								</div>
-							</li>
-						</ul>
-					</div>
-				</div>
-				<!-- /Last Works -->
-
-				<!-- Clients -->
-				<div class="row center vspace30">
-					<h1><span>Star/Rising Teachers</span></h1>
-					<p>here are some of the teacher who are awesome at creating Maps!</p>
-				</div>
-
-				<div class="row vspace30">
-					<div class="span2">
-						<div class="customer"><img src="assets/client.png" width="120" alt=""></div>
-					</div>
-
-					<div class="span2">
-						<div class="customer"><img src="assets/client.png" width="120" alt=""></div>
-					</div>
-
-					<div class="span2">
-						<div class="customer"><img src="assets/client.png" width="120" alt=""></div>
-					</div>
-
-					<div class="span2">
-						<div class="customer"><img src="assets/client.png" width="120" alt=""></div>
-					</div>
-
-					<div class="span2">
-						<div class="customer"><img src="assets/client.png" width="120" alt=""></div>
-					</div>
-
-					<div class="span2">
-						<div class="customer"><img src="assets/client.png" width="120" alt=""></div>
-					</div>
-				</div>
-				<!-- /Clients -->
-
+			<div class="span6 center well well-small">
+				<img src="assets/standards.png" alt="">
 			</div>
 		</div>
+		<!-- /Content -->
 
-		<footer id="footer">
-			<div id="post-footer">
-				<div class="container">		
-					<div class="row center">
-						<div class="span12">
-							<div class="vspace10">
-								<a href="http://www.responsivewebmobile.com/rwm_orange_clean/#"><img src="assets/Facebook.png" alt=""></a>
-								<a href="http://www.responsivewebmobile.com/rwm_orange_clean/#"><img src="assets/Twitter.png" alt=""></a>
-								<a href="http://www.responsivewebmobile.com/rwm_orange_clean/#"><img src="assets/Linkedin.png" alt=""></a>
-								<a href="http://www.responsivewebmobile.com/rwm_orange_clean/#"><img src="assets/Pinterest.png" alt=""></a>
-								<a href="http://www.responsivewebmobile.com/rwm_orange_clean/#"><img src="assets/Google+.png" alt=""></a>
-								<a href="http://www.responsivewebmobile.com/rwm_orange_clean/#"><img src="assets/Youtube.png" alt=""></a>
-								<br><br>
-								<p>© Copyright 2013.</p>
+
+		
+
+		<!-- Last Works -->
+		<div class="row center vspace30">
+			<h1><span>Hot Maps!</span></h1>
+			<p>Here are some maps that star teachers have made!</p>
+		</div>
+
+		<div class="row vspace30">
+			<div class="span12">
+				<ul class="thumbnails">
+					<li class="span3">
+						<div class="thumbnail center">
+							<a href="http://www.responsivewebmobile.com/rwm_orange_clean/portfolio-item.html" class="thumbnail-overlay" style="opacity: 0;"></a>
+							<img src="assets/work_01.jpg" alt="">
+							<div class="caption">
+								<h5>Work label</h5>
+								<i>Sed ut perspiciatis unde omnis iste.</i>
 							</div>
 						</div>
+					</li>
+
+					<li class="span3">
+						<div class="thumbnail center">
+							<a href="http://www.responsivewebmobile.com/rwm_orange_clean/portfolio-item.html" class="thumbnail-overlay" style="opacity: 0;"></a>
+							<img src="assets/work_02.jpg" alt="">
+							<div class="caption">
+								<h5>Project label</h5>
+								<i>Sed ut perspiciatis unde omnis iste.</i>
+							</div>
+						</div>
+					</li>
+
+					<li class="span3">
+						<div class="thumbnail center">
+							<a href="http://www.responsivewebmobile.com/rwm_orange_clean/portfolio-item.html" class="thumbnail-overlay" style="opacity: 0;"></a>
+							<img src="assets/work_03.jpg" alt="">
+							<div class="caption">
+								<h5>Something label</h5>
+								<i>Sed ut perspiciatis unde omnis iste.</i>
+							</div>
+						</div>
+					</li>
+
+					<li class="span3">
+						<div class="thumbnail center">
+							<a href="http://www.responsivewebmobile.com/rwm_orange_clean/portfolio-item.html" class="thumbnail-overlay" style="opacity: 0;"></a>
+							<img src="assets/work_01.jpg" alt="">
+							<div class="caption">
+								<h5>Something Else</h5>
+								<i>Sed ut perspiciatis unde omnis iste.</i>
+							</div>
+						</div>
+					</li>
+				</ul>
+			</div>
+		</div>
+		<!-- /Last Works -->
+
+		<!-- Clients -->
+		<div class="row center vspace30">
+			<h1><span>Star/Rising Teachers</span></h1>
+			<p>here are some of the teacher who are awesome at creating Maps!</p>
+		</div>
+
+		<div class="row vspace30">
+			<div class="span2">
+				<div class="customer"><img src="assets/client.png" width="120" alt=""></div>
+			</div>
+
+			<div class="span2">
+				<div class="customer"><img src="assets/client.png" width="120" alt=""></div>
+			</div>
+
+			<div class="span2">
+				<div class="customer"><img src="assets/client.png" width="120" alt=""></div>
+			</div>
+
+			<div class="span2">
+				<div class="customer"><img src="assets/client.png" width="120" alt=""></div>
+			</div>
+
+			<div class="span2">
+				<div class="customer"><img src="assets/client.png" width="120" alt=""></div>
+			</div>
+
+			<div class="span2">
+				<div class="customer"><img src="assets/client.png" width="120" alt=""></div>
+			</div>
+		</div>
+		<!-- /Clients -->
+
+	</div>
+</div>
+
+<footer id="footer">
+	<div id="post-footer">
+		<div class="container">		
+			<div class="row center">
+				<div class="span12">
+					<div class="vspace10">
+						<a href="http://www.responsivewebmobile.com/rwm_orange_clean/#"><img src="assets/Facebook.png" alt=""></a>
+						<a href="http://www.responsivewebmobile.com/rwm_orange_clean/#"><img src="assets/Twitter.png" alt=""></a>
+						<a href="http://www.responsivewebmobile.com/rwm_orange_clean/#"><img src="assets/Linkedin.png" alt=""></a>
+						<a href="http://www.responsivewebmobile.com/rwm_orange_clean/#"><img src="assets/Pinterest.png" alt=""></a>
+						<a href="http://www.responsivewebmobile.com/rwm_orange_clean/#"><img src="assets/Google+.png" alt=""></a>
+						<a href="http://www.responsivewebmobile.com/rwm_orange_clean/#"><img src="assets/Youtube.png" alt=""></a>
+						<br><br>
+						<p>© Copyright 2013.</p>
 					</div>
 				</div>
 			</div>
-		</footer>
-
-    <% if is_main_proudction? %>
-    <script type="text/javascript">
-      var _gaq = _gaq || [];
-      _gaq.push(['_setAccount', 'UA-38603370-1']);
-      _gaq.push(['_trackPageview']);
-
-      (function() {
-        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-      })();
-    </script>
-    <% end %>
-  </body>
-</html>
-
-
-
+		</div>
+	</div>
+</footer>
