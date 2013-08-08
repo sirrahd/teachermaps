@@ -3,12 +3,15 @@
   <h3><%= t('shared.my_resources') %></h3>
 </div>
 <div class="modal-body center">
-	  <div id="map_resource_filter">
-	  	<%= render 'maps/filter_map_assessment_resources' %>
-	  </div>
-	  <div id="map_assessment_resource_table" style="margin: 0px 20px 0px 20px;">
-	    <%= render 'maps/table_map_assessment_resources' %>
-	  </div>
+  <div id="map_resource_filter">
+  	<%= render 'maps/filter_map_assessment_resources' %>
+  </div>
+  <span id="filter_map_assessment_resource_loading_wheel" style="display:none;" >
+  	<%= image_tag "loading.gif", :alt => "loading" %>
+  </span>
+  <div id="map_assessment_resource_table" style="margin: 0px 20px 0px 20px;">
+    <%= render 'maps/table_map_assessment_resources' %>
+  </div>
 </div>
 <div class="modal-footer">
 	<button type="button" class="btn btn-primary" data-dismiss="modal">Save</button>

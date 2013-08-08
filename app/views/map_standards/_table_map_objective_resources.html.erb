@@ -1,34 +1,41 @@
+
 <table class="table table-condensed"  id="map_standards_resources_table"  style="cursor:pointer;">
+	<% if @resources.any? %>
   <tbody>
-  <thead>
-    <tr>
-      <th><%= t('shared.type') %></th>
-      <th><%= t('resources.title') %></th>
-      <th><%= t('resources.grades') %></th>
-      <th><%= t('resources.subjects') %></th>
-    </tr>
-  </thead>
+	  <thead>
+	    <tr>
+	      <th><%= t('shared.type') %></th>
+	      <th><%= t('resources.title') %></th>
+	      <th><%= t('resources.grades') %></th>
+	      <th><%= t('resources.subjects') %></th>
+	    </tr>
+	  </thead>
 
-  <% @resources.each do |resource| %>
-    <% if  @map_resources_by_resource_id.has_key? resource.id %>
-      <tr map-objective-id="<%= @map_objective.id %>" resource-id="<%= resource.id %>"  class="map_objectives_resource_selected"> 
-    <% else %>
-      <tr map-objective-id="<%= @map_objective.id %>" resource-id="<%= resource.id %>" class="map_objectives_resource_default hover"> 
-    <% end %>
+	  
 
-      <td title="<%= resource.get_type %>" style="width:35px;"><%= raw resource.get_thumbnail %></td>
-      <td><%= link_to truncate(resource.title, :length => Resource::MAX_TITLE_RENDER_LEN), 'JavaScript:void();', {:class => 'action-blank-link', 'action-url' => resource_path(resource) } %></td>
-      <td>
-        <% if resource.course_grades.any? %>
-          <%= raw(course_grade_ranges(resource.course_grades) ) %>
-        <% end %>     
-      </td>
-      <td>
-        <% if resource.course_subjects.any? %>
-          <%= resource.course_subjects.map(&:name).join(", ") %>
-        <% end %>    
-      </td>
-    </tr>
+		  <% @resources.each do |resource| %>
+		    <% if  @map_resources_by_resource_id.has_key? resource.id %>
+		      <tr map-objective-id="<%= @map_objective.id %>" resource-id="<%= resource.id %>"  class="map_objectives_resource_selected"> 
+		    <% else %>
+		      <tr map-objective-id="<%= @map_objective.id %>" resource-id="<%= resource.id %>" class="map_objectives_resource_default hover"> 
+		    <% end %>
+
+		      <td title="<%= resource.get_type %>" style="width:35px;"><%= raw resource.get_thumbnail %></td>
+		      <td><%= link_to truncate(resource.title, :length => Resource::MAX_TITLE_RENDER_LEN), 'JavaScript:void();', {:class => 'action-blank-link', 'action-url' => resource_path(resource) } %></td>
+		      <td>
+		        <% if resource.course_grades.any? %>
+		          <%= raw(course_grade_ranges(resource.course_grades) ) %>
+		        <% end %>     
+		      </td>
+		      <td>
+		        <% if resource.course_subjects.any? %>
+		          <%= resource.course_subjects.map(&:name).join(", ") %>
+		        <% end %>    
+		      </td>
+		    </tr>
+		  <% end %>
+	</tbody>
+	<% else %>
+  	<tr><td colspan="4" style="text-align:center;"><h2> No Results Found </h2></td></tr>
   <% end %>
-</tbody>
 </table>

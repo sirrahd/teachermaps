@@ -17,8 +17,19 @@
   </div>
   <% if @is_admin %>
   <div class="span3" id="resource-controls">
-    <%= link_to t('resources.sync'), "#loading_modal",'data-toggle' => "modal", :onclick => "window.location=\"#{resources_sync_path}\"", :class => 'btn'  %>
-    <%= link_to "Add Link", "#put_resource_link_modal",'data-toggle' => "modal", :class=>'btn' %>
+  	<div class="btn-group">
+		  <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
+		  	Actions
+		    <span class="caret"></span>
+		  </a>
+		  <ul class="dropdown-menu">
+		    <li><%= link_to t('resources.sync'), "#loading_modal",'data-toggle' => "modal", :onclick => "window.location=\"#{resources_sync_path}\"" %></li>
+		    <li><%= link_to "Add Link", "#put_resource_link_modal",'data-toggle' => "modal" %></li>
+		  </ul>
+		</div>    
+    <span id="resource-loading-wheel" style="display:none;">
+    	<img alt="loading" width="40px" src="/assets/loading.gif" />
+    </span>
   </div>
   <div class="span3" id="maps-controls">
     <%= link_to t('maps.create_map'), "JavaScript:void(0);", 'action-url'=> maps_path, :class => 'btn', id: "users_create_map"%>

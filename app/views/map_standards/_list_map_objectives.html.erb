@@ -2,7 +2,7 @@
   <ul style="list-style-type:none;" id="sortable_map_objectives">
 
     <% @map_standard.map_objectives.each do |map_objective| %>
-      <li id="map_objective_<%= map_objective.id %>" class="hover">
+      <li id="map_objective_<%= map_objective.id %>" class="hover sortable-outer">
         <div class="row editable" style="padding-bottom:15px;">
           
           <% if @is_admin %>
@@ -102,8 +102,8 @@ $(document).ready(function() {
     axis: 'y',
     dropOnEmpty: false,
     handle: '.handle',
-    cursor: 'crosshair',
-    items: 'li',
+    cursor: 'move',
+    items: '.sortable-outer',
     opacity: 0.4,
     scroll: true,
     update: function(event, ui){

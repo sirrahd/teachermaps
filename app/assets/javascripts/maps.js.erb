@@ -59,6 +59,9 @@ $(document).ready(function() {
 
   var timer;
   $(document).on('keyup input', '#filter_standards_search', function() {
+  	$("#standards_table").html('');  
+    $('#filter_map_standards_loading_wheel').show();
+    
     var form = $(this);
     // Prevents ajax request till N milliseconds 
     timer && clearTimeout(timer);
@@ -69,6 +72,8 @@ $(document).ready(function() {
 
   $(document).on('change', '#filter_standards_form', function() {
     $(this).submit();
+    $("#standards_table").html('');  
+    $('#filter_map_standards_loading_wheel').show();
   });
 
   $(document)
@@ -78,6 +83,7 @@ $(document).ready(function() {
   .on('ajax:success', "#filter_standards_form", function(event, data, status, xhr) {
     // Update the resources table
     $("#standards_table").html(data);  
+    $('#filter_map_standards_loading_wheel').hide();
   });
 
   //////////////////////////////
@@ -101,12 +107,12 @@ $(document).ready(function() {
       success: function (response) {
         $('#map_standards_list').html(response);
 
-        // Mark all children standards as selected
-        element.find('.standard-default').each(function() {
-            element.attr('class','standard-selected');
-        });
+        // Select any children standards
+    		element.parent().find('.standard-default').attr('class','standard-selected');
+    		element.parent().find('.icon-plus').attr('class','icon-check pull-right');
 
         element.attr('class','standard-selected');
+        element.find('.icon-plus').attr('class','icon-check pull-right');
       },
       error: function (xhr, ajaxOptions, thrownError) {
         pushFlash({message:"<%= I18n.t('maps.create_map_standard_error') %>", state: 'error', fadeOut: 5000});
@@ -141,6 +147,8 @@ $(document).ready(function() {
 
   var timer;
   $(document).on('keyup input', '#maps_filter_resource_search', function() {
+  	$("#maps_map_assessments_resources_table").html('');  
+    $('#filter_map_assessment_resource_loading_wheel').show();
     var form = $(this);
     // Prevents ajax request till N milliseconds 
     timer && clearTimeout(timer);
@@ -152,6 +160,8 @@ $(document).ready(function() {
   // Needed for browser compatibility 
   $(document).on('change', '#maps_filter_resource_form', function() {
     $(this).submit();
+    $("#maps_map_assessments_resources_table").html('');  
+    $('#filter_map_assessment_resource_loading_wheel').show();
   });
 
   $(document)
@@ -160,6 +170,7 @@ $(document).ready(function() {
   })
   .on('ajax:success', '#maps_filter_resource_form', function(event, data, status, xhr) {
     // Update the resources table
+    $('#filter_map_assessment_resource_loading_wheel').hide();
     $("#maps_map_assessments_resources_table").html(data);  
   });
 
@@ -252,8 +263,10 @@ $(document).ready(function() {
 	    	console.log("success");
 	    	if (value) {
 	    		pushFlash({message:"Map is now public!", state: 'info'});
+	    		$('#share_map_modal_btn').show();
 	    	} else {
 	    		pushFlash({message:"Map is now private!", state: 'info'});
+	    		$('#share_map_modal_btn').hide();
 	    	}
 	    },
 	    error: function(data) {
@@ -286,6 +299,28 @@ $(document).ready(function() {
     }, 3000);
 
   });
+
+
+
+
+
+  //////////////////////////////
+  //
+  // Share Map Url 
+  //
+  //////////////////////////////
+  $('#share_map_modal').on('show', function() {
+  	setTimeout(function(){
+  		// Race condition hack, but it works
+        $('#map_share_url').select();	
+    }, 200);
+    
+  })
+
+  $('#map_share_url').click(function() {
+	  $('#map_share_url').select();
+	});
+
 
 
 });
