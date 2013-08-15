@@ -1,0 +1,23 @@
+standard_855b9ac1ce12acf3e7d3f78493c0e56a06c9435d:
+ slug: "855b9ac1ce12acf3e7d3f78493c0e56a06c9435d"
+ name: "S1C1PO1"
+ course_grades: "K"
+ course_subject: "Science"
+ sub_subject: "Concept 1: Observations, Questions, and Hypotheses"
+ is_parent_standard: "false"
+ parent_standard: ""
+ standard_type: "Arizona"
+ text: "Observe common objects using multiple senses."
+
+
+
+ # standard_855b9ac1ce12acf3e7d3f78493c0e56a06c9435d:
+ # slug: "855b9ac1ce12acf3e7d3f78493c0e56a06c9435d"
+ # name: "CCSS.ELA-Literacy.CCRA.R.1"
+ # course_grades: "K, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12"
+ # course_subject: "English"
+ # sub_subject: "English Language Arts and Literacy"
+ # is_parent_standard: "false"
+ # parent_standard: ""
+ # standard_type: "Common Core"
+ # text: "Read closely to determine what the text says explicitly and to make logical inferences from it; cite specific textual evidence when writing or speaking to support conclusions drawn from the text."

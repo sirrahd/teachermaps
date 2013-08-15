@@ -27,9 +27,9 @@ en:
     standards:                  "Standards"
     assessments:                "Assessments"
   home:
-    title:                      "Welcome to %{app_name}"
+    title:                      "%{app_name}"
     link:                       "Home"
-    text:                       "We make lesson planning easy."
+    text:                       "Helping teachers navigate the world of lesson planning."
   help:
     title:                      "Help"
     link:                       "Help"

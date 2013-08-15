@@ -1,61 +1,23 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><%= t 'global.app_name' %></title>
-    <%= favicon_link_tag 'favicon.ico', :rel=>'icon', :type=>'image/ico' %>
-    <%= stylesheet_link_tag    "application", media: "all" %>
-    <%= javascript_include_tag "application" %>
-    <%= csrf_meta_tags %>
-    <!--[if lt IE 9]>
-      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
-    <![endif]-->
-    <script type="text/javascript">
-      I18n.defaultLocale = "<%= I18n.default_locale %>";
-      I18n.locale = "<%= I18n.locale %>";
-    </script>
-  </head>
-  <body>
 
+<h1 class="center"><%= t 'signin.title' %></h1>
 
-    <div class="container" id="main-container">
+<div class="row">
+  <div class="span6 offset3">
+    <%= form_for(:session, url: sessions_path) do |f| %>
 
-      <h1 class="center"><%= t 'signin.title' %></h1>
+      <% if @key %>
+        <%= hidden_field_tag :email_request_key, @key %>
+      <% end %>
 
-      <div class="row">
-        <div class="span6 offset3">
-          <%= form_for(:session, url: sessions_path) do |f| %>
+      <%= f.label :name, t('signin.name_label') %>
+      <%= f.text_field :name %>
 
-            <% if @key %>
-              <%= hidden_field_tag :email_request_key, @key %>
-            <% end %>
+      <%= f.label :password, t('signin.password_label') %>
+      <%= f.password_field :password %>
 
-            <%= f.label :name, t('signin.name_label') %>
-            <%= f.text_field :name %>
-
-            <%= f.label :password, t('signin.password_label') %>
-            <%= f.password_field :password %>
-
-            <%= f.submit t('signin.link'), class: "btn btn-primary" %>
-          <% end %>
-        </div>
-      </div>
-
-    </div>
-
-
-    <% if is_main_proudction? %>
-    <script type="text/javascript">
-      var _gaq = _gaq || [];
-      _gaq.push(['_setAccount', 'UA-38603370-1']);
-      _gaq.push(['_trackPageview']);
-
-      (function() {
-        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-      })();
-    </script>
+      <%= f.submit t('signin.link'), class: "btn btn-primary" %>
     <% end %>
-  </body>
-</html>
+  </div>
+</div>
+
+</div>

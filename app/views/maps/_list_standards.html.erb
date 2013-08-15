@@ -5,7 +5,7 @@
 
 		  	<% if @map_standards_by_standard_id.has_key?(standard.id) %>
 	    		<div class="standard-selected" >
-	    			<i class="icon-check pull-right"></i>
+	    			<i class="icon-ok pull-right"></i>
       	<% else %>
         	<div class="standard-default"  standard-id="<%= standard.id %>" action-url="<%= map_map_standards_path(@map.id) %>">
         		<i class="icon-plus pull-right"></i>
@@ -22,7 +22,7 @@
 		    			<li>
 					    	<% if @map_standards_by_standard_id.has_key?(child.id) %>
 					    		<div class="standard-selected">
-					    			<i class="icon-check pull-right"></i>
+					    			<i class="icon-ok pull-right"></i>
               	<% else %>
                 	<div class="standard-default" standard-id="<%= child.id %>" action-url="<%= map_map_standards_path(@map.id) %>">
                 		<i class="icon-plus pull-right"></i>
@@ -51,29 +51,29 @@
 <script type="text/javascript">
 $(document).ready(function() { 
 
+	$('.hover-parent').mouseenter(function(){
+  	$(this).toggleClass('hover');
+  	// Highlight self
+  	$(this).parent().toggleClass('hover-active');
+  	// Highlight all children standards
+  	$(this).parent().parent().find('.hover-child').toggleClass('hover-active');
+  });
   $('.hover-parent').mouseleave(function(){
-  	// if(!$(this).parent().hasClass('standard-selected')){
-	  	$(this).toggleClass('hover');
-	  	$(this).parent().toggleClass('hover-active');
-  	// }
+  	$(this).toggleClass('hover');
+  	// Remvove highlight self
+  	$(this).parent().toggleClass('hover-active');
+  	// Remove highlight all children standards
+  	$(this).parent().parent().find('.hover-child').toggleClass('hover-active');
   });
-  $('.hover-parent').mouseenter(function(){
-  	// if(!$(this).parent().hasClass('standard-selected')){
-	  	$(this).toggleClass('hover');
-	  	$(this).parent().toggleClass('hover-active');
-  	// }
-  });
+  
 
-  $('.hover-child').mouseleave(function(){
-  	// if(!$(this).parent().hasClass('standard-selected')){
-  		$(this).toggleClass('hover');
-  	// }
-  });
   $('.hover-child').mouseenter(function(){
-  	// if(!$(this).parent().hasClass('standard-selected')){
-  		$(this).toggleClass('hover');
-  	// }
+		$(this).toggleClass('hover');	
   });
+  $('.hover-child').mouseleave(function(){
+		$(this).toggleClass('hover');
+  });
+  
 
 }); 
 </script>
