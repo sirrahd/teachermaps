@@ -141,6 +141,7 @@ class UsersController < ApplicationController
       redirect_to @user
     elsif params[:resend]
       UserMailer.change_email(@user, request.env['HTTP_HOST']).deliver
+      render json: '', status: :ok
     else
       flash[:error] = t 'confirmation.error'
       redirect_to @user
