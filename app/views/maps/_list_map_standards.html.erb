@@ -14,14 +14,12 @@
 			   		<b><%= map_standard.standard.name %>: </b>
 			   		<p><%= raw(map_standard.standard.text) %></p>
 
-				    <ul class="inline gray">
-					  	<li>
-				  	  <label><%= t('shared.objectives') %>: <%= map_standard.objectives_count %></label>
-			        </li>
-			        <li>
-			        	<label><%= t('shared.resources') %>: <%= map_standard.resources_count %></label>
-			        </li>
-			      </ul>
+			   		<div class="pull-right">
+					    <%= t('shared.objectives') %>: <%= map_standard.objectives_count %>
+		        	<%= t('shared.resources') %>: <%= map_standard.resources_count %>
+	        	</div>
+	        	<br/>
+
 		    	</div>
 
 		    	<% if @is_admin %>
