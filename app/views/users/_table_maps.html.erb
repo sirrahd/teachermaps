@@ -1,7 +1,7 @@
 <ul style="list-style-type:none;">
     
   <% @maps.each do |map| %>
-    <li action-url="<%= user_map_path map.user,map.slug  %>"  style="cursor:pointer; margin:5px;" class="action-link hover thumbnail">
+    <li action-url="<%= user_map_path map.user,map.slug  %>"  style="cursor:pointer; margin:5px;" class="action-link hover">
       
       <div class="editable">
       	<% if @is_admin %>

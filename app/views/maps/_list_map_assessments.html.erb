@@ -3,7 +3,7 @@
   <ul style="list-style-type:none;" id="sortable_map_assessments">
 
     <% @map.map_assessments.each do |map_assessment| %>
-      <li id="map_assessment_<%= map_assessment.id %>" style="margin:5px;" class="hover sortable-outer thumbnail">
+      <li id="map_assessment_<%= map_assessment.id %>" style="margin:5px;" class="hover sortable-outer">
         <div class="row editable" style="padding-bottom:15px;">
           
           <% if @is_admin %>
