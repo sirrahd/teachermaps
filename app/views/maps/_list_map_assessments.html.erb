@@ -3,7 +3,7 @@
   <ul style="list-style-type:none;" id="sortable_map_assessments">
 
     <% @map.map_assessments.each do |map_assessment| %>
-      <li id="map_assessment_<%= map_assessment.id %>" class="hover sortable-outer">
+      <li id="map_assessment_<%= map_assessment.id %>" style="margin:5px;" class="hover sortable-outer">
         <div class="row editable" style="padding-bottom:15px;">
           
           <% if @is_admin %>
@@ -107,7 +107,7 @@
 	    handle: '.handle',
 	    cursor: 'move',
 	    items: '.sortable-outer',
-	    opacity: 0.4,
+	    opacity: 1.0,
 	    scroll: true,
 	    update: function(event, ui){
 	      var droppedItem = ui.item;
