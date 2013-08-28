@@ -36,7 +36,9 @@
 
       <div>
         <h2>
-    			<%= best_in_place_if @is_admin, @map, :name, :type => :input, :display_as => :title_titlecase, class: 'editable-field'%>
+          <span class="<%= set_if @is_admin, 'editable-field' %>">
+    			 <%= best_in_place_if @is_admin, @map, :name, :type => :input, :display_as => :title_titlecase, class: 'editable-field'%>
+          </span>
     		</h2>
       </div>
 
