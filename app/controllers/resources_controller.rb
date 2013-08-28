@@ -154,7 +154,7 @@ class ResourcesController < ApplicationController
       @resources &= Resource.find(:all, joins: :course_subjects, conditions: { user_id: @current_user.id, course_subjects: { id:params[:course_subjects]}})
     end
 
-    sleep(1.0)
+    # sleep(1.0)
     render partial:  'resources/table_resources'
 
   end

@@ -32,18 +32,10 @@ class MapsController < ApplicationController
     @filter_course_subjects = CourseSubject.where name: ['English', 'Mathematics']
 
     @share_email = ShareEmail.new
-    Rails.logger.info "Browser rendering #{client_browser_name}"
+    # Show help message on standards filter modal only once per page load
+    @show_filter_help = true
 
   end
-
-  # def share_email 
-  # 	require_session
-  # 	Rails.logger.info(params)
-
-
-
-  # 	return render nothing: true, status: 500
-  # end
 
   def create
   	require_session

@@ -17,16 +17,14 @@
   </div>
   <% if @is_admin %>
   <div class="pull-right" id="resource-controls">
-
-  <div>
-    <%= link_to "#loading_modal",'data-toggle' => "modal", class: 'btn',  :onclick => "window.location=\"#{resources_sync_path}\"" do %>
-      <%= t('resources.sync') %> <i class="icon-refresh"></i>
-    <% end %>
-	  <%= link_to "#put_resource_link_modal",'data-toggle' => "modal", class: 'btn' do %>
-      Add Link <i class="icon-plus"></i>
-    <% end %>
-
-  </div>
+    <div>
+      <%= link_to "#loading_modal",'data-toggle' => "modal", class: 'btn',  :onclick => "window.location=\"#{resources_sync_path}\"" do %>
+        <%= t('resources.sync') %> <i class="icon-refresh"></i>
+      <% end %>
+  	  <%= link_to "#put_resource_link_modal",'data-toggle' => "modal", class: 'btn' do %>
+        Add Link <i class="icon-plus"></i>
+      <% end %>
+    </div>
 
     <span id="resource-loading-wheel" style="display:none;">
     	<img alt="loading" width="40px" src="/assets/loading.gif" />

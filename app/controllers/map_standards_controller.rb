@@ -1,8 +1,6 @@
 class MapStandardsController < ApplicationController
   include SessionsHelper
   include HtmlHelper
-
-  # before_filter :require_session
   
   def show
     Rails.logger.info(params)

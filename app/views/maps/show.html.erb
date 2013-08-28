@@ -99,6 +99,10 @@
 	      </div>
 	      <div class="row">
 	        <div  id="standards_table" style="margin: 0px 20px 0px 20px;">
+            <% if @show_filter_help and @show_filter_help %>
+              <!-- Shows up only the first time the page is loaded -->
+              <div class="center lead"> Filter by grades and/or subject </div>
+            <% end %>
 	          <%= render 'maps/list_standards' %>
 	        </div>
 	      </div>
