@@ -136,10 +136,11 @@
     	<div id="share_map_form_errors"></div>
 
     	<p>
-    		<%= label_tag('map_share_url', "Share Map URL") %>
-    		<%= text_field_tag('map_share_url', map_path(@map.slug, only_path: false, host: request.host)) %>
+    		<%= label_tag('map_share_url', "Map Link") %>
+    		<%= text_field_tag(:map_share_url, map_path(@map.slug, only_path: false, host: request.host)) %>
     	<p>
 
+      <!-- 
     	<%= form_for @share_email, url: map_share_email_index_path(@map), html: { :remote=>true, :multipart => true, :class=>"form-horizontal", :'data-type' => 'html', id: 'share_map_form' }  do |f| %>
     			  
 			  <%= label_tag(:email, "Email Address") %>
@@ -153,6 +154,7 @@
 			  <button type="button" class="btn" data-dismiss="modal">Cancel</button>
 			  <button type="submit" id="share_map_form_submit" class="btn btn-primary">Share</button>
 		  <% end %>
+       -->
     </div>
   </div>
 
