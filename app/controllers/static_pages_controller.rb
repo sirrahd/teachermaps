@@ -29,6 +29,10 @@ class StaticPagesController < ApplicationController
   def tos
   end
 
+
+  def videos
+  end
+
   def page404
   	render '404'
   end

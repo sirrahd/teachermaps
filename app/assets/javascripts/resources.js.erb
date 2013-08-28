@@ -17,7 +17,7 @@ $(document).ready(function(){
 
     $("#resources_table").html(response);
     // Flash user of the success
-    pushFlash({message:"<%= I18n.t('resources.upload_success') %>", state: 'success', fadeOut: 5000});
+    // pushFlash({message:"<%= I18n.t('resources.upload_success') %>", state: 'success', fadeOut: 5000});
     // Hide all modals
     $('.modal.in').modal('hide');   
     // Rest form

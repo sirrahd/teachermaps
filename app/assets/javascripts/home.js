@@ -13,7 +13,7 @@ $(document).ready(function() {
     var emailAddress = $('#mc-email').val();
 
     if(emailAddress == 'undefined' && emailAddress.length == 0) {
-      pushFlash({message:"Email Subscribtion Error", state: 'success', fadeOut: 5000});
+      // pushFlash({message:"Email Subscribtion Error", state: 'success', fadeOut: 5000});
       return;
     }
 
