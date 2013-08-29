@@ -236,7 +236,7 @@ class ResourcesController < ApplicationController
     @resources = @current_user.resources
 
     respond_to do |format|
-       format.html { redirect_to user_path(@current_user, anchor: 'resources'), :flash => { :success => t('resources.synced_n_files', :sync_count => sync_count) } }
+       format.html { redirect_to user_path(@current_user, anchor: 'resources') }
     end
   end
 
