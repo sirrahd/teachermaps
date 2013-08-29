@@ -33,6 +33,7 @@ Teachermaps::Application.routes.draw do
   # Sync Google Drive and/or DropBox resources
   match '/resources/sync' => 'resources#sync'
   match '/resources/create/link' => 'resources#create_link'
+  match '/resources/create/link/form' => 'resources#create_link_form', as: 'create_link_form'
   match '/resources/filter' => 'resources#filter'
   match '/resources/page' => 'resources#page'
   resources :resources

@@ -27,15 +27,7 @@ $(document).ready(function(){
     closeModalOnSubmit();
     
 
-    // // Reset form
-    // $('create_resource_link_form').each(function(){
-    //   this.reset();
-
-    //   if($(this).select2() !=undefined){
-    //     $(this).select2('data', null)
-    //   }
-
-    // });
+    //              
   });
 
 
@@ -79,6 +71,20 @@ $(document).ready(function(){
       });   
 
       e.stopPropagation();
+  });
+
+
+  //////////////////////////////
+  //
+  // Create Link Resources 
+  //
+  //////////////////////////////
+
+  $(document).on('click', "#create_link_form_btn", function( e ){
+    var remote= $( this ).attr('data-url');
+    $('#create_resource_link_modal_body').load( remote, function( e ){
+        $( '#create_resource_link_modal' ).modal( 'show' );
+    });
   });
     
 });

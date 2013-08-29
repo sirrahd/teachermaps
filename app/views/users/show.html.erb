@@ -18,10 +18,10 @@
   <% if @is_admin %>
   <div class="pull-right" id="resource-controls">
     <div>
-      <%= link_to "#loading_modal",'data-toggle' => "modal", class: 'btn',  :onclick => "window.location=\"#{resources_sync_path}\"" do %>
+      <%= link_to "#loading_modal",'data-toggle' => "modal", class: 'btn', :onclick => "window.location=\"#{resources_sync_path}\"" do %>
         <%= t('resources.sync') %> <i class="icon-refresh"></i>
       <% end %>
-  	  <%= link_to "#put_resource_link_modal",'data-toggle' => "modal", class: 'btn' do %>
+  	  <%= link_to 'JavaScript:void(0);', class: 'btn', id: 'create_link_form_btn', 'data-url' => create_link_form_path do %>
         Add Link <i class="icon-plus"></i>
       <% end %>
     </div>
@@ -30,9 +30,11 @@
     	<img alt="loading" width="40px" src="/assets/loading.gif" />
     </span>
   </div>
+
   <div class="pull-right" id="maps-controls">
     <%= link_to t('maps.create_map'), "JavaScript:void(0);", 'action-url'=> maps_path, :class => 'btn', id: "users_create_map"%>
   </div>
+
   <% end %>
 </div>
 
@@ -98,10 +100,8 @@
     <div class="modal-body" id="show_resource_link_modal_body"></div>
 </div>
 
-<div id="put_resource_link_modal" class="modal hide fade in" >
-  <div class="modal-body">
-    <%= render 'resources/create_link' %>
-  </div>
+<div id="create_resource_link_modal" class="modal hide fade in" >
+  <div class="modal-body" id="create_resource_link_modal_body"></div>
 </div>
 
 <%= will_paginate(@resources) %>

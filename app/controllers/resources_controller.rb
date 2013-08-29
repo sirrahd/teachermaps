@@ -159,6 +159,10 @@ class ResourcesController < ApplicationController
 
   end
 
+  def create_link_form
+    render partial:  'create_link'
+  end
+
   def create_link
   	require_session
     Rails.logger.info(params)
