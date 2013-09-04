@@ -51,7 +51,7 @@ Teachermaps::Application.routes.draw do
     resources :share_email, only: [:create]
     post 'sort_assessments'
     post 'sort_standards'
-    post 'set_privacy_state'
+    post 'privacy_state'
   end
   resources :maps, only: [:show]
 

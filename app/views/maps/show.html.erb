@@ -7,22 +7,22 @@
 
       
     	<% if @is_admin %>
-    	<span class="pull-right" >
+    	<span class="pull-right">
     		
     		<%= link_to "Share", "#share_map_modal",'data-toggle' => "modal", :class=>'btn', id: 'share_map_modal_btn'%>
-    		<% if client_browser_name == 'Firefox' %>
-    			<span id="map-privacy-state-switch" class="switch" action-url="<%= user_map_path(@map.user.id, @map) %>"  data-on="danger" data-off="primary" data-on-label="Public" data-off-label="Private" style="top:10px;">
-				<% else %>  	
-					<span id="map-privacy-state-switch" class="switch" action-url="<%= user_map_path(@map.user.id, @map) %>"  data-on="danger" data-off="primary" data-on-label="Public" data-off-label="Private">
-				<% end %>
-					
-			    <% if @map.privacy_state == PrivacyState::PUBLIC %> 
-			    	<input type="checkbox" checked />
-			    <% else %>
-			    	<input type="checkbox" />
-			    <% end %>
-				</span>
 
+
+        <div class="btn-group" data-toggle="buttons-radio">
+        
+        <% if @map.privacy_state == PrivacyState::PUBLIC %> 
+          <button type="button" id="select_public"  class="btn active">Public  <i class="icon-group"></i></button>
+          <button type="button" id="select_private" class="btn">Private <i class="icon-user"></i></button>
+        <% else %>
+          <button type="button" id="select_public" class="btn">Public  <i class="icon-group"></i></button>
+          <button type="button" id="select_private" class="btn active">Private <i class="icon-user"></i></button>
+        <% end %>
+
+        </div>
 
      	</span>
 
@@ -140,7 +140,7 @@
     		<%= text_field_tag(:map_share_url, map_path(@map.slug, only_path: false, host: request.host)) %>
     	<p>
 
-      <!-- 
+      <% if false %>
     	<%= form_for @share_email, url: map_share_email_index_path(@map), html: { :remote=>true, :multipart => true, :class=>"form-horizontal", :'data-type' => 'html', id: 'share_map_form' }  do |f| %>
     			  
 			  <%= label_tag(:email, "Email Address") %>
@@ -154,7 +154,8 @@
 			  <button type="button" class="btn" data-dismiss="modal">Cancel</button>
 			  <button type="submit" id="share_map_form_submit" class="btn btn-primary">Share</button>
 		  <% end %>
-       -->
+
+      <% end %>
     </div>
   </div>
 
@@ -172,5 +173,31 @@
 		<% end %>
 	});
 
+
+  var processPrivacy = function(state){
+
+    $.ajax({
+      type: 'POST',
+      url: '<%= map_privacy_state_path(@map) %>',
+      data: { 'state': state },
+      success: function(response){
+        console.log(response);
+      },
+      error: function(response){
+        console.log(response);
+      }
+    });
+
+  };
+
+  $('#select_public').click(function(){
+    processPrivacy('<%= PrivacyState::PUBLIC %>');
+    $('#share_map_modal_btn').show();
+  });
+  $('#select_private').click(function(){
+    processPrivacy('<%= PrivacyState::PRIVATE %>');
+    $('#share_map_modal_btn').hide();
+  });
+  
 	</script>
 <% end %>

@@ -7,17 +7,17 @@
   	<span class="pull-right" >
   		
   		<%= link_to "Share", "#share_map_modal",'data-toggle' => "modal", :class=>'btn', id: 'share_map_modal_btn'%>
-  		<% if client_browser_name == 'Firefox' %>
-  			<span id="map-privacy-state-switch" class="switch" action-url="<%= user_map_path(@map.user.id, @map) %>"  data-on="danger" data-off="primary" data-on-label="Public" data-off-label="Private" style="top:10px;">
-			<% else %>  	
-				<span id="map-privacy-state-switch" class="switch" action-url="<%= user_map_path(@map.user.id, @map) %>"  data-on="danger" data-off="primary" data-on-label="Public" data-off-label="Private">
-			<% end %>
-				
-	    <% if @map.privacy_state == PrivacyState::PUBLIC %> 
-	    	<input type="checkbox" checked />
-	    <% else %>
-	    	<input type="checkbox" />
-	    <% end %>
+		  <div class="btn-group" data-toggle="buttons-radio">
+        
+        <% if @map.privacy_state == PrivacyState::PUBLIC %> 
+          <button type="button" id="select_public"  class="btn active">Public  <i class="icon-group"></i></button>
+          <button type="button" id="select_private" class="btn">Private <i class="icon-user"></i></button>
+        <% else %>
+          <button type="button" id="select_public" class="btn">Public  <i class="icon-group"></i></button>
+          <button type="button" id="select_private" class="btn active">Private <i class="icon-user"></i></button>
+        <% end %>
+
+      </div>
 		</span>	
 		<% end %>
 
@@ -133,9 +133,36 @@
 	  $('.share_comments_field').autosize();   
 	});
 
-	<% if @map.privacy_state == PrivacyState::PRIVATE %> 
-	  $('#share_map_modal_btn').hide();
-	<% end %>
+
+
+  var processPrivacy = function(state){
+
+    $.ajax({
+      type: 'POST',
+      url: '<%= map_privacy_state_path(@map) %>',
+      data: { 'state': state },
+      success: function(response){
+        console.log(response);
+      },
+      error: function(response){
+        console.log(response);
+      }
+    });
+
+  };
+
+  <% if @map.privacy_state == PrivacyState::PRIVATE %> 
+    $('#share_map_modal_btn').hide();
+  <% end %>
+
+  $('#select_public').click(function(){
+    processPrivacy('<%= PrivacyState::PUBLIC %>');
+    $('#share_map_modal_btn').show();
+  });
+  $('#select_private').click(function(){
+    processPrivacy('<%= PrivacyState::PRIVATE %>');
+    $('#share_map_modal_btn').hide();
+  });
 
 	</script>
 <% end %>

@@ -132,6 +132,22 @@ class MapsController < ApplicationController
     render :nothing => true
   end
 
+  def privacy_state
+    require_session
+    Rails.logger.info params
+    @map = Map.find params[:map_id]
+    return render nothing: true, status: 404 unless @map
+    @map.privacy_state = params[:state]
+    
+    respond_to do |format|
+      if @map.save
+        format.html { render nothing: true, status: 200 }
+      else
+        format.html { render nothing: true, status: 500 }
+      end
+    end
+  end
+
   private 
   
   # Requires user session
