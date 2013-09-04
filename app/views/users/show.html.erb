@@ -7,8 +7,6 @@
 </div>
 
 <div class="row">
-  
-  <div class="">
 
     <% if @is_admin %>
       <div class="pull-right" id="resource-controls">
@@ -28,8 +26,6 @@
 
       <div class="pull-right" id="maps-controls">
         <%= link_to t('maps.create_map'), "JavaScript:void(0);", 'action-url'=> maps_path, :class => 'btn', id: "users_create_map"%>
-      </div>
-
       </div>
     <% end %>
     

@@ -16,10 +16,13 @@ $(document).ready(function() {
   if(window.location.hash != ""){
     // Use the hash to open to the given tab
     $('.nav-tabs a[href="' + window.location.hash + '"]' ).tab('show');
-    // Need to override the web browser anchor invocation
-    $('html, body').animate({scrollTop:0}, 'fast');
-
+    // $('.nav-tabs a[href="' + window.location.hash + '"]' ).click();
+    
+    window.setInterval( function() {
+      $('html, body').animate({ scrollTop: 0 }, 0);
+    }, 0);
   }
+
 
   //////////////////////////////
   //
