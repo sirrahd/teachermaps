@@ -39,11 +39,13 @@
 <script type="text/javascript">
 $(document).ready(function() {
 
+  <% if current_user %>
   $(document).on('click', '#show_resources', function(){
     window.location = '<%= user_path(current_user, anchor:"resources") %>';
     window.location.reload(true);
     return true;
   });
+  <% end %>
 
 });
 </script>
