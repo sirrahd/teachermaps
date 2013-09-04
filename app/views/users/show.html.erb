@@ -6,42 +6,42 @@
   </aside>
 </div>
 
-<div class="row">
+<div>
 
-    <% if @is_admin %>
-      <div class="pull-right" id="resource-controls">
-        <div>
-          <%= link_to "#loading_modal",'data-toggle' => "modal", class: 'btn', :onclick => "window.location=\"#{resources_sync_path}\"" do %>
-            <%= t('resources.sync') %> <i class="icon-refresh"></i>
-          <% end %>
-          <%= link_to 'JavaScript:void(0);', class: 'btn', id: 'create_link_form_btn', 'data-url' => create_link_form_path do %>
-            Add Link <i class="icon-plus"></i>
-          <% end %>
-        </div>
-
-        <span id="resource-loading-wheel" style="display:none;">
-          <img alt="loading" width="40px" src="/assets/loading.gif" />
-        </span>
-      </div>
-
-      <div class="pull-right" id="maps-controls">
-        <%= link_to t('maps.create_map'), "JavaScript:void(0);", 'action-url'=> maps_path, :class => 'btn', id: "users_create_map"%>
-      </div>
-    <% end %>
-    
-    <ul class="nav nav-pills nav-tabs tab-control">
-      <li class="active"><a href="#maps" data-toggle="tab" class="map-toggle-control">Maps</a></li>
-      <% if @is_admin %>
-      <li><a href="#resources" data-toggle="tab" class="resource-toggle-control">Resources</a></li>
+  <% if @is_admin %>
+  <div class="pull-right" id="resource-controls">
+    <div>
+      <%= link_to "#loading_modal",'data-toggle' => "modal", class: 'btn', :onclick => "window.location=\"#{resources_sync_path}\"" do %>
+        <%= t('resources.sync') %> <i class="icon-refresh"></i>
       <% end %>
-    </ul>
+      <%= link_to 'JavaScript:void(0);', class: 'btn', id: 'create_link_form_btn', 'data-url' => create_link_form_path do %>
+        Add Link <i class="icon-plus"></i>
+      <% end %>
+    </div>
+
+    <span id="resource-loading-wheel" style="display:none;">
+      <img alt="loading" width="40px" src="/assets/loading.gif" />
+    </span>
+  </div>
+
+  <div class="pull-right" id="maps-controls">
+    <%= link_to t('maps.create_map'), "JavaScript:void(0);", 'action-url'=> maps_path, :class => 'btn', id: "users_create_map"%>
+  </div>
+  <% end %>
+  
+  <ul class="nav nav-pills nav-tabs tab-control">
+    <li class="active"><a href="#maps" data-toggle="tab" class="map-toggle-control">Maps</a></li>
+    <% if @is_admin %>
+    <li><a href="#resources" data-toggle="tab" class="resource-toggle-control">Resources</a></li>
+    <% end %>
+  </ul>
 
     
 </div>
 
 <div class="tab-content">
   <div class="tab-pane active" id="maps">
-    <div id="users_maps_table">
+    <div id="users_maps_table" style="margin-left:-30px;">
       <%= render 'users/table_maps' %>
     </div>
   </div>
