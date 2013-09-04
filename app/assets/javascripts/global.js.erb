@@ -14,8 +14,14 @@ $(document).ready(function() {
   //
   //////////////////////////////
   if(window.location.hash != ""){
-    $('a[href="' + window.location.hash + '"]').click()
+    // Use the hash to open to the given tab
+    $('.nav-tabs a[href="' + window.location.hash + '"]' ).tab('show');
+    // Scroll to top, somtime sit falls to the bottom    
+    window.setInterval( function() {
+      $('html, body').animate({ scrollTop: 0 }, 0);
+    }, 0);
   }
+
 
   //////////////////////////////
   //
@@ -35,7 +41,9 @@ $(document).ready(function() {
   });
 
   $('.editable-field').mouseenter(function(){
-		$(this).append('<i id="icon-hover" class="icon-edit"></i>');
+    if(!(($(this).find('form')).length > 0)) {
+      $(this).append('<i id="icon-hover" class="icon-edit"></i>');
+    }
   });
   $('.editable-field').mouseleave(function(){
 		$('#icon-hover').remove();

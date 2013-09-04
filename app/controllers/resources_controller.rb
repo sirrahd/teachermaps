@@ -154,9 +154,13 @@ class ResourcesController < ApplicationController
       @resources &= Resource.find(:all, joins: :course_subjects, conditions: { user_id: @current_user.id, course_subjects: { id:params[:course_subjects]}})
     end
 
-    sleep(1.0)
+    # sleep(1.0)
     render partial:  'resources/table_resources'
 
+  end
+
+  def create_link_form
+    render partial:  'create_link'
   end
 
   def create_link
@@ -232,7 +236,7 @@ class ResourcesController < ApplicationController
     @resources = @current_user.resources
 
     respond_to do |format|
-       format.html { redirect_to user_path(@current_user, anchor: 'resources'), :flash => { :success => t('resources.synced_n_files', :sync_count => sync_count) } }
+       format.html { redirect_to user_path(@current_user, anchor: 'resources') }
     end
   end
 

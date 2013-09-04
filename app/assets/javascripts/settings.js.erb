@@ -8,7 +8,7 @@ $(document).ready(function() {
     })
     .bind('ajax:success', function(event, data, status, xhr) {
         // Flash user of the success
-        pushFlash({message:"<%= I18n.t('settings.save_success') %>", state:'success', fadeOut:4000});
+        // pushFlash({message:"<%= I18n.t('settings.save_success') %>", state:'success', fadeOut:4000});
     });
 
   $('#resend_confirmation')

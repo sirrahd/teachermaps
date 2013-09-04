@@ -20,6 +20,7 @@ Teachermaps::Application.routes.draw do
   match '/contact', to: 'static_pages#contact'
   match '/privacy', to: 'static_pages#privacy'
   match '/terms',   to: 'static_pages#tos'
+  match '/videos',   to: 'static_pages#videos'
 
   match '/robots.txt', to: 'static_pages#robots'
 
@@ -32,6 +33,7 @@ Teachermaps::Application.routes.draw do
   # Sync Google Drive and/or DropBox resources
   match '/resources/sync' => 'resources#sync'
   match '/resources/create/link' => 'resources#create_link'
+  match '/resources/create/link/form' => 'resources#create_link_form', as: 'create_link_form'
   match '/resources/filter' => 'resources#filter'
   match '/resources/page' => 'resources#page'
   resources :resources
@@ -49,7 +51,7 @@ Teachermaps::Application.routes.draw do
     resources :share_email, only: [:create]
     post 'sort_assessments'
     post 'sort_standards'
-    post 'set_privacy_state'
+    post 'privacy_state'
   end
   resources :maps, only: [:show]
 

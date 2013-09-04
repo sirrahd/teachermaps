@@ -21,9 +21,13 @@
           	</p>
           	
 
-            <% if !map_objective.map_resources.empty? %>
+
               <div style="padding-left:30px;">
                 <ul style="list-style-type:none;" class="sortable_map_objective_resources_<%= map_objective.id %>">
+                 
+                  <% if @is_admin %>
+                    <li style="margin-bottom:5px;"> <%= link_to 'Add/Edit Objective Resources', show_resources_map_objective_path(map_objective), {remote: true, 'data-toggle' => "modal", 'data-target' =>  "#filter_map_objectives_resources_modal", title: t('map_standards.edit_map_objective_resources'), :class => 'maps_objectives_show_resources'} %> </li>
+                  <% end %>
                   <% map_objective.map_resources.each do |map_resource| %>
                     
                         <li id="map_resource_<%= map_resource.id %>" class="sortable-inner editable-inner">
@@ -42,17 +46,13 @@
                   <% end %>
                 </ul>
               </div>
-            <% end %>
+
           </div>
 
           <div class="pull-right">
           	<% if @is_admin %>
 	            <%= link_to map_objective, confirm: t('map_standards.delete_map_objective_confirmation', title: map_objective.name), method: :delete, title: t('users.delete_map'), :class=>'map_standards_map_objective_destroy', remote: true do %>
 	              <i class="icon-trash"></i>
-	            <% end %>
-	            <br/>
-	            <%= link_to show_resources_map_objective_path(map_objective), {remote: true, 'data-toggle' => "modal", 'data-target' =>  "#filter_map_objectives_resources_modal", title: t('map_standards.edit_map_objective_resources'), :class => 'maps_objectives_show_resources'} do %>
-	              <i class="icon-pencil"></i>
 	            <% end %>
             <% end %>
           </div>

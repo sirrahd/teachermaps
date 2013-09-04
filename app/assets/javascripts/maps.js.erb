@@ -243,46 +243,6 @@ $(document).ready(function() {
 
 
 
-  //////////////////////////////
-  //
-  // Public/Private Privacy State
-  //
-  //////////////////////////////
-
-
-  $('#map-privacy-state-switch').on('switch-change', function (e, data) {
-		var $el = $(data.el), value = data.value;
-		var actionUrl = $(this).attr('action-url');
-
-    if( value == undefined ) return false;
-
-    // 0=Private,1=Public
-    value = value ? 1 : 0;
-    body = { 'privacy_state': value };
-
-    $.ajax({
-	    type: "PUT",
-	    url: actionUrl,
-	    data: {'map':body},
-	    success: function(data) {
-	    	console.log("success");
-	    	if (value) {
-	    		pushFlash({message:"Map is now public!", state: 'info'});
-	    		$('#share_map_modal_btn').show();
-	    	} else {
-	    		pushFlash({message:"Map is now private!", state: 'info'});
-	    		$('#share_map_modal_btn').hide();
-	    	}
-	    },
-	    error: function(data) {
-	    	console.log("failure");
-	    	pushFlash({message:"Setting map privacy failed.", state: 'error', fadeOut: 15000});
-	    }
-	  });
-	});
-
-
-
 	//////////////////////////////
   //
   // Public/Private Privacy State
