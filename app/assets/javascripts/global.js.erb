@@ -16,8 +16,7 @@ $(document).ready(function() {
   if(window.location.hash != ""){
     // Use the hash to open to the given tab
     $('.nav-tabs a[href="' + window.location.hash + '"]' ).tab('show');
-    // $('.nav-tabs a[href="' + window.location.hash + '"]' ).click();
-    
+    // Scroll to top, somtime sit falls to the bottom    
     window.setInterval( function() {
       $('html, body').animate({ scrollTop: 0 }, 0);
     }, 0);
