@@ -3,27 +3,28 @@ $(document).ready(function(){
 
   //////////////////////////////
   //
-  // Bootstrap initializations for Maps/Resources tabs 
+  // Bootstrap initializations for Maps/Resources tabs
   //
   //////////////////////////////
-  
+
   // Hide by default
   $('#resource-controls').hide();
-  if(window.location.hash == "#resources"){ 
+  if(window.location.hash == "#resources"){
     $('#maps-controls').hide();
-    $('#resource-controls').show(); 
-  }  
+    $('#resource-controls').show
+    $('#step-0').hide();
+  }
   // Shows resource controls when viewing resources
   $('.resource-toggle-control').click(function(){
-  	$('#resource-controls').show();
+    $('#resource-controls').show();
     $('#maps-controls').hide();
     // Also hide possible user page popovers. Make different-step popovers for the resources page.
     $('#step-0').hide();
-    
+
   });
   // Hides resource controls when viewing map
   $('.map-toggle-control').click(function(){
-  	$('#resource-controls').hide();
+    $('#resource-controls').hide();
     $('#maps-controls').show();
     $('#step-0').show();
   });
@@ -74,17 +75,17 @@ $(document).ready(function(){
 
   //////////////////////////////
   //
-  // Filter Resources 
+  // Filter Resources
   //
   //////////////////////////////
 
   var timer;
   $(document).on('keyup input', '#filter_resource_search', function() {
-  		$('#resource-loading-wheel').show();
+      $('#resource-loading-wheel').show();
       var form = $(this);
-      // Prevents ajax request till N milliseconds 
+      // Prevents ajax request till N milliseconds
       timer && clearTimeout(timer);
-      timer = setTimeout(function(){ 
+      timer = setTimeout(function(){
           form.submit();
       }, 500);
   });
@@ -101,7 +102,7 @@ $(document).ready(function(){
   })
   .on('ajax:success', '#filter_resource_form', function(event, data, status, xhr) {
       // Update the resources table
-      $('#resources_table').html(data);  
+      $('#resources_table').html(data);
       $('#resource-loading-wheel').hide();
   });
 

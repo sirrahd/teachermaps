@@ -9,7 +9,7 @@
 <div>
 
   <% if @is_admin %>
-  <div class="pull-right" id="resource-controls">
+  <div class="pull-right" id="resource-controls" style="display:none;">
     <div>
       <%= link_to "#loading_modal",'data-toggle' => "modal", class: 'btn', :onclick => "window.location=\"#{resources_sync_path}\"" do %>
         <%= t('resources.sync') %> <i class="icon-refresh"></i>
@@ -28,7 +28,7 @@
     <%= link_to t('maps.create_map'), "JavaScript:void(0);", 'action-url'=> maps_path, :class => 'btn', id: "users_create_map"%>
   </div>
   <% end %>
-  
+
   <ul class="nav nav-pills nav-tabs tab-control">
     <li class="active"><a href="#maps" data-toggle="tab" class="map-toggle-control">Maps</a></li>
     <% if @is_admin %>
@@ -36,7 +36,7 @@
     <% end %>
   </ul>
 
-    
+
 </div>
 
 <div class="tab-content">
@@ -120,7 +120,7 @@ $(document).ready(function() {
       $('.table-resources-stopper').effect('highlight', {color:'#DBDBFF'}, 2000);
     }
   });
-  
+
 });
 </script>
 <% end %>
