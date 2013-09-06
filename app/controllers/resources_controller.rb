@@ -15,13 +15,6 @@ class ResourcesController < ApplicationController
     @progress = @user.show_progress
 
     @is_admin = (signed_in? and @user.is_admin?(@current_user))
-
-    if @is_admin
-      @maps = @user.maps
-    else
-      @maps = @user.public_maps
-    end
-
     @resources = @user.resources.paginate(page: params[:page]).order('id DESC')
     @num_of_pages = @user.total_resources_count / 20 + 2
 
