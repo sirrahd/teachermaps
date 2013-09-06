@@ -15,9 +15,9 @@
 
         
         <% if @map.privacy_state == PrivacyState::PUBLIC %>
-          <button type="button" class="btn btn-danger" id="select_private" >Public  <i class="icon-group"></i></button>
+          <button type="button" class="btn btn-success" id="select_private" >Public  <i class="icon-globe"></i></button>
         <% else %>
-          <button type="button" class="btn btn-inverse" id="select_public"  >Private <i class="icon-user"></i></button>
+          <button type="button" class="btn btn-danger" id="select_public"  >Private <i class="icon-lock"></i></button>
         <% end %>
 
 
@@ -190,9 +190,9 @@
       processPrivacy('<%= PrivacyState::PUBLIC %>');
       $('#share_map_modal_btn').show();
       
-      $(this).html('Public  <i class="icon-group">');
+      $(this).html('Public  <i class="icon-globe">');
       $(this).attr('id','select_private');
-      $(this).attr('class','btn btn-danger');
+      $(this).attr('class','btn btn-success');
     });
     $(document).on('click', '#select_private', function(){
       processPrivacy('<%= PrivacyState::PRIVATE %>');
@@ -200,7 +200,7 @@
 
       $(this).html('Private  <i class="icon-user">');
       $(this).attr('id','select_public');
-      $(this).attr('class','btn btn-inverse');
+      $(this).attr('class','btn btn-danger');
     });
 
 	});
