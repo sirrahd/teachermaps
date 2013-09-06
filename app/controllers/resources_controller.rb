@@ -12,6 +12,7 @@ class ResourcesController < ApplicationController
       Rails.logger.info 'Could not locate user'
       return redirect_to page404_url
     end
+    @progress = @user.show_progress
 
     @is_admin = (signed_in? and @user.is_admin?(@current_user))
 

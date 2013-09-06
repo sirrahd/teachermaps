@@ -1,1 +1,109 @@
-<H1>Hello Moto!!</H1>
+<div class="row">
+  <aside class="span8">
+    <section>
+      <p><strong><%= @user.name %></strong></p>
+    </section>
+  </aside>
+
+  <% if @is_admin %>
+
+		<div class="pull-right" id="resource-controls">
+			<div>
+			  <%= link_to "#loading_modal",'data-toggle' => "modal", class: 'btn', :onclick => "window.location=\"#{resources_sync_path}\"" do %>
+			    <%= t('resources.sync') %> <i class="icon-refresh"></i>
+			  <% end %>
+			  <%= link_to 'JavaScript:void(0);', class: 'btn', id: 'create_link_form_btn', 'data-url' => create_link_form_path do %>
+			    Add Link <i class="icon-plus"></i>
+			  <% end %>
+			</div>
+
+			<span id="resource-loading-wheel" style="display:none;">
+			  <img alt="loading" width="40px" src="/assets/loading.gif" />
+			</span>
+		</div>
+	<% end %>
+	<div class="vspace20"></div>
+
+</div>
+
+<% if @is_admin %>
+
+<div class="tab-pane" id="resources">
+
+  <div class="resource_filter">
+  	<%= render 'resources/filter_resources' %>
+  </div>
+
+  <div>
+
+    <table class="table table-condensed table-hover">
+      <thead>
+        <tr>
+          <th><%= t('shared.type') %></th>
+          <th><%= t('resources.title') %></th>
+          <th><%= t('resources.grades') %></th>
+          <th><%= t('resources.subjects') %></th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody class="table-resources"  id="resources_table">
+        <%= render 'resources/table_resources' %>
+
+        <tr class="table-resources-loader">
+          <td colspan="5" style="text-align:center;">
+            <div id="pageless-loader" style="width:100%; margin-top:5px;">
+            <span class="msg" style="color:gray;font-size:2em"></span>
+            &nbsp;&nbsp;&nbsp;
+            <%= image_tag "loading.gif", alt: "loading", size: "20x20", :class => 'table-resources-wheel'%>
+          </div>
+          </td>
+        </tr>
+        <tr>
+          <td colspan="5">
+            <div style="width:100%;text-align:center;display:none;color:gray;font-size:1.5em;height:40px;padding:10px 0px 10px 0px;"  class="table-resources-stopper">No more resources to load.</div>
+          </td>
+        </tr>
+      </tbody>
+      <tfoot></tfoot>
+    </table>
+
+  </div>
+
+</div>
+
+<div id="edit_resource_link_modal" class="modal hide fade in" >
+  <div class="modal-body" id="edit_resource_link_modal_body"></div>
+</div>
+
+<div id="show_resource_link_modal" class="modal hide fade in"  >
+    <div class="modal-body" id="show_resource_link_modal_body"></div>
+</div>
+
+<div id="create_resource_link_modal" class="modal hide fade in" >
+  <div class="modal-body" id="create_resource_link_modal_body"></div>
+</div>
+
+<%= will_paginate(@resources) %>
+<script type="text/javascript">
+$(document).ready(function() {
+
+  $('.table-resources').pageless({
+    loader: '.table-resources-loader',
+    totalPages: <%= @num_of_pages %> ,
+    url: "<%= resources_page_path %>",
+    loaderMsg: 'Loading next page...',
+    end: function () {
+      $('.table-resources-loader').remove();
+      $('.table-resources-stopper').show();
+      $('.table-resources-stopper').effect('highlight', {color:'#DBDBFF'}, 2000);
+    }
+  });
+  
+});
+</script>
+<% end %>
+
+
+<% if @progress[:next_task] %>
+  <%= render 'shared/popovers' %>
+<% end %>
