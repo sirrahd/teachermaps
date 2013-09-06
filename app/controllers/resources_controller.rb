@@ -5,8 +5,29 @@ class ResourcesController < ApplicationController
   # before_filter :require_session
 
   def index
-    # Currently does not exist
-    redirect_to @current_user
+    require_session
+
+    @user = User.find_by_account_name params[:user_id]
+    unless @user
+      Rails.logger.info 'Could not locate user'
+      return redirect_to page404_url
+    end
+
+    @is_admin = (signed_in? and @user.is_admin?(@current_user))
+
+    if @is_admin
+      @maps = @user.maps
+    else
+      @maps = @user.public_maps
+    end
+
+    @resources = @user.resources.paginate(page: params[:page]).order('id DESC')
+    @num_of_pages = @user.total_resources_count / 20 + 2
+
+    @filter_course_types = ResourceType.where( id: @user.resources.collect { |resource| resource.resource_type.id } )
+    @filter_course_grades = CourseGrade.where( id: @user.resources.collect { |resource| resource.course_grades.collect(&:id) } )
+    @filter_course_subjects = CourseSubject.where( id: @user.resources.collect { |resource| resource.course_subjects.collect(&:id) } )
+
   end
 
   def show

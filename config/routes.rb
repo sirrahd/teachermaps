@@ -38,6 +38,7 @@ Teachermaps::Application.routes.draw do
   match '/resources/page' => 'resources#page'
   resources :resources
 
+  match 'users/resources/:user_id' => 'resources#index', :as => 'show_resources'
   resources :users do
     resources :maps
     resources :map_standards, :path => 'standards', only: [:show]
