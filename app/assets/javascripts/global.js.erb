@@ -8,20 +8,6 @@ $(document).ready(function() {
   //////////////////////////////
   $(".best_in_place").best_in_place();
 
-  //////////////////////////////
-  //
-  // Boostrap Anchoring of Tabs
-  //
-  //////////////////////////////
-  if(window.location.hash != ""){
-    // Use the hash to open to the given tab
-    $('.nav-tabs a[href="' + window.location.hash + '"]' ).tab('show');
-    // Scroll to top, somtime sit falls to the bottom    
-    window.setInterval( function() {
-      $('html, body').animate({ scrollTop: 0 }, 0);
-    }, 0);
-  }
-
 
   //////////////////////////////
   //

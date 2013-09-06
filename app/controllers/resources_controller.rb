@@ -251,7 +251,7 @@ class ResourcesController < ApplicationController
     @resources = @current_user.resources
 
     respond_to do |format|
-       format.html { redirect_to user_path(@current_user, anchor: 'resources') }
+       format.html { redirect_to show_resources_path(@current_user) }
     end
   end
 
