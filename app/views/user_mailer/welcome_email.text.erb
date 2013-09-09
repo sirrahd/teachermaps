@@ -1,42 +1,15 @@
 
 <%= t('welcome_email.title', name: @user.name) %>
 
-Thank you for being a part of our alpha testing. We've had a fun
-time working on this project and we're excited to finally be able
-to share it with you. With your help, we can make TeacherMaps a
-tool that will ease the burden of lesson planning for teachers everywhere.
-
 Click the link below to activate your account:
-<%= url_for controller: 'users', action: 'confirm_email', params: { key: @user.request_key }, only_path: false, host: @host %>
+<%= url_for controller: 'users', action: 'confirm_email',
+  params: { key: @user.request_key }, only_path: false, host: @host %>
 
-How you can help
+Thanks for trying TeacherMaps! If you need help getting started, try our
+documentation:
+<%= url_for controller: 'static_pages', action: 'help',
+  only_path: false, host: @host %>
 
-The best thing you can do to help this product along is to use it
-and give us feedback. Even if you're not a teacher, consider using
-TeacherMaps to bookmark your favorite websites or sort your
-Dropbox and Google Drive files. If you come up with a creative
-use of the product, we'd love to hear it! Check in when you can,
-we'll be making improvements every week. If you need help getting
-started, check out our
-<%= url_for controller: 'static_pages', action: 'help', only_path: false, host: @host %>
-
-During this alpha period we expect to find a range of issues,
-from usability to instability and unavailability. Any time you
-experience an issue, let us know either by using the feedback
-tool at the top of every page when you're logged in or by sending
-us a mail at
-support@teachermaps.com
-
-With your help, we can ensure that later TeacherMaps customers
-won’t have to suffer through any of the issues we may subject you
-to. We apologize in advance :)
-
-Thanks for your help and support!
-
-Evan, James, and Drew
-
-<% if false %>
-  <%= t('welcome_email.title', name: @user.name) %>
-  <%= t('welcome_email.content_textonly') %>
-  <%= url_for controller: 'users', action: 'confirm_email', params: { key: @user.request_key }, only_path: false, host: @host %>
-<% end %>
+As a beta product, you may find issues before we do. We'd love to hear
+your feedback. Try the feedback tool at the top of every page or mail
+us at support@teachermaps.com
