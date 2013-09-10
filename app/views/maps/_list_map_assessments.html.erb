@@ -25,7 +25,7 @@
                 <ul style="list-style-type:none;" class="sortable_map_assessment_resources_<%= map_assessment.id %>">
 
                 	<% if @is_admin %>
-                		<li style="margin-bottom:5px;"> <%= link_to 'Add/Edit Assessment Resources', show_resources_map_assessment_path(map_assessment), {remote: true, 'data-toggle' => "modal", 'data-target' =>  "#filter_map_resources_modal", title: t('maps.edit_map_assessment_resources'), :class => 'maps_map_assessments_show_resources'} %> </li>
+                		<li style="margin-bottom:5px;"> <%= link_to 'Add/Remove Resources', show_resources_map_assessment_path(map_assessment), {remote: true, 'data-toggle' => "modal", 'data-target' =>  "#filter_map_resources_modal", title: 'Add/Remove Resources', :class => 'maps_map_assessments_show_resources'} %> </li>
                 	<% end %>
 
                   <% map_assessment.map_resources.each do |map_resource| %>

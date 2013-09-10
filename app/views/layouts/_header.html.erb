@@ -18,7 +18,7 @@
                 </a>
                 <ul class="dropdown-menu">
                   <li><%= link_to 'Maps', current_user %></li>
-                  <li><%= link_to 'Resources', 'Javascript:void();', id: 'show_resources' %></li>
+                  <li><%= link_to 'Resources', show_resources_path(current_user) %></li>
                   <li><%= link_to t('signin.settings'), settings_path %></li>
                   <li class="divider"></li>
                   <li>
@@ -36,16 +36,3 @@
     </div>
   </div>
 </header>
-<script type="text/javascript">
-$(document).ready(function() {
-
-  <% if current_user %>
-  $(document).on('click', '#show_resources', function(){
-    window.location = '<%= user_path(current_user, anchor:"resources") %>';
-    window.location.reload(true);
-    return true;
-  });
-  <% end %>
-
-});
-</script>

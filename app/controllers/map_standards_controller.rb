@@ -33,6 +33,7 @@ class MapStandardsController < ApplicationController
       @map_standard.standard = @standard
       @map_standard.map = @map
       @map_standard.user = @current_user
+      @map_standard.position = @standard.id
       @map_standard.save
 
       @map.course_grades << @standard.course_grades

@@ -26,7 +26,7 @@
                 <ul style="list-style-type:none;" class="sortable_map_objective_resources_<%= map_objective.id %>">
                  
                   <% if @is_admin %>
-                    <li style="margin-bottom:5px;"> <%= link_to 'Add/Edit Objective Resources', show_resources_map_objective_path(map_objective), {remote: true, 'data-toggle' => "modal", 'data-target' =>  "#filter_map_objectives_resources_modal", title: t('map_standards.edit_map_objective_resources'), :class => 'maps_objectives_show_resources'} %> </li>
+                    <li style="margin-bottom:5px;"> <%= link_to 'Add/Remove Resources', show_resources_map_objective_path(map_objective), {remote: true, 'data-toggle' => "modal", 'data-target' =>  "#filter_map_objectives_resources_modal", title: 'Add/Remove Resources', :class => 'maps_objectives_show_resources'} %> </li>
                   <% end %>
                   <% map_objective.map_resources.each do |map_resource| %>
                     

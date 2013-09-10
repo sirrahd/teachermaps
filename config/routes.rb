@@ -20,7 +20,6 @@ Teachermaps::Application.routes.draw do
   match '/contact', to: 'static_pages#contact'
   match '/privacy', to: 'static_pages#privacy'
   match '/terms',   to: 'static_pages#tos'
-  match '/videos',   to: 'static_pages#videos'
 
   match '/robots.txt', to: 'static_pages#robots'
 
@@ -38,6 +37,7 @@ Teachermaps::Application.routes.draw do
   match '/resources/page' => 'resources#page'
   resources :resources
 
+  match 'users/:user_id/resources' => 'resources#index', :as => 'show_resources'
   resources :users do
     resources :maps
     resources :map_standards, :path => 'standards', only: [:show]
