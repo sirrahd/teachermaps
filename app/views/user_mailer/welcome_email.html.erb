@@ -5,7 +5,9 @@
   </head>
   <body>
     <h1><%= t('welcome_email.title', name: @user.name) %></h1>
-    <p><%= raw t( 'welcome_email.content', activation_link: link_to(t('welcome_email.activation_link'), controller: 'users', action: 'confirm_email', params: { key: @user.request_key }, only_path: false, host: @host) )%></p>
+    <p><b>
+      <%= raw t( 'welcome_email.content', activation_link: link_to(t('welcome_email.activation_link'), controller: 'users', action: 'confirm_email', params: { key: @user.request_key }, only_path: false, host: @host) )%>
+    </b></p>
     <p>
       Thanks for trying TeacherMaps! If you need help getting started, try our
       <%= link_to "help documentation", controller: 'static_pages',
