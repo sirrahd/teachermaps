@@ -5,14 +5,22 @@
     </section>
   </aside>
 
-  <% if @is_admin %>
+</div>
+
+
+<% if @is_admin %>
   <div class="pull-right" id="maps-controls">
     <%= link_to t('maps.create_map'), "JavaScript:void(0);", 'action-url'=> maps_path, :class => 'btn', id: "users_create_map"%>
   </div>
-  <div class="vspace20"></div>
-  <% end %>
+<% end %>
 
+<div>
+  <ul class="nav nav-pills">
+    <li class="active"><%= link_to 'Maps', current_user %></li>
+    <li><%= link_to 'Resources', show_resources_path(current_user) %></li>
+  </ul>
 </div>
+
 
 
 <div class="tab-content">
