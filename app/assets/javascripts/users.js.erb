@@ -76,7 +76,7 @@ $(document).ready(function(){
 
   var timer;
   $(document).on('keyup input', '#filter_resource_search', function() {
-      $('#resource-loading-wheel').show();
+      // $('#resource-loading-wheel').show();
       var form = $(this);
       // Prevents ajax request till N milliseconds
       timer && clearTimeout(timer);
@@ -88,7 +88,7 @@ $(document).ready(function(){
   $(document).on('change', '#filter_resource_form', function() {
       $(this).submit();
       // Shows spinning wheel
-      $('#resource-loading-wheel').show();
+      // $('#resource-loading-wheel').show();
   });
 
   $(document)
@@ -98,7 +98,7 @@ $(document).ready(function(){
   .on('ajax:success', '#filter_resource_form', function(event, data, status, xhr) {
       // Update the resources table
       $('#resources_table').html(data);
-      $('#resource-loading-wheel').hide();
+      // $('#resource-loading-wheel').hide();
   });
 
 });
