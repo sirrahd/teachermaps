@@ -1,39 +1,77 @@
 <ul id="standards_list" style="cursor:pointer;list-style-type: none;">
+
 	<% if @standards and @standards.any? %>
 		<% @standards.each do |standard| %>
 		  <li style="margin-bottom:10px;">
 
 		  	<% if @map_standards_by_standard_id.has_key?(standard.id) %>
 	    		<div class="standard-selected" >
+	    			<i class="icon-ok pull-right"></i>
       	<% else %>
-        	<div class="standard-default hover"  standard-id="<%= standard.id %>" action-url="<%= map_map_standards_path(@map.id) %>">
+        	<div class="standard-default"  standard-id="<%= standard.id %>" action-url="<%= map_map_standards_path(@map.id) %>">
+        		<i class="icon-plus pull-right"></i>
       	<% end %> 
 
-      	<b><%= standard.name %></b> <%= raw(standard.text) %>
-    		
+		      	<div class="hover-parent" >
+		      		<b><%= standard.name %></b> <%= raw(standard.text) %>
+		      	</div>
+	    		</div> 
+	    		
 	    	<% if standard.is_parent_standard %>
 	    		<ul style="cursor:pointer;">
 		    		<% standard.children_standards.each do |child| %>
 		    			<li>
 					    	<% if @map_standards_by_standard_id.has_key?(child.id) %>
 					    		<div class="standard-selected">
+					    			<i class="icon-ok pull-right"></i>
               	<% else %>
                 	<div class="standard-default" standard-id="<%= child.id %>" action-url="<%= map_map_standards_path(@map.id) %>">
+                		<i class="icon-plus pull-right"></i>
               	<% end %> 
-					    		<b><%= child.name %></b> <%= raw(child.text) %>
+	              		<div class="hover-child" >
+						    			<b><%= child.name %></b> <%= raw(child.text) %>
+						    		</div>
 					    		</div>
 				    	</li>
 			    	<% end %>
 		    	</ul>	
 				<% end %>	
 			
-				</div> 		
+						
 	    </li>
 		    
 		<% end %>
-	<% else %>
-
-		<li class="center"><h2> No Results Found </h2></li>
 
   <% end %>
 </ul>
+
+
+<script type="text/javascript">
+$(document).ready(function() { 
+
+	$('.hover-parent').mouseenter(function(){
+  	$(this).toggleClass('hover');
+  	// Highlight self
+  	$(this).parent().toggleClass('hover-active');
+  	// Highlight all children standards
+  	$(this).parent().parent().find('.hover-child').toggleClass('hover-active');
+  });
+  $('.hover-parent').mouseleave(function(){
+  	$(this).toggleClass('hover');
+  	// Remvove highlight self
+  	$(this).parent().toggleClass('hover-active');
+  	// Remove highlight all children standards
+  	$(this).parent().parent().find('.hover-child').toggleClass('hover-active');
+  });
+  
+
+  $('.hover-child').mouseenter(function(){
+		$(this).toggleClass('hover');	
+  });
+  $('.hover-child').mouseleave(function(){
+		$(this).toggleClass('hover');
+  });
+  
+
+}); 
+</script>

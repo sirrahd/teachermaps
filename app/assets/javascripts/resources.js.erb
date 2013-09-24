@@ -17,7 +17,7 @@ $(document).ready(function(){
 
     $("#resources_table").html(response);
     // Flash user of the success
-    pushFlash({message:"<%= I18n.t('resources.upload_success') %>", state: 'success', fadeOut: 5000});
+    // pushFlash({message:"<%= I18n.t('resources.upload_success') %>", state: 'success', fadeOut: 5000});
     // Hide all modals
     $('.modal.in').modal('hide');   
     // Rest form
@@ -25,6 +25,9 @@ $(document).ready(function(){
     // Clear any error notification
     $("#uploadResourcesErrors").html('');  
     closeModalOnSubmit();
+    
+
+    //              
   });
 
 
@@ -68,6 +71,20 @@ $(document).ready(function(){
       });   
 
       e.stopPropagation();
+  });
+
+
+  //////////////////////////////
+  //
+  // Create Link Resources 
+  //
+  //////////////////////////////
+
+  $(document).on('click', "#create_link_form_btn", function( e ){
+    var remote= $( this ).attr('data-url');
+    $('#create_resource_link_modal_body').load( remote, function( e ){
+        $( '#create_resource_link_modal' ).modal( 'show' );
+    });
   });
     
 });

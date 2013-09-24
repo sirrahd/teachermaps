@@ -27,9 +27,9 @@ en:
     standards:                  "Standards"
     assessments:                "Assessments"
   home:
-    title:                      "Welcome to %{app_name}"
+    title:                      "%{app_name}"
     link:                       "Home"
-    text:                       "We make lesson planning easy."
+    text:                       "Helping teachers navigate the world of lesson planning."
   help:
     title:                      "Help"
     link:                       "Help"
@@ -205,7 +205,7 @@ en:
   users:
     create_map_error:           "Error creating Map"
     delete_map_error:           "Error deleting Map"
-    delete_map_confirmation:    "Delete Map \"%{title}?\""
+    delete_map_confirmation:    "You won't be able to recover this map if you delete it. Continue deleting \"%{title}\"?"
     delete_map:                 "Delete Map"
     create_map:                 "Create Map"
   tasks:

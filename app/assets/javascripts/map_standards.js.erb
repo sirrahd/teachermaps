@@ -110,6 +110,7 @@ $(document).ready(function(){
       success: function (response) {
         $('#map_standards_objectives_list').html(response);
         resourceElem.attr('class','map_objectives_resource_default');
+        resourceElem.find('.icon-ok').attr('class','icon-plus');
       },
       error: function (xhr, ajaxOptions, thrownError) {
         pushFlash({message:"<%= I18n.t('map_standards.delete_map_objective_resource_error') %>", state: 'error', fadeOut: 5000});
@@ -137,6 +138,7 @@ $(document).ready(function(){
       success: function (response) {
         $('#map_standards_objectives_list').html(response);
         resourceElem.attr('class','map_objectives_resource_selected');
+        resourceElem.find('.icon-plus').attr('class','icon-ok');
       },
       error: function (xhr, ajaxOptions, thrownError) {
         pushFlash({message:"<%= I18n.t('map_standards.create_map_objective_resource_error') %>", state: 'error', fadeOut: 5000});

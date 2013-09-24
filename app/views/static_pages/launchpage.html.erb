@@ -1,51 +1,206 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><%= t 'global.app_name' %></title>
-    <%= favicon_link_tag 'favicon.ico', :rel=>'icon', :type=>'image/ico' %>
-    <%= stylesheet_link_tag    "application", media: "all" %>
-    <%= javascript_include_tag "application" %>
-    <%= csrf_meta_tags %>
-    <!--[if lt IE 9]>
-      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
-    <![endif]-->
-    <script type="text/javascript">
-      I18n.defaultLocale = "<%= I18n.default_locale %>";
-      I18n.locale = "<%= I18n.locale %>";
-    </script>
-  </head>
-  <body>
+<div class="center vspace30">
+
+	<div class="row">
+		<span class="span12  large center">
+			<h1 style="font-size:400%;">TeacherMaps</h1>
+			<h3 style="font-weight:normal;">Start planning today! <%= link_to 'Sign up now', signup_path %></h3>
+		</span>
+		<% if false %>
+			<span class="span6">
+				<div class="video-container">
+	        <object type="application/x-shockwave-flash" 
+	         				style="width:500px; height:300px;" 
+	         				data="https://www.youtube.com/v/YlL3OtHKrcs&hl=en_US&start=7">
+	         				<param name="movie" value="https://www.youtube.com/v/YlL3OtHKrcs&hl=en_US&start=7" />
+	 				</object>
+				</div>
+			</span>
+		<% end %>
+	</div>
+</div>
+
+<div class="content vspace10">
+	<div class="container theme">
+
+		<!-- Pay Off -->
+		<div class="row center">
+			<div class="span12">
+				<h1><span>Navigate the world of lesson planning!</span></h1>
+				<p>Create, share, and discover standard aligned curriculum maps.</p>
+			</div>
+		</div>
+		<!-- /Pay Off -->
+
+		<!-- Services -->
+		<div class="row vspace10">
+
+			<div class="span4 service center">
+				<p><i class="icon-4x icon-rocket"></i></p>
+				<h3>Create</h3>
+				<p>
+					Create “backwards-planned” standard-aligned unit maps quickly and easily using resources and assessments from your collection.
+				</p>
+			</div>
+
+			<div class="span4 service center">
+				<p><i class="icon-4x icon-cloud-upload"></i></p>
+				<h3>Share</h3>
+				<p>Share your best maps with other educators around the country to have an impact in their classrooms.</p>
+			</div>
+
+			<div class="span4 service center">
+				<p><i class="icon-4x icon-beaker"></i></p>
+				<h3>Discover</h3>
+				<p>
+					Discover fully featured maps from other educators that include standards, objectives, and all the resources you need to teach great lessons.
+				</p>
+			</div>
+
+		</div>
+		<!-- /Services -->
+
+		<hr/>
+
+		<!-- Content -->
+		<div class="row vspace70">
+			<div class="span6 center thumbnail">
+				<%= image_tag 'cloud-storage.png' %>
+			</div>
+
+			<div class="span5">
+				<h2>Google Drive &amp; Dropbox Intergration</h2>
+				<div>
+					<p>TeacherMaps helps you get organized by syncing with the services you already use to store your files.</p>
+					<p>Simply select Google Drive or Dropbox, copy your resources to the correct folder, and you’ll be ready to create maps in no time.</p>
+					<!-- <a class="btn-theme">Read more</a> -->
+				</div>
+			</div>
+		</div>
+
+		<div class="row vspace30">
+			<div class="span5">
+				<h2>Standard Aligned</h2>
+				<div>
+					<p>Standards are the heart of any good unit plan. Fortunately, TeacherMaps already has Common Core standards built in! Simply select your subject and grade level, then choose the appropriate standards from our database. Organizing your curriculum around standards has never been this easy.</p>
+					<p>Nisi vel et enim integer vut eu mus auctor, ut enim habitasse duis ut, duis magna? Pid etiam scelerisque. Integer, elementum turpis turpis risus tempor porta et urna.</p>
+					<!-- <a class="btn-theme">Read more</a> -->
+				</div>
+			</div>
+
+			<div class="span6 center thumbnail">
+				<%= image_tag 'standards.png' %>
+			</div>
+		</div>
+		<!-- /Content -->
 
 
-    <div class="container" id="main-container">
 
-      <div class="center">
-        <h1><%= t('home.title', app_name: t('global.app_name')) %></h1>
-        <h3 class="muted"><%= t 'home.text' %></h3>
-        <div id="mailchimp" style="margin-top:30px;">
-            <%= render 'mail_chimp/subscribe' %>
-        </div>
-        <p>
-          Have an account?
-          <a href="/?login=1">Sign in here</a>
-        </p>
-      </div>
-    </div>
+		<% if false %>
+		<!-- Last Works -->
+		<div class="row center vspace30">
+			<h1><span>Hot Maps!</span></h1>
+			<p>Here are some maps that star teachers have made!</p>
+		</div>
 
+		<div class="row vspace30">
+			<div class="span12">
+				<ul class="thumbnails">
+					<li class="span3">
+						<div class="thumbnail center">
+							<a href="#" class="thumbnail-overlay" style="opacity: 0;"></a>
+							<%= image_tag 'work_01.jpg' %>
+							<div class="caption">
+								<h5>Work label</h5>
+								<i>Sed ut perspiciatis unde omnis iste.</i>
+							</div>
+						</div>
+					</li>
 
-    <% if is_main_proudction? %>
-    <script type="text/javascript">
-      var _gaq = _gaq || [];
-      _gaq.push(['_setAccount', 'UA-38603370-1']);
-      _gaq.push(['_trackPageview']);
+					<li class="span3">
+						<div class="thumbnail center">
+							<a href="#" class="thumbnail-overlay" style="opacity: 0;"></a>
+							<%= image_tag 'work_02.jpg' %>
+							<div class="caption">
+								<h5>Project label</h5>
+								<i>Sed ut perspiciatis unde omnis iste.</i>
+							</div>
+						</div>
+					</li>
 
-      (function() {
-        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-      })();
-    </script>
-    <% end %>
-  </body>
-</html>
+					<li class="span3">
+						<div class="thumbnail center">
+							<a href="#" class="thumbnail-overlay" style="opacity: 0;"></a>
+							<%= image_tag 'work_03.jpg' %>
+							<div class="caption">
+								<h5>Something label</h5>
+								<i>Sed ut perspiciatis unde omnis iste.</i>
+							</div>
+						</div>
+					</li>
+
+					<li class="span3">
+						<div class="thumbnail center">
+							<a href="#" class="thumbnail-overlay" style="opacity: 0;"></a>
+							<%= image_tag 'work_01.jpg' %>
+							<div class="caption">
+								<h5>Something Else</h5>
+								<i>Sed ut perspiciatis unde omnis iste.</i>
+							</div>
+						</div>
+					</li>
+				</ul>
+			</div>
+		</div>
+		<!-- Last Works -->
+
+		<!-- Clients -->
+		<div class="row center vspace30">
+			<h1><span>Star/Rising Teachers</span></h1>
+			<p>here are some of the teacher who are awesome at creating Maps!</p>
+		</div>
+
+		<div class="row vspace30">
+			<div class="span2">
+				<div class="customer"><%= image_tag 'client.png', size: '120x120' %></div>
+			</div>
+
+			<div class="span2">
+				<div class="customer"><%= image_tag 'client.png', size: '120x120' %></div>
+			</div>
+
+			<div class="span2">
+				<div class="customer"><%= image_tag 'client.png', size: '120x120' %></div>
+			</div>
+
+			<div class="span2">
+				<div class="customer"><%= image_tag 'client.png', size: '120x120' %></div>
+			</div>
+
+			<div class="span2">
+				<div class="customer"><%= image_tag 'client.png', size: '120x120' %></div>
+			</div>
+
+			<div class="span2">
+				<div class="customer"><%= image_tag 'client.png', size: '120x120' %></div>
+			</div>
+		</div>
+		<!-- /Clients -->
+		<% end %>
+
+	</div>
+</div>
+
+<footer id="footer">
+	<div id="post-footer">
+		<div class="container">		
+			<div class="row center">
+				<div class="span12">
+					<div class="vspace10">
+					<div>Follow us<div>
+						<a href="https://twitter.com/teachermaps"><i class="icon-twitter icon-2x theme" ></i></a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</footer>

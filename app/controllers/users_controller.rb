@@ -141,6 +141,7 @@ class UsersController < ApplicationController
       redirect_to @user
     elsif params[:resend]
       UserMailer.change_email(@user, request.env['HTTP_HOST']).deliver
+      render json: '', status: :ok
     else
       flash[:error] = t 'confirmation.error'
       redirect_to @user
@@ -148,7 +149,6 @@ class UsersController < ApplicationController
   end
 
   def reset_password
-    require_session
     # Stage 3: User navigates from email link
     if params[:account_name]
       @user = User.find_by_account_name(params[:account_name])

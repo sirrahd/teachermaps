@@ -30,12 +30,14 @@
 	          <%= resource.course_subjects.map(&:name).join(", ") %>
 	        <% end %>    
 	      </td>
+	      <% if  @map_resources_by_resource_id.has_key? resource.id %>
+	      	<td><i class="icon-ok"></i></td>
+		    <% else %>
+	      	<td><i class="icon-plus"></i></td>
+		    <% end %>
 	    </tr>
 	  <% end %>
 	</tbody>
-
-	<% else %>
-	<tr><td colspan="4" style="text-align:center;"><h2> No Results Found </h2></td></tr>
 	<% end %>
 </table>
 

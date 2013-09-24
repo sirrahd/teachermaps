@@ -4,118 +4,33 @@
       <p><strong><%= @user.name %></strong></p>
     </section>
   </aside>
+
 </div>
 
-<div class="row">
-  <div class="span9">
-    <ul class="nav nav-tabs">
-      <li class="active"><a href="#maps" data-toggle="tab" class="map-toggle-control">Maps</a></li>
-      <% if @is_admin %>
-      <li><a href="#resources" data-toggle="tab" class="resource-toggle-control">Resources</a></li>
-      <% end %>
-    </ul>
-  </div>
-  <% if @is_admin %>
-  <div class="span3" id="resource-controls">
-    <%= link_to t('resources.sync'), "#loading_modal",'data-toggle' => "modal", :onclick => "window.location=\"#{resources_sync_path}\"", :class => 'btn'  %>
-    <%= link_to "Add Link", "#put_resource_link_modal",'data-toggle' => "modal", :class=>'btn' %>
-    <span id="resource-loading-wheel" style="display:none;">
-    	<img alt="loading" width="40px" src="/assets/loading.gif" />
-    </span>
-  </div>
-  <div class="span3" id="maps-controls">
+
+<% if @is_admin %>
+  <div class="pull-right" id="maps-controls">
     <%= link_to t('maps.create_map'), "JavaScript:void(0);", 'action-url'=> maps_path, :class => 'btn', id: "users_create_map"%>
   </div>
-  <% end %>
+<% end %>
+
+<div>
+  <ul class="nav nav-pills">
+    <li class="active"><%= link_to 'Maps', current_user %></li>
+    <li><%= link_to 'Resources', show_resources_path(current_user) %></li>
+  </ul>
 </div>
+
+
 
 <div class="tab-content">
   <div class="tab-pane active" id="maps">
-    <div id="users_maps_table">
+    <div id="users_maps_table" style="margin-left:-30px;">
       <%= render 'users/table_maps' %>
     </div>
   </div>
-  <% if @is_admin %>
-  <div class="tab-pane" id="resources">
-
-      <div class="resource_filter">
-      <%= render 'resources/filter_resources' %>
-      </div>
-
-
-      <div >
-
-        <table class="table table-condensed table-hover">
-          <thead>
-            <tr>
-              <th><%= t('shared.type') %></th>
-              <th><%= t('resources.title') %></th>
-              <th><%= t('resources.grades') %></th>
-              <th><%= t('resources.subjects') %></th>
-              <th></th>
-            </tr>
-          </thead>
-          <tbody class="table-resources"  id="resources_table">
-            <%= render 'resources/table_resources' %>
-
-            <tr class="table-resources-loader">
-              <td colspan="5" style="text-align:center;">
-                <div id="pageless-loader" style="width:100%; margin-top:5px;">
-                <span class="msg" style="color:gray;font-size:2em"></span>
-                &nbsp;&nbsp;&nbsp;
-                <%= image_tag "loading.gif", alt: "loading", size: "20x20", :class => 'table-resources-wheel'%>
-              </div>
-              </td>
-            </tr>
-            <tr>
-              <td colspan="5">
-                <div style="width:100%;text-align:center;display:none;color:gray;font-size:1.5em;height:40px;padding:10px 0px 10px 0px;"  class="table-resources-stopper">No more resources to load.</div>
-              </td>
-            </tr>
-          </tbody>
-          <tfoot></tfoot>
-        </table>
-
-      </div>
-
-  </div>
-  <% end %>
 </div>
 
-<% if @is_admin %>
-<div id="edit_resource_link_modal" class="modal hide fade in" >
-  <div class="modal-body" id="edit_resource_link_modal_body"></div>
-</div>
-
-<div id="show_resource_link_modal" class="modal hide fade in"  >
-    <div class="modal-body" id="show_resource_link_modal_body"></div>
-</div>
-
-<div id="put_resource_link_modal" class="modal hide fade in" >
-  <div class="modal-body">
-    <%= render 'resources/create_link' %>
-  </div>
-</div>
-
-<%= will_paginate(@resources) %>
-<script type="text/javascript">
-$(document).ready(function() {
-
-  $('.table-resources').pageless({
-    loader: '.table-resources-loader',
-    totalPages: <%= @num_of_pages %> ,
-    url: "<%= resources_page_path %>",
-    loaderMsg: 'Loading next page...',
-    end: function () {
-      $('.table-resources-loader').remove();
-      $('.table-resources-stopper').show();
-      $('.table-resources-stopper').effect('highlight', {color:'#DBDBFF'}, 2000);
-    }
-  });
-
-});
-</script>
-<% end %>
 
 <% if @progress[:next_task] %>
   <%= render 'shared/popovers' %>

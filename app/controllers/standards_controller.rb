@@ -32,7 +32,7 @@ class StandardsController < ApplicationController
       @map_standards_by_standard_id = Hash[@map_standards.map { |p| [p['standard_id'], p] }]
     end
     
-    sleep(1.0)
+    # sleep(1.0)
     render partial:  'maps/list_standards'
   end
 

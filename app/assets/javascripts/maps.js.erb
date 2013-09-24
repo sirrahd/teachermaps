@@ -107,12 +107,12 @@ $(document).ready(function() {
       success: function (response) {
         $('#map_standards_list').html(response);
 
-        // Mark all children standards as selected
-        element.find('.standard-default').each(function() {
-            element.attr('class','standard-selected');
-        });
+        // Select any children standards
+    		element.parent().find('.standard-default').attr('class','standard-selected');
+    		element.parent().find('.icon-plus').attr('class','icon-ok pull-right');
 
         element.attr('class','standard-selected');
+        element.find('.icon-plus').attr('class','icon-ok pull-right');
       },
       error: function (xhr, ajaxOptions, thrownError) {
         pushFlash({message:"<%= I18n.t('maps.create_map_standard_error') %>", state: 'error', fadeOut: 5000});
@@ -198,6 +198,9 @@ $(document).ready(function() {
       success: function (response) {
         $('#maps_list_map_assessments').html(response);
         resourceElem.attr('class','map_assessment_resource_default');
+        resourceElem.find('.icon-ok').attr('class','icon-plus');
+        
+
       },
       error: function (xhr, ajaxOptions, thrownError) {
         pushFlash({message:"<%= I18n.t('maps.delete_map_assessment_resource_error') %>", state: 'error', fadeOut: 5000});
@@ -225,6 +228,8 @@ $(document).ready(function() {
       success: function (response) {
         $('#maps_list_map_assessments').html(response);
         resourceElem.attr('class','map_assessment_resource_selected');
+        resourceElem.find('.icon-plus').attr('class','icon-ok');
+        
       },
       error: function (xhr, ajaxOptions, thrownError) {
         pushFlash({message:"<%= I18n.t('maps.create_map_assessment_resource_error') %>", state: 'error', fadeOut: 5000});
@@ -235,46 +240,6 @@ $(document).ready(function() {
   });
 
 
-
-
-
-  //////////////////////////////
-  //
-  // Public/Private Privacy State
-  //
-  //////////////////////////////
-
-
-  $('#map-privacy-state-switch').on('switch-change', function (e, data) {
-		var $el = $(data.el), value = data.value;
-		var actionUrl = $(this).attr('action-url');
-
-    if( value == undefined ) return false;
-
-    // 0=Private,1=Public
-    value = value ? 1 : 0;
-    body = { 'privacy_state': value };
-
-    $.ajax({
-	    type: "PUT",
-	    url: actionUrl,
-	    data: {'map':body},
-	    success: function(data) {
-	    	console.log("success");
-	    	if (value) {
-	    		pushFlash({message:"Map is now public!", state: 'info'});
-	    		$('#share_map_modal_btn').show();
-	    	} else {
-	    		pushFlash({message:"Map is now private!", state: 'info'});
-	    		$('#share_map_modal_btn').hide();
-	    	}
-	    },
-	    error: function(data) {
-	    	console.log("failure");
-	    	pushFlash({message:"Setting map privacy failed.", state: 'error', fadeOut: 15000});
-	    }
-	  });
-	});
 
 
 

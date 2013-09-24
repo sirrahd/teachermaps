@@ -7,21 +7,19 @@
 
       
     	<% if @is_admin %>
-    	<span class="pull-right" >
+    	<span class="pull-right">
     		
     		<%= link_to "Share", "#share_map_modal",'data-toggle' => "modal", :class=>'btn', id: 'share_map_modal_btn'%>
-    		<% if client_browser_name == 'Firefox' %>
-    			<span id="map-privacy-state-switch" class="switch" action-url="<%= user_map_path(@map.user.id, @map) %>"  data-on="danger" data-off="primary" data-on-label="Public" data-off-label="Private" style="top:10px;">
-				<% else %>  	
-					<span id="map-privacy-state-switch" class="switch" action-url="<%= user_map_path(@map.user.id, @map) %>"  data-on="danger" data-off="primary" data-on-label="Public" data-off-label="Private">
-				<% end %>
-					
-			    <% if @map.privacy_state == PrivacyState::PUBLIC %> 
-			    	<input type="checkbox" checked />
-			    <% else %>
-			    	<input type="checkbox" />
-			    <% end %>
-				</span>
+
+
+
+        
+        <% if @map.privacy_state == PrivacyState::PUBLIC %>
+          <button type="button" class="btn btn-success" id="select_private" >Public  <i class="icon-globe"></i></button>
+        <% else %>
+          <button type="button" class="btn btn-danger" id="select_public"  >Private <i class="icon-lock"></i></button>
+        <% end %>
+
 
 
      	</span>
@@ -36,9 +34,9 @@
 
       <div>
         <h2>
-        	<span class="<%= set_if @is_admin, 'editable-field' %>">
-        			<%= best_in_place_if @is_admin, @map, :name, :type => :input, :display_as => :title_titlecase %>
-      		</span>
+          <span class="<%= set_if @is_admin, 'editable-field' %>">
+    			 <%= best_in_place_if @is_admin, @map, :name, :type => :input, :display_as => :title_titlecase, class: 'editable-field'%>
+          </span>
     		</h2>
       </div>
 
@@ -99,6 +97,10 @@
 	      </div>
 	      <div class="row">
 	        <div  id="standards_table" style="margin: 0px 20px 0px 20px;">
+            <% if @show_filter_help and @show_filter_help %>
+              <!-- Shows up only the first time the page is loaded -->
+              <div class="center lead"> Filter by grades and/or subject </div>
+            <% end %>
 	          <%= render 'maps/list_standards' %>
 	        </div>
 	      </div>
@@ -132,10 +134,11 @@
     	<div id="share_map_form_errors"></div>
 
     	<p>
-    		<%= label_tag('map_share_url', "Share Map URL") %>
-    		<%= text_field_tag('map_share_url', map_path(@map.slug, only_path: false, host: request.host)) %>
+    		<%= label_tag('map_share_url', "Map Link") %>
+    		<%= text_field_tag(:map_share_url, map_path(@map.slug, only_path: false, host: request.host)) %>
     	<p>
 
+      <% if false %>
     	<%= form_for @share_email, url: map_share_email_index_path(@map), html: { :remote=>true, :multipart => true, :class=>"form-horizontal", :'data-type' => 'html', id: 'share_map_form' }  do |f| %>
     			  
 			  <%= label_tag(:email, "Email Address") %>
@@ -149,6 +152,8 @@
 			  <button type="button" class="btn" data-dismiss="modal">Cancel</button>
 			  <button type="submit" id="share_map_form_submit" class="btn btn-primary">Share</button>
 		  <% end %>
+
+      <% end %>
     </div>
   </div>
 
@@ -157,14 +162,48 @@
 
 <% if @is_admin %>
 	<script type="text/javascript">
-	$(document).ready(function() {    
+	$(document).ready(function() {
+
 	  $('.best_in_place').best_in_place();
 	  $('.share_comments_field').autosize();
 
 	  <% if @map.privacy_state == PrivacyState::PRIVATE %> 
 		  $('#share_map_modal_btn').hide();
 		<% end %>
-	});
 
+
+    var processPrivacy = function(state){
+      $.ajax({
+        type: 'POST',
+        url: '<%= map_privacy_state_path(@map) %>',
+        data: { 'state': state },
+        success: function(response){
+          console.log(response);
+        },
+        error: function(response){
+          console.log(response);
+        }
+      });
+    };
+
+    $(document).on('click', '#select_public', function(){
+      processPrivacy('<%= PrivacyState::PUBLIC %>');
+      $('#share_map_modal_btn').show();
+      
+      $(this).html('Public  <i class="icon-globe">');
+      $(this).attr('id','select_private');
+      $(this).attr('class','btn btn-success');
+    });
+    $(document).on('click', '#select_private', function(){
+      processPrivacy('<%= PrivacyState::PRIVATE %>');
+      $('#share_map_modal_btn').hide();
+
+      $(this).html('Private  <i class="icon-user">');
+      $(this).attr('id','select_public');
+      $(this).attr('class','btn btn-danger');
+    });
+
+	});
+  
 	</script>
 <% end %>

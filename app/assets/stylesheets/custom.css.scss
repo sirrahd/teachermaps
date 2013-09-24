@@ -94,111 +94,73 @@ input {
 }
 
 
-.clickable {
-  cursor:pointer;
+/* Makes Embedded videos responsive */
+
+
+.video-container {
+    position: relative;
+    padding-bottom: 56.25%;
+    padding-top: 30px; height: 0; overflow: hidden;
 }
-.hover:hover {
-  background-color: #F5F5F5;
-}
-
-/* Map Standard Filter */
-
-.standard-selected {
-  /*background-color: #FFFF66;*/
-  background-color: #DBDBFF;
-}
-
-
-/* Map Resource Filter */
-.resource-modal .modal-body {
-  max-height: 500px;
-}
-
-.resource-modal {
-  min-width: 720px; 
-  margin: -50px 0px 0px -360px;
-}
-
-
-.standard-modal .modal-body {
-  max-height: 500px;
-}
-.standard-modal {
-  /*min-width: 600px; 
-  margin: -50px 0px 0px -300px;*/
-  min-width: 720px; 
-  margin: -50px 0px 0px -360px;
-}
-
-/* Map Standard Filter */
-
-.map_assessment_resource_selected {
-  background-color: #DBDBFF;
-}
-
-.map_objectives_resource_selected {
-  background-color: #DBDBFF; 
+ 
+.video-container iframe,
+.video-container object,
+.video-container embed {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
 }
 
 
 
-
-
-.editable-btn span .btn {
-   visibility: hidden;
-}  
-
-.editable-btn:hover span .btn{
-   visibility: visible;
-} 
-
-.editable span a i {
-   visibility: hidden;
-}  
-
-.editable:hover span a i {
-   visibility: visible;
-} 
-
-
-.editable div a i {
-   visibility: hidden;
-}  
-
-.editable:hover div a i {
-   visibility: visible;
-} 
-
-.editable div.handle {
-   visibility: hidden;
-}  
-
-.editable:hover div.handle {
-   visibility: visible;
-} 
-
-.editable-inner div.handle-inner {
-   visibility: hidden;
-} 
-
-.editable-inner:hover div.handle-inner {
-   visibility: visible;
-}  
-
-.editable-field:hover {
-	cursor:pointer;
+.theme {
+  color: #5A5A5A;
 }
 
-/* Push Flash Alert */
-
-.alert-float {
-  margin-top: 15px;
-  position:fixed;
-  top:0;
-  width:80%;
-  z-index:100;
+.theme h1 {
+  font-size:50px;
+  font-weight:200;
+  letter-spacing:-1px;
+  line-height:1;
+  margin:10px 0 10px;
+	/*color: #E36334;*/
+  background: url("line.gif") repeat-x scroll center center transparent;
 }
 
-.gray {
-  color: #947F87;
+.theme h1 span {
+  background: none repeat scroll 0 0 #FFFFFF;
+  padding: 0 20px;
+}
+
+.theme h2 {
+  font-weight:200;
+  margin-bottom:5px;
+}
+
+.theme h3 {
+  /*color: #E36334;*/
+}
+
+.theme h3.blog-h3 {
+  border-bottom: 2px dotted #E36334;
+  color: #E36334;
+}
+
+.theme .theme-byline {
+  color:#999999;
+  font-size:20px;
+  font-weight:300;
+  line-height:1.25;
+  margin-bottom:40px;
+}
+
+.theme p {
+  font-size:16px;
+  line-height:1.5;
+}
+
+.theme img {
+	margin: 5px auto;
 }

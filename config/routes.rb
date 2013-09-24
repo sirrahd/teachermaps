@@ -21,6 +21,8 @@ Teachermaps::Application.routes.draw do
   match '/privacy', to: 'static_pages#privacy'
   match '/terms',   to: 'static_pages#tos'
 
+  match '/robots.txt', to: 'static_pages#robots'
+
   match '/confirm',         to: 'users#confirm_email'
   match '/reset',           to: 'users#reset_password'
   match '/update_password', to: 'users#update_password'
@@ -30,10 +32,12 @@ Teachermaps::Application.routes.draw do
   # Sync Google Drive and/or DropBox resources
   match '/resources/sync' => 'resources#sync'
   match '/resources/create/link' => 'resources#create_link'
+  match '/resources/create/link/form' => 'resources#create_link_form', as: 'create_link_form'
   match '/resources/filter' => 'resources#filter'
   match '/resources/page' => 'resources#page'
   resources :resources
 
+  match 'users/:user_id/resources' => 'resources#index', :as => 'show_resources'
   resources :users do
     resources :maps
     resources :map_standards, :path => 'standards', only: [:show]
@@ -47,7 +51,7 @@ Teachermaps::Application.routes.draw do
     resources :share_email, only: [:create]
     post 'sort_assessments'
     post 'sort_standards'
-    post 'set_privacy_state'
+    post 'privacy_state'
   end
   resources :maps, only: [:show]
 

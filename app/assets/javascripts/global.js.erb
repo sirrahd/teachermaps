@@ -8,14 +8,6 @@ $(document).ready(function() {
   //////////////////////////////
   $(".best_in_place").best_in_place();
 
-  //////////////////////////////
-  //
-  // Boostrap Anchoring of Tabs
-  //
-  //////////////////////////////
-  if(window.location.hash != ""){
-    $('a[href="' + window.location.hash + '"]').click()
-  }
 
   //////////////////////////////
   //
@@ -35,11 +27,14 @@ $(document).ready(function() {
   });
 
   $('.editable-field').mouseenter(function(){
-		$(this).append('<i id="icon-hover" class="icon-edit"></i>');
+    if(!(($(this).find('form')).length > 0)) {
+      $(this).append('<i id="icon-hover" class="icon-edit"></i>');
+    }
   });
   $('.editable-field').mouseleave(function(){
 		$('#icon-hover').remove();
   });
+  
   $('.editable-field').click(function(){
 		$('#icon-hover').remove();
 		return true;
@@ -52,6 +47,9 @@ $(document).ready(function() {
   //
   //////////////////////////////
   var emailRegex = new RegExp(/^([\w\.\-]+)@([\w\-]+)((\.(\w){2,3})+)$/i);
-   
+  
+
+
+
 
 });
