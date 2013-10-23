@@ -1,0 +1,71 @@
+<p>Every map in the universe</p>
+<ul style="list-style-type:none;">
+    
+  <% @maps.each do |map| %>
+    <li action-url="<%= user_map_path map.user,map.slug  %>"  style="cursor:pointer; margin:5px;" class="action-link hover">
+      
+      <div class="editable">
+      	<% if @is_admin %>
+	        <span>
+	          <%= link_to map, confirm: t('users.delete_map_confirmation', title: map.name), method: :delete, title: t('users.delete_map'), :class=>"users_map_destroy pull-right", remote: true do %>
+	            <i class="icon-trash"></i>
+	          <% end %>
+	        </span>
+        <% end %>
+
+        <div class="resource_filter">
+          <h4><%= truncate(map.name, length: Map::MAX_NAME_RENDER_LEN) %></h4>
+          <span>
+            <%= truncate(map.text, length: Map::MAX_TEXT_RENDER_LEN) %>
+          </span>
+        </div>
+      
+      
+      <div>
+      
+        <div>
+          <ul class="inline gray">
+          	<% if @is_admin %>
+	          	<li>
+	              <% if map.privacy_state == PrivacyState::PUBLIC %>
+	              	Privacy: <i class="icon-globe" ></i>
+	              <% else %>
+	              	Privacy: <i class="icon-lock" ></i>
+	              <% end %>
+	              &nbsp; &mdash; 
+	            </li>
+            <% end %>
+            <li>
+              <label><%= t('shared.standards') %>: <%= map.standards_count %> </label>
+            </li>
+            <li>
+              <label><%= t('shared.objectives') %>: <%= map.objectives_count %></label>
+            </li>
+            <li>
+              <label><%= t('shared.resources') %>: <%= map.resources_count %></label>
+            </li>
+            <li>
+              <% if map.course_subjects.any? or map.course_grades.any? %> &mdash; <% end %>
+            </li>
+            <li>
+              <% if map.course_subjects.any? %>
+                <label><%= t('resources.subjects') %>: <%= map.course_subjects.map(&:name).join(", ") %></label>
+              <% end %>    
+            </li>
+            <li>
+              <% if map.course_grades.any? %>
+                <label><%= t('resources.grades') %>: <%= raw(course_grade_ranges(map.course_grades) ) %></label>
+              <% end %>
+            </li>
+          </ul>
+        </div>
+
+    
+
+      </div>
+      </div>
+    </li>
+  <% end %>
+
+</ul>
+

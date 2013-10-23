@@ -36,6 +36,10 @@ class MapsController < ApplicationController
     @show_filter_help = true
 
   end
+  
+  def index
+	@maps = Map.where(privacy_state: 1)
+  end
 
   def create
   	require_session
