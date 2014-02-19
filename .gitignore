@@ -20,6 +20,12 @@ bundler_stubs/
 *~
 .project
 .DS_Store
+.gitkeep
 
 # RVM exceptions
 .ruby-gemset
+
+# Config files
+development.rb
+production.rb
+secret_token.rb

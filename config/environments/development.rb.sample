@@ -1,0 +1,78 @@
+Teachermaps::Application.configure do
+  # Settings specified here will take precedence over those in config/application.rb
+
+  # In the development environment your application's code is reloaded on
+  # every request. This slows down response time but is perfect for development
+  # since you don't have to restart the web server when you make code changes.
+  config.cache_classes = false
+
+  # Log error messages when you accidentally call methods on nil.
+  config.whiny_nils = true
+
+  # Show full error reports and disable caching
+  config.consider_all_requests_local       = true
+  config.action_controller.perform_caching = false
+
+  # Don't care if the mailer can't send
+  config.action_mailer.raise_delivery_errors = false
+
+  # Print deprecation notices to the Rails logger
+  config.active_support.deprecation = :log
+
+  # Only use best-standards-support built into browsers
+  config.action_dispatch.best_standards_support = :builtin
+
+  # Raise exception on mass assignment protection for Active Record models
+  config.active_record.mass_assignment_sanitizer = :strict
+
+  # Log the query plan for queries taking more than this (works
+  # with SQLite, MySQL, and PostgreSQL)
+  config.active_record.auto_explain_threshold_in_seconds = 0.5
+
+  # Do not compress assets
+  config.assets.compress = false
+
+  config.assets.paths << Rails.root.join('app', 'assets')
+
+  # Expands the lines which load the assets
+  config.assets.debug = false
+
+  # TODO: Define the email address(es) you want to use to recieve feedback
+  # using the feedback tool, separated by commas.
+  config.FEEDBACK_ADDRESSES = "John Doe<johnd@example.com>, Jane Doe<janed@example.com>"
+  
+  # TODO: Enter a Google Analytics code to collect usage data
+  config.GOOGLE_ANALYTICS = ''
+
+  # TODO: Enter a Mailchimp key to allow users to subscribe to the mailing list.
+  config.mailchimp_key = ''
+
+  HOST = 'localhost:3000'
+  if !ENV.nil? and ENV.has_key?('HOST_NAME')
+    HOST = ENV['HOST_NAME']
+  end
+  
+  # Google Drive
+  # TODO: Enter a client secret and id to enable Google Drive integration
+  config.CLIENT_SECRET = ''
+  config.CLIENT_ID     = ''
+  config.REDIRECT_URI  = "https://#{HOST}/google/oauth_callback"
+  config.OAUTH_SCOPE   = 'https://www.googleapis.com/auth/drive'
+  
+  config.SCOPES = [
+      'https://www.googleapis.com/auth/drive',
+      'https://www.googleapis.com/auth/drive.file',
+      'https://www.googleapis.com/auth/drive.install',
+      'https://www.googleapis.com/auth/userinfo.email',
+      'https://www.googleapis.com/auth/userinfo.profile',
+      'https://www.googleapis.com/auth/plus.me'
+  ]
+
+  # Dropbox
+  # TODO: Enter an app key and app secret to enable dropbox integration
+  config.DROPBOX_APP_KEY     = ''
+  config.DROPBOX_APP_SECRET  = ''
+  config.DROPBOX_APP_FOLDER  = 'TeacherMaps'
+  config.DROPBOX_ACCESS_TYPE = :app_folder
+  config.DROPBOX_CALLBACK = "http://#{HOST}/dropbox/oauth_callback"
+end
