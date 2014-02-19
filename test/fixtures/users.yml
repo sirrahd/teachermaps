@@ -1,9 +1,9 @@
 user_one:
- email: mario@gmail.com
+ email: mario@example.com
  name: "Mario Mario"
  account_name: mario
 user_two:
- email: luigi@gmail.com
+ email: luigi@example.com
  name: "Luigi Mario"
  account_name: luigi
  
