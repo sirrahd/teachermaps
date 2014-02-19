@@ -20,3 +20,6 @@ bundler_stubs/
 *~
 .project
 .DS_Store
+
+# RVM exceptions
+.ruby-gemset
