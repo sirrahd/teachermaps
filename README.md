@@ -1,6 +1,6 @@
 # TeacherMaps
 
-TeacherMaps helps teachers organize their digital resources into lesson plans based on national teaching standards that they can use and share with others. This service connects with Dropbox and Google Drive, so teachers can easily organize their web links and personal files into standards-based lesson plan *maps*.
+TeacherMaps makes lesson planning easier by helping teachers collect their digital resources in one place, organize them into standard-aligned units called maps, and share them with other educators. TeacherMaps syncs with Dropbox and Google drive to make managing and sharing all types of resources, from worksheets to web links, simple.
 
 This minimum viable product was built by by Evan Moore, James Kobol, and Andrew Harris during the Spring of 2013. The live service is available at [teachermaps.com](http://www.teachermaps.com). We are not actively working on the project at this time, but we still take support requests and will take pull requests. If you're interested in using or contributing to the service, we're happy to help.
 
