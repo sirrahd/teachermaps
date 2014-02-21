@@ -10,8 +10,6 @@ TeacherMaps is a fairly standard Ruby on Rails application based on Ruby 1.9.* a
 
 ## Configuring
 
-Prior to open sourcing, we've made some efforts to centralize our configuration variables and remove any personally identifiable information. This wasn't thoroughly tested and may lead to a bugs in a few places.
-
 Create a copy of the file without `.sample` and follow the instructions that start with `TODO:` in the files to configure it to your needs.
 
 * `/config/environments/development.rb.sample`
