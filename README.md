@@ -20,7 +20,7 @@ Configuration settings for TeacherMaps in local environments.
 * `/config/environments/production.rb.sample`
 Configuration settings for TeacherMaps in production environments.
 
-* `/config/initializers/secret_token.rb`
+* `/config/initializers/secret_token.rb.sample`
 If you plan to publish some form of this application, you should provide a unique secret token for security reasons.
 
 ## Creating and populating the databases

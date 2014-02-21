@@ -29,3 +29,4 @@ bundler_stubs/
 development.rb
 production.rb
 secret_token.rb
+application.rb
