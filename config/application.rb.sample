@@ -72,7 +72,7 @@ module Teachermaps
     ##   authentication:         'plain',
     ##   enable_startttls_auto:  true
 
-    ActionMailer::Base.default from: "TeacherMaps<mailman@teachermaps.com>"
+    ActionMailer::Base.default from: "** YOUR EMAIL ACCOUNT **"
     config.action_mailer.delivery_method = :smtp
     config.action_mailer.smtp_settings = {
       address:                '** YOUR SMTP ADDRESS **',
